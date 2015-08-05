@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:red-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <definitions>
+    <definition class="vulnerability" id="oval:org.debian:def:1209" version="1">
+			<metadata>
+				<title>
+					cross-site request forgery
+				</title>
+				<affected family="unix">
+					<platform>
+						Debian GNU/Linux 3.1
+					</platform>
+					<product>
+						trac
+					</product>
+				</affected>
+				<description>
+					What information can i put there?
+				</description>
+				<debian>
+					<moreinfo>
+						
+It was discovered that Trac, a wiki and issue tracking system for
+software development projects, performs insufficient validation against
+cross-site request forgery, which might lead to an attacker being able
+to perform manipulation of a Trac site with the privileges of the
+attacked Trac user.
+					</moreinfo>
+				</debian>
+			</metadata>
+			<criteria comment="Release section" operator="AND">
+				<criterion comment="Debian 3.1 is installed" test_ref="oval:org.debian.oval.dedup4:tst:1"/>
+				<criteria comment="Architecture section" operator="OR">
+					<criteria comment="Architecture independet section" operator="AND">
+						<criterion comment="all architecture" test_ref="oval:org.debian.oval.dedup5:tst:4"/>
+						<criterion comment="trac DPKG is earlier than 0.8.1-3sarge7" test_ref="oval:org.debian.oval:tst:2510"/>
+					</criteria>
+				</criteria>
+			</criteria>
+		</definition>
+  </definitions>
+  <tests>
+    <textfilecontent_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Debian GNU/Linux 3.1 is installed" id="oval:org.debian.oval.dedup4:tst:1" version="1">
+			<object object_ref="oval:org.debian.oval:obj:1"/>
+			<state state_ref="oval:org.debian.oval.dedup4:ste:1"/>
+		</textfilecontent_test>
+    <uname_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Installed architecture is all" id="oval:org.debian.oval.dedup5:tst:4" version="1">
+			<object object_ref="oval:org.debian.oval.dedup5:obj:3"/>
+		</uname_test>
+    <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="trac is earlier than 0.8.1-3sarge7" id="oval:org.debian.oval:tst:2510" version="1">
+			<object object_ref="oval:org.debian.oval.dedup1:obj:1018"/>
+			<state state_ref="oval:org.debian.oval:ste:801"/>
+		</dpkginfo_test>
+  </tests>
+  <objects>
+    <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.debian.oval.dedup1:obj:1018" version="1">
+			<name>
+				trac
+			</name>
+		</dpkginfo_object>
+    <uname_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" id="oval:org.debian.oval.dedup5:obj:3" version="1"/>
+    <textfilecontent_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.debian.oval:obj:1" version="1">
+			<path>
+				/etc
+			</path>
+			<filename>
+				debian_version
+			</filename>
+			<line operation="pattern match">
+				\d\.\d
+			</line>
+		</textfilecontent_object>
+  </objects>
+  <states>
+    <textfilecontent_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.debian.oval.dedup4:ste:1" version="1">
+			<line operation="equals">
+				3.1
+			</line>
+		</textfilecontent_state>
+    <dpkginfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.debian.oval:ste:801" version="1">
+			<evr datatype="evr_string" operation="less than">
+				0:0.8.1-3sarge7
+			</evr>
+		</dpkginfo_state>
+  </states>
+</oval_definitions>

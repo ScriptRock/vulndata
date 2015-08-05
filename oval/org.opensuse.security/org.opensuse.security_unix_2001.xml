@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:red-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <definitions>
+    <definition id="oval:org.opensuse.security:def:20011267" version="1" class="vulnerability">
+ <metadata>
+ <title>CVE-2001-1267</title>
+	<affected family="unix">
+		<platform>Novell Linux Desktop 9 for x86</platform>
+		<platform>Novell Linux Desktop 9 for x86_64</platform>
+		<platform>Open Enterprise Server</platform>
+		<platform>SUSE CORE 9 for AMD64 and Intel EM64T</platform>
+		<platform>SUSE LINUX Retail Solution 8</platform>
+		<platform>SuSE Linux Desktop 1.0</platform>
+		<platform>SuSE Linux Enterprise Server 8 for AMD64</platform>
+		<platform>SuSE Linux Enterprise Server 8 for IBM iSeries and IBM pSeries</platform>
+		<platform>SuSE Linux Enterprise Server 8 for IBM zSeries</platform>
+		<platform>SuSE Linux Enterprise Server 8 for IPF</platform>
+		<platform>SuSE Linux Openexchange Server 4</platform>
+		<platform>SuSE Linux School Server for i386</platform>
+		<platform>SuSE Linux Standard Server 8</platform>
+		<platform>UnitedLinux 1.0</platform>
+	</affected>
+	<reference ref_id="CVE-2001-1267" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2001-1267" source="CVE"/>
+	<description>
+	Directory traversal vulnerability in GNU tar 1.13.19 and earlier allows local users to overwrite arbitrary files during archive extraction via a tar file whose filenames contain a .. (dot dot).
+	</description>
+ </metadata>
+<!-- 2506227b7bd914b11632b5701384104a -->
+<criteria operator="OR">
+		<criteria operator="AND">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009030400" comment="sles9-nld is installed"/>
+			<criterion test_ref="oval:org.opensuse.security:tst:2009030401" comment="tar less than 1.13.25-325.10"/>
+	</criteria>
+		<criteria operator="AND">
+		<criteria operator="OR">
+			<criterion test_ref="oval:org.opensuse.security:tst:2009036682" comment="sles8 is installed"/>
+			<criterion test_ref="oval:org.opensuse.security:tst:2009036683" comment="sles8-slec is installed"/>
+			<criterion test_ref="oval:org.opensuse.security:tst:2009036682" comment="sles8-slrs is installed"/>
+			<criterion test_ref="oval:org.opensuse.security:tst:2009036684" comment="sles8-slss is installed"/>
+			<criterion test_ref="oval:org.opensuse.security:tst:2009036682" comment="sles8-slstd is installed"/>
+			<criterion test_ref="oval:org.opensuse.security:tst:2009036685" comment="slox4 is installed"/>
+			<criterion test_ref="oval:org.opensuse.security:tst:2009036686" comment="unitedlinux-1.0 is installed"/>
+		</criteria>
+			<criterion test_ref="oval:org.opensuse.security:tst:2009036687" comment="tar less than 1.13.25-334"/>
+	</criteria></criteria>
+</definition>
+  </definitions>
+  <tests>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:tst:2009030400" version="1" comment="sld-release is ==9" check="at least one">
+		<object object_ref="oval:org.opensuse.security:obj:2009030400"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009030400"/>
+	</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:tst:2009030401" version="1" comment="tar is &lt;1.13.25-325.10" check="at least one">
+		<object object_ref="oval:org.opensuse.security:obj:2009030401"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009030401"/>
+	</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:tst:2009036682" version="1" comment="sles-release is ==8" check="at least one">
+		<object object_ref="oval:org.opensuse.security:obj:2009030884"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009032192"/>
+	</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:tst:2009036683" version="1" comment="sld-release is ==1" check="at least one">
+		<object object_ref="oval:org.opensuse.security:obj:2009030400"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009032193"/>
+	</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:tst:2009036684" version="1" comment="slss-release is ==8" check="at least one">
+		<object object_ref="oval:org.opensuse.security:obj:2009031919"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009032192"/>
+	</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:tst:2009036685" version="1" comment="sloes-release is ==4.1.0" check="at least one">
+		<object object_ref="oval:org.opensuse.security:obj:2009031920"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009032194"/>
+	</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:tst:2009036686" version="1" comment="unitedlinux-release is ==1.0" check="at least one">
+		<object object_ref="oval:org.opensuse.security:obj:2009031921"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009032195"/>
+	</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:tst:2009036687" version="1" comment="tar is &lt;1.13.25-334" check="at least one">
+		<object object_ref="oval:org.opensuse.security:obj:2009030401"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009032196"/>
+	</rpminfo_test>
+  </tests>
+  <objects>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:obj:2009030400" version="1">
+		<name>sld-release</name>
+	</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:obj:2009030401" version="1">
+		<name>tar</name>
+	</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:obj:2009030884" version="1">
+		<name>sles-release</name>
+	</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:obj:2009031919" version="1">
+		<name>slss-release</name>
+	</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:obj:2009031920" version="1">
+		<name>sloes-release</name>
+	</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:obj:2009031921" version="1">
+		<name>unitedlinux-release</name>
+	</rpminfo_object>
+  </objects>
+  <states>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:ste:2009030400" version="1">
+   <version operation="equals">9</version>
+  </rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:ste:2009030401" version="1">
+   <evr datatype="evr_string" operation="less than">0:1.13.25-325.10</evr>
+  </rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:ste:2009032192" version="1">
+   <version operation="equals">8</version>
+  </rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:ste:2009032193" version="1">
+   <version operation="equals">1</version>
+  </rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:ste:2009032194" version="1">
+   <version operation="equals">4.1.0</version>
+  </rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:ste:2009032195" version="1">
+   <version operation="equals">1.0</version>
+  </rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.opensuse.security:ste:2009032196" version="1">
+   <evr datatype="evr_string" operation="less than">0:1.13.25-334</evr>
+  </rpminfo_state>
+  </states>
+</oval_definitions>
