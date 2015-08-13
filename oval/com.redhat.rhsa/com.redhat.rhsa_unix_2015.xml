@@ -23162,6 +23162,147 @@ upgrades Flash Player to version 11.2.202.508.</description>
 </criteria>
 
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20151623" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1623: kernel security and bug fix update (Important)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1623-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1623.html"/>
+      <reference source="CVE" ref_id="CVE-2015-5364" ref_url="https://access.redhat.com/security/cve/CVE-2015-5364"/>
+      <reference source="CVE" ref_id="CVE-2015-5366" ref_url="https://access.redhat.com/security/cve/CVE-2015-5366"/>
+    <description>The kernel packages contain the Linux kernel, the core of any Linux
+operating system.
+
+Two flaws were found in the way the Linux kernel's networking
+implementation handled UDP packets with incorrect checksum values. A remote
+attacker could potentially use these flaws to trigger an infinite loop in
+the kernel, resulting in a denial of service on the system, or cause a
+denial of service in applications using the edge triggered epoll
+functionality. (CVE-2015-5364, CVE-2015-5366, Important)
+
+This update also fixes the following bugs:
+
+* When removing a directory, and a reference was held to that directory by
+a reference to a negative child dentry, the directory dentry was previously
+not killed. In addition, once the negative child dentry was killed, an
+unlinked and unused dentry was present in the cache. As a consequence,
+deadlock could be caused by forcing the dentry eviction while the file
+system in question was frozen. With this update, all unused dentries are
+unhashed and evicted just after a successful directory removal, which
+avoids the deadlock, and the system no longer hangs in the aforementioned
+scenario. (BZ#1243400)
+
+* Due to the broken s_umount lock ordering, a race condition occurred when
+an unlinked file was closed and the sync (or syncfs) utility was run at the
+same time. As a consequence, deadlock occurred on a frozen file system
+between sync and a process trying to unfreeze the file system. With this
+update, sync (or syncfs) is skipped on a frozen file system, and deadlock
+no longer occurs in the aforementioned situation. (BZ#1243404)
+
+* Previously, in the scenario when a file was opened by file handle
+(fhandle) with its dentry not present in dcache ("cold dcache") and then
+making use of the unlink() and close() functions, the inode was not freed
+upon the close() system call. As a consequence, the iput() final was
+delayed indefinitely. A patch has been provided to fix this bug, and the
+inode is now freed as expected. (BZ#1243406)
+
+* Due to a corrupted Executable and Linkable Format (ELF) header in the
+/proc/vmcore file, the kdump utility failed to provide any information.
+The underlying source code has been patched, and kdump now provides
+debuging information for kernel crashes as intended. (BZ#1245195)
+
+* Previously, running the multipath request queue caused regressions in
+cases where paths failed regularly under I/O load. This regression
+manifested as I/O stalls that exceeded 300 seconds. This update reverts the
+changes aimed to reduce running the multipath request queue resulting in
+I/O stalls completing in a timely manner. (BZ#1246095)
+
+All kernel users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues. The system must be
+rebooted for this update to take effect.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Important</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-08-13"/>
+        <updated date="2015-08-13"/>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-5364">CVE-2015-5364</cve>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-5366">CVE-2015-5366</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1239029" id="1239029">CVE-2015-5366 CVE-2015-5364 kernel: net: incorrect processing of checksums in UDP implementation</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20111694001" comment="Red Hat Enterprise Linux 6 Client is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694002" comment="Red Hat Enterprise Linux 6 Server is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694003" comment="Red Hat Enterprise Linux 6 Workstation is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694004" comment="Red Hat Enterprise Linux 6 ComputeNode is installed"/>
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623015" comment="kernel is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842006" comment="kernel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623007" comment="kernel-abi-whitelists is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20131801028" comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623029" comment="kernel-bootwrapper is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842010" comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623017" comment="kernel-debug is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842012" comment="kernel-debug is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623013" comment="kernel-debug-devel is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842014" comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623019" comment="kernel-devel is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842016" comment="kernel-devel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623009" comment="kernel-doc is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842024" comment="kernel-doc is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623005" comment="kernel-firmware is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842026" comment="kernel-firmware is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623021" comment="kernel-headers is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842008" comment="kernel-headers is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623027" comment="kernel-kdump is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842018" comment="kernel-kdump is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623023" comment="kernel-kdump-devel is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842020" comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623011" comment="perf is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842022" comment="perf is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151623025" comment="python-perf is earlier than 0:2.6.32-573.3.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111849018" comment="python-perf is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20070057003" version="503" comment="bind is signed with Red Hat redhatrelease key" check="at least one">
@@ -32652,6 +32793,58 @@ upgrades Flash Player to version 11.2.202.508.</description>
   <object object_ref="oval:com.redhat.rhsa:obj:20070696002"/>
   <state state_ref="oval:com.redhat.rhsa:ste:20151603006"/>
 </rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623005" version="601" comment="kernel-firmware is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20100842015"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623007" version="601" comment="kernel-abi-whitelists is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20131801016"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623009" version="601" comment="kernel-doc is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20030416007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623011" version="601" comment="perf is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20100842013"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623013" version="601" comment="kernel-debug-devel is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20070993007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623015" version="601" comment="kernel is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20030416002"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623017" version="601" comment="kernel-debug is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20070993004"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623019" version="601" comment="kernel-devel is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20050092003"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623021" version="601" comment="kernel-headers is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20070099003"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623023" version="601" comment="kernel-kdump-devel is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20070099007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623025" version="601" comment="python-perf is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20111849011"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623027" version="601" comment="kernel-kdump is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20070099008"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151623029" version="601" comment="kernel-bootwrapper is earlier than 0:2.6.32-573.3.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20100842007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151623003"/>
+</rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030315001" version="502">
@@ -35451,6 +35644,9 @@ upgrades Flash Player to version 11.2.202.508.</description>
 </rpminfo_state>
     <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151603006" version="601">
   <evr datatype="evr_string" operation="less than">0:11.2.202.508-1.el6_7</evr>
+</rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151623003" version="601">
+  <evr datatype="evr_string" operation="less than">0:2.6.32-573.3.1.el6</evr>
 </rpminfo_state>
   </states>
 </oval_definitions>
