@@ -23697,6 +23697,94 @@ contains a backported patch to correct this issue.</description>
 </criteria>
 
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20151635" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1635: sqlite security update (Moderate)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1635-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1635.html"/>
+      <reference source="CVE" ref_id="CVE-2015-3414" ref_url="https://access.redhat.com/security/cve/CVE-2015-3414"/>
+      <reference source="CVE" ref_id="CVE-2015-3415" ref_url="https://access.redhat.com/security/cve/CVE-2015-3415"/>
+      <reference source="CVE" ref_id="CVE-2015-3416" ref_url="https://access.redhat.com/security/cve/CVE-2015-3416"/>
+    <description>SQLite is a C library that implements an SQL database engine. A large
+subset of SQL92 is supported. A complete database is stored in a single
+disk file. The API is designed for convenience and ease of use.
+Applications that link against SQLite can enjoy the power and flexibility
+of an SQL database without the administrative hassles of supporting a
+separate database server.
+
+A flaw was found in the way SQLite handled dequoting of collation-sequence
+names. A local attacker could submit a specially crafted COLLATE statement
+that would crash the SQLite process, or have other unspecified impacts.
+(CVE-2015-3414)
+
+It was found that SQLite's sqlite3VdbeExec() function did not properly
+implement comparison operators. A local attacker could submit a specially
+crafted CHECK statement that would crash the SQLite process, or have other
+unspecified impacts. (CVE-2015-3415)
+
+It was found that SQLite's sqlite3VXPrintf() function did not properly
+handle precision and width values during floating-point conversions.
+A local attacker could submit a specially crafted SELECT statement that
+would crash the SQLite process, or have other unspecified impacts.
+(CVE-2015-3416)
+
+All sqlite users are advised to upgrade to this updated package, which
+contains backported patches to correct these issues.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Moderate</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-08-17"/>
+        <updated date="2015-08-17"/>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-3414">CVE-2015-3414</cve>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-3415">CVE-2015-3415</cve>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-3416">CVE-2015-3416</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1212353" id="1212353">CVE-2015-3414 sqlite: use of uninitialized memory when parsing collation sequences in src/where.c</bugzilla>
+        <bugzilla href="https://bugzilla.redhat.com/1212356" id="1212356">CVE-2015-3415 sqlite: invalid free() in src/vdbe.c</bugzilla>
+        <bugzilla href="https://bugzilla.redhat.com/1212357" id="1212357">CVE-2015-3416 sqlite: stack buffer overflow in src/printf.c</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20140675001" comment="Red Hat Enterprise Linux 7 Client is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20140675002" comment="Red Hat Enterprise Linux 7 Server is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20140675003" comment="Red Hat Enterprise Linux 7 Workstation is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20140675004" comment="Red Hat Enterprise Linux 7 ComputeNode is installed"/>
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151635005" comment="lemon is earlier than 0:3.7.17-6.el7_1.1"/><criterion test_ref="oval:com.redhat.rhsa:tst:20151634006" comment="lemon is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151635007" comment="sqlite is earlier than 0:3.7.17-6.el7_1.1"/><criterion test_ref="oval:com.redhat.rhsa:tst:20151634012" comment="sqlite is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151635011" comment="sqlite-devel is earlier than 0:3.7.17-6.el7_1.1"/><criterion test_ref="oval:com.redhat.rhsa:tst:20151634010" comment="sqlite-devel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151635013" comment="sqlite-doc is earlier than 0:3.7.17-6.el7_1.1"/><criterion test_ref="oval:com.redhat.rhsa:tst:20151634008" comment="sqlite-doc is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151635009" comment="sqlite-tcl is earlier than 0:3.7.17-6.el7_1.1"/><criterion test_ref="oval:com.redhat.rhsa:tst:20151634014" comment="sqlite-tcl is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20070057003" version="503" comment="bind is signed with Red Hat redhatrelease key" check="at least one">
@@ -33387,6 +33475,26 @@ contains a backported patch to correct this issue.</description>
   <object object_ref="oval:com.redhat.rhsa:obj:20151634009"/>
   <state state_ref="oval:com.redhat.rhsa:ste:20100842001"/>
 </rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151635005" version="601" comment="lemon is earlier than 0:3.7.17-6.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151634005"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151635003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151635007" version="601" comment="sqlite is earlier than 0:3.7.17-6.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151634008"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151635003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151635009" version="601" comment="sqlite-tcl is earlier than 0:3.7.17-6.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151634009"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151635003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151635011" version="601" comment="sqlite-devel is earlier than 0:3.7.17-6.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151634007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151635003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151635013" version="601" comment="sqlite-doc is earlier than 0:3.7.17-6.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151634006"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151635003"/>
+</rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030315001" version="502">
@@ -36234,6 +36342,9 @@ contains a backported patch to correct this issue.</description>
 </rpminfo_state>
     <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151634003" version="601">
   <evr datatype="evr_string" operation="less than">0:3.6.20-1.el6_7.2</evr>
+</rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151635003" version="601">
+  <evr datatype="evr_string" operation="less than">0:3.7.17-6.el7_1.1</evr>
 </rpminfo_state>
   </states>
 </oval_definitions>
