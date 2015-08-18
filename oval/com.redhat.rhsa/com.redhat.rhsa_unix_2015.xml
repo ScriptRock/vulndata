@@ -23918,6 +23918,206 @@ which contain a backported patch to correct this issue.</description>
 </criteria>
 
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20151640" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1640: pam security update (Moderate)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1640-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1640.html"/>
+      <reference source="CVE" ref_id="CVE-2015-3238" ref_url="https://access.redhat.com/security/cve/CVE-2015-3238"/>
+    <description>Pluggable Authentication Modules (PAM) provide a system whereby
+administrators can set up authentication policies without having to
+recompile programs to handle authentication.
+
+It was discovered that the _unix_run_helper_binary() function of PAM's
+unix_pam module could write to a blocking pipe, possibly causing the
+function to become unresponsive. An attacker able to supply large passwords
+to the unix_pam module could use this flaw to enumerate valid user
+accounts, or cause a denial of service on the system. (CVE-2015-3238)
+
+Red Hat would like to thank Sebastien Macke of Trustwave SpiderLabs for
+reporting this issue.
+
+All pam users are advised to upgrade to this updated package, which
+contains a backported patch to correct this issue.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Moderate</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-08-18"/>
+        <updated date="2015-08-18"/>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-3238">CVE-2015-3238</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1228571" id="1228571">CVE-2015-3238 pam: DoS/user enumeration due to blocking pipe in pam_unix module</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+        <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="OR">
+ 
+ <criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20111694001" comment="Red Hat Enterprise Linux 6 Client is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694002" comment="Red Hat Enterprise Linux 6 Server is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694003" comment="Red Hat Enterprise Linux 6 Workstation is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694004" comment="Red Hat Enterprise Linux 6 ComputeNode is installed"/>
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151640005" comment="pam is earlier than 0:1.1.1-20.el6_7.1"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100891006" comment="pam is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151640007" comment="pam-devel is earlier than 0:1.1.1-20.el6_7.1"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100891008" comment="pam-devel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+<criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20140675001" comment="Red Hat Enterprise Linux 7 Client is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20140675002" comment="Red Hat Enterprise Linux 7 Server is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20140675003" comment="Red Hat Enterprise Linux 7 Workstation is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20140675004" comment="Red Hat Enterprise Linux 7 ComputeNode is installed"/>
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151640013" comment="pam is earlier than 0:1.1.8-12.el7_1.1"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100891006" comment="pam is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151640014" comment="pam-devel is earlier than 0:1.1.8-12.el7_1.1"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100891008" comment="pam-devel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20151643" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1643: kernel security and bug fix update (Moderate)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 6.4 AUS - Server Only</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1643-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1643.html"/>
+      <reference source="CVE" ref_id="CVE-2015-3636" ref_url="https://access.redhat.com/security/cve/CVE-2015-3636"/>
+    <description>The kernel packages contain the Linux kernel, the core of any Linux
+operating system.
+
+* It was found that the Linux kernel's ping socket implementation did not
+properly handle socket unhashing during spurious disconnects, which could
+lead to a use-after-free flaw. On x86-64 architecture systems, a local user
+able to create ping sockets could use this flaw to crash the system.
+On non-x86-64 architecture systems, a local user able to create ping
+sockets could use this flaw to escalate their privileges on the system.
+(CVE-2015-3636, Moderate)
+
+This update also fixes the following bugs:
+
+* Due to bad memory or memory corruption, an isolated BUG_ON(mm-&gt;nr_ptes)
+was sometimes reported, indicating that not all the page tables allocated
+could be found and freed when the exit_mmap() function cleared the user
+address space. As a consequence, a kernel panic occurred. To fix this bug,
+the BUG_ON() function has been replaced by WARN_ON(), which prevents the
+kernel from panicking in the aforementioned situation. (BZ#1235929)
+
+* Previously, it was for the ext4 driver to read a metadata block and use
+it without a verification. If the metadata block was corrupted, a kernel
+panic could occur. With this update, verification is forced on every buffer
+before it is used, which uncovers possible corruption and prevents further
+use of the corrupted metadata buffer. (BZ#1242930)
+
+All kernel users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues. The system must be
+rebooted for this update to take effect.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Moderate</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-08-18"/>
+        <updated date="2015-08-18"/>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-3636">CVE-2015-3636</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1218074" id="1218074">CVE-2015-3636 kernel: ping sockets: use-after-free leading to local privilege escalation</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:rhel_aus:6.4</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20111694001" comment="Red Hat Enterprise Linux 6 Client is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694002" comment="Red Hat Enterprise Linux 6 Server is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694003" comment="Red Hat Enterprise Linux 6 Workstation is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694004" comment="Red Hat Enterprise Linux 6 ComputeNode is installed"/>
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643011" comment="kernel is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842006" comment="kernel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643027" comment="kernel-bootwrapper is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842010" comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643019" comment="kernel-debug is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842012" comment="kernel-debug is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643013" comment="kernel-debug-devel is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842014" comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643017" comment="kernel-devel is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842016" comment="kernel-devel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643007" comment="kernel-doc is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842024" comment="kernel-doc is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643005" comment="kernel-firmware is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842026" comment="kernel-firmware is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643015" comment="kernel-headers is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842008" comment="kernel-headers is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643025" comment="kernel-kdump is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842018" comment="kernel-kdump is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643009" comment="kernel-kdump-devel is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842020" comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643023" comment="perf is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20100842022" comment="perf is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151643021" comment="python-perf is earlier than 0:2.6.32-358.65.1.el6"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111849018" comment="python-perf is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20070057003" version="503" comment="bind is signed with Red Hat redhatrelease key" check="at least one">
@@ -24486,6 +24686,14 @@ which contain a backported patch to correct this issue.</description>
 </rpminfo_test>
     <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20100888012" version="502" comment="openssl-devel is signed with Red Hat redhatrelease2 key" check="at least one">
   <object object_ref="oval:com.redhat.rhsa:obj:20040120003"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20100842001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20100891006" version="502" comment="pam is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20050805002"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20100842001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20100891008" version="502" comment="pam-devel is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20050805003"/>
   <state state_ref="oval:com.redhat.rhsa:ste:20100842001"/>
 </rpminfo_test>
     <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20100896006" version="502" comment="thunderbird is signed with Red Hat redhatrelease2 key" check="at least one">
@@ -33700,6 +33908,70 @@ which contain a backported patch to correct this issue.</description>
   <object object_ref="oval:com.redhat.rhsa:obj:20040023003"/>
   <state state_ref="oval:com.redhat.rhsa:ste:20151636005"/>
 </rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151640005" version="601" comment="pam is earlier than 0:1.1.1-20.el6_7.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20050805002"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151640003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151640007" version="601" comment="pam-devel is earlier than 0:1.1.1-20.el6_7.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20050805003"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151640003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151640013" version="601" comment="pam is earlier than 0:1.1.8-12.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20050805002"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151640005"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151640014" version="601" comment="pam-devel is earlier than 0:1.1.8-12.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20050805003"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151640005"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643005" version="601" comment="kernel-firmware is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20100842015"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643007" version="601" comment="kernel-doc is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20030416007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643009" version="601" comment="kernel-kdump-devel is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20070099007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643011" version="601" comment="kernel is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20030416002"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643013" version="601" comment="kernel-debug-devel is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20070993007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643015" version="601" comment="kernel-headers is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20070099003"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643017" version="601" comment="kernel-devel is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20050092003"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643019" version="601" comment="kernel-debug is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20070993004"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643021" version="601" comment="python-perf is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20111849011"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643023" version="601" comment="perf is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20100842013"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643025" version="601" comment="kernel-kdump is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20070099008"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151643027" version="601" comment="kernel-bootwrapper is earlier than 0:2.6.32-358.65.1.el6" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20100842007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
+</rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030315001" version="502">
@@ -33908,6 +34180,12 @@ which contain a backported patch to correct this issue.</description>
 </rpminfo_object>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20050535002" version="505">
   <name>sudo</name>
+</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20050805002" version="502">
+  <name>pam</name>
+</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20050805003" version="502">
+  <name>pam-devel</name>
 </rpminfo_object>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20060393002" version="502">
   <name>ntp</name>
@@ -36565,6 +36843,15 @@ which contain a backported patch to correct this issue.</description>
 </rpminfo_state>
     <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151636005" version="601">
   <evr datatype="evr_string" operation="less than">1:5.7.2-20.el7_1.1</evr>
+</rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151640003" version="601">
+  <evr datatype="evr_string" operation="less than">0:1.1.1-20.el6_7.1</evr>
+</rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151640005" version="601">
+  <evr datatype="evr_string" operation="less than">0:1.1.8-12.el7_1.1</evr>
+</rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151643003" version="601">
+  <evr datatype="evr_string" operation="less than">0:2.6.32-358.65.1.el6</evr>
 </rpminfo_state>
   </states>
 </oval_definitions>
