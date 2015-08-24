@@ -24118,6 +24118,150 @@ rebooted for this update to take effect.</description>
 </criteria>
 
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20151664" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1664: nss security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1664-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1664.html"/>
+      <reference source="CVE" ref_id="CVE-2015-2721" ref_url="https://access.redhat.com/security/cve/CVE-2015-2721"/>
+      <reference source="CVE" ref_id="CVE-2015-2730" ref_url="https://access.redhat.com/security/cve/CVE-2015-2730"/>
+    <description>Network Security Services (NSS) is a set of libraries designed to support
+cross-platform development of security-enabled client and server
+applications.
+
+It was found that NSS permitted skipping of the ServerKeyExchange packet
+during a handshake involving ECDHE (Elliptic Curve Diffie-Hellman key
+Exchange). A remote attacker could use this flaw to bypass the
+forward-secrecy of a TLS/SSL connection. (CVE-2015-2721)
+
+A flaw was found in the way NSS verified certain ECDSA (Elliptic Curve
+Digital Signature Algorithm) signatures. Under certain conditions, an
+attacker could use this flaw to conduct signature forgery attacks.
+(CVE-2015-2730)
+
+Red Hat would like to thank the Mozilla project for reporting this issue.
+Upstream acknowledges Karthikeyan Bhargavan as the original reporter of
+CVE-2015-2721, and Watson Ladd as the original reporter of CVE-2015-2730.
+
+The nss packages have been upgraded to upstream version 3.19.1, which
+provides a number of bug fixes and enhancements over the previous version.
+
+All nss users are advised to upgrade to these updated packages, which
+correct these issues.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Moderate</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-08-24"/>
+        <updated date="2015-08-24"/>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-2721">CVE-2015-2721</cve>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-2730">CVE-2015-2730</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1236954" id="1236954">CVE-2015-2730 NSS: ECDSA signature validation fails to handle some signatures correctly (MFSA 2015-64)</bugzilla>
+        <bugzilla href="https://bugzilla.redhat.com/1236967" id="1236967">CVE-2015-2721 NSS: incorrectly permited skipping of ServerKeyExchange (MFSA 2015-71)</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20091530001" comment="Red Hat Enterprise Linux 5 is installed"/>
+ <criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151664008" comment="nss is earlier than 0:3.19.1-1.el5_11"/><criterion test_ref="oval:com.redhat.rhsa:tst:20080879009" comment="nss is signed with Red Hat redhatrelease key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151664006" comment="nss-devel is earlier than 0:3.19.1-1.el5_11"/><criterion test_ref="oval:com.redhat.rhsa:tst:20080879013" comment="nss-devel is signed with Red Hat redhatrelease key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151664002" comment="nss-pkcs11-devel is earlier than 0:3.19.1-1.el5_11"/><criterion test_ref="oval:com.redhat.rhsa:tst:20080879011" comment="nss-pkcs11-devel is signed with Red Hat redhatrelease key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151664004" comment="nss-tools is earlier than 0:3.19.1-1.el5_11"/><criterion test_ref="oval:com.redhat.rhsa:tst:20080879015" comment="nss-tools is signed with Red Hat redhatrelease key"/>
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20151668" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1668: httpd security update (Moderate)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1668-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1668.html"/>
+      <reference source="CVE" ref_id="CVE-2015-3183" ref_url="https://access.redhat.com/security/cve/CVE-2015-3183"/>
+    <description>The httpd packages provide the Apache HTTP Server, a powerful, efficient,
+and extensible web server.
+
+Multiple flaws were found in the way httpd parsed HTTP requests and
+responses using chunked transfer encoding. A remote attacker could use
+these flaws to create a specially crafted request, which httpd would decode
+differently from an HTTP proxy software in front of it, possibly leading to
+HTTP request smuggling attacks. (CVE-2015-3183)
+
+All httpd users are advised to upgrade to these updated packages, which
+contain a backported patch to correct this issue. After installing the
+updated packages, the httpd service will be restarted automatically.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Moderate</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-08-24"/>
+        <updated date="2015-08-24"/>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-3183">CVE-2015-3183</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1243887" id="1243887">CVE-2015-3183 httpd: HTTP request smuggling attack against chunked request parser</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20111694001" comment="Red Hat Enterprise Linux 6 Client is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694002" comment="Red Hat Enterprise Linux 6 Server is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694003" comment="Red Hat Enterprise Linux 6 Workstation is installed"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111694004" comment="Red Hat Enterprise Linux 6 ComputeNode is installed"/>
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151668007" comment="httpd is earlier than 0:2.2.15-47.el6_7"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111245026" comment="httpd is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151668011" comment="httpd-devel is earlier than 0:2.2.15-47.el6_7"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111245028" comment="httpd-devel is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151668013" comment="httpd-manual is earlier than 0:2.2.15-47.el6_7"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111245034" comment="httpd-manual is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151668009" comment="httpd-tools is earlier than 0:2.2.15-47.el6_7"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111245032" comment="httpd-tools is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151668005" comment="mod_ssl is earlier than 1:2.2.15-47.el6_7"/><criterion test_ref="oval:com.redhat.rhsa:tst:20111245030" comment="mod_ssl is signed with Red Hat redhatrelease2 key"/>
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20070057003" version="503" comment="bind is signed with Red Hat redhatrelease key" check="at least one">
@@ -24306,6 +24450,22 @@ rebooted for this update to take effect.</description>
 </rpminfo_test>
     <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20080267017" version="502" comment="java-1.6.0-ibm-accessibility is signed with Red Hat redhatrelease key" check="at least one">
   <object object_ref="oval:com.redhat.rhsa:obj:20080267009"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20070055001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20080879009" version="502" comment="nss is signed with Red Hat redhatrelease key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20080879005"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20070055001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20080879011" version="502" comment="nss-pkcs11-devel is signed with Red Hat redhatrelease key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20080879006"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20070055001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20080879013" version="502" comment="nss-devel is signed with Red Hat redhatrelease key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20080879007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20070055001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20080879015" version="502" comment="nss-tools is signed with Red Hat redhatrelease key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20080879008"/>
   <state state_ref="oval:com.redhat.rhsa:ste:20070055001"/>
 </rpminfo_test>
     <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20090377003" version="502" comment="java-1.6.0-openjdk is signed with Red Hat redhatrelease key" check="at least one">
@@ -25194,6 +25354,26 @@ rebooted for this update to take effect.</description>
 </rpminfo_test>
     <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20111221018" version="502" comment="samba-winbind-krb5-locator is signed with Red Hat redhatrelease2 key" check="at least one">
   <object object_ref="oval:com.redhat.rhsa:obj:20111221011"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20100842001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20111245026" version="502" comment="httpd is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20040015002"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20100842001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20111245028" version="502" comment="httpd-devel is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20040015004"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20100842001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20111245030" version="502" comment="mod_ssl is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20040015003"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20100842001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20111245032" version="502" comment="httpd-tools is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20111245011"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20100842001"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20111245034" version="502" comment="httpd-manual is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20050582005"/>
   <state state_ref="oval:com.redhat.rhsa:ste:20100842001"/>
 </rpminfo_test>
     <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20111359023" version="502" comment="xorg-x11-server is signed with Red Hat redhatrelease2 key" check="at least one">
@@ -33972,6 +34152,42 @@ rebooted for this update to take effect.</description>
   <object object_ref="oval:com.redhat.rhsa:obj:20100842007"/>
   <state state_ref="oval:com.redhat.rhsa:ste:20151643003"/>
 </rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151664002" version="601" comment="nss-pkcs11-devel is earlier than 0:3.19.1-1.el5_11" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20080879006"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151664003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151664004" version="601" comment="nss-tools is earlier than 0:3.19.1-1.el5_11" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20080879008"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151664003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151664006" version="601" comment="nss-devel is earlier than 0:3.19.1-1.el5_11" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20080879007"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151664003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151664008" version="601" comment="nss is earlier than 0:3.19.1-1.el5_11" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20080879005"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151664003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151668005" version="601" comment="mod_ssl is earlier than 1:2.2.15-47.el6_7" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20040015003"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151668003"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151668007" version="601" comment="httpd is earlier than 0:2.2.15-47.el6_7" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20040015002"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151668004"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151668009" version="601" comment="httpd-tools is earlier than 0:2.2.15-47.el6_7" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20111245011"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151668004"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151668011" version="601" comment="httpd-devel is earlier than 0:2.2.15-47.el6_7" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20040015004"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151668004"/>
+</rpminfo_test>
+    <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151668013" version="601" comment="httpd-manual is earlier than 0:2.2.15-47.el6_7" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20050582005"/>
+  <state state_ref="oval:com.redhat.rhsa:ste:20151668004"/>
+</rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030315001" version="502">
@@ -34012,6 +34228,15 @@ rebooted for this update to take effect.</description>
 </rpminfo_object>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030416007" version="502">
   <name>kernel-doc</name>
+</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20040015002" version="505">
+  <name>httpd</name>
+</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20040015003" version="505">
+  <name>mod_ssl</name>
+</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20040015004" version="505">
+  <name>httpd-devel</name>
 </rpminfo_object>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20040023002" version="502">
   <name>net-snmp</name>
@@ -34180,6 +34405,9 @@ rebooted for this update to take effect.</description>
 </rpminfo_object>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20050535002" version="505">
   <name>sudo</name>
+</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20050582005" version="502">
+  <name>httpd-manual</name>
 </rpminfo_object>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20050805002" version="502">
   <name>pam</name>
@@ -34747,6 +34975,9 @@ rebooted for this update to take effect.</description>
 </rpminfo_object>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20111221011" version="502">
   <name>samba-winbind-krb5-locator</name>
+</rpminfo_object>
+    <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20111245011" version="502">
+  <name>httpd-tools</name>
 </rpminfo_object>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20111359014" version="502">
   <name>xorg-x11-server-common</name>
@@ -36852,6 +37083,15 @@ rebooted for this update to take effect.</description>
 </rpminfo_state>
     <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151643003" version="601">
   <evr datatype="evr_string" operation="less than">0:2.6.32-358.65.1.el6</evr>
+</rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151664003" version="601">
+  <evr datatype="evr_string" operation="less than">0:3.19.1-1.el5_11</evr>
+</rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151668003" version="601">
+  <evr datatype="evr_string" operation="less than">1:2.2.15-47.el6_7</evr>
+</rpminfo_state>
+    <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151668004" version="601">
+  <evr datatype="evr_string" operation="less than">0:2.2.15-47.el6_7</evr>
 </rpminfo_state>
   </states>
 </oval_definitions>
