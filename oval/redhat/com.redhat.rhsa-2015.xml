@@ -5,7 +5,7 @@
     <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
     <oval:product_version>3</oval:product_version>
     <oval:schema_version>5.10.1</oval:schema_version>
-    <oval:timestamp>2015-09-03T12:51:26</oval:timestamp>
+    <oval:timestamp>2015-09-03T14:19:16</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:com.redhat.rhsa:def:20150001" version="601" class="patch">
@@ -26515,6 +26515,72 @@ effect.</description>
 </criteria>
 
     </definition>
+<definition id="oval:com.redhat.rhsa:def:20151714" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1714: spice security update (Important)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1714-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1714.html" />
+      <reference source="CVE" ref_id="CVE-2015-3247" ref_url="https://access.redhat.com/security/cve/CVE-2015-3247" />
+    <description>The Simple Protocol for Independent Computing Environments (SPICE) is a
+remote display protocol for virtual environments. SPICE users can access a
+virtualized desktop or server from the local system or any system with
+network access to the server. SPICE is used in Red Hat Enterprise Linux for
+viewing virtualized guests running on the Kernel-based Virtual Machine
+(KVM) hypervisor or on Red Hat Enterprise Virtualization Hypervisors.
+
+A race condition flaw, leading to a heap-based memory corruption, was found
+in spice's worker_update_monitors_config() function, which runs under the
+QEMU-KVM context on the host. A user in a guest could leverage this flaw to
+crash the host QEMU-KVM process or, possibly, execute arbitrary code with
+the privileges of the host QEMU-KVM process. (CVE-2015-3247)
+
+This issue was discovered by Frediano Ziglio of Red Hat.
+
+All spice users are advised to upgrade to this updated package, which
+contains a backported patch to correct this issue.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Important</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-09-03" />
+        <updated date="2015-09-03" />
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-3247">CVE-2015-3247</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1233238" id="1233238">CVE-2015-3247 spice: memory corruption in worker_update_monitors_config()</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20150008001" comment="Red Hat Enterprise Linux 7 Client is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008002" comment="Red Hat Enterprise Linux 7 Server is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008003" comment="Red Hat Enterprise Linux 7 Workstation is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008004" comment="Red Hat Enterprise Linux 7 ComputeNode is installed" />
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151714009" comment="spice is earlier than 0:0.12.4-9.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20151714010" comment="spice is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151714005" comment="spice-server is earlier than 0:0.12.4-9.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20151714006" comment="spice-server is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151714007" comment="spice-server-devel is earlier than 0:0.12.4-9.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20151714008" comment="spice-server-devel is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
 <definition id="oval:com.redhat.rhsa:def:20151715" version="601" class="patch">
       <metadata>
         <title>RHSA-2015:1715: spice-server security update (Important)</title>
@@ -26564,11 +26630,11 @@ which contains a backported patch to correct this issue.</description>
 <criteria operator="OR">
  
  <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20151715005" comment="spice-server is earlier than 0:0.12.4-12.el6_7.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20151715006" comment="spice-server is signed with Red Hat redhatrelease2 key" />
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151715005" comment="spice-server is earlier than 0:0.12.4-12.el6_7.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20151714006" comment="spice-server is signed with Red Hat redhatrelease2 key" />
  
 </criteria>
 <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20151715007" comment="spice-server-devel is earlier than 0:0.12.4-12.el6_7.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20151715008" comment="spice-server-devel is signed with Red Hat redhatrelease2 key" />
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151715007" comment="spice-server-devel is earlier than 0:0.12.4-12.el6_7.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20151714008" comment="spice-server-devel is signed with Red Hat redhatrelease2 key" />
  
 </criteria>
 
@@ -37064,21 +37130,37 @@ which contains a backported patch to correct this issue.</description>
   <object object_ref="oval:com.redhat.rhsa:obj:20150093005" />
   <state state_ref="oval:com.redhat.rhsa:ste:20151712003" />
 </rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151715005" version="601" comment="spice-server is earlier than 0:0.12.4-12.el6_7.1" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20151715005" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20151715003" />
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151714005" version="601" comment="spice-server is earlier than 0:0.12.4-9.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151714005" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151714003" />
 </rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151715006" version="601" comment="spice-server is signed with Red Hat redhatrelease2 key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20151715005" />
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151714006" version="601" comment="spice-server is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151714005" />
   <state state_ref="oval:com.redhat.rhsa:ste:20150008001" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151714007" version="601" comment="spice-server-devel is earlier than 0:0.12.4-9.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151714006" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151714003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151714008" version="601" comment="spice-server-devel is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151714006" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20150008001" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151714009" version="601" comment="spice is earlier than 0:0.12.4-9.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151714007" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151714003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151714010" version="601" comment="spice is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151714007" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20150008001" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151715005" version="601" comment="spice-server is earlier than 0:0.12.4-12.el6_7.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151714005" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151715003" />
 </rpminfo_test>
 <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151715007" version="601" comment="spice-server-devel is earlier than 0:0.12.4-12.el6_7.1" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20151715006" />
+  <object object_ref="oval:com.redhat.rhsa:obj:20151714006" />
   <state state_ref="oval:com.redhat.rhsa:ste:20151715003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151715008" version="601" comment="spice-server-devel is signed with Red Hat redhatrelease2 key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20151715006" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20150008001" />
 </rpminfo_test>
 </tests>
 
@@ -39186,11 +39268,14 @@ which contains a backported patch to correct this issue.</description>
 <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20151708006" version="601">
   <name>libXfont-devel</name>
 </rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20151715005" version="601">
+<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20151714005" version="601">
   <name>spice-server</name>
 </rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20151715006" version="601">
+<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20151714006" version="601">
   <name>spice-server-devel</name>
+</rpminfo_object>
+<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20151714007" version="601">
+  <name>spice</name>
 </rpminfo_object>
 </objects>
 
@@ -40142,6 +40227,9 @@ which contains a backported patch to correct this issue.</description>
 </rpminfo_state>
 <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151712003" version="601">
   <evr datatype="evr_string" operation="less than">0:45.0.2454.85-2.el6</evr>
+</rpminfo_state>
+<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151714003" version="601">
+  <evr datatype="evr_string" operation="less than">0:0.12.4-9.el7_1.1</evr>
 </rpminfo_state>
 <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151715003" version="601">
   <evr datatype="evr_string" operation="less than">0:0.12.4-12.el6_7.1</evr>
