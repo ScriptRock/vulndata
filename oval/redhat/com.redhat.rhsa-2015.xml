@@ -5,7 +5,7 @@
     <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
     <oval:product_version>3</oval:product_version>
     <oval:schema_version>5.10.1</oval:schema_version>
-    <oval:timestamp>2015-09-02T22:56:37</oval:timestamp>
+    <oval:timestamp>2015-09-03T00:41:27</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:com.redhat.rhsa:def:20150001" version="601" class="patch">
@@ -26054,6 +26054,142 @@ contain backported patches to correct these issues.</description>
 </criteria>
 
     </definition>
+<definition id="oval:com.redhat.rhsa:def:20151705" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1705: bind security update (Important)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 7</platform>
+      <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1705-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1705.html" />
+      <reference source="CVE" ref_id="CVE-2015-5722" ref_url="https://access.redhat.com/security/cve/CVE-2015-5722" />
+    <description>The Berkeley Internet Name Domain (BIND) is an implementation of the Domain
+Name System (DNS) protocols. BIND includes a DNS server (named); a resolver
+library (routines for applications to use when interfacing with DNS); and
+tools for verifying that the DNS server is operating correctly.
+
+A denial of service flaw was found in the way BIND parsed certain malformed
+DNSSEC keys. A remote attacker could use this flaw to send a specially
+crafted DNS query (for example, a query requiring a response from a zone
+containing a deliberately malformed key) that would cause named functioning
+as a validating resolver to crash. (CVE-2015-5722)
+
+Red Hat would like to thank ISC for reporting this issue. Upstream
+acknowledges Hanno Böck as the original reporter.
+
+All bind users are advised to upgrade to these updated packages, which
+contain a backported patch to correct this issue. After installing the
+update, the BIND daemon (named) will be restarted automatically.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Important</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-09-03" />
+        <updated date="2015-09-03" />
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-5722">CVE-2015-5722</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1259087" id="1259087">CVE-2015-5722 bind: malformed DNSSEC key failed assertion denial of service</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+        <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="OR">
+ 
+ <criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20150001001" comment="Red Hat Enterprise Linux 6 Client is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150001002" comment="Red Hat Enterprise Linux 6 Server is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150001003" comment="Red Hat Enterprise Linux 6 Workstation is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150001004" comment="Red Hat Enterprise Linux 6 ComputeNode is installed" />
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705011" comment="bind is earlier than 32:9.8.2-0.37.rc1.el6_7.4" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672006" comment="bind is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705007" comment="bind-chroot is earlier than 32:9.8.2-0.37.rc1.el6_7.4" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672012" comment="bind-chroot is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705015" comment="bind-devel is earlier than 32:9.8.2-0.37.rc1.el6_7.4" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672010" comment="bind-devel is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705009" comment="bind-libs is earlier than 32:9.8.2-0.37.rc1.el6_7.4" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672008" comment="bind-libs is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705005" comment="bind-sdb is earlier than 32:9.8.2-0.37.rc1.el6_7.4" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672014" comment="bind-sdb is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705013" comment="bind-utils is earlier than 32:9.8.2-0.37.rc1.el6_7.4" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672016" comment="bind-utils is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+<criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20150008001" comment="Red Hat Enterprise Linux 7 Client is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008002" comment="Red Hat Enterprise Linux 7 Server is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008003" comment="Red Hat Enterprise Linux 7 Workstation is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008004" comment="Red Hat Enterprise Linux 7 ComputeNode is installed" />
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705027" comment="bind is earlier than 32:9.9.4-18.el7_1.5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672006" comment="bind is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705030" comment="bind-chroot is earlier than 32:9.9.4-18.el7_1.5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672012" comment="bind-chroot is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705032" comment="bind-devel is earlier than 32:9.9.4-18.el7_1.5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672010" comment="bind-devel is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705026" comment="bind-libs is earlier than 32:9.9.4-18.el7_1.5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672008" comment="bind-libs is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705021" comment="bind-libs-lite is earlier than 32:9.9.4-18.el7_1.5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672027" comment="bind-libs-lite is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705033" comment="bind-license is earlier than 32:9.9.4-18.el7_1.5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672032" comment="bind-license is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705028" comment="bind-lite-devel is earlier than 32:9.9.4-18.el7_1.5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672029" comment="bind-lite-devel is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705025" comment="bind-sdb is earlier than 32:9.9.4-18.el7_1.5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672014" comment="bind-sdb is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705023" comment="bind-sdb-chroot is earlier than 32:9.9.4-18.el7_1.5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672025" comment="bind-sdb-chroot is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151705031" comment="bind-utils is earlier than 32:9.9.4-18.el7_1.5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150672016" comment="bind-utils is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
 <definition id="oval:com.redhat.rhsa:def:20151706" version="601" class="patch">
       <metadata>
         <title>RHSA-2015:1706: bind security update (Important)</title>
@@ -36549,6 +36685,70 @@ update, the BIND daemon (named) will be restarted automatically.</description>
   <object object_ref="oval:com.redhat.rhsa:obj:20150980005" />
   <state state_ref="oval:com.redhat.rhsa:ste:20151700005" />
 </rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705005" version="601" comment="bind-sdb is earlier than 32:9.8.2-0.37.rc1.el6_7.4" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672009" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705007" version="601" comment="bind-chroot is earlier than 32:9.8.2-0.37.rc1.el6_7.4" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672008" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705009" version="601" comment="bind-libs is earlier than 32:9.8.2-0.37.rc1.el6_7.4" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672006" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705011" version="601" comment="bind is earlier than 32:9.8.2-0.37.rc1.el6_7.4" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672005" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705013" version="601" comment="bind-utils is earlier than 32:9.8.2-0.37.rc1.el6_7.4" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672010" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705015" version="601" comment="bind-devel is earlier than 32:9.8.2-0.37.rc1.el6_7.4" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672007" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705021" version="601" comment="bind-libs-lite is earlier than 32:9.9.4-18.el7_1.5" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672012" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705005" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705023" version="601" comment="bind-sdb-chroot is earlier than 32:9.9.4-18.el7_1.5" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672011" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705005" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705025" version="601" comment="bind-sdb is earlier than 32:9.9.4-18.el7_1.5" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672009" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705005" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705026" version="601" comment="bind-libs is earlier than 32:9.9.4-18.el7_1.5" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672006" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705005" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705027" version="601" comment="bind is earlier than 32:9.9.4-18.el7_1.5" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672005" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705005" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705028" version="601" comment="bind-lite-devel is earlier than 32:9.9.4-18.el7_1.5" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672013" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705005" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705030" version="601" comment="bind-chroot is earlier than 32:9.9.4-18.el7_1.5" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672008" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705005" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705031" version="601" comment="bind-utils is earlier than 32:9.9.4-18.el7_1.5" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672010" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705005" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705032" version="601" comment="bind-devel is earlier than 32:9.9.4-18.el7_1.5" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672007" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705005" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151705033" version="601" comment="bind-license is earlier than 32:9.9.4-18.el7_1.5" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150672014" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151705005" />
+</rpminfo_test>
 <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151706002" version="601" comment="bind-libs is earlier than 30:9.3.6-25.P1.el5_11.4" check="at least one">
   <object object_ref="oval:com.redhat.rhsa:obj:20150672006" />
   <state state_ref="oval:com.redhat.rhsa:ste:20151706003" />
@@ -39630,6 +39830,12 @@ update, the BIND daemon (named) will be restarted automatically.</description>
 </rpminfo_state>
 <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151700005" version="601">
   <evr datatype="evr_string" operation="less than">0:0.9.137-13.el7_1.4</evr>
+</rpminfo_state>
+<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151705003" version="601">
+  <evr datatype="evr_string" operation="less than">32:9.8.2-0.37.rc1.el6_7.4</evr>
+</rpminfo_state>
+<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151705005" version="601">
+  <evr datatype="evr_string" operation="less than">32:9.9.4-18.el7_1.5</evr>
 </rpminfo_state>
 <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151706003" version="601">
   <evr datatype="evr_string" operation="less than">30:9.3.6-25.P1.el5_11.4</evr>
