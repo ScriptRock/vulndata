@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-09-04T04:00:39</oval:timestamp>
+      <oval:timestamp>2015-09-05T04:00:38</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:1" version="1" class="patch">
@@ -8813,6 +8813,229 @@ This security update (bsc#940918) fixes the following issues:
 </definition>
 <definition id="oval:org.opensuse.security:def:205" version="1" class="patch">
 	<metadata>
+		<title>Live patch for the Linux Kernel</title>
+		<affected family="unix">
+			<platform>SUSE Maintenance 136 SUSE SLE-12 Update</platform>
+		</affected>
+		<description>
+
+This update contains a kernel live patch for the 3.12.32-33 SUSE Linux Enterprise
+Server 12 Kernel, fixing following security issues.
+
+- CVE-2015-3339: A race condition in the prepare_binprm function in
+  fs/exec.c in the Linux kernel allowed local users to gain privileges
+  by executing a setuid program at a time instant when a chown to root
+  is in progress, and the ownership is changed but the setuid bit is not
+  yet stripped. (bsc#939263 bsc#939044)
+
+- CVE-2015-1465: The IPv4 implementation in the Linux kernel did not
+  properly consider the length of the Read-Copy Update (RCU) grace period
+  for redirecting lookups in the absence of caching, which allowed remote
+  attackers to cause a denial of service (memory consumption or system
+  crash) via a flood of packets. (bsc#939044 bsc#916225)
+
+- CVE-2015-3636: The ping_unhash function in net/ipv4/ping.c in the
+  Linux kernel did not initialize a certain list data structure during an
+  unhash operation, which allowed local users to gain privileges or cause
+  a denial of service (use-after-free and system crash) by leveraging the
+  ability to make a SOCK_DGRAM socket system call for the IPPROTO_ICMP
+  or IPPROTO_ICMPV6 protocol, and then making a connect system call after
+  a disconnect. (bsc#939277)
+
+- CVE-2015-5364/CVE-2015-5366: Two denial of service attacks via a flood
+  of UDP packets with invalid checksums were fixed that could be used
+  by remote attackers to delay execution. (bsc#939276)
+
+- CVE-2015-1805: The (1) pipe_read and (2) pipe_write implementations in
+  fs/pipe.c in the Linux kernel did not properly consider the side effects
+  of failed __copy_to_user_inatomic and __copy_from_user_inatomic calls,
+  which allowed local users to cause a denial of service (system crash)
+  or possibly gain privileges via a crafted application, aka an &amp;quot;I/O vector
+  array overrun.&amp;quot; (bsc#939270)
+
+- CVE-2015-4700: A BPF Jit optimization flaw could allow local users
+  to panic the kernel. (bsc#939273)
+
+- CVE-2014-9710: The Btrfs implementation in the Linux kernel did not
+  ensure that the visible xattr state is consistent with a requested
+  replacement, which allowed local users to bypass intended ACL settings
+  and gain privileges via standard filesystem operations (1) during an
+  xattr-replacement time window, related to a race condition, or (2) after
+  an xattr-replacement attempt that fails because the data does not fit.
+  (bsc#939260)
+
+- CVE-2014-3687: The sctp_assoc_lookup_asconf_ack function in
+  net/sctp/associola.c in the SCTP implementation in the Linux kernel
+  allowed remote attackers to cause a denial of service (panic) via
+  duplicate ASCONF chunks that trigger an incorrect uncork within the
+  side-effect interpreter. (bsc#902349 bsc#939044)
+
+- CVE-2015-3331: The __driver_rfc4106_decrypt function in
+  arch/x86/crypto/aesni-intel_glue.c in the Linux kernel did not properly
+  determine the memory locations used for encrypted data, which allowed
+  context-dependent attackers to cause a denial of service (buffer overflow
+  and system crash) or possibly execute arbitrary code by triggering a
+  crypto API call, as demonstrated by use of a libkcapi test program with
+  an AF_ALG(aead) socket. (bsc#939262)
+
+- CVE-2014-8159: The InfiniBand (IB) implementation in the Linux kernel
+  did not properly restrict use of User Verbs for registration of memory
+  regions, which allowed local users to access arbitrary physical memory
+  locations, and consequently cause a denial of service (system crash)
+  or gain privileges, by leveraging permissions on a uverbs device under
+  /dev/infiniband/. (bsc#939241)
+
+- CVE-2014-7822: The implementation of certain splice_write file
+  operations in the Linux kernel before 3.16 does not enforce a restriction
+  on the maximum size of a single file, which allows local users to cause
+  a denial of service (system crash) or possibly have unspecified other
+  impact via a crafted splice system call, as demonstrated by use of a
+  file descriptor associated with an ext4 filesystem. (bsc#939240)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114149" comment="kgraft-patch-3_12_32-33-default-3-2.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114150" comment="kgraft-patch-3_12_32-33-xen-3-2.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114151" comment="kgraft-patch-SLE12_Update_1-3-2.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:206" version="1" class="patch">
+	<metadata>
+		<title>Live patch for the Linux Kernel</title>
+		<affected family="unix">
+			<platform>SUSE Maintenance 333 SUSE SLE-12 Update</platform>
+		</affected>
+		<description>
+
+This update contains a kernel live patch for the 3.12.36-38 SUSE Linux Enterprise
+Server 12 Kernel, fixing following security issues.
+
+- CVE-2015-3339: A race condition in the prepare_binprm function in
+  fs/exec.c in the Linux kernel allowed local users to gain privileges
+  by executing a setuid program at a time instant when a chown to root
+  is in progress, and the ownership is changed but the setuid bit is not
+  yet stripped. (bsc#939263 bsc#939044)
+
+- CVE-2015-1465: The IPv4 implementation in the Linux kernel did not
+  properly consider the length of the Read-Copy Update (RCU) grace period
+  for redirecting lookups in the absence of caching, which allowed remote
+  attackers to cause a denial of service (memory consumption or system
+  crash) via a flood of packets. (bsc#939044 bsc#916225)
+
+- CVE-2015-3636: The ping_unhash function in net/ipv4/ping.c in the
+  Linux kernel did not initialize a certain list data structure during an
+  unhash operation, which allowed local users to gain privileges or cause
+  a denial of service (use-after-free and system crash) by leveraging the
+  ability to make a SOCK_DGRAM socket system call for the IPPROTO_ICMP
+  or IPPROTO_ICMPV6 protocol, and then making a connect system call after
+  a disconnect. (bsc#939277)
+
+- CVE-2015-5364/CVE-2015-5366: Two denial of service attacks via a flood
+  of UDP packets with invalid checksums were fixed that could be used
+  by remote attackers to delay execution. (bsc#939276)
+
+- CVE-2015-1805: The (1) pipe_read and (2) pipe_write implementations in
+  fs/pipe.c in the Linux kernel did not properly consider the side effects
+  of failed __copy_to_user_inatomic and __copy_from_user_inatomic calls,
+  which allowed local users to cause a denial of service (system crash)
+  or possibly gain privileges via a crafted application, aka an &amp;quot;I/O vector
+  array overrun.&amp;quot; (bsc#939270)
+
+- CVE-2015-4700: A BPF Jit optimization flaw could allow local users
+  to panic the kernel. (bsc#939273)
+
+- CVE-2015-3331: The __driver_rfc4106_decrypt function in
+  arch/x86/crypto/aesni-intel_glue.c in the Linux kernel did not properly
+  determine the memory locations used for encrypted data, which allowed
+  context-dependent attackers to cause a denial of service (buffer overflow
+  and system crash) or possibly execute arbitrary code by triggering a
+  crypto API call, as demonstrated by use of a libkcapi test program with
+  an AF_ALG(aead) socket. (bsc#939262)
+
+- CVE-2014-8159: The InfiniBand (IB) implementation in the Linux kernel
+  did not properly restrict use of User Verbs for registration of memory
+  regions, which allowed local users to access arbitrary physical memory
+  locations, and consequently cause a denial of service (system crash)
+  or gain privileges, by leveraging permissions on a uverbs device under
+  /dev/infiniband/. (bsc#939241)
+
+- CVE-2014-7822: The implementation of certain splice_write file
+  operations in the Linux kernel before 3.16 does not enforce a restriction
+  on the maximum size of a single file, which allows local users to cause
+  a denial of service (system crash) or possibly have unspecified other
+  impact via a crafted splice system call, as demonstrated by use of a
+  file descriptor associated with an ext4 filesystem. (bsc#939240)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114152" comment="kgraft-patch-3_12_36-38-default-3-2.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114153" comment="kgraft-patch-3_12_36-38-xen-3-2.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114154" comment="kgraft-patch-SLE12_Update_2-3-2.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:207" version="1" class="patch">
+	<metadata>
+		<title>Live patch for the Linux Kernel</title>
+		<affected family="unix">
+			<platform>SUSE Maintenance 418 SUSE SLE-12 Update</platform>
+		</affected>
+		<description>
+
+This update contains a kernel live patch for the 3.12.38-44 SUSE Linux Enterprise
+Server 12 Kernel, fixing following security issues.
+
+- CVE-2015-3339: A race condition in the prepare_binprm function in
+  fs/exec.c in the Linux kernel allowed local users to gain privileges
+  by executing a setuid program at a time instant when a chown to root
+  is in progress, and the ownership is changed but the setuid bit is not
+  yet stripped. (bsc#939263 bsc#939044)
+
+- CVE-2015-3636: The ping_unhash function in net/ipv4/ping.c in the
+  Linux kernel did not initialize a certain list data structure during an
+  unhash operation, which allowed local users to gain privileges or cause
+  a denial of service (use-after-free and system crash) by leveraging the
+  ability to make a SOCK_DGRAM socket system call for the IPPROTO_ICMP
+  or IPPROTO_ICMPV6 protocol, and then making a connect system call after
+  a disconnect. (bsc#939277)
+
+- CVE-2015-5364/CVE-2015-5366: Two denial of service attacks via a flood
+  of UDP packets with invalid checksums were fixed that could be used
+  by remote attackers to delay execution. (bsc#939276)
+
+- CVE-2015-1805: The (1) pipe_read and (2) pipe_write implementations in
+  fs/pipe.c in the Linux kernel did not properly consider the side effects
+  of failed __copy_to_user_inatomic and __copy_from_user_inatomic calls,
+  which allowed local users to cause a denial of service (system crash)
+  or possibly gain privileges via a crafted application, aka an &amp;quot;I/O vector
+  array overrun.&amp;quot; (bsc#939270)
+
+- CVE-2015-4700: A BPF Jit optimization flaw could allow local users
+  to panic the kernel. (bsc#939273)
+
+- CVE-2015-3331: The __driver_rfc4106_decrypt function in
+  arch/x86/crypto/aesni-intel_glue.c in the Linux kernel did not properly
+  determine the memory locations used for encrypted data, which allowed
+  context-dependent attackers to cause a denial of service (buffer overflow
+  and system crash) or possibly execute arbitrary code by triggering a
+  crypto API call, as demonstrated by use of a libkcapi test program with
+  an AF_ALG(aead) socket. (bsc#939262)
+
+- CVE-2014-8159: The InfiniBand (IB) implementation in the Linux kernel
+  did not properly restrict use of User Verbs for registration of memory
+  regions, which allowed local users to access arbitrary physical memory
+  locations, and consequently cause a denial of service (system crash)
+  or gain privileges, by leveraging permissions on a uverbs device under
+  /dev/infiniband/. (bsc#939241)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114155" comment="kgraft-patch-3_12_38-44-default-2-7.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114156" comment="kgraft-patch-3_12_38-44-xen-2-7.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114157" comment="kgraft-patch-SLE12_Update_3-2-7.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:208" version="1" class="patch">
+	<metadata>
 		<title>update for rsyslog</title>
 		<affected family="unix">
 			<platform>SUSE SLE-12 Update</platform>
@@ -8842,7 +9065,7 @@ This update for rsyslog provides the following fixes:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009101719" comment="rsyslog-module-udpspoof-8.4.0-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:206" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:209" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox, mozilla-nss</title>
 		<affected family="unix">
@@ -8919,6 +9142,99 @@ Mozilla NSS switched the CKBI ABI from 1.98 to 2.4, which is what Firefox 38ESR 
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114081" comment="mozilla-nss-sysinit-3.19.2.0-26.2 is installed"/>
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114082" comment="mozilla-nss-sysinit-32bit-3.19.2.0-26.2 is installed"/>
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114083" comment="mozilla-nss-tools-3.19.2.0-26.2 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:210" version="1" class="patch">
+	<metadata>
+		<title>Live patch for the Linux Kernel</title>
+		<affected family="unix">
+			<platform>SUSE Maintenance 527 SUSE SLE-12 Update</platform>
+		</affected>
+		<description>
+
+This update contains a kernel live patch for the 3.12.39-47 SUSE Linux Enterprise
+Server 12 Kernel, fixing following security issues.
+
+- CVE-2015-3339: A race condition in the prepare_binprm function in
+  fs/exec.c in the Linux kernel allowed local users to gain privileges
+  by executing a setuid program at a time instant when a chown to root
+  is in progress, and the ownership is changed but the setuid bit is not
+  yet stripped. (bsc#939263 bsc#939044)
+
+- CVE-2015-3636: The ping_unhash function in net/ipv4/ping.c in the
+  Linux kernel did not initialize a certain list data structure during an
+  unhash operation, which allowed local users to gain privileges or cause
+  a denial of service (use-after-free and system crash) by leveraging the
+  ability to make a SOCK_DGRAM socket system call for the IPPROTO_ICMP
+  or IPPROTO_ICMPV6 protocol, and then making a connect system call after
+  a disconnect. (bsc#939277)
+
+- CVE-2015-5364/CVE-2015-5366: Two denial of service attacks via a flood
+  of UDP packets with invalid checksums were fixed that could be used
+  by remote attackers to delay execution. (bsc#939276)
+
+- CVE-2015-1805: The (1) pipe_read and (2) pipe_write implementations in
+  fs/pipe.c in the Linux kernel did not properly consider the side effects
+  of failed __copy_to_user_inatomic and __copy_from_user_inatomic calls,
+  which allowed local users to cause a denial of service (system crash)
+  or possibly gain privileges via a crafted application, aka an &amp;quot;I/O vector
+  array overrun.&amp;quot; (bsc#939270)
+
+- CVE-2015-4700: A BPF Jit optimization flaw could allow local users
+  to panic the kernel. (bsc#939273)
+
+- CVE-2015-3331: The __driver_rfc4106_decrypt function in
+  arch/x86/crypto/aesni-intel_glue.c in the Linux kernel did not properly
+  determine the memory locations used for encrypted data, which allowed
+  context-dependent attackers to cause a denial of service (buffer overflow
+  and system crash) or possibly execute arbitrary code by triggering a
+  crypto API call, as demonstrated by use of a libkcapi test program with
+  an AF_ALG(aead) socket. (bsc#939262)
+
+- CVE-2014-8159: The InfiniBand (IB) implementation in the Linux kernel
+  did not properly restrict use of User Verbs for registration of memory
+  regions, which allowed local users to access arbitrary physical memory
+  locations, and consequently cause a denial of service (system crash)
+  or gain privileges, by leveraging permissions on a uverbs device under
+  /dev/infiniband/. (bsc#939241)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114158" comment="kgraft-patch-3_12_39-47-default-2-10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114159" comment="kgraft-patch-3_12_39-47-xen-2-10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114160" comment="kgraft-patch-SLE12_Update_4-2-10.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:211" version="1" class="patch">
+	<metadata>
+		<title>Live patch for the Linux Kernel</title>
+		<affected family="unix">
+			<platform>SUSE Maintenance 622 SUSE SLE-12 Update</platform>
+		</affected>
+		<description>
+
+This update contains a kernel live patch for the 3.12.43-52.6 SUSE Linux Enterprise
+Server 12 Kernel, fixing following security issues.
+
+- CVE-2015-5364/CVE-2015-5366: Two denial of service attacks via a flood
+  of UDP packets with invalid checksums were fixed that could be used
+  by remote attackers to delay execution. (bsc#939276)
+
+- CVE-2015-1805: The (1) pipe_read and (2) pipe_write implementations in
+  fs/pipe.c in the Linux kernel did not properly consider the side effects
+  of failed __copy_to_user_inatomic and __copy_from_user_inatomic calls,
+  which allowed local users to cause a denial of service (system crash)
+  or possibly gain privileges via a crafted application, aka an &amp;quot;I/O vector
+  array overrun.&amp;quot; (bsc#939270)
+
+- CVE-2015-4700: A BPF Jit optimization flaw could allow local users
+  to panic the kernel. (bsc#939273)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114161" comment="kgraft-patch-3_12_43-52_6-default-2-6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114162" comment="kgraft-patch-3_12_43-52_6-xen-2-6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114163" comment="kgraft-patch-SLE12_Update_5-2-6.1 is installed"/>
 	</criteria>
 </definition>
 </definitions>
@@ -18063,6 +18379,42 @@ Mozilla NSS switched the CKBI ABI from 1.98 to 2.4, which is what Firefox 38ESR 
 		<object object_ref="oval:org.opensuse.security:obj:2009030475"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045531"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114149" version="1" comment="kgraft-patch-3_12_32-33-default is &lt;3-2.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038950"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045616"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114150" version="1" comment="kgraft-patch-3_12_32-33-xen is &lt;3-2.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038951"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045616"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114151" version="1" comment="kgraft-patch-SLE12_Update_1 is &lt;3-2.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038952"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045616"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114152" version="1" comment="kgraft-patch-3_12_36-38-default is &lt;3-2.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038675"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045616"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114153" version="1" comment="kgraft-patch-3_12_36-38-xen is &lt;3-2.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038676"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045616"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114154" version="1" comment="kgraft-patch-SLE12_Update_2 is &lt;3-2.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038677"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045616"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114155" version="1" comment="kgraft-patch-3_12_38-44-default is &lt;2-7.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038577"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045617"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114156" version="1" comment="kgraft-patch-3_12_38-44-xen is &lt;2-7.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038578"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045617"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114157" version="1" comment="kgraft-patch-SLE12_Update_3 is &lt;2-7.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038579"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045617"/>
+	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009101705" version="1" comment="rsyslog is &lt;8.4.0-5.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009033100"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009043861"/>
@@ -18210,6 +18562,30 @@ Mozilla NSS switched the CKBI ABI from 1.98 to 2.4, which is what Firefox 38ESR 
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009114083" version="1" comment="mozilla-nss-tools is &lt;3.19.2.0-26.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009032444"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045606"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114158" version="1" comment="kgraft-patch-3_12_39-47-default is &lt;2-10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038604"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045618"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114159" version="1" comment="kgraft-patch-3_12_39-47-xen is &lt;2-10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038605"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045618"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114160" version="1" comment="kgraft-patch-SLE12_Update_4 is &lt;2-10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038606"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045618"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114161" version="1" comment="kgraft-patch-3_12_43-52_6-default is &lt;2-6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038757"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045619"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114162" version="1" comment="kgraft-patch-3_12_43-52_6-xen is &lt;2-6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038758"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045619"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114163" version="1" comment="kgraft-patch-SLE12_Update_5 is &lt;2-6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038759"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045619"/>
 	</rpminfo_test>
 </tests>
 <objects>
@@ -21537,6 +21913,15 @@ Mozilla NSS switched the CKBI ABI from 1.98 to 2.4, which is what Firefox 38ESR 
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009030453" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>tiff</name>
 	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038950" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>kgraft-patch-3_12_32-33-default</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038951" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>kgraft-patch-3_12_32-33-xen</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038952" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>kgraft-patch-SLE12_Update_1</name>
+	</rpminfo_object>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009033100" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>rsyslog</name>
 	</rpminfo_object>
@@ -22397,6 +22782,12 @@ Mozilla NSS switched the CKBI ABI from 1.98 to 2.4, which is what Firefox 38ESR 
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045531" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:31.8.0esr-39.1</evr>
   </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045616" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:3-2.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045617" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:2-7.1</evr>
+  </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009043861" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:8.4.0-5.1</evr>
   </rpminfo_state>
@@ -22408,6 +22799,12 @@ Mozilla NSS switched the CKBI ABI from 1.98 to 2.4, which is what Firefox 38ESR 
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045606" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:3.19.2.0-26.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045618" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:2-10.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045619" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:2-6.1</evr>
   </rpminfo_state>
 </states>
 </oval_definitions>
