@@ -5,7 +5,7 @@
     <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
     <oval:product_version>3</oval:product_version>
     <oval:schema_version>5.10.1</oval:schema_version>
-    <oval:timestamp>2015-09-08T07:35:22</oval:timestamp>
+    <oval:timestamp>2015-09-08T09:14:16</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:com.redhat.rhsa:def:20150001" version="601" class="patch">
@@ -26701,6 +26701,134 @@ contains a backported patch to correct this issue.</description>
 </criteria>
 
     </definition>
+<definition id="oval:com.redhat.rhsa:def:20151742" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1742: subversion security update (Moderate)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1742-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1742.html" />
+      <reference source="CVE" ref_id="CVE-2015-0248" ref_url="https://access.redhat.com/security/cve/CVE-2015-0248" />
+      <reference source="CVE" ref_id="CVE-2015-0251" ref_url="https://access.redhat.com/security/cve/CVE-2015-0251" />
+      <reference source="CVE" ref_id="CVE-2015-3184" ref_url="https://access.redhat.com/security/cve/CVE-2015-3184" />
+      <reference source="CVE" ref_id="CVE-2015-3187" ref_url="https://access.redhat.com/security/cve/CVE-2015-3187" />
+    <description>Subversion (SVN) is a concurrent version control system which enables one
+or more users to collaborate in developing and maintaining a hierarchy of
+files and directories while keeping a history of all changes. The
+mod_dav_svn module is used with the Apache HTTP Server to allow access
+to Subversion repositories via HTTP.
+
+An assertion failure flaw was found in the way the SVN server processed
+certain requests with dynamically evaluated revision numbers. A remote
+attacker could use this flaw to cause the SVN server (both svnserve and
+httpd with the mod_dav_svn module) to crash. (CVE-2015-0248)
+
+It was found that the mod_authz_svn module did not properly restrict
+anonymous access to Subversion repositories under certain configurations
+when used with Apache httpd 2.4.x. This could allow a user to anonymously
+access files in a Subversion repository, which should only be accessible to
+authenticated users. (CVE-2015-3184)
+
+It was found that the mod_dav_svn module did not properly validate the
+svn:author property of certain requests. An attacker able to create new
+revisions could use this flaw to spoof the svn:author property.
+(CVE-2015-0251)
+
+It was found that when an SVN server (both svnserve and httpd with the
+mod_dav_svn module) searched the history of a file or a directory, it would
+disclose its location in the repository if that file or directory was not
+readable (for example, if it had been moved). (CVE-2015-3187)
+
+Red Hat would like to thank the Apache Software Foundation for reporting
+these issues. Upstream acknowledges Evgeny Kotkov of VisualSVN as the
+original reporter of CVE-2015-0248 and CVE-2015-0251, and C. Michael
+Pilato of CollabNet as the original reporter of CVE-2015-3184 and
+CVE-2015-3187 flaws.
+
+All subversion users should upgrade to these updated packages, which
+contain backported patches to correct these issues. After installing the
+updated packages, for the update to take effect, you must restart the httpd
+daemon, if you are using mod_dav_svn, and the svnserve daemon, if you are
+serving Subversion repositories via the svn:// protocol.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Moderate</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-09-08" />
+        <updated date="2015-09-08" />
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-0248">CVE-2015-0248</cve>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-0251">CVE-2015-0251</cve>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-3184">CVE-2015-3184</cve>
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-3187">CVE-2015-3187</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1205138" id="1205138">CVE-2015-0248 subversion: (mod_dav_svn) remote denial of service with certain requests with dynamically evaluated revision numbers</bugzilla>
+        <bugzilla href="https://bugzilla.redhat.com/1205140" id="1205140">CVE-2015-0251 subversion: (mod_dav_svn) spoofing svn:author property values for new revisions</bugzilla>
+        <bugzilla href="https://bugzilla.redhat.com/1247249" id="1247249">CVE-2015-3184 subversion: Mixed anonymous/authenticated path-based authz with httpd 2.4</bugzilla>
+        <bugzilla href="https://bugzilla.redhat.com/1247252" id="1247252">CVE-2015-3187 subversion: svn_repos_trace_node_locations() reveals paths hidden by authz</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20150008001" comment="Red Hat Enterprise Linux 7 Client is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008002" comment="Red Hat Enterprise Linux 7 Server is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008003" comment="Red Hat Enterprise Linux 7 Workstation is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008004" comment="Red Hat Enterprise Linux 7 ComputeNode is installed" />
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742009" comment="mod_dav_svn is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150165012" comment="mod_dav_svn is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742021" comment="subversion is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150165006" comment="subversion is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742005" comment="subversion-devel is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150165022" comment="subversion-devel is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742019" comment="subversion-gnome is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150165020" comment="subversion-gnome is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742013" comment="subversion-javahl is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150165018" comment="subversion-javahl is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742023" comment="subversion-kde is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150165014" comment="subversion-kde is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742015" comment="subversion-libs is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150166014" comment="subversion-libs is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742011" comment="subversion-perl is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150165008" comment="subversion-perl is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742025" comment="subversion-python is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150166012" comment="subversion-python is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742017" comment="subversion-ruby is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150165010" comment="subversion-ruby is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151742007" comment="subversion-tools is earlier than 0:1.7.14-7.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150166022" comment="subversion-tools is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
 </definitions>
 
 <tests>
@@ -37232,6 +37360,50 @@ contains a backported patch to correct this issue.</description>
   <object object_ref="oval:com.redhat.rhsa:obj:20151741005" />
   <state state_ref="oval:com.redhat.rhsa:ste:20151741005" />
 </rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742005" version="601" comment="subversion-devel is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150165013" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742007" version="601" comment="subversion-tools is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150166013" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742009" version="601" comment="mod_dav_svn is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150165008" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742011" version="601" comment="subversion-perl is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150165006" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742013" version="601" comment="subversion-javahl is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150165011" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742015" version="601" comment="subversion-libs is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150166009" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742017" version="601" comment="subversion-ruby is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150165007" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742019" version="601" comment="subversion-gnome is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150165012" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742021" version="601" comment="subversion is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150165005" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742023" version="601" comment="subversion-kde is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150165009" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151742025" version="601" comment="subversion-python is earlier than 0:1.7.14-7.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150166008" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151742003" />
+</rpminfo_test>
 </tests>
 
 <objects>
@@ -40312,6 +40484,9 @@ contains a backported patch to correct this issue.</description>
 </rpminfo_state>
 <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151741005" version="601">
   <evr datatype="evr_string" operation="less than">0:1.5.4-4.el7_1.1</evr>
+</rpminfo_state>
+<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151742003" version="601">
+  <evr datatype="evr_string" operation="less than">0:1.7.14-7.el7_1.1</evr>
 </rpminfo_state>
 </states>
 
