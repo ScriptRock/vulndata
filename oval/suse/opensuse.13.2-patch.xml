@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-09-07T04:00:26</oval:timestamp>
+      <oval:timestamp>2015-09-08T04:01:31</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:1" version="1" class="patch">
@@ -9260,6 +9260,34 @@ xfsprogs was updated to fix one security vulnerability and bugs.
 </definition>
 <definition id="oval:org.opensuse.security:def:260" version="1" class="patch">
 	<metadata>
+		<title>This update fixes  two security vulnerabilities (CVE-2014-3591,CVE-2015-0837)</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+
+This update fixes two security vulnerabilities (bsc#920057):
+
+  * Use ciphertext blinding for Elgamal decryption [CVE-2014-3591].
+    See http://www.cs.tau.ac.il/~tromer/radioexp/ for details.
+  * Fixed data-dependent timing variations in modular exponentiation
+    [related to CVE-2015-0837, Last-Level Cache Side-Channel Attacks
+    are Practical]
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114195" comment="libgcrypt-1.6.1-8.6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114196" comment="libgcrypt-cavs-1.6.1-8.6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114197" comment="libgcrypt-devel-1.6.1-8.6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114198" comment="libgcrypt-devel-32bit-1.6.1-8.6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114199" comment="libgcrypt20-1.6.1-8.6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114200" comment="libgcrypt20-32bit-1.6.1-8.6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114201" comment="libgcrypt20-hmac-1.6.1-8.6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114202" comment="libgcrypt20-hmac-32bit-1.6.1-8.6.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:261" version="1" class="patch">
+	<metadata>
 		<title>Security update for ansible</title>
 		<affected family="unix">
 			<platform>openSUSE 13.2 Update</platform>
@@ -9275,7 +9303,7 @@ xfsprogs was updated to fix one security vulnerability and bugs.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113965" comment="ansible-1.7.1-2.8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:261" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:262" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaThunderbird</title>
 		<affected family="unix">
@@ -9320,7 +9348,76 @@ This update to Thunderbird 38.2.0 fixes the following issues (bnc#940806):
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113970" comment="MozillaThunderbird-translations-other-38.2.0-25.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:262" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:263" version="1" class="patch">
+	<metadata>
+		<title>Security update for gnutls</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+Gnutls was updated to fix one security issue.
+
+The following vulnerability was fixed:
+
+* CVE-2015-6251: Decoding specific certificates with very long DistinguishedName (DN) entries could have caused  a double free, which may have resulted in a Denial of Service (GNUTLS-SA-2015-3)
+    		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114203" comment="gnutls-3.2.18-14.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114204" comment="libgnutls-devel-3.2.18-14.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114205" comment="libgnutls-devel-32bit-3.2.18-14.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114206" comment="libgnutls-openssl-devel-3.2.18-14.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114207" comment="libgnutls-openssl27-3.2.18-14.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114208" comment="libgnutls28-3.2.18-14.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114209" comment="libgnutls28-32bit-3.2.18-14.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114210" comment="libgnutlsxx-devel-3.2.18-14.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114211" comment="libgnutlsxx28-3.2.18-14.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:264" version="1" class="patch">
+	<metadata>
+		<title>Security update for net-snmp</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+net-snmp was updated to fix one secuirty vulnerability and 2 bugs.
+
+- Fix an incompletely initialized vulnerability within the snmp_pdu_parse() function of snmp_api.c. (bnc#940188, CVE-2015-5621)
+- Add build requirement 'procps' to fix a net-snmp-config error. (bsc#935863)
+- Stop snmptrapd on removal.
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114212" comment="libsnmp30-32bit-5.7.3-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114213" comment="libsnmp30-5.7.3-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114214" comment="net-snmp-5.7.3-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114215" comment="net-snmp-devel-32bit-5.7.3-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114216" comment="net-snmp-devel-5.7.3-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114217" comment="net-snmp-python-5.7.3-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114218" comment="perl-SNMP-5.7.3-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114219" comment="snmp-mibs-5.7.3-3.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:265" version="1" class="patch">
+	<metadata>
+		<title>Security update for tor</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+Tor was updated to fix one logging privacy issue.
+
+The following issue was fixed:
+
+* Malformed hostnames in socks5 requests were written to the log regardless of SafeLogging option (CWE-532) [boo#943362]
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114220" comment="tor-0.2.4.27-16.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:266" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox</title>
 		<affected family="unix">
@@ -9351,6 +9448,94 @@ Changes in MozillaFirefox:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114146" comment="MozillaFirefox-devel-40.0.3-41.2 is installed"/>
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114147" comment="MozillaFirefox-translations-common-40.0.3-41.2 is installed"/>
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114148" comment="MozillaFirefox-translations-other-40.0.3-41.2 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:267" version="1" class="patch">
+	<metadata>
+		<title>Security update for perl-XML-LibXML</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+perl-XML-LibXML was updated to version 2.0.121 to fix one security vulnerability.
+
+- Fix &amp;quot;expand_entities&amp;quot; option that was not preserved under some circumstances. (bsc#929237, CVE-2015-3451)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114194" comment="perl-XML-LibXML-2.0121-2.3.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:268" version="1" class="patch">
+	<metadata>
+		<title>Security update for gdk-pixbuf</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+gdk-pixbuf was updated to version 2.31.6 to fix a secuirty vulnerability and several bugs.
+
+- Update to version 2.31.6 (boo#942801):
+  + Really fix bgo#752297. This is CVE-2015-4491.
+  + Updated translations.
+- Update to version 2.31.5:
+  + Add support for g_autoptr for all object types (bgo#750497).
+  + Avoid a possible divide-by-zero in the pixbuf loader (bgo#750440).
+  + Remove gettext .pot file hack (bgo#743574).
+  + Be more careful about integer overflow (bgo#752297).
+  + Updated translations.
+- Drop README from docs as it is now empty.
+- Add generic www.gnome.org URL to silence a few lint warnings.
+- Update to version 2.31.4:
+  + SVGZ icons in notification GNOME3 (bgo#648815).
+  + gdk_pixbuf_apply_embedded_orientation is not working
+    (bgo#725582).
+  + Updated translations.
+- Update to version 2.31.3:
+  + API changes: Revert an annotation change that broke bindings.
+  + Build fixes:
+    - Clean up configure
+    - Fix Visual Studio build
+    - Define MAP_ANONYMOUS when needed
+    - Include gi18n-lib.h where needed
+  + Updated translations.
+- Update to version 2.31.2:
+  + API changes:
+    - Deprecate GdkPixdata.
+    - Add gdk_pixbuf_get_options() helper to list set options.
+    - Annotations fixes for various functions.
+    - Remove incorrect info about area-prepared signal.
+  + Image format support changes:
+    - Flag multi-page TIFF files.
+    - Fix memory usage for GIF animations, add note about minimum
+      frame length.
+    - Return an error for truncated PNG files.
+    - Add density (DPI) support for JPEG, PNG and TIFF.
+    - Fix reading CMYK JPEG files generated by Photoshop.
+    - Allow saving 1-bit mono TIFF files as used in faxes.
+    - Simplify loader names.
+    - Fix loading GIF files when the first write is short.
+    - Add progressive loading to ICNS files.
+    - Add support for 256x256 ICO files.
+    - Fix reading MS AMCap2 BMP files.
+  + Other:
+    - Honour requested depth in Xlib.
+    - Special-case compositing/copying with no scaling.
+    - Add relocation support to OSX and Linux.
+    - Prefer gdk-pixbuf's loaders to the GDI+ ones on Windows.
+- fix bashism in post script
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114221" comment="gdk-pixbuf-2.31.6-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114222" comment="gdk-pixbuf-devel-2.31.6-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114223" comment="gdk-pixbuf-devel-32bit-2.31.6-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114224" comment="gdk-pixbuf-lang-2.31.6-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114225" comment="gdk-pixbuf-query-loaders-2.31.6-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114226" comment="gdk-pixbuf-query-loaders-32bit-2.31.6-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114227" comment="libgdk_pixbuf-2_0-0-2.31.6-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114228" comment="libgdk_pixbuf-2_0-0-32bit-2.31.6-3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114229" comment="typelib-1_0-GdkPixbuf-2_0-2.31.6-3.1 is installed"/>
 	</criteria>
 </definition>
 </definitions>
@@ -19503,6 +19688,38 @@ Changes in MozillaFirefox:
 		<object object_ref="oval:org.opensuse.security:obj:2009032648"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045585"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114195" version="1" comment="libgcrypt is &lt;1.6.1-8.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009036338"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045626"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114196" version="1" comment="libgcrypt-cavs is &lt;1.6.1-8.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038770"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045626"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114197" version="1" comment="libgcrypt-devel is &lt;1.6.1-8.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009036340"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045626"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114198" version="1" comment="libgcrypt-devel-32bit is &lt;1.6.1-8.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009036341"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045626"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114199" version="1" comment="libgcrypt20 is &lt;1.6.1-8.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038771"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045626"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114200" version="1" comment="libgcrypt20-32bit is &lt;1.6.1-8.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038772"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045626"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114201" version="1" comment="libgcrypt20-hmac is &lt;1.6.1-8.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038773"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045626"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114202" version="1" comment="libgcrypt20-hmac-32bit is &lt;1.6.1-8.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038774"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045626"/>
+	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009113965" version="1" comment="ansible is &lt;1.7.1-2.8.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009038808"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045589"/>
@@ -19527,6 +19744,78 @@ Changes in MozillaFirefox:
 		<object object_ref="oval:org.opensuse.security:obj:2009033645"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045590"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114203" version="1" comment="gnutls is &lt;3.2.18-14.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030524"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045627"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114204" version="1" comment="libgnutls-devel is &lt;3.2.18-14.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033052"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045627"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114205" version="1" comment="libgnutls-devel-32bit is &lt;3.2.18-14.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035957"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045627"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114206" version="1" comment="libgnutls-openssl-devel is &lt;3.2.18-14.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035958"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045627"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114207" version="1" comment="libgnutls-openssl27 is &lt;3.2.18-14.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035959"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045627"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114208" version="1" comment="libgnutls28 is &lt;3.2.18-14.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035961"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045627"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114209" version="1" comment="libgnutls28-32bit is &lt;3.2.18-14.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035962"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045627"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114210" version="1" comment="libgnutlsxx-devel is &lt;3.2.18-14.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035965"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045627"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114211" version="1" comment="libgnutlsxx28 is &lt;3.2.18-14.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035966"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045627"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114212" version="1" comment="libsnmp30-32bit is &lt;5.7.3-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037000"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045628"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114213" version="1" comment="libsnmp30 is &lt;5.7.3-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037001"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045628"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114214" version="1" comment="net-snmp is &lt;5.7.3-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030550"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045628"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114215" version="1" comment="net-snmp-devel-32bit is &lt;5.7.3-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034955"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045628"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114216" version="1" comment="net-snmp-devel is &lt;5.7.3-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030791"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045628"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114217" version="1" comment="net-snmp-python is &lt;5.7.3-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037869"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045628"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114218" version="1" comment="perl-SNMP is &lt;5.7.3-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030792"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045628"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114219" version="1" comment="snmp-mibs is &lt;5.7.3-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031643"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045628"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114220" version="1" comment="tor is &lt;0.2.4.27-16.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035393"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045629"/>
+	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009114143" version="1" comment="MozillaFirefox is &lt;40.0.3-41.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009030476"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045615"/>
@@ -19550,6 +19839,46 @@ Changes in MozillaFirefox:
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009114148" version="1" comment="MozillaFirefox-translations-other is &lt;40.0.3-41.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009033499"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045615"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114194" version="1" comment="perl-XML-LibXML is &lt;2.0121-2.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038946"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045625"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114221" version="1" comment="gdk-pixbuf is &lt;2.31.6-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030591"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045630"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114222" version="1" comment="gdk-pixbuf-devel is &lt;2.31.6-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030590"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045630"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114223" version="1" comment="gdk-pixbuf-devel-32bit is &lt;2.31.6-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038953"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045630"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114224" version="1" comment="gdk-pixbuf-lang is &lt;2.31.6-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037124"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045630"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114225" version="1" comment="gdk-pixbuf-query-loaders is &lt;2.31.6-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037125"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045630"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114226" version="1" comment="gdk-pixbuf-query-loaders-32bit is &lt;2.31.6-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037126"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045630"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114227" version="1" comment="libgdk_pixbuf-2_0-0 is &lt;2.31.6-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037131"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045630"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114228" version="1" comment="libgdk_pixbuf-2_0-0-32bit is &lt;2.31.6-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037132"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045630"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114229" version="1" comment="typelib-1_0-GdkPixbuf-2_0 is &lt;2.31.6-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038954"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045630"/>
 	</rpminfo_test>
 </tests>
 <objects>
@@ -22937,6 +23266,84 @@ Changes in MozillaFirefox:
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009032648" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>xfsprogs-devel</name>
 	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009036338" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libgcrypt</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038770" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libgcrypt-cavs</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009036340" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libgcrypt-devel</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009036341" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libgcrypt-devel-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038771" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libgcrypt20</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038772" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libgcrypt20-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038773" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libgcrypt20-hmac</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038774" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libgcrypt20-hmac-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libsnmp30-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037001" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libsnmp30</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009030550" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>net-snmp</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009034955" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>net-snmp-devel-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009030791" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>net-snmp-devel</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037869" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>net-snmp-python</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009030792" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>perl-SNMP</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009031643" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>snmp-mibs</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038946" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>perl-XML-LibXML</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009030591" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>gdk-pixbuf</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009030590" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>gdk-pixbuf-devel</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038953" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>gdk-pixbuf-devel-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037124" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>gdk-pixbuf-lang</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037125" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>gdk-pixbuf-query-loaders</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037126" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>gdk-pixbuf-query-loaders-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037131" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libgdk_pixbuf-2_0-0</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037132" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libgdk_pixbuf-2_0-0-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038954" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>typelib-1_0-GdkPixbuf-2_0</name>
+	</rpminfo_object>
 </objects>
 <states>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009043831" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
@@ -23941,14 +24348,32 @@ Changes in MozillaFirefox:
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045585" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:3.2.1-2.3.1</evr>
   </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045626" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:1.6.1-8.6.1</evr>
+  </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045589" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:1.7.1-2.8.1</evr>
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045590" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:38.2.0-25.2</evr>
   </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045627" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:3.2.18-14.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045628" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:5.7.3-3.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045629" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:0.2.4.27-16.1</evr>
+  </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045615" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:40.0.3-41.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045625" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:2.0121-2.3.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045630" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:2.31.6-3.1</evr>
   </rpminfo_state>
 </states>
 </oval_definitions>
