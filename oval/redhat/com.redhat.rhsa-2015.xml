@@ -5,7 +5,7 @@
     <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
     <oval:product_version>3</oval:product_version>
     <oval:schema_version>5.10.1</oval:schema_version>
-    <oval:timestamp>2015-09-04T04:31:26</oval:timestamp>
+    <oval:timestamp>2015-09-08T07:35:22</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:com.redhat.rhsa:def:20150001" version="601" class="patch">
@@ -26643,6 +26643,64 @@ which contains a backported patch to correct this issue.</description>
 </criteria>
 
     </definition>
+<definition id="oval:com.redhat.rhsa:def:20151741" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1741: haproxy security update (Important)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 6</platform>
+      <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1741-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1741.html" />
+      <reference source="CVE" ref_id="CVE-2015-3281" ref_url="https://access.redhat.com/security/cve/CVE-2015-3281" />
+    <description>HAProxy provides high availability, load balancing, and proxying for TCP
+and HTTP-based applications.
+
+An implementation error related to the memory management of request and
+responses was found within HAProxy's buffer_slow_realign() function.
+An unauthenticated remote attacker could possibly use this flaw to leak
+certain memory buffer contents from a past request or session.
+(CVE-2015-3281)
+
+All haproxy users are advised to upgrade to this updated package, which
+contains a backported patch to correct this issue.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Important</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-09-08" />
+        <updated date="2015-09-08" />
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-3281">CVE-2015-3281</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1239072" id="1239072">CVE-2015-3281 haproxy: information leak in buffer_slow_realign()</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+        <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151741005" comment="haproxy is earlier than 0:1.5.4-2.el6_7.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20151741006" comment="haproxy is signed with Red Hat redhatrelease2 key" />
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20150001001" comment="Red Hat Enterprise Linux 6 Client is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150001002" comment="Red Hat Enterprise Linux 6 Server is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150001003" comment="Red Hat Enterprise Linux 6 Workstation is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150001004" comment="Red Hat Enterprise Linux 6 ComputeNode is installed" />
+ 
+</criteria>
+
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151741011" comment="haproxy is earlier than 0:1.5.4-4.el7_1.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20151741006" comment="haproxy is signed with Red Hat redhatrelease2 key" />
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20150008001" comment="Red Hat Enterprise Linux 7 Client is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008002" comment="Red Hat Enterprise Linux 7 Server is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008003" comment="Red Hat Enterprise Linux 7 Workstation is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150008004" comment="Red Hat Enterprise Linux 7 ComputeNode is installed" />
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
 </definitions>
 
 <tests>
@@ -37162,6 +37220,18 @@ which contains a backported patch to correct this issue.</description>
   <object object_ref="oval:com.redhat.rhsa:obj:20151714006" />
   <state state_ref="oval:com.redhat.rhsa:ste:20151715003" />
 </rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151741005" version="601" comment="haproxy is earlier than 0:1.5.4-2.el6_7.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151741005" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151741003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151741006" version="601" comment="haproxy is signed with Red Hat redhatrelease2 key" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151741005" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20150008001" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151741011" version="601" comment="haproxy is earlier than 0:1.5.4-4.el7_1.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20151741005" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151741005" />
+</rpminfo_test>
 </tests>
 
 <objects>
@@ -39277,6 +39347,9 @@ which contains a backported patch to correct this issue.</description>
 <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20151714007" version="601">
   <name>spice</name>
 </rpminfo_object>
+<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20151741005" version="601">
+  <name>haproxy</name>
+</rpminfo_object>
 </objects>
 
 <states>
@@ -40233,6 +40306,12 @@ which contains a backported patch to correct this issue.</description>
 </rpminfo_state>
 <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151715003" version="601">
   <evr datatype="evr_string" operation="less than">0:0.12.4-12.el6_7.1</evr>
+</rpminfo_state>
+<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151741003" version="601">
+  <evr datatype="evr_string" operation="less than">0:1.5.4-2.el6_7.1</evr>
+</rpminfo_state>
+<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151741005" version="601">
+  <evr datatype="evr_string" operation="less than">0:1.5.4-4.el7_1.1</evr>
 </rpminfo_state>
 </states>
 
