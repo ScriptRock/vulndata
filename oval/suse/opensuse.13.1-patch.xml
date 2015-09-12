@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-09-11T04:00:33</oval:timestamp>
+      <oval:timestamp>2015-09-12T04:00:19</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:1" version="1" class="patch">
@@ -20181,6 +20181,32 @@ perl-XML-LibXML was updated to version 2.0.121 to fix one security vulnerability
 </definition>
 <definition id="oval:org.opensuse.security:def:505" version="1" class="patch">
 	<metadata>
+		<title>Security update for libvdpau</title>
+		<affected family="unix">
+			<platform>openSUSE 13.1 Update</platform>
+		</affected>
+		<description>
+
+libvdpau was updated to use secure_getenv() instead of getenv() for several variables
+so it can be more safely used in setuid applications.
+
+* CVE-2015-5198: libvdpau: incorrect check for security transition (bnc#943967)
+* CVE-2015-5199: libvdpau: directory traversal in dlopen (bnc#943968)
+* CVE-2015-5200: libvdpau: vulnerability in trace functionality (bnc#943969)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114305" comment="libvdpau-0.6-3.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114306" comment="libvdpau-devel-0.6-3.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114307" comment="libvdpau-devel-32bit-0.6-3.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114308" comment="libvdpau1-0.6-3.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114309" comment="libvdpau1-32bit-0.6-3.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114310" comment="libvdpau_trace1-0.6-3.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114311" comment="libvdpau_trace1-32bit-0.6-3.3.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:506" version="1" class="patch">
+	<metadata>
 		<title>testupdate for the 13.1 update stack</title>
 		<affected family="unix">
 			<platform>openSUSE 13.1 Update</platform>
@@ -20193,7 +20219,24 @@ a trivial security update.		</description>
 		<criterion test_ref="oval:org.opensuse.security:tst:2009083221" comment="update-test-security-0-23.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:506" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:507" version="1" class="patch">
+	<metadata>
+		<title>Security update for squid</title>
+		<affected family="unix">
+			<platform>openSUSE 13.1 Update</platform>
+		</affected>
+		<description>
+
+Squid was updated to fix a security issue.
+
+If the Squid HTTP Proxy configured with client-first SSL bumping did not correctly validate server certificate. (CVE-2015-3455)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114312" comment="squid-3.3.13-2.17.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:508" version="1" class="patch">
 	<metadata>
 		<title>testupdate for the 13.1 update stack</title>
 		<affected family="unix">
@@ -42884,9 +42927,41 @@ This is a testupdate for the 13.1 update stack, a trivial security update		</des
 		<object object_ref="oval:org.opensuse.security:obj:2009038946"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045625"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114305" version="1" comment="libvdpau is &lt;0.6-3.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038956"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045647"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114306" version="1" comment="libvdpau-devel is &lt;0.6-3.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038957"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045647"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114307" version="1" comment="libvdpau-devel-32bit is &lt;0.6-3.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038958"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045647"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114308" version="1" comment="libvdpau1 is &lt;0.6-3.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038959"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045647"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114309" version="1" comment="libvdpau1-32bit is &lt;0.6-3.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038960"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045647"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114310" version="1" comment="libvdpau_trace1 is &lt;0.6-3.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038961"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045647"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114311" version="1" comment="libvdpau_trace1-32bit is &lt;0.6-3.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038962"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045647"/>
+	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009083221" version="1" comment="update-test-security is &lt;0-23.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009036631"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009041596"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114312" version="1" comment="squid is &lt;3.3.13-2.17.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031125"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045648"/>
 	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009083222" version="1" comment="update-test-security is &lt;0-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009036631"/>
@@ -48186,6 +48261,27 @@ This is a testupdate for the 13.1 update stack, a trivial security update		</des
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009038946" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>perl-XML-LibXML</name>
 	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038956" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libvdpau</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038957" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libvdpau-devel</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038958" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libvdpau-devel-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038959" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libvdpau1</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038960" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libvdpau1-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038961" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libvdpau_trace1</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038962" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libvdpau_trace1-32bit</name>
+	</rpminfo_object>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009036631" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>update-test-security</name>
 	</rpminfo_object>
@@ -50402,8 +50498,14 @@ This is a testupdate for the 13.1 update stack, a trivial security update		</des
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045625" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:2.0121-2.3.1</evr>
   </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045647" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:0.6-3.3.1</evr>
+  </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009041596" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:0-23.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045648" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:3.3.13-2.17.1</evr>
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009041597" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:0-29.1</evr>
