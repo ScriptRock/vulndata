@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-09-14T04:00:48</oval:timestamp>
+      <oval:timestamp>2015-09-15T04:00:43</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:1" version="1" class="patch">
@@ -9400,6 +9400,39 @@ Bugfixes:
 	</criteria>
 </definition>
 <definition id="oval:org.opensuse.security:def:217" version="1" class="patch">
+	<metadata>
+		<title>Security update for net-snmp</title>
+		<affected family="unix">
+			<platform>SUSE SLE-12 Update</platform>
+		</affected>
+		<description>
+
+The following issues have been fixed within this update:
+
+* fix btrfs output inside HOST-RESOURCES-MIB::hrStorageDescr.
+  (bsc#909479)
+* fix an incompletely initialized vulnerability within the
+  snmp_pdu_parse() function of snmp_api.c. (bsc#940188, CVE-2015-5621)
+* add build requirement 'procps' to fix a net-snmp-config error
+  (bsc#935863)
+* --disable-md5 to allow operation in FIPS mode and not use the
+  old algorithm (bsc#935876 bsc#940084)
+* also stop snmptrapd on removal
+
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114335" comment="libsnmp30-32bit-5.7.2.1-4.3.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114336" comment="libsnmp30-5.7.2.1-4.3.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114337" comment="net-snmp-5.7.2.1-4.3.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114338" comment="net-snmp-devel-32bit-5.7.2.1-4.3.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114339" comment="net-snmp-devel-5.7.2.1-4.3.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114340" comment="net-snmp-python-5.7.2.1-4.3.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114341" comment="perl-SNMP-5.7.2.1-4.3.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114342" comment="snmp-mibs-5.7.2.1-4.3.2 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:218" version="1" class="patch">
 	<metadata>
 		<title>Security update for conntrack-tools</title>
 		<affected family="unix">
@@ -18946,6 +18979,38 @@ available. (bsc#942149, CVE-2015-6496)
 		<object object_ref="oval:org.opensuse.security:obj:2009038774"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045634"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114335" version="1" comment="libsnmp30-32bit is &lt;5.7.2.1-4.3.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037000"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045654"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114336" version="1" comment="libsnmp30 is &lt;5.7.2.1-4.3.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037001"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045654"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114337" version="1" comment="net-snmp is &lt;5.7.2.1-4.3.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030550"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045654"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114338" version="1" comment="net-snmp-devel-32bit is &lt;5.7.2.1-4.3.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034955"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045654"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114339" version="1" comment="net-snmp-devel is &lt;5.7.2.1-4.3.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030791"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045654"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114340" version="1" comment="net-snmp-python is &lt;5.7.2.1-4.3.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037869"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045654"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114341" version="1" comment="perl-SNMP is &lt;5.7.2.1-4.3.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030792"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045654"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114342" version="1" comment="snmp-mibs is &lt;5.7.2.1-4.3.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031643"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045654"/>
+	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009114326" version="1" comment="conntrack-tools is &lt;1.4.2-5.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009038966"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009033815"/>
@@ -22389,6 +22454,30 @@ available. (bsc#942149, CVE-2015-6496)
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009034342" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>rsyslog-module-udpspoof</name>
 	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libsnmp30-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037001" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libsnmp30</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009030550" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>net-snmp</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009034955" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>net-snmp-devel-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009030791" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>net-snmp-devel</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009037869" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>net-snmp-python</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009030792" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>perl-SNMP</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009031643" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>snmp-mibs</name>
+	</rpminfo_object>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009038966" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>conntrack-tools</name>
 	</rpminfo_object>
@@ -23278,6 +23367,9 @@ available. (bsc#942149, CVE-2015-6496)
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045634" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:1.6.1-16.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045654" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:5.7.2.1-4.3.2</evr>
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009033815" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:1.4.2-5.2</evr>
