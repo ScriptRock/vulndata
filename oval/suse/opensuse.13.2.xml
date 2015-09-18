@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-09-17T04:01:13</oval:timestamp>
+      <oval:timestamp>2015-09-18T04:00:35</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:20042771" version="1" class="vulnerability">
@@ -19679,6 +19679,24 @@
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113232" comment="libuser1-0.60-3.3.1 is installed"/>
 	</criteria>
 </definition>
+<definition id="oval:org.opensuse.security:def:20153247" version="1" class="vulnerability">
+ <metadata>
+ <title>CVE-2015-3247</title>
+    <affected family="unix">
+            <platform>openSUSE 13.2 Update</platform>
+    </affected>
+    <reference ref_id="CVE-2015-3247" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3247" source="CVE"/>
+    <description>
+    Race condition in the worker_update_monitors_config function in SPICE 0.12.4 allows a remote authenticated guest user to cause a denial of service (heap-based memory corruption and QEMU-KVM crash) or possibly execute arbitrary code on the host via unspecified vectors.
+    </description>
+ </metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114351" comment="libspice-server-devel-0.12.4-4.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114352" comment="libspice-server1-0.12.4-4.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114353" comment="spice-0.12.4-4.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114354" comment="spice-client-0.12.4-4.3.1 is installed"/>
+	</criteria>
+</definition>
 <definition id="oval:org.opensuse.security:def:20153258" version="1" class="vulnerability">
  <metadata>
  <title>CVE-2015-3258</title>
@@ -34794,6 +34812,22 @@
 		<object object_ref="oval:org.opensuse.security:obj:2009031125"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045650"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114351" version="1" comment="libspice-server-devel is &lt;0.12.4-4.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038699"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045656"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114352" version="1" comment="libspice-server1 is &lt;0.12.4-4.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038700"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045656"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114353" version="1" comment="spice is &lt;0.12.4-4.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038701"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045656"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114354" version="1" comment="spice-client is &lt;0.12.4-4.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038702"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045656"/>
+	</rpminfo_test>
 </tests>
 <objects>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009030917" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
@@ -38282,6 +38316,18 @@
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009031125" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>squid</name>
 	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038699" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libspice-server-devel</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038700" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>libspice-server1</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038701" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>spice</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038702" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>spice-client</name>
+	</rpminfo_object>
 </objects>
 <states>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009043831" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
@@ -39318,6 +39364,9 @@
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045650" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:3.4.4-3.7.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045656" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:0.12.4-4.3.1</evr>
   </rpminfo_state>
 </states>
 </oval_definitions>
