@@ -5,7 +5,7 @@
     <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
     <oval:product_version>3</oval:product_version>
     <oval:schema_version>5.10.1</oval:schema_version>
-    <oval:timestamp>2015-09-22T08:21:39</oval:timestamp>
+    <oval:timestamp>2015-09-22T13:12:26</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:com.redhat.rhsa:def:20150001" version="601" class="patch">
@@ -27351,6 +27351,75 @@ upgrades Flash Player to version 11.2.202.521.</description>
 </criteria>
 
     </definition>
+<definition id="oval:com.redhat.rhsa:def:20151833" version="601" class="patch">
+      <metadata>
+        <title>RHSA-2015:1833: qemu-kvm security update (Moderate)</title>
+    <affected family="unix">
+      <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference source="RHSA" ref_id="RHSA-2015:1833-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1833.html" />
+      <reference source="CVE" ref_id="CVE-2015-5165" ref_url="https://access.redhat.com/security/cve/CVE-2015-5165" />
+    <description>KVM (Kernel-based Virtual Machine) is a full virtualization solution for
+Linux on AMD64 and Intel 64 systems. The qemu-kvm package provides the
+user-space component for running virtual machines using KVM.
+
+An information leak flaw was found in the way QEMU's RTL8139 emulation
+implementation processed network packets under RTL8139 controller's C+ mode
+of operation. An unprivileged guest user could use this flaw to read up to
+65 KB of uninitialized QEMU heap memory. (CVE-2015-5165)
+
+Red Hat would like to thank the Xen project for reporting this issue.
+Upstream acknowledges Donghai Zhu of Alibaba as the original reporter.
+
+All qemu-kvm users are advised to upgrade to these updated packages, which
+contain a backported patch to correct this issue. After installing this
+update, shut down all running virtual machines. Once all virtual machines
+have shut down, start them again for this update to take effect.</description>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
+
+<advisory from="secalert@redhat.com">
+        <severity>Moderate</severity>
+        <rights>Copyright 2015 Red Hat, Inc.</rights>
+        <issued date="2015-09-22" />
+        <updated date="2015-09-22" />
+        <cve href="https://access.redhat.com/security/cve/CVE-2015-5165">CVE-2015-5165</cve>
+        <bugzilla href="https://bugzilla.redhat.com/1248760" id="1248760">CVE-2015-5165 Qemu: rtl8139 uninitialized heap memory information leakage to guest (XSA-140)</bugzilla>
+    <affected_cpe_list>
+        <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+    </affected_cpe_list>
+</advisory>
+      </metadata>
+      <criteria operator="AND">
+ 
+ <criteria operator="OR">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20150001001" comment="Red Hat Enterprise Linux 6 Client is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150001002" comment="Red Hat Enterprise Linux 6 Server is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150001003" comment="Red Hat Enterprise Linux 6 Workstation is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150001004" comment="Red Hat Enterprise Linux 6 ComputeNode is installed" />
+ 
+</criteria>
+<criteria operator="OR">
+ 
+ <criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151833005" comment="qemu-guest-agent is earlier than 2:0.12.1.2-2.479.el6_7.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150867008" comment="qemu-guest-agent is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151833009" comment="qemu-img is earlier than 2:0.12.1.2-2.479.el6_7.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150349010" comment="qemu-img is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151833007" comment="qemu-kvm is earlier than 2:0.12.1.2-2.479.el6_7.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150349006" comment="qemu-kvm is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+<criteria operator="AND">
+ <criterion test_ref="oval:com.redhat.rhsa:tst:20151833011" comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.479.el6_7.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20150349016" comment="qemu-kvm-tools is signed with Red Hat redhatrelease2 key" />
+ 
+</criteria>
+
+</criteria>
+
+</criteria>
+
+    </definition>
 </definitions>
 
 <tests>
@@ -38058,6 +38127,22 @@ upgrades Flash Player to version 11.2.202.521.</description>
   <object object_ref="oval:com.redhat.rhsa:obj:20150052002" />
   <state state_ref="oval:com.redhat.rhsa:ste:20151814006" />
 </rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151833005" version="601" comment="qemu-guest-agent is earlier than 2:0.12.1.2-2.479.el6_7.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150867006" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151833003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151833007" version="601" comment="qemu-kvm is earlier than 2:0.12.1.2-2.479.el6_7.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150349005" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151833003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151833009" version="601" comment="qemu-img is earlier than 2:0.12.1.2-2.479.el6_7.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150349007" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151833003" />
+</rpminfo_test>
+<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20151833011" version="601" comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.479.el6_7.1" check="at least one">
+  <object object_ref="oval:com.redhat.rhsa:obj:20150349010" />
+  <state state_ref="oval:com.redhat.rhsa:ste:20151833003" />
+</rpminfo_test>
 </tests>
 
 <objects>
@@ -41156,6 +41241,9 @@ upgrades Flash Player to version 11.2.202.521.</description>
 </rpminfo_state>
 <rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151814006" version="601">
   <evr datatype="evr_string" operation="less than">0:11.2.202.521-1.el6_7</evr>
+</rpminfo_state>
+<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20151833003" version="601">
+  <evr datatype="evr_string" operation="less than">2:0.12.1.2-2.479.el6_7.1</evr>
 </rpminfo_state>
 </states>
 
