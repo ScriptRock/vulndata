@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-09-24T04:01:49</oval:timestamp>
+      <oval:timestamp>2015-09-25T04:00:19</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:1" version="1" class="patch">
@@ -20471,6 +20471,30 @@ Also included is the update to 1.6
 	</criteria>
 </definition>
 <definition id="oval:org.opensuse.security:def:515" version="1" class="patch">
+	<metadata>
+		<title>Security update for cyrus-imapd</title>
+		<affected family="unix">
+			<platform>openSUSE 13.1 Update</platform>
+		</affected>
+		<description>
+This recommended update provides version 2.3.19 of cyrus-imapd
+
+* Security fix: handle urlfetch range starting outside message range
+* Disable use of SSLv2/SSLv3
+* Support for Berkeley DB 5.x (thanks Ondrej Sury)
+* Support for newer glibc versions (thanks Thomas Jarosch)
+* Fixed bug #3465: support for perl 5.14 (thanks hsk@imb-jena.de)
+* Fixed bug #3640: reject NULL bytes in headers on LMTP delivery (thanks Julien Coloos)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114489" comment="cyrus-imapd-2.3.19-34.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114490" comment="cyrus-imapd-devel-2.3.19-34.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114491" comment="perl-Cyrus-IMAP-2.3.19-34.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114492" comment="perl-Cyrus-SIEVE-managesieve-2.3.19-34.3.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:516" version="1" class="patch">
 	<metadata>
 		<title>testupdate for the 13.1 update stack</title>
 		<affected family="unix">
@@ -43289,6 +43313,22 @@ This is a testupdate for the 13.1 update stack, a trivial security update		</des
 		<object object_ref="oval:org.opensuse.security:obj:2009034586"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045670"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114489" version="1" comment="cyrus-imapd is &lt;2.3.19-34.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009032085"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045681"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114490" version="1" comment="cyrus-imapd-devel is &lt;2.3.19-34.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033421"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045681"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114491" version="1" comment="perl-Cyrus-IMAP is &lt;2.3.19-34.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033422"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045681"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114492" version="1" comment="perl-Cyrus-SIEVE-managesieve is &lt;2.3.19-34.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033423"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045681"/>
+	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009083222" version="1" comment="update-test-security is &lt;0-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009036631"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009041597"/>
@@ -48617,6 +48657,18 @@ This is a testupdate for the 13.1 update stack, a trivial security update		</des
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009038975" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>remind</name>
 	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009032085" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>cyrus-imapd</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009033421" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>cyrus-imapd-devel</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009033422" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>perl-Cyrus-IMAP</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009033423" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>perl-Cyrus-SIEVE-managesieve</name>
+	</rpminfo_object>
 </objects>
 <states>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009042357" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
@@ -50859,6 +50911,9 @@ This is a testupdate for the 13.1 update stack, a trivial security update		</des
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045670" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:1.5.3-0.7.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045681" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:2.3.19-34.3.1</evr>
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009041597" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:0-29.1</evr>
