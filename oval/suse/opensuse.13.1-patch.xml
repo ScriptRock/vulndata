@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-09-25T04:00:19</oval:timestamp>
+      <oval:timestamp>2015-09-26T04:00:20</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:1" version="1" class="patch">
@@ -20238,6 +20238,48 @@ If the Squid HTTP Proxy configured with client-first SSL bumping did not correct
 </definition>
 <definition id="oval:org.opensuse.security:def:508" version="1" class="patch">
 	<metadata>
+		<title>Security update for mysql-community-server</title>
+		<affected family="unix">
+			<platform>openSUSE 13.1 Update</platform>
+		</affected>
+		<description>
+
+The MySQL Community Server edition was updated to 5.6.26, fixing security issues and bugs.
+
+All changes: http://dev.mysql.com/doc/relnotes/mysql/5.6/en/news-5-6-26.html
+
+* Fixed CVEs:
+  CVE-2015-2617, CVE-2015-2648, CVE-2015-2611, CVE-2015-2582
+  CVE-2015-4752, CVE-2015-4756, CVE-2015-2643, CVE-2015-4772
+  CVE-2015-4761, CVE-2015-4757, CVE-2015-4737, CVE-2015-4771
+  CVE-2015-4769, CVE-2015-2639, CVE-2015-2620, CVE-2015-2641
+  CVE-2015-2661, CVE-2015-4767
+* disable Performance Schema by default. Since MySQL 5.6.6 upstream
+  enabled Performance Schema by default which results in increased
+  memory usage. The added option disable Performance Schema again in
+  order to decrease MySQL memory usage [bnc#852477].
+* install INFO_BIN and INFO_SRC, noticed in MDEV-6912
+* remove superfluous '--group' parameter from mysql-systemd-helper
+* make -devel package installable in the presence of LibreSSL
+* cleanup after the update-message if it was displayed
+* add 'exec' to mysql-systemd-helper to shutdown mysql/mariadb cleanly [bnc#943096]
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114505" comment="libmysql56client18-32bit-5.6.26-7.10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114506" comment="libmysql56client18-5.6.26-7.10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114507" comment="libmysql56client_r18-32bit-5.6.26-7.10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114508" comment="libmysql56client_r18-5.6.26-7.10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114509" comment="mysql-community-server-5.6.26-7.10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114510" comment="mysql-community-server-bench-5.6.26-7.10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114511" comment="mysql-community-server-client-5.6.26-7.10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114512" comment="mysql-community-server-errormessages-5.6.26-7.10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114513" comment="mysql-community-server-test-5.6.26-7.10.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114514" comment="mysql-community-server-tools-5.6.26-7.10.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:509" version="1" class="patch">
+	<metadata>
 		<title>Security update for libgcrypt</title>
 		<affected family="unix">
 			<platform>openSUSE 13.1 Update</platform>
@@ -20257,7 +20299,7 @@ GnuPG already performed this check by itself and was not affected. This fix is e
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114388" comment="libgcrypt11-32bit-1.5.4-2.12.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:509" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:510" version="1" class="patch">
 	<metadata>
 		<title>Security update for sblim-sfcb</title>
 		<affected family="unix">
@@ -20271,7 +20313,7 @@ sblim-sfcb was updated to fix a security issue with a crash due to a null pointe
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114355" comment="sblim-sfcb-1.3.17-2.3.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:510" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:511" version="1" class="patch">
 	<metadata>
 		<title>Security update for remind</title>
 		<affected family="unix">
@@ -20285,7 +20327,7 @@ remind was updated to fix a buffer overflow in DumpSysVar (CVE-2015-5957) (bnc#9
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114368" comment="remind-3.1.13-2.3.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:511" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:512" version="1" class="patch">
 	<metadata>
 		<title>Security update for Chromium</title>
 		<affected family="unix">
@@ -20316,7 +20358,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114375" comment="chromium-ffmpegsumo-45.0.2454.85-98.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:512" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:513" version="1" class="patch">
 	<metadata>
 		<title>Security update for python-django</title>
 		<affected family="unix">
@@ -20344,7 +20386,7 @@ to mitigate possible XSS attack via user-supplied redirect URLs
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114389" comment="python-django-1.5.12-0.2.11.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:513" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:514" version="1" class="patch">
 	<metadata>
 		<title>Security update for bind</title>
 		<affected family="unix">
@@ -20367,7 +20409,7 @@ records (CVE-2015-5722, bsc#944066).
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114397" comment="bind-utils-9.9.4P2-2.17.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:514" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:515" version="1" class="patch">
 	<metadata>
 		<title>Security update for icedtea-web</title>
 		<affected family="unix">
@@ -20470,7 +20512,7 @@ Also included is the update to 1.6
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114399" comment="icedtea-web-javadoc-1.5.3-0.7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:515" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:516" version="1" class="patch">
 	<metadata>
 		<title>Security update for cyrus-imapd</title>
 		<affected family="unix">
@@ -20494,7 +20536,86 @@ This recommended update provides version 2.3.19 of cyrus-imapd
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114492" comment="perl-Cyrus-SIEVE-managesieve-2.3.19-34.3.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:516" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:517" version="1" class="patch">
+	<metadata>
+		<title>Security update for php5</title>
+		<affected family="unix">
+			<platform>openSUSE 13.1 Update</platform>
+		</affected>
+		<description>
+
+The PHP5 script interpreter was updated to fix various security issues:
+
+* CVE-2015-6831: A use after free vulnerability in unserialize() has been fixed which could be used to crash php or potentially execute code. [bnc#942291] [bnc#942294] [bnc#942295]
+* CVE-2015-6832: A dangling pointer in the unserialization of ArrayObject items could be used to crash php or potentially execute code. [bnc#942293]
+* CVE-2015-6833: A directory traversal when extracting ZIP files could be used to overwrite files outside of intended area. [bnc#942296]
+* CVE-2015-6834: A Use After Free Vulnerability in unserialize() has been fixed which could be used to crash php or potentially execute code. [bnc#945403] 
+* CVE-2015-6835: A Use After Free Vulnerability in session unserialize() has been fixed which could be used to crash php or potentially execute code. [bnc#945402]
+* CVE-2015-6836: A SOAP serialize_function_call() type confusion leading to remote code execution problem was fixed. [bnc#945428]
+* CVE-2015-6837 CVE-2015-6838: Two NULL pointer dereferences in the XSLTProcessor class were fixed. [bnc#945412]
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114515" comment="apache2-mod_php5-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114516" comment="php5-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114517" comment="php5-bcmath-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114518" comment="php5-bz2-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114519" comment="php5-calendar-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114520" comment="php5-ctype-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114521" comment="php5-curl-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114522" comment="php5-dba-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114523" comment="php5-devel-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114524" comment="php5-dom-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114525" comment="php5-enchant-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114526" comment="php5-exif-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114527" comment="php5-fastcgi-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114528" comment="php5-fileinfo-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114529" comment="php5-firebird-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114530" comment="php5-fpm-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114531" comment="php5-ftp-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114532" comment="php5-gd-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114533" comment="php5-gettext-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114534" comment="php5-gmp-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114535" comment="php5-iconv-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114536" comment="php5-imap-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114537" comment="php5-intl-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114538" comment="php5-json-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114539" comment="php5-ldap-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114540" comment="php5-mbstring-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114541" comment="php5-mcrypt-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114542" comment="php5-mssql-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114543" comment="php5-mysql-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114544" comment="php5-odbc-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114545" comment="php5-openssl-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114546" comment="php5-pcntl-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114547" comment="php5-pdo-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114548" comment="php5-pear-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114549" comment="php5-pgsql-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114550" comment="php5-phar-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114551" comment="php5-posix-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114552" comment="php5-pspell-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114553" comment="php5-readline-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114554" comment="php5-shmop-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114555" comment="php5-snmp-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114556" comment="php5-soap-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114557" comment="php5-sockets-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114558" comment="php5-sqlite-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114559" comment="php5-suhosin-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114560" comment="php5-sysvmsg-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114561" comment="php5-sysvsem-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114562" comment="php5-sysvshm-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114563" comment="php5-tidy-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114564" comment="php5-tokenizer-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114565" comment="php5-wddx-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114566" comment="php5-xmlreader-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114567" comment="php5-xmlrpc-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114568" comment="php5-xmlwriter-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114569" comment="php5-xsl-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114570" comment="php5-zip-5.4.20-67.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114571" comment="php5-zlib-5.4.20-67.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:518" version="1" class="patch">
 	<metadata>
 		<title>testupdate for the 13.1 update stack</title>
 		<affected family="unix">
@@ -43221,6 +43342,46 @@ This is a testupdate for the 13.1 update stack, a trivial security update		</des
 		<object object_ref="oval:org.opensuse.security:obj:2009031125"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045648"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114505" version="1" comment="libmysql56client18-32bit is &lt;5.6.26-7.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038776"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045684"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114506" version="1" comment="libmysql56client18 is &lt;5.6.26-7.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038777"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045684"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114507" version="1" comment="libmysql56client_r18-32bit is &lt;5.6.26-7.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038778"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045684"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114508" version="1" comment="libmysql56client_r18 is &lt;5.6.26-7.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038779"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045684"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114509" version="1" comment="mysql-community-server is &lt;5.6.26-7.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034733"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045684"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114510" version="1" comment="mysql-community-server-bench is &lt;5.6.26-7.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034728"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045684"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114511" version="1" comment="mysql-community-server-client is &lt;5.6.26-7.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034729"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045684"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114512" version="1" comment="mysql-community-server-errormessages is &lt;5.6.26-7.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035449"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045684"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114513" version="1" comment="mysql-community-server-test is &lt;5.6.26-7.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034731"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045684"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114514" version="1" comment="mysql-community-server-tools is &lt;5.6.26-7.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034732"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045684"/>
+	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009114384" version="1" comment="libgcrypt is &lt;1.5.4-2.12.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009036338"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045667"/>
@@ -43328,6 +43489,234 @@ This is a testupdate for the 13.1 update stack, a trivial security update		</des
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009114492" version="1" comment="perl-Cyrus-SIEVE-managesieve is &lt;2.3.19-34.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009033423"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045681"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114515" version="1" comment="apache2-mod_php5 is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030917"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114516" version="1" comment="php5 is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009036256"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114517" version="1" comment="php5-bcmath is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030918"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114518" version="1" comment="php5-bz2 is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030919"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114519" version="1" comment="php5-calendar is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030920"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114520" version="1" comment="php5-ctype is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030921"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114521" version="1" comment="php5-curl is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030922"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114522" version="1" comment="php5-dba is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030923"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114523" version="1" comment="php5-devel is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031659"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114524" version="1" comment="php5-dom is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030925"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114525" version="1" comment="php5-enchant is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033607"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114526" version="1" comment="php5-exif is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030926"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114527" version="1" comment="php5-fastcgi is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030927"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114528" version="1" comment="php5-fileinfo is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033608"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114529" version="1" comment="php5-firebird is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037563"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114530" version="1" comment="php5-fpm is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034569"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114531" version="1" comment="php5-ftp is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030928"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114532" version="1" comment="php5-gd is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030929"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114533" version="1" comment="php5-gettext is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030930"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114534" version="1" comment="php5-gmp is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030931"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114535" version="1" comment="php5-iconv is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030933"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114536" version="1" comment="php5-imap is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031660"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114537" version="1" comment="php5-intl is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033609"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114538" version="1" comment="php5-json is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030934"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114539" version="1" comment="php5-ldap is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030935"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114540" version="1" comment="php5-mbstring is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030936"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114541" version="1" comment="php5-mcrypt is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030937"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114542" version="1" comment="php5-mssql is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009036282"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114543" version="1" comment="php5-mysql is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030938"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114544" version="1" comment="php5-odbc is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030939"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114545" version="1" comment="php5-openssl is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030940"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114546" version="1" comment="php5-pcntl is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030941"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114547" version="1" comment="php5-pdo is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030942"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114548" version="1" comment="php5-pear is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030943"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114549" version="1" comment="php5-pgsql is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030944"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114550" version="1" comment="php5-phar is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033610"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114551" version="1" comment="php5-posix is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031663"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114552" version="1" comment="php5-pspell is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030945"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114553" version="1" comment="php5-readline is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031664"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114554" version="1" comment="php5-shmop is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030946"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114555" version="1" comment="php5-snmp is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030947"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114556" version="1" comment="php5-soap is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030948"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114557" version="1" comment="php5-sockets is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031665"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114558" version="1" comment="php5-sqlite is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031666"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114559" version="1" comment="php5-suhosin is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030949"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114560" version="1" comment="php5-sysvmsg is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030950"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114561" version="1" comment="php5-sysvsem is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030951"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114562" version="1" comment="php5-sysvshm is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030952"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114563" version="1" comment="php5-tidy is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031667"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114564" version="1" comment="php5-tokenizer is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030953"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114565" version="1" comment="php5-wddx is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030954"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114566" version="1" comment="php5-xmlreader is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030955"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114567" version="1" comment="php5-xmlrpc is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030956"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114568" version="1" comment="php5-xmlwriter is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030957"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114569" version="1" comment="php5-xsl is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030958"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114570" version="1" comment="php5-zip is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030959"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114571" version="1" comment="php5-zlib is &lt;5.4.20-67.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030960"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045685"/>
 	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009083222" version="1" comment="update-test-security is &lt;0-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009036631"/>
@@ -50891,6 +51280,9 @@ This is a testupdate for the 13.1 update stack, a trivial security update		</des
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045648" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:3.3.13-2.17.1</evr>
   </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045684" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:5.6.26-7.10.1</evr>
+  </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045667" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:1.5.4-2.12.1</evr>
   </rpminfo_state>
@@ -50914,6 +51306,9 @@ This is a testupdate for the 13.1 update stack, a trivial security update		</des
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045681" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:2.3.19-34.3.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045685" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:5.4.20-67.1</evr>
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009041597" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:0-29.1</evr>
