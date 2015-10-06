@@ -1,22 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:red-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd">
-  <generator>
-    <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
-    <oval:product_version>3</oval:product_version>
-    <oval:schema_version>5.10.1</oval:schema_version>
-    <oval:timestamp>2013-11-12T03:44:07</oval:timestamp>
-  </generator>
-<definitions>
-<definition id="oval:com.redhat.rhsa:def:20030315" version="502" class="patch">
-      <metadata>
-        <title>RHSA-2003:315: quagga security update (Low)</title>
+<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:red-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd">
+ <generator>
+  <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
+  <oval:product_version>3</oval:product_version>
+  <oval:schema_version>5.10</oval:schema_version>
+  <oval:timestamp>2015-10-06T14:02:27</oval:timestamp>
+ </generator>
+ <definitions>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20030315" version="502">
+   <metadata>
+    <title>RHSA-2003:315: quagga security update (Low)</title>
     <affected family="unix">
-            <platform>Red Hat Enterprise Linux 3</platform>
-         </affected>
-    <reference source="RHSA" ref_id="RHSA-2003:315-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-315.html" />
-          <reference source="CVE" ref_id="CVE-2003-0858" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0858.html" />
-    
+     <platform>Red Hat Enterprise Linux 3</platform>
+    </affected>
+    <reference ref_id="RHSA-2003:315-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-315.html" source="RHSA"/>
+    <reference ref_id="CVE-2003-0858" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0858.html" source="CVE"/>
     <description>Quagga is an open source implementation of TCP/IP routing software. 
  
 Herbert Xu reported that Quagga can accept spoofed messages sent on the
@@ -29,54 +27,44 @@ Users of Quagga should upgrade to these erratum packages, which contain a
 patch that checks that netlink messages actually came from the kernel. 
 This erratum also includes quagga-devel and quagga-contrib packages which
 were not originally shipped with Red Hat Enterprise Linux 3.</description>
-
-<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
-
-<advisory from="secalert@redhat.com">
-
-        <severity>Low</severity>
-
-        <rights>Copyright 2003 Red Hat, Inc.</rights>
-        <issued date="2003-11-12" />
-        <updated date="2003-11-12" />
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0858.html">CVE-2003-0858</cve>
-                <bugzilla href="http://bugzilla.redhat.com/108575" id="108575">CAN-2003-0858  Netlink local DoS: quagga</bugzilla>
-        <affected_cpe_list>
-            <cpe>cpe:/o:redhat:enterprise_linux</cpe>
-        </affected_cpe_list>
-</advisory>
-      </metadata>
-      <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315001" comment="Red Hat Enterprise Linux 3 is installed" />
- <criteria operator="OR">
- 
- <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315006" comment="quagga-devel is earlier than 0:0.96.2-8.3E" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030315007" comment="quagga-devel is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315004" comment="quagga-contrib is earlier than 0:0.96.2-8.3E" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030315005" comment="quagga-contrib is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315002" comment="quagga is earlier than 0:0.96.2-8.3E" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030315003" comment="quagga is signed with Red Hat master key" />
- 
-</criteria>
-
-</criteria>
-
-</criteria>
-
-    </definition>
-<definition id="oval:com.redhat.rhsa:def:20030317" version="502" class="patch">
-      <metadata>
-        <title>RHSA-2003:317: iproute security update (Low)</title>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2003 Red Hat, Inc.</rights>
+     <issued date="2003-11-12"/>
+     <updated date="2003-11-12"/>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0858.html">CVE-2003-0858</cve>
+     <bugzilla href="http://bugzilla.redhat.com/108575" id="108575">CAN-2003-0858  Netlink local DoS: quagga</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 3 is installed" test_ref="oval:com.redhat.rhsa:tst:20030315001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="quagga-devel is earlier than 0:0.96.2-8.3E" test_ref="oval:com.redhat.rhsa:tst:20030315006"/>
+      <criterion comment="quagga-devel is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030315007"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="quagga-contrib is earlier than 0:0.96.2-8.3E" test_ref="oval:com.redhat.rhsa:tst:20030315004"/>
+      <criterion comment="quagga-contrib is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030315005"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="quagga is earlier than 0:0.96.2-8.3E" test_ref="oval:com.redhat.rhsa:tst:20030315002"/>
+      <criterion comment="quagga is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030315003"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20030317" version="502">
+   <metadata>
+    <title>RHSA-2003:317: iproute security update (Low)</title>
     <affected family="unix">
-            <platform>Red Hat Enterprise Linux 3</platform>
-         </affected>
-    <reference source="RHSA" ref_id="RHSA-2003:317-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-317.html" />
-          <reference source="CVE" ref_id="CVE-2003-0856" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0856.html" />
-    
+     <platform>Red Hat Enterprise Linux 3</platform>
+    </affected>
+    <reference ref_id="RHSA-2003:317-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-317.html" source="RHSA"/>
+    <reference ref_id="CVE-2003-0856" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0856.html" source="CVE"/>
     <description>The iproute package contains advanced IP routing and network device
 configuration tools.
 
@@ -88,40 +76,34 @@ this issue.
  
 Users of iproute should upgrade to these erratum packages, which contain a
 patch that checks that netlink messages actually came from the kernel.</description>
-
-<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
-
-<advisory from="secalert@redhat.com">
-
-        <severity>Low</severity>
-
-        <rights>Copyright 2003 Red Hat, Inc.</rights>
-        <issued date="2003-11-12" />
-        <updated date="2003-11-12" />
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0856.html">CVE-2003-0856</cve>
-                <bugzilla href="http://bugzilla.redhat.com/108573" id="108573">CAN-2003-0856 Netlink local DoS: iproute</bugzilla>
-        <affected_cpe_list>
-            <cpe>cpe:/o:redhat:enterprise_linux</cpe>
-        </affected_cpe_list>
-</advisory>
-      </metadata>
-      <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315001" comment="Red Hat Enterprise Linux 3 is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030317002" comment="iproute is earlier than 0:2.4.7-11.30E.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030317003" comment="iproute is signed with Red Hat master key" />
- 
-</criteria>
-
-    </definition>
-<definition id="oval:com.redhat.rhsa:def:20030324" version="502" class="patch">
-      <metadata>
-        <title>RHSA-2003:324: ethereal security update (Moderate)</title>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2003 Red Hat, Inc.</rights>
+     <issued date="2003-11-12"/>
+     <updated date="2003-11-12"/>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0856.html">CVE-2003-0856</cve>
+     <bugzilla href="http://bugzilla.redhat.com/108573" id="108573">CAN-2003-0856 Netlink local DoS: iproute</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 3 is installed" test_ref="oval:com.redhat.rhsa:tst:20030315001"/>
+    <criterion comment="iproute is earlier than 0:2.4.7-11.30E.1" test_ref="oval:com.redhat.rhsa:tst:20030317002"/>
+    <criterion comment="iproute is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030317003"/>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20030324" version="502">
+   <metadata>
+    <title>RHSA-2003:324: ethereal security update (Moderate)</title>
     <affected family="unix">
-            <platform>Red Hat Enterprise Linux 3</platform>
-         </affected>
-    <reference source="RHSA" ref_id="RHSA-2003:324-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-324.html" />
-          <reference source="CVE" ref_id="CVE-2003-0925" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0925.html" />
-          <reference source="CVE" ref_id="CVE-2003-0926" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0926.html" />
-          <reference source="CVE" ref_id="CVE-2003-0927" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0927.html" />
-    
+     <platform>Red Hat Enterprise Linux 3</platform>
+    </affected>
+    <reference ref_id="RHSA-2003:324-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-324.html" source="RHSA"/>
+    <reference ref_id="CVE-2003-0925" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0925.html" source="CVE"/>
+    <reference ref_id="CVE-2003-0926" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0926.html" source="CVE"/>
+    <reference ref_id="CVE-2003-0927" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0927.html" source="CVE"/>
     <description>Ethereal is a program for monitoring network traffic.
 
 A number of security issues affect Ethereal.  By exploiting these issues,
@@ -148,52 +130,42 @@ to this issue.
 
 Users of Ethereal should update to these erratum packages containing
 Ethereal version 0.9.16, which is not vulnerable to these issues.</description>
-
-<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
-
-<advisory from="secalert@redhat.com">
-
-        <severity>Moderate</severity>
-
-        <rights>Copyright 2003 Red Hat, Inc.</rights>
-        <issued date="2003-11-12" />
-        <updated date="2003-11-12" />
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0925.html">CVE-2003-0925</cve>
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0926.html">CVE-2003-0926</cve>
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0927.html">CVE-2003-0927</cve>
-                <bugzilla href="http://bugzilla.redhat.com/109189" id="109189">CAN-2003-0925/6/7 Ethereal 0.9.13 has three exploitable security issues</bugzilla>
-        <affected_cpe_list>
-            <cpe>cpe:/o:redhat:enterprise_linux</cpe>
-        </affected_cpe_list>
-</advisory>
-      </metadata>
-      <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315001" comment="Red Hat Enterprise Linux 3 is installed" />
- <criteria operator="OR">
- 
- <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030324004" comment="ethereal-gnome is earlier than 0:0.9.16-0.30E.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030324005" comment="ethereal-gnome is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030324002" comment="ethereal is earlier than 0:0.9.16-0.30E.1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030324003" comment="ethereal is signed with Red Hat master key" />
- 
-</criteria>
-
-</criteria>
-
-</criteria>
-
-    </definition>
-<definition id="oval:com.redhat.rhsa:def:20030334" version="501" class="patch">
-      <metadata>
-        <title>RHSA-2003:334: glibc security update (Low)</title>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2003 Red Hat, Inc.</rights>
+     <issued date="2003-11-12"/>
+     <updated date="2003-11-12"/>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0925.html">CVE-2003-0925</cve>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0926.html">CVE-2003-0926</cve>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0927.html">CVE-2003-0927</cve>
+     <bugzilla href="http://bugzilla.redhat.com/109189" id="109189">CAN-2003-0925/6/7 Ethereal 0.9.13 has three exploitable security issues</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 3 is installed" test_ref="oval:com.redhat.rhsa:tst:20030315001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="ethereal-gnome is earlier than 0:0.9.16-0.30E.1" test_ref="oval:com.redhat.rhsa:tst:20030324004"/>
+      <criterion comment="ethereal-gnome is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030324005"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ethereal is earlier than 0:0.9.16-0.30E.1" test_ref="oval:com.redhat.rhsa:tst:20030324002"/>
+      <criterion comment="ethereal is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030324003"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20030334" version="501">
+   <metadata>
+    <title>RHSA-2003:334: glibc security update (Low)</title>
     <affected family="unix">
-            <platform>Red Hat Enterprise Linux 3</platform>
-         </affected>
-    <reference source="RHSA" ref_id="RHSA-2003:334-00" ref_url="https://rhn.redhat.com/errata/RHSA-2003-334.html" />
-          <reference source="CVE" ref_id="CVE-2003-0859" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0859.html" />
-    
+     <platform>Red Hat Enterprise Linux 3</platform>
+    </affected>
+    <reference ref_id="RHSA-2003:334-00" ref_url="https://rhn.redhat.com/errata/RHSA-2003-334.html" source="RHSA"/>
+    <reference ref_id="CVE-2003-0859" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0859.html" source="CVE"/>
     <description>The glibc packages contain GNU libc, which provides standard system libraries.
 
 Herbert Xu reported that various applications can accept spoofed messages
@@ -208,83 +180,73 @@ In addition to the security issues, a number of other bugs were fixed.
 Users are advised to upgrade to these erratum packages, which contain a
 patch that checks that netlink messages actually came from the kernel
 and patches for the various bug fixes.</description>
-
-<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
-
-<advisory from="secalert@redhat.com">
-
-        <severity>Low</severity>
-
-        <rights>Copyright 2003 Red Hat, Inc.</rights>
-        <issued date="2003-11-14" />
-        <updated date="2003-11-14" />
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0859.html">CVE-2003-0859</cve>
-                <bugzilla href="http://bugzilla.redhat.com/90402" id="90402">backtrace() is broken</bugzilla>
-            <bugzilla href="http://bugzilla.redhat.com/101261" id="101261">getnameinfo fails to to reverse lookup on IPv6 addresses</bugzilla>
-            <bugzilla href="http://bugzilla.redhat.com/103727" id="103727">LD_PROFILE=libc.so.6 and sprof give seg fault</bugzilla>
-            <bugzilla href="http://bugzilla.redhat.com/107846" id="107846">locale utility is broken on big-endian 64-bit platforms</bugzilla>
-            <bugzilla href="http://bugzilla.redhat.com/108631" id="108631">LTC5138-NPTL: pthread_condtimedwait hang or mutex_lock hang</bugzilla>
-            <bugzilla href="http://bugzilla.redhat.com/108634" id="108634">Signal handler installation races with signal, glibc-2.3.2</bugzilla>
-        <affected_cpe_list>
-            <cpe>cpe:/o:redhat:enterprise_linux</cpe>
-        </affected_cpe_list>
-</advisory>
-      </metadata>
-      <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315001" comment="Red Hat Enterprise Linux 3 is installed" />
- <criteria operator="OR">
- 
- <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030334012" comment="glibc-headers is earlier than 0:2.3.2-95.6" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030334013" comment="glibc-headers is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030334004" comment="glibc-common is earlier than 0:2.3.2-95.6" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030334005" comment="glibc-common is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030334018" comment="nptl-devel is earlier than 0:2.3.2-95.6" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030334019" comment="nptl-devel is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030334008" comment="glibc-devel is earlier than 0:2.3.2-95.6" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030334009" comment="glibc-devel is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030334006" comment="glibc-debug is earlier than 0:2.3.2-95.6" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030334007" comment="glibc-debug is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030334014" comment="glibc-profile is earlier than 0:2.3.2-95.6" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030334015" comment="glibc-profile is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030334002" comment="glibc is earlier than 0:2.3.2-95.6" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030334003" comment="glibc is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030334016" comment="nscd is earlier than 0:2.3.2-95.6" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030334017" comment="nscd is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030334010" comment="glibc-utils is earlier than 0:2.3.2-95.6" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030334011" comment="glibc-utils is signed with Red Hat master key" />
- 
-</criteria>
-
-</criteria>
-
-</criteria>
-
-    </definition>
-<definition id="oval:com.redhat.rhsa:def:20030386" version="503" class="patch">
-      <metadata>
-        <title>RHSA-2003:386: freeradius security update (Moderate)</title>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2003 Red Hat, Inc.</rights>
+     <issued date="2003-11-14"/>
+     <updated date="2003-11-14"/>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0859.html">CVE-2003-0859</cve>
+     <bugzilla href="http://bugzilla.redhat.com/90402" id="90402">backtrace() is broken</bugzilla>
+     <bugzilla href="http://bugzilla.redhat.com/101261" id="101261">getnameinfo fails to to reverse lookup on IPv6 addresses</bugzilla>
+     <bugzilla href="http://bugzilla.redhat.com/103727" id="103727">LD_PROFILE=libc.so.6 and sprof give seg fault</bugzilla>
+     <bugzilla href="http://bugzilla.redhat.com/107846" id="107846">locale utility is broken on big-endian 64-bit platforms</bugzilla>
+     <bugzilla href="http://bugzilla.redhat.com/108631" id="108631">LTC5138-NPTL: pthread_condtimedwait hang or mutex_lock hang</bugzilla>
+     <bugzilla href="http://bugzilla.redhat.com/108634" id="108634">Signal handler installation races with signal, glibc-2.3.2</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 3 is installed" test_ref="oval:com.redhat.rhsa:tst:20030315001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="glibc-headers is earlier than 0:2.3.2-95.6" test_ref="oval:com.redhat.rhsa:tst:20030334012"/>
+      <criterion comment="glibc-headers is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030334013"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-common is earlier than 0:2.3.2-95.6" test_ref="oval:com.redhat.rhsa:tst:20030334004"/>
+      <criterion comment="glibc-common is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030334005"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nptl-devel is earlier than 0:2.3.2-95.6" test_ref="oval:com.redhat.rhsa:tst:20030334018"/>
+      <criterion comment="nptl-devel is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030334019"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-devel is earlier than 0:2.3.2-95.6" test_ref="oval:com.redhat.rhsa:tst:20030334008"/>
+      <criterion comment="glibc-devel is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030334009"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-debug is earlier than 0:2.3.2-95.6" test_ref="oval:com.redhat.rhsa:tst:20030334006"/>
+      <criterion comment="glibc-debug is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030334007"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-profile is earlier than 0:2.3.2-95.6" test_ref="oval:com.redhat.rhsa:tst:20030334014"/>
+      <criterion comment="glibc-profile is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030334015"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc is earlier than 0:2.3.2-95.6" test_ref="oval:com.redhat.rhsa:tst:20030334002"/>
+      <criterion comment="glibc is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030334003"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nscd is earlier than 0:2.3.2-95.6" test_ref="oval:com.redhat.rhsa:tst:20030334016"/>
+      <criterion comment="nscd is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030334017"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-utils is earlier than 0:2.3.2-95.6" test_ref="oval:com.redhat.rhsa:tst:20030334010"/>
+      <criterion comment="glibc-utils is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030334011"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20030386" version="503">
+   <metadata>
+    <title>RHSA-2003:386: freeradius security update (Moderate)</title>
     <affected family="unix">
-            <platform>Red Hat Enterprise Linux 3</platform>
-         </affected>
-    <reference source="RHSA" ref_id="RHSA-2003:386-02" ref_url="https://rhn.redhat.com/errata/RHSA-2003-386.html" />
-          <reference source="CVE" ref_id="CVE-2003-0967" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0967.html" />
-    
+     <platform>Red Hat Enterprise Linux 3</platform>
+    </affected>
+    <reference ref_id="RHSA-2003:386-02" ref_url="https://rhn.redhat.com/errata/RHSA-2003-386.html" source="RHSA"/>
+    <reference ref_id="CVE-2003-0967" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0967.html" source="CVE"/>
     <description>FreeRADIUS is an Internet authentication daemon, which implements the
 RADIUS protocol.  It allows Network Access Servers (NAS boxes) to perform
 authentication for dial-up users.
@@ -298,58 +260,48 @@ CAN-2003-0967 to this issue.
  
 Users of FreeRADIUS are advised to upgrade to these erratum packages
 containing FreeRADIUS 0.9.3 which is not vulnerable to these issues.</description>
-
-<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
-
-<advisory from="secalert@redhat.com">
-
-        <severity>Moderate</severity>
-
-        <rights>Copyright 2003 Red Hat, Inc.</rights>
-        <issued date="2003-12-10" />
-        <updated date="2003-12-10" />
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0967.html">CVE-2003-0967</cve>
-                <bugzilla href="http://bugzilla.redhat.com/110901" id="110901">CAN-2003-0967/8 FreeRadius remote DoS</bugzilla>
-        <affected_cpe_list>
-            <cpe>cpe:/o:redhat:enterprise_linux</cpe>
-        </affected_cpe_list>
-</advisory>
-      </metadata>
-      <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315001" comment="Red Hat Enterprise Linux 3 is installed" />
- <criteria operator="OR">
- 
- <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030386004" comment="freeradius-mysql is earlier than 0:0.9.3-1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030386005" comment="freeradius-mysql is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030386006" comment="freeradius-postgresql is earlier than 0:0.9.3-1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030386007" comment="freeradius-postgresql is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030386008" comment="freeradius-unixODBC is earlier than 0:0.9.3-1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030386009" comment="freeradius-unixODBC is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030386002" comment="freeradius is earlier than 0:0.9.3-1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030386003" comment="freeradius is signed with Red Hat master key" />
- 
-</criteria>
-
-</criteria>
-
-</criteria>
-
-    </definition>
-<definition id="oval:com.redhat.rhsa:def:20030395" version="502" class="patch">
-      <metadata>
-        <title>RHSA-2003:395: gnupg security update (Important)</title>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2003 Red Hat, Inc.</rights>
+     <issued date="2003-12-10"/>
+     <updated date="2003-12-10"/>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0967.html">CVE-2003-0967</cve>
+     <bugzilla href="http://bugzilla.redhat.com/110901" id="110901">CAN-2003-0967/8 FreeRadius remote DoS</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 3 is installed" test_ref="oval:com.redhat.rhsa:tst:20030315001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="freeradius-mysql is earlier than 0:0.9.3-1" test_ref="oval:com.redhat.rhsa:tst:20030386004"/>
+      <criterion comment="freeradius-mysql is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030386005"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="freeradius-postgresql is earlier than 0:0.9.3-1" test_ref="oval:com.redhat.rhsa:tst:20030386006"/>
+      <criterion comment="freeradius-postgresql is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030386007"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="freeradius-unixODBC is earlier than 0:0.9.3-1" test_ref="oval:com.redhat.rhsa:tst:20030386008"/>
+      <criterion comment="freeradius-unixODBC is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030386009"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="freeradius is earlier than 0:0.9.3-1" test_ref="oval:com.redhat.rhsa:tst:20030386002"/>
+      <criterion comment="freeradius is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030386003"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20030395" version="502">
+   <metadata>
+    <title>RHSA-2003:395: gnupg security update (Important)</title>
     <affected family="unix">
-            <platform>Red Hat Enterprise Linux 3</platform>
-         </affected>
-    <reference source="RHSA" ref_id="RHSA-2003:395-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-395.html" />
-          <reference source="CVE" ref_id="CVE-2003-0971" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0971.html" />
-    
+     <platform>Red Hat Enterprise Linux 3</platform>
+    </affected>
+    <reference ref_id="RHSA-2003:395-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-395.html" source="RHSA"/>
+    <reference ref_id="CVE-2003-0971" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0971.html" source="CVE"/>
     <description>GnuPG is a utility for encrypting data and creating digital signatures.
 
 Phong Nguyen identified a severe bug in the way GnuPG creates and uses
@@ -375,57 +327,51 @@ found, and will look similar to this example:
 
 /home/example/.gnupg/secring.gpg
 ----------------------------------------------------
-sec  1024D/01234567 2000-10-17 Example User &lt;example@example.com>
-uid                            Example User &lt;example@example.com>
+sec  1024D/01234567 2000-10-17 Example User &lt;example@example.com&gt;
+uid                            Example User &lt;example@example.com&gt;
 
 The key length, type, and ID are listed together, separated by a forward
-slash.  In the example output above, the key's type is "D" (DSA, sign
-and encrypt).  Your key is unsafe if and only if the key type is "G"
+slash.  In the example output above, the key's type is &quot;D&quot; (DSA, sign
+and encrypt).  Your key is unsafe if and only if the key type is &quot;G&quot;
 (ElGamal, sign and encrypt).  In the above example, the secret key is safe
 to use, while the secret key in the following example is not:
 
 /home/example/.gnupg/secring.gpg
 ----------------------------------------------------
-sec  1024G/01234567 2000-10-17 Example User &lt;example@example.com>
-uid                            Example User &lt;example@example.com>
+sec  1024G/01234567 2000-10-17 Example User &lt;example@example.com&gt;
+uid                            Example User &lt;example@example.com&gt;
 
 For more details regarding this issue, as well as instructions on how to
 revoke any keys that are unsafe, refer to the advisory available from the
 GnuPG web site:
 
 http://www.gnupg.org/</description>
-
-<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
-
-<advisory from="secalert@redhat.com">
-
-        <severity>Important</severity>
-
-        <rights>Copyright 2003 Red Hat, Inc.</rights>
-        <issued date="2003-12-10" />
-        <updated date="2003-12-10" />
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0971.html">CVE-2003-0971</cve>
-                <bugzilla href="http://bugzilla.redhat.com/111345" id="111345">CAN-2003-0971 GnuPG ElGamal compromise</bugzilla>
-        <affected_cpe_list>
-            <cpe>cpe:/o:redhat:enterprise_linux</cpe>
-        </affected_cpe_list>
-</advisory>
-      </metadata>
-      <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315001" comment="Red Hat Enterprise Linux 3 is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030395002" comment="gnupg is earlier than 0:1.2.1-10" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030395003" comment="gnupg is signed with Red Hat master key" />
- 
-</criteria>
-
-    </definition>
-<definition id="oval:com.redhat.rhsa:def:20030399" version="502" class="patch">
-      <metadata>
-        <title>RHSA-2003:399: rsync security update (Critical)</title>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2003 Red Hat, Inc.</rights>
+     <issued date="2003-12-10"/>
+     <updated date="2003-12-10"/>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0971.html">CVE-2003-0971</cve>
+     <bugzilla href="http://bugzilla.redhat.com/111345" id="111345">CAN-2003-0971 GnuPG ElGamal compromise</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 3 is installed" test_ref="oval:com.redhat.rhsa:tst:20030315001"/>
+    <criterion comment="gnupg is earlier than 0:1.2.1-10" test_ref="oval:com.redhat.rhsa:tst:20030395002"/>
+    <criterion comment="gnupg is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030395003"/>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20030399" version="502">
+   <metadata>
+    <title>RHSA-2003:399: rsync security update (Critical)</title>
     <affected family="unix">
-            <platform>Red Hat Enterprise Linux 3</platform>
-         </affected>
-    <reference source="RHSA" ref_id="RHSA-2003:399-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-399.html" />
-          <reference source="CVE" ref_id="CVE-2003-0962" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0962.html" />
-    
+     <platform>Red Hat Enterprise Linux 3</platform>
+    </affected>
+    <reference ref_id="RHSA-2003:399-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-399.html" source="RHSA"/>
+    <reference ref_id="CVE-2003-0962" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0962.html" source="CVE"/>
     <description>rsync is a program for sychronizing files over the network.
 
 A heap overflow bug exists in rsync versions prior to 2.5.7.  On machines
@@ -450,38 +396,32 @@ disabled by running the following command as root:
 
 Red Hat would like to thank the rsync team for their rapid response and
 quick fix for this issue.</description>
-
-<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
-
-<advisory from="secalert@redhat.com">
-
-        <severity>Critical</severity>
-
-        <rights>Copyright 2003 Red Hat, Inc.</rights>
-        <issued date="2003-12-04" />
-        <updated date="2003-12-04" />
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0962.html">CVE-2003-0962</cve>
-                <bugzilla href="http://bugzilla.redhat.com/111474" id="111474">CAN-2003-0962 rsync remote exploit</bugzilla>
-        <affected_cpe_list>
-            <cpe>cpe:/o:redhat:enterprise_linux</cpe>
-        </affected_cpe_list>
-</advisory>
-      </metadata>
-      <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315001" comment="Red Hat Enterprise Linux 3 is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030399002" comment="rsync is earlier than 0:2.5.7-1" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030399003" comment="rsync is signed with Red Hat master key" />
- 
-</criteria>
-
-    </definition>
-<definition id="oval:com.redhat.rhsa:def:20030404" version="502" class="patch">
-      <metadata>
-        <title>RHSA-2003:404: lftp security update (Moderate)</title>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2003 Red Hat, Inc.</rights>
+     <issued date="2003-12-04"/>
+     <updated date="2003-12-04"/>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0962.html">CVE-2003-0962</cve>
+     <bugzilla href="http://bugzilla.redhat.com/111474" id="111474">CAN-2003-0962 rsync remote exploit</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 3 is installed" test_ref="oval:com.redhat.rhsa:tst:20030315001"/>
+    <criterion comment="rsync is earlier than 0:2.5.7-1" test_ref="oval:com.redhat.rhsa:tst:20030399002"/>
+    <criterion comment="rsync is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030399003"/>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20030404" version="502">
+   <metadata>
+    <title>RHSA-2003:404: lftp security update (Moderate)</title>
     <affected family="unix">
-            <platform>Red Hat Enterprise Linux 3</platform>
-         </affected>
-    <reference source="RHSA" ref_id="RHSA-2003:404-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-404.html" />
-          <reference source="CVE" ref_id="CVE-2003-0963" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0963.html" />
-    
+     <platform>Red Hat Enterprise Linux 3</platform>
+    </affected>
+    <reference ref_id="RHSA-2003:404-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-404.html" source="RHSA"/>
+    <reference ref_id="CVE-2003-0963" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0963.html" source="CVE"/>
     <description>lftp is a command-line file transfer program supporting FTP and HTTP
 protocols. 
 
@@ -498,38 +438,32 @@ contain a backported security patch and are not vulnerable to this issue.
 
 Red Hat would like to thank Ulf Härnhammar for discovering and alerting us
 to this issue.</description>
-
-<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
-
-<advisory from="secalert@redhat.com">
-
-        <severity>Moderate</severity>
-
-        <rights>Copyright 2007 Red Hat, Inc.</rights>
-        <issued date="2003-12-16" />
-        <updated date="2007-01-26" />
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0963.html">CVE-2003-0963</cve>
-                <bugzilla href="http://bugzilla.redhat.com/111717" id="111717">CAN-2003-0963 lftp client buffer overflow</bugzilla>
-        <affected_cpe_list>
-            <cpe>cpe:/o:redhat:enterprise_linux</cpe>
-        </affected_cpe_list>
-</advisory>
-      </metadata>
-      <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315001" comment="Red Hat Enterprise Linux 3 is installed" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030404002" comment="lftp is earlier than 0:2.6.3-5" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030404003" comment="lftp is signed with Red Hat master key" />
- 
-</criteria>
-
-    </definition>
-<definition id="oval:com.redhat.rhsa:def:20030416" version="502" class="patch">
-      <metadata>
-        <title>RHSA-2003:416: kernel security update (Important)</title>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2007 Red Hat, Inc.</rights>
+     <issued date="2003-12-16"/>
+     <updated date="2007-01-26"/>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0963.html">CVE-2003-0963</cve>
+     <bugzilla href="http://bugzilla.redhat.com/111717" id="111717">CAN-2003-0963 lftp client buffer overflow</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 3 is installed" test_ref="oval:com.redhat.rhsa:tst:20030315001"/>
+    <criterion comment="lftp is earlier than 0:2.6.3-5" test_ref="oval:com.redhat.rhsa:tst:20030404002"/>
+    <criterion comment="lftp is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030404003"/>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20030416" version="502">
+   <metadata>
+    <title>RHSA-2003:416: kernel security update (Important)</title>
     <affected family="unix">
-            <platform>Red Hat Enterprise Linux 3</platform>
-         </affected>
-    <reference source="RHSA" ref_id="RHSA-2003:416-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-416.html" />
-          <reference source="CVE" ref_id="CVE-2003-0985" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0985.html" />
-    
+     <platform>Red Hat Enterprise Linux 3</platform>
+    </affected>
+    <reference ref_id="RHSA-2003:416-01" ref_url="https://rhn.redhat.com/errata/RHSA-2003-416.html" source="RHSA"/>
+    <reference ref_id="CVE-2003-0985" ref_url="https://www.redhat.com/security/data/cve/CVE-2003-0985.html" source="CVE"/>
     <description>The Linux kernel handles the basic functions of the operating system.
 
 Paul Starzetz discovered a flaw in bounds checking in mremap() in the Linux
@@ -545,458 +479,445 @@ this issue.
 
 Red Hat would like to thank Paul Starzetz from ISEC for disclosing this
 issue as well as Andrea Arcangeli and Solar Designer for working on the patch.</description>
-
-<!-- ~~~~~~~~~~~~~~~~~~~~   advisory details   ~~~~~~~~~~~~~~~~~~~ -->
-
-<advisory from="secalert@redhat.com">
-
-        <severity>Important</severity>
-
-        <rights>Copyright 2004 Red Hat, Inc.</rights>
-        <issued date="2004-01-07" />
-        <updated date="2004-01-07" />
-            <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0985.html">CVE-2003-0985</cve>
-            <affected_cpe_list>
-            <cpe>cpe:/o:redhat:enterprise_linux</cpe>
-        </affected_cpe_list>
-</advisory>
-      </metadata>
-      <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030315001" comment="Red Hat Enterprise Linux 3 is installed" />
- <criteria operator="OR">
- 
- <criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030416014" comment="kernel-source is earlier than 0:2.4.21-4.0.2.EL" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030416015" comment="kernel-source is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030416002" comment="kernel is earlier than 0:2.4.21-4.0.2.EL" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030416003" comment="kernel is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030416012" comment="kernel-doc is earlier than 0:2.4.21-4.0.2.EL" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030416013" comment="kernel-doc is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030416016" comment="kernel-hugemem-unsupported is earlier than 0:2.4.21-4.0.2.EL" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030416017" comment="kernel-hugemem-unsupported is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030416018" comment="kernel-hugemem is earlier than 0:2.4.21-4.0.2.EL" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030416019" comment="kernel-hugemem is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030416010" comment="kernel-BOOT is earlier than 0:2.4.21-4.0.2.EL" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030416011" comment="kernel-BOOT is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030416004" comment="kernel-smp-unsupported is earlier than 0:2.4.21-4.0.2.EL" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030416005" comment="kernel-smp-unsupported is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030416008" comment="kernel-unsupported is earlier than 0:2.4.21-4.0.2.EL" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030416009" comment="kernel-unsupported is signed with Red Hat master key" />
- 
-</criteria>
-<criteria operator="AND">
- <criterion test_ref="oval:com.redhat.rhsa:tst:20030416006" comment="kernel-smp is earlier than 0:2.4.21-4.0.2.EL" /><criterion test_ref="oval:com.redhat.rhsa:tst:20030416007" comment="kernel-smp is signed with Red Hat master key" />
- 
-</criteria>
-
-</criteria>
-
-</criteria>
-
-    </definition>
-</definitions>
-
-<tests>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030315001" version="502" comment="Red Hat Enterprise Linux 3 is installed" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030315001" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315002" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030315002" version="502" comment="quagga is earlier than 0:0.96.2-8.3E" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030315002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030315003" version="502" comment="quagga is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030315002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030315004" version="502" comment="quagga-contrib is earlier than 0:0.96.2-8.3E" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030315003" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030315005" version="502" comment="quagga-contrib is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030315003" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030315006" version="502" comment="quagga-devel is earlier than 0:0.96.2-8.3E" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030315004" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030315007" version="502" comment="quagga-devel is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030315004" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030317002" version="502" comment="iproute is earlier than 0:2.4.7-11.30E.1" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030317002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030317003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030317003" version="502" comment="iproute is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030317002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030324002" version="502" comment="ethereal is earlier than 0:0.9.16-0.30E.1" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030324002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030324003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030324003" version="502" comment="ethereal is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030324002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030324004" version="502" comment="ethereal-gnome is earlier than 0:0.9.16-0.30E.1" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030324003" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030324003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030324005" version="502" comment="ethereal-gnome is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030324003" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334002" version="501" comment="glibc is earlier than 0:2.3.2-95.6" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030334003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334003" version="501" comment="glibc is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334004" version="501" comment="glibc-common is earlier than 0:2.3.2-95.6" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334003" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030334003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334005" version="501" comment="glibc-common is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334003" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334006" version="501" comment="glibc-debug is earlier than 0:2.3.2-95.6" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334004" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030334003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334007" version="501" comment="glibc-debug is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334004" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334008" version="501" comment="glibc-devel is earlier than 0:2.3.2-95.6" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334005" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030334003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334009" version="501" comment="glibc-devel is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334005" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334010" version="501" comment="glibc-utils is earlier than 0:2.3.2-95.6" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334006" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030334003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334011" version="501" comment="glibc-utils is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334006" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334012" version="501" comment="glibc-headers is earlier than 0:2.3.2-95.6" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334007" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030334003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334013" version="501" comment="glibc-headers is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334007" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334014" version="501" comment="glibc-profile is earlier than 0:2.3.2-95.6" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334008" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030334003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334015" version="501" comment="glibc-profile is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334008" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334016" version="501" comment="nscd is earlier than 0:2.3.2-95.6" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334009" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030334003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334017" version="501" comment="nscd is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334009" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334018" version="501" comment="nptl-devel is earlier than 0:2.3.2-95.6" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334010" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030334003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030334019" version="501" comment="nptl-devel is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030334010" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030386002" version="503" comment="freeradius is earlier than 0:0.9.3-1" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030386002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030386003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030386003" version="503" comment="freeradius is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030386002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030386004" version="503" comment="freeradius-mysql is earlier than 0:0.9.3-1" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030386003" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030386003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030386005" version="503" comment="freeradius-mysql is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030386003" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030386006" version="503" comment="freeradius-postgresql is earlier than 0:0.9.3-1" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030386004" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030386003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030386007" version="503" comment="freeradius-postgresql is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030386004" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030386008" version="503" comment="freeradius-unixODBC is earlier than 0:0.9.3-1" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030386005" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030386003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030386009" version="503" comment="freeradius-unixODBC is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030386005" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030395002" version="502" comment="gnupg is earlier than 0:1.2.1-10" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030395002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030395003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030395003" version="502" comment="gnupg is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030395002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030399002" version="502" comment="rsync is earlier than 0:2.5.7-1" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030399002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030399003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030399003" version="502" comment="rsync is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030399002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030404002" version="502" comment="lftp is earlier than 0:2.6.3-5" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030404002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030404003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030404003" version="502" comment="lftp is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030404002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416002" version="502" comment="kernel is earlier than 0:2.4.21-4.0.2.EL" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030416003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416003" version="502" comment="kernel is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416002" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416004" version="502" comment="kernel-smp-unsupported is earlier than 0:2.4.21-4.0.2.EL" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416003" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030416003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416005" version="502" comment="kernel-smp-unsupported is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416003" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416006" version="502" comment="kernel-smp is earlier than 0:2.4.21-4.0.2.EL" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416004" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030416003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416007" version="502" comment="kernel-smp is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416004" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416008" version="502" comment="kernel-unsupported is earlier than 0:2.4.21-4.0.2.EL" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416005" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030416003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416009" version="502" comment="kernel-unsupported is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416005" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416010" version="502" comment="kernel-BOOT is earlier than 0:2.4.21-4.0.2.EL" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416006" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030416003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416011" version="502" comment="kernel-BOOT is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416006" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416012" version="502" comment="kernel-doc is earlier than 0:2.4.21-4.0.2.EL" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416007" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030416003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416013" version="502" comment="kernel-doc is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416007" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416014" version="502" comment="kernel-source is earlier than 0:2.4.21-4.0.2.EL" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416008" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030416003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416015" version="502" comment="kernel-source is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416008" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416016" version="502" comment="kernel-hugemem-unsupported is earlier than 0:2.4.21-4.0.2.EL" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416009" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030416003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416017" version="502" comment="kernel-hugemem-unsupported is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416009" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416018" version="502" comment="kernel-hugemem is earlier than 0:2.4.21-4.0.2.EL" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416010" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030416003" />
-</rpminfo_test>
-<rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:tst:20030416019" version="502" comment="kernel-hugemem is signed with Red Hat master key" check="at least one">
-  <object object_ref="oval:com.redhat.rhsa:obj:20030416010" />
-  <state state_ref="oval:com.redhat.rhsa:ste:20030315001" />
-</rpminfo_test>
-</tests>
-
-<objects>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030315001" version="502">
-  <name>redhat-release</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030315002" version="502">
-  <name>quagga</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030315003" version="502">
-  <name>quagga-contrib</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030315004" version="502">
-  <name>quagga-devel</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030317002" version="502">
-  <name>iproute</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030324002" version="502">
-  <name>ethereal</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030324003" version="502">
-  <name>ethereal-gnome</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030334002" version="501">
-  <name>glibc</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030334003" version="501">
-  <name>glibc-common</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030334004" version="501">
-  <name>glibc-debug</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030334005" version="501">
-  <name>glibc-devel</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030334006" version="501">
-  <name>glibc-utils</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030334007" version="501">
-  <name>glibc-headers</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030334008" version="501">
-  <name>glibc-profile</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030334009" version="501">
-  <name>nscd</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030334010" version="501">
-  <name>nptl-devel</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030386002" version="503">
-  <name>freeradius</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030386003" version="503">
-  <name>freeradius-mysql</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030386004" version="503">
-  <name>freeradius-postgresql</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030386005" version="503">
-  <name>freeradius-unixODBC</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030395002" version="502">
-  <name>gnupg</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030399002" version="502">
-  <name>rsync</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030404002" version="502">
-  <name>lftp</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030416002" version="502">
-  <name>kernel</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030416003" version="502">
-  <name>kernel-smp-unsupported</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030416004" version="502">
-  <name>kernel-smp</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030416005" version="502">
-  <name>kernel-unsupported</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030416006" version="502">
-  <name>kernel-BOOT</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030416007" version="502">
-  <name>kernel-doc</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030416008" version="502">
-  <name>kernel-source</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030416009" version="502">
-  <name>kernel-hugemem-unsupported</name>
-</rpminfo_object>
-<rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:obj:20030416010" version="502">
-  <name>kernel-hugemem</name>
-</rpminfo_object>
-</objects>
-
-<states>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030315001" version="502">
-  <signature_keyid operation="equals">219180cddb42a60e</signature_keyid>
-</rpminfo_state>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030315002" version="502">
-  <version operation="pattern match">^3[^\d]</version>
-</rpminfo_state>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030315003" version="502">
-  <evr datatype="evr_string" operation="less than">0:0.96.2-8.3E</evr>
-</rpminfo_state>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030317003" version="502">
-  <evr datatype="evr_string" operation="less than">0:2.4.7-11.30E.1</evr>
-</rpminfo_state>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030324003" version="502">
-  <evr datatype="evr_string" operation="less than">0:0.9.16-0.30E.1</evr>
-</rpminfo_state>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030334003" version="501">
-  <evr datatype="evr_string" operation="less than">0:2.3.2-95.6</evr>
-</rpminfo_state>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030386003" version="503">
-  <evr datatype="evr_string" operation="less than">0:0.9.3-1</evr>
-</rpminfo_state>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030395003" version="502">
-  <evr datatype="evr_string" operation="less than">0:1.2.1-10</evr>
-</rpminfo_state>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030399003" version="502">
-  <evr datatype="evr_string" operation="less than">0:2.5.7-1</evr>
-</rpminfo_state>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030404003" version="502">
-  <evr datatype="evr_string" operation="less than">0:2.6.3-5</evr>
-</rpminfo_state>
-<rpminfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:com.redhat.rhsa:ste:20030416003" version="502">
-  <evr datatype="evr_string" operation="less than">0:2.4.21-4.0.2.EL</evr>
-</rpminfo_state>
-</states>
-
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2004 Red Hat, Inc.</rights>
+     <issued date="2004-01-07"/>
+     <updated date="2004-01-07"/>
+     <cve href="https://www.redhat.com/security/data/cve/CVE-2003-0985.html">CVE-2003-0985</cve>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 3 is installed" test_ref="oval:com.redhat.rhsa:tst:20030315001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kernel-source is earlier than 0:2.4.21-4.0.2.EL" test_ref="oval:com.redhat.rhsa:tst:20030416014"/>
+      <criterion comment="kernel-source is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030416015"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel is earlier than 0:2.4.21-4.0.2.EL" test_ref="oval:com.redhat.rhsa:tst:20030416002"/>
+      <criterion comment="kernel is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030416003"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-doc is earlier than 0:2.4.21-4.0.2.EL" test_ref="oval:com.redhat.rhsa:tst:20030416012"/>
+      <criterion comment="kernel-doc is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030416013"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-hugemem-unsupported is earlier than 0:2.4.21-4.0.2.EL" test_ref="oval:com.redhat.rhsa:tst:20030416016"/>
+      <criterion comment="kernel-hugemem-unsupported is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030416017"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-hugemem is earlier than 0:2.4.21-4.0.2.EL" test_ref="oval:com.redhat.rhsa:tst:20030416018"/>
+      <criterion comment="kernel-hugemem is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030416019"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-BOOT is earlier than 0:2.4.21-4.0.2.EL" test_ref="oval:com.redhat.rhsa:tst:20030416010"/>
+      <criterion comment="kernel-BOOT is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030416011"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-smp-unsupported is earlier than 0:2.4.21-4.0.2.EL" test_ref="oval:com.redhat.rhsa:tst:20030416004"/>
+      <criterion comment="kernel-smp-unsupported is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030416005"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-unsupported is earlier than 0:2.4.21-4.0.2.EL" test_ref="oval:com.redhat.rhsa:tst:20030416008"/>
+      <criterion comment="kernel-unsupported is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030416009"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-smp is earlier than 0:2.4.21-4.0.2.EL" test_ref="oval:com.redhat.rhsa:tst:20030416006"/>
+      <criterion comment="kernel-smp is signed with Red Hat master key" test_ref="oval:com.redhat.rhsa:tst:20030416007"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+ </definitions>
+ <tests>
+  <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 3 is installed" id="oval:com.redhat.rhsa:tst:20030315001" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030315001"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="quagga is earlier than 0:0.96.2-8.3E" id="oval:com.redhat.rhsa:tst:20030315002" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030315002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="quagga is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030315003" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030315002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="quagga-contrib is earlier than 0:0.96.2-8.3E" id="oval:com.redhat.rhsa:tst:20030315004" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030315003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="quagga-contrib is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030315005" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030315003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="quagga-devel is earlier than 0:0.96.2-8.3E" id="oval:com.redhat.rhsa:tst:20030315006" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030315004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="quagga-devel is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030315007" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030315004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="iproute is earlier than 0:2.4.7-11.30E.1" id="oval:com.redhat.rhsa:tst:20030317002" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030317002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030317003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="iproute is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030317003" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030317002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ethereal is earlier than 0:0.9.16-0.30E.1" id="oval:com.redhat.rhsa:tst:20030324002" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030324002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030324003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ethereal is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030324003" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030324002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ethereal-gnome is earlier than 0:0.9.16-0.30E.1" id="oval:com.redhat.rhsa:tst:20030324004" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030324003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030324003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ethereal-gnome is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030324005" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030324003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc is earlier than 0:2.3.2-95.6" id="oval:com.redhat.rhsa:tst:20030334002" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030334003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030334003" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-common is earlier than 0:2.3.2-95.6" id="oval:com.redhat.rhsa:tst:20030334004" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030334003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-common is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030334005" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-debug is earlier than 0:2.3.2-95.6" id="oval:com.redhat.rhsa:tst:20030334006" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030334003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-debug is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030334007" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-devel is earlier than 0:2.3.2-95.6" id="oval:com.redhat.rhsa:tst:20030334008" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030334003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-devel is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030334009" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-utils is earlier than 0:2.3.2-95.6" id="oval:com.redhat.rhsa:tst:20030334010" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030334003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-utils is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030334011" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-headers is earlier than 0:2.3.2-95.6" id="oval:com.redhat.rhsa:tst:20030334012" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030334003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-headers is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030334013" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-profile is earlier than 0:2.3.2-95.6" id="oval:com.redhat.rhsa:tst:20030334014" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030334003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-profile is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030334015" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nscd is earlier than 0:2.3.2-95.6" id="oval:com.redhat.rhsa:tst:20030334016" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030334003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nscd is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030334017" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nptl-devel is earlier than 0:2.3.2-95.6" id="oval:com.redhat.rhsa:tst:20030334018" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030334003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nptl-devel is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030334019" version="501">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030334010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="freeradius is earlier than 0:0.9.3-1" id="oval:com.redhat.rhsa:tst:20030386002" version="503">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030386002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030386003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="freeradius is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030386003" version="503">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030386002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="freeradius-mysql is earlier than 0:0.9.3-1" id="oval:com.redhat.rhsa:tst:20030386004" version="503">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030386003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030386003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="freeradius-mysql is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030386005" version="503">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030386003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="freeradius-postgresql is earlier than 0:0.9.3-1" id="oval:com.redhat.rhsa:tst:20030386006" version="503">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030386004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030386003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="freeradius-postgresql is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030386007" version="503">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030386004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="freeradius-unixODBC is earlier than 0:0.9.3-1" id="oval:com.redhat.rhsa:tst:20030386008" version="503">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030386005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030386003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="freeradius-unixODBC is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030386009" version="503">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030386005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="gnupg is earlier than 0:1.2.1-10" id="oval:com.redhat.rhsa:tst:20030395002" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030395002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030395003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="gnupg is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030395003" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030395002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rsync is earlier than 0:2.5.7-1" id="oval:com.redhat.rhsa:tst:20030399002" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030399002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030399003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rsync is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030399003" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030399002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="lftp is earlier than 0:2.6.3-5" id="oval:com.redhat.rhsa:tst:20030404002" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030404002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030404003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="lftp is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030404003" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030404002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel is earlier than 0:2.4.21-4.0.2.EL" id="oval:com.redhat.rhsa:tst:20030416002" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030416003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030416003" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-smp-unsupported is earlier than 0:2.4.21-4.0.2.EL" id="oval:com.redhat.rhsa:tst:20030416004" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030416003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-smp-unsupported is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030416005" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-smp is earlier than 0:2.4.21-4.0.2.EL" id="oval:com.redhat.rhsa:tst:20030416006" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030416003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-smp is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030416007" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-unsupported is earlier than 0:2.4.21-4.0.2.EL" id="oval:com.redhat.rhsa:tst:20030416008" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030416003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-unsupported is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030416009" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-BOOT is earlier than 0:2.4.21-4.0.2.EL" id="oval:com.redhat.rhsa:tst:20030416010" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030416003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-BOOT is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030416011" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-doc is earlier than 0:2.4.21-4.0.2.EL" id="oval:com.redhat.rhsa:tst:20030416012" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030416003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-doc is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030416013" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-source is earlier than 0:2.4.21-4.0.2.EL" id="oval:com.redhat.rhsa:tst:20030416014" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030416003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-source is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030416015" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-hugemem-unsupported is earlier than 0:2.4.21-4.0.2.EL" id="oval:com.redhat.rhsa:tst:20030416016" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030416003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-hugemem-unsupported is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030416017" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-hugemem is earlier than 0:2.4.21-4.0.2.EL" id="oval:com.redhat.rhsa:tst:20030416018" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030416003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-hugemem is signed with Red Hat master key" id="oval:com.redhat.rhsa:tst:20030416019" version="502">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20030416010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20030315001"/>
+  </red-def:rpminfo_test>
+ </tests>
+ <objects>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030315001" version="502">
+   <red-def:name>redhat-release</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030315002" version="502">
+   <red-def:name>quagga</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030315003" version="502">
+   <red-def:name>quagga-contrib</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030315004" version="502">
+   <red-def:name>quagga-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030317002" version="502">
+   <red-def:name>iproute</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030324002" version="502">
+   <red-def:name>ethereal</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030324003" version="502">
+   <red-def:name>ethereal-gnome</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030334002" version="501">
+   <red-def:name>glibc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030334003" version="501">
+   <red-def:name>glibc-common</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030334004" version="501">
+   <red-def:name>glibc-debug</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030334005" version="501">
+   <red-def:name>glibc-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030334006" version="501">
+   <red-def:name>glibc-utils</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030334007" version="501">
+   <red-def:name>glibc-headers</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030334008" version="501">
+   <red-def:name>glibc-profile</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030334009" version="501">
+   <red-def:name>nscd</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030334010" version="501">
+   <red-def:name>nptl-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030386002" version="503">
+   <red-def:name>freeradius</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030386003" version="503">
+   <red-def:name>freeradius-mysql</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030386004" version="503">
+   <red-def:name>freeradius-postgresql</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030386005" version="503">
+   <red-def:name>freeradius-unixODBC</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030395002" version="502">
+   <red-def:name>gnupg</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030399002" version="502">
+   <red-def:name>rsync</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030404002" version="502">
+   <red-def:name>lftp</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030416002" version="502">
+   <red-def:name>kernel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030416003" version="502">
+   <red-def:name>kernel-smp-unsupported</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030416004" version="502">
+   <red-def:name>kernel-smp</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030416005" version="502">
+   <red-def:name>kernel-unsupported</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030416006" version="502">
+   <red-def:name>kernel-BOOT</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030416007" version="502">
+   <red-def:name>kernel-doc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030416008" version="502">
+   <red-def:name>kernel-source</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030416009" version="502">
+   <red-def:name>kernel-hugemem-unsupported</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20030416010" version="502">
+   <red-def:name>kernel-hugemem</red-def:name>
+  </red-def:rpminfo_object>
+ </objects>
+ <states>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030315001" version="502">
+   <red-def:signature_keyid operation="equals">219180cddb42a60e</red-def:signature_keyid>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030315002" version="502">
+   <red-def:version operation="pattern match">^3[^\d]</red-def:version>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030315003" version="502">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.96.2-8.3E</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030317003" version="502">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.4.7-11.30E.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030324003" version="502">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.9.16-0.30E.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030334003" version="501">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.3.2-95.6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030386003" version="503">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.9.3-1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030395003" version="502">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.2.1-10</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030399003" version="502">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.5.7-1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030404003" version="502">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.6.3-5</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20030416003" version="502">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.4.21-4.0.2.EL</red-def:evr>
+  </red-def:rpminfo_state>
+ </states>
 </oval_definitions>
