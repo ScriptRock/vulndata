@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-10-05T04:00:40</oval:timestamp>
+      <oval:timestamp>2015-10-06T04:00:36</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:1" version="1" class="patch">
@@ -259,6 +259,115 @@ OpenJDK was updated to icedtea 2.5.3 (OpenJDK 7u71) fixing security issues and b
 </definition>
 <definition id="oval:org.opensuse.security:def:6" version="1" class="patch">
 	<metadata>
+		<title>Security update for icedtea-web</title>
+		<affected family="unix">
+			<platform>SUSE SLE-12 Update</platform>
+		</affected>
+		<description>
+
+The Java IcedTea-Web Plugin was updated to 1.6.1 bringing
+various features, bug- and securityfixes.
+
+* Enabled Entry-Point attribute check
+* permissions sandbox and signed app and unsigned app with
+  permissions all-permissions now run in sandbox instead of not
+t all.
+* fixed DownloadService
+* comments in deployment.properties now should persists load/save
+* fixed bug in caching of files with query
+* fixed issues with recreating of existing shortcut
+* trustAll/trustNone now processed correctly
+* headless no longer shows dialogues
+* RH1231441 Unable to read the text of the buttons of the security
+  dialogue
+* Fixed RH1233697 icedtea-web: applet origin spoofing
+  (CVE-2015-5235, bsc#944208)
+* Fixed RH1233667 icedtea-web: unexpected permanent authorization
+  of unsigned applets (CVE-2015-5234, bsc#944209)
+* MissingALACAdialog made available also for unsigned applications
+  (but ignoring actual manifest value) and fixed
+* NetX
+  - fixed issues with -html shortcuts
+  - fixed issue with -html receiving garbage in width and height
+* PolicyEditor
+  - file flag made to work when used standalone
+  - file flag and main argument cannot be used in combination
+
+The update to 1.6 is included and brings:
+
+* Massively improved offline abilities. Added Xoffline switch to
+  force work without inet connection.
+* Improved to be able to run with any JDK
+* JDK 6 and older no longer supported
+* JDK 8 support added (URLPermission granted if applicable)
+* JDK 9 supported 
+* Added support for Entry-Point manifest attribute
+* Added KEY_ENABLE_MANIFEST_ATTRIBUTES_CHECK deployment property
+  to control scan of Manifest file 
+* starting arguments now accept also -- abbreviations
+* Added new documentation
+* Added support for menu shortcuts - both javaws
+  applications/applets and html applets are supported
+* added support for -html switch for javaws. Now you can run most
+  of the applets without browser at all
+* Control Panel
+  - PR1856: ControlPanel UI improvement for lower resolutions
+    (800*600)
+* NetX
+  - PR1858: Java Console accepts multi-byte encodings
+  - PR1859: Java Console UI improvement for lower resolutions
+    (800*600)
+  - RH1091563: [abrt] icedtea-web-1.5-2.fc20: Uncaught exception
+   java.lang.ClassCastException in method
+   sun.applet.PluginAppletViewer$8.run()
+  - Dropped support for long unmaintained -basedir argument
+  - Returned support for -jnlp argument
+  - RH1095311, PR574 -  References class sun.misc.Ref removed in
+    OpenJDK 9 - fixed, and so buildable on JDK9
+* Plugin
+  - PR1743 - Intermittant deadlock in PluginRequestProcessor
+  - PR1298 - LiveConnect - problem setting array elements (applet
+    variables) from JS
+  - RH1121549: coverity defects
+  - Resolves method overloading correctly with superclass
+    heirarchy distance
+* PolicyEditor
+  - codebases can be renamed in-place, copied, and pasted
+  - codebase URLs can be copied to system clipboard
+  - displays a progress dialog while opening or saving files
+  - codebases without permissions assigned save to file anyway
+    (and re-appear on next open)
+  - PR1776: NullPointer on save-and-exit
+  - PR1850: duplicate codebases when launching from security dialogs
+  - Fixed bug where clicking &amp;quot;Cancel&amp;quot; on the &amp;quot;Save before Exiting&amp;quot;
+    dialog could result in the editor exiting without saving
+    changes
+  - Keyboard accelerators and mnemonics greatly improved
+  - &amp;quot;File - New&amp;quot; allows editing a new policy without first
+    selecting the file to save to
+* Common
+  - PR1769: support signed applets which specify Sandbox
+    permissions in their manifests
+* Temporary Permissions in security dialog now multi-selectable
+  and based on PolicyEditor permissions
+
+The update to 1.5.2 brings OpenJDK 8 support (fate#318956)
+* NetX
+  - RH1095311, PR574 -  References class sun.misc.Ref removed in
+    OpenJDK 9 - fixed, and so buildable on JDK9
+  - RH1154177 - decoded file needed from cache
+  - fixed NPE  in https dialog
+  - empty codebase behaves  as &amp;quot;.&amp;quot;
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114767" comment="icedtea-web-1.6.1-2.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114768" comment="icedtea-web-javadoc-1.6.1-2.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114769" comment="java-1_7_0-openjdk-plugin-1.6.1-2.3.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:7" version="1" class="patch">
+	<metadata>
 		<title>Security update for php5</title>
 		<affected family="unix">
 			<platform>SUSE SLE-12 Update</platform>
@@ -345,7 +454,7 @@ Also the Suhosin framework was updated to 0.9.38. [fate#319325]
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114697" comment="php5-zlib-5.5.14-36.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:7" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:8" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -367,7 +476,52 @@ More information can be found on:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114456" comment="flash-player-kde4-11.2.202.521-102.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:8" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:9" version="1" class="patch">
+	<metadata>
+		<title>Security update for MozillaFirefox, mozilla-nspr</title>
+		<affected family="unix">
+			<platform>SUSE SLE-12 Update</platform>
+		</affected>
+		<description>
+
+Mozilla Firefox was updated to version 38.3.0 ESR (bsc#947003),
+fixing bugs and security issues.
+
+* MFSA 2015-96/CVE-2015-4500/CVE-2015-4501
+  Miscellaneous memory safety hazards (rv:41.0 / rv:38.3)
+* MFSA 2015-101/CVE-2015-4506
+  Buffer overflow in libvpx while parsing vp9 format video
+* MFSA 2015-105/CVE-2015-4511
+  Buffer overflow while decoding WebM video
+* MFSA 2015-106/CVE-2015-4509
+  Use-after-free while manipulating HTML media content
+* MFSA 2015-110/CVE-2015-4519
+  Dragging and dropping images exposes final URL after
+  redirects
+* MFSA 2015-111/CVE-2015-4520
+  Errors in the handling of CORS preflight request headers
+* MFSA 2015-112/CVE-2015-4517/CVE-2015-4521/CVE-2015-4522
+  CVE-2015-7174/CVE-2015-7175/CVE-2015-7176/CVE-2015-7177
+  CVE-2015-7180
+  Vulnerabilities found through code inspection
+
+More details can be found on
+	https://www.mozilla.org/en-US/security/advisories/
+
+The Mozilla NSPR library was updated to version 4.10.9, fixing various bugs.
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114770" comment="MozillaFirefox-38.3.0esr-48.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114771" comment="MozillaFirefox-branding-upstream-38.3.0esr-48.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114772" comment="MozillaFirefox-devel-38.3.0esr-48.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114773" comment="MozillaFirefox-translations-38.3.0esr-48.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114774" comment="mozilla-nspr-32bit-4.10.9-6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114775" comment="mozilla-nspr-4.10.9-6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009114776" comment="mozilla-nspr-devel-4.10.9-6.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:10" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox and mozilla-nss</title>
 		<affected family="unix">
@@ -538,7 +692,7 @@ Bugfix release
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102662" comment="mozilla-nss-tools-3.17.2-12.4 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:9" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:11" version="1" class="patch">
 	<metadata>
 		<title>Security update for php5</title>
 		<affected family="unix">
@@ -614,7 +768,7 @@ The following security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102211" comment="php5-zlib-5.5.14-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:10" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:12" version="1" class="patch">
 	<metadata>
 		<title>Security update for docker, sle2docker, go</title>
 		<affected family="unix">
@@ -701,7 +855,7 @@ sle2docker was updated to version 0.2.2 to fix one bug:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102866" comment="sle2docker-0.2.3-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:11" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:13" version="1" class="patch">
 	<metadata>
 		<title>Security update for the Linux Kernel</title>
 		<affected family="unix">
@@ -1098,7 +1252,7 @@ not seperately listed here.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105335" comment="kernel-zfcpdump-3.12.32-33.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:12" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:14" version="1" class="patch">
 	<metadata>
 		<title>Security update for powerpc-utils</title>
 		<affected family="unix">
@@ -1118,7 +1272,7 @@ This additional fix was included:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105927" comment="powerpc-utils-1.2.22-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:13" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:15" version="1" class="patch">
 	<metadata>
 		<title>Security update for tigervnc</title>
 		<affected family="unix">
@@ -1136,7 +1290,7 @@ This update for tigervnc provides the following fixes:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102624" comment="xorg-x11-Xvnc-1.3.0-22.3 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:14" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:16" version="1" class="patch">
 	<metadata>
 		<title>Security update for libreoffice</title>
 		<affected family="unix">
@@ -1249,7 +1403,7 @@ Various other fixes are included in the update.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102305" comment="libreoffice-writer-extensions-4.3.3.2-6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:15" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:17" version="1" class="patch">
 	<metadata>
 		<title>Security update for python, python-base, python-doc</title>
 		<affected family="unix">
@@ -1284,7 +1438,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102885" comment="python-xml-2.7.7-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:16" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:18" version="1" class="patch">
 	<metadata>
 		<title>Security update for compat-openssl098</title>
 		<affected family="unix">
@@ -1309,7 +1463,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102627" comment="libopenssl0_9_8-32bit-0.9.8j-66.3 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:17" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:19" version="1" class="patch">
 	<metadata>
 		<title>Security update for wget</title>
 		<affected family="unix">
@@ -1326,7 +1480,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102008" comment="wget-1.14-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:18" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:20" version="1" class="patch">
 	<metadata>
 		<title>Security update for openssl</title>
 		<affected family="unix">
@@ -1362,7 +1516,7 @@ See https://www.suse.com/support/kb/doc.php?id=7015773 for mitigations.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102675" comment="openssl-doc-1.0.1i-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:19" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:21" version="1" class="patch">
 	<metadata>
 		<title>Security update for dbus-1</title>
 		<affected family="unix">
@@ -1401,7 +1555,7 @@ hostile, administrators can return to the 5 second timeout
 		<criterion test_ref="oval:org.opensuse.security:tst:2009103555" comment="dbus-1-x11-1.8.12-6.4 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:20" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:22" version="1" class="patch">
 	<metadata>
 		<title>Security update for gnutls</title>
 		<affected family="unix">
@@ -1426,7 +1580,7 @@ gnutls was updated to fix one security issue.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102894" comment="libgnutlsxx28-3.2.15-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:21" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:23" version="1" class="patch">
 	<metadata>
 		<title>Security update for rubygem-sprockets-2_2</title>
 		<affected family="unix">
@@ -1445,7 +1599,7 @@ This security isusue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102453" comment="rubygem-sprockets-2_2-2.2.2-11.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:22" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:24" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -1474,7 +1628,7 @@ http://helpx.adobe.com/security/products/flash-player/apsb14-24.html
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102011" comment="flash-player-kde4-11.2.202.418-11.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:23" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:25" version="1" class="patch">
 	<metadata>
 		<title>Security update for ImageMagick</title>
 		<affected family="unix">
@@ -1508,7 +1662,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102641" comment="perl-PerlMagick-6.8.8.1-8.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:24" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:26" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_6_0-ibm</title>
 		<affected family="unix">
@@ -1601,7 +1755,7 @@ http://www.ibm.com/developerworks/java/jdk/alerts/#IBM_Security_Update_November_
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102466" comment="java-1_6_0-ibm-src-1.6.0_sr16.2-8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:25" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:27" version="1" class="patch">
 	<metadata>
 		<title>Security update for file</title>
 		<affected family="unix">
@@ -1626,7 +1780,7 @@ This non-security issues was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102472" comment="python-magic-5.19-5.3 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:26" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:28" version="1" class="patch">
 	<metadata>
 		<title>Security update for evolution-data-server</title>
 		<affected family="unix">
@@ -1680,7 +1834,7 @@ This security issues was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105373" comment="typelib-1_0-EDataServer-1_2-3.10.4-5.8 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:27" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:29" version="1" class="patch">
 	<metadata>
 		<title>Security update for rubygem-actionpack-3_2</title>
 		<affected family="unix">
@@ -1700,7 +1854,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102475" comment="rubygem-actionpack-3_2-3.2.17-6.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:28" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:30" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_7_1-ibm</title>
 		<affected family="unix">
@@ -1799,7 +1953,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102487" comment="java-1_7_1-ibm-src-1.7.1_sr2.0-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:29" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:31" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -1818,7 +1972,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102490" comment="flash-player-kde4-11.2.202.424-15.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:30" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:32" version="1" class="patch">
 	<metadata>
 		<title>Security update for libjpeg-turbo, libjpeg62-turbo</title>
 		<affected family="unix">
@@ -1846,7 +2000,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105091" comment="libjpeg62-turbo-1.3.1-30.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:31" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:33" version="1" class="patch">
 	<metadata>
 		<title>Security update for xen</title>
 		<affected family="unix">
@@ -1891,7 +2045,7 @@ These non-security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105067" comment="xen-tools-4.4.1_08-5.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:32" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:34" version="1" class="patch">
 	<metadata>
 		<title>Security update for flac</title>
 		<affected family="unix">
@@ -1915,7 +2069,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102937" comment="libFLAC8-32bit-1.3.0-6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:33" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:35" version="1" class="patch">
 	<metadata>
 		<title>Security update for mutt</title>
 		<affected family="unix">
@@ -1935,7 +2089,7 @@ This non-security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105068" comment="mutt-1.5.21-49.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:34" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:36" version="1" class="patch">
 	<metadata>
 		<title>Security update for openvpn</title>
 		<affected family="unix">
@@ -1954,7 +2108,7 @@ a server-side ASSERT (CVE-2014-8104),
 		<criterion test_ref="oval:org.opensuse.security:tst:2009103130" comment="openvpn-down-root-plugin-2.3.2-11.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:35" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:37" version="1" class="patch">
 	<metadata>
 		<title>Security update for pidgin</title>
 		<affected family="unix">
@@ -1983,7 +2137,7 @@ This pidgin security update fixes the following issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102685" comment="pidgin-devel-2.10.9-8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:36" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:38" version="1" class="patch">
 	<metadata>
 		<title>Security update for cpio</title>
 		<affected family="unix">
@@ -2004,7 +2158,7 @@ two non security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102939" comment="cpio-lang-2.11-29.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:37" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:39" version="1" class="patch">
 	<metadata>
 		<title>Security update for libyaml</title>
 		<affected family="unix">
@@ -2024,7 +2178,7 @@ This libyaml update fixes the following security issue:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105071" comment="libyaml-devel-0.1.6-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:38" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:40" version="1" class="patch">
 	<metadata>
 		<title>Security update for xorg-x11-server</title>
 		<affected family="unix">
@@ -2057,7 +2211,7 @@ This X.Org update fixes the following security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105376" comment="xorg-x11-server-sdk-7.6_1.15.2-17.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:39" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:41" version="1" class="patch">
 	<metadata>
 		<title>Security update for binutils</title>
 		<affected family="unix">
@@ -2102,7 +2256,7 @@ This binutils update fixes the following security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105398" comment="cross-i386-binutils-2.24-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:40" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:42" version="1" class="patch">
 	<metadata>
 		<title>Security update for libvirt</title>
 		<affected family="unix">
@@ -2155,7 +2309,7 @@ These non-security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105979" comment="libvirt-daemon-xen-1.2.5-21.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:41" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:43" version="1" class="patch">
 	<metadata>
 		<title>Security update for libksba</title>
 		<affected family="unix">
@@ -2173,7 +2327,7 @@ This libksba update fixes the following security issue:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105094" comment="libksba8-1.3.0-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:42" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:44" version="1" class="patch">
 	<metadata>
 		<title>Security update for mailx</title>
 		<affected family="unix">
@@ -2191,7 +2345,7 @@ This mailx update fixes the following security and non security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102940" comment="mailx-12.5-22.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:43" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:45" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -2211,7 +2365,7 @@ This flash-player security version update fixes the following issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009102897" comment="flash-player-kde4-11.2.202.425-19.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:44" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:46" version="1" class="patch">
 	<metadata>
 		<title>Security update for tcpdump</title>
 		<affected family="unix">
@@ -2232,7 +2386,7 @@ This tcpdump update fixes the following security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009103556" comment="tcpdump-4.5.1-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:45" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:47" version="1" class="patch">
 	<metadata>
 		<title>Security update for libxml2</title>
 		<affected family="unix">
@@ -2256,7 +2410,7 @@ This libxml2 update fixes the following security and non-security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009103738" comment="python-libxml2-2.9.1-10.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:46" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:48" version="1" class="patch">
 	<metadata>
 		<title>Security update for docker</title>
 		<affected family="unix">
@@ -2306,7 +2460,7 @@ security issues, and adds the also additional features:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105401" comment="docker-zsh-completion-1.4.1-16.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:47" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:49" version="1" class="patch">
 	<metadata>
 		<title>Security update for squid</title>
 		<affected family="unix">
@@ -2322,7 +2476,7 @@ This squid updated fixes the following security update.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105076" comment="squid-3.3.13-4.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:48" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:50" version="1" class="patch">
 	<metadata>
 		<title>Security update for rpm</title>
 		<affected family="unix">
@@ -2345,7 +2499,7 @@ This rpm update fixes the following security and non-security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105407" comment="rpm-devel-4.11.2-10.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:49" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:51" version="1" class="patch">
 	<metadata>
 		<title>Security update for strongswan</title>
 		<affected family="unix">
@@ -2391,7 +2545,7 @@ issues.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106081" comment="strongswan-sqlite-5.1.3-9.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:50" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:52" version="1" class="patch">
 	<metadata>
 		<title>Security update for clamav</title>
 		<affected family="unix">
@@ -2429,7 +2583,7 @@ Clamav was updated to version 0.98.5:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105738" comment="clamav-0.98.5-6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:51" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:53" version="1" class="patch">
 	<metadata>
 		<title>Security update for ruby2.1</title>
 		<affected family="unix">
@@ -2454,7 +2608,7 @@ This ruby update fixes the following two security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105414" comment="ruby2.1-stdlib-2.1.2-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:52" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:54" version="1" class="patch">
 	<metadata>
 		<title>Security update for file</title>
 		<affected family="unix">
@@ -2478,7 +2632,7 @@ This file update fixes the following security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009103562" comment="python-magic-5.19-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:53" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:55" version="1" class="patch">
 	<metadata>
 		<title>Security update for libreoffice</title>
 		<affected family="unix">
@@ -2591,7 +2745,7 @@ issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009103656" comment="libreoffice-writer-extensions-4.3.5.2-10.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:54" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:56" version="1" class="patch">
 	<metadata>
 		<title>Security update for jasper</title>
 		<affected family="unix">
@@ -2612,7 +2766,7 @@ This libjasper update fixes the following three security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105075" comment="libjasper1-32bit-1.900.1-166.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:55" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:57" version="1" class="patch">
 	<metadata>
 		<title>Security update for ntp</title>
 		<affected family="unix">
@@ -2638,7 +2792,7 @@ issues (bnc#910764, CERT VU#852879)
 		<criterion test_ref="oval:org.opensuse.security:tst:2009103132" comment="ntp-doc-4.2.6p5-31.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:56" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:58" version="1" class="patch">
 	<metadata>
 		<title>Security update for libssh</title>
 		<affected family="unix">
@@ -2659,7 +2813,7 @@ This libssh update fixes the following security issue:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009103661" comment="libssh4-32bit-0.6.3-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:57" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:59" version="1" class="patch">
 	<metadata>
 		<title>Security update for unzip</title>
 		<affected family="unix">
@@ -2684,7 +2838,7 @@ This libssh update fixes the following security issue:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105079" comment="unzip-doc-6.00-28.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:58" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:60" version="1" class="patch">
 	<metadata>
 		<title>Security update for subversion</title>
 		<affected family="unix">
@@ -2715,7 +2869,7 @@ This libssh update fixes the following security issue:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111354" comment="subversion-tools-1.8.10-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:59" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:61" version="1" class="patch">
 	<metadata>
 		<title>Security update for dbus-1</title>
 		<affected family="unix">
@@ -2756,7 +2910,7 @@ These additional security hardenings are included:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107565" comment="libdbus-1-3-32bit-1.8.16-14.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:60" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:62" version="1" class="patch">
 	<metadata>
 		<title>Security update for libsndfile</title>
 		<affected family="unix">
@@ -2776,7 +2930,7 @@ These additional security hardenings are included:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105601" comment="libsndfile1-32bit-1.0.25-21.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:61" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:63" version="1" class="patch">
 	<metadata>
 		<title>Security update for curl</title>
 		<affected family="unix">
@@ -2796,7 +2950,7 @@ These additional security hardenings are included:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105418" comment="libcurl4-7.37.0-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:62" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:64" version="1" class="patch">
 	<metadata>
 		<title>Security update for openssl</title>
 		<affected family="unix">
@@ -2867,7 +3021,7 @@ or supplying the &amp;quot;fips=1&amp;quot; parameter on the kernel boot command
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105795" comment="openssl-doc-1.0.1i-14.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:63" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:65" version="1" class="patch">
 	<metadata>
 		<title>Security update for compat-openssl098</title>
 		<affected family="unix">
@@ -2905,7 +3059,7 @@ This update also fixes regression caused by CVE-2014-0224.patch (bnc#892403)
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106137" comment="libopenssl0_9_8-32bit-0.9.8j-70.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:64" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:66" version="1" class="patch">
 	<metadata>
 		<title>Security update for git</title>
 		<affected family="unix">
@@ -2931,7 +3085,7 @@ This update also fixes regression caused by CVE-2014-0224.patch (bnc#892403)
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105428" comment="gitk-1.8.5.6-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:65" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:67" version="1" class="patch">
 	<metadata>
 		<title>Security update for mpfr</title>
 		<affected family="unix">
@@ -2951,7 +3105,7 @@ This update also fixes regression caused by CVE-2014-0224.patch (bnc#892403)
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105818" comment="mpfr-devel-32bit-3.1.2-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:66" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:68" version="1" class="patch">
 	<metadata>
 		<title>Security update for bind</title>
 		<affected family="unix">
@@ -2986,7 +3140,7 @@ Also the rpz2 patch was removed as it is no longer maintained.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105436" comment="bind-utils-9.9.5P1-8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:67" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:69" version="1" class="patch">
 	<metadata>
 		<title>Security update for libpng16</title>
 		<affected family="unix">
@@ -3013,7 +3167,7 @@ Also the rpz2 patch was removed as it is no longer maintained.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105444" comment="libpng16-tools-1.6.8-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:68" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:70" version="1" class="patch">
 	<metadata>
 		<title>Security update for qemu</title>
 		<affected family="unix">
@@ -3056,7 +3210,7 @@ images. (bsc#908380)
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106379" comment="qemu-x86-2.0.2-42.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:69" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:71" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -3081,7 +3235,7 @@ Adobe Flash Player was updated to 11.2.202.429 (bsc#913057):
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105447" comment="flash-player-kde4-11.2.202.429-23.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:70" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:72" version="1" class="patch">
 	<metadata>
 		<title>Security update for util-linux</title>
 		<affected family="unix">
@@ -3122,7 +3276,7 @@ This non-security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106064" comment="python-libmount-2.25-10.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:71" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:73" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox</title>
 		<affected family="unix">
@@ -3177,7 +3331,7 @@ Also Mozilla NSS was updated to 3.17.3 to fix:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105467" comment="mozilla-nss-tools-3.17.3-16.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:72" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:74" version="1" class="patch">
 	<metadata>
 		<title>Security update for krb5</title>
 		<affected family="unix">
@@ -3236,7 +3390,7 @@ Bugs fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106093" comment="krb5-server-1.12.1-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:73" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:75" version="1" class="patch">
 	<metadata>
 		<title>Security update for the Linux Kernel</title>
 		<affected family="unix">
@@ -3657,7 +3811,7 @@ The following non-security bugs were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105767" comment="kernel-docs-3.12.36-38.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:74" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:76" version="1" class="patch">
 	<metadata>
 		<title>Security update for wireshark</title>
 		<affected family="unix">
@@ -3687,7 +3841,7 @@ The following non-security bugs were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106167" comment="wireshark-devel-1.10.12-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:75" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:77" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -3707,7 +3861,7 @@ http://helpx.adobe.com/security/products/flash-player/apsb15-02.html
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105470" comment="flash-player-kde4-11.2.202.438-27.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:76" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:78" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_7_0-openjdk</title>
 		<affected family="unix">
@@ -3761,7 +3915,7 @@ These non-security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107706" comment="java-1_7_0-openjdk-src-1.7.0.75-11.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:77" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:79" version="1" class="patch">
 	<metadata>
 		<title>Security update for xdg-utils</title>
 		<affected family="unix">
@@ -3777,7 +3931,7 @@ and a bug when opening files where multiple mime handlers existed (bsc#906625).
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106065" comment="xdg-utils-20140630-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:78" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:80" version="1" class="patch">
 	<metadata>
 		<title>Security update for openvas-manager</title>
 		<affected family="unix">
@@ -3793,7 +3947,7 @@ and a bug when opening files where multiple mime handlers existed (bsc#906625).
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105664" comment="openvas-manager-4.0.4-8.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:79" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:81" version="1" class="patch">
 	<metadata>
 		<title>Security update for hivex</title>
 		<affected family="unix">
@@ -3813,7 +3967,7 @@ and a bug when opening files where multiple mime handlers existed (bsc#906625).
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106172" comment="python-hivex-1.3.10-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:80" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:82" version="1" class="patch">
 	<metadata>
 		<title>Security update for webkitgtk</title>
 		<affected family="unix">
@@ -3862,7 +4016,7 @@ This update fixes the following security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108641" comment="webkitgtk3-2.4.8-16.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:81" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:83" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -3883,7 +4037,7 @@ An update of flashplayer (executable binary) for i386 is currently not available
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105473" comment="flash-player-kde4-11.2.202.440-31.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:82" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:84" version="1" class="patch">
 	<metadata>
 		<title>Security update for vorbis-tools</title>
 		<affected family="unix">
@@ -3901,7 +4055,7 @@ An update of flashplayer (executable binary) for i386 is currently not available
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106468" comment="vorbis-tools-lang-1.4.0-19.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:83" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:85" version="1" class="patch">
 	<metadata>
 		<title>Security update for libmspack</title>
 		<affected family="unix">
@@ -3920,7 +4074,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106471" comment="libmspack0-0.4-6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:84" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:86" version="1" class="patch">
 	<metadata>
 		<title>Security update for elfutils</title>
 		<affected family="unix">
@@ -3950,7 +4104,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106107" comment="libelf1-32bit-0.158-6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:85" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:87" version="1" class="patch">
 	<metadata>
 		<title>Security update for unzip</title>
 		<affected family="unix">
@@ -3969,7 +4123,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106382" comment="unzip-doc-6.00-32.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:86" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:88" version="1" class="patch">
 	<metadata>
 		<title>Security update for jasper</title>
 		<affected family="unix">
@@ -3990,7 +4144,7 @@ CVE-2014-8158: Multiple stack-based buffer overflows in jpc_qmfb.c in JasPer 1.9
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106111" comment="libjasper1-32bit-1.900.1-170.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:87" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:89" version="1" class="patch">
 	<metadata>
 		<title>Security update for clamav</title>
 		<affected family="unix">
@@ -4010,7 +4164,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106112" comment="clamav-0.98.6-10.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:88" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:90" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -4037,7 +4191,7 @@ https://helpx.adobe.com/security/products/flash-player/apsb15-04.html
 		<criterion test_ref="oval:org.opensuse.security:tst:2009105982" comment="flash-player-kde4-11.2.202.442-67.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:89" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:91" version="1" class="patch">
 	<metadata>
 		<title>Security update for ntp</title>
 		<affected family="unix">
@@ -4058,7 +4212,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106067" comment="ntp-doc-4.2.6p5-37.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:90" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:92" version="1" class="patch">
 	<metadata>
 		<title>Security update for xorg-x11-server</title>
 		<affected family="unix">
@@ -4077,7 +4231,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106880" comment="xorg-x11-server-sdk-7.6_1.15.2-21.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:91" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:93" version="1" class="patch">
 	<metadata>
 		<title>Security update for gnome-settings-daemon</title>
 		<affected family="unix">
@@ -4100,7 +4254,7 @@ Bug fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107804" comment="gnome-settings-daemon-lang-3.10.2-20.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:92" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:94" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_7_0-ibm</title>
 		<affected family="unix">
@@ -4150,7 +4304,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106015" comment="java-1_7_0-ibm-src-1.7.0_sr8.10-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:93" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:95" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_6_0-ibm</title>
 		<affected family="unix">
@@ -4180,7 +4334,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106150" comment="java-1_6_0-ibm-src-1.6.0_sr16.3-12.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:94" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:96" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_7_1-ibm</title>
 		<affected family="unix">
@@ -4209,7 +4363,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106162" comment="java-1_7_1-ibm-src-1.7.1_sr2.10-8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:95" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:97" version="1" class="patch">
 	<metadata>
 		<title>Security update for perl-YAML-LibYAML</title>
 		<affected family="unix">
@@ -4228,7 +4382,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109959" comment="perl-YAML-LibYAML-0.38-10.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:96" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:98" version="1" class="patch">
 	<metadata>
 		<title>Security update for glibc</title>
 		<affected family="unix">
@@ -4272,7 +4426,7 @@ These non-security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107823" comment="glibc-profile-32bit-2.19-20.3 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:97" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:99" version="1" class="patch">
 	<metadata>
 		<title>Security update for php5</title>
 		<affected family="unix">
@@ -4354,7 +4508,7 @@ This non-security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106529" comment="php5-zlib-5.5.14-11.3 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:98" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:100" version="1" class="patch">
 	<metadata>
 		<title>Security update for tigervnc, fltk</title>
 		<affected family="unix">
@@ -4388,7 +4542,7 @@ Additionally tigervnc was updated to 1.4.1, the contained X server was updated t
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109840" comment="xorg-x11-Xvnc-1.4.1-32.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:99" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:101" version="1" class="patch">
 	<metadata>
 		<title>Security update for perl-Capture-Tiny</title>
 		<affected family="unix">
@@ -4405,7 +4559,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106173" comment="perl-Capture-Tiny-0.23-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:100" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:102" version="1" class="patch">
 	<metadata>
 		<title>Security update for samba</title>
 		<affected family="unix">
@@ -4580,7 +4734,7 @@ These non-security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106466" comment="samba-winbind-4.1.12-16.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:101" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:103" version="1" class="patch">
 	<metadata>
 		<title>Security update for mariadb</title>
 		<affected family="unix">
@@ -4658,7 +4812,7 @@ Release notes: https://kb.askmonty.org/en/mariadb-10016-release-notes/
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108935" comment="mariadb-tools-10.0.16-15.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:102" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:104" version="1" class="patch">
 	<metadata>
 		<title>Security update for cups, cups154</title>
 		<affected family="unix">
@@ -4686,7 +4840,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107614" comment="cups154-libs-1.5.4-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:103" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:105" version="1" class="patch">
 	<metadata>
 		<title>Security update for the Linux Kernel</title>
 		<affected family="unix">
@@ -4897,7 +5051,7 @@ The following non-security bugs were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107855" comment="kernel-docs-3.12.38-44.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:104" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:106" version="1" class="patch">
 	<metadata>
 		<title>Security update for postgresql93</title>
 		<affected family="unix">
@@ -4936,7 +5090,7 @@ More information is available at http://www.postgresql.org/docs/9.3/static/relea
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107628" comment="postgresql93-test-9.3.6-5.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:105" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:107" version="1" class="patch">
 	<metadata>
 		<title>Security update for vsftpd</title>
 		<affected family="unix">
@@ -4956,7 +5110,7 @@ use more reliable methods.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107856" comment="vsftpd-3.0.2-18.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:106" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:108" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox</title>
 		<affected family="unix">
@@ -4980,7 +5134,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009106936" comment="MozillaFirefox-translations-31.5.0esr-24.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:107" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:109" version="1" class="patch">
 	<metadata>
 		<title>Security update for php5</title>
 		<affected family="unix">
@@ -5055,7 +5209,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107003" comment="php5-zlib-5.5.14-15.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:108" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:110" version="1" class="patch">
 	<metadata>
 		<title>Security update for icu</title>
 		<affected family="unix">
@@ -5079,7 +5233,7 @@ This security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107573" comment="libicu52_1-data-52.1-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:109" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:111" version="1" class="patch">
 	<metadata>
 		<title>Security update for freetype2</title>
 		<affected family="unix">
@@ -5120,7 +5274,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107579" comment="ft2demos-2.5.3-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:110" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:112" version="1" class="patch">
 	<metadata>
 		<title>Security update for autofs</title>
 		<affected family="unix">
@@ -5142,7 +5296,7 @@ These non-security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110200" comment="autofs-5.0.9-8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:111" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:113" version="1" class="patch">
 	<metadata>
 		<title>Security update for libmspack</title>
 		<affected family="unix">
@@ -5164,7 +5318,7 @@ The previous fix was not fully fixing this problem.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107709" comment="libmspack0-0.4-10.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:112" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:114" version="1" class="patch">
 	<metadata>
 		<title>Security update for wpa_supplicant</title>
 		<affected family="unix">
@@ -5185,7 +5339,7 @@ wpa_supplicant was updated to fix three security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110202" comment="wpa_supplicant-gui-2.2-8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:113" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:115" version="1" class="patch">
 	<metadata>
 		<title>Security update for vorbis-tools</title>
 		<affected family="unix">
@@ -5202,7 +5356,7 @@ that would allow attackers to crash the vorbis tools processes.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110204" comment="vorbis-tools-lang-1.4.0-23.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:114" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:116" version="1" class="patch">
 	<metadata>
 		<title>Security update for libarchive</title>
 		<affected family="unix">
@@ -5224,7 +5378,7 @@ Also, a integer overflow was fixed that could also overflow buffers. (CVE-2013-0
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108424" comment="libarchive13-32bit-3.1.2-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:115" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:117" version="1" class="patch">
 	<metadata>
 		<title>Security update for Xerces-C</title>
 		<affected family="unix">
@@ -5244,7 +5398,7 @@ or potential code execution. (bnc#920810,CVE-2015-0252)
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108095" comment="xerces-c-3.1.1-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:116" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:118" version="1" class="patch">
 	<metadata>
 		<title>Security update for Xen</title>
 		<affected family="unix">
@@ -5292,7 +5446,7 @@ Also the following bugs were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108138" comment="xen-tools-4.4.1_10-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:117" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:119" version="1" class="patch">
 	<metadata>
 		<title>Security update for tidy</title>
 		<affected family="unix">
@@ -5312,7 +5466,7 @@ a command character in an href. (CVE-2015-5522, CVE-2015-5523)
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114235" comment="tidy-doc-1.0.20100204cvs-25.3 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:118" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:120" version="1" class="patch">
 	<metadata>
 		<title>Security update for libssh2_org</title>
 		<affected family="unix">
@@ -5334,7 +5488,7 @@ libssh2_org using application.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108428" comment="libssh2_org-1.4.3-11.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:119" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:121" version="1" class="patch">
 	<metadata>
 		<title>Security update for gdm</title>
 		<affected family="unix">
@@ -5360,7 +5514,7 @@ Bugs fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109166" comment="typelib-1_0-Gdm-1_0-3.10.0.1-16.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:120" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:122" version="1" class="patch">
 	<metadata>
 		<title>Security update for python-PyYAML</title>
 		<affected family="unix">
@@ -5377,7 +5531,7 @@ The following issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109714" comment="python-PyYAML-3.10-15.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:121" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:123" version="1" class="patch">
 	<metadata>
 		<title>Security update for krb5</title>
 		<affected family="unix">
@@ -5408,7 +5562,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111366" comment="krb5-server-1.12.1-16.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:122" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:124" version="1" class="patch">
 	<metadata>
 		<title>Security update for wireshark</title>
 		<affected family="unix">
@@ -5433,7 +5587,7 @@ The following security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108359" comment="wireshark-devel-1.10.13-8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:123" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:125" version="1" class="patch">
 	<metadata>
 		<title>Security update for osc</title>
 		<affected family="unix">
@@ -5455,7 +5609,7 @@ The following non-security bugs were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107657" comment="osc-0.151.0-8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:124" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:126" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -5479,7 +5633,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107712" comment="flash-player-kde4-11.2.202.451-77.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:125" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:127" version="1" class="patch">
 	<metadata>
 		<title>Security update for cups-filters</title>
 		<affected family="unix">
@@ -5503,7 +5657,7 @@ This non-security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109171" comment="cups-filters-ghostscript-1.0.58-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:126" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:128" version="1" class="patch">
 	<metadata>
 		<title>Security update for ntp</title>
 		<affected family="unix">
@@ -5528,7 +5682,7 @@ The following non-security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109544" comment="ntp-doc-4.2.6p5-44.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:127" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:129" version="1" class="patch">
 	<metadata>
 		<title>Security update for libXfont</title>
 		<affected family="unix">
@@ -5563,7 +5717,7 @@ Following security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108655" comment="libXfont1-32bit-1.4.7-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:128" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:130" version="1" class="patch">
 	<metadata>
 		<title>Security update for openssl</title>
 		<affected family="unix">
@@ -5611,7 +5765,7 @@ Following security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107895" comment="openssl-doc-1.0.1i-20.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:129" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:131" version="1" class="patch">
 	<metadata>
 		<title>Security update for compat-openssl098</title>
 		<affected family="unix">
@@ -5660,7 +5814,7 @@ Following security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009107970" comment="libopenssl0_9_8-32bit-0.9.8j-73.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:130" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:132" version="1" class="patch">
 	<metadata>
 		<title>Security update for mercurial</title>
 		<affected family="unix">
@@ -5676,7 +5830,7 @@ Mercurial was updated to fix a command injection via sshpeer._validaterepo() (CV
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109223" comment="mercurial-lang-2.8.2-3.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:131" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:133" version="1" class="patch">
 	<metadata>
 		<title>Security update for libzip</title>
 		<affected family="unix">
@@ -5694,7 +5848,7 @@ A zip file with an unusually large number of entries could have caused an intege
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108431" comment="libzip2-0.11.1-6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:132" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:134" version="1" class="patch">
 	<metadata>
 		<title>Security update for tcpdump</title>
 		<affected family="unix">
@@ -5717,7 +5871,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108642" comment="tcpdump-4.5.1-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:133" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:135" version="1" class="patch">
 	<metadata>
 		<title>Security update for apache2</title>
 		<affected family="unix">
@@ -5759,7 +5913,7 @@ Additionally, mod_imagemap is now included by default in the package. (bsc#92309
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109990" comment="apache2-worker-2.4.10-12.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:134" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:136" version="1" class="patch">
 	<metadata>
 		<title>Security update for gnutls</title>
 		<affected family="unix">
@@ -5789,7 +5943,7 @@ gnutls was updated to fix a certificate algorithm consistency checking issue. (C
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108921" comment="libgnutlsxx28-3.2.15-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:135" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:137" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox</title>
 		<affected family="unix">
@@ -5811,7 +5965,7 @@ Security researcher Mariusz Mlynski reported, through HP Zero Day Initiative's P
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108205" comment="MozillaFirefox-translations-31.5.3esr-27.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:136" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:138" version="1" class="patch">
 	<metadata>
 		<title>Security update for gd</title>
 		<affected family="unix">
@@ -5830,7 +5984,7 @@ The following vulnerability was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109547" comment="gd-devel-2.1.0-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:137" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:139" version="1" class="patch">
 	<metadata>
 		<title>Security update for pigz</title>
 		<affected family="unix">
@@ -5848,7 +6002,7 @@ The following vulnerability was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108432" comment="pigz-2.3-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:138" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:140" version="1" class="patch">
 	<metadata>
 		<title>Security update for php5</title>
 		<affected family="unix">
@@ -5931,7 +6085,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109605" comment="php5-zlib-5.5.14-22.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:139" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:141" version="1" class="patch">
 	<metadata>
 		<title>Security Update for Linux Kernel</title>
 		<affected family="unix">
@@ -6125,7 +6279,7 @@ The following non-security bugs were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108392" comment="kernel-obs-build-3.12.39-47.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:140" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:142" version="1" class="patch">
 	<metadata>
 		<title>Security update for kgraft-patch-SLE12_Update_1, kgraft-patch-SLE12_Update_2</title>
 		<affected family="unix">
@@ -6152,7 +6306,7 @@ the patch already.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109211" comment="kgraft-patch-SLE12_Update_2-2-3.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:141" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:143" version="1" class="patch">
 	<metadata>
 		<title>Security update for xen</title>
 		<affected family="unix">
@@ -6186,7 +6340,7 @@ The following functionality was enabled:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108663" comment="xen-tools-4.4.2_02-15.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:142" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:144" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox</title>
 		<affected family="unix">
@@ -6211,7 +6365,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108667" comment="MozillaFirefox-translations-31.6.0esr-30.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:143" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:145" version="1" class="patch">
 	<metadata>
 		<title>Security update for spice</title>
 		<affected family="unix">
@@ -6232,7 +6386,7 @@ The following vulnerabilitiy was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109617" comment="spice-client-0.12.4-6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:144" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:146" version="1" class="patch">
 	<metadata>
 		<title>Security update for subversion</title>
 		<affected family="unix">
@@ -6261,7 +6415,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109132" comment="subversion-tools-1.8.10-12.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:145" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:147" version="1" class="patch">
 	<metadata>
 		<title>Security update for openldap2</title>
 		<affected family="unix">
@@ -6305,7 +6459,7 @@ The following non-security issue was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110581" comment="openldap2-doc-2.4.39-15.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:146" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:148" version="1" class="patch">
 	<metadata>
 		<title>Security update for Adobe Flash Player</title>
 		<affected family="unix">
@@ -6332,7 +6486,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009108879" comment="flash-player-kde4-11.2.202.457-80.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:147" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:149" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_7_0-openjdk, java-1_7_0-openjdk-bootstrap</title>
 		<affected family="unix">
@@ -6369,7 +6523,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109142" comment="java-1_7_0-openjdk-src-1.7.0.79-15.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:148" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:150" version="1" class="patch">
 	<metadata>
 		<title>Security update for DirectFB</title>
 		<affected family="unix">
@@ -6407,7 +6561,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109243" comment="libdirectfb-1_7-1-1.7.1-3.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:149" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:151" version="1" class="patch">
 	<metadata>
 		<title>Security update for curl</title>
 		<affected family="unix">
@@ -6433,7 +6587,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110172" comment="libcurl4-7.37.0-15.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:150" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:152" version="1" class="patch">
 	<metadata>
 		<title>Security update for xorg-x11-server</title>
 		<affected family="unix">
@@ -6476,7 +6630,7 @@ Bugs fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110634" comment="xorg-x11-server-sdk-7.6_1.15.2-28.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:151" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:153" version="1" class="patch">
 	<metadata>
 		<title>Security update for gstreamer-0_10-plugins-bad</title>
 		<affected family="unix">
@@ -6508,7 +6662,7 @@ a buffer overflow in mp4 parsing (bnc#927559 CVE-2015-0797).
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109857" comment="libgstvdp-0_10-23-32bit-0.10.23-17.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:152" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:154" version="1" class="patch">
 	<metadata>
 		<title>Security update for libtasn1</title>
 		<affected family="unix">
@@ -6529,7 +6683,7 @@ The following vulnerability was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109696" comment="libtasn1-devel-32bit-3.7-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:153" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:155" version="1" class="patch">
 	<metadata>
 		<title>Security update for dnsmasq</title>
 		<affected family="unix">
@@ -6552,7 +6706,7 @@ The following bug was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109992" comment="dnsmasq-utils-2.71-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:154" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:156" version="1" class="patch">
 	<metadata>
 		<title>Security update for clamav</title>
 		<affected family="unix">
@@ -6573,7 +6727,7 @@ The following vulnerabilities were fixed (bsc#929192):
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109618" comment="clamav-0.98.7-13.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:155" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:157" version="1" class="patch">
 	<metadata>
 		<title>Security update for python-Jinja2</title>
 		<affected family="unix">
@@ -6599,7 +6753,7 @@ The following build issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113201" comment="python-Jinja2-vim-2.7.3-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:156" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:158" version="1" class="patch">
 	<metadata>
 		<title>Security update for qemu</title>
 		<affected family="unix">
@@ -6644,7 +6798,7 @@ Bugs fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109681" comment="qemu-block-rbd-2.0.2-46.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:157" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:159" version="1" class="patch">
 	<metadata>
 		<title>Security update for xen</title>
 		<affected family="unix">
@@ -6687,7 +6841,7 @@ Bugs fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109722" comment="xen-tools-4.4.2_04-18.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:158" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:160" version="1" class="patch">
 	<metadata>
 		<title>Security update for libqt4</title>
 		<affected family="unix">
@@ -6763,7 +6917,7 @@ The following non-secuirty issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113453" comment="libqt4-x11-4.8.6-4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:159" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:161" version="1" class="patch">
 	<metadata>
 		<title>Security update for docker</title>
 		<affected family="unix">
@@ -6790,7 +6944,7 @@ to fix several security and non-security issues.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110041" comment="docker-zsh-completion-1.6.2-31.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:160" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:162" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -6815,7 +6969,7 @@ https://helpx.adobe.com/security/products/flash-player/apsb15-09.html		</descrip
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109610" comment="flash-player-kde4-11.2.202.460-83.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:161" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:163" version="1" class="patch">
 	<metadata>
 		<title>Security update for libqt5-qtbase</title>
 		<affected family="unix">
@@ -6958,7 +7112,7 @@ This security update fixes the following issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113776" comment="libqt5-qtbase-private-headers-devel-5.3.1-6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:162" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:164" version="1" class="patch">
 	<metadata>
 		<title>Security update for augeas</title>
 		<affected family="unix">
@@ -6983,7 +7137,7 @@ This update fixes an untrusted argument escaping problem (CVE-2014-8119):
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111373" comment="libaugeas0-32bit-1.2.0-3.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:163" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:165" version="1" class="patch">
 	<metadata>
 		<title>Security update for the Linux Kernel</title>
 		<affected family="unix">
@@ -7149,7 +7303,7 @@ The following non-security bugs were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110529" comment="kernel-obs-build-3.12.43-52.6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:164" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:166" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox</title>
 		<affected family="unix">
@@ -7187,7 +7341,7 @@ This update to Firefox 31.7.0 ESR (bsc#930622) fixes the following issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009109963" comment="MozillaFirefox-translations-31.7.0esr-34.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:165" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:167" version="1" class="patch">
 	<metadata>
 		<title>Security update for fuse</title>
 		<affected family="unix">
@@ -7209,7 +7363,7 @@ CVE-2015-3202 has been assigned to this issue
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110493" comment="libulockmgr1-2.9.3-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:166" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:168" version="1" class="patch">
 	<metadata>
 		<title>Security update for php5</title>
 		<affected family="unix">
@@ -7299,7 +7453,7 @@ Bugs fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111431" comment="php5-zlib-5.5.14-30.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:167" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:169" version="1" class="patch">
 	<metadata>
 		<title>Security update for cups</title>
 		<affected family="unix">
@@ -7324,7 +7478,7 @@ The following issues are fixed by this update:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110320" comment="cups-libs-32bit-1.7.5-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:168" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:170" version="1" class="patch">
 	<metadata>
 		<title>Security update for stunnel</title>
 		<affected family="unix">
@@ -7340,7 +7494,7 @@ the &amp;quot;redirect&amp;quot; option (CVE-2015-3644, bsc#931517, backport fro
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110494" comment="stunnel-5.00-3.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:169" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:171" version="1" class="patch">
 	<metadata>
 		<title>Security update for cups154</title>
 		<affected family="unix">
@@ -7364,7 +7518,7 @@ The following issues are fixed by this update:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110326" comment="cups154-libs-1.5.4-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:170" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:172" version="1" class="patch">
 	<metadata>
 		<title>Security update for wireshark</title>
 		<affected family="unix">
@@ -7386,7 +7540,7 @@ The following vulnerabilities have been fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110328" comment="wireshark-devel-1.10.14-12.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:171" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:173" version="1" class="patch">
 	<metadata>
 		<title>Security update for xen</title>
 		<affected family="unix">
@@ -7421,7 +7575,7 @@ The following non-security bug was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110336" comment="xen-tools-4.4.2_06-21.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:172" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:174" version="1" class="patch">
 	<metadata>
 		<title>Security update for zeromq</title>
 		<affected family="unix">
@@ -7445,7 +7599,7 @@ The following bug was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114238" comment="zeromq-devel-4.0.4-13.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:173" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:175" version="1" class="patch">
 	<metadata>
 		<title>Security update for patch</title>
 		<affected family="unix">
@@ -7469,7 +7623,7 @@ The following bug was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110205" comment="patch-2.7.5-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:174" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:176" version="1" class="patch">
 	<metadata>
 		<title>Security update for qemu</title>
 		<affected family="unix">
@@ -7508,7 +7662,7 @@ The fix for the following non-security bug was improved:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114278" comment="qemu-block-rbd-2.0.2-48.4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:175" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:177" version="1" class="patch">
 	<metadata>
 		<title>Security update for strongswan</title>
 		<affected family="unix">
@@ -7534,7 +7688,7 @@ The following vulnerability was fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111003" comment="strongswan-sqlite-5.1.3-18.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:176" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:178" version="1" class="patch">
 	<metadata>
 		<title>Security update for perl-XML-LibXML</title>
 		<affected family="unix">
@@ -7549,7 +7703,7 @@ perl-XML-LibXML was updated to fix the expand_entities option to be preserved in
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113959" comment="perl-XML-LibXML-2.0019-5.3 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:177" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:179" version="1" class="patch">
 	<metadata>
 		<title>Security update for libgcrypt</title>
 		<affected family="unix">
@@ -7591,7 +7745,7 @@ FIPS 140-2 related changes:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110854" comment="libgcrypt20-hmac-32bit-1.6.1-13.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:178" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:180" version="1" class="patch">
 	<metadata>
 		<title>Security update for python-setuptools</title>
 		<affected family="unix">
@@ -7606,7 +7760,7 @@ Non-RFC6125-compliant host name matching was incorrect (CVE-2013-7440 bnc#930189
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111432" comment="python-setuptools-1.1.7-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:179" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:181" version="1" class="patch">
 	<metadata>
 		<title>Security update for busybox</title>
 		<affected family="unix">
@@ -7622,7 +7776,7 @@ Non-RFC6125-compliant host name matching was incorrect (CVE-2013-7440 bnc#930189
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113975" comment="busybox-1.21.1-3.3 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:180" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:182" version="1" class="patch">
 	<metadata>
 		<title>Security update for coreutils</title>
 		<affected family="unix">
@@ -7645,7 +7799,7 @@ This update for coreutils provides the following fixes:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114700" comment="coreutils-lang-8.22-9.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:181" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:183" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -7668,7 +7822,7 @@ This update for coreutils provides the following fixes:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110339" comment="flash-player-kde4-11.2.202.466-86.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:182" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:184" version="1" class="patch">
 	<metadata>
 		<title>Security update for tomcat</title>
 		<affected family="unix">
@@ -7694,7 +7848,7 @@ This update for coreutils provides the following fixes:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111443" comment="tomcat-webapps-7.0.55-8.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:183" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:185" version="1" class="patch">
 	<metadata>
 		<title>
 Security update for java-1_7_0-ibm </title>
@@ -7729,7 +7883,7 @@ This update fixes the following security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110541" comment="java-1_7_1-ibm-src-1.7.1_sr3.0-11.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:184" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:186" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_6_0-ibm</title>
 		<affected family="unix">
@@ -7770,7 +7924,7 @@ Additional bugs fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110795" comment="java-1_6_0-ibm-src-1.6.0_sr16.4-15.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:185" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:187" version="1" class="patch">
 	<metadata>
 		<title>Security update for openssl</title>
 		<affected family="unix">
@@ -7809,7 +7963,7 @@ This update of openssl fixes the following security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110703" comment="openssl-doc-1.0.1i-25.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:186" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:188" version="1" class="patch">
 	<metadata>
 		<title>Security update for compat-openssl098</title>
 		<affected family="unix">
@@ -7847,7 +8001,7 @@ This update fixes the following security issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110761" comment="libopenssl0_9_8-32bit-0.9.8j-78.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:187" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:189" version="1" class="patch">
 	<metadata>
 		<title>Security update for postgresql93</title>
 		<affected family="unix">
@@ -7892,7 +8046,7 @@ Bugs fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111457" comment="postgresql93-test-9.3.8-8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:188" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:190" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -7912,7 +8066,7 @@ https://helpx.adobe.com/security/products/flash-player/apsb15-14.html
 		<criterion test_ref="oval:org.opensuse.security:tst:2009110663" comment="flash-player-kde4-11.2.202.468-89.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:189" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:191" version="1" class="patch">
 	<metadata>
 		<title>Security update for p7zip</title>
 		<affected family="unix">
@@ -7930,7 +8084,7 @@ https://helpx.adobe.com/security/products/flash-player/apsb15-14.html
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113958" comment="p7zip-9.20.1-3.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:190" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:192" version="1" class="patch">
 	<metadata>
 		<title>Security update for libwmf</title>
 		<affected family="unix">
@@ -7957,7 +8111,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114125" comment="libwmf-tools-0.2.8.4-242.3 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:191" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:193" version="1" class="patch">
 	<metadata>
 		<title>Security update for e2fsprogs</title>
 		<affected family="unix">
@@ -7986,7 +8140,7 @@ Security issues fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113265" comment="libext2fs2-32bit-1.42.11-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:192" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:194" version="1" class="patch">
 	<metadata>
 		<title>Security update for python</title>
 		<affected family="unix">
@@ -8040,7 +8194,7 @@ Also the DH parameters were increased to 2048 bit to fix logjam security issue (
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113282" comment="python-doc-pdf-2.7.9-14.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:193" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:195" version="1" class="patch">
 	<metadata>
 		<title>Security update for mariadb</title>
 		<affected family="unix">
@@ -8081,7 +8235,7 @@ Also the DH parameters were increased to 2048 bit to fix logjam security issue (
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111471" comment="mariadb-tools-10.0.20-18.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:194" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:196" version="1" class="patch">
 	<metadata>
 		<title>Security update for bind</title>
 		<affected family="unix">
@@ -8106,7 +8260,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111031" comment="bind-utils-9.9.6P1-18.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:195" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:197" version="1" class="patch">
 	<metadata>
 		<title>Security update for cups-filters</title>
 		<affected family="unix">
@@ -8128,7 +8282,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113519" comment="cups-filters-ghostscript-1.0.58-8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:196" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:198" version="1" class="patch">
 	<metadata>
 		<title>Security update for haproxy</title>
 		<affected family="unix">
@@ -8146,7 +8300,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114744" comment="haproxy-1.5.4-2.4.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:197" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:199" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox, mozilla-nspr, mozilla-nss</title>
 		<affected family="unix">
@@ -8197,7 +8351,7 @@ For more details please check the changelogs.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111499" comment="MozillaFirefox-translations-31.8.0esr-37.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:198" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:200" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -8222,7 +8376,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111115" comment="flash-player-kde4-11.2.202.481-93.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:199" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:201" version="1" class="patch">
 	<metadata>
 		<title>Security update for xen</title>
 		<affected family="unix">
@@ -8251,7 +8405,7 @@ These non-security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111507" comment="xen-tools-4.4.2_08-22.5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:200" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:202" version="1" class="patch">
 	<metadata>
 		<title>Security update for the SUSE Linux Enterprise 12 kernel</title>
 		<affected family="unix">
@@ -8665,7 +8819,7 @@ The following non-security bugs were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111594" comment="kernel-docs-3.12.44-52.10.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:201" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:203" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -8685,7 +8839,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111510" comment="flash-player-kde4-11.2.202.491-96.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:202" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:204" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_7_0-openjdk</title>
 		<affected family="unix">
@@ -8734,7 +8888,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111532" comment="java-1_7_0-openjdk-src-1.7.0.85-18.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:203" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:205" version="1" class="patch">
 	<metadata>
 		<title>Security update for bind</title>
 		<affected family="unix">
@@ -8760,7 +8914,7 @@ Exposure to this issue can not be prevented by either ACLs or configuration opti
 		<criterion test_ref="oval:org.opensuse.security:tst:2009111518" comment="bind-utils-9.9.6P1-23.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:204" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:206" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_6_0-ibm</title>
 		<affected family="unix">
@@ -8809,7 +8963,7 @@ The following non-security bugs were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113294" comment="java-1_6_0-ibm-src-1.6.0_sr16.7-22.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:205" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:207" version="1" class="patch">
 	<metadata>
 		<title>Security update for java-1_7_1-ibm</title>
 		<affected family="unix">
@@ -8857,7 +9011,7 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113213" comment="java-1_7_1-ibm-src-1.7.1_sr3.10-14.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:206" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:208" version="1" class="patch">
 	<metadata>
 		<title>Security update for php5</title>
 		<affected family="unix">
@@ -8935,7 +9089,7 @@ This update ships the php5-opcache package (FATE#319034 bsc#940807) and the php5
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113920" comment="php5-zlib-5.5.14-33.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:207" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:209" version="1" class="patch">
 	<metadata>
 		<title>Security update for openssh</title>
 		<affected family="unix">
@@ -8982,7 +9136,7 @@ Also use %restart_on_update in the trigger script.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114325" comment="openssh-helpers-6.6p1-29.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:208" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:210" version="1" class="patch">
 	<metadata>
 		<title>Recommended update for openssl</title>
 		<affected family="unix">
@@ -9009,7 +9163,7 @@ This update of openssl fixes two regressions.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113861" comment="openssl-doc-1.0.1i-27.3.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:209" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:211" version="1" class="patch">
 	<metadata>
 		<title>Security update for subversion</title>
 		<affected family="unix">
@@ -9036,7 +9190,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114002" comment="subversion-tools-1.8.10-15.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:210" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:212" version="1" class="patch">
 	<metadata>
 		<title>Security update for tiff</title>
 		<affected family="unix">
@@ -9063,7 +9217,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114061" comment="tiff-4.0.4-12.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:211" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:213" version="1" class="patch">
 	<metadata>
 		<title>security update for xen</title>
 		<affected family="unix">
@@ -9091,7 +9245,7 @@ This security update of Xen fixes the following issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113784" comment="xen-tools-4.4.2_10-22.8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:212" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:214" version="1" class="patch">
 	<metadata>
 		<title>Security update for flash-player</title>
 		<affected family="unix">
@@ -9119,7 +9273,7 @@ the following issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113506" comment="flash-player-kde4-11.2.202.508-99.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:213" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:215" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox</title>
 		<affected family="unix">
@@ -9145,7 +9299,7 @@ This security update (bsc#940918) fixes the following issues:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009113527" comment="MozillaFirefox-translations-31.8.0esr-39.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:214" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:216" version="1" class="patch">
 	<metadata>
 		<title>Live patch for the Linux Kernel</title>
 		<affected family="unix">
@@ -9233,7 +9387,7 @@ Server 12 Kernel, fixing following security issues.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114151" comment="kgraft-patch-SLE12_Update_1-3-2.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:215" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:217" version="1" class="patch">
 	<metadata>
 		<title>Live patch for the Linux Kernel</title>
 		<affected family="unix">
@@ -9307,7 +9461,7 @@ Server 12 Kernel, fixing following security issues.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114154" comment="kgraft-patch-SLE12_Update_2-3-2.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:216" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:218" version="1" class="patch">
 	<metadata>
 		<title>Live patch for the Linux Kernel</title>
 		<affected family="unix">
@@ -9368,7 +9522,7 @@ Server 12 Kernel, fixing following security issues.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114157" comment="kgraft-patch-SLE12_Update_3-2-7.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:217" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:219" version="1" class="patch">
 	<metadata>
 		<title>update for rsyslog</title>
 		<affected family="unix">
@@ -9399,7 +9553,7 @@ This update for rsyslog provides the following fixes:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009101719" comment="rsyslog-module-udpspoof-8.4.0-5.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:218" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:220" version="1" class="patch">
 	<metadata>
 		<title>Security update for MozillaFirefox, mozilla-nss</title>
 		<affected family="unix">
@@ -9478,7 +9632,7 @@ Mozilla NSS switched the CKBI ABI from 1.98 to 2.4, which is what Firefox 38ESR 
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114083" comment="mozilla-nss-tools-3.19.2.0-26.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:219" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:221" version="1" class="patch">
 	<metadata>
 		<title>Live patch for the Linux Kernel</title>
 		<affected family="unix">
@@ -9539,7 +9693,7 @@ Server 12 Kernel, fixing following security issues.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114160" comment="kgraft-patch-SLE12_Update_4-2-10.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:220" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:222" version="1" class="patch">
 	<metadata>
 		<title>Live patch for the Linux Kernel</title>
 		<affected family="unix">
@@ -9571,7 +9725,7 @@ Server 12 Kernel, fixing following security issues.
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114163" comment="kgraft-patch-SLE12_Update_5-2-6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:221" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:223" version="1" class="patch">
 	<metadata>
 		<title>Security update for libgcrypt</title>
 		<affected family="unix">
@@ -9601,7 +9755,7 @@ Bugfixes:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114246" comment="libgcrypt20-hmac-32bit-1.6.1-16.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:222" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:224" version="1" class="patch">
 	<metadata>
 		<title>Security update for net-snmp</title>
 		<affected family="unix">
@@ -9634,7 +9788,7 @@ The following issues have been fixed within this update:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009114342" comment="snmp-mibs-5.7.2.1-4.3.2 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:223" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:225" version="1" class="patch">
 	<metadata>
 		<title>Security update for conntrack-tools</title>
 		<affected family="unix">
@@ -9933,6 +10087,18 @@ available. (bsc#942149, CVE-2015-6496)
 		<object object_ref="oval:org.opensuse.security:obj:2009035237"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009043846"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114767" version="1" comment="icedtea-web is &lt;1.6.1-2.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034587"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045703"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114768" version="1" comment="icedtea-web-javadoc is &lt;1.6.1-2.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034586"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045703"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114769" version="1" comment="java-1_7_0-openjdk-plugin is &lt;1.6.1-2.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038979"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045703"/>
+	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009114640" version="1" comment="apache2-mod_php5 is &lt;5.5.14-36.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009030917"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045688"/>
@@ -10176,6 +10342,34 @@ available. (bsc#942149, CVE-2015-6496)
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009114456" version="1" comment="flash-player-kde4 is &lt;11.2.202.521-102.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009035115"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045678"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114770" version="1" comment="MozillaFirefox is &lt;38.3.0esr-48.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030476"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045704"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114771" version="1" comment="MozillaFirefox-branding-upstream is &lt;38.3.0esr-48.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033129"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045704"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114772" version="1" comment="MozillaFirefox-devel is &lt;38.3.0esr-48.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034520"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045704"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114773" version="1" comment="MozillaFirefox-translations is &lt;38.3.0esr-48.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030475"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045704"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114774" version="1" comment="mozilla-nspr-32bit is &lt;4.10.9-6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009032356"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045705"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114775" version="1" comment="mozilla-nspr is &lt;4.10.9-6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009032358"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045705"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009114776" version="1" comment="mozilla-nspr-devel is &lt;4.10.9-6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009032357"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045705"/>
 	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009102642" version="1" comment="MozillaFirefox-branding-SLE is &lt;31.0-9.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009038244"/>
@@ -19818,6 +20012,15 @@ available. (bsc#942149, CVE-2015-6496)
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009035237" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>java-1_7_0-openjdk-src</name>
 	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009034587" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>icedtea-web</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009034586" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>icedtea-web-javadoc</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038979" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>java-1_7_0-openjdk-plugin</name>
+	</rpminfo_object>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009030917" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>apache2-mod_php5</name>
 	</rpminfo_object>
@@ -19992,9 +20195,6 @@ available. (bsc#942149, CVE-2015-6496)
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009030960" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>php5-zlib</name>
 	</rpminfo_object>
-	<rpminfo_object id="oval:org.opensuse.security:obj:2009038244" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
-		<name>MozillaFirefox-branding-SLE</name>
-	</rpminfo_object>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009030476" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>MozillaFirefox</name>
 	</rpminfo_object>
@@ -20006,6 +20206,18 @@ available. (bsc#942149, CVE-2015-6496)
 	</rpminfo_object>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009030475" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>MozillaFirefox-translations</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009032356" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>mozilla-nspr-32bit</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009032358" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>mozilla-nspr</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009032357" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>mozilla-nspr-devel</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009038244" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>MozillaFirefox-branding-SLE</name>
 	</rpminfo_object>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009033259" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>libfreebl3</name>
@@ -22956,15 +23168,6 @@ available. (bsc#942149, CVE-2015-6496)
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009038990" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>haproxy</name>
 	</rpminfo_object>
-	<rpminfo_object id="oval:org.opensuse.security:obj:2009032356" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
-		<name>mozilla-nspr-32bit</name>
-	</rpminfo_object>
-	<rpminfo_object id="oval:org.opensuse.security:obj:2009032358" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
-		<name>mozilla-nspr</name>
-	</rpminfo_object>
-	<rpminfo_object id="oval:org.opensuse.security:obj:2009032357" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
-		<name>mozilla-nspr-devel</name>
-	</rpminfo_object>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009038813" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>mozilla-nss-cavs</name>
 	</rpminfo_object>
@@ -23138,11 +23341,20 @@ available. (bsc#942149, CVE-2015-6496)
   <rpminfo_state id="oval:org.opensuse.security:ste:2009043846" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:1.7.0.71-6.1</evr>
   </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045703" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:1.6.1-2.3.1</evr>
+  </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045688" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:5.5.14-36.1</evr>
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045678" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:11.2.202.521-102.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045704" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:38.3.0esr-48.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045705" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:4.10.9-6.1</evr>
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009043970" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:31.0-9.1</evr>
