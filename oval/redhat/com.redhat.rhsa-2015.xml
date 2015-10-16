@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-10-16T03:54:01</oval:timestamp>
+  <oval:timestamp>2015-10-16T17:45:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -26760,6 +26760,54 @@ effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20151913" version="601">
+   <metadata>
+    <title>RHSA-2015:1913: flash-plugin security update (Critical)</title>
+    <affected family="unix">
+     <platform>Supplementary for Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:1913-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1913.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7645" ref_url="https://access.redhat.com/security/cve/CVE-2015-7645" source="CVE"/>
+    <reference ref_id="CVE-2015-7647" ref_url="https://access.redhat.com/security/cve/CVE-2015-7647" source="CVE"/>
+    <reference ref_id="CVE-2015-7648" ref_url="https://access.redhat.com/security/cve/CVE-2015-7648" source="CVE"/>
+    <description>The flash-plugin package contains a Mozilla Firefox compatible Adobe Flash
+Player web browser plug-in.
+
+This update fixes three vulnerabilities in Adobe Flash Player. These
+vulnerabilities, detailed in the Adobe Security Bulletin APSB15-27 listed
+in the References section, could allow an attacker to create a specially
+crafted SWF file that would cause flash-plugin to crash, execute arbitrary
+code, or disclose sensitive information when the victim loaded a page
+containing the malicious SWF content. (CVE-2015-7645, CVE-2015-7647,
+CVE-2015-7648)
+
+All users of Adobe Flash Player should install this updated package, which
+upgrades Flash Player to version 11.2.202.540.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-10-16"/>
+     <updated date="2015-10-16"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7645">CVE-2015-7645</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7647">CVE-2015-7647</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7648">CVE-2015-7648</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1271966" id="1271966">CVE-2015-7645 CVE-2015-7647 CVE-2015-7648 flash-plugin: multiple code execution issue fixed in APSB15-27</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="flash-plugin is earlier than 0:11.2.202.540-1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151913005"/>
+    <criterion comment="flash-plugin is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150052009"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150001001"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150001002"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150001003"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150001004"/>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 6 Client is installed" id="oval:com.redhat.rhsa:tst:20150001001" version="601">
@@ -37654,6 +37702,10 @@ effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150093005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151912003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="flash-plugin is earlier than 0:11.2.202.540-1.el6_7" id="oval:com.redhat.rhsa:tst:20151913005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150052002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151913003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20150001001" version="601">
@@ -40819,6 +40871,9 @@ effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151912003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:46.0.2490.71-1.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151913003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:11.2.202.540-1.el6_7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
