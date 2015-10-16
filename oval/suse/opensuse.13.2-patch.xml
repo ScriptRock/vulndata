@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-10-15T04:00:26</oval:timestamp>
+      <oval:timestamp>2015-10-16T04:00:28</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:1" version="1" class="patch">
@@ -10376,6 +10376,24 @@ The following vulnerability was fixed:
 </definition>
 <definition id="oval:org.opensuse.security:def:295" version="1" class="patch">
 	<metadata>
+		<title>Security update for jakarta-taglibs-standard</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+jakarta-taglibs-standard was updated to fix one security issue.
+
+This security issue was fixed:
+- CVE-2015-0254: Apache Standard Taglibs before 1.2.3 allowed remote attackers to execute arbitrary code or conduct external XML entity (XXE) attacks via a crafted XSLT extension (bsc#920813).
+  		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115040" comment="jakarta-taglibs-standard-1.1.1-255.3.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115041" comment="jakarta-taglibs-standard-javadoc-1.1.1-255.3.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:296" version="1" class="patch">
+	<metadata>
 		<title>Security update for polkit</title>
 		<affected family="unix">
 			<platform>openSUSE 13.2 Update</platform>
@@ -10399,7 +10417,53 @@ The following vulnerabilities were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009115018" comment="typelib-1_0-Polkit-1_0-0.113-3.8.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:296" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:297" version="1" class="patch">
+	<metadata>
+		<title>Security update for spice</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+Spice was updated to fix four security issues.
+
+The following vulnerabilities were fixed:
+* CVE-2015-3247: heap corruption in the spice server (bsc#944460)
+* CVE-2015-5261: Guest could have accessed host memory using crafted images (bsc#948976)
+* CVE-2015-5260: Insufficient validation of surface_id parameter could have caused a crash (bsc#944460)
+* CVE-2013-4282: Buffer overflow in password handling (bsc#848279)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115042" comment="libspice-server-devel-0.12.4-4.6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115043" comment="libspice-server1-0.12.4-4.6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115044" comment="spice-0.12.4-4.6.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115045" comment="spice-client-0.12.4-4.6.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:298" version="1" class="patch">
+	<metadata>
+		<title>Security update for rsync</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+rsync was updated to fix one security issue.
+
+This security issue was fixed:
+- CVE-2014-8242: Checksum collisions leading to a denial of service (bsc#900914).
+
+This non-security issue was fixed:
+- reintroduce &amp;quot;use slp&amp;quot; directive (bsc#922710)
+  * disable it by default
+  * slp doesn't seem to be used much and it often caused problems
+    (eg boo#898513, bsc#922710)
+		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115046" comment="rsync-3.1.1-2.7.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:299" version="1" class="patch">
 	<metadata>
 		<title>Security update for Chromium</title>
 		<affected family="unix">
@@ -21587,6 +21651,14 @@ The following vulnerabilities were fixed:
 		<object object_ref="oval:org.opensuse.security:obj:2009038966"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045721"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115040" version="1" comment="jakarta-taglibs-standard is &lt;1.1.1-255.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035093"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045753"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115041" version="1" comment="jakarta-taglibs-standard-javadoc is &lt;1.1.1-255.3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009035092"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045753"/>
+	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009115013" version="1" comment="libpolkit0 is &lt;0.113-3.8.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009034515"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045745"/>
@@ -21610,6 +21682,26 @@ The following vulnerabilities were fixed:
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009115018" version="1" comment="typelib-1_0-Polkit-1_0 is &lt;0.113-3.8.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009038998"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045745"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115042" version="1" comment="libspice-server-devel is &lt;0.12.4-4.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038699"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045754"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115043" version="1" comment="libspice-server1 is &lt;0.12.4-4.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038700"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045754"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115044" version="1" comment="spice is &lt;0.12.4-4.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038701"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045754"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115045" version="1" comment="spice-client is &lt;0.12.4-4.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038702"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045754"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115046" version="1" comment="rsync is &lt;3.1.1-2.7.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030761"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045755"/>
 	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009114971" version="1" comment="chromedriver is &lt;45.0.2454.101-50.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009035396"/>
@@ -25206,6 +25298,12 @@ The following vulnerabilities were fixed:
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009038966" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>conntrack-tools</name>
 	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009035093" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>jakarta-taglibs-standard</name>
+	</rpminfo_object>
+	<rpminfo_object id="oval:org.opensuse.security:obj:2009035092" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<name>jakarta-taglibs-standard-javadoc</name>
+	</rpminfo_object>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009034515" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<name>libpolkit0</name>
 	</rpminfo_object>
@@ -26342,8 +26440,17 @@ The following vulnerabilities were fixed:
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045721" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:1.4.2-4.4.1</evr>
   </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045753" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:1.1.1-255.3.1</evr>
+  </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045745" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:0.113-3.8.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045754" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:0.12.4-4.6.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045755" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:3.1.1-2.7.1</evr>
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045740" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:45.0.2454.101-50.1</evr>
