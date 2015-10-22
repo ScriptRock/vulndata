@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-10-22T11:18:01</oval:timestamp>
+  <oval:timestamp>2015-10-22T12:53:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -27418,6 +27418,131 @@ must be restarted for the update to take effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20151924" version="601">
+   <metadata>
+    <title>RHSA-2015:1924: qemu-kvm security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:1924-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1924.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-5279" ref_url="https://access.redhat.com/security/cve/CVE-2015-5279" source="CVE"/>
+    <description>KVM (Kernel-based Virtual Machine) is a full virtualization solution for
+Linux on AMD64 and Intel 64 systems. The qemu-kvm package provides the
+user-space component for running virtual machines using KVM.
+
+A heap buffer overflow flaw was found in the way QEMU's NE2000 NIC
+emulation implementation handled certain packets received over the network.
+A privileged user inside a guest could use this flaw to crash the QEMU
+instance (denial of service) or potentially execute arbitrary code on
+the host. (CVE-2015-5279)
+
+Red Hat would like to thank Qinghao Tang of QIHU 360 Inc. for reporting
+this issue.
+
+All qemu-kvm users are advised to upgrade to these updated packages, which
+contain a backported patch to correct this issue. After installing this
+update, shut down all running virtual machines. Once all virtual machines
+have shut down, start them again for this update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-10-22"/>
+     <updated date="2015-10-22"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5279">CVE-2015-5279</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1256672" id="1256672">CVE-2015-5279 qemu: Heap overflow vulnerability in ne2000_receive() function</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150001001"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150001002"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150001003"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150001004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="qemu-guest-agent is earlier than 2:0.12.1.2-2.479.el6_7.2" test_ref="oval:com.redhat.rhsa:tst:20151924005"/>
+      <criterion comment="qemu-guest-agent is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150867008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="qemu-img is earlier than 2:0.12.1.2-2.479.el6_7.2" test_ref="oval:com.redhat.rhsa:tst:20151924011"/>
+      <criterion comment="qemu-img is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150349010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="qemu-kvm is earlier than 2:0.12.1.2-2.479.el6_7.2" test_ref="oval:com.redhat.rhsa:tst:20151924009"/>
+      <criterion comment="qemu-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150349006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.479.el6_7.2" test_ref="oval:com.redhat.rhsa:tst:20151924007"/>
+      <criterion comment="qemu-kvm-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150349016"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20151925" version="601">
+   <metadata>
+    <title>RHSA-2015:1925: kvm security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:1925-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1925.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-5279" ref_url="https://access.redhat.com/security/cve/CVE-2015-5279" source="CVE"/>
+    <description>KVM (Kernel-based Virtual Machine) is a full virtualization solution for
+Linux on AMD64 and Intel 64 systems.
+
+A heap buffer overflow flaw was found in the way QEMU's NE2000 NIC
+emulation implementation handled certain packets received over the network.
+A privileged user inside a guest could use this flaw to crash the QEMU
+instance (denial of service) or potentially execute arbitrary code on
+the host. (CVE-2015-5279)
+
+Red Hat would like to thank Qinghao Tang of QIHU 360 Inc. for reporting
+this issue.
+
+All kvm users are advised to upgrade to these updated packages, which
+contain a backported patch to correct this issue. Note: The procedure in
+the Solution section must be performed before this update will take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-10-22"/>
+     <updated date="2015-10-22"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5279">CVE-2015-5279</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1256672" id="1256672">CVE-2015-5279 qemu: Heap overflow vulnerability in ne2000_receive() function</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_virtualization:5</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20150046001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kmod-kvm is earlier than 0:83-274.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151925008"/>
+      <criterion comment="kmod-kvm is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20150869011"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kmod-kvm-debug is earlier than 0:83-274.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151925002"/>
+      <criterion comment="kmod-kvm-debug is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20150869009"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kvm is earlier than 0:83-274.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151925004"/>
+      <criterion comment="kvm is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20150869003"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kvm-qemu-img is earlier than 0:83-274.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151925010"/>
+      <criterion comment="kvm-qemu-img is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20150869007"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kvm-tools is earlier than 0:83-274.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151925006"/>
+      <criterion comment="kvm-tools is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20150869005"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 6 Client is installed" id="oval:com.redhat.rhsa:tst:20150001001" version="601">
@@ -38520,6 +38645,42 @@ must be restarted for the update to take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150067010"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151921003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="qemu-guest-agent is earlier than 2:0.12.1.2-2.479.el6_7.2" id="oval:com.redhat.rhsa:tst:20151924005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150867006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151924003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.479.el6_7.2" id="oval:com.redhat.rhsa:tst:20151924007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150349010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151924003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="qemu-kvm is earlier than 2:0.12.1.2-2.479.el6_7.2" id="oval:com.redhat.rhsa:tst:20151924009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150349005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151924003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="qemu-img is earlier than 2:0.12.1.2-2.479.el6_7.2" id="oval:com.redhat.rhsa:tst:20151924011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150349007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151924003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kmod-kvm-debug is earlier than 0:83-274.el5_11" id="oval:com.redhat.rhsa:tst:20151925002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150869005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151925003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kvm is earlier than 0:83-274.el5_11" id="oval:com.redhat.rhsa:tst:20151925004" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150869002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151925003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kvm-tools is earlier than 0:83-274.el5_11" id="oval:com.redhat.rhsa:tst:20151925006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150869003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151925003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kmod-kvm is earlier than 0:83-274.el5_11" id="oval:com.redhat.rhsa:tst:20151925008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150869006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151925003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kvm-qemu-img is earlier than 0:83-274.el5_11" id="oval:com.redhat.rhsa:tst:20151925010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150869004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151925003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20150001001" version="601">
@@ -41736,6 +41897,12 @@ must be restarted for the update to take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151921003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">1:1.7.0.91-2.6.2.1.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151924003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">2:0.12.1.2-2.479.el6_7.2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151925003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:83-274.el5_11</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
