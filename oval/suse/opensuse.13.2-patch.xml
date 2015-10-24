@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-10-23T04:00:32</oval:timestamp>
+      <oval:timestamp>2015-10-24T04:00:32</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:1" version="1" class="patch">
@@ -10508,6 +10508,24 @@ In addition, the following change is included:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009115060" comment="docker-bash-completion-1.8.3-43.1 is installed"/>
 		<criterion test_ref="oval:org.opensuse.security:tst:2009115061" comment="docker-test-1.8.3-43.1 is installed"/>
 		<criterion test_ref="oval:org.opensuse.security:tst:2009115062" comment="docker-zsh-completion-1.8.3-43.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:301" version="1" class="patch">
+	<metadata>
+		<title>Security update for python-Django</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+python-django was updated to fix two security issues.
+
+These security issues were fixed:
+- CVE-2015-5144: Django before 1.4.21, 1.5.x through 1.6.x, 1.7.x before 1.7.9, and 1.8.x before 1.8.3 used an incorrect regular expression, which allowed remote attackers to inject arbitrary headers and conduct HTTP response splitting attacks via a newline character in an (1) email message to the EmailValidator, a (2) URL to the URLValidator, or unspecified vectors to the (3) validate_ipv4_address or (4) validate_slug validator (bsc#937523).
+- CVE-2015-5143: The session backends in Django before 1.4.21, 1.5.x through 1.6.x, 1.7.x before 1.7.9, and 1.8.x before 1.8.3 allowed remote attackers to cause a denial of service (session store consumption) via multiple requests with unique session keys (bsc#937522).
+  		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115118" comment="python-Django-1.6.11-3.10.1 is installed"/>
 	</criteria>
 </definition>
 </definitions>
@@ -21764,6 +21782,10 @@ In addition, the following change is included:
 		<object object_ref="oval:org.opensuse.security:obj:2009038210"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045760"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115118" version="1" comment="python-Django is &lt;1.6.11-3.10.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038603"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045775"/>
+	</rpminfo_test>
 </tests>
 <objects>
 	<rpminfo_object id="oval:org.opensuse.security:obj:2009030917" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
@@ -26501,6 +26523,9 @@ In addition, the following change is included:
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045760" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:1.8.3-43.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045775" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:1.6.11-3.10.1</evr>
   </rpminfo_state>
 </states>
 </oval_definitions>
