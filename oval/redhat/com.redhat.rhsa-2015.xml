@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-10-22T14:45:02</oval:timestamp>
+  <oval:timestamp>2015-10-26T17:23:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -27945,6 +27945,112 @@ take effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20151930" version="601">
+   <metadata>
+    <title>RHSA-2015:1930: ntp security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:1930-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1930.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-5300" ref_url="https://access.redhat.com/security/cve/CVE-2015-5300" source="CVE"/>
+    <reference ref_id="CVE-2015-7704" ref_url="https://access.redhat.com/security/cve/CVE-2015-7704" source="CVE"/>
+    <description>The Network Time Protocol (NTP) is used to synchronize a computer's time
+with a referenced time source.
+
+It was discovered that ntpd as a client did not correctly check timestamps
+in Kiss-of-Death packets. A remote attacker could use this flaw to send a
+crafted Kiss-of-Death packet to an ntpd client that would increase the
+client's polling interval value, and effectively disable synchronization
+with the server. (CVE-2015-7704)
+
+It was found that ntpd did not correctly implement the threshold limitation
+for the '-g' option, which is used to set the time without any
+restrictions. A man-in-the-middle attacker able to intercept NTP traffic
+between a connecting client and an NTP server could use this flaw to force
+that client to make multiple steps larger than the panic threshold,
+effectively changing the time to an arbitrary value. (CVE-2015-5300)
+
+Red Hat would like to thank Aanchal Malhotra, Isaac E. Cohen, and Sharon
+Goldberg of Boston University for reporting these issues.
+
+All ntp users are advised to upgrade to these updated packages, which
+contain backported patches to resolve these issues. After installing the
+update, the ntpd daemon will restart automatically.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-10-26"/>
+     <updated date="2015-10-26"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5300">CVE-2015-5300</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7704">CVE-2015-7704</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1271070" id="1271070">CVE-2015-7704 ntp: disabling synchronization via crafted KoD packet</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1271076" id="1271076">CVE-2015-5300 ntp: MITM attacker can force ntpd to make a step larger than the panic threshold</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150001001"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150001002"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150001003"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150001004"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="ntp is earlier than 0:4.2.6p5-5.el6_7.2" test_ref="oval:com.redhat.rhsa:tst:20151930009"/>
+       <criterion comment="ntp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151459008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntp-doc is earlier than 0:4.2.6p5-5.el6_7.2" test_ref="oval:com.redhat.rhsa:tst:20151930011"/>
+       <criterion comment="ntp-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151459012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntp-perl is earlier than 0:4.2.6p5-5.el6_7.2" test_ref="oval:com.redhat.rhsa:tst:20151930005"/>
+       <criterion comment="ntp-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151459006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntpdate is earlier than 0:4.2.6p5-5.el6_7.2" test_ref="oval:com.redhat.rhsa:tst:20151930007"/>
+       <criterion comment="ntpdate is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151459010"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="ntp is earlier than 0:4.2.6p5-19.el7_1.3" test_ref="oval:com.redhat.rhsa:tst:20151930020"/>
+       <criterion comment="ntp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151459008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntp-doc is earlier than 0:4.2.6p5-19.el7_1.3" test_ref="oval:com.redhat.rhsa:tst:20151930021"/>
+       <criterion comment="ntp-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151459012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntp-perl is earlier than 0:4.2.6p5-19.el7_1.3" test_ref="oval:com.redhat.rhsa:tst:20151930022"/>
+       <criterion comment="ntp-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151459006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntpdate is earlier than 0:4.2.6p5-19.el7_1.3" test_ref="oval:com.redhat.rhsa:tst:20151930019"/>
+       <criterion comment="ntpdate is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151459010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="sntp is earlier than 0:4.2.6p5-19.el7_1.3" test_ref="oval:com.redhat.rhsa:tst:20151930017"/>
+       <criterion comment="sntp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151930018"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 6 Client is installed" id="oval:com.redhat.rhsa:tst:20150001001" version="601">
@@ -39155,6 +39261,46 @@ take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150086005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151928004"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp-perl is earlier than 0:4.2.6p5-5.el6_7.2" id="oval:com.redhat.rhsa:tst:20151930005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151459005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151930003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntpdate is earlier than 0:4.2.6p5-5.el6_7.2" id="oval:com.redhat.rhsa:tst:20151930007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151459007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151930003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp is earlier than 0:4.2.6p5-5.el6_7.2" id="oval:com.redhat.rhsa:tst:20151930009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151459006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151930003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp-doc is earlier than 0:4.2.6p5-5.el6_7.2" id="oval:com.redhat.rhsa:tst:20151930011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151459008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151930003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sntp is earlier than 0:4.2.6p5-19.el7_1.3" id="oval:com.redhat.rhsa:tst:20151930017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151930009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151930005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sntp is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20151930018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151930009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntpdate is earlier than 0:4.2.6p5-19.el7_1.3" id="oval:com.redhat.rhsa:tst:20151930019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151459007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151930005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp is earlier than 0:4.2.6p5-19.el7_1.3" id="oval:com.redhat.rhsa:tst:20151930020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151459006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151930005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp-doc is earlier than 0:4.2.6p5-19.el7_1.3" id="oval:com.redhat.rhsa:tst:20151930021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151459008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151930005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp-perl is earlier than 0:4.2.6p5-19.el7_1.3" id="oval:com.redhat.rhsa:tst:20151930022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151459005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151930005"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20150001001" version="601">
@@ -41320,6 +41466,9 @@ take effect.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20151919016" version="601">
    <red-def:name>java-1.8.0-openjdk-javadoc-debug</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20151930009" version="601">
+   <red-def:name>sntp</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20150001001" version="601">
@@ -42386,6 +42535,12 @@ take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151928004" version="601">
    <red-def:evr datatype="evr_string" operation="less than">1:1.6.0.105-1jpp.2.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151930003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:4.2.6p5-5.el6_7.2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151930005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:4.2.6p5-19.el7_1.3</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
