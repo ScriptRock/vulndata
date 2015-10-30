@@ -8,7 +8,7 @@
   <generator>
       <oval:product_name>Marcus Updateinfo to OVAL Converter</oval:product_name>
       <oval:schema_version>5.5</oval:schema_version>
-      <oval:timestamp>2015-10-28T04:00:27</oval:timestamp>
+      <oval:timestamp>2015-10-30T04:00:29</oval:timestamp>
   </generator>
 <definitions>
 <definition id="oval:org.opensuse.security:def:1" version="1" class="patch">
@@ -10589,6 +10589,35 @@ The following vulnerabilities were fixed:
 </definition>
 <definition id="oval:org.opensuse.security:def:304" version="1" class="patch">
 	<metadata>
+		<title>Security update for wireshark</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+wireshark was updated to version 1.12.8 to fix ten security issues.
+
+These security issues were fixed:
+- CVE-2015-6247: The dissect_openflow_tablemod_v5 function in epan/dissectors/packet-openflow_v5.c in the OpenFlow dissector in Wireshark 1.12.x before 1.12.7 did not validate a certain offset value, which allowed remote attackers to cause a denial of service (infinite loop) via a crafted packet (bsc#941500).
+- CVE-2015-6246: The dissect_wa_payload function in epan/dissectors/packet-waveagent.c in the WaveAgent dissector in Wireshark 1.12.x before 1.12.7 mishandles large tag values, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet (bsc#941500).
+- CVE-2015-6245: epan/dissectors/packet-gsm_rlcmac.c in the GSM RLC/MAC dissector in Wireshark 1.12.x before 1.12.7 used incorrect integer data types, which allowed remote attackers to cause a denial of service (infinite loop) via a crafted packet (bsc#941500).
+- CVE-2015-6244: The dissect_zbee_secure function in epan/dissectors/packet-zbee-security.c in the ZigBee dissector in Wireshark 1.12.x before 1.12.7 improperly relies on length fields contained in packet data, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet (bsc#941500).
+- CVE-2015-6243: The dissector-table implementation in epan/packet.c in Wireshark 1.12.x before 1.12.7 mishandles table searches for empty strings, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet, related to the (1) dissector_get_string_handle and (2) dissector_get_default_string_handle functions (bsc#941500).
+- CVE-2015-6242: The wmem_block_split_free_chunk function in epan/wmem/wmem_allocator_block.c in the wmem block allocator in the memory manager in Wireshark 1.12.x before 1.12.7 did not properly consider a certain case of multiple realloc operations that restore a memory chunk to its original size, which allowed remote attackers to cause a denial of service (incorrect free operation and application crash) via a crafted packet (bsc#941500).
+- CVE-2015-6241: The proto_tree_add_bytes_item function in epan/proto.c in the protocol-tree implementation in Wireshark 1.12.x before 1.12.7 did not properly terminate a data structure after a failure to locate a number within a string, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet (bsc#941500).
+- CVE-2015-7830: pcapng file parser could crash while copying an interface filter (bsc#950437).
+- CVE-2015-6249: The dissect_wccp2r1_address_table_info function in epan/dissectors/packet-wccp.c in the WCCP dissector in Wireshark 1.12.x before 1.12.7 did not prevent the conflicting use of a table for both IPv4 and IPv6 addresses, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet (bsc#941500).
+- CVE-2015-6248: The ptvcursor_add function in the ptvcursor implementation in epan/proto.c in Wireshark 1.12.x before 1.12.7 did not check whether the expected amount of data is available, which allowed remote attackers to cause a denial of service (application crash) via a crafted packet (bsc#941500).
+  		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115283" comment="wireshark-1.12.8-25.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115284" comment="wireshark-devel-1.12.8-25.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115285" comment="wireshark-ui-gtk-1.12.8-25.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115286" comment="wireshark-ui-qt-1.12.8-25.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:305" version="1" class="patch">
+	<metadata>
 		<title>Security update for libressl</title>
 		<affected family="unix">
 			<platform>openSUSE 13.2 Update</platform>
@@ -10614,7 +10643,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009115208" comment="libtls4-32bit-2.2.1-2.6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:305" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:306" version="1" class="patch">
 	<metadata>
 		<title>fix boo#948602 boo#948045</title>
 		<affected family="unix">
@@ -10633,7 +10662,7 @@ These security issues were fixed:
 		<criterion test_ref="oval:org.opensuse.security:tst:2009115211" comment="nodejs-doc-4.2.1-2.6.1 is installed"/>
 	</criteria>
 </definition>
-<definition id="oval:org.opensuse.security:def:306" version="1" class="patch">
+<definition id="oval:org.opensuse.security:def:307" version="1" class="patch">
 	<metadata>
 		<title>Security update for haproxy</title>
 		<affected family="unix">
@@ -10664,6 +10693,168 @@ These non-security issues were fixed:
 	</metadata>
 	<criteria operator="OR">
 		<criterion test_ref="oval:org.opensuse.security:tst:2009115212" comment="haproxy-1.5.5-3.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:308" version="1" class="patch">
+	<metadata>
+		<title>Security update for squid</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+squid was updated to fix one security issue.
+
+This security issue was fixed:
+- CVE-2014-9749: Nonce replay vulnerability in Digest authentication (bsc#949942).
+  		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115287" comment="squid-3.4.4-3.13.1 is installed"/>
+	</criteria>
+</definition>
+<definition id="oval:org.opensuse.security:def:309" version="1" class="patch">
+	<metadata>
+		<title>Security update for the Linux Kernel</title>
+		<affected family="unix">
+			<platform>openSUSE 13.2 Update</platform>
+		</affected>
+		<description>
+
+The openSUSE 13.2 kernel was updated to receive various security and bugfixes.
+
+Following security bugs were fixed:
+* CVE-2015-3290: arch/x86/entry/entry_64.S in the Linux kernel on
+  the x86_64 platform improperly relied on espfix64 during nested NMI
+  processing, which allowed local users to gain privileges by triggering
+  an NMI within a certain instruction window (bnc#937969)
+* CVE-2015-0272: It was reported that it's possible to craft a Router
+  Advertisement message which will bring the receiver in a state where new
+  IPv6 connections will not be accepted until correct Router Advertisement
+  message received. (bsc#944296).
+* CVE-2015-5283: The sctp_init function in net/sctp/protocol.c in the
+  Linux kernel had an incorrect sequence of protocol-initialization steps,
+  which allowed local users to cause a denial of service (panic or memory
+  corruption) by creating SCTP sockets before all of the steps have finished
+  (bnc#947155).
+* CVE-2015-1333: Memory leak in the __key_link_end function in
+  security/keys/keyring.c in the Linux kernel allowed local users to cause
+  a denial of service (memory consumption) via many add_key system calls
+  that refer to existing keys. (bsc#938645)
+* CVE-2015-5707: Integer overflow in the sg_start_req function in
+  drivers/scsi/sg.c in the Linux kernel allowed local users to cause a
+  denial of service or possibly have unspecified other impact via a large
+  iov_count value in a write request. (bsc#940338)
+* CVE-2015-2925: An attacker could potentially break out of a namespace
+  or container, depending on if he had specific rights in these containers.
+  (bsc#926238).
+* CVE-2015-7872: A vulnerability in keyrings garbage collector allowed
+  a local user to trigger an oops was found, caused by using request_key() or
+  keyctl request2. (bsc#951440)
+
+
+The following non-security bugs were fixed:
+- input: evdev - do not report errors form flush() (bsc#939834).
+- NFSv4: Recovery of recalled read delegations is broken (bsc#942178).
+- apparmor: temporary work around for bug while unloading policy (boo#941867).
+- config/x86_64/ec2: Align CONFIG_STRICT_DEVMEM CONFIG_STRICT_DEVMEM is
+  enabled in every other kernel flavor, so enable it for x86_64/ec2 as well.
+- kernel-obs-build: add btrfs to initrd This is needed for kiwi builds.
+- mmc: card: Do not access RPMB partitions for normal read/write (bnc#941104).
+- netback: coalesce (guest) RX SKBs as needed (bsc#919154).
+- rpm/kernel-obs-build.spec.in: Add virtio_rng to the initrd. This allows
+  to feed some randomness to the OBS workers.
+- xfs: Fix file type directory corruption for btree directories (bsc#941305).
+- xfs: ensure buffer types are set correctly (bsc#941305).
+- xfs: inode unlink does not set AGI buffer type (bsc#941305).
+- xfs: set buf types when converting extent formats (bsc#941305).
+- xfs: set superblock buffer type correctly (bsc#941305).
+- xhci: Add spurious wakeup quirk for LynxPoint-LP controllers (bnc#951195).
+  		</description>
+	</metadata>
+	<criteria operator="OR">
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115288" comment="bbswitch-0.8-3.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115289" comment="bbswitch-kmp-default-0.8_k3.16.7_29-3.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115290" comment="bbswitch-kmp-desktop-0.8_k3.16.7_29-3.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115291" comment="bbswitch-kmp-pae-0.8_k3.16.7_29-3.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115292" comment="bbswitch-kmp-xen-0.8_k3.16.7_29-3.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115293" comment="cloop-2.639-14.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115294" comment="cloop-kmp-default-2.639_k3.16.7_29-14.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115295" comment="cloop-kmp-desktop-2.639_k3.16.7_29-14.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115296" comment="cloop-kmp-pae-2.639_k3.16.7_29-14.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115297" comment="cloop-kmp-xen-2.639_k3.16.7_29-14.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115298" comment="crash-7.0.8-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115299" comment="crash-devel-7.0.8-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115300" comment="crash-doc-7.0.8-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115301" comment="crash-eppic-7.0.8-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115302" comment="crash-gcore-7.0.8-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115303" comment="crash-kmp-default-7.0.8_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115304" comment="crash-kmp-desktop-7.0.8_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115305" comment="crash-kmp-pae-7.0.8_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115306" comment="crash-kmp-xen-7.0.8_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115307" comment="hdjmod-1.28-18.14.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115308" comment="hdjmod-kmp-default-1.28_k3.16.7_29-18.14.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115309" comment="hdjmod-kmp-desktop-1.28_k3.16.7_29-18.14.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115310" comment="hdjmod-kmp-pae-1.28_k3.16.7_29-18.14.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115311" comment="hdjmod-kmp-xen-1.28_k3.16.7_29-18.14.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115312" comment="ipset-6.23-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115313" comment="ipset-devel-6.23-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115314" comment="ipset-kmp-default-6.23_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115315" comment="ipset-kmp-desktop-6.23_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115316" comment="ipset-kmp-pae-6.23_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115317" comment="ipset-kmp-xen-6.23_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115318" comment="libipset3-6.23-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115319" comment="kernel-debug-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115320" comment="kernel-debug-base-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115321" comment="kernel-debug-devel-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115322" comment="kernel-default-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115323" comment="kernel-default-base-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115324" comment="kernel-default-devel-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115325" comment="kernel-desktop-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115326" comment="kernel-desktop-base-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115327" comment="kernel-desktop-devel-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115328" comment="kernel-docs-3.16.7-29.3 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115329" comment="kernel-ec2-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115330" comment="kernel-ec2-base-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115331" comment="kernel-ec2-devel-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115332" comment="kernel-obs-build-3.16.7-29.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115333" comment="kernel-obs-qa-xen-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115334" comment="kernel-obs-qa-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115335" comment="kernel-pae-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115336" comment="kernel-pae-base-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115337" comment="kernel-pae-devel-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115338" comment="kernel-devel-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115339" comment="kernel-macros-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115340" comment="kernel-source-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115341" comment="kernel-source-vanilla-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115342" comment="kernel-syms-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115343" comment="kernel-vanilla-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115344" comment="kernel-vanilla-devel-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115345" comment="kernel-xen-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115346" comment="kernel-xen-base-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115347" comment="kernel-xen-devel-3.16.7-29.1 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115348" comment="pcfclock-0.44-260.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115349" comment="pcfclock-kmp-default-0.44_k3.16.7_29-260.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115350" comment="pcfclock-kmp-desktop-0.44_k3.16.7_29-260.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115351" comment="pcfclock-kmp-pae-0.44_k3.16.7_29-260.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115352" comment="vhba-kmp-20140629-2.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115353" comment="vhba-kmp-default-20140629_k3.16.7_29-2.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115354" comment="vhba-kmp-desktop-20140629_k3.16.7_29-2.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115355" comment="vhba-kmp-pae-20140629_k3.16.7_29-2.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115356" comment="vhba-kmp-xen-20140629_k3.16.7_29-2.13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115357" comment="xen-4.4.2_06-27.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115358" comment="xen-devel-4.4.2_06-27.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115359" comment="xen-libs-32bit-4.4.2_06-27.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115360" comment="xen-libs-4.4.2_06-27.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115361" comment="xen-tools-domU-4.4.2_06-27.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115362" comment="xtables-addons-2.6-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115363" comment="xtables-addons-kmp-default-2.6_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115364" comment="xtables-addons-kmp-desktop-2.6_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115365" comment="xtables-addons-kmp-pae-2.6_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115366" comment="xtables-addons-kmp-xen-2.6_k3.16.7_29-13.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115367" comment="xen-doc-html-4.4.2_06-27.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115368" comment="xen-kmp-default-4.4.2_06_k3.16.7_29-27.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115369" comment="xen-kmp-desktop-4.4.2_06_k3.16.7_29-27.2 is installed"/>
+		<criterion test_ref="oval:org.opensuse.security:tst:2009115370" comment="xen-tools-4.4.2_06-27.2 is installed"/>
 	</criteria>
 </definition>
 </definitions>
@@ -21968,6 +22159,22 @@ These non-security issues were fixed:
 		<object object_ref="oval:org.opensuse.security:obj:2009035403"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045779"/>
 	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115283" version="1" comment="wireshark is &lt;1.12.8-25.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031055"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045791"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115284" version="1" comment="wireshark-devel is &lt;1.12.8-25.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031520"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045791"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115285" version="1" comment="wireshark-ui-gtk is &lt;1.12.8-25.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038237"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045791"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115286" version="1" comment="wireshark-ui-qt is &lt;1.12.8-25.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038238"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045791"/>
+	</rpminfo_test>
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009115199" version="1" comment="libcrypto34 is &lt;2.2.1-2.6.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009038798"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045783"/>
@@ -22023,6 +22230,342 @@ These non-security issues were fixed:
 	<rpminfo_test id="oval:org.opensuse.security:tst:2009115212" version="1" comment="haproxy is &lt;1.5.5-3.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
 		<object object_ref="oval:org.opensuse.security:obj:2009038990"/>
 		<state state_ref="oval:org.opensuse.security:ste:2009045785"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115287" version="1" comment="squid is &lt;3.4.4-3.13.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031125"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045792"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115288" version="1" comment="bbswitch is &lt;0.8-3.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038639"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045793"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115289" version="1" comment="bbswitch-kmp-default is &lt;0.8_k3.16.7_29-3.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038640"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045794"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115290" version="1" comment="bbswitch-kmp-desktop is &lt;0.8_k3.16.7_29-3.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038641"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045794"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115291" version="1" comment="bbswitch-kmp-pae is &lt;0.8_k3.16.7_29-3.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038642"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045794"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115292" version="1" comment="bbswitch-kmp-xen is &lt;0.8_k3.16.7_29-3.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038643"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045794"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115293" version="1" comment="cloop is &lt;2.639-14.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037902"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045795"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115294" version="1" comment="cloop-kmp-default is &lt;2.639_k3.16.7_29-14.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033917"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045796"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115295" version="1" comment="cloop-kmp-desktop is &lt;2.639_k3.16.7_29-14.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037903"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045796"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115296" version="1" comment="cloop-kmp-pae is &lt;2.639_k3.16.7_29-14.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037904"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045796"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115297" version="1" comment="cloop-kmp-xen is &lt;2.639_k3.16.7_29-14.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037905"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045796"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115298" version="1" comment="crash is &lt;7.0.8-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037906"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045797"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115299" version="1" comment="crash-devel is &lt;7.0.8-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037907"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045797"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115300" version="1" comment="crash-doc is &lt;7.0.8-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037908"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045797"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115301" version="1" comment="crash-eppic is &lt;7.0.8-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037909"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045797"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115302" version="1" comment="crash-gcore is &lt;7.0.8-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037910"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045797"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115303" version="1" comment="crash-kmp-default is &lt;7.0.8_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037911"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045798"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115304" version="1" comment="crash-kmp-desktop is &lt;7.0.8_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037912"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045798"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115305" version="1" comment="crash-kmp-pae is &lt;7.0.8_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037913"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045798"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115306" version="1" comment="crash-kmp-xen is &lt;7.0.8_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037914"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045798"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115307" version="1" comment="hdjmod is &lt;1.28-18.14.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037915"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045799"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115308" version="1" comment="hdjmod-kmp-default is &lt;1.28_k3.16.7_29-18.14.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037916"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045800"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115309" version="1" comment="hdjmod-kmp-desktop is &lt;1.28_k3.16.7_29-18.14.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037917"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045800"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115310" version="1" comment="hdjmod-kmp-pae is &lt;1.28_k3.16.7_29-18.14.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037918"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045800"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115311" version="1" comment="hdjmod-kmp-xen is &lt;1.28_k3.16.7_29-18.14.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037919"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045800"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115312" version="1" comment="ipset is &lt;6.23-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037920"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045801"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115313" version="1" comment="ipset-devel is &lt;6.23-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037921"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045801"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115314" version="1" comment="ipset-kmp-default is &lt;6.23_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037922"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045802"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115315" version="1" comment="ipset-kmp-desktop is &lt;6.23_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037923"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045802"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115316" version="1" comment="ipset-kmp-pae is &lt;6.23_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037924"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045802"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115317" version="1" comment="ipset-kmp-xen is &lt;6.23_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037925"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045802"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115318" version="1" comment="libipset3 is &lt;6.23-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037926"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045801"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115319" version="1" comment="kernel-debug is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031112"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115320" version="1" comment="kernel-debug-base is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033057"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115321" version="1" comment="kernel-debug-devel is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033553"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115322" version="1" comment="kernel-default is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030416"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115323" version="1" comment="kernel-default-base is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031011"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115324" version="1" comment="kernel-default-devel is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033554"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115325" version="1" comment="kernel-desktop is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033557"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115326" version="1" comment="kernel-desktop-base is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033555"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115327" version="1" comment="kernel-desktop-devel is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033556"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115328" version="1" comment="kernel-docs is &lt;3.16.7-29.3" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009032101"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045804"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115329" version="1" comment="kernel-ec2 is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033239"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115330" version="1" comment="kernel-ec2-base is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033238"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115331" version="1" comment="kernel-ec2-devel is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033889"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115332" version="1" comment="kernel-obs-build is &lt;3.16.7-29.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038297"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045805"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115333" version="1" comment="kernel-obs-qa-xen is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038298"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115334" version="1" comment="kernel-obs-qa is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038299"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115335" version="1" comment="kernel-pae is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031022"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115336" version="1" comment="kernel-pae-base is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031021"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115337" version="1" comment="kernel-pae-devel is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033558"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115338" version="1" comment="kernel-devel is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033888"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115339" version="1" comment="kernel-macros is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009038300"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115340" version="1" comment="kernel-source is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030418"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115341" version="1" comment="kernel-source-vanilla is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033559"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115342" version="1" comment="kernel-syms is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009030419"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115343" version="1" comment="kernel-vanilla is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009032883"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115344" version="1" comment="kernel-vanilla-devel is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033562"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115345" version="1" comment="kernel-xen is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031018"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115346" version="1" comment="kernel-xen-base is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031017"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115347" version="1" comment="kernel-xen-devel is &lt;3.16.7-29.1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033563"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045803"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115348" version="1" comment="pcfclock is &lt;0.44-260.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037939"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045806"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115349" version="1" comment="pcfclock-kmp-default is &lt;0.44_k3.16.7_29-260.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037940"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045807"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115350" version="1" comment="pcfclock-kmp-desktop is &lt;0.44_k3.16.7_29-260.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037941"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045807"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115351" version="1" comment="pcfclock-kmp-pae is &lt;0.44_k3.16.7_29-260.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037942"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045807"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115352" version="1" comment="vhba-kmp is &lt;20140629-2.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037979"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045808"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115353" version="1" comment="vhba-kmp-default is &lt;20140629_k3.16.7_29-2.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037980"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045809"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115354" version="1" comment="vhba-kmp-desktop is &lt;20140629_k3.16.7_29-2.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037981"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045809"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115355" version="1" comment="vhba-kmp-pae is &lt;20140629_k3.16.7_29-2.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037982"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045809"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115356" version="1" comment="vhba-kmp-xen is &lt;20140629_k3.16.7_29-2.13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037983"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045809"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115357" version="1" comment="xen is &lt;4.4.2_06-27.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031486"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045810"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115358" version="1" comment="xen-devel is &lt;4.4.2_06-27.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031479"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045810"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115359" version="1" comment="xen-libs-32bit is &lt;4.4.2_06-27.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009032234"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045810"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115360" version="1" comment="xen-libs is &lt;4.4.2_06-27.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031482"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045810"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115361" version="1" comment="xen-tools-domU is &lt;4.4.2_06-27.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031483"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045810"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115362" version="1" comment="xtables-addons is &lt;2.6-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037943"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045811"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115363" version="1" comment="xtables-addons-kmp-default is &lt;2.6_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037944"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045812"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115364" version="1" comment="xtables-addons-kmp-desktop is &lt;2.6_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037945"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045812"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115365" version="1" comment="xtables-addons-kmp-pae is &lt;2.6_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037946"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045812"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115366" version="1" comment="xtables-addons-kmp-xen is &lt;2.6_k3.16.7_29-13.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009037947"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045812"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115367" version="1" comment="xen-doc-html is &lt;4.4.2_06-27.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031480"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045810"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115368" version="1" comment="xen-kmp-default is &lt;4.4.2_06_k3.16.7_29-27.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009033788"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045813"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115369" version="1" comment="xen-kmp-desktop is &lt;4.4.2_06_k3.16.7_29-27.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009034554"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045813"/>
+	</rpminfo_test>
+	<rpminfo_test id="oval:org.opensuse.security:tst:2009115370" version="1" comment="xen-tools is &lt;4.4.2_06-27.2" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+		<object object_ref="oval:org.opensuse.security:obj:2009031485"/>
+		<state state_ref="oval:org.opensuse.security:ste:2009045810"/>
 	</rpminfo_test>
 </tests>
 <objects>
@@ -26783,6 +27326,9 @@ These non-security issues were fixed:
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045779" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:46.0.2490.71-54.1</evr>
   </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045791" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:1.12.8-25.1</evr>
+  </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045783" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:2.2.1-2.6.1</evr>
   </rpminfo_state>
@@ -26791,6 +27337,72 @@ These non-security issues were fixed:
   </rpminfo_state>
   <rpminfo_state id="oval:org.opensuse.security:ste:2009045785" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
    <evr datatype="evr_string" operation="less than">0:1.5.5-3.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045792" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:3.4.4-3.13.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045793" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:0.8-3.13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045794" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:0.8_k3.16.7_29-3.13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045795" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:2.639-14.13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045796" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:2.639_k3.16.7_29-14.13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045797" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:7.0.8-13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045798" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:7.0.8_k3.16.7_29-13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045799" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:1.28-18.14.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045800" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:1.28_k3.16.7_29-18.14.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045801" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:6.23-13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045802" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:6.23_k3.16.7_29-13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045803" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:3.16.7-29.1</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045804" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:3.16.7-29.3</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045805" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:3.16.7-29.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045806" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:0.44-260.13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045807" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:0.44_k3.16.7_29-260.13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045808" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:20140629-2.13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045809" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:20140629_k3.16.7_29-2.13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045810" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:4.4.2_06-27.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045811" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:2.6-13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045812" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:2.6_k3.16.7_29-13.2</evr>
+  </rpminfo_state>
+  <rpminfo_state id="oval:org.opensuse.security:ste:2009045813" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+   <evr datatype="evr_string" operation="less than">0:4.4.2_06_k3.16.7_29-27.2</evr>
   </rpminfo_state>
 </states>
 </oval_definitions>
