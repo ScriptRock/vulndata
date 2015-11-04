@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-10-27T04:51:02</oval:timestamp>
+  <oval:timestamp>2015-11-04T11:05:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -28127,6 +28127,668 @@ have shut down, start them again for this update to take effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20151977" version="601">
+   <metadata>
+    <title>RHSA-2015:1977: kernel-rt security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:1977-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1977.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-8559" ref_url="https://access.redhat.com/security/cve/CVE-2014-8559" source="CVE"/>
+    <reference ref_id="CVE-2015-5156" ref_url="https://access.redhat.com/security/cve/CVE-2015-5156" source="CVE"/>
+    <description>The kernel packages contain the Linux kernel, the core of any Linux
+operating system.
+
+* A flaw was found in the way the Linux kernel's VFS subsystem handled file
+system locks. A local, unprivileged user could use this flaw to trigger a
+deadlock in the kernel, causing a denial of service on the system.
+(CVE-2014-8559, Moderate)
+
+* A buffer overflow flaw was found in the way the Linux kernel's virtio-net
+subsystem handled certain fraglists when the GRO (Generic Receive Offload)
+functionality was enabled in a bridged network configuration. An attacker
+on the local network could potentially use this flaw to crash the system,
+or, although unlikely, elevate their privileges on the system.
+(CVE-2015-5156, Moderate)
+
+The CVE-2015-5156 issue was discovered by Jason Wang of Red Hat.
+
+The kernel-rt packages have been upgraded to version 3.10.0-229.20.1, which
+provides a number of bug fixes and enhancements over the previous version,
+including:
+
+* Unexpected completion is detected on Intel Ethernet x540
+
+* Divide by zero error in intel_pstate_timer_func() [ inline s64
+div_s64_rem() ]
+
+* NFS Recover from stateid-type error on SETATTR
+
+* pNFS RHEL 7.1 Data Server connection remains after umount due to lseg
+refcount leak
+
+* Race during NFS v4.0 recovery and standard IO.
+
+* Fix ip6t_SYNPROXY for namespaces and connection delay
+
+* synproxy window size and sequence number behaviour causes long connection
+delay
+
+* Crash in kmem_cache_alloc() during disk stress testing (using ipr)
+
+* xfs: sync/backport to upstream v4.1
+
+* iscsi_session recovery_tmo revert back to default when a path becomes
+active
+
+* read from MD raid1 can fail if read from resync target fails
+
+* backport scsi-mq
+
+* unable to handle kernel paging request at 0000000000237037 [zswap]
+
+(BZ#1266915) 
+
+All kernel-rt users are advised to upgrade to these updated packages, which
+correct these issues and add this enhancement. The system must be rebooted
+for this update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-09-25"/>
+     <updated date="2015-11-03"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8559">CVE-2014-8559</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5156">CVE-2015-5156</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1159313" id="1159313">CVE-2014-8559 kernel: fs: deadlock due to incorrect usage of rename_lock</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1243852" id="1243852">CVE-2015-5156 kernel: buffer overflow with fraglist larger than MAX_SKB_FRAGS + 2 in virtio-net</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1266915" id="1266915">kernel-rt: update to the RHEL7.1.z batch 6 source tree</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras_rt:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kernel-rt is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151977021"/>
+      <criterion comment="kernel-rt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151977011"/>
+      <criterion comment="kernel-rt-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug-devel is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151977013"/>
+      <criterion comment="kernel-rt-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-devel is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151977007"/>
+      <criterion comment="kernel-rt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-doc is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151977005"/>
+      <criterion comment="kernel-rt-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151977019"/>
+      <criterion comment="kernel-rt-trace is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace-devel is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151977017"/>
+      <criterion comment="kernel-rt-trace-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-virt is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151977009"/>
+      <criterion comment="kernel-rt-virt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-virt-devel is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151977015"/>
+      <criterion comment="kernel-rt-virt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727020"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20151978" version="601">
+   <metadata>
+    <title>RHSA-2015:1978: kernel security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:1978-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1978.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-8559" ref_url="https://access.redhat.com/security/cve/CVE-2014-8559" source="CVE"/>
+    <reference ref_id="CVE-2015-5156" ref_url="https://access.redhat.com/security/cve/CVE-2015-5156" source="CVE"/>
+    <description>The kernel packages contain the Linux kernel, the core of any Linux
+operating system.
+
+* A flaw was found in the way the Linux kernel's VFS subsystem handled file
+system locks. A local, unprivileged user could use this flaw to trigger a
+deadlock in the kernel, causing a denial of service on the system.
+(CVE-2014-8559, Moderate)
+
+* A buffer overflow flaw was found in the way the Linux kernel's virtio-net
+subsystem handled certain fraglists when the GRO (Generic Receive Offload)
+functionality was enabled in a bridged network configuration. An attacker
+on the local network could potentially use this flaw to crash the system,
+or, although unlikely, elevate their privileges on the system.
+(CVE-2015-5156, Moderate)
+
+The CVE-2015-5156 issue was discovered by Jason Wang of Red Hat.
+
+This update also fixes several bugs and adds one enhancement. Refer to the
+following Knowledgebase article for further information:
+
+https://access.redhat.com/articles/2039563
+
+All kernel users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues and add this
+enhancement. The system must be rebooted for this update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-11-03"/>
+     <updated date="2015-11-03"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8559">CVE-2014-8559</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5156">CVE-2015-5156</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1159313" id="1159313">CVE-2014-8559 kernel: fs: deadlock due to incorrect usage of rename_lock</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1243852" id="1243852">CVE-2015-5156 kernel: buffer overflow with fraglist larger than MAX_SKB_FRAGS + 2 in virtio-net</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kernel is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978023"/>
+      <criterion comment="kernel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-abi-whitelists is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978005"/>
+      <criterion comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087028"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-bootwrapper is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978027"/>
+      <criterion comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-debug is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978021"/>
+      <criterion comment="kernel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-debug-devel is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978019"/>
+      <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-devel is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978015"/>
+      <criterion comment="kernel-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-doc is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978007"/>
+      <criterion comment="kernel-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087026"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-headers is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978009"/>
+      <criterion comment="kernel-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-kdump is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978011"/>
+      <criterion comment="kernel-kdump is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-kdump-devel is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978013"/>
+      <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-tools is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978031"/>
+      <criterion comment="kernel-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150102014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-tools-libs is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978029"/>
+      <criterion comment="kernel-tools-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150102024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-tools-libs-devel is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978033"/>
+      <criterion comment="kernel-tools-libs-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150102018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="perf is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978017"/>
+      <criterion comment="perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-perf is earlier than 0:3.10.0-229.20.1.el7" test_ref="oval:com.redhat.rhsa:tst:20151978025"/>
+      <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150087012"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20151979" version="601">
+   <metadata>
+    <title>RHSA-2015:1979: libreswan security and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:1979-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1979.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3240" ref_url="https://access.redhat.com/security/cve/CVE-2015-3240" source="CVE"/>
+    <description>Libreswan is an implementation of IPsec &amp; IKE for Linux. IPsec is the
+Internet Protocol Security and uses strong cryptography to provide both
+authentication and encryption services. These services allow you to build
+secure tunnels through untrusted networks such as virtual private network
+(VPN).
+
+A flaw was discovered in the way Libreswan's IKE daemon processed IKE KE
+payloads. A remote attacker could send specially crafted IKE payload with a
+KE payload of g^x=0 that, when processed, would lead to a denial of service
+(daemon crash). (CVE-2015-3240)
+
+This issue was discovered by Paul Wouters of Red Hat.
+
+Note: Please note that when upgrading from an earlier version of Libreswan,
+the existing CA certificates in the /etc/ipsec.d/cacerts/ directory and the
+existing certificate revocation list (CRL) files from the
+/etc/ipsec.d/crls/ directory are automatically imported into the NSS
+database. Once completed, these directories are no longer used by
+Libreswan. To install new CA certificates or new CRLS, the certutil and
+crlutil commands must be used to import these directly into the Network
+Security Services (NSS) database.
+
+This update also adds the following enhancements:
+
+* This update adds support for RFC 7383 IKEv2 Fragmentation, RFC 7619 Auth
+Null and ID Null, INVALID_KE renegotiation, CRL and OCSP support via NSS,
+AES_CTR and AES_GCM support for IKEv2, CAVS testing for FIPS compliance.
+
+In addition, this update enforces FIPS algorithms restrictions in FIPS
+mode, and runs Composite Application Validation System (CAVS) testing for
+FIPS compliance during package build. A new Cryptographic Algorithm
+Validation Program (CAVP) binary can be used to re-run the CAVS tests at
+any time. Regardless of FIPS mode, the pluto daemon runs RFC test vectors
+for various algorithms.
+
+Furthermore, compiling on all architectures now enables the &quot;-Werror&quot; GCC
+option, which enhances the security by making all warnings into errors.
+(BZ#1263346)
+
+* This update also fixes several memory leaks and introduces a sub-second
+packet retransmit option. (BZ#1268773)
+
+* This update improves migration support from Openswan to Libreswan.
+Specifically, all Openswan options that can take a time value without a
+suffix are now supported, and several new keywords for use in the
+/etc/ipsec.conf file have been introduced. See the relevant man pages for
+details. (BZ#1268775)
+
+* With this update, loopback support via the &quot;loopback=&quot; option has been
+deprecated. (BZ#1270673)
+
+All Libreswan users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues and add these
+enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-11-03"/>
+     <updated date="2015-11-04"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3240">CVE-2015-3240</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1232320" id="1232320">CVE-2015-3240 libreswan / openswan: denial of service via IKE daemon restart when receiving a bad DH gx value</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1268775" id="1268775">libreswan should support strictcrlpolicy alias for crl-strict= option to support openswan migration</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1273719" id="1273719">libreswan FIPS test mistakenly looks for non-existent file hashes and reports FIPS failure</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="libreswan is earlier than 0:3.15-5.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151979005"/>
+    <criterion comment="libreswan is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151154006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20151980" version="601">
+   <metadata>
+    <title>RHSA-2015:1980: nss and nspr security update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:1980-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1980.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7181" ref_url="https://access.redhat.com/security/cve/CVE-2015-7181" source="CVE"/>
+    <reference ref_id="CVE-2015-7182" ref_url="https://access.redhat.com/security/cve/CVE-2015-7182" source="CVE"/>
+    <reference ref_id="CVE-2015-7183" ref_url="https://access.redhat.com/security/cve/CVE-2015-7183" source="CVE"/>
+    <description>Network Security Services (NSS) is a set of libraries designed to support
+cross-platform development of security-enabled client and server
+applications. Netscape Portable Runtime (NSPR) provides platform
+independence for non-GUI operating system facilities.
+
+A use-after-poison flaw and a heap-based buffer overflow flaw were found in
+the way NSS parsed certain ASN.1 structures. An attacker could use these
+flaws to cause NSS to crash or execute arbitrary code with the permissions
+of the user running an application compiled against the NSS library.
+(CVE-2015-7181, CVE-2015-7182)
+
+A heap-based buffer overflow was found in NSPR. An attacker could use this
+flaw to cause NSPR to crash or execute arbitrary code with the permissions
+of the user running an application compiled against the NSPR library.
+(CVE-2015-7183)
+
+Red Hat would like to thank the Mozilla project for reporting these issues.
+Upstream acknowledges Tyson Smith, David Keeler and Ryan Sleevi as the
+original reporter.
+
+All nss and nspr users are advised to upgrade to these updated packages,
+which contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-11-04"/>
+     <updated date="2015-11-04"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7181">CVE-2015-7181</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7182">CVE-2015-7182</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7183">CVE-2015-7183</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1269345" id="1269345">CVE-2015-7181 nss: use-after-poison in sec_asn1d_parse_leaf() (MFSA 2015-133)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1269351" id="1269351">CVE-2015-7182 nss: ASN.1 decoder heap overflow when decoding constructed OCTET STRING that mixes indefinite and definite length encodings (MFSA 2015-133)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1269353" id="1269353">CVE-2015-7183 nspr: heap-buffer overflow in PL_ARENA_ALLOCATE (MFSA 2015-133)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20150046001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="nss is earlier than 0:3.19.1-2.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151980008"/>
+      <criterion comment="nss is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20151664009"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nss-devel is earlier than 0:3.19.1-2.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151980006"/>
+      <criterion comment="nss-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20151664007"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nss-pkcs11-devel is earlier than 0:3.19.1-2.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151980002"/>
+      <criterion comment="nss-pkcs11-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20151664003"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nss-tools is earlier than 0:3.19.1-2.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151980004"/>
+      <criterion comment="nss-tools is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20151664005"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nspr is earlier than 0:4.10.8-2.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151980010"/>
+      <criterion comment="nspr is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20151980011"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nspr-devel is earlier than 0:4.10.8-2.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151980012"/>
+      <criterion comment="nspr-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20151980013"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20151981" version="601">
+   <metadata>
+    <title>RHSA-2015:1981: nss, nss-util, and nspr security update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:1981-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1981.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7181" ref_url="https://access.redhat.com/security/cve/CVE-2015-7181" source="CVE"/>
+    <reference ref_id="CVE-2015-7182" ref_url="https://access.redhat.com/security/cve/CVE-2015-7182" source="CVE"/>
+    <reference ref_id="CVE-2015-7183" ref_url="https://access.redhat.com/security/cve/CVE-2015-7183" source="CVE"/>
+    <description>Network Security Services (NSS) is a set of libraries designed to support 
+cross-platform development of security-enabled client and server
+applications. Netscape Portable Runtime (NSPR) provides platform
+independence for non-GUI operating system facilities. 
+
+A use-after-poison flaw and a heap-based buffer overflow flaw were found in
+the way NSS parsed certain ASN.1 structures. An attacker could use these
+flaws to cause NSS to crash or execute arbitrary code with the permissions
+of the user running an application compiled against the NSS library.
+(CVE-2015-7181, CVE-2015-7182)
+
+A heap-based buffer overflow was found in NSPR. An attacker could use this
+flaw to cause NSPR to crash or execute arbitrary code with the permissions
+of the user running an application compiled against the NSPR library.
+(CVE-2015-7183)
+
+Note: Applications using NSPR's PL_ARENA_ALLOCATE, PR_ARENA_ALLOCATE,
+PL_ARENA_GROW, or PR_ARENA_GROW macros need to be rebuild against the fixed
+nspr packages to completely resolve the CVE-2015-7183 issue. This erratum
+includes nss and nss-utils packages rebuilt against the fixed nspr version.
+
+Red Hat would like to thank the Mozilla project for reporting these issues.
+Upstream acknowledges Tyson Smith, David Keeler and Ryan Sleevi as the
+original reporter.
+
+All nss, nss-util and nspr users are advised to upgrade to these updated
+packages, which contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-11-04"/>
+     <updated date="2015-11-04"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7181">CVE-2015-7181</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7182">CVE-2015-7182</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7183">CVE-2015-7183</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1269345" id="1269345">CVE-2015-7181 nss: use-after-poison in sec_asn1d_parse_leaf() (MFSA 2015-133)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1269351" id="1269351">CVE-2015-7182 nss: ASN.1 decoder heap overflow when decoding constructed OCTET STRING that mixes indefinite and definite length encodings (MFSA 2015-133)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1269353" id="1269353">CVE-2015-7183 nspr: heap-buffer overflow in PL_ARENA_ALLOCATE (MFSA 2015-133)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150001001"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150001002"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150001003"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150001004"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="nss is earlier than 0:3.19.1-5.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151981011"/>
+       <criterion comment="nss is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185018"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-devel is earlier than 0:3.19.1-5.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151981007"/>
+       <criterion comment="nss-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185016"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-pkcs11-devel is earlier than 0:3.19.1-5.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151981013"/>
+       <criterion comment="nss-pkcs11-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-sysinit is earlier than 0:3.19.1-5.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151981009"/>
+       <criterion comment="nss-sysinit is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-tools is earlier than 0:3.19.1-5.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151981005"/>
+       <criterion comment="nss-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nspr is earlier than 0:4.10.8-2.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151981017"/>
+       <criterion comment="nspr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151981018"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nspr-devel is earlier than 0:4.10.8-2.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151981015"/>
+       <criterion comment="nspr-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151981016"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-util is earlier than 0:3.19.1-2.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151981021"/>
+       <criterion comment="nss-util is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-util-devel is earlier than 0:3.19.1-2.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151981019"/>
+       <criterion comment="nss-util-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185006"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="nspr is earlier than 0:4.10.8-2.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151981027"/>
+       <criterion comment="nspr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151981018"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nspr-devel is earlier than 0:4.10.8-2.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151981028"/>
+       <criterion comment="nspr-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151981016"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss is earlier than 0:3.19.1-7.el7_1.2" test_ref="oval:com.redhat.rhsa:tst:20151981029"/>
+       <criterion comment="nss is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185018"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-devel is earlier than 0:3.19.1-7.el7_1.2" test_ref="oval:com.redhat.rhsa:tst:20151981030"/>
+       <criterion comment="nss-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185016"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-pkcs11-devel is earlier than 0:3.19.1-7.el7_1.2" test_ref="oval:com.redhat.rhsa:tst:20151981032"/>
+       <criterion comment="nss-pkcs11-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-sysinit is earlier than 0:3.19.1-7.el7_1.2" test_ref="oval:com.redhat.rhsa:tst:20151981031"/>
+       <criterion comment="nss-sysinit is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-tools is earlier than 0:3.19.1-7.el7_1.2" test_ref="oval:com.redhat.rhsa:tst:20151981033"/>
+       <criterion comment="nss-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-util is earlier than 0:3.19.1-4.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151981035"/>
+       <criterion comment="nss-util is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="nss-util-devel is earlier than 0:3.19.1-4.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151981034"/>
+       <criterion comment="nss-util-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151185006"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20151982" version="601">
+   <metadata>
+    <title>RHSA-2015:1982: firefox security update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+     <platform>Red Hat Enterprise Linux 6</platform>
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:1982-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-1982.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-4513" ref_url="https://access.redhat.com/security/cve/CVE-2015-4513" source="CVE"/>
+    <reference ref_id="CVE-2015-7188" ref_url="https://access.redhat.com/security/cve/CVE-2015-7188" source="CVE"/>
+    <reference ref_id="CVE-2015-7189" ref_url="https://access.redhat.com/security/cve/CVE-2015-7189" source="CVE"/>
+    <reference ref_id="CVE-2015-7193" ref_url="https://access.redhat.com/security/cve/CVE-2015-7193" source="CVE"/>
+    <reference ref_id="CVE-2015-7194" ref_url="https://access.redhat.com/security/cve/CVE-2015-7194" source="CVE"/>
+    <reference ref_id="CVE-2015-7196" ref_url="https://access.redhat.com/security/cve/CVE-2015-7196" source="CVE"/>
+    <reference ref_id="CVE-2015-7197" ref_url="https://access.redhat.com/security/cve/CVE-2015-7197" source="CVE"/>
+    <reference ref_id="CVE-2015-7198" ref_url="https://access.redhat.com/security/cve/CVE-2015-7198" source="CVE"/>
+    <description>Mozilla Firefox is an open source web browser. XULRunner provides the XUL
+Runtime environment for Mozilla Firefox.
+
+Several flaws were found in the processing of malformed web content. A web
+page containing malicious content could cause Firefox to crash or,
+potentially, execute arbitrary code with the privileges of the user running
+Firefox. (CVE-2015-4513, CVE-2015-7189, CVE-2015-7194, CVE-2015-7196,
+CVE-2015-7198, CVE-2015-7197)
+
+A same-origin policy bypass flaw was found in the way Firefox handled
+certain cross-origin resource sharing (CORS) requests. A web page
+containing malicious content could cause Firefox to disclose sensitive
+information. (CVE-2015-7193)
+
+A same-origin policy bypass flaw was found in the way Firefox handled URLs
+containing IP addresses with white-space characters. This could lead to
+cross-site scripting attacks. (CVE-2015-7188)
+
+Red Hat would like to thank the Mozilla project for reporting these issues.
+Upstream acknowledges Christian Holler, David Major, Jesse Ruderman, Tyson
+Smith, Boris Zbarsky, Randell Jesup, Olli Pettay, Karl Tomlinson, Jeff
+Walden, and Gary Kwong, Michał Bentkowski, Looben Yang, Shinto K Anto,
+Gustavo Grieco, Vytautas Staraitis, Ronald Crane, and Ehsan Akhgari as the
+original reporters of these issues.
+
+All Firefox users should upgrade to these updated packages, which contain
+Firefox version 38.4.0 ESR, which corrects these issues. After installing
+the update, Firefox must be restarted for the changes to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-11-04"/>
+     <updated date="2015-11-04"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4513">CVE-2015-4513</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7188">CVE-2015-7188</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7189">CVE-2015-7189</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7193">CVE-2015-7193</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7194">CVE-2015-7194</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7196">CVE-2015-7196</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7197">CVE-2015-7197</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7198">CVE-2015-7198</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1277332" id="1277332">CVE-2015-4513 Mozilla: Miscellaneous memory safety hazards (rv:38.4) (MFSA 2015-116)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1277343" id="1277343">CVE-2015-7188 Mozilla: Trailing whitespace in IP address hostnames can bypass same-origin policy (MFSA 2015-122)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1277344" id="1277344">CVE-2015-7189 Mozilla: Buffer overflow during image interactions in canvas (MFSA 2015-123)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1277346" id="1277346">CVE-2015-7193 Mozilla: CORS preflight is bypassed when non-standard Content-Type headers are received (MFSA 2015-127)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1277347" id="1277347">CVE-2015-7194 Mozilla: Memory corruption in libjar through zip files (MFSA 2015-128)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1277349" id="1277349">CVE-2015-7196 Mozilla: JavaScript garbage collection crash with Java applet (MFSA 2015-130)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1277350" id="1277350">CVE-2015-7198 Mozilla: Vulnerabilities found through code inspection (MFSA 2015-131)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1277351" id="1277351">CVE-2015-7197 Mozilla: Mixed content WebSocket policy bypass through workers (MFSA 2015-132)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20150046001"/>
+     <criterion comment="firefox is earlier than 0:38.4.0-1.el5_11" test_ref="oval:com.redhat.rhsa:tst:20151982002"/>
+     <criterion comment="firefox is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20150046003"/>
+    </criteria>
+    <criteria operator="AND">
+     <criterion comment="firefox is earlier than 0:38.4.0-1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20151982008"/>
+     <criterion comment="firefox is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150046013"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150001001"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150001002"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150001003"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150001004"/>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criterion comment="firefox is earlier than 0:38.4.0-1.el7_1" test_ref="oval:com.redhat.rhsa:tst:20151982014"/>
+     <criterion comment="firefox is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150046013"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 6 Client is installed" id="oval:com.redhat.rhsa:tst:20150001001" version="601">
@@ -39405,6 +40067,230 @@ have shut down, start them again for this update to take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150349010"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151943003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-doc is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" id="oval:com.redhat.rhsa:tst:20151977005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151977003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-devel is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" id="oval:com.redhat.rhsa:tst:20151977007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151977003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-virt is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" id="oval:com.redhat.rhsa:tst:20151977009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151977003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" id="oval:com.redhat.rhsa:tst:20151977011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151977003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug-devel is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" id="oval:com.redhat.rhsa:tst:20151977013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151977003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-virt-devel is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" id="oval:com.redhat.rhsa:tst:20151977015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151977003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace-devel is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" id="oval:com.redhat.rhsa:tst:20151977017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151977003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" id="oval:com.redhat.rhsa:tst:20151977019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151977003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt is earlier than 0:3.10.0-229.20.1.rt56.141.14.el7_1" id="oval:com.redhat.rhsa:tst:20151977021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151977003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-abi-whitelists is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-doc is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-headers is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-kdump is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-kdump-devel is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-devel is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="perf is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-debug-devel is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-debug is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-perf is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-bootwrapper is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150087006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-tools-libs is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978029" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150102014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-tools is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978031" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150102009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-tools-libs-devel is earlier than 0:3.10.0-229.20.1.el7" id="oval:com.redhat.rhsa:tst:20151978033" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150102011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151978003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreswan is earlier than 0:3.15-5.el7_1" id="oval:com.redhat.rhsa:tst:20151979005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151154005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151979003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-pkcs11-devel is earlier than 0:3.19.1-2.el5_11" id="oval:com.redhat.rhsa:tst:20151980002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151980003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-tools is earlier than 0:3.19.1-2.el5_11" id="oval:com.redhat.rhsa:tst:20151980004" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151980003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-devel is earlier than 0:3.19.1-2.el5_11" id="oval:com.redhat.rhsa:tst:20151980006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151980003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss is earlier than 0:3.19.1-2.el5_11" id="oval:com.redhat.rhsa:tst:20151980008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151980003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nspr is earlier than 0:4.10.8-2.el5_11" id="oval:com.redhat.rhsa:tst:20151980010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151980006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151980004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nspr is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20151980011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151980006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150046002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nspr-devel is earlier than 0:4.10.8-2.el5_11" id="oval:com.redhat.rhsa:tst:20151980012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151980007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151980004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nspr-devel is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20151980013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151980007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150046002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-tools is earlier than 0:3.19.1-5.el6_7" id="oval:com.redhat.rhsa:tst:20151981005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-devel is earlier than 0:3.19.1-5.el6_7" id="oval:com.redhat.rhsa:tst:20151981007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-sysinit is earlier than 0:3.19.1-5.el6_7" id="oval:com.redhat.rhsa:tst:20151981009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss is earlier than 0:3.19.1-5.el6_7" id="oval:com.redhat.rhsa:tst:20151981011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-pkcs11-devel is earlier than 0:3.19.1-5.el6_7" id="oval:com.redhat.rhsa:tst:20151981013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nspr-devel is earlier than 0:4.10.8-2.el6_7" id="oval:com.redhat.rhsa:tst:20151981015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151980007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nspr-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20151981016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151980007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nspr is earlier than 0:4.10.8-2.el6_7" id="oval:com.redhat.rhsa:tst:20151981017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151980006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nspr is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20151981018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151980006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-util-devel is earlier than 0:3.19.1-2.el6_7" id="oval:com.redhat.rhsa:tst:20151981019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-util is earlier than 0:3.19.1-2.el6_7" id="oval:com.redhat.rhsa:tst:20151981021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nspr is earlier than 0:4.10.8-2.el7_1" id="oval:com.redhat.rhsa:tst:20151981027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151980006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981007"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nspr-devel is earlier than 0:4.10.8-2.el7_1" id="oval:com.redhat.rhsa:tst:20151981028" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151980007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981007"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss is earlier than 0:3.19.1-7.el7_1.2" id="oval:com.redhat.rhsa:tst:20151981029" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981008"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-devel is earlier than 0:3.19.1-7.el7_1.2" id="oval:com.redhat.rhsa:tst:20151981030" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981008"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-sysinit is earlier than 0:3.19.1-7.el7_1.2" id="oval:com.redhat.rhsa:tst:20151981031" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981008"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-pkcs11-devel is earlier than 0:3.19.1-7.el7_1.2" id="oval:com.redhat.rhsa:tst:20151981032" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981008"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-tools is earlier than 0:3.19.1-7.el7_1.2" id="oval:com.redhat.rhsa:tst:20151981033" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981008"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-util-devel is earlier than 0:3.19.1-4.el7_1" id="oval:com.redhat.rhsa:tst:20151981034" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981009"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nss-util is earlier than 0:3.19.1-4.el7_1" id="oval:com.redhat.rhsa:tst:20151981035" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151981009"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is earlier than 0:38.4.0-1.el5_11" id="oval:com.redhat.rhsa:tst:20151982002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150046002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151982004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is earlier than 0:38.4.0-1.el6_7" id="oval:com.redhat.rhsa:tst:20151982008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150046002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151982006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is earlier than 0:38.4.0-1.el7_1" id="oval:com.redhat.rhsa:tst:20151982014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150046002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20151982008"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20150001001" version="601">
@@ -41573,6 +42459,12 @@ have shut down, start them again for this update to take effect.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20151930009" version="601">
    <red-def:name>sntp</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20151980006" version="601">
+   <red-def:name>nspr</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20151980007" version="601">
+   <red-def:name>nspr-devel</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20150001001" version="601">
@@ -42648,6 +43540,48 @@ have shut down, start them again for this update to take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151943003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">10:1.5.3-86.el7_1.8</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151977003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.10.0-229.20.1.rt56.141.14.el7_1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151978003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.10.0-229.20.1.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151979003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.15-5.el7_1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151980003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.19.1-2.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151980004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:4.10.8-2.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151981003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.19.1-5.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151981004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:4.10.8-2.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151981005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.19.1-2.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151981007" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:4.10.8-2.el7_1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151981008" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.19.1-7.el7_1.2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151981009" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.19.1-4.el7_1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151982004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:38.4.0-1.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151982006" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:38.4.0-1.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20151982008" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:38.4.0-1.el7_1</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
