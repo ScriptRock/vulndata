@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-11-18T23:10:02</oval:timestamp>
+  <oval:timestamp>2015-11-19T00:08:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -29868,6 +29868,62 @@ correct these issues and add these enhancements.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152108" version="601">
+   <metadata>
+    <title>RHSA-2015:2108: cpio security and bug fix update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2108-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2108.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-9112" ref_url="https://access.redhat.com/security/cve/CVE-2014-9112" source="CVE"/>
+    <description>The cpio packages provide the GNU cpio utility for creating and extracting
+archives, or copying files from one place to another.
+
+A heap-based buffer overflow flaw was found in cpio's list_file() function.
+An attacker could provide a specially crafted archive that, when processed
+by cpio, would crash cpio, or potentially lead to arbitrary code execution.
+(CVE-2014-9112)
+
+This update fixes the following bugs:
+
+* Previously, during archive creation, cpio internals did not detect a
+read() system call failure. Based on the premise that the call succeeded,
+cpio terminated unexpectedly with a segmentation fault without processing
+further files. The underlying source code has been patched, and an archive
+is now created successfully. (BZ#1138148)
+
+* Previously, running the cpio command without parameters on Red Hat
+Enterprise Linux 7 with Russian as the default language resulted in an
+error message that was not accurate in Russian due to an error in spelling.
+This has been corrected and the Russian error message is spelled correctly.
+(BZ#1075513)
+
+All cpio users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-05-21"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-9112">CVE-2014-9112</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1075513" id="1075513">[PATCH] Typo in ru.po</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1167571" id="1167571">CVE-2014-9112 cpio: heap-based buffer overflow flaw in list_file()</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="cpio is earlier than 0:2.11-24.el7" test_ref="oval:com.redhat.rhsa:tst:20152108005"/>
+    <criterion comment="cpio is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152108006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20152111" version="601">
    <metadata>
     <title>RHSA-2015:2111: grep security and bug fix update (Low)</title>
@@ -29925,6 +29981,127 @@ contain backported patches to correct these issues.</description>
      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152131" version="601">
+   <metadata>
+    <title>RHSA-2015:2131: openldap security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2131-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2131.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3276" ref_url="https://access.redhat.com/security/cve/CVE-2015-3276" source="CVE"/>
+    <description>OpenLDAP is an open-source suite of Lightweight Directory Access Protocol
+(LDAP) applications and development tools. LDAP is a set of protocols used
+to access and maintain distributed directory information services over an
+IP network. The openldap packages contain configuration files, libraries,
+and documentation for OpenLDAP.
+
+A flaw was found in the way OpenLDAP parsed OpenSSL-style cipher strings.
+As a result, OpenLDAP could potentially use ciphers that were not intended
+to be enabled. (CVE-2015-3276)
+
+This issue was discovered by Martin Poole of the Red Hat Software
+Maintenance Engineering group.
+
+The openldap packages have been upgraded to upstream version 2.4.40, which
+provides a number of bug fixes and one enhancement over the previous
+version:
+
+* The ORDERING matching rules have been added to the ppolicy attribute type
+descriptions.
+* The server no longer terminates unexpectedly when processing SRV records.
+* Missing objectClass information has been added, which enables the user to
+modify the front-end configuration by standard means.
+
+(BZ#1147982)
+
+This update also fixes the following bugs:
+
+* Previously, OpenLDAP did not properly handle a number of simultaneous
+updates. As a consequence, sending a number of parallel update requests to
+the server could cause a deadlock. With this update, a superfluous locking
+mechanism causing the deadlock has been removed, thus fixing the bug.
+(BZ#1125152)
+
+* The httpd service sometimes terminated unexpectedly with a segmentation
+fault on the libldap library unload. The underlying source code has been
+modified to prevent a bad memory access error that caused the bug to occur.
+As a result, httpd no longer crashes in this situation. (BZ#1158005)
+
+* After upgrading the system from Red Hat Enterprise Linux 6 to Red Hat
+Enterprise Linux 7, symbolic links to certain libraries unexpectedly
+pointed to locations belonging to the openldap-devel package. If the user
+uninstalled openldap-devel, the symbolic links were broken and the &quot;rpm -V
+openldap&quot; command sometimes produced errors. With this update, the symbolic
+links no longer get broken in the described situation. If the user
+downgrades openldap to version 2.4.39-6 or earlier, the symbolic links
+might break. After such downgrade, it is recommended to verify that the
+symbolic links did not break. To do this, make sure the yum-plugin-verify
+package is installed and obtain the target libraries by running the &quot;rpm -V
+openldap&quot; or &quot;yum verify openldap&quot; command. (BZ#1230263)
+
+In addition, this update adds the following enhancement:
+
+* OpenLDAP clients now automatically choose the Network Security Services
+(NSS) default cipher suites for communication with the server. It is no
+longer necessary to maintain the default cipher suites manually in the
+OpenLDAP source code. (BZ#1245279)
+
+All openldap users are advised to upgrade to these updated packages, which
+correct these issues and add this enhancement.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-05-26"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3276">CVE-2015-3276</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1147982" id="1147982">Rebase openldap to 2.4.40</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1158005" id="1158005">OpenLDAP crash in NSS shutdown handling</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1174634" id="1174634">pwdChecker library requires version in pwdCheckModule attribute</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1174723" id="1174723">values for pwdChecker are not set to default values</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1175415" id="1175415">openldap: crash in ldap_domain2hostlist when processing SRV records</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1184585" id="1184585">slaptest doesn't convert perlModuleConfig lines</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1209229" id="1209229">openldap-servers leverages 'find' from findutils which is not a dep of the rpm</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1226600" id="1226600">olcDatabase in olcFrontend attribute incorrect/faulty</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1230263" id="1230263">rpm -V openldap complains</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1231228" id="1231228">automount via ldap with TLS/SSL support is not working</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1238322" id="1238322">CVE-2015-3276 openldap: incorrect multi-keyword mode cipherstring parsing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1245279" id="1245279">OpenLDAP doesn't use sane (or default) cipher order</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="openldap is earlier than 0:2.4.40-8.el7" test_ref="oval:com.redhat.rhsa:tst:20152131011"/>
+      <criterion comment="openldap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151840023"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openldap-clients is earlier than 0:2.4.40-8.el7" test_ref="oval:com.redhat.rhsa:tst:20152131009"/>
+      <criterion comment="openldap-clients is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151840027"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openldap-devel is earlier than 0:2.4.40-8.el7" test_ref="oval:com.redhat.rhsa:tst:20152131005"/>
+      <criterion comment="openldap-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151840021"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openldap-servers is earlier than 0:2.4.40-8.el7" test_ref="oval:com.redhat.rhsa:tst:20152131013"/>
+      <criterion comment="openldap-servers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151840029"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openldap-servers-sql is earlier than 0:2.4.40-8.el7" test_ref="oval:com.redhat.rhsa:tst:20152131007"/>
+      <criterion comment="openldap-servers-sql is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151840025"/>
+     </criteria>
     </criteria>
    </criteria>
   </definition>
@@ -30815,6 +30992,106 @@ enhancements.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152233" version="601">
+   <metadata>
+    <title>RHSA-2015:2233: tigervnc security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2233-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2233.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-8240" ref_url="https://access.redhat.com/security/cve/CVE-2014-8240" source="CVE"/>
+    <reference ref_id="CVE-2014-8241" ref_url="https://access.redhat.com/security/cve/CVE-2014-8241" source="CVE"/>
+    <description>Virtual Network Computing (VNC) is a remote display system which allows
+users to view a computing desktop environment not only on the machine where
+it is running, but from anywhere on the Internet and from a wide variety of
+machine architectures. TigerVNC is a suite of VNC servers and clients.
+The tigervnc packages contain a client which allows users to connect to
+other desktops running a VNC server.
+
+An integer overflow flaw, leading to a heap-based buffer overflow, was
+found in the way TigerVNC handled screen sizes. A malicious VNC server
+could use this flaw to cause a client to crash or, potentially, execute
+arbitrary code on the client. (CVE-2014-8240)
+
+A NULL pointer dereference flaw was found in TigerVNC's XRegion.
+A malicious VNC server could use this flaw to cause a client to crash.
+(CVE-2014-8241)
+
+The tigervnc packages have been upgraded to upstream version 1.3.1, which
+provides a number of bug fixes and enhancements over the previous version.
+(BZ#1199453)
+
+This update also fixes the following bug:
+
+* The position of the mouse cursor in the VNC session was not correctly
+communicated to the VNC viewer, resulting in cursor misplacement.
+The method of displaying the remote cursor has been changed, and cursor
+movements on the VNC server are now accurately reflected on the VNC client.
+(BZ#1100661)
+
+All tigervnc users are advised to upgrade to these updated packages, which
+correct these issues and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-05-15"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8240">CVE-2014-8240</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8241">CVE-2014-8241</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1072733" id="1072733">vnc black screen and error 'XRequest.130: BadValue (integer parameter out of range for operation) 0x400'</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1119640" id="1119640">VNC-EXTENSION missed on Xorg server regeneration</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1151307" id="1151307">CVE-2014-8240 tigervnc: integer overflow flaw, leading to a heap-based buffer overflow in screen size handling</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1151312" id="1151312">CVE-2014-8241 tigervnc: NULL pointer dereference flaw in XRegion</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1162722" id="1162722">tigervnc-server has no IPV6 support</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1181287" id="1181287">gnome 3 session inside vncserver changes initial resolution instead of using what was specified from &quot;-geometry</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1194898" id="1194898">Rebuild tigervnc against rebased xserver in 7.2</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1195266" id="1195266">The display number is not required in the file name for VNC</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1199437" id="1199437">Enable Xinerama extension</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1199453" id="1199453">Re-base to tigervnc-1.3.x</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="tigervnc is earlier than 0:1.3.1-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152233007"/>
+      <criterion comment="tigervnc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152233008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tigervnc-icons is earlier than 0:1.3.1-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152233013"/>
+      <criterion comment="tigervnc-icons is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152233014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tigervnc-license is earlier than 0:1.3.1-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152233015"/>
+      <criterion comment="tigervnc-license is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152233016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tigervnc-server is earlier than 0:1.3.1-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152233005"/>
+      <criterion comment="tigervnc-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152233006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tigervnc-server-applet is earlier than 0:1.3.1-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152233017"/>
+      <criterion comment="tigervnc-server-applet is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152233018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tigervnc-server-minimal is earlier than 0:1.3.1-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152233009"/>
+      <criterion comment="tigervnc-server-minimal is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152233010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tigervnc-server-module is earlier than 0:1.3.1-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152233011"/>
+      <criterion comment="tigervnc-server-module is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152233012"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20152237" version="601">
    <metadata>
     <title>RHSA-2015:2237: rest security update (Low)</title>
@@ -30981,6 +31258,486 @@ correct these issues and add these enhancements.</description>
      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152248" version="601">
+   <metadata>
+    <title>RHSA-2015:2248: netcf security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2248-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2248.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-8119" ref_url="https://access.redhat.com/security/cve/CVE-2014-8119" source="CVE"/>
+    <description>The netcf packages contain a library for modifying the network
+configuration of a system. Network configuration is expressed in a
+platform-independent XML format, which netcf translates into changes to the
+system's &quot;native&quot; network configuration files.
+
+A denial of service flaw was found in netcf. A specially crafted interface
+name could cause an application using netcf (such as the libvirt daemon) to
+crash. (CVE-2014-8119)
+
+This issue was discovered by Hao Liu of Red Hat.
+
+The netcf packages have been upgraded to upstream version 0.2.8, which
+provides a number of bug fixes and enhancements over the previous version.
+(BZ#1206680)
+
+Users of netcf are advised to upgrade to these updated packages, which fix
+these bugs and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-05-20"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8119">CVE-2014-8119</cve>
+     <bugzilla href="https://bugzilla.redhat.com/761246" id="761246">Bad parsing of network-scripts/ifcfg-xxxx files.</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1090011" id="1090011">Need to limit names of new interfaces to IFNAMSIZ</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1113983" id="1113983">netcf should allow interfaces to be configured with both DHCPv4 and static IPv4 addresses at the same time</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1159000" id="1159000">netcf ignores any IPv4 address past the first one</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1170941" id="1170941">Remove extraneous single quotes from IPV6ADDR_SECONDARIES</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1172176" id="1172176">CVE-2014-8119 netcf: augeas path expression injection via interface name</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1206680" id="1206680">rebase netcf for RHEL7.2</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="netcf is earlier than 0:0.2.8-1.el7" test_ref="oval:com.redhat.rhsa:tst:20152248005"/>
+      <criterion comment="netcf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152248006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="netcf-devel is earlier than 0:0.2.8-1.el7" test_ref="oval:com.redhat.rhsa:tst:20152248007"/>
+      <criterion comment="netcf-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152248008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="netcf-libs is earlier than 0:0.2.8-1.el7" test_ref="oval:com.redhat.rhsa:tst:20152248009"/>
+      <criterion comment="netcf-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152248010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152290" version="601">
+   <metadata>
+    <title>RHSA-2015:2290: pcs security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2290-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2290.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3225" ref_url="https://access.redhat.com/security/cve/CVE-2015-3225" source="CVE"/>
+    <description>The pcs package provides a configuration tool for Corosync and Pacemaker.
+It permits users to easily view, modify and create Pacemaker based
+clusters. The pcs package includes Rack, which provides a minimal interface
+between webservers that support Ruby and Ruby frameworks.
+
+A flaw was found in a way Rack processed parameters of incoming requests.
+An attacker could use this flaw to send a crafted request that would cause
+an application using Rack to crash. (CVE-2015-3225)
+
+Red Hat would like to thank Ruby upstream developers for reporting this.
+Upstream acknowledges Tomek Rabczak from the NCC Group as the original
+reporter.
+
+The pcs package has been upgraded to upstream version 0.9.143, which
+provides a number of bug fixes and enhancements over the previous version.
+(BZ#1198265)
+
+The following enhancements are described in more detail in the Red Hat
+Enterprise Linux 7.2 Release Notes, linked to from the References section:
+
+* The pcs resource move and pcs resource ban commands now display a warning
+message to clarify the commands' behavior (BZ#1201452)
+
+* New command to move a Pacemaker resource to its preferred node
+(BZ#1122818)
+
+This update also fixes the following bugs:
+
+* Before this update, a bug caused location, ordering, and colocation
+constraints related to a resource group to be removed when removing any
+resource from that group. This bug has been fixed, and the constraints are
+now preserved until the group has no resources left, and is removed.
+(BZ#1158537)
+
+* Previously, when a user disabled a resource clone or multi-state
+resource, and then later enabled a primitive resource within it, the clone
+or multi-state resource remained disabled. With this update, enabling a
+resource within a disabled clone or multi-state resource enables it.
+(BZ#1218979)
+
+* When the web UI displayed a list of resource attributes, a bug caused
+the list to be truncated at the first &quot;=&quot; character. This update fixes the
+bug and now the web UI displays lists of resource attributes correctly.
+(BZ#1243579)
+
+* The documentation for the &quot;pcs stonith confirm&quot; command was not clear.
+This could lead to incorrect usage of the command, which could in turn
+cause data corruption. With this update, the documentation has been
+improved and the &quot;pcs stonith confirm&quot; command is now more clearly
+explained. (BZ#1245264)
+
+* Previously, if there were any unauthenticated nodes, creating a new
+cluster, adding a node to an existing cluster, or adding a cluster to the
+web UI failed with the message &quot;Node is not authenticated&quot;. With this
+update, when the web UI detects a problem with authentication, the web UI
+displays a dialog to authenticate nodes as necessary. (BZ#1158569)
+
+* Previously, the web UI displayed only primitive resources. Thus there was
+no way to set attributes, constraints and other properties separately for a
+parent resource and a child resource. This has now been fixed, and
+resources are displayed in a tree structure, meaning all resource elements
+can be viewed and edited independently. (BZ#1189857)
+
+In addition, this update adds the following enhancements:
+
+* A dashboard has been added which shows the status of clusters in the web
+UI. Previously, it was not possible to view all important information about
+clusters in one place. Now, a dashboard showing the status of clusters has
+been added to the main page of the web UI. (BZ#1158566)
+
+* With this update, the pcsd daemon automatically synchronizes pcsd
+configuration across a cluster. This enables the web UI to be run from any
+node, allowing management even if any particular node is down. (BZ#1158577)
+
+* The web UI can now be used to set permissions for users and groups on a
+cluster. This allows users and groups to have their access restricted to
+certain operations on certain clusters. (BZ#1158571)
+
+All pcs users are advised to upgrade to this updated package, which
+corrects these issues and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-06-08"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3225">CVE-2015-3225</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1121791" id="1121791">Provide documentation of batch-limit and other pacemaker properties in man page or pcs help</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1134426" id="1134426">pcs needs a better parser for corosync.conf</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1148863" id="1148863">Pcsd backward/forward compatibility issues</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1158491" id="1158491">'pcs cluster status' is documented to be an alias to 'pcs status cluster' but has different output</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1158537" id="1158537">Removing a resource from a group also removes constraints mentioning that group</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1158571" id="1158571">user and group support in gui - permissions to clusters managed by pcsd</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1163671" id="1163671">[RFE] Default corosync configuration should log to file</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1163682" id="1163682">nodes authentication stops if failed on one node</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1165803" id="1165803">pcs CLI should recognize and act upon &quot;fail due to lack of authentication&quot; state if/as suitable (e.g. for &quot;pcs config restore&quot;)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1166160" id="1166160">'pcs acl role create' does not check syntax properly</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1170205" id="1170205">pcs cluster auth --force doesn't overwrite /var/lib/pcsd/tokens if its content is corrupt</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1175400" id="1175400">pcs resource op add creates duplicate op entires</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1176687" id="1176687">Pacemaker resource defaults should show up in 'pcs config' output</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1182119" id="1182119">A cloned resource banned on one of the nodes is shown as Inactive in GUI</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1182793" id="1182793">When attempting to add a duplicate fence level we get a non-useful error message</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1182986" id="1182986">Unable to find out value for require-all parameter for ordering constraint with clones</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1183752" id="1183752">Unable to delete VirtualDomain resource remote-node when it has configured some constraints</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1185096" id="1185096">debug-promote implementation</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1186692" id="1186692">cluster node removal should verify possible loss of quorum</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1187320" id="1187320">Uncloning a non-cloned resource produces invalid CIB</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1187571" id="1187571">ungrouping a resource from a cloned group produces invalid CIB when other resources exist in that group</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1188571" id="1188571">The --wait functionality implementation needs an overhaul</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1189857" id="1189857">need a tree view for clones/MS/groups in the resource panel [GUI]</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1196412" id="1196412">pcs cluster start should go to pcsd if user is not root</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1197758" id="1197758">pcs does not inform about incorrect command usage (pcs constraint order set)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1198222" id="1198222">pcsd: GUI fails if orphaned resource is present in a cluster</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1198265" id="1198265">PCS Rebase bug for 7.2</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1198274" id="1198274">pcsd: don't automatically use --force everytime a resource is being removed</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1198640" id="1198640">[WebUI] spaces not allowed in resource agent options fields</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1199073" id="1199073">creating a resource name colliding with an existing group/clone/master ID needs better error message</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1202457" id="1202457">Referencing a non-existent ACL role should error out more gracefully</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1204880" id="1204880">pcs: stonith level value checking</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1205653" id="1205653">pcsd gui is not able to remove constraints and standby/unstandby nodes of remote cluster</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1206214" id="1206214">Formatting of longdesc metadata of resource agent is destroyed when using &quot;pcs resource describe&quot;</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1206219" id="1206219">pcs stonith describe only lists parameters of fence agent, but not description</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1207805" id="1207805">Need a way for pcs to clear out auth tokens</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1212904" id="1212904">better integration with standalone (unbundled) clufter package for cluster configuration conversion</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1213429" id="1213429">Cluster request fails on first node if this is not authorized</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1215198" id="1215198">pcsd: GUI ignores timeout value in fence_xvm agent form</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1219574" id="1219574">[gui] resource optional arguments: quoted strings missing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1231987" id="1231987">pcs ought to require psmisc package (hidden dependency for killall execution)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1232292" id="1232292">CVE-2015-3225 rubygem-rack: Potential Denial of Service Vulnerability in Rack normalize_params()</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1235022" id="1235022">Nagios metadata is missing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1247818" id="1247818">pcs depends on initscripts</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1250720" id="1250720">traceback when running 'pcs resource enable clvmd --wait'</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1253491" id="1253491">pcs status pcsd shows &quot;Unable to authenticate&quot; on serial console</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1257369" id="1257369">pcs should print the output of crm_resource from pcs resource cleanup commands</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1258619" id="1258619">Ruby traceback on pcsd startup -  /webrick.rb:48:in `shutdown': undefined method `shutdown'</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1265425" id="1265425">pcs is not parsing the output of crm_node properly</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1268801" id="1268801">A change in &quot;crm_resource --set-parameter is-managed&quot; introduces regression for Clone and M/S resources</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="pcs is earlier than 0:0.9.143-15.el7" test_ref="oval:com.redhat.rhsa:tst:20152290005"/>
+    <criterion comment="pcs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150980006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152315" version="601">
+   <metadata>
+    <title>RHSA-2015:2315: NetworkManager security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2315-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2315.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-0272" ref_url="https://access.redhat.com/security/cve/CVE-2015-0272" source="CVE"/>
+    <reference ref_id="CVE-2015-2924" ref_url="https://access.redhat.com/security/cve/CVE-2015-2924" source="CVE"/>
+    <description>NetworkManager is a system network service that manages network devices
+and connections.
+
+It was discovered that NetworkManager would set device MTUs based on MTU
+values received in IPv6 RAs (Router Advertisements), without sanity
+checking the MTU value first. A remote attacker could exploit this flaw to
+create a denial of service attack, by sending a specially crafted IPv6 RA
+packet to disturb IPv6 communication. (CVE-2015-0272)
+
+A flaw was found in the way NetworkManager handled router advertisements.
+An unprivileged user on a local network could use IPv6 Neighbor Discovery
+ICMP to broadcast a non-route with a low hop limit, causing machines to
+lower the hop limit on existing IPv6 routes. If this limit is small enough,
+IPv6 packets would be dropped before reaching the final destination.
+(CVE-2015-2924)
+
+The network-manager-applet and NetworkManager-libreswan packages have been
+upgraded to upstream versions 1.0.6, and provide a number of bug fixes and
+enhancements over the previous versions. (BZ#1177582, BZ#1243057)
+
+Bugs:
+
+* It was not previously possible to set the Wi-Fi band to the &quot;a&quot; or &quot;bg&quot;
+values to lock to a specific frequency band. NetworkManager has been fixed,
+and it now sets the wpa_supplicant's &quot;freq_list&quot; option correctly, which
+enables proper Wi-Fi band locking. (BZ#1254461)
+
+* NetworkManager immediately failed activation of devices that did not have
+a carrier early in the boot process. The legacy network.service then
+reported activation failure. Now, NetworkManager has a grace period during
+which it waits for the carrier to appear. Devices that have a carrier down
+for a short time on system startup no longer cause the legacy
+network.service to fail. (BZ#1079353)
+
+* NetworkManager brought down a team device if the teamd service managing
+it exited unexpectedly, and the team device was deactivated. Now,
+NetworkManager respawns the teamd instances that disappear and is able to
+recover from a teamd failure avoiding disruption of the team device
+operation. (BZ#1145988)
+
+* NetworkManager did not send the FQDN DHCP option even if host name was
+set to FQDN. Consequently, Dynamic DNS (DDNS) setups failed to update the
+DNS records for clients running NetworkManager. Now, NetworkManager sends
+the FQDN option with DHCP requests, and the DHCP server is able to create
+DNS records for such clients. (BZ#1212597)
+
+* The command-line client was not validating the vlan.flags property
+correctly, and a spurious warning message was displayed when the nmcli tool
+worked with VLAN connections. The validation routine has been fixed, and
+the warning message no longer appears. (BZ#1244048)
+
+* NetworkManager did not propagate a media access control (MAC) address
+change from a bonding interface to a VLAN interface on top of it.
+Consequently, a VLAN interface on top of a bond used an incorrect MAC
+address. Now, NetworkManager synchronizes the addresses correctly.
+(BZ#1264322)
+
+Enhancements:
+
+* IPv6 Privacy extensions are now enabled by default. NetworkManager checks
+the per-network configuration files, NetworkManager.conf, and then falls
+back to &quot;/proc/sys/net/ipv6/conf/default/use_tempaddr&quot; to determine and set
+IPv6 privacy settings at device activation. (BZ#1187525)
+
+* The NetworkManager command-line tool, nmcli, now allows setting the
+wake-on-lan property to 0 (&quot;none&quot;, &quot;disable&quot;, &quot;disabled&quot;). (BZ#1260584)
+
+* NetworkManager now provides information about metered connections.
+(BZ#1200452)
+
+* NetworkManager daemon and the connection editor now support setting the
+Maximum Transmission Unit (MTU) of a bond. It is now possible to change MTU
+of a bond interface in a GUI. (BZ#1177582, BZ#1177860)
+
+* NetworkManager daemon and the connection editor now support setting the
+MTU of a team, allowing to change MTU of a teaming interface. (BZ#1255927)
+
+NetworkManager users are advised to upgrade to these updated packages,
+which correct these issues and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-06-15"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-0272">CVE-2015-0272</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-2924">CVE-2015-2924</cve>
+     <bugzilla href="https://bugzilla.redhat.com/918692" id="918692">PIN/Password dialog for Mobile Broadband forces user to enter password, even if it's not needed</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1062301" id="1062301">NetworkManager should provide a way to reload a configuration and to refresh resolv.conf if necessary</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1139536" id="1139536">[RFE] Improve handling of DEVICE and HWADDR in nm-connection-editor</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1141417" id="1141417">Persistent wake on lan across reboot</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1168388" id="1168388">veth device goes down when ipv4 dhcp lease expires</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1168657" id="1168657">nmcli hangs when deleting profile two times</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1182575" id="1182575">[nmcli] Can't add certificate blob via nmcli as description states</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1183015" id="1183015">ipv6.method shared prevents connection from being upped</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1183444" id="1183444">Attaching a team device to a bridge doesn't work.</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1187525" id="1187525">Enable privacy extensions by default</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1192132" id="1192132">CVE-2015-0272 kernel/NetworkManager: remote DoS using IPv6 RA with bogus MTU</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1200451" id="1200451">feature request: Indicate 2ghz and 5ghz wifi device capabilities</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1200452" id="1200452">feature request:  provide information about metered connections</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1201497" id="1201497">[PATCH] fix a configure-and-quit=yes bug when DHCP client ID is set and hostname is not given</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1207730" id="1207730">Continuous IPv6 router solicitation loop</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1209902" id="1209902">CVE-2015-2924 NetworkManager: denial of service (DoS) attack against IPv6 network stacks due to improper handling of Router Advertisements</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1211133" id="1211133">high cpu use with many IPv6 cloned routes</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1211859" id="1211859">_nl_get_vtable: assertion 'vtable.handle' failed</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1229471" id="1229471">[bluez5] add DUN support to nm-connection-editor</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1238840" id="1238840">libreswan vpn is not working</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1243057" id="1243057">Update to NetworkManager-openswan/libreswan 1.0.6 or later</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1244293" id="1244293">NetworkManager support for secondary IPv6 addresses</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1246496" id="1246496">dhclient is terminated and won't start after restart NetworkManager</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1250019" id="1250019">NetworkManager doesn't handle MTU correctly</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1250723" id="1250723">Updating IPv4 address lifetime causes VPN disconnection</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1251954" id="1251954">Can activate a DUN connection only once</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1253744" id="1253744">segfault while trying to connect to VPN</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1254089" id="1254089">Netlink error at 'link_change' function when net interface dynamic plug out and plug in on Xen</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1254461" id="1254461">Wi-Fi band-locking doesn't work</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1255735" id="1255735">Dialog run by nm-connection-editor --create --type=vlan doesn't offer connections (eg bond) as parents</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1256772" id="1256772">NetworkManager quits prematurely with &quot;configure-and-quit&quot;</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1261428" id="1261428">ipv6 dns set even if ipv6.ignore-auto-dns set yes</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1264024" id="1264024">no network on xen guests: Error: Connection activation failed: No suitable device found for this connection.</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1264089" id="1264089">cannot add adsl type connection</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1264361" id="1264361">backport upstream bugfix to platform handling links in different netns (IFLA_LINK_NETNSID)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1267326" id="1267326">libnm-gtk: fix a possible crash in functions handling password entry</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1267330" id="1267330">libnm-gtk: remove underscore from tooltip and use symbolic icons for password location icons</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1267462" id="1267462">NetworkManager segfault on_bss_proxy_acquired</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1267672" id="1267672">fix crash in nmtui when requesting password</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1268030" id="1268030">20 seconds timeout is not sufficient for VPN password entry</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1271973" id="1271973">no more vpn dialog after previous canceling</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1272023" id="1272023">vpn password request still visible after timeout (3 mins)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1272974" id="1272974">Fix regression detecting s390 CTC devices</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="ModemManager is earlier than 0:1.1.0-8.git20130913.el7" test_ref="oval:com.redhat.rhsa:tst:20152315009"/>
+      <criterion comment="ModemManager is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ModemManager-devel is earlier than 0:1.1.0-8.git20130913.el7" test_ref="oval:com.redhat.rhsa:tst:20152315005"/>
+      <criterion comment="ModemManager-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ModemManager-glib is earlier than 0:1.1.0-8.git20130913.el7" test_ref="oval:com.redhat.rhsa:tst:20152315007"/>
+      <criterion comment="ModemManager-glib is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ModemManager-glib-devel is earlier than 0:1.1.0-8.git20130913.el7" test_ref="oval:com.redhat.rhsa:tst:20152315013"/>
+      <criterion comment="ModemManager-glib-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ModemManager-vala is earlier than 0:1.1.0-8.git20130913.el7" test_ref="oval:com.redhat.rhsa:tst:20152315011"/>
+      <criterion comment="ModemManager-vala is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libnm-gtk is earlier than 0:1.0.6-2.el7" test_ref="oval:com.redhat.rhsa:tst:20152315019"/>
+      <criterion comment="libnm-gtk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libnm-gtk-devel is earlier than 0:1.0.6-2.el7" test_ref="oval:com.redhat.rhsa:tst:20152315017"/>
+      <criterion comment="libnm-gtk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="network-manager-applet is earlier than 0:1.0.6-2.el7" test_ref="oval:com.redhat.rhsa:tst:20152315021"/>
+      <criterion comment="network-manager-applet is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nm-connection-editor is earlier than 0:1.0.6-2.el7" test_ref="oval:com.redhat.rhsa:tst:20152315015"/>
+      <criterion comment="nm-connection-editor is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-libreswan is earlier than 0:1.0.6-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152315025"/>
+      <criterion comment="NetworkManager-libreswan is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315026"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-libreswan-gnome is earlier than 0:1.0.6-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152315023"/>
+      <criterion comment="NetworkManager-libreswan-gnome is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315035"/>
+      <criterion comment="NetworkManager is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315036"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-adsl is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315029"/>
+      <criterion comment="NetworkManager-adsl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315030"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-bluetooth is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315051"/>
+      <criterion comment="NetworkManager-bluetooth is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315052"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-config-routing-rules is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315053"/>
+      <criterion comment="NetworkManager-config-routing-rules is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315054"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-config-server is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315047"/>
+      <criterion comment="NetworkManager-config-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315048"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-devel is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315031"/>
+      <criterion comment="NetworkManager-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315032"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-glib is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315049"/>
+      <criterion comment="NetworkManager-glib is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315050"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-glib-devel is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315037"/>
+      <criterion comment="NetworkManager-glib-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315038"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-libnm is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315039"/>
+      <criterion comment="NetworkManager-libnm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315040"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-libnm-devel is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315027"/>
+      <criterion comment="NetworkManager-libnm-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315028"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-team is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315045"/>
+      <criterion comment="NetworkManager-team is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315046"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-tui is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315043"/>
+      <criterion comment="NetworkManager-tui is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315044"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-wifi is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315041"/>
+      <criterion comment="NetworkManager-wifi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315042"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="NetworkManager-wwan is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315033"/>
+      <criterion comment="NetworkManager-wwan is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315034"/>
+     </criteria>
     </criteria>
    </criteria>
   </definition>
@@ -42874,9 +43631,37 @@ correct these issues and add these enhancements.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150425006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152088003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="cpio is earlier than 0:2.11-24.el7" id="oval:com.redhat.rhsa:tst:20152108005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152108005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152108003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="cpio is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152108006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152108005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="grep is earlier than 0:2.20-2.el7" id="oval:com.redhat.rhsa:tst:20152111005" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151447005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152111003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openldap-devel is earlier than 0:2.4.40-8.el7" id="oval:com.redhat.rhsa:tst:20152131005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151840006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152131003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openldap-servers-sql is earlier than 0:2.4.40-8.el7" id="oval:com.redhat.rhsa:tst:20152131007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151840008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152131003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openldap-clients is earlier than 0:2.4.40-8.el7" id="oval:com.redhat.rhsa:tst:20152131009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151840005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152131003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openldap is earlier than 0:2.4.40-8.el7" id="oval:com.redhat.rhsa:tst:20152131011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151840002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152131003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openldap-servers is earlier than 0:2.4.40-8.el7" id="oval:com.redhat.rhsa:tst:20152131013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151840003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152131003"/>
   </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="libssh2 is earlier than 0:1.4.3-10.el7" id="oval:com.redhat.rhsa:tst:20152140005" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152140005"/>
@@ -43078,6 +43863,62 @@ correct these issues and add these enhancements.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151459005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152231003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-server is earlier than 0:1.3.1-3.el7" id="oval:com.redhat.rhsa:tst:20152233005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152233003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-server is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152233006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc is earlier than 0:1.3.1-3.el7" id="oval:com.redhat.rhsa:tst:20152233007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152233003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152233008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-server-minimal is earlier than 0:1.3.1-3.el7" id="oval:com.redhat.rhsa:tst:20152233009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152233003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-server-minimal is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152233010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-server-module is earlier than 0:1.3.1-3.el7" id="oval:com.redhat.rhsa:tst:20152233011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152233003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-server-module is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152233012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-icons is earlier than 0:1.3.1-3.el7" id="oval:com.redhat.rhsa:tst:20152233013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152233003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-icons is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152233014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-license is earlier than 0:1.3.1-3.el7" id="oval:com.redhat.rhsa:tst:20152233015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152233003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-license is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152233016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-server-applet is earlier than 0:1.3.1-3.el7" id="oval:com.redhat.rhsa:tst:20152233017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152233003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tigervnc-server-applet is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152233018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152233011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="rest-devel is earlier than 0:0.7.92-3.el7" id="oval:com.redhat.rhsa:tst:20152237005" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152237005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152237003"/>
@@ -43100,6 +43941,234 @@ correct these issues and add these enhancements.</description>
   </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="chrony is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152241006" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152241005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="netcf is earlier than 0:0.2.8-1.el7" id="oval:com.redhat.rhsa:tst:20152248005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152248005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152248003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="netcf is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152248006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152248005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="netcf-devel is earlier than 0:0.2.8-1.el7" id="oval:com.redhat.rhsa:tst:20152248007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152248006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152248003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="netcf-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152248008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152248006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="netcf-libs is earlier than 0:0.2.8-1.el7" id="oval:com.redhat.rhsa:tst:20152248009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152248007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152248003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="netcf-libs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152248010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152248007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pcs is earlier than 0:0.9.143-15.el7" id="oval:com.redhat.rhsa:tst:20152290005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150980005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152290003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ModemManager-devel is earlier than 0:1.1.0-8.git20130913.el7" id="oval:com.redhat.rhsa:tst:20152315005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ModemManager-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ModemManager-glib is earlier than 0:1.1.0-8.git20130913.el7" id="oval:com.redhat.rhsa:tst:20152315007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ModemManager-glib is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ModemManager is earlier than 0:1.1.0-8.git20130913.el7" id="oval:com.redhat.rhsa:tst:20152315009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ModemManager is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ModemManager-vala is earlier than 0:1.1.0-8.git20130913.el7" id="oval:com.redhat.rhsa:tst:20152315011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ModemManager-vala is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ModemManager-glib-devel is earlier than 0:1.1.0-8.git20130913.el7" id="oval:com.redhat.rhsa:tst:20152315013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ModemManager-glib-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nm-connection-editor is earlier than 0:1.0.6-2.el7" id="oval:com.redhat.rhsa:tst:20152315015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nm-connection-editor is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libnm-gtk-devel is earlier than 0:1.0.6-2.el7" id="oval:com.redhat.rhsa:tst:20152315017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libnm-gtk-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libnm-gtk is earlier than 0:1.0.6-2.el7" id="oval:com.redhat.rhsa:tst:20152315019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libnm-gtk is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="network-manager-applet is earlier than 0:1.0.6-2.el7" id="oval:com.redhat.rhsa:tst:20152315021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="network-manager-applet is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-libreswan-gnome is earlier than 0:1.0.6-3.el7" id="oval:com.redhat.rhsa:tst:20152315023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-libreswan-gnome is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315024" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-libreswan is earlier than 0:1.0.6-3.el7" id="oval:com.redhat.rhsa:tst:20152315025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-libreswan is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315026" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-libnm-devel is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-libnm-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315028" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-adsl is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315029" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-adsl is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315030" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-devel is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315031" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315032" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-wwan is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315033" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315019"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-wwan is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315034" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315019"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315035" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315020"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315036" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315020"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-glib-devel is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315037" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315021"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-glib-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315038" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315021"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-libnm is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315039" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315022"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-libnm is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315040" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315022"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-wifi is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315041" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315023"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-wifi is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315042" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315023"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-tui is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315043" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315024"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-tui is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315044" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315024"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-team is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315045" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315025"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-team is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315046" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315025"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-config-server is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315047" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315026"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-config-server is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315048" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315026"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-glib is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315049" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315027"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-glib is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315050" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315027"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-bluetooth is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315051" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315028"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-bluetooth is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315052" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315028"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-config-routing-rules is earlier than 1:1.0.6-27.el7" id="oval:com.redhat.rhsa:tst:20152315053" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315029"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152315006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="NetworkManager-config-routing-rules is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315054" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315029"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
   </red-def:rpminfo_test>
  </tests>
@@ -45351,6 +46420,9 @@ correct these issues and add these enhancements.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152079006" version="601">
    <red-def:name>binutils-devel</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152108005" version="601">
+   <red-def:name>cpio</red-def:name>
+  </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152140005" version="601">
    <red-def:name>libssh2</red-def:name>
   </red-def:rpminfo_object>
@@ -45393,6 +46465,27 @@ correct these issues and add these enhancements.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152184006" version="601">
    <red-def:name>realmd-devel-docs</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152233005" version="601">
+   <red-def:name>tigervnc-server</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152233006" version="601">
+   <red-def:name>tigervnc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152233007" version="601">
+   <red-def:name>tigervnc-server-minimal</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152233008" version="601">
+   <red-def:name>tigervnc-server-module</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152233009" version="601">
+   <red-def:name>tigervnc-icons</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152233010" version="601">
+   <red-def:name>tigervnc-license</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152233011" version="601">
+   <red-def:name>tigervnc-server-applet</red-def:name>
+  </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152237005" version="601">
    <red-def:name>rest-devel</red-def:name>
   </red-def:rpminfo_object>
@@ -45401,6 +46494,90 @@ correct these issues and add these enhancements.</description>
   </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152241005" version="601">
    <red-def:name>chrony</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152248005" version="601">
+   <red-def:name>netcf</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152248006" version="601">
+   <red-def:name>netcf-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152248007" version="601">
+   <red-def:name>netcf-libs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315005" version="601">
+   <red-def:name>ModemManager-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315006" version="601">
+   <red-def:name>ModemManager-glib</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315007" version="601">
+   <red-def:name>ModemManager</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315008" version="601">
+   <red-def:name>ModemManager-vala</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315009" version="601">
+   <red-def:name>ModemManager-glib-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315010" version="601">
+   <red-def:name>nm-connection-editor</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315011" version="601">
+   <red-def:name>libnm-gtk-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315012" version="601">
+   <red-def:name>libnm-gtk</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315013" version="601">
+   <red-def:name>network-manager-applet</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315014" version="601">
+   <red-def:name>NetworkManager-libreswan-gnome</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315015" version="601">
+   <red-def:name>NetworkManager-libreswan</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315016" version="601">
+   <red-def:name>NetworkManager-libnm-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315017" version="601">
+   <red-def:name>NetworkManager-adsl</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315018" version="601">
+   <red-def:name>NetworkManager-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315019" version="601">
+   <red-def:name>NetworkManager-wwan</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315020" version="601">
+   <red-def:name>NetworkManager</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315021" version="601">
+   <red-def:name>NetworkManager-glib-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315022" version="601">
+   <red-def:name>NetworkManager-libnm</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315023" version="601">
+   <red-def:name>NetworkManager-wifi</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315024" version="601">
+   <red-def:name>NetworkManager-tui</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315025" version="601">
+   <red-def:name>NetworkManager-team</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315026" version="601">
+   <red-def:name>NetworkManager-config-server</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315027" version="601">
+   <red-def:name>NetworkManager-glib</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315028" version="601">
+   <red-def:name>NetworkManager-bluetooth</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315029" version="601">
+   <red-def:name>NetworkManager-config-routing-rules</red-def:name>
   </red-def:rpminfo_object>
  </objects>
  <states>
@@ -46562,8 +47739,14 @@ correct these issues and add these enhancements.</description>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152088004" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:0.9.3-9.22.el7</red-def:evr>
   </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152108003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.11-24.el7</red-def:evr>
+  </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152111003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:2.20-2.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152131003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.4.40-8.el7</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152140003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:1.4.3-10.el7</red-def:evr>
@@ -46592,11 +47775,32 @@ correct these issues and add these enhancements.</description>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152231003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:4.2.6p5-22.el7</red-def:evr>
   </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152233003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.3.1-3.el7</red-def:evr>
+  </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152237003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:0.7.92-3.el7</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152241003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:2.1.1-1.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152248003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.2.8-1.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152290003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.9.143-15.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152315003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.1.0-8.git20130913.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152315004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.0.6-2.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152315005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.0.6-3.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152315006" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.0.6-27.el7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
