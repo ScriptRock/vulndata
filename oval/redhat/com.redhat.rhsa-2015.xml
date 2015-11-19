@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-11-19T01:12:01</oval:timestamp>
+  <oval:timestamp>2015-11-19T01:45:02</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -30331,6 +30331,68 @@ for this update to take effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152151" version="601">
+   <metadata>
+    <title>RHSA-2015:2151: xfsprogs security, bug fix and enhancement update (Low)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2151-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2151.html" source="RHSA"/>
+    <reference ref_id="CVE-2012-2150" ref_url="https://access.redhat.com/security/cve/CVE-2012-2150" source="CVE"/>
+    <description>The xfsprogs packages contain a set of commands to use the XFS file system,
+including the mkfs.xfs command to construct an XFS system.
+
+It was discovered that the xfs_metadump tool of the xfsprogs suite did not
+fully adhere to the standards of obfuscation described in its man page. In
+case a user with the necessary privileges used xfs_metadump and relied on
+the advertised obfuscation, the generated data could contain unexpected
+traces of potentially sensitive information. (CVE-2012-2150)
+
+The xfsprogs packages have been upgraded to upstream version 3.2.2, which
+provides a number of bug fixes and enhancements over the previous version.
+This release also includes updates present in upstream version 3.2.3,
+although it omits the mkfs.xfs default disk format change (for metadata
+checksumming) which is present upstream. (BZ#1223991)
+
+Users of xfsprogs are advised to upgrade to these updated packages, which
+fix these bugs and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-07-14"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2012-2150">CVE-2012-2150</cve>
+     <bugzilla href="https://bugzilla.redhat.com/817696" id="817696">CVE-2012-2150 xfsprogs: xfs_metadump information disclosure flaw</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1201238" id="1201238">xfs_repair verify the last secondary superblock corruption failed</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1223991" id="1223991">Rebase xfsprogs to 3.2.3 (pending upstream)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="xfsprogs is earlier than 0:3.2.2-2.el7" test_ref="oval:com.redhat.rhsa:tst:20152151005"/>
+      <criterion comment="xfsprogs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152151006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="xfsprogs-devel is earlier than 0:3.2.2-2.el7" test_ref="oval:com.redhat.rhsa:tst:20152151007"/>
+      <criterion comment="xfsprogs-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152151008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="xfsprogs-qa-devel is earlier than 0:3.2.2-2.el7" test_ref="oval:com.redhat.rhsa:tst:20152151009"/>
+      <criterion comment="xfsprogs-qa-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152151010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20152154" version="601">
    <metadata>
     <title>RHSA-2015:2154: krb5 security, bug fix, and enhancement update (Moderate)</title>
@@ -32905,6 +32967,358 @@ enhancement.</description>
      <criteria operator="AND">
       <criterion comment="grub2-tools is earlier than 1:2.02-0.29.el7" test_ref="oval:com.redhat.rhsa:tst:20152401007"/>
       <criterion comment="grub2-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152401008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152411" version="601">
+   <metadata>
+    <title>RHSA-2015:2411: kernel-rt security, bug fix, and enhancement update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2411-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2411.html" source="RHSA"/>
+    <reference ref_id="CVE-2013-7421" ref_url="https://access.redhat.com/security/cve/CVE-2013-7421" source="CVE"/>
+    <reference ref_id="CVE-2014-8171" ref_url="https://access.redhat.com/security/cve/CVE-2014-8171" source="CVE"/>
+    <reference ref_id="CVE-2014-9419" ref_url="https://access.redhat.com/security/cve/CVE-2014-9419" source="CVE"/>
+    <reference ref_id="CVE-2014-9644" ref_url="https://access.redhat.com/security/cve/CVE-2014-9644" source="CVE"/>
+    <reference ref_id="CVE-2015-2925" ref_url="https://access.redhat.com/security/cve/CVE-2015-2925" source="CVE"/>
+    <reference ref_id="CVE-2015-3339" ref_url="https://access.redhat.com/security/cve/CVE-2015-3339" source="CVE"/>
+    <reference ref_id="CVE-2015-4170" ref_url="https://access.redhat.com/security/cve/CVE-2015-4170" source="CVE"/>
+    <reference ref_id="CVE-2015-5283" ref_url="https://access.redhat.com/security/cve/CVE-2015-5283" source="CVE"/>
+    <reference ref_id="CVE-2015-7613" ref_url="https://access.redhat.com/security/cve/CVE-2015-7613" source="CVE"/>
+    <reference ref_id="CVE-2015-7837" ref_url="https://access.redhat.com/security/cve/CVE-2015-7837" source="CVE"/>
+    <description>The kernel-rt packages contain the Linux kernel, the core of any Linux
+operating system.
+
+* A flaw was found in the way the Linux kernel's file system implementation
+handled rename operations in which the source was inside and the
+destination was outside of a bind mount. A privileged user inside a
+container could use this flaw to escape the bind mount and, potentially,
+escalate their privileges on the system. (CVE-2015-2925, Important)
+
+* A race condition flaw was found in the way the Linux kernel's IPC
+subsystem initialized certain fields in an IPC object structure that were
+later used for permission checking before inserting the object into a
+globally visible list. A local, unprivileged user could potentially use
+this flaw to elevate their privileges on the system. (CVE-2015-7613,
+Important)
+
+* It was found that the Linux kernel memory resource controller's (memcg)
+handling of OOM (out of memory) conditions could lead to deadlocks.
+An attacker able to continuously spawn new processes within a single
+memory-constrained cgroup during an OOM event could use this flaw to lock
+up the system. (CVE-2014-8171, Moderate)
+
+* A race condition flaw was found between the chown and execve system
+calls. When changing the owner of a setuid user binary to root, the race
+condition could momentarily make the binary setuid root. A local,
+unprivileged user could potentially use this flaw to escalate their
+privileges on the system. (CVE-2015-3339, Moderate)
+
+* A flaw was discovered in the way the Linux kernel's TTY subsystem handled
+the tty shutdown phase. A local, unprivileged user could use this flaw to
+cause a denial of service on the system by holding a reference to the ldisc
+lock during tty shutdown, causing a deadlock. (CVE-2015-4170, Moderate)
+
+* A NULL pointer dereference flaw was found in the SCTP implementation.
+A local user could use this flaw to cause a denial of service on the system
+by triggering a kernel panic when creating multiple sockets in parallel
+while the system did not have the SCTP module loaded. (CVE-2015-5283,
+Moderate)
+
+* A flaw was found in the way the Linux kernel's Crypto subsystem handled
+automatic loading of kernel modules. A local user could use this flaw to
+load any installed kernel module, and thus increase the attack surface of
+the running kernel. (CVE-2013-7421, CVE-2014-9644, Low)
+
+* An information leak flaw was found in the way the Linux kernel changed
+certain segment registers and thread-local storage (TLS) during a context
+switch. A local, unprivileged user could use this flaw to leak the user
+space TLS base address of an arbitrary process. (CVE-2014-9419, Low)
+
+* A flaw was found in the way the Linux kernel handled the securelevel
+functionality after performing a kexec operation. A local attacker could
+use this flaw to bypass the security mechanism of the
+securelevel/secureboot combination. (CVE-2015-7837, Low)
+
+Red Hat would like to thank Linn Crosetto of HP for reporting the
+CVE-2015-7837 issue. The CVE-2015-5283 issue was discovered by Ji Jianwen
+from Red Hat engineering.
+
+The kernel-rt packages have been upgraded to version 3.10.0-326.rt56.204,
+which provides a number of bug fixes and enhancements. (BZ#1201915,
+BZ#1211724)
+
+This update also fixes several bugs and adds multiple enhancements.
+Refer to the following Red Hat Knowledgebase article for information on the
+most significant of these changes:
+
+https://access.redhat.com/articles/2055783
+
+All kernel-rt users are advised to upgrade to these updated packages, which
+correct these issues and add these enhancements. The system must be
+rebooted for this update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-07-06"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2013-7421">CVE-2013-7421</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8171">CVE-2014-8171</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-9419">CVE-2014-9419</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-9644">CVE-2014-9644</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-2925">CVE-2015-2925</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3339">CVE-2015-3339</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4170">CVE-2015-4170</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5283">CVE-2015-5283</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7613">CVE-2015-7613</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7837">CVE-2015-7837</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1177260" id="1177260">CVE-2014-9419 kernel: partial ASLR bypass through TLS base addresses leak</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1185469" id="1185469">CVE-2013-7421 Linux kernel: crypto api unprivileged arbitrary module load via request_module()</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1190546" id="1190546">CVE-2014-9644 Linux kernel: crypto api unprivileged arbitrary module load via request_module()</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1198109" id="1198109">CVE-2014-8171 kernel: memcg: OOM handling DoS</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1209190" id="1209190">kernel-rt: rebase tree to match RHEL7.1.z source tree</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1209367" id="1209367">CVE-2015-2925 Kernel: vfs: Do not allow escaping from bind mounts</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1211724" id="1211724">kernel-rt: rebase to the RHEL7.1.z batch3 source tree</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1214030" id="1214030">CVE-2015-3339 kernel: race condition between chown() and execve()</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1218879" id="1218879">CVE-2015-4170 kernel: pty layer race condition on tty ldisc shutdown.</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1230391" id="1230391">kernel-rt: update to the RHEL7.1.z batch 4 source tree</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1230395" id="1230395">kernel-rt: update to the RHEL7.1.z batch 5 source tree</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1257528" id="1257528">CVE-2015-5283 kernel: Creating multiple sockets when SCTP module isn't loaded leads to kernel panic</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1265251" id="1265251">kernel-rt: update to the RHEL7.1.z batch 6 source tree</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1268270" id="1268270">CVE-2015-7613 kernel: Unauthorized access to IPC objects with SysV shm</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1272472" id="1272472">CVE-2015-7837 kernel: securelevel disabled after kexec</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras_rt:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kernel-rt is earlier than 0:3.10.0-327.rt56.204.el7" test_ref="oval:com.redhat.rhsa:tst:20152411021"/>
+      <criterion comment="kernel-rt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug is earlier than 0:3.10.0-327.rt56.204.el7" test_ref="oval:com.redhat.rhsa:tst:20152411015"/>
+      <criterion comment="kernel-rt-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug-devel is earlier than 0:3.10.0-327.rt56.204.el7" test_ref="oval:com.redhat.rhsa:tst:20152411019"/>
+      <criterion comment="kernel-rt-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-327.rt56.204.el7" test_ref="oval:com.redhat.rhsa:tst:20152411007"/>
+      <criterion comment="kernel-rt-debug-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152411008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-devel is earlier than 0:3.10.0-327.rt56.204.el7" test_ref="oval:com.redhat.rhsa:tst:20152411011"/>
+      <criterion comment="kernel-rt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-doc is earlier than 0:3.10.0-327.rt56.204.el7" test_ref="oval:com.redhat.rhsa:tst:20152411005"/>
+      <criterion comment="kernel-rt-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-kvm is earlier than 0:3.10.0-327.rt56.204.el7" test_ref="oval:com.redhat.rhsa:tst:20152411023"/>
+      <criterion comment="kernel-rt-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152411024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace is earlier than 0:3.10.0-327.rt56.204.el7" test_ref="oval:com.redhat.rhsa:tst:20152411017"/>
+      <criterion comment="kernel-rt-trace is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace-devel is earlier than 0:3.10.0-327.rt56.204.el7" test_ref="oval:com.redhat.rhsa:tst:20152411009"/>
+      <criterion comment="kernel-rt-trace-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150727010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-327.rt56.204.el7" test_ref="oval:com.redhat.rhsa:tst:20152411013"/>
+      <criterion comment="kernel-rt-trace-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152411014"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152417" version="601">
+   <metadata>
+    <title>RHSA-2015:2417: autofs security, bug fix and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2417-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2417.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-8169" ref_url="https://access.redhat.com/security/cve/CVE-2014-8169" source="CVE"/>
+    <description>The autofs utility controls the operation of the automount daemon. The
+daemon automatically mounts file systems when in use and unmounts them when
+they are not busy.
+
+It was found that program-based automounter maps that used interpreted
+languages such as Python used standard environment variables to locate
+and load modules of those languages. A local attacker could potentially use
+this flaw to escalate their privileges on the system. (CVE-2014-8169)
+
+Note: This issue has been fixed by adding the &quot;AUTOFS_&quot; prefix to the
+affected environment variables so that they are not used to subvert the
+system. A configuration option (&quot;force_standard_program_map_env&quot;) to
+override this prefix and to use the environment variables without the
+prefix has been added. In addition, warnings have been added to the manual
+page and to the installed configuration file. Now, by default the standard
+variables of the program map are provided only with the prefix added to
+its name.
+
+Red Hat would like to thank the Georgia Institute of Technology for
+reporting this issue.
+
+Notably, this update fixes the following bugs:
+
+* When the &quot;ls *&quot; command was run in the root of an indirect mount, autofs
+attempted to literally mount the wildcard character (*) causing it to be
+added to the negative cache. If done before a valid mount, autofs then
+failed on further mount attempts inside the mount point, valid or not. This
+has been fixed, and wildcard map entries now function in the described
+situation. (BZ#1166457)
+
+* When autofs encountered a syntax error consisting of a duplicate entry in
+a multimap entry, it reported an error and did not mount the map entry.
+With this update, autofs has been amended to report the problem in the log
+to alert the system administrator and use the last seen instance of the
+duplicate entry rather than fail. (BZ#1205600)
+
+* In the ldap and sss lookup modules, the map reading functions did not
+distinguish between the &quot;no entry found&quot; and &quot;service not available&quot;
+errors. Consequently, when the &quot;service not available&quot; response was
+returned from a master map read, autofs did not update the mounts.
+An &quot;entry not found&quot; return does not prevent the map update, so the ldap
+and sss lookup modules were updated to distinguish between these two
+returns and now work as expected. (BZ#1233065)
+
+In addition, this update adds the following enhancement:
+
+* The description of the configuration parameter map_hash_table_size was
+missing from the autofs.conf(5) man page and its description in the
+configuration file comments was insufficient. A description of the
+parameter has been added to autofs.conf(5), and the configuration file
+comments have been updated. (BZ#1238573)
+
+All autofs users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues and add this
+enhancement.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-07-07"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8169">CVE-2014-8169</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1161474" id="1161474">automount segment fault in parse_sun.so for negative parser tests</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1166457" id="1166457">Autofs unable to mount indirect after attempt to mount wildcard</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1192565" id="1192565">CVE-2014-8169 autofs: priv escalation via interpreter load path for program based automount maps</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1201582" id="1201582">autofs: MAPFMT_DEFAULT is not macro in lookup_program.c</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1218045" id="1218045">Similar but unrelated NFS exports block proper mounting of &quot;parent&quot; mount point</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1233067" id="1233067">autofs is performing excessive direct mount map re-reads</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1233069" id="1233069">Direct map does not expire if map is initially empty</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1263508" id="1263508">Heavy program map usage can lead to a hang</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="autofs is earlier than 1:5.0.7-54.el7" test_ref="oval:com.redhat.rhsa:tst:20152417005"/>
+    <criterion comment="autofs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151344006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152455" version="601">
+   <metadata>
+    <title>RHSA-2015:2455: unbound security and bug fix update (Low)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2455-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2455.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-8602" ref_url="https://access.redhat.com/security/cve/CVE-2014-8602" source="CVE"/>
+    <description>The unbound packages provide a validating, recursive, and caching DNS or
+DNSSEC resolver.
+
+A denial of service flaw was found in unbound that an attacker could use to
+trick the unbound resolver into following an endless loop of delegations,
+consuming an excessive amount of resources. (CVE-2014-8602)
+
+This update also fixes the following bugs:
+
+* Prior to this update, there was a mistake in the time configuration in
+the cron job invoking unbound-anchor to update the root zone key.
+Consequently, unbound-anchor was invoked once a month instead of every day,
+thus not complying with RFC 5011. The cron job has been replaced with a
+systemd timer unit that is invoked on a daily basis. Now, the root zone key
+validity is checked daily at a random time within a 24-hour window, and
+compliance with RFC 5011 is ensured. (BZ#1180267)
+
+* Previously, the unbound packages were installing their configuration file
+for the systemd-tmpfiles utility into the /etc/tmpfiles.d/ directory. As a 
+consequence, changes to unbound made by the administrator in 
+/etc/tmpfiles.d/ could be overwritten on package reinstallation or update. 
+To fix this bug, unbound has been amended to install the configuration file
+into the /usr/lib/tmpfiles.d/ directory. As a result, the system 
+administrator's configuration in /etc/tmpfiles.d/ is preserved, including 
+any changes, on package reinstallation or update. (BZ#1180995)
+
+* The unbound server default configuration included validation of DNS
+records using the DNSSEC Look-aside Validation (DLV) registry. The Internet
+Systems Consortium (ISC) plans to deprecate the DLV registry service as no
+longer needed, and unbound could execute unnecessary steps. Therefore, the 
+use of the DLV registry has been removed from the unbound server default 
+configuration. Now, unbound does not try to perform DNS records validation 
+using the DLV registry. (BZ#1223339)
+
+All unbound users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-08-14"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8602">CVE-2014-8602</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1172065" id="1172065">CVE-2014-8602 unbound: specially crafted request can lead to denial of service</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1180267" id="1180267">root key management does not comply with RFC5011</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1180995" id="1180995">unbound is installing files under /etc/tmpfiles.d/</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="unbound is earlier than 0:1.4.20-26.el7" test_ref="oval:com.redhat.rhsa:tst:20152455007"/>
+      <criterion comment="unbound is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152455008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="unbound-devel is earlier than 0:1.4.20-26.el7" test_ref="oval:com.redhat.rhsa:tst:20152455005"/>
+      <criterion comment="unbound-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152455006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="unbound-libs is earlier than 0:1.4.20-26.el7" test_ref="oval:com.redhat.rhsa:tst:20152455011"/>
+      <criterion comment="unbound-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152455012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="unbound-python is earlier than 0:1.4.20-26.el7" test_ref="oval:com.redhat.rhsa:tst:20152455009"/>
+      <criterion comment="unbound-python is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152455010"/>
      </criteria>
     </criteria>
    </criteria>
@@ -44887,6 +45301,30 @@ enhancement.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152140007"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xfsprogs is earlier than 0:3.2.2-2.el7" id="oval:com.redhat.rhsa:tst:20152151005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152151005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152151003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xfsprogs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152151006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152151005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xfsprogs-devel is earlier than 0:3.2.2-2.el7" id="oval:com.redhat.rhsa:tst:20152151007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152151006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152151003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xfsprogs-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152151008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152151006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xfsprogs-qa-devel is earlier than 0:3.2.2-2.el7" id="oval:com.redhat.rhsa:tst:20152151009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152151007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152151003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xfsprogs-qa-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152151010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152151007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="krb5-libs is earlier than 0:1.13.2-10.el7" id="oval:com.redhat.rhsa:tst:20152154005" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150439011"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152154003"/>
@@ -45685,6 +46123,94 @@ enhancement.</description>
   </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="grub2-efi is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152401012" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-doc is earlier than 0:3.10.0-327.rt56.204.el7" id="oval:com.redhat.rhsa:tst:20152411005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152411003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-327.rt56.204.el7" id="oval:com.redhat.rhsa:tst:20152411007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152411006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152411003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug-kvm is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152411008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152411006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace-devel is earlier than 0:3.10.0-327.rt56.204.el7" id="oval:com.redhat.rhsa:tst:20152411009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152411003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-devel is earlier than 0:3.10.0-327.rt56.204.el7" id="oval:com.redhat.rhsa:tst:20152411011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152411003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-327.rt56.204.el7" id="oval:com.redhat.rhsa:tst:20152411013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152411009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152411003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace-kvm is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152411014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152411009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug is earlier than 0:3.10.0-327.rt56.204.el7" id="oval:com.redhat.rhsa:tst:20152411015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152411003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace is earlier than 0:3.10.0-327.rt56.204.el7" id="oval:com.redhat.rhsa:tst:20152411017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152411003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug-devel is earlier than 0:3.10.0-327.rt56.204.el7" id="oval:com.redhat.rhsa:tst:20152411019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152411003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt is earlier than 0:3.10.0-327.rt56.204.el7" id="oval:com.redhat.rhsa:tst:20152411021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150727005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152411003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-kvm is earlier than 0:3.10.0-327.rt56.204.el7" id="oval:com.redhat.rhsa:tst:20152411023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152411014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152411003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-kvm is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152411024" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152411014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autofs is earlier than 1:5.0.7-54.el7" id="oval:com.redhat.rhsa:tst:20152417005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151344005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152417003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="unbound-devel is earlier than 0:1.4.20-26.el7" id="oval:com.redhat.rhsa:tst:20152455005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152455005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152455003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="unbound-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152455006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152455005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="unbound is earlier than 0:1.4.20-26.el7" id="oval:com.redhat.rhsa:tst:20152455007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152455006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152455003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="unbound is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152455008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152455006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="unbound-python is earlier than 0:1.4.20-26.el7" id="oval:com.redhat.rhsa:tst:20152455009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152455007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152455003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="unbound-python is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152455010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152455007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="unbound-libs is earlier than 0:1.4.20-26.el7" id="oval:com.redhat.rhsa:tst:20152455011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152455008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152455003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="unbound-libs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152455012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152455008"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
   </red-def:rpminfo_test>
  </tests>
@@ -47951,6 +48477,15 @@ enhancement.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152140007" version="601">
    <red-def:name>libssh2-docs</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152151005" version="601">
+   <red-def:name>xfsprogs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152151006" version="601">
+   <red-def:name>xfsprogs-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152151007" version="601">
+   <red-def:name>xfsprogs-qa-devel</red-def:name>
+  </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152155005" version="601">
    <red-def:name>file-devel</red-def:name>
   </red-def:rpminfo_object>
@@ -48154,6 +48689,27 @@ enhancement.</description>
   </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152401008" version="601">
    <red-def:name>grub2-efi</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152411006" version="601">
+   <red-def:name>kernel-rt-debug-kvm</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152411009" version="601">
+   <red-def:name>kernel-rt-trace-kvm</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152411014" version="601">
+   <red-def:name>kernel-rt-kvm</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152455005" version="601">
+   <red-def:name>unbound-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152455006" version="601">
+   <red-def:name>unbound</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152455007" version="601">
+   <red-def:name>unbound-python</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152455008" version="601">
+   <red-def:name>unbound-libs</red-def:name>
   </red-def:rpminfo_object>
  </objects>
  <states>
@@ -49330,6 +49886,9 @@ enhancement.</description>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152140003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:1.4.3-10.el7</red-def:evr>
   </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152151003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.2.2-2.el7</red-def:evr>
+  </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152154003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:1.13.2-10.el7</red-def:evr>
   </red-def:rpminfo_state>
@@ -49404,6 +49963,15 @@ enhancement.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152401003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">1:2.02-0.29.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152411003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.10.0-327.rt56.204.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152417003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:5.0.7-54.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152455003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.4.20-26.el7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
