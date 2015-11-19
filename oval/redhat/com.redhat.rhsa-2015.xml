@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-11-19T02:55:01</oval:timestamp>
+  <oval:timestamp>2015-11-19T10:46:02</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -30879,6 +30879,80 @@ enhancements.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152172" version="601">
+   <metadata>
+    <title>RHSA-2015:2172: glibc security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2172-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2172.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-5277" ref_url="https://access.redhat.com/security/cve/CVE-2015-5277" source="CVE"/>
+    <description>The glibc packages provide the standard C libraries (libc), POSIX thread
+libraries (libpthread), standard math libraries (libm), and the Name Server
+Caching Daemon (nscd) used by multiple programs on the system. Without
+these libraries, the Linux system cannot function correctly.
+
+It was discovered that the nss_files backend for the Name Service Switch in
+glibc would return incorrect data to applications or corrupt the heap
+(depending on adjacent heap contents) in certain cases. A local attacker
+could potentially use this flaw to escalate their privileges.
+(CVE-2015-5277)
+
+This issue was discovered by Sumit Bose and Lukáš Slebodník of Red Hat.
+
+All glibc users are advised to upgrade to these updated packages, which
+contain a backported patch to correct this issue.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-11-19"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5277">CVE-2015-5277</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1262914" id="1262914">CVE-2015-5277 glibc: data corruption while reading the NSS files database</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="glibc is earlier than 0:2.17-106.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152172011"/>
+      <criterion comment="glibc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-common is earlier than 0:2.17-106.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152172017"/>
+      <criterion comment="glibc-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-devel is earlier than 0:2.17-106.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152172015"/>
+      <criterion comment="glibc-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-headers is earlier than 0:2.17-106.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152172005"/>
+      <criterion comment="glibc-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-static is earlier than 0:2.17-106.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152172009"/>
+      <criterion comment="glibc-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-utils is earlier than 0:2.17-106.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152172013"/>
+      <criterion comment="glibc-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nscd is earlier than 0:2.17-106.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152172007"/>
+      <criterion comment="nscd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016012"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20152180" version="601">
    <metadata>
     <title>RHSA-2015:2180: rubygem-bundler and rubygem-thor security, bug fix, and enhancement update (Moderate)</title>
@@ -45546,6 +45620,34 @@ contain backported patches to correct these issues.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151254006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152159003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-headers is earlier than 0:2.17-106.el7_2.1" id="oval:com.redhat.rhsa:tst:20152172005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152172003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nscd is earlier than 0:2.17-106.el7_2.1" id="oval:com.redhat.rhsa:tst:20152172007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152172003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-static is earlier than 0:2.17-106.el7_2.1" id="oval:com.redhat.rhsa:tst:20152172009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152172003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc is earlier than 0:2.17-106.el7_2.1" id="oval:com.redhat.rhsa:tst:20152172011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152172003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-utils is earlier than 0:2.17-106.el7_2.1" id="oval:com.redhat.rhsa:tst:20152172013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152172003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-devel is earlier than 0:2.17-106.el7_2.1" id="oval:com.redhat.rhsa:tst:20152172015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152172003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-common is earlier than 0:2.17-106.el7_2.1" id="oval:com.redhat.rhsa:tst:20152172017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152172003"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="rubygem-thor is earlier than 0:0.19.1-1.el7" id="oval:com.redhat.rhsa:tst:20152180005" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152180005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152180003"/>
@@ -50041,6 +50143,9 @@ contain backported patches to correct these issues.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152159003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:7.29.0-25.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152172003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.17-106.el7_2.1</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152180003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:0.19.1-1.el7</red-def:evr>
