@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-11-19T00:08:01</oval:timestamp>
+  <oval:timestamp>2015-11-19T01:12:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -29868,6 +29868,161 @@ correct these issues and add these enhancements.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152101" version="601">
+   <metadata>
+    <title>RHSA-2015:2101: python security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2101-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2101.html" source="RHSA"/>
+    <reference ref_id="CVE-2013-1752" ref_url="https://access.redhat.com/security/cve/CVE-2013-1752" source="CVE"/>
+    <reference ref_id="CVE-2013-1753" ref_url="https://access.redhat.com/security/cve/CVE-2013-1753" source="CVE"/>
+    <reference ref_id="CVE-2014-4616" ref_url="https://access.redhat.com/security/cve/CVE-2014-4616" source="CVE"/>
+    <reference ref_id="CVE-2014-4650" ref_url="https://access.redhat.com/security/cve/CVE-2014-4650" source="CVE"/>
+    <reference ref_id="CVE-2014-7185" ref_url="https://access.redhat.com/security/cve/CVE-2014-7185" source="CVE"/>
+    <description>Python is an interpreted, interactive, object-oriented programming language
+often compared to Tcl, Perl, Scheme, or Java. Python includes modules,
+classes, exceptions, very high level dynamic data types and dynamic typing.
+Python supports interfaces to many system calls and libraries, as well as
+to various windowing systems (X11, Motif, Tk, Mac and MFC).
+
+It was discovered that the Python xmlrpclib module did not restrict the
+size of gzip-compressed HTTP responses. A malicious XMLRPC server could
+cause an XMLRPC client using xmlrpclib to consume an excessive amount of
+memory. (CVE-2013-1753)
+
+It was discovered that multiple Python standard library modules
+implementing network protocols (such as httplib or smtplib) failed to
+restrict the sizes of server responses. A malicious server could cause a
+client using one of the affected modules to consume an excessive amount of
+memory. (CVE-2013-1752)
+
+It was discovered that the CGIHTTPServer module incorrectly handled URL
+encoded paths. A remote attacker could use this flaw to execute scripts
+outside of the cgi-bin directory, or disclose the source code of the
+scripts in the cgi-bin directory. (CVE-2014-4650)
+
+An integer overflow flaw was found in the way the buffer() function handled
+its offset and size arguments. An attacker able to control these arguments
+could use this flaw to disclose portions of the application memory or cause
+it to crash. (CVE-2014-7185)
+
+A flaw was found in the way the json module handled negative index
+arguments passed to certain functions (such as raw_decode()). An attacker
+able to control the index value passed to one of the affected functions
+could possibly use this flaw to disclose portions of the application
+memory. (CVE-2014-4616)
+
+The Python standard library HTTP client modules (such as httplib or urllib)
+did not perform verification of TLS/SSL certificates when connecting to
+HTTPS servers. A man-in-the-middle attacker could use this flaw to hijack
+connections and eavesdrop or modify transferred data. (CVE-2014-9365)
+
+Note: The Python standard library was updated to make it possible to enable
+certificate verification by default. However, for backwards compatibility,
+verification remains disabled by default. Future updates may change this
+default. Refer to the Knowledgebase article 2039753 linked to in the
+References section for further details about this change. (BZ#1219108)
+
+This update also fixes the following bugs:
+
+* Subprocesses used with the Eventlet library or regular threads previously
+tried to close epoll file descriptors twice, which led to an &quot;Invalid
+argument&quot; error. Subprocesses have been fixed to close the file descriptors
+only once. (BZ#1103452)
+
+* When importing the readline module from a Python script, Python no longer
+produces erroneous random characters on stdout. (BZ#1189301)
+
+* The cProfile utility has been fixed to print all values that the &quot;-s&quot;
+option supports when this option is used without a correct value.
+(BZ#1237107)
+
+* The load_cert_chain() function now accepts &quot;None&quot; as a keyfile argument.
+(BZ#1250611)
+
+In addition, this update adds the following enhancements:
+
+* Security enhancements as described in PEP 466 have been backported to the
+Python standard library, for example, new features of the ssl module:
+Server Name Indication (SNI) support, support for new TLSv1.x protocols,
+new hash algorithms in the hashlib module, and many more. (BZ#1111461)
+
+* Support for the ssl.PROTOCOL_TLSv1_2 protocol has been added to the ssl
+library. (BZ#1192015)
+
+* The ssl.SSLSocket.version() method is now available to access information
+about the version of the SSL protocol used in a connection. (BZ#1259421)
+
+All python users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues and add these
+enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-06-25"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2013-1752">CVE-2013-1752</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2013-1753">CVE-2013-1753</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-4616">CVE-2014-4616</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-4650">CVE-2014-4650</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-7185">CVE-2014-7185</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1046170" id="1046170">CVE-2013-1753 python: XMLRPC library unrestricted decompression of HTTP responses using gzip enconding</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1046174" id="1046174">CVE-2013-1752 python: multiple unbound readline() DoS flaws in python stdlib</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1058482" id="1058482">tmpwatch removes python multiprocessing sockets</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1112285" id="1112285">CVE-2014-4616 python: missing boundary check in JSON module</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1113527" id="1113527">CVE-2014-4650 python: CGIHTTPServer module does not properly handle URL-encoded path separators in URLs</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1146026" id="1146026">CVE-2014-7185 python: buffer() integer overflow leading to out of bounds read</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1173041" id="1173041">CVE-2014-9365 python: failure to validate certificates in the HTTP client with TLS (PEP 476)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1177613" id="1177613">setup.py bdist_rpm NameError: global name 'get_python_version' is not defined</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1181624" id="1181624">multiprocessing BaseManager serve_client() does not check EINTR on recv</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1237107" id="1237107">cProfile main() traceback if options syntax is invalid</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1250611" id="1250611">SSLContext.load_cert_chain() keyfile argument can't be set to None</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1259421" id="1259421">Backport SSLSocket.version() to python 2.7.5</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="python is earlier than 0:2.7.5-34.el7" test_ref="oval:com.redhat.rhsa:tst:20152101005"/>
+      <criterion comment="python is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151330012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-debug is earlier than 0:2.7.5-34.el7" test_ref="oval:com.redhat.rhsa:tst:20152101015"/>
+      <criterion comment="python-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152101016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-devel is earlier than 0:2.7.5-34.el7" test_ref="oval:com.redhat.rhsa:tst:20152101017"/>
+      <criterion comment="python-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151330014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-libs is earlier than 0:2.7.5-34.el7" test_ref="oval:com.redhat.rhsa:tst:20152101013"/>
+      <criterion comment="python-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151330008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-test is earlier than 0:2.7.5-34.el7" test_ref="oval:com.redhat.rhsa:tst:20152101009"/>
+      <criterion comment="python-test is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151330016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-tools is earlier than 0:2.7.5-34.el7" test_ref="oval:com.redhat.rhsa:tst:20152101007"/>
+      <criterion comment="python-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151330010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tkinter is earlier than 0:2.7.5-34.el7" test_ref="oval:com.redhat.rhsa:tst:20152101011"/>
+      <criterion comment="tkinter is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151330006"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20152108" version="601">
    <metadata>
     <title>RHSA-2015:2108: cpio security and bug fix update (Moderate)</title>
@@ -31737,6 +31892,1019 @@ which correct these issues and add these enhancements.</description>
      <criteria operator="AND">
       <criterion comment="NetworkManager-wwan is earlier than 1:1.0.6-27.el7" test_ref="oval:com.redhat.rhsa:tst:20152315033"/>
       <criterion comment="NetworkManager-wwan is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152315034"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152345" version="601">
+   <metadata>
+    <title>RHSA-2015:2345: net-snmp security and bug fix update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2345-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2345.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-3565" ref_url="https://access.redhat.com/security/cve/CVE-2014-3565" source="CVE"/>
+    <description>The net-snmp packages provide various libraries and tools for the Simple
+Network Management Protocol (SNMP), including an SNMP library, an
+extensible agent, tools for requesting or setting information from SNMP
+agents, tools for generating and handling SNMP traps, a version of the
+netstat command which uses SNMP, and a Tk/Perl Management Information Base
+(MIB) browser.
+
+A denial of service flaw was found in the way snmptrapd handled certain
+SNMP traps when started with the &quot;-OQ&quot; option. If an attacker sent an SNMP
+trap containing a variable with a NULL type where an integer variable type
+was expected, it would cause snmptrapd to crash. (CVE-2014-3565)
+
+This update also fixes the following bugs:
+
+* Previously, the clientaddr option in the snmp.conf file affected outgoing
+messages sent only over IPv4. With this release, outgoing IPv6 messages are
+correctly sent from the interface specified by clientaddr. (BZ#1190679)
+
+* The Net-SNMP daemon, snmpd, did not properly clean memory when reloading
+its configuration file with multiple &quot;exec&quot; entries. Consequently, the
+daemon terminated unexpectedly. Now, the memory is properly cleaned, and
+snmpd no longer crashes on reload. (BZ#1228893)
+
+* Prior to this update, snmpd did not parse complete IPv4 traffic
+statistics, but reported the number of received or sent bytes in the
+IP-MIB::ipSystemStatsTable only for IPv6 packets and not for IPv4.
+This affected objects ipSystemStatsInOctets, ipSystemStatsOutOctets,
+ipSystemStatsInMcastOctets, and ipSystemStatsOutMcastOctets. Now, the
+statistics reported by snmpd are collected for IPv4 as well. (BZ#1235697)
+
+* The Net-SNMP daemon, snmpd, did not correctly detect the file system
+change from read-only to read-write. Consequently, after remounting the
+file system into the read-write mode, the daemon reported it to be still
+in the read-only mode. A patch has been applied, and snmpd now detects the
+mode changes as expected. (BZ#1241897)
+
+All net-snmp users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-06-19"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-3565">CVE-2014-3565</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1092308" id="1092308">backport diskio device filtering</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1125155" id="1125155">CVE-2014-3565 net-snmp: snmptrapd crash when handling an SNMP trap containing a ifMtu with a NULL type</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1151310" id="1151310">snmptrap can't create (or write to) /var/lib/net-snmp/snmpapp.conf if isn't run under root</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1184433" id="1184433">udpTable has wrong indices</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1190679" id="1190679">In IPv6, snmp packet does not send from specified interface assigned by clientaddr option in snmpd.conf.</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1193006" id="1193006">net-snmp &quot;storageUseNFS 2&quot; option does not report NFS mount as &quot;Fixed Disks&quot;</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1252034" id="1252034">net-snmp-python contains zeros in IP address (IPADDR type) on big-endian architectures</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1252048" id="1252048">net-snmp snmpd fork() overhead [fix available]</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1252053" id="1252053">net-snmp does not display correct lm_sensors sensor data / missing CPU cores</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="net-snmp is earlier than 1:5.7.2-24.el7" test_ref="oval:com.redhat.rhsa:tst:20152345017"/>
+      <criterion comment="net-snmp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151385014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="net-snmp-agent-libs is earlier than 1:5.7.2-24.el7" test_ref="oval:com.redhat.rhsa:tst:20152345021"/>
+      <criterion comment="net-snmp-agent-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151636026"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="net-snmp-devel is earlier than 1:5.7.2-24.el7" test_ref="oval:com.redhat.rhsa:tst:20152345013"/>
+      <criterion comment="net-snmp-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151385012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="net-snmp-gui is earlier than 1:5.7.2-24.el7" test_ref="oval:com.redhat.rhsa:tst:20152345015"/>
+      <criterion comment="net-snmp-gui is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151636030"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="net-snmp-libs is earlier than 1:5.7.2-24.el7" test_ref="oval:com.redhat.rhsa:tst:20152345005"/>
+      <criterion comment="net-snmp-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151385006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="net-snmp-perl is earlier than 1:5.7.2-24.el7" test_ref="oval:com.redhat.rhsa:tst:20152345011"/>
+      <criterion comment="net-snmp-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151385016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="net-snmp-python is earlier than 1:5.7.2-24.el7" test_ref="oval:com.redhat.rhsa:tst:20152345009"/>
+      <criterion comment="net-snmp-python is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151385008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="net-snmp-sysvinit is earlier than 1:5.7.2-24.el7" test_ref="oval:com.redhat.rhsa:tst:20152345019"/>
+      <criterion comment="net-snmp-sysvinit is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151636024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="net-snmp-utils is earlier than 1:5.7.2-24.el7" test_ref="oval:com.redhat.rhsa:tst:20152345007"/>
+      <criterion comment="net-snmp-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151385010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152355" version="601">
+   <metadata>
+    <title>RHSA-2015:2355: sssd security, bug fix, and enhancement update (Low)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2355-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2355.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-5292" ref_url="https://access.redhat.com/security/cve/CVE-2015-5292" source="CVE"/>
+    <description>The System Security Services Daemon (SSSD) service provides a set of
+daemons to manage access to remote directories and authentication
+mechanisms.
+
+It was found that SSSD's Privilege Attribute Certificate (PAC) responder
+plug-in would leak a small amount of memory on each authentication request.
+A remote attacker could potentially use this flaw to exhaust all available
+memory on the system by making repeated requests to a Kerberized daemon
+application configured to authenticate using the PAC responder plug-in.
+(CVE-2015-5292)
+
+The sssd packages have been upgraded to upstream version 1.13.0, which
+provides a number of bug fixes and enhancements over the previous version.
+(BZ#1205554)
+
+Several enhancements are described in the Red Hat Enterprise Linux 7.2
+Release Notes, linked to in the References section:
+
+* SSSD smart card support (BZ#854396)
+* Cache authentication in SSSD (BZ#910187)
+* SSSD supports overriding automatically discovered AD site (BZ#1163806)
+* SSSD can now deny SSH access to locked accounts (BZ#1175760)
+* SSSD enables UID and GID mapping on individual clients (BZ#1183747)
+* Background refresh of cached entries (BZ#1199533)
+* Multi-step prompting for one-time and long-term passwords (BZ#1200873)
+* Caching for initgroups operations (BZ#1206575)
+
+Bugs fixed:
+
+* When the SELinux user content on an IdM server was set to an empty
+string, the SSSD SELinux evaluation utility returned an error. (BZ#1192314)
+
+* If the ldap_child process failed to initialize credentials and exited
+with an error multiple times, operations that create files in some cases
+started failing due to an insufficient amount of i-nodes. (BZ#1198477)
+
+* The SRV queries used a hard coded TTL timeout, and environments that
+wanted the SRV queries to be valid for a certain time only were blocked.
+Now, SSSD parses the TTL value out of the DNS packet. (BZ#1199541)
+
+* Previously, initgroups operation took an excessive amount of time. Now,
+logins and ID processing are faster for setups with AD back end and
+disabled ID mapping. (BZ#1201840)
+
+* When an IdM client with Red Hat Enterprise Linux 7.1 or later was
+connecting to a server with Red Hat Enterprise Linux 7.0 or earlier,
+authentication with an AD trusted domain caused the sssd_be process to
+terminate unexpectedly. (BZ#1202170)
+
+* If replication conflict entries appeared during HBAC processing, the user
+was denied access. Now, the replication conflict entries are skipped and
+users are permitted access. (BZ#1202245)
+
+* The array of SIDs no longer contains an uninitialized value and SSSD no
+longer crashes. (BZ#1204203)
+
+* SSSD supports GPOs from different domain controllers and no longer
+crashes when processing GPOs from different domain controllers.
+(BZ#1205852)
+
+* SSSD could not refresh sudo rules that contained groups with special
+characters, such as parentheses, in their name. (BZ#1208507)
+
+* The IPA names are not qualified on the client side if the server already
+qualified them, and IdM group members resolve even if default_domain_suffix
+is used on the server side. (BZ#1211830)
+
+* The internal cache cleanup task has been disabled by default to improve
+performance of the sssd_be process. (BZ#1212489)
+
+* Now, default_domain_suffix is not considered anymore for autofs maps.
+(BZ#1216285)
+
+* The user can set subdomain_inherit=ignore_group-members to disable
+fetching group members for trusted domains. (BZ#1217350)
+
+* The group resolution failed with an error message: &quot;Error: 14 (Bad
+address)&quot;. The binary GUID handling has been fixed. (BZ#1226119)
+
+Enhancements added:
+
+* The description of default_domain_suffix has been improved in the manual
+pages. (BZ#1185536)
+
+* With the new &quot;%0&quot; template option, users on SSSD IdM clients can now use
+home directories set on AD. (BZ#1187103)
+
+All sssd users are advised to upgrade to these updated packages, which
+correct these issues and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-06-22"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5292">CVE-2015-5292</cve>
+     <bugzilla href="https://bugzilla.redhat.com/854396" id="854396">[RFE] Support for smart cards</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1007968" id="1007968">sssd does not create AAAA record in AD</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1163806" id="1163806">[RFE]ad provider dns_discovery_domain option: kerberos discovery is not using this option</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1187103" id="1187103">[RFE] User's home directories are not taken from AD when there is an IPA trust with AD</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1187146" id="1187146">If v4 address exists, will not create nonexistant v6 in ipa domain</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1192314" id="1192314">With empty ipaselinuxusermapdefault security context on client is staff_u</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1199445" id="1199445">Does sssd-ad use the most suitable attribute for group name?</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1200873" id="1200873">[RFE] Allow smart multi step prompting when user logs in with password and token code from IPA</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1201840" id="1201840">SSSD downloads too much information when fetching information about groups</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1202245" id="1202245">SSSD's HBAC processing is not permissive enough with broken replication entries</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1202724" id="1202724">[RFE] Add a way to lookup users based on CAC identity certificates</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1203642" id="1203642">GPO access control looks for computer object in user's domain only</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1205144" id="1205144">RFE: Support one-way trusts for IPA</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1205160" id="1205160">Complain loudly if backend doesn't start due to missing or invalid keytab</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1205554" id="1205554">Rebase SSSD to 1.13.x</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1206189" id="1206189">[bug] sssd always appends default_domain_suffix when checking for host keys</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1206565" id="1206565">[RFE] Add dualstack and multihomed support</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1206566" id="1206566">SSSD does not update Dynamic DNS records if the IPA domain differs from machine hostname's domain</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1206571" id="1206571">[RFE] Expose D-BUS interface</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1211830" id="1211830">external users do not resolve with &quot;default_domain_suffix&quot; set in IPA server sssd.conf</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1214337" id="1214337">Overrides with --login work in second attempt</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1214716" id="1214716">idoverridegroup for ipa group with --group-name does not work</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1214718" id="1214718">Overridde with --login fails trusted adusers group membership resolution</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1214719" id="1214719">Group resolution is inconsistent with group overrides</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1216285" id="1216285">autofs provider fails when default_domain_suffix and use_fully_qualified_names set</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1217127" id="1217127">Override for IPA users with login does not list user all groups</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1217559" id="1217559">[RFE] Support GPOs from different domain controllers</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1219285" id="1219285">Unable to resolve group memberships for AD users when using sssd-1.12.2-58.el7_1.6.x86_64 client in combination with ipa-server-3.0.0-42.el6.x86_64 with AD Trust</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1234722" id="1234722">sssd ad provider fails to start in rhel7.2</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1242942" id="1242942">well-known SID check is broken for NetBIOS prefixes</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1244949" id="1244949">getgrgid for user's UID on a trust client prevents getpw*</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1246489" id="1246489">sss_obfuscate fails with &quot;ImportError: No module named pysss&quot;</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1249015" id="1249015">KDC proxy not working with SSSD krb5_use_kdcinfo enabled</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1250135" id="1250135">Detect re-established trusts in the IPA subdomain code</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1254184" id="1254184">sss_override does not work correctly when 'use_fully_qualified_names = True'</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1254189" id="1254189">sss_override contains an extra parameter --debug but is not listed in the man page or in the arguments help</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1254518" id="1254518">Fix crash in nss responder</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1259512" id="1259512">sss_override : The local override user is not found</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1261155" id="1261155">nsupdate exits on first GSSAPI error instead of processing other commands</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1263587" id="1263587">sss_override --name doesn't work with RFC2307 and ghost users</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1263735" id="1263735">Could not resolve AD user from root domain</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1266107" id="1266107">AD: Conditional jump or move depends on uninitialised value</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1267176" id="1267176">Memory leak / possible DoS with krb auth. [rhel 7.2]</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1267580" id="1267580">CVE-2015-5292 sssd: memory leak in the sssd_pac_plugin</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1267836" id="1267836">PAM responder crashed if user was not set</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1267837" id="1267837">sssd_be crashed in ipa_srv_ad_acct_lookup_step</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1270827" id="1270827">local overrides: don't contact server with overridden name/id</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="libipa_hbac is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355005"/>
+      <criterion comment="libipa_hbac is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019036"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libipa_hbac-devel is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355047"/>
+      <criterion comment="libipa_hbac-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019034"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libsss_idmap is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355049"/>
+      <criterion comment="libsss_idmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libsss_idmap-devel is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355045"/>
+      <criterion comment="libsss_idmap-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libsss_nss_idmap is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355017"/>
+      <criterion comment="libsss_nss_idmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019038"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libsss_nss_idmap-devel is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355039"/>
+      <criterion comment="libsss_nss_idmap-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019042"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libsss_simpleifp is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355021"/>
+      <criterion comment="libsss_simpleifp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019044"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libsss_simpleifp-devel is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355011"/>
+      <criterion comment="libsss_simpleifp-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-libipa_hbac is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355043"/>
+      <criterion comment="python-libipa_hbac is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152355044"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-libsss_nss_idmap is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355029"/>
+      <criterion comment="python-libsss_nss_idmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152355030"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-sss is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355033"/>
+      <criterion comment="python-sss is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152355034"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-sss-murmur is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355053"/>
+      <criterion comment="python-sss-murmur is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152355054"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-sssdconfig is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355057"/>
+      <criterion comment="python-sssdconfig is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019050"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355051"/>
+      <criterion comment="sssd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-ad is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355007"/>
+      <criterion comment="sssd-ad is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019028"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-client is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355055"/>
+      <criterion comment="sssd-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-common is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355041"/>
+      <criterion comment="sssd-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019026"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-common-pac is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355037"/>
+      <criterion comment="sssd-common-pac is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019048"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-dbus is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355027"/>
+      <criterion comment="sssd-dbus is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-ipa is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355025"/>
+      <criterion comment="sssd-ipa is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-krb5 is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355009"/>
+      <criterion comment="sssd-krb5 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019032"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-krb5-common is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355013"/>
+      <criterion comment="sssd-krb5-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-ldap is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355019"/>
+      <criterion comment="sssd-ldap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019040"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-libwbclient is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355023"/>
+      <criterion comment="sssd-libwbclient is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152355024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-libwbclient-devel is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355031"/>
+      <criterion comment="sssd-libwbclient-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152355032"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-proxy is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355035"/>
+      <criterion comment="sssd-proxy is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="sssd-tools is earlier than 0:1.13.0-40.el7" test_ref="oval:com.redhat.rhsa:tst:20152355015"/>
+      <criterion comment="sssd-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152019030"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152360" version="601">
+   <metadata>
+    <title>RHSA-2015:2360: cups-filters security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2360-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2360.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3258" ref_url="https://access.redhat.com/security/cve/CVE-2015-3258" source="CVE"/>
+    <reference ref_id="CVE-2015-3279" ref_url="https://access.redhat.com/security/cve/CVE-2015-3279" source="CVE"/>
+    <description>The cups-filters packages contain back ends, filters, and other software
+that was once part of the core Common UNIX Printing System (CUPS)
+distribution but is now maintained independently.
+
+A heap-based buffer overflow flaw and an integer overflow flaw leading to a
+heap-based buffer overflow were discovered in the way the texttopdf utility
+of cups-filter processed print jobs with a specially crafted line size.
+An attacker able to submit print jobs could use these flaws to crash
+texttopdf or, possibly, execute arbitrary code with the privileges of the
+&quot;lp&quot; user. (CVE-2015-3258, CVE-2015-3279)
+
+The CVE-2015-3258 issue was discovered by Petr Sklenar of Red Hat.
+
+Notably, this update also fixes the following bug:
+
+* Previously, when polling CUPS printers from a CUPS server, when a printer
+name contained an underscore (_), the client displayed the name containing
+a hyphen (-) instead. This made the print queue unavailable. With this
+update, CUPS allows the underscore character in printer names, and printers
+appear as shown on the CUPS server as expected. (BZ#1167408)
+
+In addition, this update adds the following enhancement:
+
+* Now, the information from local and remote CUPS servers is cached during
+each poll, and the CUPS server load is reduced. (BZ#1191691)
+
+All cups-filters users are advised to upgrade to these updated packages,
+which contain backported patches to correct these issues and add this
+enhancement.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-06-22"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3258">CVE-2015-3258</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3279">CVE-2015-3279</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1167408" id="1167408">Cups is failing to poll Printers containing a &quot;_&quot; in the Name</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1191691" id="1191691">cups-browsed very inefficient</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1223719" id="1223719">Cups is not pulling Description of Printers from Cups server</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1235385" id="1235385">CVE-2015-3258 cups-filters: texttopdf heap-based buffer overflow</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1238990" id="1238990">CVE-2015-3279 cups-filters: texttopdf integer overflow</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="cups-filters is earlier than 0:1.0.35-21.el7" test_ref="oval:com.redhat.rhsa:tst:20152360009"/>
+      <criterion comment="cups-filters is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152360010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="cups-filters-devel is earlier than 0:1.0.35-21.el7" test_ref="oval:com.redhat.rhsa:tst:20152360005"/>
+      <criterion comment="cups-filters-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152360006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="cups-filters-libs is earlier than 0:1.0.35-21.el7" test_ref="oval:com.redhat.rhsa:tst:20152360007"/>
+      <criterion comment="cups-filters-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152360008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152369" version="601">
+   <metadata>
+    <title>RHSA-2015:2369: openhpi security, bug fix, and enhancement update (Low)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2369-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2369.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3248" ref_url="https://access.redhat.com/security/cve/CVE-2015-3248" source="CVE"/>
+    <description>OpenHPI is an open source project created with the intent of providing an
+implementation of the SA Forum's Hardware Platform Interface (HPI).
+HPI provides an abstracted interface to managing computer hardware,
+typically for chassis and rack based servers. HPI includes resource
+modeling, access to and control over sensor, control, watchdog, and
+inventory data associated with resources, abstracted System Event Log
+interfaces, hardware events and alerts, and a managed hotswap interface.
+
+It was found that the &quot;/var/lib/openhpi&quot; directory provided by OpenHPI used
+world-writeable and world-readable permissions. A local user could use this
+flaw to view, modify, and delete OpenHPI-related data, or even fill up the
+storage device hosting the /var/lib directory. (CVE-2015-3248)
+
+This issue was discovered by Marko Myllynen of Red Hat.
+
+The openhpi packages have been upgraded to upstream version 3.4.0, which
+provides a number of bug fixes and enhancements over the previous version.
+(BZ#1127908)
+
+This update also fixes the following bug:
+
+* Network timeouts were handled incorrectly in the openhpid daemon. As a
+consequence, network connections could fail when external plug-ins were
+used. With this update, handling of network socket timeouts has been
+improved in openhpid, and the described problem no longer occurs.
+(BZ#1208127)
+
+All openhpi users are advised to upgrade to these updated packages, which
+correct these issues and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-06-23"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3248">CVE-2015-3248</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1233520" id="1233520">CVE-2015-3248 openhpi: world writable /var/lib/openhpi directory</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="openhpi is earlier than 0:3.4.0-2.el7" test_ref="oval:com.redhat.rhsa:tst:20152369005"/>
+      <criterion comment="openhpi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152369006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openhpi-devel is earlier than 0:3.4.0-2.el7" test_ref="oval:com.redhat.rhsa:tst:20152369009"/>
+      <criterion comment="openhpi-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152369010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openhpi-libs is earlier than 0:3.4.0-2.el7" test_ref="oval:com.redhat.rhsa:tst:20152369007"/>
+      <criterion comment="openhpi-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152369008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152378" version="601">
+   <metadata>
+    <title>RHSA-2015:2378: squid security and bug fix update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2378-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2378.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3455" ref_url="https://access.redhat.com/security/cve/CVE-2015-3455" source="CVE"/>
+    <description>Squid is a high-performance proxy caching server for web clients,
+supporting FTP, Gopher, and HTTP data objects.
+
+It was found that Squid configured with client-first SSL-bump did not
+correctly validate X.509 server certificate host name fields. A
+man-in-the-middle attacker could use this flaw to spoof a Squid server
+using a specially crafted X.509 certificate. (CVE-2015-3455)
+
+This update fixes the following bugs:
+
+* Previously, the squid process did not handle file descriptors correctly
+when receiving Simple Network Management Protocol (SNMP) requests. As a
+consequence, the process gradually accumulated open file descriptors. This
+bug has been fixed and squid now handles SNMP requests correctly, closing
+file descriptors when necessary. (BZ#1198778)
+
+* Under high system load, the squid process sometimes terminated
+unexpectedly with a segmentation fault during reboot. This update provides
+better memory handling during reboot, thus fixing this bug. (BZ#1225640)
+
+Users of squid are advised to upgrade to these updated packages, which fix
+these bugs. After installing this update, the squid service will be
+restarted automatically.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-06-25"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3455">CVE-2015-3455</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1102842" id="1102842">missing /var/run/squid needed for smp mode</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1161600" id="1161600">Squid does not serve cached responses with Vary headers</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1198778" id="1198778">Filedescriptor leaks on snmp</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1204375" id="1204375">squid sends incorrect ssl chain breaking newer gnutls using applications</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1218118" id="1218118">CVE-2015-3455 squid: incorrect X509 server certificate validation (SQUID-2015:1)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1263338" id="1263338">squid with digest auth on big endian systems start looping</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="squid is earlier than 7:3.3.8-26.el7" test_ref="oval:com.redhat.rhsa:tst:20152378005"/>
+      <criterion comment="squid is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152378006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="squid-sysvinit is earlier than 7:3.3.8-26.el7" test_ref="oval:com.redhat.rhsa:tst:20152378007"/>
+      <criterion comment="squid-sysvinit is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152378008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152383" version="601">
+   <metadata>
+    <title>RHSA-2015:2383: pacemaker security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2383-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2383.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-1867" ref_url="https://access.redhat.com/security/cve/CVE-2015-1867" source="CVE"/>
+    <description>The Pacemaker Resource Manager is a collection of technologies working
+together to provide data integrity and the ability to maintain
+application availability in the event of a failure.
+
+A flaw was found in the way pacemaker, a cluster resource manager,
+evaluated added nodes in certain situations. A user with read-only access
+could potentially assign any other existing roles to themselves and then
+add privileges to other users as well. (CVE-2015-1867)
+
+The pacemaker packages have been upgraded to upstream version 1.1.13, which
+provides a number of bug fixes and enhancements over the previous version.
+(BZ#1234680)
+
+This update also fixes the following bugs:
+
+* When a Pacemaker cluster included an Apache resource, and Apache's
+mod_systemd module was enabled, systemd rejected notifications sent by
+Apache. As a consequence, a large number of errors in the following format
+appeared in the system log:
+
+  Got notification message from PID XXXX, but reception only permitted
+  for PID YYYY
+
+With this update, the lrmd daemon now unsets the &quot;NOTIFY_SOCKET&quot; variable
+in the described circumstances, and these error messages are no longer
+logged. (BZ#1150184)
+
+* Previously, specifying a remote guest node as a part of a group resource
+in a Pacemaker cluster caused the node to stop working. This update adds
+support for remote guests in Pacemaker group resources, and the described
+problem no longer occurs. (BZ#1168637)
+
+* When a resource in a Pacemaker cluster failed to start, Pacemaker updated
+the resource's last failure time and incremented its fail count even if the
+&quot;on-fail=ignore&quot; option was used. This in some cases caused unintended
+resource migrations when a resource start failure occurred. Now, Pacemaker
+does not update the fail count when &quot;on-fail=ignore&quot; is used. As a result,
+the failure is displayed in the cluster status output, but is properly
+ignored and thus does not cause resource migration. (BZ#1200849)
+
+* Previously, Pacemaker supported semicolon characters (&quot;;&quot;) as delimiters
+when parsing the pcmk_host_map string, but not when parsing the
+pcmk_host_list string. To ensure consistent user experience, semicolons are
+now supported as delimiters for parsing pcmk_host_list, as well.
+(BZ#1206232)
+
+In addition, this update adds the following enhancements:
+
+* If a Pacemaker location constraint has the &quot;resource-discovery=never&quot;
+option, Pacemaker now does not attempt to determine whether a specified
+service is running on the specified node. In addition, if multiple location
+constraints for a given resource specify &quot;resource-discovery=exclusive&quot;,
+then Pacemaker attempts resource discovery only on the nodes specified in
+those constraints. This allows Pacemaker to skip resource discovery on
+nodes where attempting the operation would lead to error or other
+undesirable behavior. (BZ#1108853)
+
+* The procedure of configuring fencing for redundant power supplies has
+been simplified in order to prevent multiple nodes accessing cluster
+resources at the same time and thus causing data corruption. For further
+information, see the &quot;Fencing: Configuring STONITH&quot; chapter of the High
+Availability Add-On Reference manual. (BZ#1206647)
+
+* The output of the &quot;crm_mon&quot; and &quot;pcs_status&quot; commands has been modified
+to be clearer and more concise, and thus easier to read when reporting
+the status of a Pacemaker cluster with a large number of remote nodes and
+cloned resources. (BZ#1115840)
+
+All pacemaker users are advised to upgrade to these updated packages, which
+correct these issues and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-06-29"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-1867">CVE-2015-1867</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1162727" id="1162727">member weirdness when adding/removing nodes</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1172539" id="1172539">Node ends up in a reboot loop when a resource with the same name exists</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1182244" id="1182244">crm_resource --restart broken</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1182614" id="1182614">Logs full of: error: gio_poll_dispatch_update:      Adaptor for descriptor 8 is not in-use</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1187321" id="1187321">pacemaker - libqb dependency needs update</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1194475" id="1194475">edge case causes colocation constraint not to be honored.</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1200785" id="1200785">pacemaker-cli requires pacemaker but does not depend on it</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1200849" id="1200849">crmd: Resource marked with failcount=INFINITY on start failure with on-fail=ignore</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1203053" id="1203053">Nagios metadata is missing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1205188" id="1205188">debug-promote implementation</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1206232" id="1206232">fencing: Allow semi-colon delimiter for pcmk_host_list</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1211370" id="1211370">CVE-2015-1867 pacemaker: acl read-only access allow role assignment</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1211833" id="1211833">systemd resources are shut down before the cluster at reboot</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1212647" id="1212647">crm_resource -C works inconsistently with clearing resources on baremetal remote nodes</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1225854" id="1225854">Error in `/usr/sbin/crm_resource': free(): invalid pointer: 0x00007f7199482848</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1234680" id="1234680">Rebase Pacemaker to obtain pacemaker-remote fixes for OSP</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1246291" id="1246291">lrmd killed by SIGSEGV</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1267265" id="1267265">A change in &quot;crm_resource --set-parameter is-managed&quot; introduces regression for Clone and M/S resources</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="pacemaker is earlier than 0:1.1.13-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152383013"/>
+      <criterion comment="pacemaker is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151424012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="pacemaker-cli is earlier than 0:1.1.13-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152383017"/>
+      <criterion comment="pacemaker-cli is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151424006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="pacemaker-cluster-libs is earlier than 0:1.1.13-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152383005"/>
+      <criterion comment="pacemaker-cluster-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151424016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="pacemaker-cts is earlier than 0:1.1.13-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152383011"/>
+      <criterion comment="pacemaker-cts is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151424010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="pacemaker-doc is earlier than 0:1.1.13-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152383019"/>
+      <criterion comment="pacemaker-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151424014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="pacemaker-libs is earlier than 0:1.1.13-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152383007"/>
+      <criterion comment="pacemaker-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151424018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="pacemaker-libs-devel is earlier than 0:1.1.13-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152383015"/>
+      <criterion comment="pacemaker-libs-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151424020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="pacemaker-nagios-plugins-metadata is earlier than 0:1.1.13-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152383009"/>
+      <criterion comment="pacemaker-nagios-plugins-metadata is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152383010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="pacemaker-remote is earlier than 0:1.1.13-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152383021"/>
+      <criterion comment="pacemaker-remote is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151424008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152393" version="601">
+   <metadata>
+    <title>RHSA-2015:2393: wireshark security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2393-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2393.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-8710" ref_url="https://access.redhat.com/security/cve/CVE-2014-8710" source="CVE"/>
+    <reference ref_id="CVE-2014-8711" ref_url="https://access.redhat.com/security/cve/CVE-2014-8711" source="CVE"/>
+    <reference ref_id="CVE-2014-8712" ref_url="https://access.redhat.com/security/cve/CVE-2014-8712" source="CVE"/>
+    <reference ref_id="CVE-2014-8713" ref_url="https://access.redhat.com/security/cve/CVE-2014-8713" source="CVE"/>
+    <reference ref_id="CVE-2014-8714" ref_url="https://access.redhat.com/security/cve/CVE-2014-8714" source="CVE"/>
+    <reference ref_id="CVE-2015-0562" ref_url="https://access.redhat.com/security/cve/CVE-2015-0562" source="CVE"/>
+    <reference ref_id="CVE-2015-0563" ref_url="https://access.redhat.com/security/cve/CVE-2015-0563" source="CVE"/>
+    <reference ref_id="CVE-2015-0564" ref_url="https://access.redhat.com/security/cve/CVE-2015-0564" source="CVE"/>
+    <reference ref_id="CVE-2015-2188" ref_url="https://access.redhat.com/security/cve/CVE-2015-2188" source="CVE"/>
+    <reference ref_id="CVE-2015-2189" ref_url="https://access.redhat.com/security/cve/CVE-2015-2189" source="CVE"/>
+    <reference ref_id="CVE-2015-2191" ref_url="https://access.redhat.com/security/cve/CVE-2015-2191" source="CVE"/>
+    <reference ref_id="CVE-2015-3182" ref_url="https://access.redhat.com/security/cve/CVE-2015-3182" source="CVE"/>
+    <reference ref_id="CVE-2015-3810" ref_url="https://access.redhat.com/security/cve/CVE-2015-3810" source="CVE"/>
+    <reference ref_id="CVE-2015-3811" ref_url="https://access.redhat.com/security/cve/CVE-2015-3811" source="CVE"/>
+    <reference ref_id="CVE-2015-3812" ref_url="https://access.redhat.com/security/cve/CVE-2015-3812" source="CVE"/>
+    <reference ref_id="CVE-2015-3813" ref_url="https://access.redhat.com/security/cve/CVE-2015-3813" source="CVE"/>
+    <reference ref_id="CVE-2015-6243" ref_url="https://access.redhat.com/security/cve/CVE-2015-6243" source="CVE"/>
+    <reference ref_id="CVE-2015-6244" ref_url="https://access.redhat.com/security/cve/CVE-2015-6244" source="CVE"/>
+    <reference ref_id="CVE-2015-6245" ref_url="https://access.redhat.com/security/cve/CVE-2015-6245" source="CVE"/>
+    <reference ref_id="CVE-2015-6246" ref_url="https://access.redhat.com/security/cve/CVE-2015-6246" source="CVE"/>
+    <reference ref_id="CVE-2015-6248" ref_url="https://access.redhat.com/security/cve/CVE-2015-6248" source="CVE"/>
+    <description>The wireshark packages contain a network protocol analyzer used to capture
+and browse the traffic running on a computer network.
+
+Several denial of service flaws were found in Wireshark. Wireshark could
+crash or stop responding if it read a malformed packet off a network, or
+opened a malicious dump file. (CVE-2015-2188, CVE-2015-2189, CVE-2015-2191,
+CVE-2015-3810, CVE-2015-3811, CVE-2015-3812, CVE-2015-3813, CVE-2014-8710,
+CVE-2014-8711, CVE-2014-8712, CVE-2014-8713, CVE-2014-8714, CVE-2015-0562,
+CVE-2015-0563, CVE-2015-0564, CVE-2015-3182, CVE-2015-6243, CVE-2015-6244,
+CVE-2015-6245, CVE-2015-6246, CVE-2015-6248)
+
+The CVE-2015-3182 issue was discovered by Martin Žember of Red Hat.
+
+The wireshark packages have been upgraded to upstream version 1.10.14,
+which provides a number of bug fixes and enhancements over the previous
+version. (BZ#1238676)
+
+This update also fixes the following bug:
+
+* Prior to this update, when using the tshark utility to capture packets
+over the interface, tshark failed to create output files in the .pcap
+format even if it was specified using the &quot;-F&quot; option. This bug has been
+fixed, the &quot;-F&quot; option is now honored, and the result saved in the .pcap
+format as expected. (BZ#1227199)
+
+In addition, this update adds the following enhancement:
+
+* Previously, wireshark included only microseconds in the .pcapng format.
+With this update, wireshark supports nanosecond time stamp precision to
+allow for more accurate time stamps. (BZ#1213339)
+
+All wireshark users are advised to upgrade to these updated packages, which
+correct these issues and add these enhancements. All running instances of
+Wireshark must be restarted for the update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-07-01"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8710">CVE-2014-8710</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8711">CVE-2014-8711</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8712">CVE-2014-8712</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8713">CVE-2014-8713</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8714">CVE-2014-8714</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-0562">CVE-2015-0562</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-0563">CVE-2015-0563</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-0564">CVE-2015-0564</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-2188">CVE-2015-2188</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-2189">CVE-2015-2189</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-2191">CVE-2015-2191</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3182">CVE-2015-3182</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3810">CVE-2015-3810</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3811">CVE-2015-3811</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3812">CVE-2015-3812</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3813">CVE-2015-3813</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-6243">CVE-2015-6243</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-6244">CVE-2015-6244</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-6245">CVE-2015-6245</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-6246">CVE-2015-6246</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-6248">CVE-2015-6248</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1163581" id="1163581">CVE-2014-8714 wireshark: TN5250 infinite loop (wnpa-sec-2014-23)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1163582" id="1163582">CVE-2014-8712 CVE-2014-8713 wireshark: NCP dissector crashes (wnpa-sec-2014-22)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1163583" id="1163583">CVE-2014-8711 wireshark: AMQP dissector crash (wnpa-sec-2014-21)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1163584" id="1163584">CVE-2014-8710 wireshark: SigComp dissector crash (wnpa-sec-2014-20)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1180182" id="1180182">CVE-2015-0562 wireshark: DEC DNA Routing Protocol dissector crash (wnpa-sec-2015-03)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1180195" id="1180195">CVE-2015-0563 wireshark: SMTP dissector crash (wnpa-sec-2015-04)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1180197" id="1180197">CVE-2015-0564 wireshark: TLS/SSL decryption crash (wnpa-sec-2015-05)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1199163" id="1199163">CVE-2015-2188 wireshark: The WCP dissector could crash while decompressing data (wnpa-sec-2015-07)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1199165" id="1199165">CVE-2015-2189 wireshark: The pcapng file parser could crash (wnpa-sec-2015-08)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1199167" id="1199167">CVE-2015-2191 wireshark: The TNEF dissector could go into an infinite loop on 32-bit architectures (wnpa-sec-2015-10)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1219409" id="1219409">CVE-2015-3182 wireshark: crash on sample file genbroad.snoop</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1222434" id="1222434">CVE-2015-3810 wireshark: WebSocket DoS (wnpa-sec-2015-13)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1222436" id="1222436">CVE-2015-3811 wireshark: WCP dissector crash (wnpa-sec-2015-14)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1222437" id="1222437">CVE-2015-3812 wireshark: X11 memory leak (wnpa-sec-2015-15)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1222438" id="1222438">CVE-2015-3813 wireshark: Reassembly memory leak (wnpa-sec-2015-16)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1253354" id="1253354">CVE-2015-6243 wireshark: Dissector table crash (wnpa-sec-2015-23)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1253355" id="1253355">CVE-2015-6244 wireshark: ZigBee dissector crash (wnpa-sec-2015-24)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1253356" id="1253356">CVE-2015-6245 wireshark: GSM RLC/MAC dissector infinite loop (wnpa-sec-2015-25)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1253357" id="1253357">CVE-2015-6246 wireshark: WaveAgent dissector crash (wnpa-sec-2015-26)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1253360" id="1253360">CVE-2015-6248 wireshark: Ptvcursor crash (wnpa-sec-2015-28)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1267959" id="1267959">wireshark segfaults</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="wireshark is earlier than 0:1.10.14-7.el7" test_ref="oval:com.redhat.rhsa:tst:20152393009"/>
+      <criterion comment="wireshark is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151460008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="wireshark-devel is earlier than 0:1.10.14-7.el7" test_ref="oval:com.redhat.rhsa:tst:20152393005"/>
+      <criterion comment="wireshark-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151460010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="wireshark-gnome is earlier than 0:1.10.14-7.el7" test_ref="oval:com.redhat.rhsa:tst:20152393007"/>
+      <criterion comment="wireshark-gnome is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151460006"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152401" version="601">
+   <metadata>
+    <title>RHSA-2015:2401: grub2 security, bug fix, and enhancement update (Low)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2401-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2401.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-5281" ref_url="https://access.redhat.com/security/cve/CVE-2015-5281" source="CVE"/>
+    <description>The grub2 packages provide version 2 of the Grand Unified Bootloader
+(GRUB), a highly configurable and customizable bootloader with modular
+architecture. The packages support a variety of kernel formats, file
+systems, computer architectures, and hardware devices.
+
+It was discovered that grub2 builds for EFI systems contained modules that
+were not suitable to be loaded in a Secure Boot environment. An attacker
+could use this flaw to circumvent the Secure Boot mechanisms and load
+non-verified code. Attacks could use the boot menu if no password was set,
+or the grub2 configuration file if the attacker has root privileges on the
+system. (CVE-2015-5281)
+
+This update also fixes the following bugs:
+
+* In one of the earlier updates, GRUB2 was modified to escape forward slash
+(/) characters in several different places. In one of these places, the
+escaping was unnecessary and prevented certain types of kernel command-line
+arguments from being passed to the kernel correctly. With this update,
+GRUB2 no longer escapes the forward slash characters in the mentioned
+place, and the kernel command-line arguments work as expected. (BZ#1125404)
+
+* Previously, GRUB2 relied on a timing mechanism provided by legacy
+hardware, but not by the Hyper-V Gen2 hypervisor, to calibrate its timer
+loop. This prevented GRUB2 from operating correctly on Hyper-V Gen2.
+This update modifies GRUB2 to use a different mechanism on Hyper-V Gen2 to
+calibrate the timing. As a result, Hyper-V Gen2 hypervisors now work as
+expected. (BZ#1150698)
+
+* Prior to this update, users who manually configured GRUB2 to use the
+built-in GNU Privacy Guard (GPG) verification observed the following error
+on boot:
+
+    alloc magic is broken at [addr]: [value] Aborted.
+
+Consequently, the boot failed. The GRUB2 built-in GPG verification has been
+modified to no longer free the same memory twice. As a result, the
+mentioned error no longer occurs. (BZ#1167977)
+
+* Previously, the system sometimes did not recover after terminating
+unexpectedly and failed to reboot. To fix this problem, the GRUB2 packages
+now enforce file synchronization when creating the GRUB2 configuration
+file, which ensures that the required configuration files are written to
+disk. As a result, the system now reboots successfully after crashing.
+(BZ#1212114)
+
+* Previously, if an unconfigured network driver instance was selected and
+configured when the GRUB2 bootloader was loaded on a different instance,
+GRUB2 did not receive notifications of the Address Resolution Protocol
+(ARP) replies. Consequently, GRUB2 failed with the following error message:
+
+    error: timeout: could not resolve hardware address.
+
+With this update, GRUB2 selects the network driver instance from which it
+was loaded. As a result, ARP packets are processed correctly. (BZ#1257475)
+
+In addition, this update adds the following enhancement:
+
+* Sorting of GRUB2 boot menu has been improved. GRUB2 now uses the
+rpmdevtools package to sort available kernels and the configuration file is
+being generated correctly with the most recent kernel version listed at the
+top. (BZ#1124074)
+
+All grub2 users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues and add this
+enhancement.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-07-02"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5281">CVE-2015-5281</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1001279" id="1001279">grub2 can't boot new xfs CRC-capable disk format</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1124074" id="1124074">grub2-mkconfig wrong sorting</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1125404" id="1125404">[RHEL 7] grub2 improperly escapes spaces in kernel parameters</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1148650" id="1148650">no docs explaining what config path GRUB expects when netbooting</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1177003" id="1177003">yum reinstall kernel causes duplicate entry in grub menu</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1211101" id="1211101">grub2 fw_path variable is incorrect for x86 EFI network boot: too many path components stripped</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1264103" id="1264103">CVE-2015-5281 grub2: modules built in on EFI builds that allow loading arbitrary code, circumventing secure boot</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="grub2 is earlier than 1:2.02-0.29.el7" test_ref="oval:com.redhat.rhsa:tst:20152401005"/>
+      <criterion comment="grub2 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152401006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="grub2-efi is earlier than 1:2.02-0.29.el7" test_ref="oval:com.redhat.rhsa:tst:20152401011"/>
+      <criterion comment="grub2-efi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152401012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="grub2-efi-modules is earlier than 1:2.02-0.29.el7" test_ref="oval:com.redhat.rhsa:tst:20152401009"/>
+      <criterion comment="grub2-efi-modules is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152401010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="grub2-tools is earlier than 1:2.02-0.29.el7" test_ref="oval:com.redhat.rhsa:tst:20152401007"/>
+      <criterion comment="grub2-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152401008"/>
      </criteria>
     </criteria>
    </criteria>
@@ -43631,6 +44799,38 @@ which correct these issues and add these enhancements.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150425006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152088003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python is earlier than 0:2.7.5-34.el7" id="oval:com.redhat.rhsa:tst:20152101005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151330008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152101003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-tools is earlier than 0:2.7.5-34.el7" id="oval:com.redhat.rhsa:tst:20152101007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151330007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152101003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-test is earlier than 0:2.7.5-34.el7" id="oval:com.redhat.rhsa:tst:20152101009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151330010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152101003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tkinter is earlier than 0:2.7.5-34.el7" id="oval:com.redhat.rhsa:tst:20152101011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151330005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152101003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-libs is earlier than 0:2.7.5-34.el7" id="oval:com.redhat.rhsa:tst:20152101013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151330006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152101003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-debug is earlier than 0:2.7.5-34.el7" id="oval:com.redhat.rhsa:tst:20152101015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152101010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152101003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-debug is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152101016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152101010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-devel is earlier than 0:2.7.5-34.el7" id="oval:com.redhat.rhsa:tst:20152101017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151330009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152101003"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="cpio is earlier than 0:2.11-24.el7" id="oval:com.redhat.rhsa:tst:20152108005" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152108005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152108003"/>
@@ -44169,6 +45369,322 @@ which correct these issues and add these enhancements.</description>
   </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="NetworkManager-config-routing-rules is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152315054" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152315029"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="net-snmp-libs is earlier than 1:5.7.2-24.el7" id="oval:com.redhat.rhsa:tst:20152345005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151385005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152345003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="net-snmp-utils is earlier than 1:5.7.2-24.el7" id="oval:com.redhat.rhsa:tst:20152345007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151385007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152345003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="net-snmp-python is earlier than 1:5.7.2-24.el7" id="oval:com.redhat.rhsa:tst:20152345009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151385006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152345003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="net-snmp-perl is earlier than 1:5.7.2-24.el7" id="oval:com.redhat.rhsa:tst:20152345011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151385010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152345003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="net-snmp-devel is earlier than 1:5.7.2-24.el7" id="oval:com.redhat.rhsa:tst:20152345013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151385008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152345003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="net-snmp-gui is earlier than 1:5.7.2-24.el7" id="oval:com.redhat.rhsa:tst:20152345015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151636013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152345003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="net-snmp is earlier than 1:5.7.2-24.el7" id="oval:com.redhat.rhsa:tst:20152345017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151385009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152345003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="net-snmp-sysvinit is earlier than 1:5.7.2-24.el7" id="oval:com.redhat.rhsa:tst:20152345019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151636011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152345003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="net-snmp-agent-libs is earlier than 1:5.7.2-24.el7" id="oval:com.redhat.rhsa:tst:20152345021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151636012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152345003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libipa_hbac is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019020"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-ad is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-krb5 is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libsss_simpleifp-devel is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-krb5-common is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-tools is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libsss_nss_idmap is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019021"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-ldap is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019022"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libsss_simpleifp is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019024"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-libwbclient is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-libwbclient is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152355024" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-ipa is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-dbus is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-libsss_nss_idmap is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355029" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-libsss_nss_idmap is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152355030" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-libwbclient-devel is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355031" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-libwbclient-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152355032" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-sss is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355033" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355019"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-sss is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152355034" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355019"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-proxy is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355035" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-common-pac is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355037" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019026"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libsss_nss_idmap-devel is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355039" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019023"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-common is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355041" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-libipa_hbac is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355043" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355024"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-libipa_hbac is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152355044" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355024"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libsss_idmap-devel is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355045" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libipa_hbac-devel is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355047" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019019"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libsss_idmap is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355049" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355051" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-sss-murmur is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355053" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355029"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-sss-murmur is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152355054" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152355029"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sssd-client is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355055" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-sssdconfig is earlier than 0:1.13.0-40.el7" id="oval:com.redhat.rhsa:tst:20152355057" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152019027"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152355003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="cups-filters-devel is earlier than 0:1.0.35-21.el7" id="oval:com.redhat.rhsa:tst:20152360005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152360005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152360003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="cups-filters-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152360006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152360005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="cups-filters-libs is earlier than 0:1.0.35-21.el7" id="oval:com.redhat.rhsa:tst:20152360007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152360006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152360003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="cups-filters-libs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152360008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152360006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="cups-filters is earlier than 0:1.0.35-21.el7" id="oval:com.redhat.rhsa:tst:20152360009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152360007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152360003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="cups-filters is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152360010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152360007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openhpi is earlier than 0:3.4.0-2.el7" id="oval:com.redhat.rhsa:tst:20152369005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152369005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152369003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openhpi is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152369006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152369005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openhpi-libs is earlier than 0:3.4.0-2.el7" id="oval:com.redhat.rhsa:tst:20152369007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152369006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152369003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openhpi-libs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152369008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152369006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openhpi-devel is earlier than 0:3.4.0-2.el7" id="oval:com.redhat.rhsa:tst:20152369009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152369007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152369003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openhpi-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152369010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152369007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid is earlier than 7:3.3.8-26.el7" id="oval:com.redhat.rhsa:tst:20152378005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152378005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152378003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152378006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152378005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid-sysvinit is earlier than 7:3.3.8-26.el7" id="oval:com.redhat.rhsa:tst:20152378007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152378006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152378003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid-sysvinit is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152378008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152378006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pacemaker-cluster-libs is earlier than 0:1.1.13-10.el7" id="oval:com.redhat.rhsa:tst:20152383005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151424010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152383003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pacemaker-libs is earlier than 0:1.1.13-10.el7" id="oval:com.redhat.rhsa:tst:20152383007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151424011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152383003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pacemaker-nagios-plugins-metadata is earlier than 0:1.1.13-10.el7" id="oval:com.redhat.rhsa:tst:20152383009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152383007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152383003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pacemaker-nagios-plugins-metadata is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152383010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152383007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pacemaker-cts is earlier than 0:1.1.13-10.el7" id="oval:com.redhat.rhsa:tst:20152383011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151424007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152383003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pacemaker is earlier than 0:1.1.13-10.el7" id="oval:com.redhat.rhsa:tst:20152383013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151424008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152383003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pacemaker-libs-devel is earlier than 0:1.1.13-10.el7" id="oval:com.redhat.rhsa:tst:20152383015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151424012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152383003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pacemaker-cli is earlier than 0:1.1.13-10.el7" id="oval:com.redhat.rhsa:tst:20152383017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151424005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152383003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pacemaker-doc is earlier than 0:1.1.13-10.el7" id="oval:com.redhat.rhsa:tst:20152383019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151424009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152383003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pacemaker-remote is earlier than 0:1.1.13-10.el7" id="oval:com.redhat.rhsa:tst:20152383021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151424006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152383003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="wireshark-devel is earlier than 0:1.10.14-7.el7" id="oval:com.redhat.rhsa:tst:20152393005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151460007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152393003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="wireshark-gnome is earlier than 0:1.10.14-7.el7" id="oval:com.redhat.rhsa:tst:20152393007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151460005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152393003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="wireshark is earlier than 0:1.10.14-7.el7" id="oval:com.redhat.rhsa:tst:20152393009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151460006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152393003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2 is earlier than 1:2.02-0.29.el7" id="oval:com.redhat.rhsa:tst:20152401005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152401003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2 is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152401006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2-tools is earlier than 1:2.02-0.29.el7" id="oval:com.redhat.rhsa:tst:20152401007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152401003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2-tools is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152401008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2-efi-modules is earlier than 1:2.02-0.29.el7" id="oval:com.redhat.rhsa:tst:20152401009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152401003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2-efi-modules is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152401010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2-efi is earlier than 1:2.02-0.29.el7" id="oval:com.redhat.rhsa:tst:20152401011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152401003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2-efi is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152401012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401008"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
   </red-def:rpminfo_test>
  </tests>
@@ -46420,6 +47936,9 @@ which correct these issues and add these enhancements.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152079006" version="601">
    <red-def:name>binutils-devel</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152101010" version="601">
+   <red-def:name>python-debug</red-def:name>
+  </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152108005" version="601">
    <red-def:name>cpio</red-def:name>
   </red-def:rpminfo_object>
@@ -46578,6 +48097,63 @@ which correct these issues and add these enhancements.</description>
   </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152315029" version="601">
    <red-def:name>NetworkManager-config-routing-rules</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152355014" version="601">
+   <red-def:name>sssd-libwbclient</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152355017" version="601">
+   <red-def:name>python-libsss_nss_idmap</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152355018" version="601">
+   <red-def:name>sssd-libwbclient-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152355019" version="601">
+   <red-def:name>python-sss</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152355024" version="601">
+   <red-def:name>python-libipa_hbac</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152355029" version="601">
+   <red-def:name>python-sss-murmur</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152360005" version="601">
+   <red-def:name>cups-filters-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152360006" version="601">
+   <red-def:name>cups-filters-libs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152360007" version="601">
+   <red-def:name>cups-filters</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152369005" version="601">
+   <red-def:name>openhpi</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152369006" version="601">
+   <red-def:name>openhpi-libs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152369007" version="601">
+   <red-def:name>openhpi-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152378005" version="601">
+   <red-def:name>squid</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152378006" version="601">
+   <red-def:name>squid-sysvinit</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152383007" version="601">
+   <red-def:name>pacemaker-nagios-plugins-metadata</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152401005" version="601">
+   <red-def:name>grub2</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152401006" version="601">
+   <red-def:name>grub2-tools</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152401007" version="601">
+   <red-def:name>grub2-efi-modules</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152401008" version="601">
+   <red-def:name>grub2-efi</red-def:name>
   </red-def:rpminfo_object>
  </objects>
  <states>
@@ -47739,6 +49315,9 @@ which correct these issues and add these enhancements.</description>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152088004" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:0.9.3-9.22.el7</red-def:evr>
   </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152101003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.7.5-34.el7</red-def:evr>
+  </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152108003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:2.11-24.el7</red-def:evr>
   </red-def:rpminfo_state>
@@ -47801,6 +49380,30 @@ which correct these issues and add these enhancements.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152315006" version="601">
    <red-def:evr datatype="evr_string" operation="less than">1:1.0.6-27.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152345003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:5.7.2-24.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152355003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.13.0-40.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152360003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.0.35-21.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152369003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.4.0-2.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152378003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">7:3.3.8-26.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152383003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.1.13-10.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152393003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.10.14-7.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152401003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:2.02-0.29.el7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
