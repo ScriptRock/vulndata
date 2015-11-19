@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-11-18T11:41:01</oval:timestamp>
+  <oval:timestamp>2015-11-18T22:17:02</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -29332,6 +29332,122 @@ packages, which contain backported patches to correct these issues.</description
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152079" version="601">
+   <metadata>
+    <title>RHSA-2015:2079: binutils security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2079-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2079.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-8484" ref_url="https://access.redhat.com/security/cve/CVE-2014-8484" source="CVE"/>
+    <reference ref_id="CVE-2014-8485" ref_url="https://access.redhat.com/security/cve/CVE-2014-8485" source="CVE"/>
+    <reference ref_id="CVE-2014-8501" ref_url="https://access.redhat.com/security/cve/CVE-2014-8501" source="CVE"/>
+    <reference ref_id="CVE-2014-8502" ref_url="https://access.redhat.com/security/cve/CVE-2014-8502" source="CVE"/>
+    <reference ref_id="CVE-2014-8503" ref_url="https://access.redhat.com/security/cve/CVE-2014-8503" source="CVE"/>
+    <reference ref_id="CVE-2014-8504" ref_url="https://access.redhat.com/security/cve/CVE-2014-8504" source="CVE"/>
+    <reference ref_id="CVE-2014-8737" ref_url="https://access.redhat.com/security/cve/CVE-2014-8737" source="CVE"/>
+    <reference ref_id="CVE-2014-8738" ref_url="https://access.redhat.com/security/cve/CVE-2014-8738" source="CVE"/>
+    <description>The binutils packages provide a set of binary utilities.
+
+Multiple buffer overflow flaws were found in the libbdf library used by
+various binutils utilities. If a user were tricked into processing a
+specially crafted file with an application using the libbdf library, it
+could cause the application to crash or, potentially, execute arbitrary
+code. (CVE-2014-8485, CVE-2014-8501, CVE-2014-8502, CVE-2014-8503,
+CVE-2014-8504, CVE-2014-8738)
+
+An integer overflow flaw was found in the libbdf library used by various
+binutils utilities. If a user were tricked into processing a specially
+crafted file with an application using the libbdf library, it could cause
+the application to crash. (CVE-2014-8484)
+
+A directory traversal flaw was found in the strip and objcopy utilities.
+A specially crafted file could cause strip or objdump to overwrite an
+arbitrary file writable by the user running either of these utilities.
+(CVE-2014-8737)
+
+This update fixes the following bugs:
+
+* Binary files started by the system loader could lack the Relocation
+Read-Only (RELRO) protection even though it was explicitly requested when
+the application was built. This bug has been fixed on multiple
+architectures. Applications and all dependent object files, archives, and
+libraries built with an alpha or beta version of binutils should be rebuilt
+to correct this defect. (BZ#1200138, BZ#1175624)
+
+* The ld linker on 64-bit PowerPC now correctly checks the output format
+when asked to produce a binary in another format than PowerPC. (BZ#1226864)
+
+* An important variable that holds the symbol table for the binary being
+debugged has been made persistent, and the objdump utility on 64-bit
+PowerPC is now able to access the needed information without reading an
+invalid memory region. (BZ#1172766)
+
+* Undesirable runtime relocations described in RHBA-2015:0974. (BZ#872148)
+
+The update adds these enhancements:
+
+* New hardware instructions of the IBM z Systems z13 are now supported by
+assembler, disassembler, and linker, as well as Single Instruction,
+Multiple Data (SIMD) instructions. (BZ#1182153)
+
+* Expressions of the form: &quot;FUNC@localentry&quot; to refer to the local entry
+point for the FUNC function (if defined) are now supported by the PowerPC
+assembler. These are required by the ELFv2 ABI on the little-endian variant
+of IBM Power Systems. (BZ#1194164)
+
+All binutils users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues and add these
+enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-04-01"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8484">CVE-2014-8484</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8485">CVE-2014-8485</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8501">CVE-2014-8501</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8502">CVE-2014-8502</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8503">CVE-2014-8503</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8504">CVE-2014-8504</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8737">CVE-2014-8737</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8738">CVE-2014-8738</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1156272" id="1156272">CVE-2014-8484 binutils: invalid read flaw in libbfd</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1157276" id="1157276">CVE-2014-8485 binutils: lack of range checking leading to controlled write in _bfd_elf_setup_sections()</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1162570" id="1162570">CVE-2014-8501 binutils: out-of-bounds write when parsing specially crafted PE executable</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1162594" id="1162594">CVE-2014-8502 binutils: heap overflow in objdump when parsing a crafted ELF/PE binary file (incomplete fix for CVE-2014-8485)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1162607" id="1162607">CVE-2014-8503 binutils: stack overflow in objdump when parsing specially crafted ihex file</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1162621" id="1162621">CVE-2014-8504 binutils: stack overflow in the SREC parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1162655" id="1162655">CVE-2014-8737 binutils: directory traversal vulnerability</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1162666" id="1162666">CVE-2014-8738 binutils: out of bounds memory write</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1172766" id="1172766">ppc64: segv in libbfd</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1200138" id="1200138">binutils: ld sporadically generates binaries without relro protection even when told so</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1203603" id="1203603">The binutils package contains the windmc(1) manual page but the utility is not included</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1238783" id="1238783">[aarch64][binutils] relocation truncated to fit: R_AARCH64_LD64_GOT_LO12_NC against</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="binutils is earlier than 0:2.23.52.0.1-55.el7" test_ref="oval:com.redhat.rhsa:tst:20152079005"/>
+      <criterion comment="binutils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152079006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="binutils-devel is earlier than 0:2.23.52.0.1-55.el7" test_ref="oval:com.redhat.rhsa:tst:20152079007"/>
+      <criterion comment="binutils-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152079008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20152081" version="601">
    <metadata>
     <title>RHSA-2015:2081: postgresql security update (Moderate)</title>
@@ -29597,6 +29713,401 @@ must be restarted for the update to take effect.</description>
        <criterion comment="java-1.6.0-openjdk-src is earlier than 1:1.6.0.37-1.13.9.4.el7_1" test_ref="oval:com.redhat.rhsa:tst:20152086031"/>
        <criterion comment="java-1.6.0-openjdk-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150085019"/>
       </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152154" version="601">
+   <metadata>
+    <title>RHSA-2015:2154: krb5 security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2154-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2154.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-5355" ref_url="https://access.redhat.com/security/cve/CVE-2014-5355" source="CVE"/>
+    <reference ref_id="CVE-2015-2694" ref_url="https://access.redhat.com/security/cve/CVE-2015-2694" source="CVE"/>
+    <description>Kerberos is a network authentication system, which can improve the security
+of your network by eliminating the insecure practice of sending passwords
+over the network in unencrypted form. It allows clients and servers to
+authenticate to each other with the help of a trusted third party, the
+Kerberos key distribution center (KDC).
+
+It was found that the krb5_read_message() function of MIT Kerberos did not
+correctly sanitize input, and could create invalid krb5_data objects.
+A remote, unauthenticated attacker could use this flaw to crash a Kerberos
+child process via a specially crafted request. (CVE-2014-5355)
+
+A flaw was found in the OTP kdcpreauth module of MIT kerberos.
+An unauthenticated remote attacker could use this flaw to bypass the
+requires_preauth flag on a client principal and obtain a ciphertext
+encrypted in the principal's long-term key. This ciphertext could be used
+to conduct an off-line dictionary attack against the user's password.
+(CVE-2015-2694)
+
+The krb5 packages have been upgraded to upstream version 1.13.2, which
+provides a number of bug fixes and enhancements over the previous version.
+(BZ#1203889)
+
+Notably, this update fixes the following bugs:
+
+* Previously, the RADIUS support (libkrad) in krb5 was sending krb5
+authentication for Transmission Control Protocol (TCP) transports multiple
+times, accidentally using a code path intended to be used only for
+unreliable transport types, for example User Datagram Protocol (UDP)
+transports. A patch that fixes the problem by disabling manual retries for
+reliable transports, such as TCP, has been applied, and the correct code
+path is now used in this situation. (BZ#1251586)
+
+* Attempts to use Kerberos single sign-on (SSO) to access SAP NetWeaver
+systems sometimes failed. The SAP NetWeaver developer trace displayed the
+following error message:
+
+    No credentials were supplied, or the credentials were
+    unavailable or inaccessible
+    Unable to establish the security context
+
+Querying SSO credential lifetime has been modified to trigger credential
+acquisition, thus preventing the error from occurring. Now, the user can
+successfully use Kerberos SSO for accessing SAP NetWeaver systems.
+(BZ#1252454)
+
+All krb5 users are advised to upgrade to these updated packages, which
+correct these issues and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-05-05"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-5355">CVE-2014-5355</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-2694">CVE-2015-2694</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1156144" id="1156144">krb5 upstream test t_kdb.py failure</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1163402" id="1163402">kdb5_ldap_util  view_policy does not shows ticket flags on s390x and ppc64</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1164304" id="1164304">Upstream unit tests loads the installed shared libraries instead the ones from the build</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1185770" id="1185770">Missing upstream test in krb5-1.12.2: src/tests/gssapi/t_invalid.c</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1193939" id="1193939">CVE-2014-5355 krb5: unauthenticated denial of service in recvauth_common() and others</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1203889" id="1203889">RFE: Rebase krb5 in RHEL7.2 to krb5 1.13 (krb1.13.2) ...</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1216133" id="1216133">CVE-2015-2694 krb5: issues in OTP and PKINIT kdcpreauth modules leading to requires_preauth bypass</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1222903" id="1222903">[SELinux] AVC denials may appear when kadmind starts</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1247608" id="1247608">[RFE] Add support for multi-hop preauth mechs via |KDC_ERR_MORE_PREAUTH_DATA_REQUIRED| for RFC 6113 (&quot;A Generalized Framework for Kerberos Pre-Authentication&quot;)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1247751" id="1247751">krb5-config returns wrong -specs path</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1247761" id="1247761">RFE: Minor krb5 spec file cleanup and sync with recent Fedora 22/23 changes</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1250154" id="1250154">[s390x, ppc64, ppc64le]: kadmind does not accept ACL if kadm5.acl does not end with EOL</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1251586" id="1251586">KDC sends multiple requests to ipa-otpd for the same authentication</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1259846" id="1259846">KDC does not return proper client principal for client referrals</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="krb5 is earlier than 0:1.13.2-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152154017"/>
+      <criterion comment="krb5 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150439006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-devel is earlier than 0:1.13.2-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152154013"/>
+      <criterion comment="krb5-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150439010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-libs is earlier than 0:1.13.2-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152154005"/>
+      <criterion comment="krb5-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150439018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-pkinit is earlier than 0:1.13.2-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152154011"/>
+      <criterion comment="krb5-pkinit is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150439008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-server is earlier than 0:1.13.2-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152154007"/>
+      <criterion comment="krb5-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150439012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-server-ldap is earlier than 0:1.13.2-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152154009"/>
+      <criterion comment="krb5-server-ldap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150439016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-workstation is earlier than 0:1.13.2-10.el7" test_ref="oval:com.redhat.rhsa:tst:20152154015"/>
+      <criterion comment="krb5-workstation is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150439014"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152180" version="601">
+   <metadata>
+    <title>RHSA-2015:2180: rubygem-bundler and rubygem-thor security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2180-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2180.html" source="RHSA"/>
+    <reference ref_id="CVE-2013-0334" ref_url="https://access.redhat.com/security/cve/CVE-2013-0334" source="CVE"/>
+    <description>Bundler manages an application's dependencies through its entire life,
+across many machines, systematically and repeatably. Thor is a toolkit for
+building powerful command-line interfaces.
+
+A flaw was found in the way Bundler handled gems available from multiple
+sources. An attacker with access to one of the sources could create a
+malicious gem with the same name, which they could then use to trick a user
+into installing, potentially resulting in execution of code from the
+attacker-supplied malicious gem. (CVE-2013-0334)
+
+Bundler has been upgraded to upstream version 1.7.8 and Thor has been
+upgraded to upstream version 1.19.1, both of which provide a number of bug
+fixes and enhancements over the previous versions. (BZ#1194243, BZ#1209921)
+
+All rubygem-bundler and rubygem-thor users are advised to upgrade to these
+updated packages, which correct these issues and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-04-09"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2013-0334">CVE-2013-0334</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1146335" id="1146335">CVE-2013-0334 rubygem-bundler: 'bundle install' may install a gem from a source other than expected</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1163076" id="1163076">Bundler can't see its dependencies after Bundler.setup [rhel-7]</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1194243" id="1194243">Update Bundler to the latest release</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1209921" id="1209921">Update Thor to the latest release</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="rubygem-thor is earlier than 0:0.19.1-1.el7" test_ref="oval:com.redhat.rhsa:tst:20152180005"/>
+      <criterion comment="rubygem-thor is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152180006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="rubygem-thor-doc is earlier than 0:0.19.1-1.el7" test_ref="oval:com.redhat.rhsa:tst:20152180007"/>
+      <criterion comment="rubygem-thor-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152180008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="rubygem-bundler is earlier than 0:1.7.8-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152180009"/>
+      <criterion comment="rubygem-bundler is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152180010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="rubygem-bundler-doc is earlier than 0:1.7.8-3.el7" test_ref="oval:com.redhat.rhsa:tst:20152180011"/>
+      <criterion comment="rubygem-bundler-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152180012"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152184" version="601">
+   <metadata>
+    <title>RHSA-2015:2184: realmd security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2184-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2184.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-2704" ref_url="https://access.redhat.com/security/cve/CVE-2015-2704" source="CVE"/>
+    <description>The realmd DBus system service manages discovery of and enrollment in
+realms and domains, such as Active Directory or Identity Management (IdM).
+The realmd service detects available domains, automatically configures the
+system, and joins it as an account to a domain.
+
+A flaw was found in the way realmd parsed certain input when writing
+configuration into the sssd.conf or smb.conf file. A remote attacker could
+use this flaw to inject arbitrary configurations into these files via a
+newline character in an LDAP response. (CVE-2015-2704)
+
+It was found that the realm client would try to automatically join an
+active directory domain without authentication, which could potentially
+lead to privilege escalation within a specified domain. (BZ#1205751)
+
+The realmd packages have been upgraded to upstream version 0.16.1, which
+provides a number of bug fixes and enhancements over the previous version.
+(BZ#1174911)
+
+This update also fixes the following bugs:
+
+* Joining a Red Hat Enterprise Linux machine to a domain using the realm
+utility creates /home/domainname/[username]/ directories for domain users.
+Previously, SELinux labeled the domain users' directories incorrectly. As a
+consequence, the domain users sometimes experienced problems with SELinux
+policy. This update modifies the realmd service default behavior so that
+the domain users' directories are compatible with the standard SELinux
+policy. (BZ#1241832)
+
+* Previously, the realm utility was unable to join or discover domains with
+domain names containing underscore (_). The realmd service has been
+modified to process underscores in domain names correctly, which fixes the
+described bug. (BZ#1243771)
+
+In addition, this update adds the following enhancement:
+
+* The realmd utility now allows the user to disable automatic ID mapping
+from the command line. To disable the mapping, pass the
+&quot;--automatic-id-mapping=no&quot; option to the realmd utility. (BZ#1230941)
+
+All realmd users are advised to upgrade to these updated packages, which
+correct these issues and add these enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-04-14"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-2704">CVE-2015-2704</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1142191" id="1142191">realm command crashes when no input password</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1174911" id="1174911">Rebase to 0.16.x</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1205751" id="1205751">realmd: unauthenticated Active Directory join</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1205752" id="1205752">CVE-2015-2704 realmd: untrusted data is used when configuring sssd.conf and/or smb.conf</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1241832" id="1241832">Wrong SELinux label on domain users home folders</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1243771" id="1243771">realm fails to join domain names with underscore in name</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1271618" id="1271618">net ads keytab add fails on system joined to AD with RHEL 7.2 realm join</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="realmd is earlier than 0:0.16.1-5.el7" test_ref="oval:com.redhat.rhsa:tst:20152184005"/>
+      <criterion comment="realmd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152184006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="realmd-devel-docs is earlier than 0:0.16.1-5.el7" test_ref="oval:com.redhat.rhsa:tst:20152184007"/>
+      <criterion comment="realmd-devel-docs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152184008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152199" version="601">
+   <metadata>
+    <title>RHSA-2015:2199: glibc security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2199-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2199.html" source="RHSA"/>
+    <reference ref_id="CVE-2013-7423" ref_url="https://access.redhat.com/security/cve/CVE-2013-7423" source="CVE"/>
+    <reference ref_id="CVE-2015-1472" ref_url="https://access.redhat.com/security/cve/CVE-2015-1472" source="CVE"/>
+    <reference ref_id="CVE-2015-1473" ref_url="https://access.redhat.com/security/cve/CVE-2015-1473" source="CVE"/>
+    <reference ref_id="CVE-2015-1781" ref_url="https://access.redhat.com/security/cve/CVE-2015-1781" source="CVE"/>
+    <description>The glibc packages provide the standard C libraries (libc), POSIX thread
+libraries (libpthread), standard math libraries (libm), and the Name Server
+Caching Daemon (nscd) used by multiple programs on the system.
+Without these libraries, the Linux system cannot function correctly.
+
+It was discovered that, under certain circumstances, glibc's getaddrinfo()
+function would send DNS queries to random file descriptors. An attacker
+could potentially use this flaw to send DNS queries to unintended
+recipients, resulting in information disclosure or data loss due to the
+application encountering corrupted data. (CVE-2013-7423)
+
+A buffer overflow flaw was found in the way glibc's gethostbyname_r() and
+other related functions computed the size of a buffer when passed a
+misaligned buffer as input. An attacker able to make an application call
+any of these functions with a misaligned buffer could use this flaw to
+crash the application or, potentially, execute arbitrary code with the
+permissions of the user running the application. (CVE-2015-1781)
+
+A heap-based buffer overflow flaw and a stack overflow flaw were found in
+glibc's swscanf() function. An attacker able to make an application call
+the swscanf() function could use these flaws to crash that application or,
+potentially, execute arbitrary code with the permissions of the user
+running the application. (CVE-2015-1472, CVE-2015-1473)
+
+An integer overflow flaw, leading to a heap-based buffer overflow, was
+found in glibc's _IO_wstr_overflow() function. An attacker able to make an
+application call this function could use this flaw to crash that
+application or, potentially, execute arbitrary code with the permissions of
+the user running the application. (BZ#1195762)
+
+A flaw was found in the way glibc's fnmatch() function processed certain
+malformed patterns. An attacker able to make an application call this
+function could use this flaw to crash that application. (BZ#1197730)
+
+The CVE-2015-1781 issue was discovered by Arjun Shankar of Red Hat.
+
+These updated glibc packages also include numerous bug fixes and one
+enhancement. Space precludes documenting all of these changes in this
+advisory. For information on the most significant of these changes, users
+are directed to the following article on the Red Hat Customer Portal:
+
+https://access.redhat.com/articles/2050743
+
+All glibc users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues and add these
+enhancements.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-04-29"/>
+     <updated date="2015-11-19"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2013-7423">CVE-2013-7423</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-1472">CVE-2015-1472</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-1473">CVE-2015-1473</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-1781">CVE-2015-1781</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1064066" id="1064066">Test suite failure: test-ldouble</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1098042" id="1098042">getaddrinfo return EAI_NONAME instead of EAI_AGAIN in case the DNS query times out</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1144133" id="1144133">calloc in dl-reloc.c computes size incorrectly</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1187109" id="1187109">CVE-2013-7423 glibc: getaddrinfo() writes DNS queries to random file descriptors under high load</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1188235" id="1188235">CVE-2015-1472 glibc: heap buffer overflow in glibc swscanf</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1195762" id="1195762">glibc: _IO_wstr_overflow integer overflow</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1197730" id="1197730">glibc: potential denial of service in internal_fnmatch()</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1199525" id="1199525">CVE-2015-1781 glibc: buffer overflow in gethostbyname_r() and related functions with misaligned buffer</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1207032" id="1207032">glibc deadlock when printing backtrace from memory allocator</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1209105" id="1209105">CVE-2015-1473 glibc: Stack-overflow in glibc swscanf</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1219891" id="1219891">Missing define for TCP_USER_TIMEOUT in netinet/tcp.h</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1225490" id="1225490">[RFE] Unconditionally enable SDT probes in glibc builds.</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="glibc is earlier than 0:2.17-105.el7" test_ref="oval:com.redhat.rhsa:tst:20152199005"/>
+      <criterion comment="glibc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-common is earlier than 0:2.17-105.el7" test_ref="oval:com.redhat.rhsa:tst:20152199013"/>
+      <criterion comment="glibc-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-devel is earlier than 0:2.17-105.el7" test_ref="oval:com.redhat.rhsa:tst:20152199009"/>
+      <criterion comment="glibc-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-headers is earlier than 0:2.17-105.el7" test_ref="oval:com.redhat.rhsa:tst:20152199015"/>
+      <criterion comment="glibc-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-static is earlier than 0:2.17-105.el7" test_ref="oval:com.redhat.rhsa:tst:20152199017"/>
+      <criterion comment="glibc-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-utils is earlier than 0:2.17-105.el7" test_ref="oval:com.redhat.rhsa:tst:20152199007"/>
+      <criterion comment="glibc-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nscd is earlier than 0:2.17-105.el7" test_ref="oval:com.redhat.rhsa:tst:20152199011"/>
+      <criterion comment="nscd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150016012"/>
      </criteria>
     </criteria>
    </criteria>
@@ -41343,6 +41854,22 @@ must be restarted for the update to take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151185005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152068005"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="binutils is earlier than 0:2.23.52.0.1-55.el7" id="oval:com.redhat.rhsa:tst:20152079005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152079005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152079003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="binutils is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152079006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152079005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="binutils-devel is earlier than 0:2.23.52.0.1-55.el7" id="oval:com.redhat.rhsa:tst:20152079007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152079006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152079003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="binutils-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152079008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152079006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="postgresql-plpython is earlier than 0:8.4.20-4.el6_7" id="oval:com.redhat.rhsa:tst:20152081005" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150750006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152081003"/>
@@ -41442,6 +41969,110 @@ must be restarted for the update to take effect.</description>
   <red-def:rpminfo_test check="at least one" comment="java-1.6.0-openjdk-devel is earlier than 1:1.6.0.37-1.13.9.4.el7_1" id="oval:com.redhat.rhsa:tst:20152086034" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150085006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152086008"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-libs is earlier than 0:1.13.2-10.el7" id="oval:com.redhat.rhsa:tst:20152154005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150439011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152154003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-server is earlier than 0:1.13.2-10.el7" id="oval:com.redhat.rhsa:tst:20152154007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150439008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152154003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-server-ldap is earlier than 0:1.13.2-10.el7" id="oval:com.redhat.rhsa:tst:20152154009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150439010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152154003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-pkinit is earlier than 0:1.13.2-10.el7" id="oval:com.redhat.rhsa:tst:20152154011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150439006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152154003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-devel is earlier than 0:1.13.2-10.el7" id="oval:com.redhat.rhsa:tst:20152154013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150439007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152154003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-workstation is earlier than 0:1.13.2-10.el7" id="oval:com.redhat.rhsa:tst:20152154015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150439009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152154003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5 is earlier than 0:1.13.2-10.el7" id="oval:com.redhat.rhsa:tst:20152154017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150439005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152154003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rubygem-thor is earlier than 0:0.19.1-1.el7" id="oval:com.redhat.rhsa:tst:20152180005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152180005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152180003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rubygem-thor is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152180006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152180005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rubygem-thor-doc is earlier than 0:0.19.1-1.el7" id="oval:com.redhat.rhsa:tst:20152180007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152180006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152180003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rubygem-thor-doc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152180008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152180006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rubygem-bundler is earlier than 0:1.7.8-3.el7" id="oval:com.redhat.rhsa:tst:20152180009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152180007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152180004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rubygem-bundler is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152180010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152180007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rubygem-bundler-doc is earlier than 0:1.7.8-3.el7" id="oval:com.redhat.rhsa:tst:20152180011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152180008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152180004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rubygem-bundler-doc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152180012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152180008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="realmd is earlier than 0:0.16.1-5.el7" id="oval:com.redhat.rhsa:tst:20152184005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152184005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152184003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="realmd is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152184006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152184005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="realmd-devel-docs is earlier than 0:0.16.1-5.el7" id="oval:com.redhat.rhsa:tst:20152184007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152184006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152184003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="realmd-devel-docs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152184008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152184006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc is earlier than 0:2.17-105.el7" id="oval:com.redhat.rhsa:tst:20152199005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152199003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-utils is earlier than 0:2.17-105.el7" id="oval:com.redhat.rhsa:tst:20152199007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152199003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-devel is earlier than 0:2.17-105.el7" id="oval:com.redhat.rhsa:tst:20152199009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152199003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nscd is earlier than 0:2.17-105.el7" id="oval:com.redhat.rhsa:tst:20152199011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152199003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-common is earlier than 0:2.17-105.el7" id="oval:com.redhat.rhsa:tst:20152199013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152199003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-headers is earlier than 0:2.17-105.el7" id="oval:com.redhat.rhsa:tst:20152199015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152199003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-static is earlier than 0:2.17-105.el7" id="oval:com.redhat.rhsa:tst:20152199017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150016006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152199003"/>
   </red-def:rpminfo_test>
  </tests>
  <objects>
@@ -43686,6 +44317,30 @@ must be restarted for the update to take effect.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152019027" version="601">
    <red-def:name>python-sssdconfig</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152079005" version="601">
+   <red-def:name>binutils</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152079006" version="601">
+   <red-def:name>binutils-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152180005" version="601">
+   <red-def:name>rubygem-thor</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152180006" version="601">
+   <red-def:name>rubygem-thor-doc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152180007" version="601">
+   <red-def:name>rubygem-bundler</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152180008" version="601">
+   <red-def:name>rubygem-bundler-doc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152184005" version="601">
+   <red-def:name>realmd</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152184006" version="601">
+   <red-def:name>realmd-devel-docs</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20150001001" version="601">
@@ -44825,6 +45480,9 @@ must be restarted for the update to take effect.</description>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152068005" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:3.14.3-7.el6_4</red-def:evr>
   </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152079003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.23.52.0.1-55.el7</red-def:evr>
+  </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152081003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:8.4.20-4.el6_7</red-def:evr>
   </red-def:rpminfo_state>
@@ -44836,6 +45494,21 @@ must be restarted for the update to take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152086008" version="601">
    <red-def:evr datatype="evr_string" operation="less than">1:1.6.0.37-1.13.9.4.el7_1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152154003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.13.2-10.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152180003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.19.1-1.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152180004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.7.8-3.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152184003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.16.1-5.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152199003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.17-105.el7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
