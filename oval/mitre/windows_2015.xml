@@ -5722,7 +5722,7 @@
 		    <oval-def:criterion comment="VBScript 5.8 is installed" test_ref="oval:org.mitre.oval:tst:138991" />
 		  </oval-def:criteria>
 		</oval-def:definition>
-    <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:28116" version="4">
+    <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:28116" version="5">
 		  <oval-def:metadata>
 		    <oval-def:title>ASP.NET information disclosure vulnerability - CVE-2015-1648 (MS15-041)</oval-def:title>
 		    <oval-def:affected family="windows">
@@ -33245,7 +33245,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:30419" />
 		  <state state_ref="oval:org.mitre.oval:ste:28028" />
 		</registry_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of Setup.exe is greater than or equal to 10.0.30319.2000" id="oval:org.mitre.oval:tst:100142" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of Setup.exe is greater than or equal to 10.0.30319.2000" id="oval:org.mitre.oval:tst:100142" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:30359" />
 		  <state state_ref="oval:org.mitre.oval:ste:27988" />
 		</file_test>
@@ -34390,7 +34390,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:12058" />
 		  <state state_ref="oval:org.mitre.oval:ste:31131" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of Setup.exe is less than 10.0.30319.1031" id="oval:org.mitre.oval:tst:138047" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of Setup.exe is less than 10.0.30319.1031" id="oval:org.mitre.oval:tst:138047" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:30359" />
 		  <state state_ref="oval:org.mitre.oval:ste:38441" />
 		</file_test>
@@ -35474,7 +35474,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:24602" />
 		  <state state_ref="oval:org.mitre.oval:ste:38798" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of Setup.exe is less than 10.0.30319.2056" id="oval:org.mitre.oval:tst:138530" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of Setup.exe is less than 10.0.30319.2056" id="oval:org.mitre.oval:tst:138530" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:30359" />
 		  <state state_ref="oval:org.mitre.oval:ste:38254" />
 		</file_test>
@@ -38063,8 +38063,8 @@
 		  <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Office15.WacServer</key>
 		  <name>InstallLocation</name>
 		</registry_object>
-    <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Object holds the information of Setup.exe" id="oval:org.mitre.oval:obj:30359" version="1">
-		  <path var_check="at least one" var_ref="oval:org.mitre.oval:var:969" />
+    <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Object holds the information of Setup.exe" id="oval:org.mitre.oval:obj:30359" version="2">
+		  <path operation="pattern match" var_check="at least one" var_ref="oval:org.mitre.oval:var:969"/>
 		  <filename>Setup.exe</filename>
 		</file_object>
     <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Object holds the details of Msoserver.Dll (Office Web Apps 2013)" id="oval:org.mitre.oval:obj:30360" version="1">
@@ -41180,10 +41180,13 @@
 		    <oval-def:literal_component>\Microsoft.NET\Framework\v4.0.30319</oval-def:literal_component>
 		  </oval-def:concat>
 		</oval-def:local_variable>
-    <oval-def:local_variable xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" comment=".NET 4.0 Framework client directory" datatype="string" id="oval:org.mitre.oval:var:969" version="1">
+    <oval-def:local_variable xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" comment=".NET 4.0 Framework client directory" datatype="string" id="oval:org.mitre.oval:var:969" version="2">
 		  <oval-def:concat>
-		    <oval-def:object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
-		    <oval-def:literal_component>\Microsoft.NET\Framework\v4.0.30319\SetupCache\Client</oval-def:literal_component>
+		    <oval-def:literal_component>^</oval-def:literal_component>
+		    <oval-def:escape_regex>
+		      <oval-def:object_component object_ref="oval:org.mitre.oval:obj:219" item_field="value"/>
+		    </oval-def:escape_regex>
+		    <oval-def:literal_component>\\Microsoft.NET\\Framework(64)?\\v4\.0\.30319\\SetupCache(\\Client)?(\\v4.*)?$</oval-def:literal_component>
 		  </oval-def:concat>
 		</oval-def:local_variable>
     <oval-def:local_variable xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" comment="Variable holds the bin directory of WebApps" datatype="string" id="oval:org.mitre.oval:var:973" version="1">
