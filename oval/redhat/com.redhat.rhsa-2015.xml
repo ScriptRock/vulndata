@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-11-19T15:38:01</oval:timestamp>
+  <oval:timestamp>2015-11-23T04:22:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -33720,6 +33720,123 @@ contain backported patches to correct these issues.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152504" version="601">
+   <metadata>
+    <title>RHSA-2015:2504: libreport security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2504-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2504.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-5302" ref_url="https://access.redhat.com/security/cve/CVE-2015-5302" source="CVE"/>
+    <description>libreport provides an API for reporting different problems in applications
+to different bug targets, such as Bugzilla, FTP, and Trac. ABRT (Automatic
+Bug Reporting Tool) uses libreport.
+
+It was found that ABRT may have exposed unintended information to Red Hat
+Bugzilla during crash reporting. A bug in the libreport library caused
+changes made by a user in files included in a crash report to be discarded.
+As a result, Red Hat Bugzilla attachments may contain data that was not
+intended to be made public, including host names, IP addresses, or command
+line options. (CVE-2015-5302)
+
+This flaw did not affect default installations of ABRT on Red Hat
+Enterprise Linux as they do not post data to Red Hat Bugzilla. This feature
+can however be enabled, potentially impacting modified ABRT instances.
+
+As a precaution, Red Hat has identified bugs filed by such non-default Red
+Hat Enterprise Linux users of ABRT and marked them private.
+
+This issue was discovered by Bastien Nocera of Red Hat.
+
+All users of libreport are advised to upgrade to these updated packages,
+which corrects this issue.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-11-23"/>
+     <updated date="2015-11-23"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5302">CVE-2015-5302</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1270903" id="1270903">CVE-2015-5302 libreport: Possible private data leak in Bugzilla bugs opened by ABRT</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150001001"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150001002"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150001003"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150001004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="libreport is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504021"/>
+      <criterion comment="libreport is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083068"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-cli is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504009"/>
+      <criterion comment="libreport-cli is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083074"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-compat is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504027"/>
+      <criterion comment="libreport-compat is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083086"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-devel is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504013"/>
+      <criterion comment="libreport-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083058"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-filesystem is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504033"/>
+      <criterion comment="libreport-filesystem is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083072"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-gtk is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504019"/>
+      <criterion comment="libreport-gtk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083054"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-gtk-devel is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504025"/>
+      <criterion comment="libreport-gtk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083076"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-newt is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504023"/>
+      <criterion comment="libreport-newt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083066"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-plugin-bugzilla is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504007"/>
+      <criterion comment="libreport-plugin-bugzilla is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083070"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-plugin-kerneloops is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504017"/>
+      <criterion comment="libreport-plugin-kerneloops is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083078"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-plugin-logger is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504035"/>
+      <criterion comment="libreport-plugin-logger is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083056"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-plugin-mailx is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504005"/>
+      <criterion comment="libreport-plugin-mailx is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083060"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-plugin-reportuploader is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504015"/>
+      <criterion comment="libreport-plugin-reportuploader is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083062"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-plugin-rhtsupport is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504011"/>
+      <criterion comment="libreport-plugin-rhtsupport is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083080"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-plugin-ureport is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504029"/>
+      <criterion comment="libreport-plugin-ureport is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083048"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libreport-python is earlier than 0:2.0.9-25.el6_7" test_ref="oval:com.redhat.rhsa:tst:20152504031"/>
+      <criterion comment="libreport-python is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151083064"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 6 Client is installed" id="oval:com.redhat.rhsa:tst:20150001001" version="601">
@@ -46742,6 +46859,70 @@ contain backported patches to correct these issues.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152455008"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-plugin-mailx is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083032"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-plugin-bugzilla is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083037"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-cli is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083039"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-plugin-rhtsupport is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083042"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-devel is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083031"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-plugin-reportuploader is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083033"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-plugin-kerneloops is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083041"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-gtk is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083029"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083036"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-newt is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083035"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-gtk-devel is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083040"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-compat is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083045"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-plugin-ureport is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504029" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083026"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-python is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504031" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083034"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-filesystem is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504033" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083038"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreport-plugin-logger is earlier than 0:2.0.9-25.el6_7" id="oval:com.redhat.rhsa:tst:20152504035" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151083030"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152504003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20150001001" version="601">
@@ -50510,6 +50691,9 @@ contain backported patches to correct these issues.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152455003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:1.4.20-26.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152504003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.0.9-25.el6_7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
