@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-11-29T23:41:02</oval:timestamp>
+  <oval:timestamp>2015-11-30T09:20:02</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -34823,6 +34823,76 @@ restarted for the update to take effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152522" version="601">
+   <metadata>
+    <title>RHSA-2015:2522: apache-commons-collections security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2522-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2522.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7501" ref_url="https://access.redhat.com/security/cve/CVE-2015-7501" source="CVE"/>
+    <description>The Apache Commons Collections library provides new interfaces,
+implementations, and utilities to extend the features of the Java
+Collections Framework.
+
+It was found that the Apache commons-collections library permitted code
+execution when deserializing objects involving a specially constructed
+chain of classes. A remote attacker could use this flaw to execute
+arbitrary code with the permissions of the application using the
+commons-collections library. (CVE-2015-7501)
+
+With this update, deserialization of certain classes in the
+commons-collections library is no longer allowed. Applications that require
+those classes to be deserialized can use the system property
+&quot;org.apache.commons.collections.enableUnsafeSerialization&quot; to re-enable
+their deserialization.
+
+Further information about this security flaw may be found at:
+https://access.redhat.com/solutions/2045023
+
+All users of apache-commons-collections are advised to upgrade to these
+updated packages, which contain a backported patch to correct this issue.
+All running applications using the commons-collections library must be
+restarted for the update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-11-30"/>
+     <updated date="2015-11-30"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7501">CVE-2015-7501</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1279330" id="1279330">CVE-2015-7501 apache-commons-collections: InvokerTransformer code execution during deserialisation</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="apache-commons-collections is earlier than 0:3.2.1-22.el7_2" test_ref="oval:com.redhat.rhsa:tst:20152522007"/>
+      <criterion comment="apache-commons-collections is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152522008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="apache-commons-collections-javadoc is earlier than 0:3.2.1-22.el7_2" test_ref="oval:com.redhat.rhsa:tst:20152522011"/>
+      <criterion comment="apache-commons-collections-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152522012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="apache-commons-collections-testframework is earlier than 0:3.2.1-22.el7_2" test_ref="oval:com.redhat.rhsa:tst:20152522005"/>
+      <criterion comment="apache-commons-collections-testframework is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152522006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="apache-commons-collections-testframework-javadoc is earlier than 0:3.2.1-22.el7_2" test_ref="oval:com.redhat.rhsa:tst:20152522009"/>
+      <criterion comment="apache-commons-collections-testframework-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152522010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 6 Client is installed" id="oval:com.redhat.rhsa:tst:20150001001" version="601">
@@ -48301,6 +48371,38 @@ restarted for the update to take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152521009"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="apache-commons-collections-testframework is earlier than 0:3.2.1-22.el7_2" id="oval:com.redhat.rhsa:tst:20152522005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152522005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152522003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="apache-commons-collections-testframework is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152522006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152522005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="apache-commons-collections is earlier than 0:3.2.1-22.el7_2" id="oval:com.redhat.rhsa:tst:20152522007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152522006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152522003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="apache-commons-collections is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152522008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152522006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="apache-commons-collections-testframework-javadoc is earlier than 0:3.2.1-22.el7_2" id="oval:com.redhat.rhsa:tst:20152522009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152522007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152522003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="apache-commons-collections-testframework-javadoc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152522010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152522007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="apache-commons-collections-javadoc is earlier than 0:3.2.1-22.el7_2" id="oval:com.redhat.rhsa:tst:20152522011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152522008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152522003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="apache-commons-collections-javadoc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152522012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152522008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20150001001" version="601">
@@ -50814,6 +50916,18 @@ restarted for the update to take effect.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152521009" version="601">
    <red-def:name>jakarta-commons-collections-tomcat5</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152522005" version="601">
+   <red-def:name>apache-commons-collections-testframework</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152522006" version="601">
+   <red-def:name>apache-commons-collections</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152522007" version="601">
+   <red-def:name>apache-commons-collections-testframework-javadoc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152522008" version="601">
+   <red-def:name>apache-commons-collections-javadoc</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20150001001" version="601">
@@ -52117,6 +52231,9 @@ restarted for the update to take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152521003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:3.2.1-3.5.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152522003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.2.1-22.el7_2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
