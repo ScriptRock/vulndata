@@ -225,6 +225,28 @@
 		    <criterion comment="php5 is earlier than 0:5.4.36-0+deb7u3" test_ref="oval:org.cisecurity:tst:276" />
 		  </criteria>
 		</definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.cisecurity:def:273" version="1">
+		  <metadata>
+		    <title>Ubuntu 15.10 is installed</title>
+		    <affected family="unix">
+		      <platform>Ubuntu 15.10</platform>
+		    </affected>
+		    <reference ref_id="cpe:/o:canonical:ubuntu_linux:15.10" source="CPE" />
+		    <description>Ubuntu 15.10 is installed</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2015-10-23T13:00:00">
+		          <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria>
+		    <criterion comment="Ubuntu 15.10 is installed" test_ref="oval:org.cisecurity:tst:362" />
+		  </criteria>
+		</definition>
     <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.mitre.oval:def:19338" version="7">
 		    <oval-def:metadata>
 		        <oval-def:title>Debian 7 is installed</oval-def:title>
@@ -373,6 +395,10 @@
 		  <object object_ref="oval:org.cisecurity:obj:39" />
 		  <state state_ref="oval:org.cisecurity:ste:92" />
 		</dpkginfo_test>
+    <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ubuntu 15.10 is installed" id="oval:org.cisecurity:tst:362" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:16145" />
+		  <state state_ref="oval:org.cisecurity:ste:352" />
+		</textfilecontent54_test>
     <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Debian 7 is installed" id="oval:org.mitre.oval:tst:87585" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:26771" />
 		  <state state_ref="oval:org.mitre.oval:ste:24187" />
@@ -409,6 +435,12 @@
     <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="php5 package information" id="oval:org.mitre.oval:obj:7704" version="1">
 		  <name>php5</name>
 		</dpkginfo_object>
+    <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval:obj:16145" version="1">
+		  <path>/etc</path>
+		  <filename>lsb-release</filename>
+		  <pattern operation="pattern match">^.*Ubuntu.*\nDISTRIB_RELEASE=(\d{1,2}\.\d{1,2})$</pattern>
+		  <instance datatype="int">1</instance>
+		</textfilecontent54_object>
     <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="libarchive package information" id="oval:org.mitre.oval:obj:23538" version="1">
 		  <name>libarchive</name>
 		</dpkginfo_object>
@@ -457,6 +489,9 @@
     <dpkginfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="version is earlier than 2:1.244-1+deb7u1" id="oval:org.cisecurity:ste:333" version="1">
 		  <evr datatype="evr_string" operation="less than">2:1.244-1+deb7u1</evr>
 		</dpkginfo_state>
+    <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="State matches version 15.10" id="oval:org.cisecurity:ste:352" version="1">
+		  <subexpression>15.10</subexpression>
+		</textfilecontent54_state>
     <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="State matches version 7" id="oval:org.mitre.oval:ste:24187" version="2">
 		  <subexpression>7</subexpression>
 		</textfilecontent54_state>
