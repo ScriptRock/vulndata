@@ -247,6 +247,66 @@
 		    <criterion comment="Ubuntu 15.10 is installed" test_ref="oval:org.cisecurity:tst:362" />
 		  </criteria>
 		</definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="patch" id="oval:org.cisecurity:def:293" version="1">
+		  <metadata>
+		    <title>DSA-3389-1 elasticsearch -- end-of-life</title>
+		    <affected family="unix">
+		      <platform>Debian 8</platform>
+		      <product>elasticsearch</product>
+		    </affected>
+		    <reference ref_id="DSA-3389-1" ref_url="https://www.debian.org/security/dsa-3389" source="VENDOR" />
+		    <description>Security support for elasticsearch in jessie is hereby discontinued. The project no longer releases information on fixed security issues which allow backporting them to released versions of Debian and actively discourages from doing so.</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2015-11-19T13:03:37">
+		          <contributor organization="ALTX-SOFT">Leonid Golubtsov</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria>
+		    <extend_definition comment="Debian 8 is installed" definition_ref="oval:org.mitre.oval:def:28919" />
+		    <criterion comment="elasticsearch is installed" test_ref="oval:org.cisecurity:tst:409" />
+		  </criteria>
+		</definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="patch" id="oval:org.cisecurity:def:303" version="1">
+		  <metadata>
+		    <title>DSA-3403-1 libcommons-collections3-java -- security update</title>
+		    <affected family="unix">
+		      <platform>Debian GNU/Linux 7.0</platform>
+		      <platform>Debian GNU/kFreeBSD 7.0</platform>
+		      <platform>Debian 8</platform>
+		      <product>libcommons-collections3-java</product>
+		    </affected>
+		    <reference ref_id="DSA-3403-1" ref_url="https://www.debian.org/security/dsa-3403" source="VENDOR" />
+		    <description>This update backports changes from the commons-collections 3.2.2 release which disable the deserialisation of the functors classes unless the system property org.apache.commons.collections.enableUnsafeSerialization is set to true. This fixes a vulnerability in unsafe applications deserialising objects from untrusted sources without sanitising the input data. Classes considered unsafe are: CloneTransformer, ForClosure, InstantiateFactory, InstantiateTransformer, InvokerTransformer, PrototypeCloneFactory, PrototypeSerializationFactory and WhileClosure.</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2015-11-27T09:33:31">
+		          <contributor organization="ALTX-SOFT">Sergey Artykhov</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria operator="OR">
+		    <criteria comment="Debian 7" operator="AND">
+		      <extend_definition comment="Debian 7 is installed" definition_ref="oval:org.mitre.oval:def:19338" />
+		      <criteria comment="GNU/Linux or GNU/kFreeBSD kernel" operator="OR">
+		        <extend_definition comment="Debian GNU/Linux is installed" definition_ref="oval:org.mitre.oval:def:24894" />
+		        <extend_definition comment="Debian GNU/kFreeBSD is installed" definition_ref="oval:org.mitre.oval:def:24698" />
+		      </criteria>
+		      <criterion comment="libcommons-collections3-java is earlier than 0:3.2.1-5+deb7u1" test_ref="oval:org.cisecurity:tst:427" />
+		    </criteria>
+		    <criteria comment="Debian 8" operator="AND">
+		      <extend_definition comment="Debian 8 is installed" definition_ref="oval:org.mitre.oval:def:28919" />
+		      <criterion comment="libcommons-collections3-java is earlier than 0:3.2.1-7+deb8u1" test_ref="oval:org.cisecurity:tst:391" />
+		    </criteria>
+		  </criteria>
+		</definition>
     <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.mitre.oval:def:19338" version="7">
 		    <oval-def:metadata>
 		        <oval-def:title>Debian 7 is installed</oval-def:title>
@@ -399,6 +459,17 @@
 		  <object object_ref="oval:org.mitre.oval:obj:16145" />
 		  <state state_ref="oval:org.cisecurity:ste:352" />
 		</textfilecontent54_test>
+    <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="libcommons-collections3-java is earlier than 0:3.2.1-7+deb8u1" id="oval:org.cisecurity:tst:391" version="1">
+		  <object object_ref="oval:org.cisecurity:obj:91" />
+		  <state state_ref="oval:org.cisecurity:ste:372" />
+		</dpkginfo_test>
+    <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="elasticsearch is installed" id="oval:org.cisecurity:tst:409" version="1">
+		  <object object_ref="oval:org.cisecurity:obj:90" />
+		</dpkginfo_test>
+    <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="libcommons-collections3-java is earlier than 0:3.2.1-5+deb7u1" id="oval:org.cisecurity:tst:427" version="1">
+		  <object object_ref="oval:org.cisecurity:obj:91" />
+		  <state state_ref="oval:org.cisecurity:ste:407" />
+		</dpkginfo_test>
     <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Debian 7 is installed" id="oval:org.mitre.oval:tst:87585" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:26771" />
 		  <state state_ref="oval:org.mitre.oval:ste:24187" />
@@ -431,6 +502,12 @@
 		</dpkginfo_object>
     <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="libgtk2-perl package information" id="oval:org.cisecurity:obj:52" version="1">
 		  <name>libgtk2-perl</name>
+		</dpkginfo_object>
+    <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="chromium-browser package information" id="oval:org.cisecurity:obj:90" version="1">
+		  <name>elasticsearch</name>
+		</dpkginfo_object>
+    <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="libcommons-collections3-java package information" id="oval:org.cisecurity:obj:91" version="1">
+		  <name>libcommons-collections3-java</name>
 		</dpkginfo_object>
     <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="php5 package information" id="oval:org.mitre.oval:obj:7704" version="1">
 		  <name>php5</name>
@@ -492,6 +569,12 @@
     <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="State matches version 15.10" id="oval:org.cisecurity:ste:352" version="1">
 		  <subexpression>15.10</subexpression>
 		</textfilecontent54_state>
+    <dpkginfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="version is earlier than 0:3.2.1-7+deb8u1" id="oval:org.cisecurity:ste:372" version="1">
+		  <evr datatype="evr_string" operation="less than">0:3.2.1-7+deb8u1</evr>
+		</dpkginfo_state>
+    <dpkginfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="version is earlier than 0:3.2.1-5+deb7u1" id="oval:org.cisecurity:ste:407" version="1">
+		  <evr datatype="evr_string" operation="less than">0:3.2.1-5+deb7u1</evr>
+		</dpkginfo_state>
     <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="State matches version 7" id="oval:org.mitre.oval:ste:24187" version="2">
 		  <subexpression>7</subexpression>
 		</textfilecontent54_state>
