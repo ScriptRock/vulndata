@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-12-09T09:13:01</oval:timestamp>
+  <oval:timestamp>2015-12-09T09:28:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -35772,6 +35772,70 @@ contain backported patches to correct these issues.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152595" version="601">
+   <metadata>
+    <title>RHSA-2015:2595: libpng12 security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2595-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2595.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7981" ref_url="https://access.redhat.com/security/cve/CVE-2015-7981" source="CVE"/>
+    <reference ref_id="CVE-2015-8126" ref_url="https://access.redhat.com/security/cve/CVE-2015-8126" source="CVE"/>
+    <reference ref_id="CVE-2015-8472" ref_url="https://access.redhat.com/security/cve/CVE-2015-8472" source="CVE"/>
+    <description>The libpng12 packages contain a library of functions for creating and
+manipulating PNG (Portable Network Graphics) image format files.
+
+It was discovered that the png_get_PLTE() and png_set_PLTE() functions of
+libpng did not correctly calculate the maximum palette sizes for bit depths
+of less than 8. In case an application tried to use these functions in
+combination with properly calculated palette sizes, this could lead to a
+buffer overflow or out-of-bounds reads. An attacker could exploit this to
+cause a crash or potentially execute arbitrary code by tricking an
+unsuspecting user into processing a specially crafted PNG image. However,
+the exact impact is dependent on the application using the library.
+(CVE-2015-8126, CVE-2015-8472)
+
+An array-indexing error was discovered in the png_convert_to_rfc1123()
+function of libpng. An attacker could possibly use this flaw to cause an
+out-of-bounds read by tricking an unsuspecting user into processing a
+specially crafted PNG image. (CVE-2015-7981)
+
+All libpng12 users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-12-09"/>
+     <updated date="2015-12-09"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7981">CVE-2015-7981</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8126">CVE-2015-8126</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8472">CVE-2015-8472</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1276416" id="1276416">CVE-2015-7981 libpng: Out-of-bounds read in png_convert_to_rfc1123</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1281756" id="1281756">CVE-2015-8126 CVE-2015-8472 libpng: Buffer overflow vulnerabilities in png_get_PLTE/png_set_PLTE functions</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="libpng12 is earlier than 0:1.2.50-7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20152595007"/>
+      <criterion comment="libpng12 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152595008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libpng12-devel is earlier than 0:1.2.50-7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20152595005"/>
+      <criterion comment="libpng12-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152595006"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20152596" version="601">
    <metadata>
     <title>RHSA-2015:2596: libpng security update (Moderate)</title>
@@ -49598,6 +49662,22 @@ contain a backported patch to correct this issue.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152594007"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libpng12-devel is earlier than 0:1.2.50-7.el7_2" id="oval:com.redhat.rhsa:tst:20152595005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152595005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152595003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libpng12-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152595006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152595005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libpng12 is earlier than 0:1.2.50-7.el7_2" id="oval:com.redhat.rhsa:tst:20152595007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152595006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152595003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libpng12 is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152595008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152595006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="libpng-devel is earlier than 2:1.5.13-7.el7_2" id="oval:com.redhat.rhsa:tst:20152596005" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152594007"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152596003"/>
@@ -52192,6 +52272,12 @@ contain a backported patch to correct this issue.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152594007" version="601">
    <red-def:name>libpng-devel</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152595005" version="601">
+   <red-def:name>libpng12-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152595006" version="601">
+   <red-def:name>libpng12</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20150001001" version="601">
@@ -53522,6 +53608,9 @@ contain a backported patch to correct this issue.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152594003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">2:1.2.49-2.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152595003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.2.50-7.el7_2</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152596003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">2:1.5.13-7.el7_2</red-def:evr>
