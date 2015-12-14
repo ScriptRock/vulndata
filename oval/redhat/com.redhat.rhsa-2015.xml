@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-12-10T03:17:01</oval:timestamp>
+  <oval:timestamp>2015-12-14T06:43:02</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -35900,6 +35900,1324 @@ contain a backported patch to correct this issue.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152616" version="601">
+   <metadata>
+    <title>RHSA-2015:2616: openssl security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2616-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2616.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3195" ref_url="https://access.redhat.com/security/cve/CVE-2015-3195" source="CVE"/>
+    <description>OpenSSL is a toolkit that implements the Secure Sockets Layer (SSL v2/v3)
+and Transport Layer Security (TLS v1) protocols, as well as a
+full-strength, general purpose cryptography library.
+
+A memory leak vulnerability was found in the way OpenSSL parsed PKCS#7 and
+CMS data. A remote attacker could use this flaw to cause an application
+that parses PKCS#7 or CMS data from untrusted sources to use an excessive
+amount of memory and possibly crash. (CVE-2015-3195)
+
+All openssl users are advised to upgrade to these updated packages, which
+contain a backported patch to correct this issue. For the update to take
+effect, all services linked to the OpenSSL library must be restarted, or
+the system rebooted.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-12-14"/>
+     <updated date="2015-12-14"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3195">CVE-2015-3195</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1288322" id="1288322">CVE-2015-3195 OpenSSL: X509_ATTRIBUTE memory leak</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20150046001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="openssl is earlier than 0:0.9.8e-37.el5_11" test_ref="oval:com.redhat.rhsa:tst:20152616002"/>
+      <criterion comment="openssl is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20150800003"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssl-devel is earlier than 0:0.9.8e-37.el5_11" test_ref="oval:com.redhat.rhsa:tst:20152616006"/>
+      <criterion comment="openssl-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20150800005"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssl-perl is earlier than 0:0.9.8e-37.el5_11" test_ref="oval:com.redhat.rhsa:tst:20152616004"/>
+      <criterion comment="openssl-perl is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20150800007"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152617" version="601">
+   <metadata>
+    <title>RHSA-2015:2617: openssl security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2617-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2617.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3194" ref_url="https://access.redhat.com/security/cve/CVE-2015-3194" source="CVE"/>
+    <reference ref_id="CVE-2015-3195" ref_url="https://access.redhat.com/security/cve/CVE-2015-3195" source="CVE"/>
+    <reference ref_id="CVE-2015-3196" ref_url="https://access.redhat.com/security/cve/CVE-2015-3196" source="CVE"/>
+    <description>OpenSSL is a toolkit that implements the Secure Sockets Layer (SSL v2/v3)
+and Transport Layer Security (TLS v1) protocols, as well as a
+full-strength, general purpose cryptography library.
+
+A NULL pointer derefernce flaw was found in the way OpenSSL verified
+signatures using the RSA PSS algorithm. A remote attacked could possibly
+use this flaw to crash a TLS/SSL client using OpenSSL, or a TLS/SSL server
+using OpenSSL if it enabled client authentication. (CVE-2015-3194)
+
+A memory leak vulnerability was found in the way OpenSSL parsed PKCS#7 and
+CMS data. A remote attacker could use this flaw to cause an application
+that parses PKCS#7 or CMS data from untrusted sources to use an excessive
+amount of memory and possibly crash. (CVE-2015-3195)
+
+A race condition flaw, leading to a double free, was found in the way
+OpenSSL handled pre-shared key (PSK) identify hints. A remote attacker
+could use this flaw to crash a multi-threaded SSL/TLS client using
+OpenSSL. (CVE-2015-3196)
+
+All openssl users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues. For the update to take
+effect, all services linked to the OpenSSL library must be restarted, or
+the system rebooted.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-12-14"/>
+     <updated date="2015-12-14"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3194">CVE-2015-3194</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3195">CVE-2015-3195</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3196">CVE-2015-3196</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1288320" id="1288320">CVE-2015-3194 OpenSSL: Certificate verify crash with missing PSS parameter</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1288322" id="1288322">CVE-2015-3195 OpenSSL: X509_ATTRIBUTE memory leak</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1288326" id="1288326">CVE-2015-3196 OpenSSL: Race condition handling PSK identify hint</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150001001"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150001002"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150001003"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150001004"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="openssl is earlier than 0:1.0.1e-42.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152617005"/>
+       <criterion comment="openssl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150066006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-devel is earlier than 0:1.0.1e-42.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152617009"/>
+       <criterion comment="openssl-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150066014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-perl is earlier than 0:1.0.1e-42.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152617011"/>
+       <criterion comment="openssl-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150066012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-static is earlier than 0:1.0.1e-42.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152617007"/>
+       <criterion comment="openssl-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150066010"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="openssl is earlier than 1:1.0.1e-51.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152617017"/>
+       <criterion comment="openssl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150066006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-devel is earlier than 1:1.0.1e-51.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152617019"/>
+       <criterion comment="openssl-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150066014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-libs is earlier than 1:1.0.1e-51.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152617021"/>
+       <criterion comment="openssl-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150066008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-perl is earlier than 1:1.0.1e-51.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152617018"/>
+       <criterion comment="openssl-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150066012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-static is earlier than 1:1.0.1e-51.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152617020"/>
+       <criterion comment="openssl-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150066010"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152618" version="602">
+   <metadata>
+    <title>RHSA-2015:2618: chromium-browser security update (Important)</title>
+    <affected family="unix">
+     <platform>Supplementary for Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2618-01" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2618.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-6788" ref_url="https://access.redhat.com/security/cve/CVE-2015-6788" source="CVE"/>
+    <reference ref_id="CVE-2015-6789" ref_url="https://access.redhat.com/security/cve/CVE-2015-6789" source="CVE"/>
+    <reference ref_id="CVE-2015-6790" ref_url="https://access.redhat.com/security/cve/CVE-2015-6790" source="CVE"/>
+    <reference ref_id="CVE-2015-6791" ref_url="https://access.redhat.com/security/cve/CVE-2015-6791" source="CVE"/>
+    <reference ref_id="CVE-2015-8548" ref_url="https://access.redhat.com/security/cve/CVE-2015-8548" source="CVE"/>
+    <description>Chromium is an open-source web browser, powered by WebKit (Blink).
+
+Several flaws were found in the processing of malformed web content. A web
+page containing malicious content could cause Chromium to crash, execute
+arbitrary code, or disclose sensitive information when visited by the
+victim. (CVE-2015-6788, CVE-2015-6789, CVE-2015-6790, CVE-2015-6791)
+
+All Chromium users should upgrade to these updated packages, which contain
+Chromium version 47.0.2526.80, which corrects these issues. After
+installing the update, Chromium must be restarted for the changes to take
+effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-12-14"/>
+     <updated date="2015-12-14"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-6788">CVE-2015-6788</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-6789">CVE-2015-6789</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-6790">CVE-2015-6790</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-6791">CVE-2015-6791</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8548">CVE-2015-8548</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1289870" id="1289870">CVE-2015-6788 chromium-browser: Type confusion in extensions</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1289874" id="1289874">CVE-2015-6789 chromium-browser: Use-after free in Blink</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1289875" id="1289875">CVE-2015-6790 chromium-browser: Escaping issue in saved pages</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1289876" id="1289876">CVE-2015-6791 chromium-browser: Various fixes from internal audits, fuzzing and other initiatives</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="chromium-browser is earlier than 0:47.0.2526.80-1.el6" test_ref="oval:com.redhat.rhsa:tst:20152618005"/>
+    <criterion comment="chromium-browser is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150093006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150001001"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150001002"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150001003"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150001004"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152619" version="601">
+   <metadata>
+    <title>RHSA-2015:2619: libreoffice security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2619-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2619.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-4551" ref_url="https://access.redhat.com/security/cve/CVE-2015-4551" source="CVE"/>
+    <reference ref_id="CVE-2015-5212" ref_url="https://access.redhat.com/security/cve/CVE-2015-5212" source="CVE"/>
+    <reference ref_id="CVE-2015-5213" ref_url="https://access.redhat.com/security/cve/CVE-2015-5213" source="CVE"/>
+    <reference ref_id="CVE-2015-5214" ref_url="https://access.redhat.com/security/cve/CVE-2015-5214" source="CVE"/>
+    <description>LibreOffice is an open source, community-developed office productivity
+suite. It includes key desktop applications, such as a word processor, a
+spreadsheet, a presentation manager, a formula editor, and a drawing
+program. LibreOffice replaces OpenOffice and provides a similar but
+enhanced and extended office suite.
+
+It was discovered that LibreOffice did not properly restrict automatic link
+updates. By tricking a victim into opening specially crafted documents, an
+attacker could possibly use this flaw to disclose contents of files
+accessible by the victim. (CVE-2015-4551)
+
+An integer underflow flaw leading to a heap-based buffer overflow when
+parsing PrinterSetup data was discovered. By tricking a user into opening a
+specially crafted document, an attacker could possibly exploit this flaw to
+execute arbitrary code with the privileges of the user opening the file.
+(CVE-2015-5212)
+
+An integer overflow flaw, leading to a heap-based buffer overflow, was
+found in the way LibreOffice processed certain Microsoft Word .doc files.
+By tricking a user into opening a specially crafted Microsoft Word .doc
+document, an attacker could possibly use this flaw to execute arbitrary
+code with the privileges of the user opening the file. (CVE-2015-5213)
+
+It was discovered that LibreOffice did not properly sanity check bookmark
+indexes. By tricking a user into opening a specially crafted document, an
+attacker could possibly use this flaw to execute arbitrary code with the
+privileges of the user opening the file. (CVE-2015-5214)
+
+All libreoffice users are advised to upgrade to these updated packages,
+which contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-12-14"/>
+     <updated date="2015-12-14"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4551">CVE-2015-4551</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5212">CVE-2015-5212</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5213">CVE-2015-5213</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5214">CVE-2015-5214</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1278812" id="1278812">CVE-2015-4551 libreoffice: Arbitrary file disclosure in Calc and Writer</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1278820" id="1278820">CVE-2015-5212 libreoffice: Integer underflow in PrinterSetup length</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1278824" id="1278824">CVE-2015-5213 libreoffice: Integer overflow in DOC files</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1278827" id="1278827">CVE-2015-5214 libreoffice: Bookmarks in DOC documents are insufficiently checked causing memory corruption</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150001001"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150001002"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150001003"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150001004"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="autocorr-af is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619217"/>
+       <criterion comment="autocorr-af is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377120"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-bg is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619191"/>
+       <criterion comment="autocorr-bg is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377314"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ca is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619211"/>
+       <criterion comment="autocorr-ca is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377130"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-cs is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619193"/>
+       <criterion comment="autocorr-cs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377194"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-da is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619245"/>
+       <criterion comment="autocorr-da is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377134"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-de is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619215"/>
+       <criterion comment="autocorr-de is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377086"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-en is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619243"/>
+       <criterion comment="autocorr-en is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377252"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-es is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619239"/>
+       <criterion comment="autocorr-es is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377096"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-fa is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619247"/>
+       <criterion comment="autocorr-fa is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377156"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-fi is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619201"/>
+       <criterion comment="autocorr-fi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377126"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-fr is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619223"/>
+       <criterion comment="autocorr-fr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377274"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ga is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619213"/>
+       <criterion comment="autocorr-ga is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377122"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-hr is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619221"/>
+       <criterion comment="autocorr-hr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377136"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-hu is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619251"/>
+       <criterion comment="autocorr-hu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377250"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-is is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619225"/>
+       <criterion comment="autocorr-is is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377072"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-it is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619187"/>
+       <criterion comment="autocorr-it is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377180"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ja is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619253"/>
+       <criterion comment="autocorr-ja is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377258"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ko is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619241"/>
+       <criterion comment="autocorr-ko is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377310"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-lb is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619229"/>
+       <criterion comment="autocorr-lb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377272"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-lt is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619227"/>
+       <criterion comment="autocorr-lt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377286"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-mn is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619237"/>
+       <criterion comment="autocorr-mn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377160"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-nl is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619219"/>
+       <criterion comment="autocorr-nl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377240"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-pl is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619197"/>
+       <criterion comment="autocorr-pl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377106"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-pt is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619235"/>
+       <criterion comment="autocorr-pt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377146"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ro is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619233"/>
+       <criterion comment="autocorr-ro is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377318"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ru is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619195"/>
+       <criterion comment="autocorr-ru is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377168"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-sk is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619207"/>
+       <criterion comment="autocorr-sk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377226"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-sl is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619231"/>
+       <criterion comment="autocorr-sl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377216"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-sr is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619205"/>
+       <criterion comment="autocorr-sr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377092"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-sv is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619199"/>
+       <criterion comment="autocorr-sv is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377172"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-tr is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619249"/>
+       <criterion comment="autocorr-tr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377192"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-vi is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619189"/>
+       <criterion comment="autocorr-vi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377132"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-zh is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619209"/>
+       <criterion comment="autocorr-zh is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377238"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619043"/>
+       <criterion comment="libreoffice is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377062"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-base is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619055"/>
+       <criterion comment="libreoffice-base is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377152"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-bsh is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619113"/>
+       <criterion comment="libreoffice-bsh is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377316"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-calc is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619057"/>
+       <criterion comment="libreoffice-calc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377298"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-core is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619035"/>
+       <criterion comment="libreoffice-core is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377094"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-draw is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619143"/>
+       <criterion comment="libreoffice-draw is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377276"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-emailmerge is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619101"/>
+       <criterion comment="libreoffice-emailmerge is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377196"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-filters is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619059"/>
+       <criterion comment="libreoffice-filters is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377266"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-gdb-debug-support is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619081"/>
+       <criterion comment="libreoffice-gdb-debug-support is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377088"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-glade is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619015"/>
+       <criterion comment="libreoffice-glade is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377262"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-graphicfilter is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619119"/>
+       <criterion comment="libreoffice-graphicfilter is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377078"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-headless is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619005"/>
+       <criterion comment="libreoffice-headless is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377084"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-impress is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619027"/>
+       <criterion comment="libreoffice-impress is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377138"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-af is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619161"/>
+       <criterion comment="libreoffice-langpack-af is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377202"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ar is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619167"/>
+       <criterion comment="libreoffice-langpack-ar is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377100"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-as is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619177"/>
+       <criterion comment="libreoffice-langpack-as is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377268"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-bg is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619067"/>
+       <criterion comment="libreoffice-langpack-bg is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377292"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-bn is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619107"/>
+       <criterion comment="libreoffice-langpack-bn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377270"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ca is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619121"/>
+       <criterion comment="libreoffice-langpack-ca is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377222"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-cs is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619183"/>
+       <criterion comment="libreoffice-langpack-cs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377224"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-cy is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619169"/>
+       <criterion comment="libreoffice-langpack-cy is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377190"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-da is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619175"/>
+       <criterion comment="libreoffice-langpack-da is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377070"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-de is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619025"/>
+       <criterion comment="libreoffice-langpack-de is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377154"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-dz is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619105"/>
+       <criterion comment="libreoffice-langpack-dz is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377280"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-el is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619037"/>
+       <criterion comment="libreoffice-langpack-el is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377312"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-en is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619137"/>
+       <criterion comment="libreoffice-langpack-en is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377256"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-es is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619185"/>
+       <criterion comment="libreoffice-langpack-es is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377144"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-et is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619159"/>
+       <criterion comment="libreoffice-langpack-et is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377296"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-eu is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619047"/>
+       <criterion comment="libreoffice-langpack-eu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377102"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-fi is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619103"/>
+       <criterion comment="libreoffice-langpack-fi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377220"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-fr is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619073"/>
+       <criterion comment="libreoffice-langpack-fr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377166"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ga is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619011"/>
+       <criterion comment="libreoffice-langpack-ga is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377142"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-gl is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619115"/>
+       <criterion comment="libreoffice-langpack-gl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377260"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-gu is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619083"/>
+       <criterion comment="libreoffice-langpack-gu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377208"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-he is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619053"/>
+       <criterion comment="libreoffice-langpack-he is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377116"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-hi is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619123"/>
+       <criterion comment="libreoffice-langpack-hi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377288"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-hr is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619029"/>
+       <criterion comment="libreoffice-langpack-hr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377198"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-hu is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619065"/>
+       <criterion comment="libreoffice-langpack-hu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377232"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-it is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619147"/>
+       <criterion comment="libreoffice-langpack-it is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377228"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ja is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619127"/>
+       <criterion comment="libreoffice-langpack-ja is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377184"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-kn is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619077"/>
+       <criterion comment="libreoffice-langpack-kn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377264"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ko is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619013"/>
+       <criterion comment="libreoffice-langpack-ko is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377248"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-lt is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619151"/>
+       <criterion comment="libreoffice-langpack-lt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377064"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-mai is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619165"/>
+       <criterion comment="libreoffice-langpack-mai is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377128"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ml is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619045"/>
+       <criterion comment="libreoffice-langpack-ml is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377304"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-mr is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619069"/>
+       <criterion comment="libreoffice-langpack-mr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377182"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ms is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619051"/>
+       <criterion comment="libreoffice-langpack-ms is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151458166"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-nb is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619021"/>
+       <criterion comment="libreoffice-langpack-nb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377308"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-nl is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619133"/>
+       <criterion comment="libreoffice-langpack-nl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377210"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-nn is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619163"/>
+       <criterion comment="libreoffice-langpack-nn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377068"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-nr is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619155"/>
+       <criterion comment="libreoffice-langpack-nr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377074"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-nso is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619095"/>
+       <criterion comment="libreoffice-langpack-nso is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377118"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-or is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619085"/>
+       <criterion comment="libreoffice-langpack-or is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377212"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-pa is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619039"/>
+       <criterion comment="libreoffice-langpack-pa is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377206"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-pl is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619017"/>
+       <criterion comment="libreoffice-langpack-pl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377124"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-pt-BR is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619117"/>
+       <criterion comment="libreoffice-langpack-pt-BR is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377104"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-pt-PT is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619033"/>
+       <criterion comment="libreoffice-langpack-pt-PT is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377186"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ro is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619181"/>
+       <criterion comment="libreoffice-langpack-ro is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377098"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ru is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619049"/>
+       <criterion comment="libreoffice-langpack-ru is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377214"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-sk is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619173"/>
+       <criterion comment="libreoffice-langpack-sk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377188"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-sl is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619079"/>
+       <criterion comment="libreoffice-langpack-sl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377080"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-sr is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619131"/>
+       <criterion comment="libreoffice-langpack-sr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377302"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ss is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619089"/>
+       <criterion comment="libreoffice-langpack-ss is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377170"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-st is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619141"/>
+       <criterion comment="libreoffice-langpack-st is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377242"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-sv is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619087"/>
+       <criterion comment="libreoffice-langpack-sv is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377282"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ta is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619135"/>
+       <criterion comment="libreoffice-langpack-ta is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377112"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-te is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619091"/>
+       <criterion comment="libreoffice-langpack-te is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377148"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-th is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619063"/>
+       <criterion comment="libreoffice-langpack-th is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377158"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-tn is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619019"/>
+       <criterion comment="libreoffice-langpack-tn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377234"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-tr is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619075"/>
+       <criterion comment="libreoffice-langpack-tr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377140"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ts is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619149"/>
+       <criterion comment="libreoffice-langpack-ts is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377110"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-uk is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619179"/>
+       <criterion comment="libreoffice-langpack-uk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377090"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ur is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619157"/>
+       <criterion comment="libreoffice-langpack-ur is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20151458122"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ve is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619099"/>
+       <criterion comment="libreoffice-langpack-ve is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377176"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-xh is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619129"/>
+       <criterion comment="libreoffice-langpack-xh is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377300"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-zh-Hans is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619009"/>
+       <criterion comment="libreoffice-langpack-zh-Hans is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377174"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-zh-Hant is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619041"/>
+       <criterion comment="libreoffice-langpack-zh-Hant is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377076"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-zu is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619109"/>
+       <criterion comment="libreoffice-langpack-zu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377294"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-librelogo is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619071"/>
+       <criterion comment="libreoffice-librelogo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377082"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-math is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619125"/>
+       <criterion comment="libreoffice-math is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377254"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-nlpsolver is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619031"/>
+       <criterion comment="libreoffice-nlpsolver is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377162"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-ogltrans is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619111"/>
+       <criterion comment="libreoffice-ogltrans is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377290"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-opensymbol-fonts is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619203"/>
+       <criterion comment="libreoffice-opensymbol-fonts is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377066"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-pdfimport is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619007"/>
+       <criterion comment="libreoffice-pdfimport is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377278"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-pyuno is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619061"/>
+       <criterion comment="libreoffice-pyuno is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377246"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-rhino is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619171"/>
+       <criterion comment="libreoffice-rhino is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377230"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-sdk is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619139"/>
+       <criterion comment="libreoffice-sdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377244"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-sdk-doc is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619097"/>
+       <criterion comment="libreoffice-sdk-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377114"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-ure is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619153"/>
+       <criterion comment="libreoffice-ure is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377164"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-wiki-publisher is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619145"/>
+       <criterion comment="libreoffice-wiki-publisher is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377284"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-writer is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619093"/>
+       <criterion comment="libreoffice-writer is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377178"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-xsltfilter is earlier than 1:4.2.8.2-11.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20152619023"/>
+       <criterion comment="libreoffice-xsltfilter is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377306"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="autocorr-af is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619369"/>
+       <criterion comment="autocorr-af is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377120"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-bg is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619374"/>
+       <criterion comment="autocorr-bg is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377314"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ca is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619388"/>
+       <criterion comment="autocorr-ca is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377130"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-cs is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619381"/>
+       <criterion comment="autocorr-cs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377194"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-da is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619371"/>
+       <criterion comment="autocorr-da is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377134"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-de is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619367"/>
+       <criterion comment="autocorr-de is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377086"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-en is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619373"/>
+       <criterion comment="autocorr-en is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377252"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-es is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619391"/>
+       <criterion comment="autocorr-es is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377096"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-fa is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619377"/>
+       <criterion comment="autocorr-fa is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377156"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-fi is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619375"/>
+       <criterion comment="autocorr-fi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377126"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-fr is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619387"/>
+       <criterion comment="autocorr-fr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377274"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ga is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619364"/>
+       <criterion comment="autocorr-ga is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377122"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-hr is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619378"/>
+       <criterion comment="autocorr-hr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377136"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-hu is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619393"/>
+       <criterion comment="autocorr-hu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377250"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-is is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619380"/>
+       <criterion comment="autocorr-is is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377072"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-it is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619395"/>
+       <criterion comment="autocorr-it is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377180"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ja is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619366"/>
+       <criterion comment="autocorr-ja is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377258"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ko is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619392"/>
+       <criterion comment="autocorr-ko is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377310"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-lb is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619383"/>
+       <criterion comment="autocorr-lb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377272"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-lt is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619384"/>
+       <criterion comment="autocorr-lt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377286"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-mn is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619363"/>
+       <criterion comment="autocorr-mn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377160"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-nl is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619362"/>
+       <criterion comment="autocorr-nl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377240"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-pl is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619394"/>
+       <criterion comment="autocorr-pl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377106"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-pt is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619365"/>
+       <criterion comment="autocorr-pt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377146"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ro is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619382"/>
+       <criterion comment="autocorr-ro is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377318"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-ru is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619386"/>
+       <criterion comment="autocorr-ru is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377168"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-sk is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619385"/>
+       <criterion comment="autocorr-sk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377226"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-sl is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619389"/>
+       <criterion comment="autocorr-sl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377216"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-sr is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619379"/>
+       <criterion comment="autocorr-sr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377092"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-sv is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619368"/>
+       <criterion comment="autocorr-sv is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377172"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-tr is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619376"/>
+       <criterion comment="autocorr-tr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377192"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-vi is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619372"/>
+       <criterion comment="autocorr-vi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377132"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="autocorr-zh is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619370"/>
+       <criterion comment="autocorr-zh is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377238"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619347"/>
+       <criterion comment="libreoffice is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377062"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-base is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619281"/>
+       <criterion comment="libreoffice-base is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377152"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-bsh is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619297"/>
+       <criterion comment="libreoffice-bsh is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377316"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-calc is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619345"/>
+       <criterion comment="libreoffice-calc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377298"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-core is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619349"/>
+       <criterion comment="libreoffice-core is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377094"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-draw is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619262"/>
+       <criterion comment="libreoffice-draw is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377276"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-emailmerge is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619303"/>
+       <criterion comment="libreoffice-emailmerge is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377196"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-filters is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619304"/>
+       <criterion comment="libreoffice-filters is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377266"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-gdb-debug-support is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619327"/>
+       <criterion comment="libreoffice-gdb-debug-support is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377088"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-glade is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619293"/>
+       <criterion comment="libreoffice-glade is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377262"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-graphicfilter is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619317"/>
+       <criterion comment="libreoffice-graphicfilter is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377078"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-headless is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619341"/>
+       <criterion comment="libreoffice-headless is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377084"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-impress is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619306"/>
+       <criterion comment="libreoffice-impress is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377138"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-af is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619323"/>
+       <criterion comment="libreoffice-langpack-af is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377202"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ar is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619296"/>
+       <criterion comment="libreoffice-langpack-ar is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377100"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-as is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619315"/>
+       <criterion comment="libreoffice-langpack-as is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377268"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-bg is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619299"/>
+       <criterion comment="libreoffice-langpack-bg is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377292"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-bn is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619300"/>
+       <criterion comment="libreoffice-langpack-bn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377270"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-br is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619334"/>
+       <criterion comment="libreoffice-langpack-br is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377236"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ca is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619355"/>
+       <criterion comment="libreoffice-langpack-ca is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377222"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-cs is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619328"/>
+       <criterion comment="libreoffice-langpack-cs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377224"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-cy is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619339"/>
+       <criterion comment="libreoffice-langpack-cy is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377190"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-da is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619308"/>
+       <criterion comment="libreoffice-langpack-da is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377070"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-de is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619259"/>
+       <criterion comment="libreoffice-langpack-de is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377154"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-dz is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619316"/>
+       <criterion comment="libreoffice-langpack-dz is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377280"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-el is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619330"/>
+       <criterion comment="libreoffice-langpack-el is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377312"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-en is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619320"/>
+       <criterion comment="libreoffice-langpack-en is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377256"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-es is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619269"/>
+       <criterion comment="libreoffice-langpack-es is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377144"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-et is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619261"/>
+       <criterion comment="libreoffice-langpack-et is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377296"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-eu is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619278"/>
+       <criterion comment="libreoffice-langpack-eu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377102"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-fa is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619309"/>
+       <criterion comment="libreoffice-langpack-fa is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377204"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-fi is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619288"/>
+       <criterion comment="libreoffice-langpack-fi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377220"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-fr is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619265"/>
+       <criterion comment="libreoffice-langpack-fr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377166"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ga is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619268"/>
+       <criterion comment="libreoffice-langpack-ga is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377142"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-gl is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619356"/>
+       <criterion comment="libreoffice-langpack-gl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377260"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-gu is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619289"/>
+       <criterion comment="libreoffice-langpack-gu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377208"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-he is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619286"/>
+       <criterion comment="libreoffice-langpack-he is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377116"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-hi is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619357"/>
+       <criterion comment="libreoffice-langpack-hi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377288"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-hr is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619280"/>
+       <criterion comment="libreoffice-langpack-hr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377198"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-hu is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619352"/>
+       <criterion comment="libreoffice-langpack-hu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377232"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-it is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619311"/>
+       <criterion comment="libreoffice-langpack-it is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377228"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ja is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619346"/>
+       <criterion comment="libreoffice-langpack-ja is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377184"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-kk is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619360"/>
+       <criterion comment="libreoffice-langpack-kk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377200"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-kn is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619277"/>
+       <criterion comment="libreoffice-langpack-kn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377264"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ko is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619294"/>
+       <criterion comment="libreoffice-langpack-ko is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377248"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-lt is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619348"/>
+       <criterion comment="libreoffice-langpack-lt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377064"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-lv is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619321"/>
+       <criterion comment="libreoffice-langpack-lv is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377150"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-mai is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619340"/>
+       <criterion comment="libreoffice-langpack-mai is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377128"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ml is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619353"/>
+       <criterion comment="libreoffice-langpack-ml is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377304"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-mr is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619350"/>
+       <criterion comment="libreoffice-langpack-mr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377182"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-nb is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619267"/>
+       <criterion comment="libreoffice-langpack-nb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377308"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-nl is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619264"/>
+       <criterion comment="libreoffice-langpack-nl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377210"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-nn is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619324"/>
+       <criterion comment="libreoffice-langpack-nn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377068"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-nr is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619272"/>
+       <criterion comment="libreoffice-langpack-nr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377074"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-nso is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619275"/>
+       <criterion comment="libreoffice-langpack-nso is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377118"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-or is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619263"/>
+       <criterion comment="libreoffice-langpack-or is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377212"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-pa is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619358"/>
+       <criterion comment="libreoffice-langpack-pa is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377206"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-pl is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619279"/>
+       <criterion comment="libreoffice-langpack-pl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377124"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-pt-BR is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619292"/>
+       <criterion comment="libreoffice-langpack-pt-BR is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377104"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-pt-PT is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619298"/>
+       <criterion comment="libreoffice-langpack-pt-PT is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377186"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ro is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619359"/>
+       <criterion comment="libreoffice-langpack-ro is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377098"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ru is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619314"/>
+       <criterion comment="libreoffice-langpack-ru is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377214"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-si is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619318"/>
+       <criterion comment="libreoffice-langpack-si is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377218"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-sk is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619276"/>
+       <criterion comment="libreoffice-langpack-sk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377188"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-sl is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619336"/>
+       <criterion comment="libreoffice-langpack-sl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377080"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-sr is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619344"/>
+       <criterion comment="libreoffice-langpack-sr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377302"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ss is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619332"/>
+       <criterion comment="libreoffice-langpack-ss is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377170"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-st is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619326"/>
+       <criterion comment="libreoffice-langpack-st is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377242"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-sv is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619285"/>
+       <criterion comment="libreoffice-langpack-sv is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377282"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ta is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619337"/>
+       <criterion comment="libreoffice-langpack-ta is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377112"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-te is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619338"/>
+       <criterion comment="libreoffice-langpack-te is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377148"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-th is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619295"/>
+       <criterion comment="libreoffice-langpack-th is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377158"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-tn is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619291"/>
+       <criterion comment="libreoffice-langpack-tn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377234"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-tr is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619283"/>
+       <criterion comment="libreoffice-langpack-tr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377140"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ts is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619282"/>
+       <criterion comment="libreoffice-langpack-ts is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377110"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-uk is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619325"/>
+       <criterion comment="libreoffice-langpack-uk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377090"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-ve is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619273"/>
+       <criterion comment="libreoffice-langpack-ve is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377176"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-xh is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619329"/>
+       <criterion comment="libreoffice-langpack-xh is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377300"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-zh-Hans is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619290"/>
+       <criterion comment="libreoffice-langpack-zh-Hans is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377174"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-zh-Hant is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619266"/>
+       <criterion comment="libreoffice-langpack-zh-Hant is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377076"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-langpack-zu is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619274"/>
+       <criterion comment="libreoffice-langpack-zu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377294"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-librelogo is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619284"/>
+       <criterion comment="libreoffice-librelogo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377082"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-math is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619333"/>
+       <criterion comment="libreoffice-math is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377254"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-nlpsolver is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619301"/>
+       <criterion comment="libreoffice-nlpsolver is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377162"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-officebean is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619312"/>
+       <criterion comment="libreoffice-officebean is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152619313"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-ogltrans is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619260"/>
+       <criterion comment="libreoffice-ogltrans is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377290"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-opensymbol-fonts is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619390"/>
+       <criterion comment="libreoffice-opensymbol-fonts is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377066"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-pdfimport is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619302"/>
+       <criterion comment="libreoffice-pdfimport is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377278"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-postgresql is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619270"/>
+       <criterion comment="libreoffice-postgresql is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377108"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-pyuno is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619305"/>
+       <criterion comment="libreoffice-pyuno is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377246"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-rhino is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619307"/>
+       <criterion comment="libreoffice-rhino is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377230"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-sdk is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619343"/>
+       <criterion comment="libreoffice-sdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377244"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-sdk-doc is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619342"/>
+       <criterion comment="libreoffice-sdk-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377114"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-ure is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619287"/>
+       <criterion comment="libreoffice-ure is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377164"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-wiki-publisher is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619331"/>
+       <criterion comment="libreoffice-wiki-publisher is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377284"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-writer is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619351"/>
+       <criterion comment="libreoffice-writer is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377178"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libreoffice-xsltfilter is earlier than 1:4.3.7.2-5.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20152619354"/>
+       <criterion comment="libreoffice-xsltfilter is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20150377306"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 6 Client is installed" id="oval:com.redhat.rhsa:tst:20150001001" version="601">
@@ -49694,6 +51012,1082 @@ contain a backported patch to correct this issue.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152594006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152596003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl is earlier than 0:0.9.8e-37.el5_11" id="oval:com.redhat.rhsa:tst:20152616002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152616003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-perl is earlier than 0:0.9.8e-37.el5_11" id="oval:com.redhat.rhsa:tst:20152616004" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152616003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-devel is earlier than 0:0.9.8e-37.el5_11" id="oval:com.redhat.rhsa:tst:20152616006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152616003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl is earlier than 0:1.0.1e-42.el6_7.1" id="oval:com.redhat.rhsa:tst:20152617005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152617003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-static is earlier than 0:1.0.1e-42.el6_7.1" id="oval:com.redhat.rhsa:tst:20152617007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152617003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-devel is earlier than 0:1.0.1e-42.el6_7.1" id="oval:com.redhat.rhsa:tst:20152617009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152617003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-perl is earlier than 0:1.0.1e-42.el6_7.1" id="oval:com.redhat.rhsa:tst:20152617011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152617003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl is earlier than 1:1.0.1e-51.el7_2.1" id="oval:com.redhat.rhsa:tst:20152617017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152617005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-perl is earlier than 1:1.0.1e-51.el7_2.1" id="oval:com.redhat.rhsa:tst:20152617018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152617005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-devel is earlier than 1:1.0.1e-51.el7_2.1" id="oval:com.redhat.rhsa:tst:20152617019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152617005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-static is earlier than 1:1.0.1e-51.el7_2.1" id="oval:com.redhat.rhsa:tst:20152617020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152617005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-libs is earlier than 1:1.0.1e-51.el7_2.1" id="oval:com.redhat.rhsa:tst:20152617021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150066006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152617005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="chromium-browser is earlier than 0:47.0.2526.80-1.el6" id="oval:com.redhat.rhsa:tst:20152618005" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150093005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152618003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-headless is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377044"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-pdfimport is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377141"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-zh-Hans is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377089"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ga is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377073"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ko is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377126"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-glade is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377133"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-pl is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377064"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-tn is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377119"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-nb is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377156"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-xsltfilter is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377155"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-de is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377079"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-impress is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377071"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-hr is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619029" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377101"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-nlpsolver is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619031" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377083"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-pt-PT is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619033" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377095"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-core is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619035" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377049"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-el is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619037" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377158"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-pa is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619039" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377105"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-zh-Hant is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619041" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377040"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619043" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377033"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ml is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619045" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377154"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-eu is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619047" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377053"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ru is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619049" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377109"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ms is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619051" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151458085"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-he is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619053" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377060"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-base is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619055" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377078"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-calc is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619057" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377151"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-filters is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619059" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377135"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-pyuno is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619061" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377125"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-th is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619063" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377081"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-hu is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619065" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377118"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-bg is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619067" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377148"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-mr is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619069" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377093"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-librelogo is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619071" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377043"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-fr is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619073" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377085"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-tr is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619075" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377072"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-kn is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619077" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377134"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-sl is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619079" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377042"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-gdb-debug-support is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619081" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377046"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-gu is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619083" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377106"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-or is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619085" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377108"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-sv is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619087" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377143"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ss is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619089" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377087"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-te is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619091" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377076"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-writer is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619093" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377091"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-nso is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619095" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377061"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-sdk-doc is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619097" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377059"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ve is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619099" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377090"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-emailmerge is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619101" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377100"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-fi is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619103" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377112"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-dz is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619105" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377142"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-bn is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619107" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377137"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-zu is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619109" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377149"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-ogltrans is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619111" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377147"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-bsh is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619113" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377160"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-gl is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619115" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377132"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-pt-BR is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619117" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377054"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-graphicfilter is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619119" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377041"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ca is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619121" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377113"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-hi is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619123" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377146"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-math is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619125" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377129"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ja is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619127" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377094"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-xh is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619129" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377152"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-sr is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619131" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377153"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-nl is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619133" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377107"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ta is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619135" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377058"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-en is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619137" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377130"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-sdk is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619139" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377124"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-st is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619141" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377123"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-draw is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619143" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377140"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-wiki-publisher is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619145" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377144"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-it is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619147" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377116"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ts is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619149" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377057"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-lt is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619151" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377034"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-ure is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619153" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377084"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-nr is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619155" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377039"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ur is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619157" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20151458063"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-et is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619159" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377150"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-af is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619161" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377103"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-nn is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619163" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377036"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-mai is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619165" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377066"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ar is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619167" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377052"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-cy is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619169" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377097"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-rhino is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619171" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377117"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-sk is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619173" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377096"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-da is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619175" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377037"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-as is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619177" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377136"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-uk is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619179" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377047"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ro is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619181" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377051"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-cs is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619183" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377114"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-es is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619185" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377074"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-it is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619187" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377092"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-vi is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619189" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377068"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-bg is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619191" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377159"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-cs is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619193" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377099"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ru is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619195" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377086"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-pl is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619197" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377055"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-sv is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619199" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377088"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-fi is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619201" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377065"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-opensymbol-fonts is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619203" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377035"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-sr is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619205" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377048"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-sk is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619207" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377115"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-zh is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619209" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377121"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ca is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619211" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377067"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ga is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619213" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377063"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-de is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619215" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377045"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-af is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619217" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377062"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-nl is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619219" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377122"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-hr is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619221" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377070"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-fr is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619223" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377139"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-is is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619225" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377038"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-lt is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619227" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377145"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-lb is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619229" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377138"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-sl is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619231" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377110"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ro is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619233" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377161"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-pt is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619235" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377075"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-mn is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619237" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377082"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-es is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619239" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377050"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ko is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619241" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377157"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-en is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619243" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377128"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-da is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619245" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377069"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-fa is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619247" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377080"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-tr is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619249" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377098"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-hu is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619251" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377127"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ja is earlier than 1:4.2.8.2-11.el6_7.1" id="oval:com.redhat.rhsa:tst:20152619253" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377131"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-de is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619259" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377079"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-ogltrans is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619260" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377147"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-et is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619261" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377150"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-draw is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619262" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377140"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-or is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619263" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377108"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-nl is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619264" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377107"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-fr is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619265" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377085"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-zh-Hant is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619266" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377040"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-nb is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619267" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377156"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ga is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619268" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377073"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-es is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619269" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377074"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-postgresql is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619270" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377056"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-nr is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619272" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377039"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ve is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619273" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377090"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-zu is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619274" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377149"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-nso is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619275" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377061"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-sk is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619276" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377096"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-kn is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619277" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377134"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-eu is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619278" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377053"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-pl is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619279" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377064"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-hr is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619280" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377101"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-base is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619281" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377078"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ts is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619282" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377057"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-tr is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619283" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377072"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-librelogo is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619284" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377043"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-sv is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619285" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377143"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-he is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619286" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377060"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-ure is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619287" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377084"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-fi is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619288" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377112"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-gu is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619289" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377106"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-zh-Hans is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619290" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377089"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-tn is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619291" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377119"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-pt-BR is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619292" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377054"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-glade is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619293" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377133"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ko is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619294" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377126"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-th is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619295" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377081"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ar is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619296" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377052"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-bsh is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619297" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377160"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-pt-PT is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619298" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377095"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-bg is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619299" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377148"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-bn is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619300" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377137"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-nlpsolver is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619301" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377083"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-pdfimport is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619302" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377141"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-emailmerge is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619303" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377100"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-filters is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619304" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377135"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-pyuno is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619305" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377125"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-impress is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619306" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377071"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-rhino is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619307" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377117"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-da is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619308" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377037"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-fa is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619309" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377104"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-it is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619311" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377116"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-officebean is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619312" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152619132"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-officebean is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20152619313" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152619132"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20150008001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ru is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619314" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377109"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-as is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619315" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377136"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-dz is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619316" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377142"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-graphicfilter is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619317" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377041"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-si is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619318" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377111"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-en is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619320" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377130"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-lv is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619321" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377077"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-af is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619323" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377103"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-nn is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619324" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377036"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-uk is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619325" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377047"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-st is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619326" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377123"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-gdb-debug-support is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619327" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377046"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-cs is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619328" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377114"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-xh is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619329" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377152"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-el is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619330" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377158"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-wiki-publisher is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619331" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377144"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ss is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619332" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377087"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-math is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619333" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377129"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-br is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619334" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377120"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-sl is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619336" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377042"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ta is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619337" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377058"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-te is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619338" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377076"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-cy is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619339" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377097"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-mai is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619340" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377066"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-headless is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619341" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377044"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-sdk-doc is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619342" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377059"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-sdk is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619343" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377124"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-sr is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619344" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377153"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-calc is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619345" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377151"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ja is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619346" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377094"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619347" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377033"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-lt is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619348" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377034"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-core is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619349" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377049"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-mr is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619350" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377093"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-writer is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619351" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377091"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-hu is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619352" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377118"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ml is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619353" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377154"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-xsltfilter is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619354" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377155"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ca is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619355" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377113"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-gl is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619356" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377132"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-hi is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619357" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377146"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-pa is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619358" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377105"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-ro is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619359" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377051"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-langpack-kk is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619360" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377102"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-nl is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619362" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377122"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-mn is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619363" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377082"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ga is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619364" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377063"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-pt is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619365" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377075"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ja is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619366" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377131"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-de is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619367" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377045"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-sv is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619368" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377088"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-af is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619369" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377062"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-zh is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619370" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377121"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-da is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619371" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377069"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-vi is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619372" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377068"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-en is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619373" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377128"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-bg is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619374" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377159"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-fi is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619375" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377065"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-tr is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619376" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377098"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-fa is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619377" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377080"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-hr is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619378" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377070"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-sr is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619379" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377048"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-is is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619380" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377038"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-cs is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619381" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377099"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ro is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619382" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377161"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-lb is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619383" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377138"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-lt is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619384" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377145"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-sk is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619385" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377115"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ru is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619386" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377086"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-fr is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619387" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377139"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ca is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619388" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377067"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-sl is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619389" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377110"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libreoffice-opensymbol-fonts is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619390" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377035"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-es is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619391" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377050"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-ko is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619392" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377157"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-hu is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619393" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377127"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-pl is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619394" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377055"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="autocorr-it is earlier than 1:4.3.7.2-5.el7_2.1" id="oval:com.redhat.rhsa:tst:20152619395" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377092"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20150001001" version="601">
@@ -52282,6 +54676,9 @@ contain a backported patch to correct this issue.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152595006" version="601">
    <red-def:name>libpng12</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20152619132" version="601">
+   <red-def:name>libreoffice-officebean</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20150001001" version="601">
@@ -53618,6 +56015,24 @@ contain a backported patch to correct this issue.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152596003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">2:1.5.13-7.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152616003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.9.8e-37.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152617003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.0.1e-42.el6_7.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152617005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.0.1e-51.el7_2.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152618003" version="602">
+   <red-def:evr datatype="evr_string" operation="less than">0:47.0.2526.80-1.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152619003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:4.2.8.2-11.el6_7.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152619005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:4.3.7.2-5.el7_2.1</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
