@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2015-12-14T06:43:02</oval:timestamp>
+  <oval:timestamp>2015-12-15T05:02:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20150001" version="601">
@@ -37218,6 +37218,75 @@ which contain backported patches to correct these issues.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20152623" version="601">
+   <metadata>
+    <title>RHSA-2015:2623: grub2 security and bug fix update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2015:2623-00" ref_url="https://rhn.redhat.com/errata/RHSA-2015-2623.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-8370" ref_url="https://access.redhat.com/security/cve/CVE-2015-8370" source="CVE"/>
+    <description>The grub2 packages provide version 2 of the Grand Unified Bootloader
+(GRUB), a highly configurable and customizable bootloader with modular
+architecture. The packages support a variety of kernel formats, file
+systems, computer architectures, and hardware devices.
+
+A flaw was found in the way the grub2 handled backspace characters entered
+in username and password prompts. An attacker with access to the system
+console could use this flaw to bypass grub2 password protection and gain
+administrative access to the system. (CVE-2015-8370)
+
+This update also fixes the following bug:
+
+* When upgrading from Red Hat Enterprise Linux 7.1 and earlier, a
+configured boot password was not correctly migrated to the newly introduced
+user.cfg configuration files. This could possibly prevent system
+administrators from changing grub2 configuration during system boot even if
+they provided the correct password. This update corrects the password
+migration script and the incorrectly generated user.cfg file. (BZ#1290089)
+
+All grub2 users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2015 Red Hat, Inc.</rights>
+     <issued date="2015-12-15"/>
+     <updated date="2015-12-15"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8370">CVE-2015-8370</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1286966" id="1286966">CVE-2015-8370 grub2: buffer overflow when checking password entered during bootup</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1290089" id="1290089">Grub password broken by update from RHEL7.1 to RHEL7.2</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20150008001"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20150008002"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20150008003"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20150008004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="grub2 is earlier than 1:2.02-0.33.el7_2" test_ref="oval:com.redhat.rhsa:tst:20152623005"/>
+      <criterion comment="grub2 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152401006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="grub2-efi is earlier than 1:2.02-0.33.el7_2" test_ref="oval:com.redhat.rhsa:tst:20152623009"/>
+      <criterion comment="grub2-efi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152401012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="grub2-efi-modules is earlier than 1:2.02-0.33.el7_2" test_ref="oval:com.redhat.rhsa:tst:20152623011"/>
+      <criterion comment="grub2-efi-modules is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152401010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="grub2-tools is earlier than 1:2.02-0.33.el7_2" test_ref="oval:com.redhat.rhsa:tst:20152623007"/>
+      <criterion comment="grub2-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20152401008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 6 Client is installed" id="oval:com.redhat.rhsa:tst:20150001001" version="601">
@@ -52088,6 +52157,22 @@ which contain backported patches to correct these issues.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20150377092"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152619005"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2 is earlier than 1:2.02-0.33.el7_2" id="oval:com.redhat.rhsa:tst:20152623005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152623003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2-tools is earlier than 1:2.02-0.33.el7_2" id="oval:com.redhat.rhsa:tst:20152623007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152623003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2-efi is earlier than 1:2.02-0.33.el7_2" id="oval:com.redhat.rhsa:tst:20152623009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152623003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="grub2-efi-modules is earlier than 1:2.02-0.33.el7_2" id="oval:com.redhat.rhsa:tst:20152623011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20152401007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20152623003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20150001001" version="601">
@@ -56033,6 +56118,9 @@ which contain backported patches to correct these issues.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152619005" version="601">
    <red-def:evr datatype="evr_string" operation="less than">1:4.3.7.2-5.el7_2.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20152623003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:2.02-0.33.el7_2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
