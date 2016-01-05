@@ -316,6 +316,33 @@
 		    </oval-def:criteria>
 		  </oval-def:criteria>
 		</oval-def:definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.cisecurity:def:333" version="1">
+		  <metadata>
+		    <title>Internet Explorer Memory Corruption Vulnerability - CVE-2015-6082 (MS15-112)</title>
+		    <affected family="windows">
+		      <platform>Microsoft Windows 7</platform>
+		      <platform>Microsoft Windows Server 2008 R2</platform>
+		      <platform>Microsoft Windows 8.1</platform>
+		      <platform>Microsoft Windows Server 2012 R2</platform>
+		      <product>Internet Explorer 11</product>
+		    </affected>
+		    <reference ref_id="CVE-2015-6082" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-6082" source="CVE" />
+		    <description>Microsoft Internet Explorer 11 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka "Internet Explorer Memory Corruption Vulnerability", a different vulnerability than CVE-2015-6068, CVE-2015-6072, CVE-2015-6073, CVE-2015-6075, CVE-2015-6077, CVE-2015-6079, and CVE-2015-6080.</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2015-12-28T19:52:51+08:00">
+		          <contributor organization="The Depository Trust and Clearing Corporation">DTCC Team</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria operator="AND">
+		    <criterion comment="Check if Microsoft Internet Explorer 11 is installed" test_ref="oval:org.mitre.oval:tst:87142" />
+		    <criterion comment="Check if the version of mshtml.dll is less than 11.0.9600.18098" test_ref="oval:org.cisecurity:tst:476" />
+		  </criteria>
+		</definition>
     <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.mitre.oval:def:128" version="7">
 		  <oval-def:metadata>
 		    <oval-def:title>Microsoft Windows Server 2003 is installed</oval-def:title>
@@ -6121,73 +6148,73 @@
 		    </criteria>
 		  </criteria>
 		</definition>
-    <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:28101" version="3">
-		  <oval-def:metadata>
-		    <oval-def:title>EMF processing remote code execution vulnerability - CVE-2015-1645 (MS15-035)</oval-def:title>
-		    <oval-def:affected family="windows">
-		      <oval-def:platform>Microsoft Windows 7</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows Server 2003</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows Server 2008</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows Vista</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows Server 2008 R2</oval-def:platform>
-		    </oval-def:affected>
-		    <oval-def:reference ref_id="CVE-2015-1645" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1645" source="CVE" />
-		    <oval-def:description>Microsoft Windows Server 2003 SP2, Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, and Windows 7 SP1 allow remote attackers to execute arbitrary code via a crafted Enhanced Metafile (EMF) image, aka "EMF Processing Remote Code Execution Vulnerability."</oval-def:description>
-		    <oval-def:oval_repository>
-		      <oval-def:dates>
-		        <oval-def:submitted date="2015-04-17T09:50:43">
-		          <oval-def:contributor organization="SecPod Technologies">SecPod Team</oval-def:contributor>
-		        </oval-def:submitted>
-		        <oval-def:status_change date="2015-04-23T10:18:33.353-04:00">DRAFT</oval-def:status_change>
-		        <oval-def:status_change date="2015-05-11T04:00:11.502-04:00">INTERIM</oval-def:status_change>
-		        <oval-def:status_change date="2015-06-01T04:00:16.096-04:00">ACCEPTED</oval-def:status_change>
-		      </oval-def:dates>
-		      <oval-def:status>ACCEPTED</oval-def:status>
-		      <oval-def:min_schema_version>5.4</oval-def:min_schema_version>
-		    </oval-def:oval_repository>
-		  </oval-def:metadata>
-		  <oval-def:criteria operator="OR">
-		    <oval-def:criteria comment="Server 2003 vulnerable version" operator="AND">
-		      <oval-def:criteria comment="Server (2003 - x86/x64/ia64)" operator="OR">
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2003 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1870" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2003 (x64) is installed" definition_ref="oval:org.mitre.oval:def:730" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2003 for Itanium is installed" definition_ref="oval:org.mitre.oval:def:1867" />
-		      </oval-def:criteria>
-		      <oval-def:criterion comment="Check if the version of gdi32.dll is less than 5.2.3790.5563" test_ref="oval:org.mitre.oval:tst:138531" />
-		    </oval-def:criteria>
-		    <oval-def:criteria comment="Vista/2K8 and vulnerable file version" operator="AND">
-		      <oval-def:criteria comment="Vista/2k8" operator="OR">
-		        <oval-def:extend_definition comment="Microsoft Windows Vista (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1282" />
-		        <oval-def:extend_definition comment="Microsoft Windows Vista x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:2041" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
-		      </oval-def:criteria>
-		      <oval-def:criteria comment="Check for vulnerable version" operator="OR">
-		        <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.0.6002.19331" test_ref="oval:org.mitre.oval:tst:137581" />
-		        <oval-def:criteria comment="Check for LDR" operator="AND">
-		          <oval-def:criterion comment="Check if version of gdi32.dll is greater than or equal to 6.0.6002.23000" test_ref="oval:org.mitre.oval:tst:87308" />
-		          <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.0.6002.23639" test_ref="oval:org.mitre.oval:tst:137985" />
-		        </oval-def:criteria>
-		      </oval-def:criteria>
-		    </oval-def:criteria>
-		    <oval-def:criteria comment="Win 7 / R2 and vulnerable file version" operator="AND">
-		      <oval-def:criteria comment="Win 7 / R2" operator="OR">
-		        <oval-def:extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
-		        <oval-def:extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:6438" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
-		      </oval-def:criteria>
-		      <oval-def:criteria comment="Check for vulnerable version" operator="OR">
-		        <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.1.7601.18778" test_ref="oval:org.mitre.oval:tst:138384" />
-		        <oval-def:criteria comment="Check for LDR" operator="AND">
-		          <oval-def:criterion comment="Check if version of gdi32.dll is greater than or equal to 6.1.7601.22000" test_ref="oval:org.mitre.oval:tst:87215" />
-		          <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.1.7601.22982" test_ref="oval:org.mitre.oval:tst:137897" />
-		        </oval-def:criteria>
-		      </oval-def:criteria>
-		    </oval-def:criteria>
-		  </oval-def:criteria>
-		</oval-def:definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:28101" version="4">
+		  <metadata>
+		    <title>EMF processing remote code execution vulnerability - CVE-2015-1645 (MS15-035)</title>
+		    <affected family="windows">
+		      <platform>Microsoft Windows 7</platform>
+		      <platform>Microsoft Windows Server 2003</platform>
+		      <platform>Microsoft Windows Server 2008</platform>
+		      <platform>Microsoft Windows Vista</platform>
+		      <platform>Microsoft Windows Server 2008 R2</platform>
+		    </affected>
+		    <reference ref_id="CVE-2015-1645" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1645" source="CVE" />
+		    <description>Microsoft Windows Server 2003 SP2, Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, and Windows 7 SP1 allow remote attackers to execute arbitrary code via a crafted Enhanced Metafile (EMF) image, aka "EMF Processing Remote Code Execution Vulnerability."</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2015-04-17T09:50:43">
+		          <contributor organization="SecPod Technologies">SecPod Team</contributor>
+		        </submitted>
+		        <status_change date="2015-04-23T10:18:33.353-04:00">DRAFT</status_change>
+		        <status_change date="2015-05-11T04:00:11.502-04:00">INTERIM</status_change>
+		        <status_change date="2015-06-01T04:00:16.096-04:00">ACCEPTED</status_change>
+		      </dates>
+		      <status>ACCEPTED</status>
+		      <min_schema_version>5.4</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria operator="OR">
+		    <criteria comment="Server 2003 vulnerable version" operator="AND">
+		      <criteria comment="Server (2003 - x86/x64/ia64)" operator="OR">
+		        <extend_definition comment="Microsoft Windows Server 2003 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1870" />
+		        <extend_definition comment="Microsoft Windows Server 2003 (x64) is installed" definition_ref="oval:org.mitre.oval:def:730" />
+		        <extend_definition comment="Microsoft Windows Server 2003 for Itanium is installed" definition_ref="oval:org.mitre.oval:def:1867" />
+		      </criteria>
+		      <criterion comment="Check if the version of gdi32.dll is less than 5.2.3790.5563" test_ref="oval:org.mitre.oval:tst:138531" />
+		    </criteria>
+		    <criteria comment="Vista/2K8 and vulnerable file version" operator="AND">
+		      <criteria comment="Vista/2k8" operator="OR">
+		        <extend_definition comment="Microsoft Windows Vista (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1282" />
+		        <extend_definition comment="Microsoft Windows Vista x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:2041" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
+		      </criteria>
+		      <criteria comment="Check for vulnerable version" operator="OR">
+		        <criterion comment="Check if the version of gdi32.dll is less than 6.0.6002.19331" test_ref="oval:org.mitre.oval:tst:137581" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if version of gdi32.dll is greater than or equal to 6.0.6002.23000" test_ref="oval:org.mitre.oval:tst:87308" />
+		          <criterion comment="Check if the version of gdi32.dll is less than 6.0.6002.23639" test_ref="oval:org.mitre.oval:tst:137985" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="Win 7 / R2 and vulnerable file version" operator="AND">
+		      <criteria comment="Win 7 / R2" operator="OR">
+		        <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+		        <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+		        <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:6438" />
+		        <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
+		      </criteria>
+		      <criteria comment="Check for vulnerable version" operator="OR">
+		        <criterion comment="Check if the version of gdi32.dll is less than 6.1.7601.18778" test_ref="oval:org.mitre.oval:tst:138384" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if version of gdi32.dll is greater than or equal to 6.1.7601.22000" test_ref="oval:org.mitre.oval:tst:87215" />
+		          <criterion comment="Check if the version of gdi32.dll is less than 6.1.7601.22982" test_ref="oval:org.mitre.oval:tst:137897" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		  </criteria>
+		</definition>
     <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.mitre.oval:def:28109" version="3">
 		  <oval-def:metadata>
 		    <oval-def:title>VBScript 5.8 is installed</oval-def:title>
@@ -17315,99 +17342,99 @@
 		    </oval-def:criteria>
 		  </oval-def:criteria>
 		</oval-def:definition>
-    <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:28708" version="2">
-		  <oval-def:metadata>
-		    <oval-def:title>Graphics component EOP vulnerability - CVE-2015-2364 (MS15-072)</oval-def:title>
-		    <oval-def:affected family="windows">
-		      <oval-def:platform>Microsoft Windows 7</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows 8</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows 8.1</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows Server 2003</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows Server 2008</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows Server 2008 R2</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows Server 2012</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows Server 2012 R2</oval-def:platform>
-		      <oval-def:platform>Microsoft Windows Vista</oval-def:platform>
-		    </oval-def:affected>
-		    <oval-def:reference ref_id="CVE-2015-2364" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2364" source="CVE" />
-		    <oval-def:description>The graphics component in Microsoft Windows Server 2003 SP2 and R2 SP2, Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8, Windows 8.1, Windows Server 2012 Gold and R2, and Windows RT Gold and 8.1 allows local users to gain privileges via a crafted application that leverages an incorrect bitmap conversion, aka "Graphics Component EOP Vulnerability."</oval-def:description>
-		    <oval-def:oval_repository>
-		      <oval-def:dates>
-		        <oval-def:submitted date="2015-07-22T20:35:28">
-		          <oval-def:contributor organization="SecPod Technologies">SecPod Team</oval-def:contributor>
-		        </oval-def:submitted>
-		        <oval-def:status_change date="2015-07-23T11:24:06.820-04:00">DRAFT</oval-def:status_change>
-		        <oval-def:status_change date="2015-08-10T04:00:35.282-04:00">INTERIM</oval-def:status_change>
-		        <oval-def:status_change date="2015-12-22T12:30:00.000-05:00">ACCEPTED</oval-def:status_change>
-		      </oval-def:dates>
-		      <oval-def:status>ACCEPTED</oval-def:status>
-		      <oval-def:min_schema_version>5.4</oval-def:min_schema_version>
-		    </oval-def:oval_repository>
-		  </oval-def:metadata>
-		  <oval-def:criteria operator="OR">
-		    <oval-def:criteria comment="Server 2003 vulnerable version" operator="AND">
-		      <oval-def:criteria comment="Server (2003 - x86/x64/ia64)" operator="OR">
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2003 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1870" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2003 (x64) is installed" definition_ref="oval:org.mitre.oval:def:730" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2003 for Itanium is installed" definition_ref="oval:org.mitre.oval:def:1867" />
-		      </oval-def:criteria>
-		      <oval-def:criterion comment="Check if the version of gdi32.dll is less than 5.2.3790.5661" test_ref="oval:org.mitre.oval:tst:140966" />
-		    </oval-def:criteria>
-		    <oval-def:criteria comment="Vista/2K8 and vulnerable file version" operator="AND">
-		      <oval-def:criteria comment="Vista/2k8" operator="OR">
-		        <oval-def:extend_definition comment="Microsoft Windows Vista (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1282" />
-		        <oval-def:extend_definition comment="Microsoft Windows Vista x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:2041" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
-		      </oval-def:criteria>
-		      <oval-def:criteria comment="Check for vulnerable version" operator="OR">
-		        <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.0.6002.19421" test_ref="oval:org.mitre.oval:tst:141236" />
-		        <oval-def:criteria comment="Check for LDR" operator="AND">
-		          <oval-def:criterion comment="Check if version of gdi32.dll is greater than or equal to 6.0.6002.23000" test_ref="oval:org.mitre.oval:tst:87308" />
-		          <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.0.6002.23728" test_ref="oval:org.mitre.oval:tst:140635" />
-		        </oval-def:criteria>
-		      </oval-def:criteria>
-		    </oval-def:criteria>
-		    <oval-def:criteria comment="Win 7 / R2 and vulnerable file version" operator="AND">
-		      <oval-def:criteria comment="Win 7 / R2" operator="OR">
-		        <oval-def:extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
-		        <oval-def:extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:6438" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
-		      </oval-def:criteria>
-		      <oval-def:criteria comment="Check for vulnerable version" operator="OR">
-		        <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.1.7601.18898" test_ref="oval:org.mitre.oval:tst:141266" />
-		        <oval-def:criteria comment="Check for LDR" operator="AND">
-		          <oval-def:criterion comment="Check if version of gdi32.dll is greater than or equal to 6.1.7601.22000" test_ref="oval:org.mitre.oval:tst:87215" />
-		          <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.1.7601.23100" test_ref="oval:org.mitre.oval:tst:141108" />
-		        </oval-def:criteria>
-		      </oval-def:criteria>
-		    </oval-def:criteria>
-		    <oval-def:criteria comment="Win 8/2k12 and vulnerable file version" operator="AND">
-		      <oval-def:criteria comment="Win 8 / 2k12" operator="OR">
-		        <oval-def:extend_definition comment="Microsoft Windows 8 (x86) is installed" definition_ref="oval:org.mitre.oval:def:14914" />
-		        <oval-def:extend_definition comment="Microsoft Windows 8 (x64) is installed" definition_ref="oval:org.mitre.oval:def:15571" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
-		      </oval-def:criteria>
-		      <oval-def:criteria comment="Check for vulnerable version" operator="OR">
-		        <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.2.9200.17410" test_ref="oval:org.mitre.oval:tst:141167" />
-		        <oval-def:criteria comment="Check for LDR" operator="AND">
-		          <oval-def:criterion comment="Check if the version of gdi32.dll is greater than or equal to 6.2.9200.21000" test_ref="oval:org.mitre.oval:tst:114810" />
-		          <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.2.9200.21521" test_ref="oval:org.mitre.oval:tst:141249" />
-		        </oval-def:criteria>
-		      </oval-def:criteria>
-		    </oval-def:criteria>
-		    <oval-def:criteria comment="Windows 8.1/ 2k12 R2 and vulnerable file version" operator="AND">
-		      <oval-def:criteria comment="Win 8.1 / 2k12 R2" operator="OR">
-		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
-		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
-		        <oval-def:extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
-		      </oval-def:criteria>
-		      <oval-def:criterion comment="Check if the version of gdi32.dll is less than 6.3.9600.17902" test_ref="oval:org.mitre.oval:tst:141114" />
-		    </oval-def:criteria>
-		  </oval-def:criteria>
-		</oval-def:definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:28708" version="3">
+		  <metadata>
+		    <title>Graphics component EOP vulnerability - CVE-2015-2364 (MS15-072)</title>
+		    <affected family="windows">
+		      <platform>Microsoft Windows 7</platform>
+		      <platform>Microsoft Windows 8</platform>
+		      <platform>Microsoft Windows 8.1</platform>
+		      <platform>Microsoft Windows Server 2003</platform>
+		      <platform>Microsoft Windows Server 2008</platform>
+		      <platform>Microsoft Windows Server 2008 R2</platform>
+		      <platform>Microsoft Windows Server 2012</platform>
+		      <platform>Microsoft Windows Server 2012 R2</platform>
+		      <platform>Microsoft Windows Vista</platform>
+		    </affected>
+		    <reference ref_id="CVE-2015-2364" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2364" source="CVE" />
+		    <description>The graphics component in Microsoft Windows Server 2003 SP2 and R2 SP2, Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8, Windows 8.1, Windows Server 2012 Gold and R2, and Windows RT Gold and 8.1 allows local users to gain privileges via a crafted application that leverages an incorrect bitmap conversion, aka "Graphics Component EOP Vulnerability."</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2015-07-22T20:35:28">
+		          <contributor organization="SecPod Technologies">SecPod Team</contributor>
+		        </submitted>
+		        <status_change date="2015-07-23T11:24:06.820-04:00">DRAFT</status_change>
+		        <status_change date="2015-08-10T04:00:35.282-04:00">INTERIM</status_change>
+		        <status_change date="2015-12-22T12:30:00.000-05:00">ACCEPTED</status_change>
+		      </dates>
+		      <status>ACCEPTED</status>
+		      <min_schema_version>5.4</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria operator="OR">
+		    <criteria comment="Server 2003 vulnerable version" operator="AND">
+		      <criteria comment="Server (2003 - x86/x64/ia64)" operator="OR">
+		        <extend_definition comment="Microsoft Windows Server 2003 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1870" />
+		        <extend_definition comment="Microsoft Windows Server 2003 (x64) is installed" definition_ref="oval:org.mitre.oval:def:730" />
+		        <extend_definition comment="Microsoft Windows Server 2003 for Itanium is installed" definition_ref="oval:org.mitre.oval:def:1867" />
+		      </criteria>
+		      <criterion comment="Check if the version of gdi32.dll is less than 5.2.3790.5661" test_ref="oval:org.mitre.oval:tst:140966" />
+		    </criteria>
+		    <criteria comment="Vista/2K8 and vulnerable file version" operator="AND">
+		      <criteria comment="Vista/2k8" operator="OR">
+		        <extend_definition comment="Microsoft Windows Vista (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1282" />
+		        <extend_definition comment="Microsoft Windows Vista x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:2041" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
+		      </criteria>
+		      <criteria comment="Check for vulnerable version" operator="OR">
+		        <criterion comment="Check if the version of gdi32.dll is less than 6.0.6002.19421" test_ref="oval:org.mitre.oval:tst:141236" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if version of gdi32.dll is greater than or equal to 6.0.6002.23000" test_ref="oval:org.mitre.oval:tst:87308" />
+		          <criterion comment="Check if the version of gdi32.dll is less than 6.0.6002.23728" test_ref="oval:org.mitre.oval:tst:140635" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="Win 7 / R2 and vulnerable file version" operator="AND">
+		      <criteria comment="Win 7 / R2" operator="OR">
+		        <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+		        <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+		        <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:6438" />
+		        <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
+		      </criteria>
+		      <criteria comment="Check for vulnerable version" operator="OR">
+		        <criterion comment="Check if the version of gdi32.dll is less than 6.1.7601.18898" test_ref="oval:org.mitre.oval:tst:141266" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if version of gdi32.dll is greater than or equal to 6.1.7601.22000" test_ref="oval:org.mitre.oval:tst:87215" />
+		          <criterion comment="Check if the version of gdi32.dll is less than 6.1.7601.23100" test_ref="oval:org.mitre.oval:tst:141108" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="Win 8/2k12 and vulnerable file version" operator="AND">
+		      <criteria comment="Win 8 / 2k12" operator="OR">
+		        <extend_definition comment="Microsoft Windows 8 (x86) is installed" definition_ref="oval:org.mitre.oval:def:14914" />
+		        <extend_definition comment="Microsoft Windows 8 (x64) is installed" definition_ref="oval:org.mitre.oval:def:15571" />
+		        <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+		      </criteria>
+		      <criteria comment="Check for vulnerable version" operator="OR">
+		        <criterion comment="Check if the version of gdi32.dll is less than 6.2.9200.17410" test_ref="oval:org.mitre.oval:tst:141167" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if the version of gdi32.dll is greater than or equal to 6.2.9200.21000" test_ref="oval:org.mitre.oval:tst:114810" />
+		          <criterion comment="Check if the version of gdi32.dll is less than 6.2.9200.21521" test_ref="oval:org.mitre.oval:tst:141249" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="Windows 8.1/ 2k12 R2 and vulnerable file version" operator="AND">
+		      <criteria comment="Win 8.1 / 2k12 R2" operator="OR">
+		        <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+		        <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+		        <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+		      </criteria>
+		      <criterion comment="Check if the version of gdi32.dll is less than 6.3.9600.17902" test_ref="oval:org.mitre.oval:tst:141114" />
+		    </criteria>
+		  </criteria>
+		</definition>
     <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:28709" version="3">
 		  <oval-def:metadata>
 		    <oval-def:title>Internet Explorer memory corruption vulnerability - CVE-2015-1665 (MS15-032)</oval-def:title>
@@ -33374,6 +33401,10 @@
 		  <object object_ref="oval:org.mitre.oval:obj:222" />
 		  <state state_ref="oval:org.cisecurity:ste:416" />
 		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of mshtml.dll is less than 11.0.9600.18098" id="oval:org.cisecurity:tst:476" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:425" />
+		</file_test>
     <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." id="oval:org.mitre.oval:tst:38" version="3">
 		  <object object_ref="oval:org.mitre.oval:obj:1517" />
 		</file_test>
@@ -33855,7 +33886,7 @@
     <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the file VMMS.exe for Hyper-V exists" id="oval:org.mitre.oval:tst:87182" version="1">
 		  <object object_ref="oval:org.mitre.oval:obj:26482" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if version of gdi32.dll is greater than or equal to 6.1.7601.22000" id="oval:org.mitre.oval:tst:87215" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if version of gdi32.dll is greater than or equal to 6.1.7601.22000" id="oval:org.mitre.oval:tst:87215" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:20456" />
 		</file_test>
@@ -33867,7 +33898,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:28913" />
 		  <state state_ref="oval:org.mitre.oval:ste:24327" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if version of gdi32.dll is greater than or equal to 6.0.6002.23000" id="oval:org.mitre.oval:tst:87308" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if version of gdi32.dll is greater than or equal to 6.0.6002.23000" id="oval:org.mitre.oval:tst:87308" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:20865" />
 		</file_test>
@@ -33992,7 +34023,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:39131" />
 		  <state state_ref="oval:org.mitre.oval:ste:31231" />
 		</registry_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is greater than or equal to 6.2.9200.21000" id="oval:org.mitre.oval:tst:114810" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is greater than or equal to 6.2.9200.21000" id="oval:org.mitre.oval:tst:114810" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:30959" />
 		</file_test>
@@ -34443,7 +34474,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:5538" />
 		  <state state_ref="oval:org.mitre.oval:ste:20865" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.0.6002.19331" id="oval:org.mitre.oval:tst:137581" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.0.6002.19331" id="oval:org.mitre.oval:tst:137581" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:38283" />
 		</file_test>
@@ -34727,7 +34758,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:43098" />
 		  <state state_ref="oval:org.mitre.oval:ste:38317" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.1.7601.22982" id="oval:org.mitre.oval:tst:137897" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.1.7601.22982" id="oval:org.mitre.oval:tst:137897" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:38526" />
 		</file_test>
@@ -34896,7 +34927,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:43355" />
 		  <state state_ref="oval:org.mitre.oval:ste:38353" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.0.6002.23639" id="oval:org.mitre.oval:tst:137985" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.0.6002.23639" id="oval:org.mitre.oval:tst:137985" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:38616" />
 		</file_test>
@@ -35885,7 +35916,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:39210" />
 		  <state state_ref="oval:org.mitre.oval:ste:38731" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.1.7601.18778" id="oval:org.mitre.oval:tst:138384" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.1.7601.18778" id="oval:org.mitre.oval:tst:138384" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:38630" />
 		</file_test>
@@ -36161,7 +36192,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:30359" />
 		  <state state_ref="oval:org.mitre.oval:ste:38254" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 5.2.3790.5563" id="oval:org.mitre.oval:tst:138531" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 5.2.3790.5563" id="oval:org.mitre.oval:tst:138531" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:38412" />
 		</file_test>
@@ -36952,7 +36983,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:218" />
 		  <state state_ref="oval:org.mitre.oval:ste:38866" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.0.6002.23728" id="oval:org.mitre.oval:tst:140635" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.0.6002.23728" id="oval:org.mitre.oval:tst:140635" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:39781" />
 		</file_test>
@@ -37113,7 +37144,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:43951" />
 		  <state state_ref="oval:org.mitre.oval:ste:39696" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 5.2.3790.5661" id="oval:org.mitre.oval:tst:140966" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 5.2.3790.5661" id="oval:org.mitre.oval:tst:140966" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:39165" />
 		</file_test>
@@ -37248,7 +37279,7 @@
 		  <state state_ref="oval:org.mitre.oval:ste:39561" />
 		  <state state_ref="oval:org.mitre.oval:ste:39091" />
 		</registry_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.1.7601.23100" id="oval:org.mitre.oval:tst:141108" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.1.7601.23100" id="oval:org.mitre.oval:tst:141108" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:39228" />
 		</file_test>
@@ -37264,7 +37295,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:222" />
 		  <state state_ref="oval:org.mitre.oval:ste:39423" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.3.9600.17902" id="oval:org.mitre.oval:tst:141114" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.3.9600.17902" id="oval:org.mitre.oval:tst:141114" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:39467" />
 		</file_test>
@@ -37345,7 +37376,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:43322" />
 		  <state state_ref="oval:org.mitre.oval:ste:39413" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.2.9200.17410" id="oval:org.mitre.oval:tst:141167" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.2.9200.17410" id="oval:org.mitre.oval:tst:141167" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:39664" />
 		</file_test>
@@ -37455,7 +37486,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:43951" />
 		  <state state_ref="oval:org.mitre.oval:ste:38766" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.0.6002.19421" id="oval:org.mitre.oval:tst:141236" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.0.6002.19421" id="oval:org.mitre.oval:tst:141236" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:39470" />
 		</file_test>
@@ -37483,7 +37514,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:42477" />
 		  <state state_ref="oval:org.mitre.oval:ste:39339" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.2.9200.21521" id="oval:org.mitre.oval:tst:141249" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.2.9200.21521" id="oval:org.mitre.oval:tst:141249" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:39534" />
 		</file_test>
@@ -37506,7 +37537,7 @@
 		  <object object_ref="oval:org.mitre.oval:obj:7742" />
 		  <state state_ref="oval:org.mitre.oval:ste:39461" />
 		</file_test>
-    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.1.7601.18898" id="oval:org.mitre.oval:tst:141266" version="1">
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of gdi32.dll is less than 6.1.7601.18898" id="oval:org.mitre.oval:tst:141266" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:279" />
 		  <state state_ref="oval:org.mitre.oval:ste:39620" />
 		</file_test>
@@ -37713,7 +37744,7 @@
 		  <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
 		  <filename>shell32.dll</filename>
 		</file_object>
-    <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:obj:279" version="1">
+    <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="The path to the gdi32.dll file in the system root\system32" id="oval:org.mitre.oval:obj:279" version="2">
 		  <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
 		  <filename>gdi32.dll</filename>
 		</file_object>
@@ -39273,6 +39304,9 @@
 		</file_state>
     <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Check for mshtml.dll version greater than or equal to 9.0.8112.20000" id="oval:org.cisecurity:ste:418" version="1">
 		  <version datatype="version" operation="greater than or equal">9.0.8112.20000</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is less than 11.0.9600.18098" id="oval:org.cisecurity:ste:425" version="1">
+		  <version datatype="version" operation="less than">11.0.9600.18098</version>
 		</file_state>
     <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:ste:78" version="1">
 		  <version datatype="version" operation="greater than">9.0.0.0</version>
