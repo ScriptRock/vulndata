@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-01-07T08:53:01</oval:timestamp>
+  <oval:timestamp>2016-01-07T10:59:02</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -196,6 +196,64 @@ rebooted for this update to take effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160005" version="601">
+   <metadata>
+    <title>RHSA-2016:0005: rpcbind security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0005-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0005.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7236" ref_url="https://access.redhat.com/security/cve/CVE-2015-7236" source="CVE"/>
+    <description>The rpcbind utility is a server that converts RPC program numbers into
+universal addresses. It must be running on the host to be able to make RPC
+calls on a server on that machine.
+
+A use-after-free flaw related to the PMAP_CALLIT operation and TCP/UDP
+connections was discovered in rpcbind. A remote attacker could possibly
+exploit this flaw to crash the rpcbind service by performing a series of
+UDP and TCP calls. (CVE-2015-7236)
+
+All rpcbind users are advised to upgrade to these updated packages, which
+contain a backported patch to correct this issue. If the rpcbind service
+is running, it will be automatically restarted after installing this
+update.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-01-07"/>
+     <updated date="2016-01-07"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7236">CVE-2015-7236</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1264345" id="1264345">CVE-2015-7236 rpcbind: Use-after-free vulnerability in PMAP_CALLIT</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criterion comment="rpcbind is earlier than 0:0.2.0-11.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160005005"/>
+     <criterion comment="rpcbind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160005006"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criterion comment="rpcbind is earlier than 0:0.2.0-33.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160005011"/>
+     <criterion comment="rpcbind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160005006"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -350,6 +408,18 @@ rebooted for this update to take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004016"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rpcbind is earlier than 0:0.2.0-11.el6_7" id="oval:com.redhat.rhsa:tst:20160005005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160005005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160005003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rpcbind is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160005006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160005005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="rpcbind is earlier than 0:0.2.0-33.el7_2" id="oval:com.redhat.rhsa:tst:20160005011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160005005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160005005"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -406,6 +476,9 @@ rebooted for this update to take effect.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160004016" version="601">
    <red-def:name>kernel-bootwrapper</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160005005" version="601">
+   <red-def:name>rpcbind</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -434,6 +507,12 @@ rebooted for this update to take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160004003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:2.6.32-358.69.1.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160005003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.2.0-11.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160005005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.2.0-33.el7_2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
