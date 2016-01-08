@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-01-07T17:44:01</oval:timestamp>
+  <oval:timestamp>2016-01-07T20:13:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -348,6 +348,114 @@ system rebooted.</description>
       <criteria operator="AND">
        <criterion comment="nss-tools is earlier than 0:3.19.1-19.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160007021"/>
        <criterion comment="nss-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160007006"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160009" version="601">
+   <metadata>
+    <title>RHSA-2016:0009: libldb security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0009-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0009.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3223" ref_url="https://access.redhat.com/security/cve/CVE-2015-3223" source="CVE"/>
+    <reference ref_id="CVE-2015-5330" ref_url="https://access.redhat.com/security/cve/CVE-2015-5330" source="CVE"/>
+    <description>The libldb packages provide an extensible library that implements an
+LDAP-like API to access remote LDAP servers, or use local TDB databases.
+
+A denial of service flaw was found in the ldb_wildcard_compare() function
+of libldb. A remote attacker could send a specially crafted packet that,
+when processed by an application using libldb (for example the AD LDAP
+server in Samba), would cause that application to consume an excessive
+amount of memory and crash. (CVE-2015-3223)
+
+A memory-read flaw was found in the way the libldb library processed LDB DN
+records with a null byte. An authenticated, remote attacker could use this
+flaw to read heap-memory pages from the server. (CVE-2015-5330)
+
+Red Hat would like to thank the Samba project for reporting these issues.
+Upstream acknowledges Thilo Uttendorfer as the original reporter of
+CVE-2015-3223, and Douglas Bagnall as the original reporter of
+CVE-2015-5330.
+
+All libldb users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-01-07"/>
+     <updated date="2016-01-07"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3223">CVE-2015-3223</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5330">CVE-2015-5330</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1281326" id="1281326">CVE-2015-5330 samba, libldb: remote memory read in the Samba LDAP server</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1290287" id="1290287">CVE-2015-3223 libldb: Remote DoS in Samba (AD) LDAP server</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="ldb-tools is earlier than 0:1.1.13-3.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160009007"/>
+       <criterion comment="ldb-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160009008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libldb is earlier than 0:1.1.13-3.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160009009"/>
+       <criterion comment="libldb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160009010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libldb-devel is earlier than 0:1.1.13-3.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160009013"/>
+       <criterion comment="libldb-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160009014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="pyldb is earlier than 0:1.1.13-3.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160009005"/>
+       <criterion comment="pyldb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160009006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="pyldb-devel is earlier than 0:1.1.13-3.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160009011"/>
+       <criterion comment="pyldb-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160009012"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="ldb-tools is earlier than 0:1.1.20-1.el7_2.2" test_ref="oval:com.redhat.rhsa:tst:20160009020"/>
+       <criterion comment="ldb-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160009008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libldb is earlier than 0:1.1.20-1.el7_2.2" test_ref="oval:com.redhat.rhsa:tst:20160009019"/>
+       <criterion comment="libldb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160009010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="libldb-devel is earlier than 0:1.1.20-1.el7_2.2" test_ref="oval:com.redhat.rhsa:tst:20160009021"/>
+       <criterion comment="libldb-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160009014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="pyldb is earlier than 0:1.1.20-1.el7_2.2" test_ref="oval:com.redhat.rhsa:tst:20160009022"/>
+       <criterion comment="pyldb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160009006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="pyldb-devel is earlier than 0:1.1.20-1.el7_2.2" test_ref="oval:com.redhat.rhsa:tst:20160009023"/>
+       <criterion comment="pyldb-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160009012"/>
       </criteria>
      </criteria>
     </criteria>
@@ -832,6 +940,66 @@ update, the smb service will be restarted automatically.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160007008"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160007005"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pyldb is earlier than 0:1.1.13-3.el6_7.1" id="oval:com.redhat.rhsa:tst:20160009005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160009003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pyldb is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160009006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ldb-tools is earlier than 0:1.1.13-3.el6_7.1" id="oval:com.redhat.rhsa:tst:20160009007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160009003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ldb-tools is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160009008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libldb is earlier than 0:1.1.13-3.el6_7.1" id="oval:com.redhat.rhsa:tst:20160009009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160009003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libldb is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160009010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pyldb-devel is earlier than 0:1.1.13-3.el6_7.1" id="oval:com.redhat.rhsa:tst:20160009011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160009003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pyldb-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160009012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libldb-devel is earlier than 0:1.1.13-3.el6_7.1" id="oval:com.redhat.rhsa:tst:20160009013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160009003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libldb-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160009014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libldb is earlier than 0:1.1.20-1.el7_2.2" id="oval:com.redhat.rhsa:tst:20160009019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160009005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ldb-tools is earlier than 0:1.1.20-1.el7_2.2" id="oval:com.redhat.rhsa:tst:20160009020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160009005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libldb-devel is earlier than 0:1.1.20-1.el7_2.2" id="oval:com.redhat.rhsa:tst:20160009021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160009005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pyldb is earlier than 0:1.1.20-1.el7_2.2" id="oval:com.redhat.rhsa:tst:20160009022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160009005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pyldb-devel is earlier than 0:1.1.20-1.el7_2.2" id="oval:com.redhat.rhsa:tst:20160009023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160009008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160009005"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="samba4-winbind is earlier than 0:4.0.0-67.el6_7.rc4" id="oval:com.redhat.rhsa:tst:20160010005" version="602">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160010005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160010003"/>
@@ -1122,6 +1290,21 @@ update, the smb service will be restarted automatically.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160007009" version="601">
    <red-def:name>nss-devel</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160009005" version="601">
+   <red-def:name>pyldb</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160009006" version="601">
+   <red-def:name>ldb-tools</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160009007" version="601">
+   <red-def:name>libldb</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160009008" version="601">
+   <red-def:name>pyldb-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160009009" version="601">
+   <red-def:name>libldb-devel</red-def:name>
+  </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160010005" version="602">
    <red-def:name>samba4-winbind</red-def:name>
   </red-def:rpminfo_object>
@@ -1243,6 +1426,12 @@ update, the smb service will be restarted automatically.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160007005" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:3.19.1-19.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160009003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.1.13-3.el6_7.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160009005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.1.20-1.el7_2.2</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160010003" version="602">
    <red-def:evr datatype="evr_string" operation="less than">0:4.0.0-67.el6_7.rc4</red-def:evr>
