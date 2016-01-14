@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-01-12T02:50:01</oval:timestamp>
+  <oval:timestamp>2016-01-14T15:21:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -1089,6 +1089,91 @@ effect, all applications linked to the GnuTLS library must be restarted.</descri
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160043" version="601">
+   <metadata>
+    <title>RHSA-2016:0043: openssh security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0043-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0043.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-0777" ref_url="https://access.redhat.com/security/cve/CVE-2016-0777" source="CVE"/>
+    <reference ref_id="CVE-2016-0778" ref_url="https://access.redhat.com/security/cve/CVE-2016-0778" source="CVE"/>
+    <description>OpenSSH is OpenBSD's SSH (Secure Shell) protocol implementation.
+These packages include the core files necessary for both the OpenSSH client
+and server.
+
+An information leak flaw was found in the way the OpenSSH client roaming
+feature was implemented. A malicious server could potentially use this flaw
+to leak portions of memory (possibly including private SSH keys) of a
+successfully authenticated OpenSSH client. (CVE-2016-0777)
+
+A buffer overflow flaw was found in the way the OpenSSH client roaming
+feature was implemented. A malicious server could potentially use this flaw
+to execute arbitrary code on a successfully authenticated OpenSSH client if
+that client used certain non-default configuration options. (CVE-2016-0778)
+
+Red Hat would like to thank Qualys for reporting these issues.
+
+All openssh users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues. After installing this
+update, the OpenSSH server daemon (sshd) will be restarted automatically.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-01-14"/>
+     <updated date="2016-01-14"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0777">CVE-2016-0777</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0778">CVE-2016-0778</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1298032" id="1298032">CVE-2016-0777 OpenSSH: Client Information leak due to use of roaming connection feature</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298033" id="1298033">CVE-2016-0778 OpenSSH: Client buffer-overflow when using roaming connections</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="openssh is earlier than 0:6.6.1p1-23.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160043019"/>
+      <criterion comment="openssh is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160043020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssh-askpass is earlier than 0:6.6.1p1-23.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160043011"/>
+      <criterion comment="openssh-askpass is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160043012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssh-clients is earlier than 0:6.6.1p1-23.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160043017"/>
+      <criterion comment="openssh-clients is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160043018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssh-keycat is earlier than 0:6.6.1p1-23.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160043007"/>
+      <criterion comment="openssh-keycat is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160043008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssh-ldap is earlier than 0:6.6.1p1-23.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160043005"/>
+      <criterion comment="openssh-ldap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160043006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssh-server is earlier than 0:6.6.1p1-23.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160043009"/>
+      <criterion comment="openssh-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160043010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssh-server-sysvinit is earlier than 0:6.6.1p1-23.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160043013"/>
+      <criterion comment="openssh-server-sysvinit is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160043014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="pam_ssh_agent_auth is earlier than 0:0.9.3-9.23.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160043015"/>
+      <criterion comment="pam_ssh_agent_auth is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160043016"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -1891,6 +1976,70 @@ effect, all applications linked to the GnuTLS library must be restarted.</descri
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160012006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160012005"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-ldap is earlier than 0:6.6.1p1-23.el7_2" id="oval:com.redhat.rhsa:tst:20160043005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160043003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-ldap is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160043006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-keycat is earlier than 0:6.6.1p1-23.el7_2" id="oval:com.redhat.rhsa:tst:20160043007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160043003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-keycat is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160043008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-server is earlier than 0:6.6.1p1-23.el7_2" id="oval:com.redhat.rhsa:tst:20160043009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160043003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-server is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160043010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-askpass is earlier than 0:6.6.1p1-23.el7_2" id="oval:com.redhat.rhsa:tst:20160043011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160043003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-askpass is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160043012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-server-sysvinit is earlier than 0:6.6.1p1-23.el7_2" id="oval:com.redhat.rhsa:tst:20160043013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160043003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-server-sysvinit is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160043014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pam_ssh_agent_auth is earlier than 0:0.9.3-9.23.el7_2" id="oval:com.redhat.rhsa:tst:20160043015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160043004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="pam_ssh_agent_auth is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160043016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-clients is earlier than 0:6.6.1p1-23.el7_2" id="oval:com.redhat.rhsa:tst:20160043017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160043003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh-clients is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160043018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh is earlier than 0:6.6.1p1-23.el7_2" id="oval:com.redhat.rhsa:tst:20160043019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160043003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssh is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160043020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -2151,6 +2300,30 @@ effect, all applications linked to the GnuTLS library must be restarted.</descri
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160012010" version="601">
    <red-def:name>gnutls-c++</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160043005" version="601">
+   <red-def:name>openssh-ldap</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160043006" version="601">
+   <red-def:name>openssh-keycat</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160043007" version="601">
+   <red-def:name>openssh-server</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160043008" version="601">
+   <red-def:name>openssh-askpass</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160043009" version="601">
+   <red-def:name>openssh-server-sysvinit</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160043010" version="601">
+   <red-def:name>pam_ssh_agent_auth</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160043011" version="601">
+   <red-def:name>openssh-clients</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160043012" version="601">
+   <red-def:name>openssh</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -2218,6 +2391,12 @@ effect, all applications linked to the GnuTLS library must be restarted.</descri
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160012005" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:3.3.8-14.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160043003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:6.6.1p1-23.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160043004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.9.3-9.23.el7_2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
