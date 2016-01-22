@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-01-20T14:32:02</oval:timestamp>
+  <oval:timestamp>2016-01-21T07:05:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -1555,6 +1555,550 @@ must be restarted for the update to take effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160053" version="601">
+   <metadata>
+    <title>RHSA-2016:0053: java-1.7.0-openjdk security update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0053-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0053.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-4871" ref_url="https://access.redhat.com/security/cve/CVE-2015-4871" source="CVE"/>
+    <reference ref_id="CVE-2015-7575" ref_url="https://access.redhat.com/security/cve/CVE-2015-7575" source="CVE"/>
+    <reference ref_id="CVE-2016-0402" ref_url="https://access.redhat.com/security/cve/CVE-2016-0402" source="CVE"/>
+    <reference ref_id="CVE-2016-0448" ref_url="https://access.redhat.com/security/cve/CVE-2016-0448" source="CVE"/>
+    <reference ref_id="CVE-2016-0466" ref_url="https://access.redhat.com/security/cve/CVE-2016-0466" source="CVE"/>
+    <reference ref_id="CVE-2016-0483" ref_url="https://access.redhat.com/security/cve/CVE-2016-0483" source="CVE"/>
+    <reference ref_id="CVE-2016-0494" ref_url="https://access.redhat.com/security/cve/CVE-2016-0494" source="CVE"/>
+    <description>The java-1.7.0-openjdk packages provide the OpenJDK 7 Java Runtime
+Environment and the OpenJDK 7 Java Software Development Kit.
+
+An out-of-bounds write flaw was found in the JPEG image format decoder in
+the AWT component in OpenJDK. A specially crafted JPEG image could cause
+a Java application to crash or, possibly execute arbitrary code. An
+untrusted Java application or applet could use this flaw to bypass Java
+sandbox restrictions. (CVE-2016-0483)
+
+An integer signedness issue was found in the font parsing code in the 2D
+component in OpenJDK. A specially crafted font file could possibly cause
+the Java Virtual Machine to execute arbitrary code, allowing an untrusted
+Java application or applet to bypass Java sandbox restrictions.
+(CVE-2016-0494)
+
+It was discovered that the JAXP component in OpenJDK did not properly
+enforce the totalEntitySizeLimit limit. An attacker able to make a Java
+application process a specially crafted XML file could use this flaw to
+make the application consume an excessive amount of memory. (CVE-2016-0466)
+
+A flaw was found in the way TLS 1.2 could use the MD5 hash function for
+signing ServerKeyExchange and Client Authentication packets during a TLS
+handshake. A man-in-the-middle attacker able to force a TLS connection to
+use the MD5 hash function could use this flaw to conduct collision attacks
+to impersonate a TLS server or an authenticated TLS client. (CVE-2015-7575)
+
+Multiple flaws were discovered in the Libraries, Networking, and JMX
+components in OpenJDK. An untrusted Java application or applet could use
+these flaws to bypass certain Java sandbox restrictions. (CVE-2015-4871,
+CVE-2016-0402, CVE-2016-0448)
+
+Note: If the web browser plug-in provided by the icedtea-web package was
+installed, the issues exposed via Java applets could have been exploited
+without user interaction if a user visited a malicious website.
+
+Note: This update also disallows the use of the MD5 hash algorithm in the
+certification path processing. The use of MD5 can be re-enabled by removing
+MD5 from the jdk.certpath.disabledAlgorithms security property defined in
+the java.security file.
+
+All users of java-1.7.0-openjdk are advised to upgrade to these updated
+packages, which resolve these issues. All running instances of OpenJDK Java
+must be restarted for the update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-01-21"/>
+     <updated date="2016-01-21"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4871">CVE-2015-4871</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7575">CVE-2015-7575</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0402">CVE-2016-0402</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0448">CVE-2016-0448</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0466">CVE-2016-0466</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0483">CVE-2016-0483</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0494">CVE-2016-0494</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1273859" id="1273859">CVE-2015-4871 OpenJDK: protected methods can be used as interface methods via DirectMethodHandle (Libraries)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1289841" id="1289841">CVE-2015-7575 TLS 1.2 Transcipt Collision attacks against MD5 in key exchange protocol (SLOTH)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298906" id="1298906">CVE-2016-0494 ICU: integer signedness issue in IndicRearrangementProcessor (OpenJDK 2D, 8140543)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298957" id="1298957">CVE-2016-0402 OpenJDK: URL deserialization inconsistencies (Networking, 8059054)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299073" id="1299073">CVE-2016-0448 OpenJDK: logging of RMI connection secrets (JMX, 8130710)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299385" id="1299385">CVE-2016-0466 OpenJDK: insufficient enforcement of totalEntitySizeLimit (JAXP, 8133962)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299441" id="1299441">CVE-2016-0483 OpenJDK: incorrect boundary check in JPEG decoder (AWT, 8139017)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-openjdk is earlier than 1:1.7.0.95-2.6.4.0.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160053011"/>
+      <criterion comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.95-2.6.4.0.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160053009"/>
+      <criterion comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.95-2.6.4.0.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160053007"/>
+      <criterion comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.95-2.6.4.0.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160053013"/>
+      <criterion comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.95-2.6.4.0.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160053005"/>
+      <criterion comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053006"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160054" version="601">
+   <metadata>
+    <title>RHSA-2016:0054: java-1.7.0-openjdk security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0054-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0054.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-4871" ref_url="https://access.redhat.com/security/cve/CVE-2015-4871" source="CVE"/>
+    <reference ref_id="CVE-2015-7575" ref_url="https://access.redhat.com/security/cve/CVE-2015-7575" source="CVE"/>
+    <reference ref_id="CVE-2016-0402" ref_url="https://access.redhat.com/security/cve/CVE-2016-0402" source="CVE"/>
+    <reference ref_id="CVE-2016-0448" ref_url="https://access.redhat.com/security/cve/CVE-2016-0448" source="CVE"/>
+    <reference ref_id="CVE-2016-0466" ref_url="https://access.redhat.com/security/cve/CVE-2016-0466" source="CVE"/>
+    <reference ref_id="CVE-2016-0483" ref_url="https://access.redhat.com/security/cve/CVE-2016-0483" source="CVE"/>
+    <reference ref_id="CVE-2016-0494" ref_url="https://access.redhat.com/security/cve/CVE-2016-0494" source="CVE"/>
+    <description>The java-1.7.0-openjdk packages provide the OpenJDK 7 Java Runtime
+Environment and the OpenJDK 7 Java Software Development Kit.
+
+An out-of-bounds write flaw was found in the JPEG image format decoder in
+the AWT component in OpenJDK. A specially crafted JPEG image could cause
+a Java application to crash or, possibly execute arbitrary code. An
+untrusted Java application or applet could use this flaw to bypass Java
+sandbox restrictions. (CVE-2016-0483)
+
+An integer signedness issue was found in the font parsing code in the 2D
+component in OpenJDK. A specially crafted font file could possibly cause
+the Java Virtual Machine to execute arbitrary code, allowing an untrusted
+Java application or applet to bypass Java sandbox restrictions.
+(CVE-2016-0494)
+
+It was discovered that the JAXP component in OpenJDK did not properly
+enforce the totalEntitySizeLimit limit. An attacker able to make a Java
+application process a specially crafted XML file could use this flaw to
+make the application consume an excessive amount of memory. (CVE-2016-0466)
+
+A flaw was found in the way TLS 1.2 could use the MD5 hash function for
+signing ServerKeyExchange and Client Authentication packets during a TLS
+handshake. A man-in-the-middle attacker able to force a TLS connection to
+use the MD5 hash function could use this flaw to conduct collision attacks
+to impersonate a TLS server or an authenticated TLS client. (CVE-2015-7575)
+
+Multiple flaws were discovered in the Libraries, Networking, and JMX
+components in OpenJDK. An untrusted Java application or applet could use
+these flaws to bypass certain Java sandbox restrictions. (CVE-2015-4871,
+CVE-2016-0402, CVE-2016-0448)
+
+Note: This update also disallows the use of the MD5 hash algorithm in the
+certification path processing. The use of MD5 can be re-enabled by removing
+MD5 from the jdk.certpath.disabledAlgorithms security property defined in
+the java.security file.
+
+All users of java-1.7.0-openjdk are advised to upgrade to these updated
+packages, which resolve these issues. All running instances of OpenJDK Java
+must be restarted for the update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-01-21"/>
+     <updated date="2016-01-21"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4871">CVE-2015-4871</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7575">CVE-2015-7575</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0402">CVE-2016-0402</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0448">CVE-2016-0448</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0466">CVE-2016-0466</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0483">CVE-2016-0483</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0494">CVE-2016-0494</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1273859" id="1273859">CVE-2015-4871 OpenJDK: protected methods can be used as interface methods via DirectMethodHandle (Libraries)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1289841" id="1289841">CVE-2015-7575 TLS 1.2 Transcipt Collision attacks against MD5 in key exchange protocol (SLOTH)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298906" id="1298906">CVE-2016-0494 ICU: integer signedness issue in IndicRearrangementProcessor (OpenJDK 2D, 8140543)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298957" id="1298957">CVE-2016-0402 OpenJDK: URL deserialization inconsistencies (Networking, 8059054)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299073" id="1299073">CVE-2016-0448 OpenJDK: logging of RMI connection secrets (JMX, 8130710)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299385" id="1299385">CVE-2016-0466 OpenJDK: insufficient enforcement of totalEntitySizeLimit (JAXP, 8133962)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299441" id="1299441">CVE-2016-0483 OpenJDK: incorrect boundary check in JPEG decoder (AWT, 8139017)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001"/>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk is earlier than 1:1.7.0.95-2.6.4.1.el5_11" test_ref="oval:com.redhat.rhsa:tst:20160054008"/>
+       <criterion comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160054009"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.95-2.6.4.1.el5_11" test_ref="oval:com.redhat.rhsa:tst:20160054004"/>
+       <criterion comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160054005"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.95-2.6.4.1.el5_11" test_ref="oval:com.redhat.rhsa:tst:20160054010"/>
+       <criterion comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160054011"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.95-2.6.4.1.el5_11" test_ref="oval:com.redhat.rhsa:tst:20160054002"/>
+       <criterion comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160054003"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.95-2.6.4.1.el5_11" test_ref="oval:com.redhat.rhsa:tst:20160054006"/>
+       <criterion comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160054007"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk is earlier than 1:1.7.0.95-2.6.4.0.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160054020"/>
+       <criterion comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk-accessibility is earlier than 1:1.7.0.95-2.6.4.0.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160054016"/>
+       <criterion comment="java-1.7.0-openjdk-accessibility is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160054017"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.95-2.6.4.0.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160054026"/>
+       <criterion comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.95-2.6.4.0.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160054022"/>
+       <criterion comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk-headless is earlier than 1:1.7.0.95-2.6.4.0.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160054024"/>
+       <criterion comment="java-1.7.0-openjdk-headless is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160054025"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.95-2.6.4.0.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160054028"/>
+       <criterion comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.95-2.6.4.0.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160054018"/>
+       <criterion comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053006"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160055" version="601">
+   <metadata>
+    <title>RHSA-2016:0055: java-1.8.0-oracle security update (Critical)</title>
+    <affected family="unix">
+     <platform>Oracle Java for Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0055-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0055.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7575" ref_url="https://access.redhat.com/security/cve/CVE-2015-7575" source="CVE"/>
+    <reference ref_id="CVE-2015-8126" ref_url="https://access.redhat.com/security/cve/CVE-2015-8126" source="CVE"/>
+    <reference ref_id="CVE-2015-8472" ref_url="https://access.redhat.com/security/cve/CVE-2015-8472" source="CVE"/>
+    <reference ref_id="CVE-2016-0402" ref_url="https://access.redhat.com/security/cve/CVE-2016-0402" source="CVE"/>
+    <reference ref_id="CVE-2016-0448" ref_url="https://access.redhat.com/security/cve/CVE-2016-0448" source="CVE"/>
+    <reference ref_id="CVE-2016-0466" ref_url="https://access.redhat.com/security/cve/CVE-2016-0466" source="CVE"/>
+    <reference ref_id="CVE-2016-0475" ref_url="https://access.redhat.com/security/cve/CVE-2016-0475" source="CVE"/>
+    <reference ref_id="CVE-2016-0483" ref_url="https://access.redhat.com/security/cve/CVE-2016-0483" source="CVE"/>
+    <reference ref_id="CVE-2016-0494" ref_url="https://access.redhat.com/security/cve/CVE-2016-0494" source="CVE"/>
+    <description>Oracle Java SE version 8 includes the Oracle Java Runtime Environment and
+the Oracle Java Software Development Kit.
+
+This update fixes several vulnerabilities in the Oracle Java Runtime
+Environment and the Oracle Java Software Development Kit. Further
+information about these flaws can be found on the Oracle Java SE Critical
+Patch Update Advisory page, listed in the References section.
+(CVE-2015-7575, CVE-2015-8126, CVE-2015-8472, CVE-2016-0402, CVE-2016-0448,
+CVE-2016-0466, CVE-2016-0475, CVE-2016-0483, CVE-2016-0494)
+
+Note: This update also disallows the use of the MD5 hash algorithm in the
+certification path processing. The use of MD5 can be re-enabled by removing
+MD5 from the jdk.certpath.disabledAlgorithms security property defined in
+the java.security file.
+
+All users of java-1.8.0-oracle are advised to upgrade to these updated
+packages, which provide Oracle Java 8 Update 71 and resolve these issues.
+All running instances of Oracle Java must be restarted for the update to
+take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-01-21"/>
+     <updated date="2016-01-21"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7575">CVE-2015-7575</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8126">CVE-2015-8126</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8472">CVE-2015-8472</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0402">CVE-2016-0402</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0448">CVE-2016-0448</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0466">CVE-2016-0466</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0475">CVE-2016-0475</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0483">CVE-2016-0483</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0494">CVE-2016-0494</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1281756" id="1281756">CVE-2015-8126 CVE-2015-8472 libpng: Buffer overflow vulnerabilities in png_get_PLTE/png_set_PLTE functions</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1289841" id="1289841">CVE-2015-7575 TLS 1.2 Transcipt Collision attacks against MD5 in key exchange protocol (SLOTH)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298906" id="1298906">CVE-2016-0494 ICU: integer signedness issue in IndicRearrangementProcessor (OpenJDK 2D, 8140543)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298949" id="1298949">CVE-2016-0475 OpenJDK: PBE incorrect key lengths (Libraries, 8138589)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298957" id="1298957">CVE-2016-0402 OpenJDK: URL deserialization inconsistencies (Networking, 8059054)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299073" id="1299073">CVE-2016-0448 OpenJDK: logging of RMI connection secrets (JMX, 8130710)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299385" id="1299385">CVE-2016-0466 OpenJDK: insufficient enforcement of totalEntitySizeLimit (JAXP, 8133962)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299441" id="1299441">CVE-2016-0483 OpenJDK: incorrect boundary check in JPEG decoder (AWT, 8139017)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras_oracle_java:7</cpe>
+      <cpe>cpe:/a:redhat:rhel_extras_oracle_java:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-oracle is earlier than 1:1.8.0.71-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160055007"/>
+      <criterion comment="java-1.8.0-oracle is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160055008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-oracle-devel is earlier than 1:1.8.0.71-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160055005"/>
+      <criterion comment="java-1.8.0-oracle-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160055006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-oracle-javafx is earlier than 1:1.8.0.71-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160055013"/>
+      <criterion comment="java-1.8.0-oracle-javafx is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160055014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-oracle-jdbc is earlier than 1:1.8.0.71-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160055015"/>
+      <criterion comment="java-1.8.0-oracle-jdbc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160055016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-oracle-plugin is earlier than 1:1.8.0.71-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160055011"/>
+      <criterion comment="java-1.8.0-oracle-plugin is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160055012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-oracle-src is earlier than 1:1.8.0.71-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160055009"/>
+      <criterion comment="java-1.8.0-oracle-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160055010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160056" version="601">
+   <metadata>
+    <title>RHSA-2016:0056: java-1.7.0-oracle security update (Critical)</title>
+    <affected family="unix">
+     <platform>Oracle Java for Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0056-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0056.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7575" ref_url="https://access.redhat.com/security/cve/CVE-2015-7575" source="CVE"/>
+    <reference ref_id="CVE-2015-8126" ref_url="https://access.redhat.com/security/cve/CVE-2015-8126" source="CVE"/>
+    <reference ref_id="CVE-2015-8472" ref_url="https://access.redhat.com/security/cve/CVE-2015-8472" source="CVE"/>
+    <reference ref_id="CVE-2016-0402" ref_url="https://access.redhat.com/security/cve/CVE-2016-0402" source="CVE"/>
+    <reference ref_id="CVE-2016-0448" ref_url="https://access.redhat.com/security/cve/CVE-2016-0448" source="CVE"/>
+    <reference ref_id="CVE-2016-0466" ref_url="https://access.redhat.com/security/cve/CVE-2016-0466" source="CVE"/>
+    <reference ref_id="CVE-2016-0483" ref_url="https://access.redhat.com/security/cve/CVE-2016-0483" source="CVE"/>
+    <reference ref_id="CVE-2016-0494" ref_url="https://access.redhat.com/security/cve/CVE-2016-0494" source="CVE"/>
+    <description>Oracle Java SE version 7 includes the Oracle Java Runtime Environment and
+the Oracle Java Software Development Kit.
+
+This update fixes several vulnerabilities in the Oracle Java Runtime
+Environment and the Oracle Java Software Development Kit. Further
+information about these flaws can be found on the Oracle Java SE Critical
+Patch Update Advisory page, listed in the References section.
+(CVE-2015-7575, CVE-2015-8126, CVE-2015-8472, CVE-2016-0402, CVE-2016-0448,
+CVE-2016-0466, CVE-2016-0483, CVE-2016-0494)
+
+Note: This update also disallows the use of the MD5 hash algorithm in the
+certification path processing. The use of MD5 can be re-enabled by removing
+MD5 from the jdk.certpath.disabledAlgorithms security property defined in
+the java.security file.
+
+All users of java-1.7.0-oracle are advised to upgrade to these updated
+packages, which provide Oracle Java 7 Update 95 and resolve these issues.
+All running instances of Oracle Java must be restarted for the update to
+take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-01-21"/>
+     <updated date="2016-01-21"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7575">CVE-2015-7575</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8126">CVE-2015-8126</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8472">CVE-2015-8472</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0402">CVE-2016-0402</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0448">CVE-2016-0448</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0466">CVE-2016-0466</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0483">CVE-2016-0483</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0494">CVE-2016-0494</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1281756" id="1281756">CVE-2015-8126 CVE-2015-8472 libpng: Buffer overflow vulnerabilities in png_get_PLTE/png_set_PLTE functions</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1289841" id="1289841">CVE-2015-7575 TLS 1.2 Transcipt Collision attacks against MD5 in key exchange protocol (SLOTH)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298906" id="1298906">CVE-2016-0494 ICU: integer signedness issue in IndicRearrangementProcessor (OpenJDK 2D, 8140543)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298957" id="1298957">CVE-2016-0402 OpenJDK: URL deserialization inconsistencies (Networking, 8059054)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299073" id="1299073">CVE-2016-0448 OpenJDK: logging of RMI connection secrets (JMX, 8130710)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299385" id="1299385">CVE-2016-0466 OpenJDK: insufficient enforcement of totalEntitySizeLimit (JAXP, 8133962)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299441" id="1299441">CVE-2016-0483 OpenJDK: incorrect boundary check in JPEG decoder (AWT, 8139017)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras_oracle_java:7</cpe>
+      <cpe>cpe:/a:redhat:rhel_extras_oracle_java:5</cpe>
+      <cpe>cpe:/a:redhat:rhel_extras_oracle_java:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-oracle is earlier than 1:1.7.0.95-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160056015"/>
+      <criterion comment="java-1.7.0-oracle is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160056016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-oracle-devel is earlier than 1:1.7.0.95-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160056011"/>
+      <criterion comment="java-1.7.0-oracle-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160056012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-oracle-javafx is earlier than 1:1.7.0.95-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160056007"/>
+      <criterion comment="java-1.7.0-oracle-javafx is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160056008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-oracle-jdbc is earlier than 1:1.7.0.95-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160056005"/>
+      <criterion comment="java-1.7.0-oracle-jdbc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160056006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-oracle-plugin is earlier than 1:1.7.0.95-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160056013"/>
+      <criterion comment="java-1.7.0-oracle-plugin is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160056014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-oracle-src is earlier than 1:1.7.0.95-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160056009"/>
+      <criterion comment="java-1.7.0-oracle-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160056010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160057" version="601">
+   <metadata>
+    <title>RHSA-2016:0057: java-1.6.0-sun security update (Important)</title>
+    <affected family="unix">
+     <platform>Oracle Java for Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0057-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0057.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-8126" ref_url="https://access.redhat.com/security/cve/CVE-2015-8126" source="CVE"/>
+    <reference ref_id="CVE-2015-8472" ref_url="https://access.redhat.com/security/cve/CVE-2015-8472" source="CVE"/>
+    <reference ref_id="CVE-2016-0402" ref_url="https://access.redhat.com/security/cve/CVE-2016-0402" source="CVE"/>
+    <reference ref_id="CVE-2016-0448" ref_url="https://access.redhat.com/security/cve/CVE-2016-0448" source="CVE"/>
+    <reference ref_id="CVE-2016-0466" ref_url="https://access.redhat.com/security/cve/CVE-2016-0466" source="CVE"/>
+    <reference ref_id="CVE-2016-0483" ref_url="https://access.redhat.com/security/cve/CVE-2016-0483" source="CVE"/>
+    <reference ref_id="CVE-2016-0494" ref_url="https://access.redhat.com/security/cve/CVE-2016-0494" source="CVE"/>
+    <description>Oracle Java SE version 6 includes the Oracle Java Runtime Environment and
+the Oracle Java Software Development Kit.
+
+This update fixes several vulnerabilities in the Oracle Java Runtime
+Environment and the Oracle Java Software Development Kit. Further
+information about these flaws can be found on the Oracle Java SE Critical
+Patch Update Advisory page, listed in the References section.
+(CVE-2015-8126, CVE-2015-8472, CVE-2016-0402, CVE-2016-0448, CVE-2016-0466,
+CVE-2016-0483, CVE-2016-0494)
+
+Note: This update also disallows the use of the MD5 hash algorithm in the
+certification path processing. The use of MD5 can be re-enabled by removing
+MD5 from the jdk.certpath.disabledAlgorithms security property defined in
+the java.security file.
+
+All users of java-1.6.0-sun are advised to upgrade to these updated
+packages, which provide Oracle Java 6 Update 111 and resolve these issues.
+All running instances of Oracle Java must be restarted for the update to
+take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-01-21"/>
+     <updated date="2016-01-21"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8126">CVE-2015-8126</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8472">CVE-2015-8472</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0402">CVE-2016-0402</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0448">CVE-2016-0448</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0466">CVE-2016-0466</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0483">CVE-2016-0483</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0494">CVE-2016-0494</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1281756" id="1281756">CVE-2015-8126 CVE-2015-8472 libpng: Buffer overflow vulnerabilities in png_get_PLTE/png_set_PLTE functions</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298906" id="1298906">CVE-2016-0494 ICU: integer signedness issue in IndicRearrangementProcessor (OpenJDK 2D, 8140543)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298957" id="1298957">CVE-2016-0402 OpenJDK: URL deserialization inconsistencies (Networking, 8059054)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299073" id="1299073">CVE-2016-0448 OpenJDK: logging of RMI connection secrets (JMX, 8130710)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299385" id="1299385">CVE-2016-0466 OpenJDK: insufficient enforcement of totalEntitySizeLimit (JAXP, 8133962)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299441" id="1299441">CVE-2016-0483 OpenJDK: incorrect boundary check in JPEG decoder (AWT, 8139017)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras_oracle_java:7</cpe>
+      <cpe>cpe:/a:redhat:rhel_extras_oracle_java:5</cpe>
+      <cpe>cpe:/a:redhat:rhel_extras_oracle_java:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="java-1.6.0-sun is earlier than 1:1.6.0.111-1jpp.3.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160057013"/>
+      <criterion comment="java-1.6.0-sun is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160057014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.6.0-sun-demo is earlier than 1:1.6.0.111-1jpp.3.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160057015"/>
+      <criterion comment="java-1.6.0-sun-demo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160057016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.6.0-sun-devel is earlier than 1:1.6.0.111-1jpp.3.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160057005"/>
+      <criterion comment="java-1.6.0-sun-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160057006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.6.0-sun-jdbc is earlier than 1:1.6.0.111-1jpp.3.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160057011"/>
+      <criterion comment="java-1.6.0-sun-jdbc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160057012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.6.0-sun-plugin is earlier than 1:1.6.0.111-1jpp.3.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160057009"/>
+      <criterion comment="java-1.6.0-sun-plugin is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160057010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.6.0-sun-src is earlier than 1:1.6.0.111-1jpp.3.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160057007"/>
+      <criterion comment="java-1.6.0-sun-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160057008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -2677,6 +3221,266 @@ must be restarted for the update to take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049017"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160050003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.95-2.6.4.0.el6_7" id="oval:com.redhat.rhsa:tst:20160053005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160053003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160053006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.95-2.6.4.0.el6_7" id="oval:com.redhat.rhsa:tst:20160053007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160053003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160053008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.95-2.6.4.0.el6_7" id="oval:com.redhat.rhsa:tst:20160053009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160053003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160053010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk is earlier than 1:1.7.0.95-2.6.4.0.el6_7" id="oval:com.redhat.rhsa:tst:20160053011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160053003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160053012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.95-2.6.4.0.el6_7" id="oval:com.redhat.rhsa:tst:20160053013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160053003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160053014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.95-2.6.4.1.el5_11" id="oval:com.redhat.rhsa:tst:20160054002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20160054003" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.95-2.6.4.1.el5_11" id="oval:com.redhat.rhsa:tst:20160054004" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20160054005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.95-2.6.4.1.el5_11" id="oval:com.redhat.rhsa:tst:20160054006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20160054007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk is earlier than 1:1.7.0.95-2.6.4.1.el5_11" id="oval:com.redhat.rhsa:tst:20160054008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20160054009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.95-2.6.4.1.el5_11" id="oval:com.redhat.rhsa:tst:20160054010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20160054011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-accessibility is earlier than 1:1.7.0.95-2.6.4.0.el7_2" id="oval:com.redhat.rhsa:tst:20160054016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160054011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-accessibility is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160054017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160054011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.95-2.6.4.0.el7_2" id="oval:com.redhat.rhsa:tst:20160054018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk is earlier than 1:1.7.0.95-2.6.4.0.el7_2" id="oval:com.redhat.rhsa:tst:20160054020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.95-2.6.4.0.el7_2" id="oval:com.redhat.rhsa:tst:20160054022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-headless is earlier than 1:1.7.0.95-2.6.4.0.el7_2" id="oval:com.redhat.rhsa:tst:20160054024" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160054012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-headless is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160054025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160054012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.95-2.6.4.0.el7_2" id="oval:com.redhat.rhsa:tst:20160054026" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.95-2.6.4.0.el7_2" id="oval:com.redhat.rhsa:tst:20160054028" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160054006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle-devel is earlier than 1:1.8.0.71-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160055005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160055003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160055006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle is earlier than 1:1.8.0.71-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160055007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160055003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160055008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle-src is earlier than 1:1.8.0.71-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160055009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160055003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle-src is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160055010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle-plugin is earlier than 1:1.8.0.71-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160055011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160055003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle-plugin is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160055012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle-javafx is earlier than 1:1.8.0.71-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160055013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160055003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle-javafx is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160055014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle-jdbc is earlier than 1:1.8.0.71-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160055015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160055003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-oracle-jdbc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160055016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160055010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle-jdbc is earlier than 1:1.7.0.95-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160056005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160056004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle-jdbc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160056006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle-javafx is earlier than 1:1.7.0.95-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160056007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160056004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle-javafx is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160056008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle-src is earlier than 1:1.7.0.95-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160056009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160056004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle-src is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160056010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle-devel is earlier than 1:1.7.0.95-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160056011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160056004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160056012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle-plugin is earlier than 1:1.7.0.95-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160056013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160056004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle-plugin is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160056014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle is earlier than 1:1.7.0.95-1jpp.1.el6_7" id="oval:com.redhat.rhsa:tst:20160056015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160056004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-oracle is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160056016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160056010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun-devel is earlier than 1:1.6.0.111-1jpp.3.el6_7" id="oval:com.redhat.rhsa:tst:20160057005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160057004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160057006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun-src is earlier than 1:1.6.0.111-1jpp.3.el6_7" id="oval:com.redhat.rhsa:tst:20160057007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160057004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun-src is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160057008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun-plugin is earlier than 1:1.6.0.111-1jpp.3.el6_7" id="oval:com.redhat.rhsa:tst:20160057009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160057004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun-plugin is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160057010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun-jdbc is earlier than 1:1.6.0.111-1jpp.3.el6_7" id="oval:com.redhat.rhsa:tst:20160057011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160057004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun-jdbc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160057012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun is earlier than 1:1.6.0.111-1jpp.3.el6_7" id="oval:com.redhat.rhsa:tst:20160057013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160057004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160057014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun-demo is earlier than 1:1.6.0.111-1jpp.3.el6_7" id="oval:com.redhat.rhsa:tst:20160057015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160057004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.6.0-sun-demo is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160057016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160057010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -3015,6 +3819,81 @@ must be restarted for the update to take effect.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160049018" version="601">
    <red-def:name>java-1.8.0-openjdk-javadoc</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160053005" version="601">
+   <red-def:name>java-1.7.0-openjdk-src</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160053006" version="601">
+   <red-def:name>java-1.7.0-openjdk-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160053007" version="601">
+   <red-def:name>java-1.7.0-openjdk-demo</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160053008" version="601">
+   <red-def:name>java-1.7.0-openjdk</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160053009" version="601">
+   <red-def:name>java-1.7.0-openjdk-javadoc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160054011" version="601">
+   <red-def:name>java-1.7.0-openjdk-accessibility</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160054012" version="601">
+   <red-def:name>java-1.7.0-openjdk-headless</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160055005" version="601">
+   <red-def:name>java-1.8.0-oracle-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160055006" version="601">
+   <red-def:name>java-1.8.0-oracle</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160055007" version="601">
+   <red-def:name>java-1.8.0-oracle-src</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160055008" version="601">
+   <red-def:name>java-1.8.0-oracle-plugin</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160055009" version="601">
+   <red-def:name>java-1.8.0-oracle-javafx</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160055010" version="601">
+   <red-def:name>java-1.8.0-oracle-jdbc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160056005" version="601">
+   <red-def:name>java-1.7.0-oracle-jdbc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160056006" version="601">
+   <red-def:name>java-1.7.0-oracle-javafx</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160056007" version="601">
+   <red-def:name>java-1.7.0-oracle-src</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160056008" version="601">
+   <red-def:name>java-1.7.0-oracle-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160056009" version="601">
+   <red-def:name>java-1.7.0-oracle-plugin</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160056010" version="601">
+   <red-def:name>java-1.7.0-oracle</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160057005" version="601">
+   <red-def:name>java-1.6.0-sun-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160057006" version="601">
+   <red-def:name>java-1.6.0-sun-src</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160057007" version="601">
+   <red-def:name>java-1.6.0-sun-plugin</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160057008" version="601">
+   <red-def:name>java-1.6.0-sun-jdbc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160057009" version="601">
+   <red-def:name>java-1.6.0-sun</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160057010" version="601">
+   <red-def:name>java-1.6.0-sun-demo</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -3097,6 +3976,24 @@ must be restarted for the update to take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160050003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">1:1.8.0.71-1.b15.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160053003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.7.0.95-2.6.4.0.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160054004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.7.0.95-2.6.4.1.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160054006" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.7.0.95-2.6.4.0.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160055003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.8.0.71-1jpp.1.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160056004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.7.0.95-1jpp.1.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160057004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.6.0.111-1jpp.3.el6_7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
