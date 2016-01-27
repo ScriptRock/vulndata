@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-01-26T08:12:01</oval:timestamp>
+  <oval:timestamp>2016-01-26T23:24:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -2540,6 +2540,77 @@ must be restarted for the update to take effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160071" version="601">
+   <metadata>
+    <title>RHSA-2016:0071: firefox security update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+     <platform>Red Hat Enterprise Linux 6</platform>
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0071-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0071.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-1930" ref_url="https://access.redhat.com/security/cve/CVE-2016-1930" source="CVE"/>
+    <reference ref_id="CVE-2016-1935" ref_url="https://access.redhat.com/security/cve/CVE-2016-1935" source="CVE"/>
+    <description>Mozilla Firefox is an open source web browser. XULRunner provides the XUL
+Runtime environment for Mozilla Firefox.
+
+Several flaws were found in the processing of malformed web content. A web
+page containing malicious content could cause Firefox to crash or,
+potentially, execute arbitrary code with the privileges of the user running
+Firefox. (CVE-2016-1930, CVE-2016-1935)
+
+Red Hat would like to thank the Mozilla project for reporting these issues.
+Upstream acknowledges Bob Clary, Christian Holler, Nils Ohlmeier, Gary
+Kwong, Jesse Ruderman, Carsten Book, Randell Jesup, and Aki Helin as the
+original reporters of these issues.
+
+All Firefox users should upgrade to these updated packages, which contain
+Firefox version 38.6.0 ESR, which corrects these issues. After installing
+the update, Firefox must be restarted for the changes to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-01-27"/>
+     <updated date="2016-01-27"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-1930">CVE-2016-1930</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-1935">CVE-2016-1935</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1301818" id="1301818">CVE-2016-1930 Mozilla: Miscellaneous memory safety hazards (rv:38.6) (MFSA 2016-01)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301821" id="1301821">CVE-2016-1935 Mozilla: Buffer overflow in WebGL after out of memory allocation (MFSA 2016-03)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001"/>
+     <criterion comment="firefox is earlier than 0:38.6.0-1.el5_11" test_ref="oval:com.redhat.rhsa:tst:20160071002"/>
+     <criterion comment="firefox is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160071003"/>
+    </criteria>
+    <criteria operator="AND">
+     <criterion comment="firefox is earlier than 0:38.6.0-1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160071008"/>
+     <criterion comment="firefox is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160071009"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criterion comment="firefox is earlier than 0:38.6.0-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160071014"/>
+     <criterion comment="firefox is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160071009"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -4234,6 +4305,26 @@ must be restarted for the update to take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160067004"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160067008"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is earlier than 0:38.6.0-1.el5_11" id="oval:com.redhat.rhsa:tst:20160071002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160071004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20160071003" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is earlier than 0:38.6.0-1.el6_7" id="oval:com.redhat.rhsa:tst:20160071008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160071006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160071009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is earlier than 0:38.6.0-1.el7_2" id="oval:com.redhat.rhsa:tst:20160071014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160071008"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -4719,6 +4810,9 @@ must be restarted for the update to take effect.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160067006" version="601">
    <red-def:name>java-1.6.0-openjdk-devel</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160071002" version="601">
+   <red-def:name>firefox</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -4840,6 +4934,15 @@ must be restarted for the update to take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160067008" version="601">
    <red-def:evr datatype="evr_string" operation="less than">1:1.6.0.38-1.13.10.0.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160071004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:38.6.0-1.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160071006" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:38.6.0-1.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160071008" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:38.6.0-1.el7_2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
