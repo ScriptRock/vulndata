@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-01-27T07:05:01</oval:timestamp>
+  <oval:timestamp>2016-01-28T08:28:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -2923,6 +2923,150 @@ update, the BIND daemon (named) will be restarted automatically.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160078" version="601">
+   <metadata>
+    <title>RHSA-2016:0078: bind security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6.5 AUS - Server Only</platform>
+     <platform>Red Hat Enterprise Linux 6.4 AUS - Server Only</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0078-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0078.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-8500" ref_url="https://access.redhat.com/security/cve/CVE-2014-8500" source="CVE"/>
+    <reference ref_id="CVE-2015-5477" ref_url="https://access.redhat.com/security/cve/CVE-2015-5477" source="CVE"/>
+    <reference ref_id="CVE-2015-5722" ref_url="https://access.redhat.com/security/cve/CVE-2015-5722" source="CVE"/>
+    <reference ref_id="CVE-2015-8000" ref_url="https://access.redhat.com/security/cve/CVE-2015-8000" source="CVE"/>
+    <description>The Berkeley Internet Name Domain (BIND) is an implementation of the Domain
+Name System (DNS) protocols. BIND includes a DNS server (named); a resolver
+library (routines for applications to use when interfacing with DNS); and
+tools for verifying that the DNS server is operating correctly.
+
+A denial of service flaw was found in the way BIND followed DNS
+delegations. A remote attacker could use a specially crafted zone
+containing a large number of referrals which, when looked up and processed,
+would cause named to use excessive amounts of memory or crash.
+(CVE-2014-8500)
+
+A flaw was found in the way BIND handled requests for TKEY DNS resource
+records. A remote attacker could use this flaw to make named (functioning
+as an authoritative DNS server or a DNS resolver) exit unexpectedly with an
+assertion failure via a specially crafted DNS request packet.
+(CVE-2015-5477)
+
+A denial of service flaw was found in the way BIND parsed certain malformed
+DNSSEC keys. A remote attacker could use this flaw to send a specially
+crafted DNS query (for example, a query requiring a response from a zone
+containing a deliberately malformed key) that would cause named functioning
+as a validating resolver to crash. (CVE-2015-5722)
+
+A denial of service flaw was found in the way BIND processed certain
+records with malformed class attributes. A remote attacker could use this
+flaw to send a query to request a cached record with a malformed class
+attribute that would cause named functioning as an authoritative or
+recursive server to crash. (CVE-2015-8000)
+
+Note: This issue affects authoritative servers as well as recursive
+servers, however authoritative servers are at limited risk if they perform
+authentication when making recursive queries to resolve addresses for
+servers listed in NS RRSETs.
+
+Red Hat would like to thank ISC for reporting the CVE-2015-5477,
+CVE-2015-5722, and CVE-2015-8000 issues. Upstream acknowledges Jonathan
+Foote as the original reporter of CVE-2015-5477, and Hanno Böck as the
+original reporter of CVE-2015-5722.
+
+All bind users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues. After installing the
+update, the BIND daemon (named) will be restarted automatically.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-01-28"/>
+     <updated date="2016-01-28"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-8500">CVE-2014-8500</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5477">CVE-2015-5477</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5722">CVE-2015-5722</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8000">CVE-2015-8000</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1171912" id="1171912">CVE-2014-8500 bind: delegation handling denial of service</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1247361" id="1247361">CVE-2015-5477 bind: TKEY query handling flaw leading to denial of service</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1259087" id="1259087">CVE-2015-5722 bind: malformed DNSSEC key failed assertion denial of service</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1291176" id="1291176">CVE-2015-8000 bind: responses with a malformed class attribute can trigger an assertion failure in db.c</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:rhel_aus:6.4</cpe>
+      <cpe>cpe:/o:redhat:rhel_aus:6.5</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="bind is earlier than 32:9.8.2-0.17.rc1.el6_4.7" test_ref="oval:com.redhat.rhsa:tst:20160078009"/>
+       <criterion comment="bind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073029"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="bind-chroot is earlier than 32:9.8.2-0.17.rc1.el6_4.7" test_ref="oval:com.redhat.rhsa:tst:20160078015"/>
+       <criterion comment="bind-chroot is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073033"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="bind-devel is earlier than 32:9.8.2-0.17.rc1.el6_4.7" test_ref="oval:com.redhat.rhsa:tst:20160078007"/>
+       <criterion comment="bind-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073023"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="bind-libs is earlier than 32:9.8.2-0.17.rc1.el6_4.7" test_ref="oval:com.redhat.rhsa:tst:20160078005"/>
+       <criterion comment="bind-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073027"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="bind-sdb is earlier than 32:9.8.2-0.17.rc1.el6_4.7" test_ref="oval:com.redhat.rhsa:tst:20160078011"/>
+       <criterion comment="bind-sdb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073031"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="bind-utils is earlier than 32:9.8.2-0.17.rc1.el6_4.7" test_ref="oval:com.redhat.rhsa:tst:20160078013"/>
+       <criterion comment="bind-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073025"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="bind is earlier than 32:9.8.2-0.23.rc1.el6_5.2" test_ref="oval:com.redhat.rhsa:tst:20160078022"/>
+       <criterion comment="bind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073029"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="bind-chroot is earlier than 32:9.8.2-0.23.rc1.el6_5.2" test_ref="oval:com.redhat.rhsa:tst:20160078021"/>
+       <criterion comment="bind-chroot is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073033"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="bind-devel is earlier than 32:9.8.2-0.23.rc1.el6_5.2" test_ref="oval:com.redhat.rhsa:tst:20160078025"/>
+       <criterion comment="bind-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073023"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="bind-libs is earlier than 32:9.8.2-0.23.rc1.el6_5.2" test_ref="oval:com.redhat.rhsa:tst:20160078024"/>
+       <criterion comment="bind-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073027"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="bind-sdb is earlier than 32:9.8.2-0.23.rc1.el6_5.2" test_ref="oval:com.redhat.rhsa:tst:20160078026"/>
+       <criterion comment="bind-sdb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073031"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="bind-utils is earlier than 32:9.8.2-0.23.rc1.el6_5.2" test_ref="oval:com.redhat.rhsa:tst:20160078023"/>
+       <criterion comment="bind-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160073025"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -4885,6 +5029,54 @@ update, the BIND daemon (named) will be restarted automatically.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160074006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind-libs is earlier than 32:9.8.2-0.17.rc1.el6_4.7" id="oval:com.redhat.rhsa:tst:20160078005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind-devel is earlier than 32:9.8.2-0.17.rc1.el6_4.7" id="oval:com.redhat.rhsa:tst:20160078007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind is earlier than 32:9.8.2-0.17.rc1.el6_4.7" id="oval:com.redhat.rhsa:tst:20160078009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind-sdb is earlier than 32:9.8.2-0.17.rc1.el6_4.7" id="oval:com.redhat.rhsa:tst:20160078011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind-utils is earlier than 32:9.8.2-0.17.rc1.el6_4.7" id="oval:com.redhat.rhsa:tst:20160078013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind-chroot is earlier than 32:9.8.2-0.17.rc1.el6_4.7" id="oval:com.redhat.rhsa:tst:20160078015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind-chroot is earlier than 32:9.8.2-0.23.rc1.el6_5.2" id="oval:com.redhat.rhsa:tst:20160078021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind is earlier than 32:9.8.2-0.23.rc1.el6_5.2" id="oval:com.redhat.rhsa:tst:20160078022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind-utils is earlier than 32:9.8.2-0.23.rc1.el6_5.2" id="oval:com.redhat.rhsa:tst:20160078023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind-libs is earlier than 32:9.8.2-0.23.rc1.el6_5.2" id="oval:com.redhat.rhsa:tst:20160078024" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind-devel is earlier than 32:9.8.2-0.23.rc1.el6_5.2" id="oval:com.redhat.rhsa:tst:20160078025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind-sdb is earlier than 32:9.8.2-0.23.rc1.el6_5.2" id="oval:com.redhat.rhsa:tst:20160078026" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160073007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160078005"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -5584,6 +5776,12 @@ update, the BIND daemon (named) will be restarted automatically.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160074003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">32:9.7.0-21.P2.el5_11.5</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160078003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">32:9.8.2-0.17.rc1.el6_4.7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160078005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">32:9.8.2-0.23.rc1.el6_5.2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
