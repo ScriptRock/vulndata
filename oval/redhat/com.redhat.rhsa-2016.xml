@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-02-02T10:38:02</oval:timestamp>
+  <oval:timestamp>2016-02-11T13:21:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -3131,13 +3131,13 @@ have shut down, start them again for this update to take effect.</description>
     </criteria>
    </criteria>
   </definition>
-  <definition class="patch" id="oval:com.redhat.rhsa:def:20160083" version="601">
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160083" version="603">
    <metadata>
     <title>RHSA-2016:0083: qemu-kvm security and bug fix update (Important)</title>
     <affected family="unix">
      <platform>Red Hat Enterprise Linux 7</platform>
     </affected>
-    <reference ref_id="RHSA-2016:0083-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0083.html" source="RHSA"/>
+    <reference ref_id="RHSA-2016:0083-02" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0083.html" source="RHSA"/>
     <reference ref_id="CVE-2016-1714" ref_url="https://access.redhat.com/security/cve/CVE-2016-1714" source="CVE"/>
     <description>KVM (Kernel-based Virtual Machine) is a full virtualization solution for
 Linux on AMD64 and Intel 64 systems. The qemu-kvm package provides the
@@ -3557,6 +3557,158 @@ instances of IBM Java must be restarted for the update to take effect.</descript
        <criterion comment="java-1.6.0-ibm-src is earlier than 1:1.6.0.16.20-1jpp.1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160101028"/>
        <criterion comment="java-1.6.0-ibm-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160101029"/>
       </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160152" version="601">
+   <metadata>
+    <title>RHSA-2016:0152: sos security and bug fix update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0152-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0152.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7529" ref_url="https://access.redhat.com/security/cve/CVE-2015-7529" source="CVE"/>
+    <description>The sos package contains a set of tools that gather information from system
+hardware, logs and configuration files. The information can then be used
+for diagnostic purposes and debugging.
+
+An insecure temporary file use flaw was found in the way sos created 
+certain sosreport files. A local attacker could possibly use this flaw 
+to perform a symbolic link attack to reveal the contents of sosreport 
+files, or in some cases modify arbitrary files and escalate their 
+privileges on the system. (CVE-2015-7529)
+
+This issue was discovered by Mateusz Guzik of Red Hat.
+
+This update also fixes the following bug:
+
+* Previously, when the hpasm plug-in ran the &quot;hpasmcli&quot; command in a Python
+Popen constructor or a system pipeline, the command would hang and
+eventually time out after 300 seconds. Sos was forced to wait for the time
+out to finish, unnecessarily prolonging its run time. With this update, the
+timeout of the &quot;hpasmcli&quot; command has been set to 0, eliminating the delay
+and speeding up sos completion time. (BZ#1291828)
+
+All sos users are advised to upgrade to this updated package, which
+contains backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-02-09"/>
+     <updated date="2016-02-09"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7529">CVE-2015-7529</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1282542" id="1282542">CVE-2015-7529 sos: Usage of predictable temporary files allows privilege escalation</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="sos is earlier than 0:3.2-28.el6_7.2" test_ref="oval:com.redhat.rhsa:tst:20160152005"/>
+    <criterion comment="sos is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160152006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160166" version="601">
+   <metadata>
+    <title>RHSA-2016:0166: flash-plugin security update (Critical)</title>
+    <affected family="unix">
+     <platform>Supplementary for Red Hat Enterprise Linux 6</platform>
+     <platform>Supplementary for Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0166-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0166.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-0964" ref_url="https://access.redhat.com/security/cve/CVE-2016-0964" source="CVE"/>
+    <reference ref_id="CVE-2016-0965" ref_url="https://access.redhat.com/security/cve/CVE-2016-0965" source="CVE"/>
+    <reference ref_id="CVE-2016-0966" ref_url="https://access.redhat.com/security/cve/CVE-2016-0966" source="CVE"/>
+    <reference ref_id="CVE-2016-0967" ref_url="https://access.redhat.com/security/cve/CVE-2016-0967" source="CVE"/>
+    <reference ref_id="CVE-2016-0968" ref_url="https://access.redhat.com/security/cve/CVE-2016-0968" source="CVE"/>
+    <reference ref_id="CVE-2016-0969" ref_url="https://access.redhat.com/security/cve/CVE-2016-0969" source="CVE"/>
+    <reference ref_id="CVE-2016-0970" ref_url="https://access.redhat.com/security/cve/CVE-2016-0970" source="CVE"/>
+    <reference ref_id="CVE-2016-0971" ref_url="https://access.redhat.com/security/cve/CVE-2016-0971" source="CVE"/>
+    <reference ref_id="CVE-2016-0972" ref_url="https://access.redhat.com/security/cve/CVE-2016-0972" source="CVE"/>
+    <reference ref_id="CVE-2016-0973" ref_url="https://access.redhat.com/security/cve/CVE-2016-0973" source="CVE"/>
+    <reference ref_id="CVE-2016-0974" ref_url="https://access.redhat.com/security/cve/CVE-2016-0974" source="CVE"/>
+    <reference ref_id="CVE-2016-0975" ref_url="https://access.redhat.com/security/cve/CVE-2016-0975" source="CVE"/>
+    <reference ref_id="CVE-2016-0976" ref_url="https://access.redhat.com/security/cve/CVE-2016-0976" source="CVE"/>
+    <reference ref_id="CVE-2016-0977" ref_url="https://access.redhat.com/security/cve/CVE-2016-0977" source="CVE"/>
+    <reference ref_id="CVE-2016-0978" ref_url="https://access.redhat.com/security/cve/CVE-2016-0978" source="CVE"/>
+    <reference ref_id="CVE-2016-0979" ref_url="https://access.redhat.com/security/cve/CVE-2016-0979" source="CVE"/>
+    <reference ref_id="CVE-2016-0980" ref_url="https://access.redhat.com/security/cve/CVE-2016-0980" source="CVE"/>
+    <reference ref_id="CVE-2016-0981" ref_url="https://access.redhat.com/security/cve/CVE-2016-0981" source="CVE"/>
+    <reference ref_id="CVE-2016-0982" ref_url="https://access.redhat.com/security/cve/CVE-2016-0982" source="CVE"/>
+    <reference ref_id="CVE-2016-0983" ref_url="https://access.redhat.com/security/cve/CVE-2016-0983" source="CVE"/>
+    <reference ref_id="CVE-2016-0984" ref_url="https://access.redhat.com/security/cve/CVE-2016-0984" source="CVE"/>
+    <reference ref_id="CVE-2016-0985" ref_url="https://access.redhat.com/security/cve/CVE-2016-0985" source="CVE"/>
+    <description>The flash-plugin package contains a Mozilla Firefox compatible Adobe Flash
+Player web browser plug-in.
+
+This update fixes multiple vulnerabilities in Adobe Flash Player. These
+vulnerabilities, detailed in the Adobe Security Bulletin APSB16-04 listed
+in the References section, could allow an attacker to create a specially
+crafted SWF file that would cause flash-plugin to crash, execute arbitrary
+code, or disclose sensitive information when the victim loaded a page
+containing the malicious SWF content. (CVE-2016-0964, CVE-2016-0965,
+CVE-2016-0966, CVE-2016-0967, CVE-2016-0968, CVE-2016-0969, CVE-2016-0970,
+CVE-2016-0971, CVE-2016-0972, CVE-2016-0973, CVE-2016-0974, CVE-2016-0975,
+CVE-2016-0976, CVE-2016-0977, CVE-2016-0978, CVE-2016-0979, CVE-2016-0980,
+CVE-2016-0981, CVE-2016-0982, CVE-2016-0983, CVE-2016-0984, CVE-2016-0985)
+
+All users of Adobe Flash Player should install this updated package, which
+upgrades Flash Player to version 11.2.202.569.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-02-10"/>
+     <updated date="2016-02-10"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0964">CVE-2016-0964</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0965">CVE-2016-0965</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0966">CVE-2016-0966</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0967">CVE-2016-0967</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0968">CVE-2016-0968</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0969">CVE-2016-0969</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0970">CVE-2016-0970</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0971">CVE-2016-0971</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0972">CVE-2016-0972</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0973">CVE-2016-0973</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0974">CVE-2016-0974</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0975">CVE-2016-0975</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0976">CVE-2016-0976</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0977">CVE-2016-0977</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0978">CVE-2016-0978</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0979">CVE-2016-0979</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0980">CVE-2016-0980</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0981">CVE-2016-0981</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0982">CVE-2016-0982</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0983">CVE-2016-0983</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0984">CVE-2016-0984</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0985">CVE-2016-0985</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1306015" id="1306015">flash-plugin: multiple code execution issues fixed in APSB16-04</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras:5</cpe>
+      <cpe>cpe:/a:redhat:rhel_extras:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001"/>
+     <criterion comment="flash-plugin is earlier than 0:11.2.202.569-1.el5" test_ref="oval:com.redhat.rhsa:tst:20160166002"/>
+     <criterion comment="flash-plugin is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160166003"/>
+    </criteria>
+    <criteria operator="AND">
+     <criterion comment="flash-plugin is earlier than 0:11.2.202.569-1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160166008"/>
+     <criterion comment="flash-plugin is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160166009"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
      </criteria>
     </criteria>
    </criteria>
@@ -5603,47 +5755,47 @@ instances of IBM Java must be restarted for the update to take effect.</descript
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160082008"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="libcacard-devel is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083005" version="601">
+  <red-def:rpminfo_test check="at least one" comment="libcacard-devel is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083005" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160083005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160083003"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="libcacard-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160083006" version="601">
+  <red-def:rpminfo_test check="at least one" comment="libcacard-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160083006" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160083005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="libcacard is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083007" version="601">
+  <red-def:rpminfo_test check="at least one" comment="libcacard is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083007" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160083006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160083003"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="libcacard is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160083008" version="601">
+  <red-def:rpminfo_test check="at least one" comment="libcacard is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160083008" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160083006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="qemu-kvm-tools is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083009" version="601">
+  <red-def:rpminfo_test check="at least one" comment="qemu-kvm-tools is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083009" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160082008"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160083003"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="qemu-img is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083011" version="601">
+  <red-def:rpminfo_test check="at least one" comment="qemu-img is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083011" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160082006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160083003"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="qemu-kvm-common is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083013" version="601">
+  <red-def:rpminfo_test check="at least one" comment="qemu-kvm-common is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083013" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160083009"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160083003"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="qemu-kvm-common is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160083014" version="601">
+  <red-def:rpminfo_test check="at least one" comment="qemu-kvm-common is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160083014" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160083009"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="libcacard-tools is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083015" version="601">
+  <red-def:rpminfo_test check="at least one" comment="libcacard-tools is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083015" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160083010"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160083003"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="libcacard-tools is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160083016" version="601">
+  <red-def:rpminfo_test check="at least one" comment="libcacard-tools is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160083016" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160083010"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
-  <red-def:rpminfo_test check="at least one" comment="qemu-kvm is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083017" version="601">
+  <red-def:rpminfo_test check="at least one" comment="qemu-kvm is earlier than 10:1.5.3-105.el7_2.3" id="oval:com.redhat.rhsa:tst:20160083017" version="603">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160082007"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160083003"/>
   </red-def:rpminfo_test>
@@ -5861,6 +6013,30 @@ instances of IBM Java must be restarted for the update to take effect.</descript
   </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="java-1.6.0-ibm-plugin is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160101035" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160101008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sos is earlier than 0:3.2-28.el6_7.2" id="oval:com.redhat.rhsa:tst:20160152005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160152005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160152003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sos is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160152006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160152005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="flash-plugin is earlier than 0:11.2.202.569-1.el5" id="oval:com.redhat.rhsa:tst:20160166002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160166002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160166004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="flash-plugin is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20160166003" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160166002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="flash-plugin is earlier than 0:11.2.202.569-1.el6_7" id="oval:com.redhat.rhsa:tst:20160166008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160166002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160166006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="flash-plugin is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160166009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160166002"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
  </tests>
@@ -6429,16 +6605,16 @@ instances of IBM Java must be restarted for the update to take effect.</descript
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160082008" version="601">
    <red-def:name>qemu-kvm-tools</red-def:name>
   </red-def:rpminfo_object>
-  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160083005" version="601">
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160083005" version="603">
    <red-def:name>libcacard-devel</red-def:name>
   </red-def:rpminfo_object>
-  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160083006" version="601">
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160083006" version="603">
    <red-def:name>libcacard</red-def:name>
   </red-def:rpminfo_object>
-  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160083009" version="601">
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160083009" version="603">
    <red-def:name>qemu-kvm-common</red-def:name>
   </red-def:rpminfo_object>
-  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160083010" version="601">
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160083010" version="603">
    <red-def:name>libcacard-tools</red-def:name>
   </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160099005" version="601">
@@ -6500,6 +6676,12 @@ instances of IBM Java must be restarted for the update to take effect.</descript
   </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160101009" version="601">
    <red-def:name>java-1.6.0-ibm-javacomm</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160152005" version="601">
+   <red-def:name>sos</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160166002" version="601">
+   <red-def:name>flash-plugin</red-def:name>
   </red-def:rpminfo_object>
  </objects>
  <states>
@@ -6656,7 +6838,7 @@ instances of IBM Java must be restarted for the update to take effect.</descript
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160082003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">2:0.12.1.2-2.479.el6_7.4</red-def:evr>
   </red-def:rpminfo_state>
-  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160083003" version="601">
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160083003" version="603">
    <red-def:evr datatype="evr_string" operation="less than">10:1.5.3-105.el7_2.3</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160099003" version="601">
@@ -6670,6 +6852,15 @@ instances of IBM Java must be restarted for the update to take effect.</descript
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160101006" version="601">
    <red-def:evr datatype="evr_string" operation="less than">1:1.6.0.16.20-1jpp.1.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160152003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.2-28.el6_7.2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160166004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:11.2.202.569-1.el5</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160166006" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:11.2.202.569-1.el6_7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
