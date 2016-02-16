@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-02-11T18:10:02</oval:timestamp>
+  <oval:timestamp>2016-02-16T06:16:02</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -3713,6 +3713,589 @@ upgrades Flash Player to version 11.2.202.569.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160185" version="601">
+   <metadata>
+    <title>RHSA-2016:0185: kernel security and bug fix update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0185-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0185.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-5157" ref_url="https://access.redhat.com/security/cve/CVE-2015-5157" source="CVE"/>
+    <reference ref_id="CVE-2015-7872" ref_url="https://access.redhat.com/security/cve/CVE-2015-7872" source="CVE"/>
+    <description>The kernel packages contain the Linux kernel, the core of any Linux
+operating system.
+
+* It was found that the Linux kernel's keys subsystem did not correctly
+garbage collect uninstantiated keyrings. A local attacker could use this
+flaw to crash the system or, potentially, escalate their privileges on the
+system. (CVE-2015-7872, Important)
+
+* A flaw was found in the way the Linux kernel handled IRET faults during
+the processing of NMIs. An unprivileged, local user could use this flaw to
+crash the system or, potentially (although highly unlikely), escalate their
+privileges on the system. (CVE-2015-5157, Moderate)
+
+This update also fixes the following bugs:
+
+* Previously, processing packets with a lot of different IPv6 source
+addresses caused the kernel to return warnings concerning soft-lockups due
+to high lock contention and latency increase. With this update, lock
+contention is reduced by backing off concurrent waiting threads on the
+lock. As a result, the kernel no longer issues warnings in the described
+scenario. (BZ#1285370)
+
+* Prior to this update, block device readahead was artificially limited.
+As a consequence, the read performance was poor, especially on RAID
+devices. Now, per-device readahead limits are used for each device instead
+of a global limit. As a result, read performance has improved, especially
+on RAID devices. (BZ#1287550)
+
+* After injecting an EEH error, the host was previously not recovering and
+observing I/O hangs in HTX tool logs. This update makes sure that when one
+or both of EEH_STATE_MMIO_ACTIVE and EEH_STATE_MMIO_ENABLED flags is marked
+in the PE state, the PE's IO path is regarded as enabled as well. As a
+result, the host no longer hangs and recovers as expected. (BZ#1289101)
+
+* The genwqe device driver was previously using the GFP_ATOMIC flag for
+allocating consecutive memory pages from the kernel's atomic memory pool,
+even in non-atomic situations. This could lead to allocation failures
+during memory pressure. With this update, the genwqe driver's memory
+allocations use the GFP_KERNEL flag, and the driver can allocate memory
+even during memory pressure situations. (BZ#1289450)
+
+* The nx842 co-processor for IBM Power Systems could in some circumstances
+provide invalid data due to a data corruption bug during uncompression.
+With this update, all compression and uncompression calls to the nx842
+co-processor contain a cyclic redundancy check (CRC) flag, which forces all
+compression and uncompression operations to check data integrity and
+prevents the co-processor from providing corrupted data. (BZ#1289451)
+
+* A failed &quot;updatepp&quot; operation on the little-endian variant of IBM Power
+Systems could previously cause a wrong hash value to be used for the next
+hash insert operation in the page table. This could result in a missing
+hash pte update or invalidate operation, potentially causing memory
+corruption. With this update, the hash value is always recalculated after a
+failed &quot;updatepp&quot; operation, avoiding memory corruption. (BZ#1289452)
+
+* Large Receive Offload (LRO) flag disabling was not being propagated
+downwards from above devices in vlan and bond hierarchy, breaking the flow
+of traffic. This problem has been fixed and LRO flags now propagate
+correctly. (BZ#1292072)
+
+* Due to rounding errors in the CPU frequency of the intel_pstate driver,
+the CPU frequency never reached the value requested by the user. A kernel
+patch has been applied to fix these rounding errors. (BZ#1296276)
+
+* When running several containers (up to 100), reports of hung tasks were
+previously reported. This update fixes the AB-BA deadlock in the
+dm_destroy() function, and the hung reports no longer occur. (BZ#1296566)
+
+All kernel users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues. The system must be
+rebooted for this update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-02-16"/>
+     <updated date="2016-02-16"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5157">CVE-2015-5157</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7872">CVE-2015-7872</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1259577" id="1259577">CVE-2015-5157 kernel: x86-64: IRET faults during NMIs processing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1272371" id="1272371">CVE-2015-7872 kernel: Keyrings crash triggerable by unprivileged user</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kernel is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185021"/>
+      <criterion comment="kernel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-abi-whitelists is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185005"/>
+      <criterion comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160064006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-bootwrapper is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185027"/>
+      <criterion comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004028"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-debug is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185019"/>
+      <criterion comment="kernel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-debug-devel is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185015"/>
+      <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-devel is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185023"/>
+      <criterion comment="kernel-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004026"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-doc is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185007"/>
+      <criterion comment="kernel-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-headers is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185017"/>
+      <criterion comment="kernel-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-kdump is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185025"/>
+      <criterion comment="kernel-kdump is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-kdump-devel is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185013"/>
+      <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-tools is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185029"/>
+      <criterion comment="kernel-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160064030"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-tools-libs is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185033"/>
+      <criterion comment="kernel-tools-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160064034"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-tools-libs-devel is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185031"/>
+      <criterion comment="kernel-tools-libs-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160064032"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="perf is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185011"/>
+      <criterion comment="perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-perf is earlier than 0:3.10.0-327.10.1.el7" test_ref="oval:com.redhat.rhsa:tst:20160185009"/>
+      <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004018"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160188" version="601">
+   <metadata>
+    <title>RHSA-2016:0188: sos security and bug fix update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0188-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0188.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7529" ref_url="https://access.redhat.com/security/cve/CVE-2015-7529" source="CVE"/>
+    <description>The sos package contains a set of utilities that gather information from
+system hardware, logs, and configuration files. The information can then be
+used for diagnostic purposes and debugging.
+
+An insecure temporary file use flaw was found in the way sos created
+certain sosreport files. A local attacker could possibly use this flaw to
+perform a symbolic link attack to reveal the contents of sosreport files,
+or in some cases modify arbitrary files and escalate their privileges on
+the system. (CVE-2015-7529)
+
+This issue was discovered by Mateusz Guzik of Red Hat.
+
+This update also fixes the following bug:
+
+* Previously, the sosreport tool was not collecting the /var/lib/ceph and
+/var/run/ceph directories when run with the ceph plug-in enabled, causing
+the generated sosreport archive to miss vital troubleshooting information
+about ceph. With this update, the ceph plug-in for sosreport collects these
+directories, and the generated report contains more useful information.
+(BZ#1291347)
+
+All users of sos are advised to upgrade to this updated package, which
+contains backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-02-16"/>
+     <updated date="2016-02-16"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7529">CVE-2015-7529</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1282542" id="1282542">CVE-2015-7529 sos: Usage of predictable temporary files allows privilege escalation</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="sos is earlier than 0:3.2-35.el7_2.3" test_ref="oval:com.redhat.rhsa:tst:20160188005"/>
+    <criterion comment="sos is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160152006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160189" version="601">
+   <metadata>
+    <title>RHSA-2016:0189: polkit security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0189-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0189.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3256" ref_url="https://access.redhat.com/security/cve/CVE-2015-3256" source="CVE"/>
+    <description>PolicyKit is a toolkit for defining and handling authorizations.
+
+A denial of service flaw was found in how polkit handled authorization
+requests. A local, unprivileged user could send malicious requests to
+polkit, which could then cause the polkit daemon to corrupt its memory and
+crash. (CVE-2015-3256)
+
+All polkit users should upgrade to these updated packages, which contain a
+backported patch to correct this issue. The system must be rebooted for
+this update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-02-16"/>
+     <updated date="2016-02-16"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3256">CVE-2015-3256</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1245684" id="1245684">CVE-2015-3256 polkit: Memory corruption via javascript rule evaluation</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="polkit is earlier than 0:0.112-6.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160189005"/>
+      <criterion comment="polkit is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160189006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="polkit-devel is earlier than 0:0.112-6.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160189007"/>
+      <criterion comment="polkit-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160189008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="polkit-docs is earlier than 0:0.112-6.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160189009"/>
+      <criterion comment="polkit-docs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160189010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160197" version="601">
+   <metadata>
+    <title>RHSA-2016:0197: firefox security update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 5</platform>
+     <platform>Red Hat Enterprise Linux 6</platform>
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0197-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0197.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-1521" ref_url="https://access.redhat.com/security/cve/CVE-2016-1521" source="CVE"/>
+    <reference ref_id="CVE-2016-1522" ref_url="https://access.redhat.com/security/cve/CVE-2016-1522" source="CVE"/>
+    <reference ref_id="CVE-2016-1523" ref_url="https://access.redhat.com/security/cve/CVE-2016-1523" source="CVE"/>
+    <description>Mozilla Firefox is an open source web browser. XULRunner provides the XUL
+Runtime environment for Mozilla Firefox.
+
+Multiple security flaws were found in the graphite2 font library shipped
+with Firefox. A web page containing malicious content could cause Firefox
+to crash or, potentially, execute arbitrary code with the privileges of the
+user running Firefox. (CVE-2016-1521, CVE-2016-1522, CVE-2016-1523)
+
+All Firefox users should upgrade to these updated packages, which contain
+Firefox version 38.6.1 ESR, which corrects these issues. After installing
+the update, Firefox must be restarted for the changes to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-02-16"/>
+     <updated date="2016-02-16"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-1521">CVE-2016-1521</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-1522">CVE-2016-1522</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-1523">CVE-2016-1523</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1305805" id="1305805">CVE-2016-1521 graphite2: Out-of-bound read vulnerability triggered by crafted fonts</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1305810" id="1305810">CVE-2016-1522 graphite2: Null pointer dereference and out-of-bounds access vulnerabilities</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1305813" id="1305813">CVE-2016-1523 graphite2: Heap-based buffer overflow in context item handling functionality</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1306496" id="1306496">Mozilla: Vulnerabilities in Graphite 2 (MFSA 2016-14)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001"/>
+     <criterion comment="firefox is earlier than 0:38.6.1-1.el5_11" test_ref="oval:com.redhat.rhsa:tst:20160197002"/>
+     <criterion comment="firefox is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160071003"/>
+    </criteria>
+    <criteria operator="AND">
+     <criterion comment="firefox is earlier than 0:38.6.1-1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160197008"/>
+     <criterion comment="firefox is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160071009"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criterion comment="firefox is earlier than 0:38.6.1-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160197014"/>
+     <criterion comment="firefox is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160071009"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160204" version="601">
+   <metadata>
+    <title>RHSA-2016:0204: 389-ds-base security and bug fix update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0204-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0204.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-0741" ref_url="https://access.redhat.com/security/cve/CVE-2016-0741" source="CVE"/>
+    <description>The 389 Directory Server is an LDAP version 3 (LDAPv3) compliant server.
+The base packages include the Lightweight Directory Access Protocol (LDAP)
+server and command-line utilities for server administration.
+
+An infinite-loop vulnerability was discovered in the 389 directory server,
+where the server failed to correctly handle unexpectedly closed client
+connections. A remote attacker able to connect to the server could use this
+flaw to make the directory server consume an excessive amount of CPU and
+stop accepting connections (denial of service). (CVE-2016-0741)
+
+This update fixes the following bugs:
+
+* Previously, if a simple paged results search failed in the back end, the
+simple paged results slot was not released. Consequently, the simple paged
+results slots in a connection object could be accumulated. With this
+update, the simple paged results slot is released correctly when a search
+fails, and unused simple paged results slots are no longer left in a
+connection object. (BZ#1290725)
+
+* Previously, when several values of the same attribute were deleted using
+the ldapmodify command, and at least one of them was added again during the
+same operation, the equality index was not updated. As a consequence, an
+exact search for the re-added attribute value did not return the entry. The
+logic of the index code has been modified to update the index if at least
+one of the values in the entry changes, and the exact search for the
+re-added attribute value now returns the correct entry. (BZ#1290726)
+
+* Prior to this update, when the cleanAllRUV task was running, a bogus
+attrlist_replace error message was logged repeatedly due to a memory
+corruption. With this update, the appropriate memory copy function memmove
+is used, which fixes the memory corruption. As a result, the error messages
+are no longer logged in this scenario. (BZ#1295684)
+
+* To fix a simple paged results bug, an exclusive lock on a connection was
+previously added. This consequently caused a self deadlock in a particular
+case. With this update, the exclusive lock on a connection has been changed
+to the re-entrant type, and the self deadlock no longer occurs.
+(BZ#1298105)
+
+* Previously, an unnecessary lock was sometimes acquired on a connection
+object, which could consequently cause a deadlock. A patch has been applied
+to remove the unnecessary locking, and the deadlock no longer occurs.
+(BZ#1299346)
+
+Users of 389-ds-base are advised to upgrade to these updated packages,
+which correct these issues. After installing this update, the 389 server
+service will be restarted automatically.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-02-16"/>
+     <updated date="2016-02-16"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0741">CVE-2016-0741</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1290725" id="1290725">SimplePagedResults -- in the search error case, simple paged results slot was not released.</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1290726" id="1290726">The 'eq' index does not get updated properly when deleting and re-adding attributes in the same ldapmodify operation</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1295684" id="1295684">many attrlist_replace errors in connection with cleanallruv</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299346" id="1299346">deadlock on connection mutex</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1299416" id="1299416">CVE-2016-0741 389-ds-base: worker threads do not detect abnormally closed connections causing DoS</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="389-ds-base is earlier than 0:1.3.4.0-26.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160204007"/>
+      <criterion comment="389-ds-base is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160204008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="389-ds-base-devel is earlier than 0:1.3.4.0-26.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160204005"/>
+      <criterion comment="389-ds-base-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160204006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="389-ds-base-libs is earlier than 0:1.3.4.0-26.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160204009"/>
+      <criterion comment="389-ds-base-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160204010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160212" version="601">
+   <metadata>
+    <title>RHSA-2016:0212: kernel-rt security, bug fix, and enhancement update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0212-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0212.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-5157" ref_url="https://access.redhat.com/security/cve/CVE-2015-5157" source="CVE"/>
+    <reference ref_id="CVE-2015-7872" ref_url="https://access.redhat.com/security/cve/CVE-2015-7872" source="CVE"/>
+    <description>The kernel-rt packages contain the Linux kernel, the core of any Linux
+operating system.
+
+* It was found that the Linux kernel's keys subsystem did not correctly
+garbage collect uninstantiated keyrings. A local attacker could use this
+flaw to crash the system or, potentially, escalate their privileges on the
+system. (CVE-2015-7872, Important)
+
+* A flaw was found in the way the Linux kernel handled IRET faults during
+the processing of NMIs. An unprivileged, local user could use this flaw to
+crash the system or, potentially (although highly unlikely), escalate their
+privileges on the system. (CVE-2015-5157, Moderate)
+
+The kernel-rt packages have been upgraded to version 3.10.0-327.10.1, which
+provides a number of bug fixes and enhancements, including:
+
+* [md] dm: fix AB-BA deadlock in __dm_destroy() 
+
+* [md] revert &quot;dm-mpath: fix stalls when handling invalid ioctl
+
+* [cpufreq] intel_pstate: Fix limits-&gt;max_perf and limits-&gt;max_policy_pct
+rounding errors
+
+* [cpufreq] revert &quot;intel_pstate: fix rounding error in max_freq_pct&quot;
+
+* [crypto] nx: 842 - Add CRC and validation support
+
+* [of] return NUMA_NO_NODE from fallback of_node_to_nid()
+
+(BZ#1282591)
+
+This update also fixes the following bugs:
+
+* Because the realtime kernel replaces most of the spinlocks with
+rtmutexes, the locking scheme used in both NAPI polling and busy polling
+could become out of synchronization with the State Machine they protected.
+This could cause system performance degradation or even a livelock
+situation when a machine with faster NICs (10g or 40g) was subject to a
+heavy pressure receiving network packets. The locking schemes on NAPI
+polling and busy polling routines have been hardened to enforce the State
+machine sanity to help ensure the system continues to function properly
+under pressure. (BZ#1293230)
+
+* A possible livelock in the NAPI polling and busy polling routines could
+lead the system to a livelock on threads running at high, realtime,
+priorities. The threads running at priorities lower than the ones of the
+threads involved in the livelock were prevented from running on the CPUs
+affected by the livelock. Among those lower priority threads are the rcuc/
+threads. With this update, right before (4 jiffies) a RCU stall is
+detected, the rcuc/ threads on the CPUs facing the livelock have their
+priorities boosted above the priority of the threads involved in the
+livelock. The softirq code has also been updated to be more robust.
+These modifications allow the rcuc/ threads to execute even under system
+pressure, mitigating the RCU stalls. (BZ#1293229)
+
+* Multiple CPUs trying to take an rq lock previously caused large latencies
+on machines with many CPUs. On systems with more than 32 cores, this update
+uses the &quot;push&quot; rather than &quot;pull&quot; approach and provides multiple changes
+to the scheduling of rq locks. As a result, machines no longer suffer from
+multiplied latencies on large CPU systems. (BZ#1282597)
+
+* Previously, the SFC driver for 10 GB cards executed polling in NAPI mode,
+using a locking mechanism similar to a &quot;trylock&quot;. Consequently, when
+running on a Realtime kernel, a livelock could occur. This update modifies
+the locking mechanism so that once the lock is taken it is not released
+until the operation is complete. (BZ#1282609)
+
+All kernel-rt users are advised to upgrade to these updated packages, which
+correct these issues and add these enhancements. The system must be
+rebooted for this update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-02-16"/>
+     <updated date="2016-02-16"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5157">CVE-2015-5157</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7872">CVE-2015-7872</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1259577" id="1259577">CVE-2015-5157 kernel: x86-64: IRET faults during NMIs processing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1272371" id="1272371">CVE-2015-7872 kernel: Keyrings crash triggerable by unprivileged user</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1282591" id="1282591">kernel-rt: update to the RHEL7.2.z batch 2 source tree</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1293229" id="1293229">RCU stalls message on realtime kernel</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1293230" id="1293230">rt: netpoll: live lock with NAPI polling and busy polling on realtime kernel</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras_rt:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kernel-rt is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160212023"/>
+      <criterion comment="kernel-rt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160212007"/>
+      <criterion comment="kernel-rt-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug-devel is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160212017"/>
+      <criterion comment="kernel-rt-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160212019"/>
+      <criterion comment="kernel-rt-debug-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-devel is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160212011"/>
+      <criterion comment="kernel-rt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-doc is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160212005"/>
+      <criterion comment="kernel-rt-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-kvm is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160212009"/>
+      <criterion comment="kernel-rt-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160212015"/>
+      <criterion comment="kernel-rt-trace is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace-devel is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160212021"/>
+      <criterion comment="kernel-rt-trace-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160212013"/>
+      <criterion comment="kernel-rt-trace-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065018"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -6039,6 +6622,170 @@ upgrades Flash Player to version 11.2.202.569.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160166002"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-abi-whitelists is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160064005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-doc is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-perf is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="perf is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-kdump-devel is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-debug-devel is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-headers is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-debug is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-devel is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-kdump is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-bootwrapper is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-tools is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185029" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160064017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-tools-libs-devel is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185031" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160064018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-tools-libs is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185033" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160064019"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sos is earlier than 0:3.2-35.el7_2.3" id="oval:com.redhat.rhsa:tst:20160188005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160152005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160188003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="polkit is earlier than 0:0.112-6.el7_2" id="oval:com.redhat.rhsa:tst:20160189005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160189005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160189003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="polkit is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160189006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160189005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="polkit-devel is earlier than 0:0.112-6.el7_2" id="oval:com.redhat.rhsa:tst:20160189007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160189006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160189003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="polkit-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160189008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160189006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="polkit-docs is earlier than 0:0.112-6.el7_2" id="oval:com.redhat.rhsa:tst:20160189009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160189007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160189003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="polkit-docs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160189010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160189007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is earlier than 0:38.6.1-1.el5_11" id="oval:com.redhat.rhsa:tst:20160197002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160197004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is earlier than 0:38.6.1-1.el6_7" id="oval:com.redhat.rhsa:tst:20160197008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160197006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="firefox is earlier than 0:38.6.1-1.el7_2" id="oval:com.redhat.rhsa:tst:20160197014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160197008"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="389-ds-base-devel is earlier than 0:1.3.4.0-26.el7_2" id="oval:com.redhat.rhsa:tst:20160204005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160204005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160204003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="389-ds-base-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160204006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160204005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="389-ds-base is earlier than 0:1.3.4.0-26.el7_2" id="oval:com.redhat.rhsa:tst:20160204007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160204006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160204003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="389-ds-base is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160204008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160204006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="389-ds-base-libs is earlier than 0:1.3.4.0-26.el7_2" id="oval:com.redhat.rhsa:tst:20160204009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160204007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160204003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="389-ds-base-libs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160204010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160204007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-doc is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" id="oval:com.redhat.rhsa:tst:20160212005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160212003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" id="oval:com.redhat.rhsa:tst:20160212007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160212003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-kvm is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" id="oval:com.redhat.rhsa:tst:20160212009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160212003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-devel is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" id="oval:com.redhat.rhsa:tst:20160212011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160212003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" id="oval:com.redhat.rhsa:tst:20160212013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160212003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" id="oval:com.redhat.rhsa:tst:20160212015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160212003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug-devel is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" id="oval:com.redhat.rhsa:tst:20160212017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160212003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" id="oval:com.redhat.rhsa:tst:20160212019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160212003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace-devel is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" id="oval:com.redhat.rhsa:tst:20160212021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160212003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt is earlier than 0:3.10.0-327.10.1.rt56.211.el7_2" id="oval:com.redhat.rhsa:tst:20160212023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160212003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -6683,6 +7430,24 @@ upgrades Flash Player to version 11.2.202.569.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160166002" version="601">
    <red-def:name>flash-plugin</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160189005" version="601">
+   <red-def:name>polkit</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160189006" version="601">
+   <red-def:name>polkit-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160189007" version="601">
+   <red-def:name>polkit-docs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160204005" version="601">
+   <red-def:name>389-ds-base-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160204006" version="601">
+   <red-def:name>389-ds-base</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160204007" version="601">
+   <red-def:name>389-ds-base-libs</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -6861,6 +7626,30 @@ upgrades Flash Player to version 11.2.202.569.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160166006" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:11.2.202.569-1.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160185003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.10.0-327.10.1.el7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160188003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.2-35.el7_2.3</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160189003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.112-6.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160197004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:38.6.1-1.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160197006" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:38.6.1-1.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160197008" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:38.6.1-1.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160204003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.3.4.0-26.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160212003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.10.0-327.10.1.rt56.211.el7_2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
