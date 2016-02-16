@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-02-16T06:16:02</oval:timestamp>
+  <oval:timestamp>2016-02-16T10:40:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -3713,6 +3713,209 @@ upgrades Flash Player to version 11.2.202.569.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160175" version="601">
+   <metadata>
+    <title>RHSA-2016:0175: glibc security and bug fix update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0175-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0175.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-7547" ref_url="https://access.redhat.com/security/cve/CVE-2015-7547" source="CVE"/>
+    <description>The glibc packages provide the standard C libraries (libc), POSIX thread
+libraries (libpthread), standard math libraries (libm), and the Name
+Server Caching Daemon (nscd) used by multiple programs on the system.
+Without these libraries, the Linux system cannot function correctly.
+
+A stack-based buffer overflow was found in the way the libresolv library
+performed dual A/AAAA DNS queries. A remote attacker could create a
+specially crafted DNS response which could cause libresolv to crash or,
+potentially, execute code with the permissions of the user running the
+library. Note: this issue is only exposed when libresolv is called from the
+nss_dns NSS service module. (CVE-2015-7547)
+
+This issue was discovered by the Google Security Team and Red Hat.
+
+This update also fixes the following bugs:
+
+* The dynamic loader has been enhanced to allow the loading of more shared
+libraries that make use of static thread local storage. While static thread
+local storage is the fastest access mechanism it may also prevent the
+shared library from being loaded at all since the static storage space is a
+limited and shared process-global resource. Applications which would
+previously fail with &quot;dlopen: cannot load any more object with static TLS&quot;
+should now start up correctly. (BZ#1291270)
+
+* A bug in the POSIX realtime support would cause asynchronous I/O or
+certain timer API calls to fail and return errors in the presence of large
+thread-local storage data that exceeded PTHREAD_STACK_MIN in size
+(generally 16 KiB). The bug in librt has been corrected and the impacted
+APIs no longer return errors when large thread-local storage data is
+present in the application. (BZ#1301625)
+
+All glibc users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-02-16"/>
+     <updated date="2016-02-16"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7547">CVE-2015-7547</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1293532" id="1293532">CVE-2015-7547 glibc: getaddrinfo stack-based buffer overflow</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="glibc is earlier than 0:2.12-1.166.el6_7.7" test_ref="oval:com.redhat.rhsa:tst:20160175015"/>
+      <criterion comment="glibc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-common is earlier than 0:2.12-1.166.el6_7.7" test_ref="oval:com.redhat.rhsa:tst:20160175017"/>
+      <criterion comment="glibc-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-devel is earlier than 0:2.12-1.166.el6_7.7" test_ref="oval:com.redhat.rhsa:tst:20160175009"/>
+      <criterion comment="glibc-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-headers is earlier than 0:2.12-1.166.el6_7.7" test_ref="oval:com.redhat.rhsa:tst:20160175005"/>
+      <criterion comment="glibc-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-static is earlier than 0:2.12-1.166.el6_7.7" test_ref="oval:com.redhat.rhsa:tst:20160175007"/>
+      <criterion comment="glibc-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-utils is earlier than 0:2.12-1.166.el6_7.7" test_ref="oval:com.redhat.rhsa:tst:20160175011"/>
+      <criterion comment="glibc-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nscd is earlier than 0:2.12-1.166.el6_7.7" test_ref="oval:com.redhat.rhsa:tst:20160175013"/>
+      <criterion comment="nscd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175014"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160176" version="601">
+   <metadata>
+    <title>RHSA-2016:0176: glibc security and bug fix update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0176-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0176.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-5229" ref_url="https://access.redhat.com/security/cve/CVE-2015-5229" source="CVE"/>
+    <reference ref_id="CVE-2015-7547" ref_url="https://access.redhat.com/security/cve/CVE-2015-7547" source="CVE"/>
+    <description>The glibc packages provide the standard C libraries (libc), POSIX 
+thread libraries (libpthread), standard math libraries (libm), and the 
+name service cache daemon (nscd) used by multiple programs on the 
+system. Without these libraries, the Linux system cannot function 
+correctly.
+
+A stack-based buffer overflow was found in the way the libresolv library
+performed dual A/AAAA DNS queries. A remote attacker could create a
+specially crafted DNS response which could cause libresolv to crash or,
+potentially, execute code with the permissions of the user running the
+library. Note: this issue is only exposed when libresolv is called from the
+nss_dns NSS service module. (CVE-2015-7547)
+
+It was discovered that the calloc implementation in glibc could return
+memory areas which contain non-zero bytes. This could result in unexpected
+application behavior such as hangs or crashes. (CVE-2015-5229)
+
+The CVE-2015-7547 issue was discovered by the Google Security Team and Red
+Hat. Red Hat would like to thank Jeff Layton for reporting the
+CVE-2015-5229 issue.
+
+This update also fixes the following bugs:
+
+* The existing implementation of the &quot;free&quot; function causes all memory
+pools beyond the first to return freed memory directly to the operating
+system as quickly as possible. This can result in performance degradation
+when the rate of free calls is very high. The first memory pool (the main
+pool) does provide a method to rate limit the returns via M_TRIM_THRESHOLD,
+but this method is not available to subsequent memory pools.
+
+With this update, the M_TRIM_THRESHOLD method is extended to apply to all
+memory pools, which improves performance for threads with very high amounts
+of free calls and limits the number of &quot;madvise&quot; system calls. The change
+also increases the total transient memory usage by processes because the
+trim threshold must be reached before memory can be freed.
+
+To return to the previous behavior, you can either set M_TRIM_THRESHOLD
+using the &quot;mallopt&quot; function, or set the MALLOC_TRIM_THRESHOLD environment
+variable to 0. (BZ#1298930)
+
+* On the little-endian variant of 64-bit IBM Power Systems (ppc64le), a bug
+in the dynamic loader could cause applications compiled with profiling
+enabled to fail to start with the error &quot;monstartup: out of memory&quot;.
+The bug has been corrected and applications compiled for profiling now
+start correctly. (BZ#1298956)
+
+All glibc users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-02-16"/>
+     <updated date="2016-02-16"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-5229">CVE-2015-5229</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7547">CVE-2015-7547</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1256285" id="1256285">CVE-2015-5229 glibc: calloc may return non-zero memory</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1293532" id="1293532">CVE-2015-7547 glibc: getaddrinfo stack-based buffer overflow</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1298956" id="1298956">&quot;monstartup: out of memory&quot; on PPC64LE [rhel-7.2.z]</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="glibc is earlier than 0:2.17-106.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20160176009"/>
+      <criterion comment="glibc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-common is earlier than 0:2.17-106.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20160176011"/>
+      <criterion comment="glibc-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-devel is earlier than 0:2.17-106.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20160176017"/>
+      <criterion comment="glibc-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-headers is earlier than 0:2.17-106.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20160176005"/>
+      <criterion comment="glibc-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-static is earlier than 0:2.17-106.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20160176007"/>
+      <criterion comment="glibc-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="glibc-utils is earlier than 0:2.17-106.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20160176013"/>
+      <criterion comment="glibc-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="nscd is earlier than 0:2.17-106.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20160176015"/>
+      <criterion comment="nscd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160175014"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160185" version="601">
    <metadata>
     <title>RHSA-2016:0185: kernel security and bug fix update (Important)</title>
@@ -6622,6 +6825,90 @@ rebooted for this update to take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160166002"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-headers is earlier than 0:2.12-1.166.el6_7.7" id="oval:com.redhat.rhsa:tst:20160175005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160175003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-headers is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160175006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-static is earlier than 0:2.12-1.166.el6_7.7" id="oval:com.redhat.rhsa:tst:20160175007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160175003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-static is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160175008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-devel is earlier than 0:2.12-1.166.el6_7.7" id="oval:com.redhat.rhsa:tst:20160175009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160175003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160175010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-utils is earlier than 0:2.12-1.166.el6_7.7" id="oval:com.redhat.rhsa:tst:20160175011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160175003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-utils is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160175012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nscd is earlier than 0:2.12-1.166.el6_7.7" id="oval:com.redhat.rhsa:tst:20160175013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160175003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nscd is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160175014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc is earlier than 0:2.12-1.166.el6_7.7" id="oval:com.redhat.rhsa:tst:20160175015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160175003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160175016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-common is earlier than 0:2.12-1.166.el6_7.7" id="oval:com.redhat.rhsa:tst:20160175017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160175003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-common is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160175018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-headers is earlier than 0:2.17-106.el7_2.4" id="oval:com.redhat.rhsa:tst:20160176005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160176003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-static is earlier than 0:2.17-106.el7_2.4" id="oval:com.redhat.rhsa:tst:20160176007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160176003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc is earlier than 0:2.17-106.el7_2.4" id="oval:com.redhat.rhsa:tst:20160176009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160176003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-common is earlier than 0:2.17-106.el7_2.4" id="oval:com.redhat.rhsa:tst:20160176011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160176003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-utils is earlier than 0:2.17-106.el7_2.4" id="oval:com.redhat.rhsa:tst:20160176013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160176003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nscd is earlier than 0:2.17-106.el7_2.4" id="oval:com.redhat.rhsa:tst:20160176015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160176003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="glibc-devel is earlier than 0:2.17-106.el7_2.4" id="oval:com.redhat.rhsa:tst:20160176017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160175007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160176003"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="kernel-abi-whitelists is earlier than 0:3.10.0-327.10.1.el7" id="oval:com.redhat.rhsa:tst:20160185005" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160064005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160185003"/>
@@ -7430,6 +7717,27 @@ rebooted for this update to take effect.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160166002" version="601">
    <red-def:name>flash-plugin</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160175005" version="601">
+   <red-def:name>glibc-headers</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160175006" version="601">
+   <red-def:name>glibc-static</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160175007" version="601">
+   <red-def:name>glibc-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160175008" version="601">
+   <red-def:name>glibc-utils</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160175009" version="601">
+   <red-def:name>nscd</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160175010" version="601">
+   <red-def:name>glibc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160175011" version="601">
+   <red-def:name>glibc-common</red-def:name>
+  </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160189005" version="601">
    <red-def:name>polkit</red-def:name>
   </red-def:rpminfo_object>
@@ -7626,6 +7934,12 @@ rebooted for this update to take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160166006" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:11.2.202.569-1.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160175003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.12-1.166.el6_7.7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160176003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.17-106.el7_2.4</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160185003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:3.10.0-327.10.1.el7</red-def:evr>
