@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-02-23T02:19:01</oval:timestamp>
+  <oval:timestamp>2016-03-01T09:47:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -4683,6 +4683,88 @@ to take effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160302" version="601">
+   <metadata>
+    <title>RHSA-2016:0302: openssl security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0302-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0302.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-3197" ref_url="https://access.redhat.com/security/cve/CVE-2015-3197" source="CVE"/>
+    <reference ref_id="CVE-2016-0797" ref_url="https://access.redhat.com/security/cve/CVE-2016-0797" source="CVE"/>
+    <reference ref_id="CVE-2016-0800" ref_url="https://access.redhat.com/security/cve/CVE-2016-0800" source="CVE"/>
+    <description>OpenSSL is a toolkit that implements the Secure Sockets Layer (SSL v2/v3)
+and Transport Layer Security (TLS v1) protocols, as well as a
+full-strength, general purpose cryptography library.
+
+A padding oracle flaw was found in the Secure Sockets Layer version 2.0
+(SSLv2) protocol. An attacker can potentially use this flaw to decrypt
+RSA-encrypted cipher text from a connection using a newer SSL/TLS protocol
+version, allowing them to decrypt such connections. This cross-protocol
+attack is publicly referred to as DROWN. (CVE-2016-0800)
+
+Note: This issue was addressed by disabling the SSLv2 protocol by default
+when using the 'SSLv23' connection methods, and removing support for weak
+SSLv2 cipher suites. It is possible to re-enable the SSLv2 protocol in the
+'SSLv23' connection methods by default by setting the OPENSSL_ENABLE_SSL2
+environment variable before starting an application that needs to have
+SSLv2 enabled. For more information, refer to the knowledge base article
+linked to in the References section.
+
+A flaw was found in the way malicious SSLv2 clients could negotiate SSLv2
+ciphers that have been disabled on the server. This could result in weak
+SSLv2 ciphers being used for SSLv2 connections, making them vulnerable to
+man-in-the-middle attacks. (CVE-2015-3197)
+
+An integer overflow flaw, leading to a NULL pointer dereference or a
+heap-based memory corruption, was found in the way some BIGNUM functions of
+OpenSSL were implemented. Applications that use these functions with large
+untrusted input could crash or, potentially, execute arbitrary code.
+(CVE-2016-0797)
+
+Red Hat would like to thank the OpenSSL project for reporting these issues.
+Upstream acknowledges Nimrod Aviram and Sebastian Schinzel as the original
+reporters of CVE-2016-0800 and CVE-2015-3197; and Guido Vranken as the
+original reporter of CVE-2016-0797.
+
+All openssl users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues. For the update to take
+effect, all services linked to the OpenSSL library must be restarted, or
+the system rebooted.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-03-01"/>
+     <updated date="2016-03-01"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-3197">CVE-2015-3197</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0797">CVE-2016-0797</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0800">CVE-2016-0800</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1301846" id="1301846">CVE-2015-3197 OpenSSL: SSLv2 doesn't block disabled ciphers</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1310593" id="1310593">CVE-2016-0800 SSL/TLS: Cross-protocol attack on TLS using SSLv2 (DROWN)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1311880" id="1311880">CVE-2016-0797 OpenSSL: BN_hex2bn/BN_dec2bn NULL pointer deref/heap corruption</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="openssl is earlier than 0:0.9.8e-39.el5_11" test_ref="oval:com.redhat.rhsa:tst:20160302006"/>
+      <criterion comment="openssl is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160302007"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssl-devel is earlier than 0:0.9.8e-39.el5_11" test_ref="oval:com.redhat.rhsa:tst:20160302002"/>
+      <criterion comment="openssl-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160302003"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssl-perl is earlier than 0:0.9.8e-39.el5_11" test_ref="oval:com.redhat.rhsa:tst:20160302004"/>
+      <criterion comment="openssl-perl is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160302005"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -7277,6 +7359,30 @@ to take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160072005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160286003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-devel is earlier than 0:0.9.8e-39.el5_11" id="oval:com.redhat.rhsa:tst:20160302002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160302003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-devel is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20160302003" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-perl is earlier than 0:0.9.8e-39.el5_11" id="oval:com.redhat.rhsa:tst:20160302004" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160302003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-perl is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20160302005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl is earlier than 0:0.9.8e-39.el5_11" id="oval:com.redhat.rhsa:tst:20160302006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160302003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20160302007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -8174,6 +8280,9 @@ to take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160286003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:48.0.2564.116-1.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160302003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.9.8e-39.el5_11</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
