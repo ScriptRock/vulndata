@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-03-10T02:41:01</oval:timestamp>
+  <oval:timestamp>2016-03-10T10:12:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -5694,6 +5694,63 @@ to take effect.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160430" version="601">
+   <metadata>
+    <title>RHSA-2016:0430: xerces-c security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0430-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0430.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-0729" ref_url="https://access.redhat.com/security/cve/CVE-2016-0729" source="CVE"/>
+    <description>Xerces-C is a validating XML parser written in a portable subset of C++.
+
+It was discovered that the Xerces-C XML parser did not properly process
+certain XML input. By providing specially crafted XML data to an
+application using Xerces-C for XML processing, a remote attacker could
+exploit this flaw to cause an application crash or, possibly, execute
+arbitrary code with the privileges of the application. (CVE-2016-0729)
+
+Red Hat would like to thank Gustavo Grieco for reporting this issue.
+
+All xerces-c users are advised to upgrade to these updated packages, which
+contain a backported patch to correct this issue. After installing the
+update, all applications using Xerces-C must be restarted for the update
+to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-03-10"/>
+     <updated date="2016-03-10"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0729">CVE-2016-0729</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1312231" id="1312231">CVE-2016-0729 xerces-c: parser crashes on malformed input</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="xerces-c is earlier than 0:3.1.1-8.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160430005"/>
+      <criterion comment="xerces-c is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160430006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="xerces-c-devel is earlier than 0:3.1.1-8.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160430007"/>
+      <criterion comment="xerces-c-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160430008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="xerces-c-doc is earlier than 0:3.1.1-8.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160430009"/>
+      <criterion comment="xerces-c-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160430010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -8600,6 +8657,30 @@ to take effect.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160072005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160429003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xerces-c is earlier than 0:3.1.1-8.el7_2" id="oval:com.redhat.rhsa:tst:20160430005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160430005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160430003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xerces-c is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160430006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160430005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xerces-c-devel is earlier than 0:3.1.1-8.el7_2" id="oval:com.redhat.rhsa:tst:20160430007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160430006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160430003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xerces-c-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160430008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160430006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xerces-c-doc is earlier than 0:3.1.1-8.el7_2" id="oval:com.redhat.rhsa:tst:20160430009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160430007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160430003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="xerces-c-doc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160430010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160430007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -9334,6 +9415,15 @@ to take effect.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160428007" version="601">
    <red-def:name>libssh2-devel</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160430005" version="601">
+   <red-def:name>xerces-c</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160430006" version="601">
+   <red-def:name>xerces-c-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160430007" version="601">
+   <red-def:name>xerces-c-doc</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -9599,6 +9689,9 @@ to take effect.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160429003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:49.0.2623.87-1.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160430003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.1.1-8.el7_2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
