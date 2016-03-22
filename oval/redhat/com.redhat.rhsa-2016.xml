@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-03-21T16:45:02</oval:timestamp>
+  <oval:timestamp>2016-03-22T17:14:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -6833,6 +6833,229 @@ update, the OpenSSH server daemon (sshd) will be restarted automatically.</descr
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160491" version="601">
+   <metadata>
+    <title>RHSA-2016:0491: foomatic security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0491-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0491.html" source="RHSA"/>
+    <reference ref_id="CVE-2010-5325" ref_url="https://access.redhat.com/security/cve/CVE-2010-5325" source="CVE"/>
+    <reference ref_id="CVE-2015-8327" ref_url="https://access.redhat.com/security/cve/CVE-2015-8327" source="CVE"/>
+    <reference ref_id="CVE-2015-8560" ref_url="https://access.redhat.com/security/cve/CVE-2015-8560" source="CVE"/>
+    <description>Foomatic is a comprehensive, spooler-independent database of printers,
+printer drivers, and driver descriptions. The package also includes
+spooler-independent command line interfaces to manipulate queues and to
+print files and manipulate print jobs.
+
+It was discovered that the unhtmlify() function of foomatic-rip did not
+correctly calculate buffer sizes, possibly leading to a heap-based memory
+corruption. A malicious attacker could exploit this flaw to cause
+foomatic-rip to crash or, possibly, execute arbitrary code.
+(CVE-2010-5325)
+
+It was discovered that foomatic-rip failed to remove all shell special
+characters from inputs used to construct command lines for external
+programs run by the filter. An attacker could possibly use this flaw to
+execute arbitrary commands. (CVE-2015-8327, CVE-2015-8560)
+
+All foomatic users should upgrade to this updated package, which contains
+backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-03-22"/>
+     <updated date="2016-03-22"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2010-5325">CVE-2010-5325</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8327">CVE-2015-8327</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8560">CVE-2015-8560</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1218297" id="1218297">CVE-2010-5325 foomatic: potential remote arbitrary code execution</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1287523" id="1287523">CVE-2015-8327 cups-filters: foomatic-rip did not consider the back tick as an illegal shell escape character</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1291227" id="1291227">CVE-2015-8560 cups-filters: foomatic-rip did not consider semicolon as illegal shell escape character</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="foomatic is earlier than 0:4.0.4-5.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160491005"/>
+    <criterion comment="foomatic is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160491006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160492" version="601">
+   <metadata>
+    <title>RHSA-2016:0492: tomcat6 security and bug fix update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0492-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0492.html" source="RHSA"/>
+    <reference ref_id="CVE-2014-7810" ref_url="https://access.redhat.com/security/cve/CVE-2014-7810" source="CVE"/>
+    <description>Apache Tomcat is a servlet container for the Java Servlet and JavaServer
+Pages (JSP) technologies.
+
+It was found that the expression language resolver evaluated expressions
+within a privileged code section. A malicious web application could use
+this flaw to bypass security manager protections. (CVE-2014-7810)
+
+This update also fixes the following bug:
+
+* Previously, using a New I/O (NIO) connector in the Apache Tomcat 6 
+servlet resulted in a large memory leak. An upstream patch has been applied
+to fix this bug, and the memory leak no longer occurs. (BZ#1301646)
+
+All Tomcat 6 users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues. Tomcat must be
+restarted for this update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-03-22"/>
+     <updated date="2016-03-22"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-7810">CVE-2014-7810</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1222573" id="1222573">CVE-2014-7810 Tomcat/JbossWeb: security manager bypass via EL expressions</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301646" id="1301646">Tomcat 6 NIO connector memory leak [rhel-6.7.z]</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="tomcat6 is earlier than 0:6.0.24-94.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160492013"/>
+      <criterion comment="tomcat6 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160492014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tomcat6-admin-webapps is earlier than 0:6.0.24-94.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160492011"/>
+      <criterion comment="tomcat6-admin-webapps is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160492012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tomcat6-docs-webapp is earlier than 0:6.0.24-94.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160492019"/>
+      <criterion comment="tomcat6-docs-webapp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160492020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tomcat6-el-2.1-api is earlier than 0:6.0.24-94.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160492017"/>
+      <criterion comment="tomcat6-el-2.1-api is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160492018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tomcat6-javadoc is earlier than 0:6.0.24-94.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160492015"/>
+      <criterion comment="tomcat6-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160492016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tomcat6-jsp-2.1-api is earlier than 0:6.0.24-94.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160492007"/>
+      <criterion comment="tomcat6-jsp-2.1-api is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160492008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tomcat6-lib is earlier than 0:6.0.24-94.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160492005"/>
+      <criterion comment="tomcat6-lib is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160492006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tomcat6-servlet-2.5-api is earlier than 0:6.0.24-94.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160492009"/>
+      <criterion comment="tomcat6-servlet-2.5-api is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160492010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="tomcat6-webapps is earlier than 0:6.0.24-94.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160492021"/>
+      <criterion comment="tomcat6-webapps is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160492022"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160493" version="601">
+   <metadata>
+    <title>RHSA-2016:0493: krb5 security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0493-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0493.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-8629" ref_url="https://access.redhat.com/security/cve/CVE-2015-8629" source="CVE"/>
+    <reference ref_id="CVE-2015-8631" ref_url="https://access.redhat.com/security/cve/CVE-2015-8631" source="CVE"/>
+    <description>Kerberos is a networked authentication system which allows clients and
+servers to authenticate to each other with the help of a trusted third
+party, the Kerberos KDC.
+
+A memory leak flaw was found in the krb5_unparse_name() function of the MIT
+Kerberos kadmind service. An authenticated attacker could repeatedly send
+specially crafted requests to the server, which could cause the server to
+consume large amounts of memory resources, ultimately leading to a denial
+of service due to memory exhaustion. (CVE-2015-8631)
+
+An out-of-bounds read flaw was found in the kadmind service of MIT
+Kerberos. An authenticated attacker could send a maliciously crafted
+message to force kadmind to read beyond the end of allocated memory, and
+write the memory contents to the KDC database if the attacker has write
+permission, leading to information disclosure. (CVE-2015-8629)
+
+The CVE-2015-8631 issue was discovered by Simo Sorce of Red Hat.
+
+All krb5 users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues. After installing the
+updated packages, running Kerberos services (krb5kdc, kadmin, and kprop)
+will be restarted automatically.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-03-22"/>
+     <updated date="2016-03-22"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8629">CVE-2015-8629</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8631">CVE-2015-8631</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1302617" id="1302617">CVE-2015-8629 krb5: xdr_nullstring() doesn't check for terminating null character</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1302642" id="1302642">CVE-2015-8631 krb5: Memory leak caused by supplying a null principal name in request</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="krb5 is earlier than 0:1.10.3-42z1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160493017"/>
+      <criterion comment="krb5 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-devel is earlier than 0:1.10.3-42z1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160493013"/>
+      <criterion comment="krb5-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-libs is earlier than 0:1.10.3-42z1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160493005"/>
+      <criterion comment="krb5-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-pkinit-openssl is earlier than 0:1.10.3-42z1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160493011"/>
+      <criterion comment="krb5-pkinit-openssl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-server is earlier than 0:1.10.3-42z1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160493015"/>
+      <criterion comment="krb5-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-server-ldap is earlier than 0:1.10.3-42z1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160493007"/>
+      <criterion comment="krb5-server-ldap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-workstation is earlier than 0:1.10.3-42z1.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160493009"/>
+      <criterion comment="krb5-workstation is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -10235,6 +10458,142 @@ update, the OpenSSH server daemon (sshd) will be restarted automatically.</descr
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160043008"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160466003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="foomatic is earlier than 0:4.0.4-5.el6_7" id="oval:com.redhat.rhsa:tst:20160491005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160491005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160491003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="foomatic is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160491006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160491005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-lib is earlier than 0:6.0.24-94.el6_7" id="oval:com.redhat.rhsa:tst:20160492005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160492003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-lib is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160492006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-jsp-2.1-api is earlier than 0:6.0.24-94.el6_7" id="oval:com.redhat.rhsa:tst:20160492007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160492003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-jsp-2.1-api is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160492008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-servlet-2.5-api is earlier than 0:6.0.24-94.el6_7" id="oval:com.redhat.rhsa:tst:20160492009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160492003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-servlet-2.5-api is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160492010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-admin-webapps is earlier than 0:6.0.24-94.el6_7" id="oval:com.redhat.rhsa:tst:20160492011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160492003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-admin-webapps is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160492012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6 is earlier than 0:6.0.24-94.el6_7" id="oval:com.redhat.rhsa:tst:20160492013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160492003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6 is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160492014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-javadoc is earlier than 0:6.0.24-94.el6_7" id="oval:com.redhat.rhsa:tst:20160492015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160492003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-javadoc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160492016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-el-2.1-api is earlier than 0:6.0.24-94.el6_7" id="oval:com.redhat.rhsa:tst:20160492017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160492003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-el-2.1-api is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160492018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-docs-webapp is earlier than 0:6.0.24-94.el6_7" id="oval:com.redhat.rhsa:tst:20160492019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160492003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-docs-webapp is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160492020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-webapps is earlier than 0:6.0.24-94.el6_7" id="oval:com.redhat.rhsa:tst:20160492021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160492003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tomcat6-webapps is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160492022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160492013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-libs is earlier than 0:1.10.3-42z1.el6_7" id="oval:com.redhat.rhsa:tst:20160493005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160493003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-libs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160493006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-server-ldap is earlier than 0:1.10.3-42z1.el6_7" id="oval:com.redhat.rhsa:tst:20160493007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160493003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-server-ldap is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160493008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-workstation is earlier than 0:1.10.3-42z1.el6_7" id="oval:com.redhat.rhsa:tst:20160493009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160493003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-workstation is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160493010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-pkinit-openssl is earlier than 0:1.10.3-42z1.el6_7" id="oval:com.redhat.rhsa:tst:20160493011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160493003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-pkinit-openssl is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160493012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-devel is earlier than 0:1.10.3-42z1.el6_7" id="oval:com.redhat.rhsa:tst:20160493013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160493003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160493014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-server is earlier than 0:1.10.3-42z1.el6_7" id="oval:com.redhat.rhsa:tst:20160493015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160493003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-server is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160493016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5 is earlier than 0:1.10.3-42z1.el6_7" id="oval:com.redhat.rhsa:tst:20160493017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160493003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5 is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160493018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -10978,6 +11337,57 @@ update, the OpenSSH server daemon (sshd) will be restarted automatically.</descr
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160430007" version="601">
    <red-def:name>xerces-c-doc</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160491005" version="601">
+   <red-def:name>foomatic</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160492005" version="601">
+   <red-def:name>tomcat6-lib</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160492006" version="601">
+   <red-def:name>tomcat6-jsp-2.1-api</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160492007" version="601">
+   <red-def:name>tomcat6-servlet-2.5-api</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160492008" version="601">
+   <red-def:name>tomcat6-admin-webapps</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160492009" version="601">
+   <red-def:name>tomcat6</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160492010" version="601">
+   <red-def:name>tomcat6-javadoc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160492011" version="601">
+   <red-def:name>tomcat6-el-2.1-api</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160492012" version="601">
+   <red-def:name>tomcat6-docs-webapp</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160492013" version="601">
+   <red-def:name>tomcat6-webapps</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160493005" version="601">
+   <red-def:name>krb5-libs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160493006" version="601">
+   <red-def:name>krb5-server-ldap</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160493007" version="601">
+   <red-def:name>krb5-workstation</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160493008" version="601">
+   <red-def:name>krb5-pkinit-openssl</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160493009" version="601">
+   <red-def:name>krb5-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160493010" version="601">
+   <red-def:name>krb5-server</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160493011" version="601">
+   <red-def:name>krb5</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -11288,6 +11698,15 @@ update, the OpenSSH server daemon (sshd) will be restarted automatically.</descr
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160466004" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:0.9.3-114.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160491003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:4.0.4-5.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160492003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:6.0.24-94.el6_7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160493003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.10.3-42z1.el6_7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
