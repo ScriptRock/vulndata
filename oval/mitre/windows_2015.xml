@@ -63,7 +63,7 @@
 		    <criterion comment="Check for the presence of edgehtml.dll" test_ref="oval:org.cisecurity:tst:2" />
 		  </criteria>
 		</definition>
-    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.cisecurity:def:3" version="3">
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.cisecurity:def:3" version="4">
 		  <metadata>
 		    <title>Microsoft Visio 2013 is installed</title>
 		    <affected family="windows">
@@ -33554,8 +33554,8 @@
     <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check for the presence of edgehtml.dll" id="oval:org.cisecurity:tst:2" version="5">
 		  <object object_ref="oval:org.cisecurity:obj:1" />
 		</file_test>
-    <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Microsoft Visio 2013 is installed" id="oval:org.cisecurity:tst:3" version="3">
-		  <object object_ref="oval:ru.altx-soft.win:obj:38449" />
+    <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Microsoft Visio 2013 is installed" id="oval:org.cisecurity:tst:3" version="4">
+		  <object object_ref="oval:org.cisecurity:obj:165" />
 		</registry_test>
     <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6 (full) is equal to 393297" id="oval:org.cisecurity:tst:4" version="1">
 		  <object object_ref="oval:org.mitre.oval:obj:30444" />
@@ -37926,6 +37926,23 @@
 		  <path var_check="at least one" var_ref="oval:org.mitre.oval:var:200" />
 		  <filename>edgehtml.dll</filename>
 		</file_object>
+    <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Native Visio 2013 InstallRoot!Path" id="oval:org.cisecurity:obj:163" version="2">
+		  <hive>HKEY_LOCAL_MACHINE</hive>
+		  <key>SOFTWARE\Microsoft\Office\15.0\Visio\InstallRoot</key>
+		  <name>Path</name>
+		</registry_object>
+    <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="32 bit Visio 2013 InstallRoot!Path" id="oval:org.cisecurity:obj:164" version="2">
+		  <behaviors windows_view="32_bit" />
+		  <hive>HKEY_LOCAL_MACHINE</hive>
+		  <key>SOFTWARE\Microsoft\Office\15.0\Visio\InstallRoot</key>
+		  <name>Path</name>
+		</registry_object>
+    <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:ns1="http://oval.mitre.org/XMLSchema/oval-definitions-5" comment="Visio 2013 InstallRoot!Path" id="oval:org.cisecurity:obj:165" version="2">
+		  <ns1:set>
+		    <ns1:object_reference>oval:org.cisecurity:obj:164</ns1:object_reference>
+		    <ns1:object_reference>oval:org.cisecurity:obj:163</ns1:object_reference>
+		  </ns1:set>
+		</registry_object>
     <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:obj:3" version="5">
 		  <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
 		  <filename>Msxml3.dll</filename>
