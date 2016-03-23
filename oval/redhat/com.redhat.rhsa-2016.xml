@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-03-22T17:51:01</oval:timestamp>
+  <oval:timestamp>2016-03-23T09:35:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -7200,6 +7200,181 @@ enhancement. The system must be rebooted for this update to take effect.</descri
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160496" version="601">
+   <metadata>
+    <title>RHSA-2016:0496: git security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0496-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0496.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-2315" ref_url="https://access.redhat.com/security/cve/CVE-2016-2315" source="CVE"/>
+    <reference ref_id="CVE-2016-2324" ref_url="https://access.redhat.com/security/cve/CVE-2016-2324" source="CVE"/>
+    <description>Git is a distributed revision control system with a decentralized
+architecture. As opposed to centralized version control systems with a
+client-server model, Git ensures that each working copy of a Git repository
+is an exact copy with complete revision history. This not only allows the
+user to work on and contribute to projects without the need to have
+permission to push the changes to their official repositories, but also
+makes it possible for the user to work with no network connection.
+
+An integer truncation flaw and an integer overflow flaw, both leading to a
+heap-based buffer overflow, were found in the way Git processed certain
+path information. A remote attacker could create a specially crafted Git
+repository that would cause a Git client or server to crash or, possibly,
+execute arbitrary code. (CVE-2016-2315, CVE-2016-2324)
+
+All git users are advised to upgrade to these updated packages, which
+contain backported patches to correct these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-03-23"/>
+     <updated date="2016-03-23"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-2315">CVE-2016-2315</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-2324">CVE-2016-2324</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1317981" id="1317981">CVE-2016-2315 CVE-2016-2324 git: path_name() integer truncation and overflow leading to buffer overflow</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="emacs-git is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496027"/>
+       <criterion comment="emacs-git is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496028"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="emacs-git-el is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496015"/>
+       <criterion comment="emacs-git-el is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496016"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496007"/>
+       <criterion comment="git is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-all is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496025"/>
+       <criterion comment="git-all is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496026"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-cvs is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496017"/>
+       <criterion comment="git-cvs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496018"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-daemon is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496005"/>
+       <criterion comment="git-daemon is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-email is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496013"/>
+       <criterion comment="git-email is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-gui is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496021"/>
+       <criterion comment="git-gui is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496022"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-svn is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496009"/>
+       <criterion comment="git-svn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="gitk is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496019"/>
+       <criterion comment="gitk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496020"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="gitweb is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496023"/>
+       <criterion comment="gitweb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496024"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="perl-Git is earlier than 0:1.7.1-4.el6_7.1" test_ref="oval:com.redhat.rhsa:tst:20160496011"/>
+       <criterion comment="perl-Git is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496012"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="emacs-git is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496037"/>
+       <criterion comment="emacs-git is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496028"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="emacs-git-el is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496052"/>
+       <criterion comment="emacs-git-el is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496016"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496033"/>
+       <criterion comment="git is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-all is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496038"/>
+       <criterion comment="git-all is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496026"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-bzr is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496043"/>
+       <criterion comment="git-bzr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496044"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-cvs is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496039"/>
+       <criterion comment="git-cvs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496018"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-daemon is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496035"/>
+       <criterion comment="git-daemon is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-email is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496047"/>
+       <criterion comment="git-email is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-gui is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496036"/>
+       <criterion comment="git-gui is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496022"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-hg is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496048"/>
+       <criterion comment="git-hg is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496049"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-p4 is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496040"/>
+       <criterion comment="git-p4 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496041"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="git-svn is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496034"/>
+       <criterion comment="git-svn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="gitk is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496046"/>
+       <criterion comment="gitk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496020"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="gitweb is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496045"/>
+       <criterion comment="gitweb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496024"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="perl-Git is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496042"/>
+       <criterion comment="perl-Git is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="perl-Git-SVN is earlier than 0:1.8.3.1-6.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20160496050"/>
+       <criterion comment="perl-Git-SVN is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160496051"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -10790,6 +10965,182 @@ enhancement. The system must be rebooted for this update to take effect.</descri
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004016"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160494003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-daemon is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-daemon is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-svn is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-svn is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="perl-Git is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="perl-Git is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-email is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-email is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="emacs-git-el is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="emacs-git-el is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-cvs is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-cvs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="gitk is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="gitk is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-gui is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-gui is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="gitweb is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="gitweb is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496024" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-all is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-all is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496026" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="emacs-git is earlier than 0:1.7.1-4.el6_7.1" id="oval:com.redhat.rhsa:tst:20160496027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="emacs-git is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496028" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496033" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-svn is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496034" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-daemon is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496035" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-gui is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496036" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="emacs-git is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496037" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-all is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496038" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-cvs is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496039" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-p4 is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496040" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-p4 is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496041" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="perl-Git is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496042" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-bzr is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496043" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-bzr is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496044" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="gitweb is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496045" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="gitk is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496046" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-email is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496047" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-hg is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496048" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496019"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="git-hg is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496049" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496019"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="perl-Git-SVN is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496050" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496020"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="perl-Git-SVN is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160496051" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496020"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="emacs-git-el is earlier than 0:1.8.3.1-6.el7_2.1" id="oval:com.redhat.rhsa:tst:20160496052" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -11584,6 +11935,54 @@ enhancement. The system must be rebooted for this update to take effect.</descri
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160493011" version="601">
    <red-def:name>krb5</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496005" version="601">
+   <red-def:name>git-daemon</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496006" version="601">
+   <red-def:name>git</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496007" version="601">
+   <red-def:name>git-svn</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496008" version="601">
+   <red-def:name>perl-Git</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496009" version="601">
+   <red-def:name>git-email</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496010" version="601">
+   <red-def:name>emacs-git-el</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496011" version="601">
+   <red-def:name>git-cvs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496012" version="601">
+   <red-def:name>gitk</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496013" version="601">
+   <red-def:name>git-gui</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496014" version="601">
+   <red-def:name>gitweb</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496015" version="601">
+   <red-def:name>git-all</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496016" version="601">
+   <red-def:name>emacs-git</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496017" version="601">
+   <red-def:name>git-p4</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496018" version="601">
+   <red-def:name>git-bzr</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496019" version="601">
+   <red-def:name>git-hg</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496020" version="601">
+   <red-def:name>perl-Git-SVN</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -11906,6 +12305,12 @@ enhancement. The system must be rebooted for this update to take effect.</descri
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160494003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:2.6.32-573.22.1.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160496003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.7.1-4.el6_7.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160496005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.8.3.1-6.el7_2.1</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
