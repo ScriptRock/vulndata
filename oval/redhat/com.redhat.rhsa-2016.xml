@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-03-23T09:35:01</oval:timestamp>
+  <oval:timestamp>2016-03-24T19:09:02</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -7375,6 +7375,62 @@ contain backported patches to correct these issues.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160511" version="601">
+   <metadata>
+    <title>RHSA-2016:0511: java-1.7.0-openjdk security update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0511-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0511.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-0636" ref_url="https://access.redhat.com/security/cve/CVE-2016-0636" source="CVE"/>
+    <description>The java-1.7.0-openjdk packages provide the OpenJDK 7 Java Runtime Environment and the OpenJDK 7 Java Software Development Kit for compiling and executing Java programs.
+
+Security Fix(es):
+
+* An improper type safety check was discovered in the Hotspot component. An untrusted Java application or applet could use this flaw to bypass Java Sandbox restrictions. (CVE-2016-0636)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-03-24"/>
+     <updated date="2016-03-24"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0636">CVE-2016-0636</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1320650" id="1320650">CVE-2016-0636 OpenJDK: out-of-band urgent security fix (Hotspot, 8151666)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-openjdk is earlier than 1:1.7.0.99-2.6.5.0.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160511005"/>
+      <criterion comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.99-2.6.5.0.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160511009"/>
+      <criterion comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.99-2.6.5.0.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160511007"/>
+      <criterion comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.99-2.6.5.0.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160511013"/>
+      <criterion comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.99-2.6.5.0.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160511011"/>
+      <criterion comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160053006"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -11141,6 +11197,26 @@ contain backported patches to correct these issues.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160496010"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160496005"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk is earlier than 1:1.7.0.99-2.6.5.0.el6_7" id="oval:com.redhat.rhsa:tst:20160511005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160511003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.99-2.6.5.0.el6_7" id="oval:com.redhat.rhsa:tst:20160511007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160511003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.99-2.6.5.0.el6_7" id="oval:com.redhat.rhsa:tst:20160511009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160511003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.99-2.6.5.0.el6_7" id="oval:com.redhat.rhsa:tst:20160511011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160511003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.99-2.6.5.0.el6_7" id="oval:com.redhat.rhsa:tst:20160511013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160053009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160511003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -12311,6 +12387,9 @@ contain backported patches to correct these issues.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160496005" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:1.8.3.1-6.el7_2.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160511003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.7.0.99-2.6.5.0.el6_7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
