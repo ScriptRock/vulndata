@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-03-31T13:47:02</oval:timestamp>
+  <oval:timestamp>2016-03-31T18:03:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -7881,6 +7881,228 @@ Several flaws were found in the processing of malformed web content. A web page 
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160532" version="601">
+   <metadata>
+    <title>RHSA-2016:0532: krb5 security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0532-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0532.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-8629" ref_url="https://access.redhat.com/security/cve/CVE-2015-8629" source="CVE"/>
+    <reference ref_id="CVE-2015-8630" ref_url="https://access.redhat.com/security/cve/CVE-2015-8630" source="CVE"/>
+    <reference ref_id="CVE-2015-8631" ref_url="https://access.redhat.com/security/cve/CVE-2015-8631" source="CVE"/>
+    <description>Kerberos is a network authentication system, which can improve the security of your network by eliminating the insecure practice of sending passwords over the network in unencrypted form. It allows clients and servers to authenticate to each other with the help of a trusted third party, the Kerberos key distribution center (KDC).
+
+Security Fix(es):
+
+* A memory leak flaw was found in the krb5_unparse_name() function of the MIT Kerberos kadmind service. An authenticated attacker could repeatedly send specially crafted requests to the server, which could cause the server to consume large amounts of memory resources, ultimately leading to a denial of service due to memory exhaustion. (CVE-2015-8631)
+
+* An out-of-bounds read flaw was found in the kadmind service of MIT Kerberos. An authenticated attacker could send a maliciously crafted message to force kadmind to read beyond the end of allocated memory, and write the memory contents to the KDC database if the attacker has write permission, leading to information disclosure. (CVE-2015-8629)
+
+* A NULL pointer dereference flaw was found in the procedure used by the MIT Kerberos kadmind service to store policies: the kadm5_create_principal_3() and kadm5_modify_principal() function did not ensure that a policy was given when KADM5_POLICY was set. An authenticated attacker with permissions to modify the database could use this flaw to add or modify a principal with a policy set to NULL, causing the kadmind service to crash. (CVE-2015-8630)
+
+The CVE-2015-8631 issue was discovered by Simo Sorce of Red Hat.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-03-31"/>
+     <updated date="2016-03-31"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8629">CVE-2015-8629</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8630">CVE-2015-8630</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8631">CVE-2015-8631</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1302617" id="1302617">CVE-2015-8629 krb5: xdr_nullstring() doesn't check for terminating null character</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1302632" id="1302632">CVE-2015-8630 krb5: krb5 doesn't check for null policy when KADM5_POLICY is set in the mask</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1302642" id="1302642">CVE-2015-8631 krb5: Memory leak caused by supplying a null principal name in request</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="krb5 is earlier than 0:1.13.2-12.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160532017"/>
+      <criterion comment="krb5 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-devel is earlier than 0:1.13.2-12.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160532009"/>
+      <criterion comment="krb5-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-libs is earlier than 0:1.13.2-12.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160532005"/>
+      <criterion comment="krb5-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-pkinit is earlier than 0:1.13.2-12.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160532007"/>
+      <criterion comment="krb5-pkinit is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160532008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-server is earlier than 0:1.13.2-12.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160532013"/>
+      <criterion comment="krb5-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-server-ldap is earlier than 0:1.13.2-12.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160532015"/>
+      <criterion comment="krb5-server-ldap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="krb5-workstation is earlier than 0:1.13.2-12.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160532011"/>
+      <criterion comment="krb5-workstation is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160493010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160534" version="601">
+   <metadata>
+    <title>RHSA-2016:0534: mariadb security and bug fix update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0534-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0534.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-4792" ref_url="https://access.redhat.com/security/cve/CVE-2015-4792" source="CVE"/>
+    <reference ref_id="CVE-2015-4802" ref_url="https://access.redhat.com/security/cve/CVE-2015-4802" source="CVE"/>
+    <reference ref_id="CVE-2015-4815" ref_url="https://access.redhat.com/security/cve/CVE-2015-4815" source="CVE"/>
+    <reference ref_id="CVE-2015-4816" ref_url="https://access.redhat.com/security/cve/CVE-2015-4816" source="CVE"/>
+    <reference ref_id="CVE-2015-4819" ref_url="https://access.redhat.com/security/cve/CVE-2015-4819" source="CVE"/>
+    <reference ref_id="CVE-2015-4826" ref_url="https://access.redhat.com/security/cve/CVE-2015-4826" source="CVE"/>
+    <reference ref_id="CVE-2015-4830" ref_url="https://access.redhat.com/security/cve/CVE-2015-4830" source="CVE"/>
+    <reference ref_id="CVE-2015-4836" ref_url="https://access.redhat.com/security/cve/CVE-2015-4836" source="CVE"/>
+    <reference ref_id="CVE-2015-4858" ref_url="https://access.redhat.com/security/cve/CVE-2015-4858" source="CVE"/>
+    <reference ref_id="CVE-2015-4861" ref_url="https://access.redhat.com/security/cve/CVE-2015-4861" source="CVE"/>
+    <reference ref_id="CVE-2015-4870" ref_url="https://access.redhat.com/security/cve/CVE-2015-4870" source="CVE"/>
+    <reference ref_id="CVE-2015-4879" ref_url="https://access.redhat.com/security/cve/CVE-2015-4879" source="CVE"/>
+    <reference ref_id="CVE-2015-4913" ref_url="https://access.redhat.com/security/cve/CVE-2015-4913" source="CVE"/>
+    <reference ref_id="CVE-2016-0505" ref_url="https://access.redhat.com/security/cve/CVE-2016-0505" source="CVE"/>
+    <reference ref_id="CVE-2016-0546" ref_url="https://access.redhat.com/security/cve/CVE-2016-0546" source="CVE"/>
+    <reference ref_id="CVE-2016-0596" ref_url="https://access.redhat.com/security/cve/CVE-2016-0596" source="CVE"/>
+    <reference ref_id="CVE-2016-0597" ref_url="https://access.redhat.com/security/cve/CVE-2016-0597" source="CVE"/>
+    <reference ref_id="CVE-2016-0598" ref_url="https://access.redhat.com/security/cve/CVE-2016-0598" source="CVE"/>
+    <reference ref_id="CVE-2016-0600" ref_url="https://access.redhat.com/security/cve/CVE-2016-0600" source="CVE"/>
+    <reference ref_id="CVE-2016-0606" ref_url="https://access.redhat.com/security/cve/CVE-2016-0606" source="CVE"/>
+    <reference ref_id="CVE-2016-0608" ref_url="https://access.redhat.com/security/cve/CVE-2016-0608" source="CVE"/>
+    <reference ref_id="CVE-2016-0609" ref_url="https://access.redhat.com/security/cve/CVE-2016-0609" source="CVE"/>
+    <reference ref_id="CVE-2016-0616" ref_url="https://access.redhat.com/security/cve/CVE-2016-0616" source="CVE"/>
+    <reference ref_id="CVE-2016-2047" ref_url="https://access.redhat.com/security/cve/CVE-2016-2047" source="CVE"/>
+    <description>MariaDB is a multi-user, multi-threaded SQL database server that is binary compatible with MySQL.
+
+The following packages have been upgraded to a newer upstream version: MariaDB (5.5.47). Refer to the MariaDB Release Notes listed in the References section for a complete list of changes.
+
+Security Fix(es):
+
+* It was found that the MariaDB client library did not properly check host names against server identities noted in the X.509 certificates when establishing secure connections using TLS/SSL. A man-in-the-middle attacker could possibly use this flaw to impersonate a server to a client. (CVE-2016-2047)
+
+* This update fixes several vulnerabilities in the MariaDB database server. Information about these flaws can be found on the Oracle Critical Patch Update Advisory page, listed in the References section. (CVE-2015-4792, CVE-2015-4802, CVE-2015-4815, CVE-2015-4816, CVE-2015-4819, CVE-2015-4826, CVE-2015-4830, CVE-2015-4836, CVE-2015-4858, CVE-2015-4861, CVE-2015-4870, CVE-2015-4879, CVE-2015-4913, CVE-2016-0505, CVE-2016-0546, CVE-2016-0596, CVE-2016-0597, CVE-2016-0598, CVE-2016-0600, CVE-2016-0606, CVE-2016-0608, CVE-2016-0609, CVE-2016-0616)
+
+Bug Fix(es):
+
+* When more than one INSERT operation was executed concurrently on a non-empty InnoDB table with an AUTO_INCREMENT column defined as a primary key immediately after starting MariaDB, a race condition could occur. As a consequence, one of the concurrent INSERT operations failed with a &quot;Duplicate key&quot; error message. A patch has been applied to prevent the race condition. Now, each row inserted as a result of the concurrent INSERT operations receives a unique primary key, and the operations no longer fail in this scenario. (BZ#1303946)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-03-31"/>
+     <updated date="2016-03-31"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4792">CVE-2015-4792</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4802">CVE-2015-4802</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4815">CVE-2015-4815</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4816">CVE-2015-4816</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4819">CVE-2015-4819</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4826">CVE-2015-4826</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4830">CVE-2015-4830</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4836">CVE-2015-4836</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4858">CVE-2015-4858</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4861">CVE-2015-4861</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4870">CVE-2015-4870</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4879">CVE-2015-4879</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-4913">CVE-2015-4913</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0505">CVE-2016-0505</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0546">CVE-2016-0546</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0596">CVE-2016-0596</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0597">CVE-2016-0597</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0598">CVE-2016-0598</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0600">CVE-2016-0600</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0606">CVE-2016-0606</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0608">CVE-2016-0608</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0609">CVE-2016-0609</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0616">CVE-2016-0616</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-2047">CVE-2016-2047</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1274752" id="1274752">CVE-2015-4792 mysql: unspecified vulnerability related to Server:Partition (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274756" id="1274756">CVE-2015-4802 mysql: unspecified vulnerability related to Server:Partition (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274759" id="1274759">CVE-2015-4815 mysql: unspecified vulnerability related to Server:DDL (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274761" id="1274761">CVE-2015-4816 mysql: unspecified vulnerability related to Server:InnoDB (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274764" id="1274764">CVE-2015-4819 mysql: unspecified vulnerability related to Client programs (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274766" id="1274766">CVE-2015-4826 mysql: unspecified vulnerability related to Server:Types (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274767" id="1274767">CVE-2015-4830 mysql: unspecified vulnerability related to Server:Security:Privileges (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274771" id="1274771">CVE-2015-4836 mysql: unspecified vulnerability related to Server:SP (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274773" id="1274773">CVE-2015-4858 mysql: unspecified vulnerability related to Server:DML (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274776" id="1274776">CVE-2015-4861 mysql: unspecified vulnerability related to Server:InnoDB (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274781" id="1274781">CVE-2015-4870 mysql: unspecified vulnerability related to Server:Parser (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274783" id="1274783">CVE-2015-4879 mysql: unspecified vulnerability related to Server:DML (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1274794" id="1274794">CVE-2015-4913 mysql: unspecified vulnerability related to Server:DML (CPU October 2015)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301492" id="1301492">CVE-2016-0505 mysql: unspecified vulnerability in subcomponent: Server: Options (CPU January 2016)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301493" id="1301493">CVE-2016-0546 mysql: unspecified vulnerability in subcomponent: Client (CPU January 2016)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301496" id="1301496">CVE-2016-0596 mysql: unspecified vulnerability in subcomponent: Server: DML (CPU January 2016)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301497" id="1301497">CVE-2016-0597 mysql: unspecified vulnerability in subcomponent: Server: Optimizer (CPU January 2016)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301498" id="1301498">CVE-2016-0598 mysql: unspecified vulnerability in subcomponent: Server: DML (CPU January 2016)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301501" id="1301501">CVE-2016-0600 mysql: unspecified vulnerability in subcomponent: Server: InnoDB (CPU January 2016)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301504" id="1301504">CVE-2016-0606 mysql: unspecified vulnerability in subcomponent: Server: Security: Encryption (CPU January 2016)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301506" id="1301506">CVE-2016-0608 mysql: unspecified vulnerability in subcomponent: Server: UDF (CPU January 2016)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301507" id="1301507">CVE-2016-0609 mysql: unspecified vulnerability in subcomponent: Server: Security: Privileges (CPU January 2016)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301510" id="1301510">CVE-2016-0616 mysql: unspecified vulnerability in subcomponent: Server: Optimizer (CPU January 2016)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1301874" id="1301874">CVE-2016-2047 mysql: ssl-validate-cert incorrect hostname check</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1303946" id="1303946">Duplicate key with auto increment</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="mariadb is earlier than 1:5.5.47-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160534009"/>
+      <criterion comment="mariadb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160534010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mariadb-bench is earlier than 1:5.5.47-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160534011"/>
+      <criterion comment="mariadb-bench is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160534012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mariadb-devel is earlier than 1:5.5.47-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160534005"/>
+      <criterion comment="mariadb-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160534006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mariadb-embedded is earlier than 1:5.5.47-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160534007"/>
+      <criterion comment="mariadb-embedded is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160534008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mariadb-embedded-devel is earlier than 1:5.5.47-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160534019"/>
+      <criterion comment="mariadb-embedded-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160534020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mariadb-libs is earlier than 1:5.5.47-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160534017"/>
+      <criterion comment="mariadb-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160534018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mariadb-server is earlier than 1:5.5.47-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160534013"/>
+      <criterion comment="mariadb-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160534014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mariadb-test is earlier than 1:5.5.47-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160534015"/>
+      <criterion comment="mariadb-test is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160534016"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160561" version="601">
    <metadata>
     <title>RHSA-2016:0561: Red Hat Enterprise Linux 5 One-Year Retirement Notice (Low)</title>
@@ -11936,6 +12158,102 @@ https://access.redhat.com/site/support/policy/updates/errata/</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160072005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160525003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-libs is earlier than 0:1.13.2-12.el7_2" id="oval:com.redhat.rhsa:tst:20160532005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160532003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-pkinit is earlier than 0:1.13.2-12.el7_2" id="oval:com.redhat.rhsa:tst:20160532007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160532006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160532003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-pkinit is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160532008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160532006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-devel is earlier than 0:1.13.2-12.el7_2" id="oval:com.redhat.rhsa:tst:20160532009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160532003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-workstation is earlier than 0:1.13.2-12.el7_2" id="oval:com.redhat.rhsa:tst:20160532011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160532003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-server is earlier than 0:1.13.2-12.el7_2" id="oval:com.redhat.rhsa:tst:20160532013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160532003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5-server-ldap is earlier than 0:1.13.2-12.el7_2" id="oval:com.redhat.rhsa:tst:20160532015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160532003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="krb5 is earlier than 0:1.13.2-12.el7_2" id="oval:com.redhat.rhsa:tst:20160532017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160493011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160532003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-devel is earlier than 1:5.5.47-1.el7_2" id="oval:com.redhat.rhsa:tst:20160534005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160534003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160534006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-embedded is earlier than 1:5.5.47-1.el7_2" id="oval:com.redhat.rhsa:tst:20160534007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160534003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-embedded is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160534008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb is earlier than 1:5.5.47-1.el7_2" id="oval:com.redhat.rhsa:tst:20160534009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160534003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160534010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-bench is earlier than 1:5.5.47-1.el7_2" id="oval:com.redhat.rhsa:tst:20160534011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160534003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-bench is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160534012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-server is earlier than 1:5.5.47-1.el7_2" id="oval:com.redhat.rhsa:tst:20160534013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160534003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-server is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160534014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-test is earlier than 1:5.5.47-1.el7_2" id="oval:com.redhat.rhsa:tst:20160534015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160534003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-test is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160534016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-libs is earlier than 1:5.5.47-1.el7_2" id="oval:com.redhat.rhsa:tst:20160534017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160534003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-libs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160534018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-embedded-devel is earlier than 1:5.5.47-1.el7_2" id="oval:com.redhat.rhsa:tst:20160534019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160534003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mariadb-embedded-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20160534020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160534012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="redhat-release is earlier than 0:5Server-5.11.0.3" id="oval:com.redhat.rhsa:tst:20160561002" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160001001"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160561003"/>
@@ -12790,6 +13108,33 @@ https://access.redhat.com/site/support/policy/updates/errata/</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160496020" version="601">
    <red-def:name>perl-Git-SVN</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160532006" version="601">
+   <red-def:name>krb5-pkinit</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160534005" version="601">
+   <red-def:name>mariadb-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160534006" version="601">
+   <red-def:name>mariadb-embedded</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160534007" version="601">
+   <red-def:name>mariadb</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160534008" version="601">
+   <red-def:name>mariadb-bench</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160534009" version="601">
+   <red-def:name>mariadb-server</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160534010" version="601">
+   <red-def:name>mariadb-test</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160534011" version="601">
+   <red-def:name>mariadb-libs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160534012" version="601">
+   <red-def:name>mariadb-embedded-devel</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -13142,6 +13487,12 @@ https://access.redhat.com/site/support/policy/updates/errata/</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160525003" version="602">
    <red-def:evr datatype="evr_string" operation="less than">0:49.0.2623.108-1.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160532003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.13.2-12.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160534003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:5.5.47-1.el7_2</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160561003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:5Server-5.11.0.3</red-def:evr>
