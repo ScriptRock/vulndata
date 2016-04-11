@@ -2697,6 +2697,310 @@
 		    </criteria>
 		  </criteria>
 		</definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.cisecurity:def:452" version="1">
+		  <metadata>
+		    <title>Windows Journal DoS Vulnerability – CVE-2015-2514 (MS15-098)</title>
+		    <affected family="windows">
+		      <platform>Microsoft Windows Vista</platform>
+		      <platform>Microsoft Windows Server 2008</platform>
+		      <platform>Microsoft Windows 7</platform>
+		      <platform>Microsoft Windows Server 2008 R2</platform>
+		      <platform>Microsoft Windows 8</platform>
+		      <platform>Microsoft Windows Server 2012</platform>
+		      <platform>Microsoft Windows 8.1</platform>
+		      <platform>Microsoft Windows Server 2012 R2</platform>
+		      <platform>Microsoft Windows 10</platform>
+		    </affected>
+		    <reference ref_id="CVE-2015-2514" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2015-2514" source="CVE" />
+		    <description>Windows Journal in Microsoft Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT Gold and 8.1, and Windows 10 allows remote attackers to execute arbitrary code via a crafted .jnt file, aka "Windows Journal RCE Vulnerability," a different vulnerability than CVE-2015-2513 and CVE-2015-2530.</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2016-04-08T17:00:00+08:00">
+		          <contributor organization="The Depository Trust and Clearing Corporation">Jeff Albert</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria comment="vulnerable OS + vulnerable journal.dll version" operator="OR">
+		    <criteria comment="Vista/2008 + journal.dll version" operator="AND">
+		      <criteria comment="Vista/2008" operator="OR">
+		        <extend_definition comment="Microsoft Windows Vista is installed" definition_ref="oval:org.mitre.oval:def:228" />
+		        <extend_definition comment="Microsoft Windows Server 2008 is installed" definition_ref="oval:org.mitre.oval:def:12824" />
+		      </criteria>
+		      <criteria comment="vulnerable journal.dll version" operator="OR">
+		        <criterion comment="Check if the version of journal.dll is less than 6.0.6002.19465" test_ref="oval:org.cisecurity:tst:742" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if the version of journal.dll is less than 6.0.6002.23774" test_ref="oval:org.cisecurity:tst:727" />
+		          <criterion comment="Check if the version of journal.dll is greater than or equal to 6.0.6002.23000" test_ref="oval:org.mitre.oval:tst:138660" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="Win7/2008 R2 + journal.dll version" operator="AND">
+		      <criteria comment="Win7/2008 R2" operator="OR">
+		        <extend_definition comment="Microsoft Windows 7 is installed" definition_ref="oval:org.mitre.oval:def:12541" />
+		        <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
+		      </criteria>
+		      <criteria comment="vulnerable journal.dll version" operator="OR">
+		        <criterion comment="Check if the version of journal.dll is less than 6.1.7601.18951" test_ref="oval:org.cisecurity:tst:731" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if the version of journal.dll is less than 6.1.7601.23154" test_ref="oval:org.cisecurity:tst:736" />
+		          <criterion comment="Check if the version of Journal.dll is greater than or equal to 6.1.7601.23000" test_ref="oval:org.mitre.oval:tst:138508" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="Win8/2012 + journal.dll version" operator="AND">
+		      <criteria comment="Win8/2012" operator="OR">
+		        <extend_definition comment="Microsoft Windows 8 is installed" definition_ref="oval:org.mitre.oval:def:15732" />
+		        <extend_definition comment="Microsoft Windows Server 2012 is installed" definition_ref="oval:org.mitre.oval:def:16359" />
+		      </criteria>
+		      <criteria comment="vulnerable journal.dll version" operator="OR">
+		        <criterion comment="Check if the version of journal.dll is less than 6.2.9200.17467" test_ref="oval:org.cisecurity:tst:738" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if the version of journal.dll is less than 6.2.9200.21581" test_ref="oval:org.cisecurity:tst:730" />
+		          <criterion comment="Check if the version of Journal.dll is greater than or equal to 6.2.9200.21000" test_ref="oval:org.mitre.oval:tst:138277" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="Win8.1/2012 R2 + journal.dll version" operator="AND">
+		      <criteria comment="Win8.1/2012 R2" operator="OR">
+		        <extend_definition comment="Microsoft Windows 8.1 is installed" definition_ref="oval:org.mitre.oval:def:18863" />
+		        <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+		      </criteria>
+		      <criterion comment="Check if the version of journal.dll is less than 6.3.9600.18005" test_ref="oval:org.cisecurity:tst:729" />
+		    </criteria>
+		    <criteria comment="Win10 + journal.dll version" operator="AND">
+		      <extend_definition comment="Microsoft Windows 10 is installed" definition_ref="oval:org.mitre.oval:def:28545" />
+		      <criterion comment="Check if the version of journal.dll is less than 10.0.10240.16485" test_ref="oval:org.cisecurity:tst:732" />
+		    </criteria>
+		  </criteria>
+		</definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.cisecurity:def:453" version="1">
+		  <metadata>
+		    <title>Memory Corruption Vulnerability – CVE-2015-2502 (MS15-093)</title>
+		    <affected family="windows">
+		      <platform>Microsoft Windows Vista</platform>
+		      <platform>Microsoft Windows Server 2008</platform>
+		      <platform>Microsoft Windows 7</platform>
+		      <platform>Microsoft Windows Server 2008 R2</platform>
+		      <platform>Microsoft Windows 8</platform>
+		      <platform>Microsoft Windows Server 2012</platform>
+		      <platform>Microsoft Windows 8.1</platform>
+		      <platform>Microsoft Windows Server 2012 R2</platform>
+		      <platform>Microsoft Windows 10</platform>
+		      <product>Microsoft Internet Explorer 7</product>
+		      <product>Microsoft Internet Explorer 8</product>
+		      <product>Microsoft Internet Explorer 9</product>
+		      <product>Microsoft Internet Explorer 10</product>
+		      <product>Microsoft Internet Explorer 11</product>
+		    </affected>
+		    <reference ref_id="CVE-2015-2502" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2502" source="CVE" />
+		    <description>Microsoft Internet Explorer 7 through 11 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka "Memory Corruption Vulnerability," as exploited in the wild in August 2015.</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2016-03-30T09:44:37+00:00">
+		          <contributor organization="DTCC">Alexander Chua</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria comment="Check for installation of vulnerable IE + vulnerable Windows OS + vulnerable file version" operator="OR">
+		    <criteria comment="IE7 is installed + Windows OS + file version" operator="AND">
+		      <extend_definition comment="Microsoft Internet Explorer 7 is installed" definition_ref="oval:org.mitre.oval:def:627" />
+		      <criteria comment="Microsoft Windows Vista/Server 2008 is installed" operator="OR">
+		        <extend_definition comment="Microsoft Windows Vista (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1282" />
+		        <extend_definition comment="Microsoft Windows Vista x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:2041" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
+		      </criteria>
+		      <criteria comment="Check for file version" operator="OR">
+		        <criterion comment="Check if mshtml.dll version is less than 7.0.6002.19475" test_ref="oval:org.cisecurity:tst:743" />
+		        <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+		          <criterion comment="Check if mshtml.dll version is greater than or equal to 7.0.6002.23000" test_ref="oval:org.cisecurity:tst:577" />
+		          <criterion comment="Check if mshtml.dll version is less than 7.0.6002.23782" test_ref="oval:org.cisecurity:tst:744" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="IE8 is installed + Windows OS + file version" operator="AND">
+		      <extend_definition comment="Microsoft Internet Explorer 8 is installed" definition_ref="oval:org.mitre.oval:def:6210" />
+		      <criteria comment="Windows OS is installed + file version" operator="OR">
+		        <criteria comment="Microsoft Windows Vista/Server 2008 is installed + file version" operator="AND">
+		          <criteria comment="Microsoft Windows Vista/Server 2008 is installed" operator="OR">
+		            <extend_definition comment="Microsoft Windows Vista (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1282" />
+		            <extend_definition comment="Microsoft Windows Vista x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:2041" />
+		            <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+		            <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+		          </criteria>
+		          <criteria comment="Check for file version" operator="OR">
+		            <criterion comment="Check if mshtml.dll version is less than 8.0.6001.19674" test_ref="oval:org.cisecurity:tst:734" />
+		            <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+		              <criterion comment="Check if mshtml.dll version is greater than or equal to 8.0.6001.23000" test_ref="oval:org.cisecurity:tst:578" />
+		              <criterion comment="Check if mshtml.dll version is less than 8.0.6001.23733" test_ref="oval:org.cisecurity:tst:728" />
+		            </criteria>
+		          </criteria>
+		        </criteria>
+		        <criteria comment="Microsoft Windows 7/Server 2008 R2 is installed + file version" operator="AND">
+		          <criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+		            <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+		            <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+		            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:6438" />
+		            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
+		          </criteria>
+		          <criteria comment="Check for file version" operator="OR">
+		            <criterion comment="Check if mshtml.dll version is less than 8.0.7601.18968" test_ref="oval:org.cisecurity:tst:745" />
+		            <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+		              <criterion comment="Check if mshtml.dll version is greater than or equal to 8.0.7601.23000" test_ref="oval:org.cisecurity:tst:573" />
+		              <criterion comment="Check if mshtml.dll version is less than 8.0.7601.23171" test_ref="oval:org.cisecurity:tst:739" />
+		            </criteria>
+		          </criteria>
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="IE9 is installed + Windows OS + file version" operator="AND">
+		      <extend_definition comment="Microsoft Internet Explorer 9 is installed" definition_ref="oval:org.mitre.oval:def:11985" />
+		      <criteria comment="Microsoft Windows Vista/Server 2008/7/Server 2008 R2 is installed" operator="OR">
+		        <extend_definition comment="Microsoft Windows Vista (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:1282" />
+		        <extend_definition comment="Microsoft Windows Vista x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:2041" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+		        <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+		        <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+		        <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+		        <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:6438" />
+		      </criteria>
+		      <criteria comment="Check for file version" operator="OR">
+		        <criterion comment="Check if mshtml.dll version is less than 9.0.8112.16685" test_ref="oval:org.cisecurity:tst:733" />
+		        <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+		          <criterion comment="Check if mshtml.dll version is greater than or equal to 9.0.8112.20000" test_ref="oval:org.cisecurity:tst:459" />
+		          <criterion comment="Check if mshtml.dll version is less than 9.0.8112.20800" test_ref="oval:org.cisecurity:tst:737" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="IE10 is installed + Windows OS + file version" operator="AND">
+		      <extend_definition comment="Microsoft Internet Explorer 10 is installed" definition_ref="oval:org.mitre.oval:def:15751" />
+		      <criteria comment="Microsoft Windows 7/Server 2008 R2/8/Server 2012 is installed" operator="OR">
+		        <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+		        <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+		        <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:6438" />
+		        <extend_definition comment="Microsoft Windows 8 (x86) is installed" definition_ref="oval:org.mitre.oval:def:14914" />
+		        <extend_definition comment="Microsoft Windows 8 (x64) is installed" definition_ref="oval:org.mitre.oval:def:15571" />
+		        <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+		      </criteria>
+		      <criteria comment="Check for file version" operator="OR">
+		        <criterion comment="Check if mshtml.dll version is less than 10.0.9200.17479" test_ref="oval:org.cisecurity:tst:740" />
+		        <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+		          <criterion comment="Check if mshtml.dll version is greater than or equal to 10.0.9200.21000" test_ref="oval:org.cisecurity:tst:564" />
+		          <criterion comment="Check if mshtml.dll version is less than 10.0.9200.21595" test_ref="oval:org.cisecurity:tst:741" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="IE11 is installed + Windows OS + file version" operator="AND">
+		      <extend_definition comment="Microsoft Internet Explorer 11 is installed" definition_ref="oval:org.mitre.oval:def:18343" />
+		      <criteria comment="Windows OS is installed + file version" operator="OR">
+		        <criteria comment="Microsoft Windows 7/Server 2008 R2/8.1/Server 2012 R2 is installed + file version" operator="AND">
+		          <criteria comment="Microsoft Windows 7/Server 2008 R2/8.1/Server 2012 R2 is installed" operator="OR">
+		            <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+		            <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+		            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:6438" />
+		            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+		            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+		            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+		          </criteria>
+		          <criterion comment="Check if the version of mshtml.dll is less than 11.0.9600.17963" test_ref="oval:org.cisecurity:tst:726" />
+		        </criteria>
+		        <criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+		          <criteria comment="Microsoft Windows 10 is installed" operator="OR">
+		            <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+		            <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+		          </criteria>
+		          <criterion comment="Check if the version of mshtml.dll is less than 11.0.10240.16445" test_ref="oval:org.cisecurity:tst:735" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		  </criteria>
+		</definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.cisecurity:def:454" version="1">
+		  <metadata>
+		    <title>Windows Journal DoS Vulnerability – CVE-2015-2516 (MS15-098)</title>
+		    <affected family="windows">
+		      <platform>Microsoft Windows Vista</platform>
+		      <platform>Microsoft Windows Server 2008</platform>
+		      <platform>Microsoft Windows 7</platform>
+		      <platform>Microsoft Windows Server 2008 R2</platform>
+		      <platform>Microsoft Windows 8</platform>
+		      <platform>Microsoft Windows Server 2012</platform>
+		      <platform>Microsoft Windows 8.1</platform>
+		      <platform>Microsoft Windows Server 2012 R2</platform>
+		      <platform>Microsoft Windows 10</platform>
+		    </affected>
+		    <reference ref_id="CVE-2015-2516" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2516" source="CVE" />
+		    <description>Windows Journal in Microsoft Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT Gold and 8.1, and Windows 10 allows remote attackers to cause a denial of service (data loss) via a crafted .jnt file, aka "Windows Journal DoS Vulnerability."</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2016-04-08T17:00:00+08:00">
+		          <contributor organization="The Depository Trust and Clearing Corporation">Jeff Albert</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria comment="vulnerable OS + vulnerable journal.dll version" operator="OR">
+		    <criteria comment="Vista/2008 + journal.dll version" operator="AND">
+		      <criteria comment="Vista/2008" operator="OR">
+		        <extend_definition comment="Microsoft Windows Vista is installed" definition_ref="oval:org.mitre.oval:def:228" />
+		        <extend_definition comment="Microsoft Windows Server 2008 is installed" definition_ref="oval:org.mitre.oval:def:12824" />
+		      </criteria>
+		      <criteria comment="vulnerable journal.dll version" operator="OR">
+		        <criterion comment="Check if the version of journal.dll is less than 6.0.6002.19465" test_ref="oval:org.cisecurity:tst:742" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if the version of journal.dll is less than 6.0.6002.23774" test_ref="oval:org.cisecurity:tst:727" />
+		          <criterion comment="Check if the version of journal.dll is greater than or equal to 6.0.6002.23000" test_ref="oval:org.mitre.oval:tst:138660" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="Win7/2008 R2 + journal.dll version" operator="AND">
+		      <criteria comment="Win7/2008 R2" operator="OR">
+		        <extend_definition comment="Microsoft Windows 7 is installed" definition_ref="oval:org.mitre.oval:def:12541" />
+		        <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
+		      </criteria>
+		      <criteria comment="vulnerable journal.dll version" operator="OR">
+		        <criterion comment="Check if the version of journal.dll is less than 6.1.7601.18951" test_ref="oval:org.cisecurity:tst:731" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if the version of journal.dll is less than 6.1.7601.23154" test_ref="oval:org.cisecurity:tst:736" />
+		          <criterion comment="Check if the version of Journal.dll is greater than or equal to 6.1.7601.23000" test_ref="oval:org.mitre.oval:tst:138508" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="Win8/2012 + journal.dll version" operator="AND">
+		      <criteria comment="Win8/2012" operator="OR">
+		        <extend_definition comment="Microsoft Windows 8 is installed" definition_ref="oval:org.mitre.oval:def:15732" />
+		        <extend_definition comment="Microsoft Windows Server 2012 is installed" definition_ref="oval:org.mitre.oval:def:16359" />
+		      </criteria>
+		      <criteria comment="vulnerable journal.dll version" operator="OR">
+		        <criterion comment="Check if the version of journal.dll is less than 6.2.9200.17467" test_ref="oval:org.cisecurity:tst:738" />
+		        <criteria comment="Check for LDR" operator="AND">
+		          <criterion comment="Check if the version of journal.dll is less than 6.2.9200.21581" test_ref="oval:org.cisecurity:tst:730" />
+		          <criterion comment="Check if the version of Journal.dll is greater than or equal to 6.2.9200.21000" test_ref="oval:org.mitre.oval:tst:138277" />
+		        </criteria>
+		      </criteria>
+		    </criteria>
+		    <criteria comment="Win8.1/2012 R2 + journal.dll version" operator="AND">
+		      <criteria comment="Win8.1/2012 R2" operator="OR">
+		        <extend_definition comment="Microsoft Windows 8.1 is installed" definition_ref="oval:org.mitre.oval:def:18863" />
+		        <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+		      </criteria>
+		      <criterion comment="Check if the version of journal.dll is less than 6.3.9600.18005" test_ref="oval:org.cisecurity:tst:729" />
+		    </criteria>
+		    <criteria comment="Win10 + journal.dll version" operator="AND">
+		      <extend_definition comment="Microsoft Windows 10 is installed" definition_ref="oval:org.mitre.oval:def:28545" />
+		      <criterion comment="Check if the version of journal.dll is less than 10.0.10240.16485" test_ref="oval:org.cisecurity:tst:732" />
+		    </criteria>
+		  </criteria>
+		</definition>
     <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.mitre.oval:def:228" version="5">
 		  <oval-def:metadata>
 		    <oval-def:title>Microsoft Windows Vista is installed</oval-def:title>
@@ -4367,6 +4671,86 @@
 		  <object object_ref="oval:org.mitre.oval:obj:12044" />
 		  <state state_ref="oval:org.cisecurity:ste:602" />
 		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 11.0.9600.17963" id="oval:org.cisecurity:tst:726" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:608" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of journal.dll is less than 6.0.6002.23774" id="oval:org.cisecurity:tst:727" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.cisecurity:ste:625" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 8.0.6001.23733" id="oval:org.cisecurity:tst:728" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:612" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of journal.dll is less than 6.3.9600.18005" id="oval:org.cisecurity:tst:729" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.cisecurity:ste:620" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of journal.dll is less than 6.2.9200.21581" id="oval:org.cisecurity:tst:730" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.cisecurity:ste:616" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of journal.dll is less than 6.1.7601.18951" id="oval:org.cisecurity:tst:731" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.cisecurity:ste:623" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of journal.dll is less than 10.0.10240.16485" id="oval:org.cisecurity:tst:732" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.cisecurity:ste:617" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 9.0.8112.16685" id="oval:org.cisecurity:tst:733" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:622" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 8.0.6001.19674" id="oval:org.cisecurity:tst:734" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:619" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 11.0.10240.16445" id="oval:org.cisecurity:tst:735" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:607" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of journal.dll is less than 6.1.7601.23154" id="oval:org.cisecurity:tst:736" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.cisecurity:ste:609" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 9.0.8112.20800" id="oval:org.cisecurity:tst:737" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:615" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of journal.dll is less than 6.2.9200.17467" id="oval:org.cisecurity:tst:738" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.cisecurity:ste:618" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 8.0.7601.23171" id="oval:org.cisecurity:tst:739" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:621" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 10.0.9200.17479" id="oval:org.cisecurity:tst:740" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:626" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 10.0.9200.21595" id="oval:org.cisecurity:tst:741" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:611" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of journal.dll is less than 6.0.6002.19465" id="oval:org.cisecurity:tst:742" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.cisecurity:ste:613" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 7.0.6002.19475" id="oval:org.cisecurity:tst:743" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:624" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 7.0.6002.23782" id="oval:org.cisecurity:tst:744" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:614" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is less than 8.0.7601.18968" id="oval:org.cisecurity:tst:745" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:222" />
+		  <state state_ref="oval:org.cisecurity:ste:610" />
+		</file_test>
     <family_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="only one" check_existence="at_least_one_exists" comment="the installed operating system is part of the Microsoft Windows family" id="oval:org.mitre.oval:tst:99" version="1">
 		  <object object_ref="oval:org.mitre.oval:obj:99" />
 		  <state state_ref="oval:org.mitre.oval:ste:99" />
@@ -4467,9 +4851,21 @@
 		  <object object_ref="oval:org.mitre.oval:obj:7742" />
 		  <state state_ref="oval:org.mitre.oval:ste:38405" />
 		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of Journal.dll is greater than or equal to 6.2.9200.21000" id="oval:org.mitre.oval:tst:138277" version="2">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.mitre.oval:ste:30959" />
+		</file_test>
     <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of jscript.dll is greater than or equal to 5.8.7601.20000" id="oval:org.mitre.oval:tst:138493" version="6">
 		  <object object_ref="oval:org.mitre.oval:obj:564" />
 		  <state state_ref="oval:org.mitre.oval:ste:11575" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of Journal.dll is greater than or equal to 6.1.7601.23000" id="oval:org.mitre.oval:tst:138508" version="2">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.mitre.oval:ste:38287" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if the version of journal.dll is greater than or equal to 6.0.6002.23000" id="oval:org.mitre.oval:tst:138660" version="2">
+		  <object object_ref="oval:org.mitre.oval:obj:44161" />
+		  <state state_ref="oval:org.mitre.oval:ste:20865" />
 		</file_test>
     <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="at least one" check_existence="at_least_one_exists" comment="JScript 5.8 is installed" id="oval:org.mitre.oval:tst:138951" version="6">
 		  <object object_ref="oval:org.mitre.oval:obj:564" />
@@ -4523,6 +4919,11 @@
 		  <key>SOFTWARE\Microsoft\Internet Explorer</key>
 		  <name>Version</name>
 		</registry_object>
+    <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="The registry key that identifies the location of the common files directory." id="oval:org.mitre.oval:obj:281" version="1">
+		  <hive>HKEY_LOCAL_MACHINE</hive>
+		  <key>SOFTWARE\Microsoft\Windows\CurrentVersion</key>
+		  <name>CommonFilesDir</name>
+		</registry_object>
     <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:obj:564" version="4">
 		  <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
 		  <filename>Jscript.dll</filename>
@@ -4558,6 +4959,10 @@
 		  <key>SOFTWARE\Microsoft\Internet Explorer</key>
 		  <name>svcVersion</name>
 		</registry_object>
+    <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Path to Journal.dll" id="oval:org.mitre.oval:obj:44161" version="2">
+		  <path var_check="all" var_ref="oval:org.mitre.oval:var:1474" />
+		  <filename>Journal.dll</filename>
+		</file_object>
   </objects>
   <states>
     <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is less than 9.0.8112.20832" id="oval:org.cisecurity:ste:416" version="1">
@@ -4854,6 +5259,66 @@
     <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 11.0.10240.16445" id="oval:org.cisecurity:ste:606" version="1">
 		  <version datatype="version" operation="less than">11.0.10240.16445</version>
 		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 11.0.10240.16445" id="oval:org.cisecurity:ste:607" version="1">
+		  <version datatype="version" operation="less than">11.0.10240.16445</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 11.0.9600.17963" id="oval:org.cisecurity:ste:608" version="1">
+		  <version datatype="version" operation="less than">11.0.9600.17963</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is less than 6.1.7601.23154" id="oval:org.cisecurity:ste:609" version="1">
+		  <version datatype="version" operation="less than">6.1.7601.23154</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 8.0.7601.18968" id="oval:org.cisecurity:ste:610" version="1">
+		  <version datatype="version" operation="less than">8.0.7601.18968</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 10.0.9200.21595" id="oval:org.cisecurity:ste:611" version="1">
+		  <version datatype="version" operation="less than">10.0.9200.21595</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 8.0.6001.23733" id="oval:org.cisecurity:ste:612" version="1">
+		  <version datatype="version" operation="less than">8.0.6001.23733</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is less than 6.0.6002.19465" id="oval:org.cisecurity:ste:613" version="1">
+		  <version datatype="version" operation="less than">6.0.6002.19465</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 7.0.6002.23782" id="oval:org.cisecurity:ste:614" version="1">
+		  <version datatype="version" operation="less than">7.0.6002.23782</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 9.0.8112.20800" id="oval:org.cisecurity:ste:615" version="1">
+		  <version datatype="version" operation="less than">9.0.8112.20800</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is less than 6.2.9200.21581" id="oval:org.cisecurity:ste:616" version="1">
+		  <version datatype="version" operation="less than">6.2.9200.21581</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is less than 10.0.10240.16485" id="oval:org.cisecurity:ste:617" version="1">
+		  <version datatype="version" operation="less than">10.0.10240.16485</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is less than 6.2.9200.17467" id="oval:org.cisecurity:ste:618" version="1">
+		  <version datatype="version" operation="less than">6.2.9200.17467</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 8.0.6001.19674" id="oval:org.cisecurity:ste:619" version="1">
+		  <version datatype="version" operation="less than">8.0.6001.19674</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is less than 6.3.9600.18005" id="oval:org.cisecurity:ste:620" version="1">
+		  <version datatype="version" operation="less than">6.3.9600.18005</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 8.0.7601.23171" id="oval:org.cisecurity:ste:621" version="1">
+		  <version datatype="version" operation="less than">8.0.7601.23171</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 9.0.8112.16685" id="oval:org.cisecurity:ste:622" version="1">
+		  <version datatype="version" operation="less than">9.0.8112.16685</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is less than 6.1.7601.18951" id="oval:org.cisecurity:ste:623" version="1">
+		  <version datatype="version" operation="less than">6.1.7601.18951</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 7.0.6002.19475" id="oval:org.cisecurity:ste:624" version="1">
+		  <version datatype="version" operation="less than">7.0.6002.19475</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is less than 6.0.6002.23774" id="oval:org.cisecurity:ste:625" version="1">
+		  <version datatype="version" operation="less than">6.0.6002.23774</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches mshtml.dll version less than 10.0.9200.17479" id="oval:org.cisecurity:ste:626" version="1">
+		  <version datatype="version" operation="less than">10.0.9200.17479</version>
+		</file_state>
     <family_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Microsoft Windows family" id="oval:org.mitre.oval:ste:99" version="2">
 		  <family operation="case insensitive equals">windows</family>
 		</family_state>
@@ -4905,6 +5370,9 @@
     <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="The registry key matches with Windows Server 2012" id="oval:org.mitre.oval:ste:20132" version="1">
 		  <value operation="pattern match">^[a-zA-Z0-9\(\)\s]*2012[a-zA-Z0-9\(\)\s]*$</value>
 		</registry_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is greater than or equal to 6.0.6002.23000" id="oval:org.mitre.oval:ste:20865" version="1">
+		  <version datatype="version" operation="greater than or equal">6.0.6002.23000</version>
+		</file_state>
     <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="The registry key matches with Windows 8.1" id="oval:org.mitre.oval:ste:23178" version="1">
 		  <value operation="pattern match">^[a-zA-Z0-9\(\)\s]*[Ww][Ii][Nn][Dd][Oo][Ww][Ss] 8\.1[a-zA-Z0-9\(\)\s]*$</value>
 		</registry_state>
@@ -4917,11 +5385,17 @@
     <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is greater than or equal 5.8.6001.23000" id="oval:org.mitre.oval:ste:28027" version="2">
 		  <version datatype="version" operation="greater than or equal">5.8.6001.23000</version>
 		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is greater than or equal to 6.2.9200.21000" id="oval:org.mitre.oval:ste:30959" version="2">
+		  <version datatype="version" operation="greater than or equal">6.2.9200.21000</version>
+		</file_state>
     <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is greater than or equal 10.0.9200.21000" id="oval:org.mitre.oval:ste:31709" version="1">
 		  <version datatype="version" operation="greater than or equal">10.0.9200.21000</version>
 		</file_state>
     <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is greater than or equal 5.8.9200.21000" id="oval:org.mitre.oval:ste:37376" version="2">
 		  <version datatype="version" operation="greater than or equal">5.8.9200.21000</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is greater than or equal to 6.1.7601.23000" id="oval:org.mitre.oval:ste:38287" version="1">
+		  <version datatype="version" operation="greater than or equal">6.1.7601.23000</version>
 		</file_state>
     <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State holds if the version is greater than or equal 5.8.7601.23000" id="oval:org.mitre.oval:ste:38405" version="2">
 		  <version datatype="version" operation="greater than or equal">5.8.7601.23000</version>
@@ -4946,6 +5420,12 @@
 		    <literal_component>\System32</literal_component>
 		  </concat>
 		</local_variable>
+    <oval-def:local_variable xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" comment="Var holds path to \microsoft shared\ink" datatype="string" id="oval:org.mitre.oval:var:1474" version="1">
+		  <oval-def:concat>
+		    <oval-def:object_component item_field="value" object_ref="oval:org.mitre.oval:obj:281" />
+		    <oval-def:literal_component>\Microsoft Shared\ink</oval-def:literal_component>
+		  </oval-def:concat>
+		</oval-def:local_variable>
     <local_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" comment="Common pattern for GDI+ directory" datatype="string" id="oval:org.mitre.oval:var:1887" version="8">
 		  <concat>
 		    <literal_component>^</literal_component>
