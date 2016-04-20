@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-04-19T08:41:01</oval:timestamp>
+  <oval:timestamp>2016-04-20T15:48:02</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -9205,6 +9205,230 @@ Several flaws were found in the processing of malformed web content. A web page 
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160650" version="601">
+   <metadata>
+    <title>RHSA-2016:0650: java-1.8.0-openjdk security update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0650-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0650.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-0686" ref_url="https://access.redhat.com/security/cve/CVE-2016-0686" source="CVE"/>
+    <reference ref_id="CVE-2016-0687" ref_url="https://access.redhat.com/security/cve/CVE-2016-0687" source="CVE"/>
+    <reference ref_id="CVE-2016-0695" ref_url="https://access.redhat.com/security/cve/CVE-2016-0695" source="CVE"/>
+    <reference ref_id="CVE-2016-3425" ref_url="https://access.redhat.com/security/cve/CVE-2016-3425" source="CVE"/>
+    <reference ref_id="CVE-2016-3426" ref_url="https://access.redhat.com/security/cve/CVE-2016-3426" source="CVE"/>
+    <reference ref_id="CVE-2016-3427" ref_url="https://access.redhat.com/security/cve/CVE-2016-3427" source="CVE"/>
+    <description>The java-1.8.0-openjdk packages provide the OpenJDK 8 Java Runtime Environment and the OpenJDK 8 Java Software Development Kit.
+
+Security Fix(es):
+
+* Multiple flaws were discovered in the Serialization and Hotspot components in OpenJDK. An untrusted Java application or applet could use these flaws to completely bypass Java sandbox restrictions. (CVE-2016-0686, CVE-2016-0687)
+
+* It was discovered that the RMI server implementation in the JMX component in OpenJDK did not restrict which classes can be deserialized when deserializing authentication credentials. A remote, unauthenticated attacker able to connect to a JMX port could possibly use this flaw to trigger deserialization flaws. (CVE-2016-3427)
+
+* It was discovered that the JAXP component in OpenJDK failed to properly handle Unicode surrogate pairs used as part of the XML attribute values. Specially crafted XML input could cause a Java application to use an excessive amount of memory when parsed. (CVE-2016-3425)
+
+* It was discovered that the GCM (Galois/Counter Mode) implementation in the JCE component in OpenJDK used a non-constant time comparison when comparing GCM authentication tags. A remote attacker could possibly use this flaw to determine the value of the authentication tag. (CVE-2016-3426)
+
+* It was discovered that the Security component in OpenJDK failed to check the digest algorithm strength when generating DSA signatures. The use of a digest weaker than the key strength could lead to the generation of signatures that were weaker than expected. (CVE-2016-0695)
+
+Note: If the web browser plug-in provided by the icedtea-web package was installed, the issues exposed via Java applets could have been exploited without user interaction if a user visited a malicious website.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-04-20"/>
+     <updated date="2016-04-20"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0686">CVE-2016-0686</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0687">CVE-2016-0687</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0695">CVE-2016-0695</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-3425">CVE-2016-3425</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-3426">CVE-2016-3426</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-3427">CVE-2016-3427</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1327743" id="1327743">CVE-2016-0686 OpenJDK: insufficient thread consistency checks in ObjectInputStream (Serialization, 8129952)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1327749" id="1327749">CVE-2016-0687 OpenJDK: insufficient byte type checks (Hotspot, 8132051)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1328022" id="1328022">CVE-2016-0695 OpenJDK: insufficient DSA key parameters checks (Security, 8138593)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1328040" id="1328040">CVE-2016-3425 OpenJDK: incorrect handling of surrogate pairs in XML attribute values (JAXP, 8143167)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1328059" id="1328059">CVE-2016-3426 OpenJDK: non-constant time GCM authentication tag comparison (JCE, 8143945)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1328210" id="1328210">CVE-2016-3427 OpenJDK: unrestricted deserialization of authentication credentials (JMX, 8144430)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650013"/>
+      <criterion comment="java-1.8.0-openjdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-accessibility is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650021"/>
+      <criterion comment="java-1.8.0-openjdk-accessibility is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049026"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-accessibility-debug is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650019"/>
+      <criterion comment="java-1.8.0-openjdk-accessibility-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-debug is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650027"/>
+      <criterion comment="java-1.8.0-openjdk-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-demo is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650017"/>
+      <criterion comment="java-1.8.0-openjdk-demo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-demo-debug is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650011"/>
+      <criterion comment="java-1.8.0-openjdk-demo-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-devel is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650015"/>
+      <criterion comment="java-1.8.0-openjdk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049028"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-devel-debug is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650023"/>
+      <criterion comment="java-1.8.0-openjdk-devel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-headless is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650007"/>
+      <criterion comment="java-1.8.0-openjdk-headless is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-headless-debug is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650025"/>
+      <criterion comment="java-1.8.0-openjdk-headless-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-javadoc is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650031"/>
+      <criterion comment="java-1.8.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049032"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-javadoc-debug is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650029"/>
+      <criterion comment="java-1.8.0-openjdk-javadoc-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049030"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-src is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650005"/>
+      <criterion comment="java-1.8.0-openjdk-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-src-debug is earlier than 1:1.8.0.91-0.b14.el7_2" test_ref="oval:com.redhat.rhsa:tst:20160650009"/>
+      <criterion comment="java-1.8.0-openjdk-src-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049012"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20160651" version="601">
+   <metadata>
+    <title>RHSA-2016:0651: java-1.8.0-openjdk security update (Critical)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:0651-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-0651.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-0686" ref_url="https://access.redhat.com/security/cve/CVE-2016-0686" source="CVE"/>
+    <reference ref_id="CVE-2016-0687" ref_url="https://access.redhat.com/security/cve/CVE-2016-0687" source="CVE"/>
+    <reference ref_id="CVE-2016-0695" ref_url="https://access.redhat.com/security/cve/CVE-2016-0695" source="CVE"/>
+    <reference ref_id="CVE-2016-3425" ref_url="https://access.redhat.com/security/cve/CVE-2016-3425" source="CVE"/>
+    <reference ref_id="CVE-2016-3426" ref_url="https://access.redhat.com/security/cve/CVE-2016-3426" source="CVE"/>
+    <reference ref_id="CVE-2016-3427" ref_url="https://access.redhat.com/security/cve/CVE-2016-3427" source="CVE"/>
+    <description>The java-1.8.0-openjdk packages provide the OpenJDK 8 Java Runtime Environment and the OpenJDK 8 Java Software Development Kit.
+
+Security Fix(es):
+
+* Multiple flaws were discovered in the Serialization and Hotspot components in OpenJDK. An untrusted Java application or applet could use these flaws to completely bypass Java sandbox restrictions. (CVE-2016-0686, CVE-2016-0687)
+
+* It was discovered that the RMI server implementation in the JMX component in OpenJDK did not restrict which classes can be deserialized when deserializing authentication credentials. A remote, unauthenticated attacker able to connect to a JMX port could possibly use this flaw to trigger deserialization flaws. (CVE-2016-3427)
+
+* It was discovered that the JAXP component in OpenJDK failed to properly handle Unicode surrogate pairs used as part of the XML attribute values. Specially crafted XML input could cause a Java application to use an excessive amount of memory when parsed. (CVE-2016-3425)
+
+* It was discovered that the GCM (Galois/Counter Mode) implementation in the JCE component in OpenJDK used a non-constant time comparison when comparing GCM authentication tags. A remote attacker could possibly use this flaw to determine the value of the authentication tag. (CVE-2016-3426)
+
+* It was discovered that the Security component in OpenJDK failed to check the digest algorithm strength when generating DSA signatures. The use of a digest weaker than the key strength could lead to the generation of signatures that were weaker than expected. (CVE-2016-0695)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Critical</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-04-20"/>
+     <updated date="2016-04-20"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0686">CVE-2016-0686</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0687">CVE-2016-0687</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0695">CVE-2016-0695</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-3425">CVE-2016-3425</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-3426">CVE-2016-3426</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-3427">CVE-2016-3427</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1327743" id="1327743">CVE-2016-0686 OpenJDK: insufficient thread consistency checks in ObjectInputStream (Serialization, 8129952)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1327749" id="1327749">CVE-2016-0687 OpenJDK: insufficient byte type checks (Hotspot, 8132051)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1328022" id="1328022">CVE-2016-0695 OpenJDK: insufficient DSA key parameters checks (Security, 8138593)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1328040" id="1328040">CVE-2016-3425 OpenJDK: incorrect handling of surrogate pairs in XML attribute values (JAXP, 8143167)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1328059" id="1328059">CVE-2016-3426 OpenJDK: non-constant time GCM authentication tag comparison (JCE, 8143945)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1328210" id="1328210">CVE-2016-3427 OpenJDK: unrestricted deserialization of authentication credentials (JMX, 8144430)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651009"/>
+      <criterion comment="java-1.8.0-openjdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-debug is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651015"/>
+      <criterion comment="java-1.8.0-openjdk-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-demo is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651021"/>
+      <criterion comment="java-1.8.0-openjdk-demo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-demo-debug is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651013"/>
+      <criterion comment="java-1.8.0-openjdk-demo-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-devel is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651023"/>
+      <criterion comment="java-1.8.0-openjdk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049028"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-devel-debug is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651007"/>
+      <criterion comment="java-1.8.0-openjdk-devel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-headless is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651019"/>
+      <criterion comment="java-1.8.0-openjdk-headless is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-headless-debug is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651017"/>
+      <criterion comment="java-1.8.0-openjdk-headless-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-javadoc is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651027"/>
+      <criterion comment="java-1.8.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049032"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-javadoc-debug is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651025"/>
+      <criterion comment="java-1.8.0-openjdk-javadoc-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049030"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-src is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651011"/>
+      <criterion comment="java-1.8.0-openjdk-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="java-1.8.0-openjdk-src-debug is earlier than 1:1.8.0.91-0.b14.el6_7" test_ref="oval:com.redhat.rhsa:tst:20160651005"/>
+      <criterion comment="java-1.8.0-openjdk-src-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160049012"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -14007,6 +14231,110 @@ Several flaws were found in the processing of malformed web content. A web page 
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160072005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160638003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-src is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-headless is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-src-debug is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-demo-debug is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-devel is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-demo is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-accessibility-debug is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-accessibility is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-devel-debug is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-headless-debug is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-debug is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-javadoc-debug is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650029" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-javadoc is earlier than 1:1.8.0.91-0.b14.el7_2" id="oval:com.redhat.rhsa:tst:20160650031" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160650003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-src-debug is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-devel-debug is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-src is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-demo-debug is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-debug is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-headless-debug is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-headless is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-demo is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-devel is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-javadoc-debug is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="java-1.8.0-openjdk-javadoc is earlier than 1:1.8.0.91-0.b14.el6_7" id="oval:com.redhat.rhsa:tst:20160651027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160049018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160651003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -15414,6 +15742,12 @@ Several flaws were found in the processing of malformed web content. A web page 
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160638003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:50.0.2661.75-1.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160650003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.8.0.91-0.b14.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160651003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.8.0.91-0.b14.el6_7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
