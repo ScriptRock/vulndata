@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-05-13T08:04:01</oval:timestamp>
+  <oval:timestamp>2016-05-17T07:14:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -12025,6 +12025,52 @@ Bug Fix(es):
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161086" version="601">
+   <metadata>
+    <title>RHSA-2016:1086: libndp security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1086-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-1086.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-3698" ref_url="https://access.redhat.com/security/cve/CVE-2016-3698" source="CVE"/>
+    <description>Libndp is a library (used by NetworkManager) that provides a wrapper for the IPv6 Neighbor Discovery Protocol. It also provides a tool named ndptool for sending and receiving NDP messages.
+
+Security Fix(es):
+
+* It was found that libndp did not properly validate and check the origin of Neighbor Discovery Protocol (NDP) messages. An attacker on a non-local network could use this flaw to advertise a node as a router, allowing them to perform man-in-the-middle attacks on a connecting client, or disrupt the network connectivity of that client. (CVE-2016-3698)
+
+Red Hat would like to thank Julien Bernard (Viagénie) for reporting this issue.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-05-17"/>
+     <updated date="2016-05-17"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-3698">CVE-2016-3698</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1329366" id="1329366">CVE-2016-3698 libndp: denial of service due to insufficient validation of source of NDP messages</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="libndp is earlier than 0:1.2-6.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161086005"/>
+      <criterion comment="libndp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161086006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libndp-devel is earlier than 0:1.2-6.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161086007"/>
+      <criterion comment="libndp-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161086008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -17883,6 +17929,22 @@ Bug Fix(es):
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065012"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161051003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libndp is earlier than 0:1.2-6.el7_2" id="oval:com.redhat.rhsa:tst:20161086005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161086005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161086003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libndp is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161086006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161086005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libndp-devel is earlier than 0:1.2-6.el7_2" id="oval:com.redhat.rhsa:tst:20161086007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161086006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161086003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libndp-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161086008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161086006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -18932,6 +18994,12 @@ Bug Fix(es):
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161025008" version="601">
    <red-def:name>pcre-static</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161086005" version="601">
+   <red-def:name>libndp</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161086006" version="601">
+   <red-def:name>libndp-devel</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -19500,6 +19568,9 @@ Bug Fix(es):
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161051003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:3.10.0-327.18.2.rt56.223.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161086003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.2-6.el7_2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
