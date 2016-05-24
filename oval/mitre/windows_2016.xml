@@ -1,6 +1,400 @@
 <?xml version="1.0" encoding="utf-8"?>
 <oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <definitions>
+    <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:com.dtcc:def:166" version="0">
+		  <oval-def:metadata>
+		    <oval-def:title>Win32k Elevation of Privilege Vulnerability – CVE-2016-0171 (MS16-062)</oval-def:title>
+		    <oval-def:affected family="windows">
+		      <oval-def:platform>Microsoft Windows Vista</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2008</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 7</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2008 R2</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2012</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 8.1</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2012 R2</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 10</oval-def:platform>
+		    </oval-def:affected>
+		    <oval-def:reference ref_id="CVE-2016-0171" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-0171" source="CVE" />
+		    <oval-def:description>The kernel-mode drivers in Microsoft Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, and Windows 10 Gold and 1511 allow local users to gain privileges via a crafted application, aka "Win32k Elevation of Privilege Vulnerability," a different vulnerability than CVE-2016-0173, CVE-2016-0174, and CVE-2016-0196.</oval-def:description>
+		    <oval-def:oval_repository>
+		      <oval-def:dates>
+		        <oval-def:submitted date="2016-05-17T20:16:22+08:00">
+		          <oval-def:contributor organization="DTCC">Alexander Chua</oval-def:contributor>
+		        </oval-def:submitted>
+		      </oval-def:dates>
+		      <oval-def:status>INITIAL SUBMISSION</oval-def:status>
+		    </oval-def:oval_repository>
+		  </oval-def:metadata>
+		  <oval-def:criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+		    <oval-def:criteria comment="Microsoft Windows Vista/Server 2008 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows Vista/Server 2008 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+		        <oval-def:extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6150" />
+		      </oval-def:criteria>
+		      <oval-def:criteria comment="Check for file version" operator="OR">
+		        <oval-def:criterion comment="Check if Win32k.sys version is less than 6.0.6002.19636" test_ref="oval:com.dtcc:tst:306" />
+		        <oval-def:criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+		          <oval-def:criterion comment="Check if Win32k.sys version is greater than or equal to 6.0.6002.23000" test_ref="oval:org.cisecurity:tst:599" />
+		          <oval-def:criterion comment="Check if Win32k.sys version is less than 6.0.6002.23950" test_ref="oval:com.dtcc:tst:307" />
+		        </oval-def:criteria>
+		      </oval-def:criteria>
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 7/Server 2008 R2 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+		        <oval-def:extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.1.7601.23418" test_ref="oval:com.dtcc:tst:308" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.3.9600.18302" test_ref="oval:com.dtcc:tst:309" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows Server 2012 is installed + file version" operator="AND">
+		      <oval-def:extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.2.9200.21833" test_ref="oval:com.dtcc:tst:310" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 10 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+		        <oval-def:extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 10.0.10240.16384" test_ref="oval:com.dtcc:tst:311" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 10 Version 1511 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+		        <oval-def:extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 10.0.10586.20" test_ref="oval:com.dtcc:tst:312" />
+		    </oval-def:criteria>
+		  </oval-def:criteria>
+		</oval-def:definition>
+    <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:com.dtcc:def:167" version="0">
+		  <oval-def:metadata>
+		    <oval-def:title>Win32k Elevation of Privilege Vulnerability – CVE-2016-0173 (MS16-062)</oval-def:title>
+		    <oval-def:affected family="windows">
+		      <oval-def:platform>Microsoft Windows Vista</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2008</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 7</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2008 R2</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2012</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 8.1</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2012 R2</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 10</oval-def:platform>
+		    </oval-def:affected>
+		    <oval-def:reference ref_id="CVE-2016-0173" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-0173" source="CVE" />
+		    <oval-def:description>The kernel-mode drivers in Microsoft Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, and Windows 10 Gold and 1511 allow local users to gain privileges via a crafted application, aka 
+		"Win32k Elevation of Privilege Vulnerability," a different vulnerability than CVE-2016-0171, CVE-2016-0174, and CVE-2016-0196.</oval-def:description>
+		    <oval-def:oval_repository>
+		      <oval-def:dates>
+		        <oval-def:submitted date="2016-05-17T20:16:22+08:00">
+		          <oval-def:contributor organization="DTCC">Alexander Chua</oval-def:contributor>
+		        </oval-def:submitted>
+		      </oval-def:dates>
+		      <oval-def:status>INITIAL SUBMISSION</oval-def:status>
+		    </oval-def:oval_repository>
+		  </oval-def:metadata>
+		  <oval-def:criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+		    <oval-def:criteria comment="Microsoft Windows Vista/Server 2008 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows Vista/Server 2008 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+		        <oval-def:extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6150" />
+		      </oval-def:criteria>
+		      <oval-def:criteria comment="Check for file version" operator="OR">
+		        <oval-def:criterion comment="Check if Win32k.sys version is less than 6.0.6002.19636" test_ref="oval:com.dtcc:tst:306" />
+		        <oval-def:criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+		          <oval-def:criterion comment="Check if Win32k.sys version is greater than or equal to 6.0.6002.23000" test_ref="oval:org.cisecurity:tst:599" />
+		          <oval-def:criterion comment="Check if Win32k.sys version is less than 6.0.6002.23950" test_ref="oval:com.dtcc:tst:307" />
+		        </oval-def:criteria>
+		      </oval-def:criteria>
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 7/Server 2008 R2 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+		        <oval-def:extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.1.7601.23418" test_ref="oval:com.dtcc:tst:308" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.3.9600.18302" test_ref="oval:com.dtcc:tst:309" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows Server 2012 is installed + file version" operator="AND">
+		      <oval-def:extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.2.9200.21833" test_ref="oval:com.dtcc:tst:310" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 10 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+		        <oval-def:extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 10.0.10240.16384" test_ref="oval:com.dtcc:tst:311" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 10 Version 1511 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+		        <oval-def:extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 10.0.10586.20" test_ref="oval:com.dtcc:tst:312" />
+		    </oval-def:criteria>
+		  </oval-def:criteria>
+		</oval-def:definition>
+    <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:com.dtcc:def:168" version="0">
+		  <oval-def:metadata>
+		    <oval-def:title>Win32k Elevation of Privilege Vulnerability – CVE-2016-0174 (MS16-062)</oval-def:title>
+		    <oval-def:affected family="windows">
+		      <oval-def:platform>Microsoft Windows Vista</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2008</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 7</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2008 R2</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2012</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 8.1</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2012 R2</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 10</oval-def:platform>
+		    </oval-def:affected>
+		    <oval-def:reference ref_id="CVE-2016-0174" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-0174" source="CVE" />
+		    <oval-def:description>The kernel-mode drivers in Microsoft Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, and Windows 10 Gold and 1511 allow local users to gain privileges via a crafted application, aka 
+		"Win32k Elevation of Privilege Vulnerability," a different vulnerability than CVE-2016-0171, CVE-2016-0173, and CVE-2016-0196.</oval-def:description>
+		    <oval-def:oval_repository>
+		      <oval-def:dates>
+		        <oval-def:submitted date="2016-05-17T20:16:22+08:00">
+		          <oval-def:contributor organization="DTCC">Alexander Chua</oval-def:contributor>
+		        </oval-def:submitted>
+		      </oval-def:dates>
+		      <oval-def:status>INITIAL SUBMISSION</oval-def:status>
+		    </oval-def:oval_repository>
+		  </oval-def:metadata>
+		  <oval-def:criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+		    <oval-def:criteria comment="Microsoft Windows Vista/Server 2008 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows Vista/Server 2008 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+		        <oval-def:extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6150" />
+		      </oval-def:criteria>
+		      <oval-def:criteria comment="Check for file version" operator="OR">
+		        <oval-def:criterion comment="Check if Win32k.sys version is less than 6.0.6002.19636" test_ref="oval:com.dtcc:tst:306" />
+		        <oval-def:criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+		          <oval-def:criterion comment="Check if Win32k.sys version is greater than or equal to 6.0.6002.23000" test_ref="oval:org.cisecurity:tst:599" />
+		          <oval-def:criterion comment="Check if Win32k.sys version is less than 6.0.6002.23950" test_ref="oval:com.dtcc:tst:307" />
+		        </oval-def:criteria>
+		      </oval-def:criteria>
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 7/Server 2008 R2 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+		        <oval-def:extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.1.7601.23418" test_ref="oval:com.dtcc:tst:308" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.3.9600.18302" test_ref="oval:com.dtcc:tst:309" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows Server 2012 is installed + file version" operator="AND">
+		      <oval-def:extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.2.9200.21833" test_ref="oval:com.dtcc:tst:310" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 10 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+		        <oval-def:extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 10.0.10240.16384" test_ref="oval:com.dtcc:tst:311" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 10 Version 1511 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+		        <oval-def:extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 10.0.10586.20" test_ref="oval:com.dtcc:tst:312" />
+		    </oval-def:criteria>
+		  </oval-def:criteria>
+		</oval-def:definition>
+    <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:com.dtcc:def:169" version="0">
+		  <oval-def:metadata>
+		    <oval-def:title>Win32k Information Disclosure Vulnerability – CVE-2016-0175 (MS16-062)</oval-def:title>
+		    <oval-def:affected family="windows">
+		      <oval-def:platform>Microsoft Windows Vista</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2008</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 7</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2008 R2</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2012</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 8.1</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2012 R2</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 10</oval-def:platform>
+		    </oval-def:affected>
+		    <oval-def:reference ref_id="CVE-2016-0175" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-0175" source="CVE" />
+		    <oval-def:description>The kernel-mode drivers in Microsoft Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, and Windows 10 Gold and 1511 allow local users to obtain sensitive information about kernel-object 
+		addresses, and consequently bypass the KASLR protection mechanism, via a crafted application, aka "Win32k Information Disclosure Vulnerability."</oval-def:description>
+		    <oval-def:oval_repository>
+		      <oval-def:dates>
+		        <oval-def:submitted date="2016-05-17T20:16:22+08:00">
+		          <oval-def:contributor organization="DTCC">Alexander Chua</oval-def:contributor>
+		        </oval-def:submitted>
+		      </oval-def:dates>
+		      <oval-def:status>INITIAL SUBMISSION</oval-def:status>
+		    </oval-def:oval_repository>
+		  </oval-def:metadata>
+		  <oval-def:criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+		    <oval-def:criteria comment="Microsoft Windows Vista/Server 2008 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows Vista/Server 2008 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+		        <oval-def:extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6150" />
+		      </oval-def:criteria>
+		      <oval-def:criteria comment="Check for file version" operator="OR">
+		        <oval-def:criterion comment="Check if Win32k.sys version is less than 6.0.6002.19636" test_ref="oval:com.dtcc:tst:306" />
+		        <oval-def:criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+		          <oval-def:criterion comment="Check if Win32k.sys version is greater than or equal to 6.0.6002.23000" test_ref="oval:org.cisecurity:tst:599" />
+		          <oval-def:criterion comment="Check if Win32k.sys version is less than 6.0.6002.23950" test_ref="oval:com.dtcc:tst:307" />
+		        </oval-def:criteria>
+		      </oval-def:criteria>
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 7/Server 2008 R2 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+		        <oval-def:extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.1.7601.23418" test_ref="oval:com.dtcc:tst:308" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.3.9600.18302" test_ref="oval:com.dtcc:tst:309" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows Server 2012 is installed + file version" operator="AND">
+		      <oval-def:extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.2.9200.21833" test_ref="oval:com.dtcc:tst:310" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 10 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+		        <oval-def:extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 10.0.10240.16384" test_ref="oval:com.dtcc:tst:311" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 10 Version 1511 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+		        <oval-def:extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 10.0.10586.20" test_ref="oval:com.dtcc:tst:312" />
+		    </oval-def:criteria>
+		  </oval-def:criteria>
+		</oval-def:definition>
+    <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:com.dtcc:def:170" version="0">
+		  <oval-def:metadata>
+		    <oval-def:title>Win32k Elevation of Privilege Vulnerability – CVE-2016-0196 (MS16-062)</oval-def:title>
+		    <oval-def:affected family="windows">
+		      <oval-def:platform>Microsoft Windows Vista</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2008</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 7</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2008 R2</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2012</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 8.1</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows Server 2012 R2</oval-def:platform>
+		      <oval-def:platform>Microsoft Windows 10</oval-def:platform>
+		    </oval-def:affected>
+		    <oval-def:reference ref_id="CVE-2016-0196" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-0196" source="CVE" />
+		    <oval-def:description>The kernel-mode drivers in Microsoft Windows Vista SP2, Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, and Windows 10 Gold and 1511 allow local users to gain privileges via a crafted application, aka 
+		"Win32k Elevation of Privilege Vulnerability," a different vulnerability than CVE-2016-0171, CVE-2016-0173, and CVE-2016-0174.</oval-def:description>
+		    <oval-def:oval_repository>
+		      <oval-def:dates>
+		        <oval-def:submitted date="2016-05-17T20:16:22+08:00">
+		          <oval-def:contributor organization="DTCC">Alexander Chua</oval-def:contributor>
+		        </oval-def:submitted>
+		      </oval-def:dates>
+		      <oval-def:status>INITIAL SUBMISSION</oval-def:status>
+		    </oval-def:oval_repository>
+		  </oval-def:metadata>
+		  <oval-def:criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+		    <oval-def:criteria comment="Microsoft Windows Vista/Server 2008 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows Vista/Server 2008 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+		        <oval-def:extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6150" />
+		      </oval-def:criteria>
+		      <oval-def:criteria comment="Check for file version" operator="OR">
+		        <oval-def:criterion comment="Check if Win32k.sys version is less than 6.0.6002.19636" test_ref="oval:com.dtcc:tst:306" />
+		        <oval-def:criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+		          <oval-def:criterion comment="Check if Win32k.sys version is greater than or equal to 6.0.6002.23000" test_ref="oval:org.cisecurity:tst:599" />
+		          <oval-def:criterion comment="Check if Win32k.sys version is less than 6.0.6002.23950" test_ref="oval:com.dtcc:tst:307" />
+		        </oval-def:criteria>
+		      </oval-def:criteria>
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 7/Server 2008 R2 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+		        <oval-def:extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.1.7601.23418" test_ref="oval:com.dtcc:tst:308" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+		        <oval-def:extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+		        <oval-def:extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.3.9600.18302" test_ref="oval:com.dtcc:tst:309" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows Server 2012 is installed + file version" operator="AND">
+		      <oval-def:extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 6.2.9200.21833" test_ref="oval:com.dtcc:tst:310" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 10 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+		        <oval-def:extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 10.0.10240.16384" test_ref="oval:com.dtcc:tst:311" />
+		    </oval-def:criteria>
+		    <oval-def:criteria comment="Microsoft Windows 10 Version 1511 is installed + file version" operator="AND">
+		      <oval-def:criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+		        <oval-def:extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+		        <oval-def:extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+		      </oval-def:criteria>
+		      <oval-def:criterion comment="Check if Win32k.sys version is less than 10.0.10586.20" test_ref="oval:com.dtcc:tst:312" />
+		    </oval-def:criteria>
+		  </oval-def:criteria>
+		</oval-def:definition>
     <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.cisecurity:def:2" version="16">
 		  <metadata>
 		    <title>Microsoft Edge is installed</title>
@@ -19168,6 +19562,34 @@
 		</definition>
   </definitions>
   <tests>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if Win32k.sys version is less than 6.0.6002.19636" id="oval:com.dtcc:tst:306" version="0">
+		  <object object_ref="oval:org.mitre.oval:obj:570" />
+		  <state state_ref="oval:com.dtcc:ste:263" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if Win32k.sys version is less than 6.0.6002.23950" id="oval:com.dtcc:tst:307" version="0">
+		  <object object_ref="oval:org.mitre.oval:obj:570" />
+		  <state state_ref="oval:com.dtcc:ste:264" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if Win32k.sys version is less than 6.1.7601.23418" id="oval:com.dtcc:tst:308" version="0">
+		  <object object_ref="oval:org.mitre.oval:obj:570" />
+		  <state state_ref="oval:com.dtcc:ste:265" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if Win32k.sys version is less than 6.3.9600.18302" id="oval:com.dtcc:tst:309" version="0">
+		  <object object_ref="oval:org.mitre.oval:obj:570" />
+		  <state state_ref="oval:com.dtcc:ste:266" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if Win32k.sys version is less than 6.2.9200.21833" id="oval:com.dtcc:tst:310" version="0">
+		  <object object_ref="oval:org.mitre.oval:obj:570" />
+		  <state state_ref="oval:com.dtcc:ste:267" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if Win32k.sys version is less than 10.0.10240.16384" id="oval:com.dtcc:tst:311" version="0">
+		  <object object_ref="oval:org.mitre.oval:obj:570" />
+		  <state state_ref="oval:com.dtcc:ste:268" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if Win32k.sys version is less than 10.0.10586.20" id="oval:com.dtcc:tst:312" version="0">
+		  <object object_ref="oval:org.mitre.oval:obj:570" />
+		  <state state_ref="oval:com.dtcc:ste:269" />
+		</file_test>
     <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check for the presence of edgehtml.dll" id="oval:org.cisecurity:tst:2" version="14">
 		  <object object_ref="oval:org.cisecurity:obj:1" />
 		</file_test>
@@ -22968,6 +23390,27 @@
 		</file_object>
   </objects>
   <states>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches Win32k.sys version less than 6.0.6002.19636" id="oval:com.dtcc:ste:263" version="0">
+		  <version datatype="version" operation="less than">6.0.6002.19636</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches Win32k.sys version less than 6.0.6002.23950" id="oval:com.dtcc:ste:264" version="0">
+		  <version datatype="version" operation="less than">6.0.6002.23950</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches Win32k.sys version less than 6.1.7601.23418" id="oval:com.dtcc:ste:265" version="0">
+		  <version datatype="version" operation="less than">6.1.7601.23418</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches Win32k.sys version less than 6.3.9600.18302" id="oval:com.dtcc:ste:266" version="0">
+		  <version datatype="version" operation="less than">6.3.9600.18302</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches Win32k.sys version less than 6.2.9200.21833" id="oval:com.dtcc:ste:267" version="0">
+		  <version datatype="version" operation="less than">6.2.9200.21833</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches Win32k.sys version less than 10.0.10240.16384" id="oval:com.dtcc:ste:268" version="0">
+		  <version datatype="version" operation="less than">10.0.10240.16384</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches Win32k.sys version less than 10.0.10586.20" id="oval:com.dtcc:ste:269" version="0">
+		  <version datatype="version" operation="less than">10.0.10586.20</version>
+		</file_state>
     <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches if the value is equal to 393295" id="oval:org.cisecurity:ste:3" version="1">
 		  <value>393295</value>
 		</registry_state>
