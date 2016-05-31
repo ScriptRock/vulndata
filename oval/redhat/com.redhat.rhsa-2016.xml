@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-05-31T01:59:01</oval:timestamp>
+  <oval:timestamp>2016-05-31T04:12:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -12309,6 +12309,114 @@ Security Fix(es):
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161141" version="601">
+   <metadata>
+    <title>RHSA-2016:1141: ntp security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1141-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1141" source="RHSA"/>
+    <reference ref_id="CVE-2015-7979" ref_url="https://access.redhat.com/security/cve/CVE-2015-7979" source="CVE"/>
+    <reference ref_id="CVE-2016-1547" ref_url="https://access.redhat.com/security/cve/CVE-2016-1547" source="CVE"/>
+    <reference ref_id="CVE-2016-1548" ref_url="https://access.redhat.com/security/cve/CVE-2016-1548" source="CVE"/>
+    <reference ref_id="CVE-2016-1550" ref_url="https://access.redhat.com/security/cve/CVE-2016-1550" source="CVE"/>
+    <reference ref_id="CVE-2016-2518" ref_url="https://access.redhat.com/security/cve/CVE-2016-2518" source="CVE"/>
+    <description>The Network Time Protocol (NTP) is used to synchronize a computer's time with another referenced time source. These packages include the ntpd service which continuously adjusts system time and utilities used to query and configure the ntpd service.
+
+Security Fix(es):
+
+* It was found that when NTP was configured in broadcast mode, a remote attacker could broadcast packets with bad authentication to all clients. The clients, upon receiving the malformed packets, would break the association with the broadcast server, causing them to become out of sync over a longer period of time. (CVE-2015-7979)
+
+* A denial of service flaw was found in the way NTP handled preemptable client associations. A remote attacker could send several crypto NAK packets to a victim client, each with a spoofed source address of an existing associated peer, preventing that client from synchronizing its time. (CVE-2016-1547)
+
+* It was found that an ntpd client could be forced to change from basic client/server mode to the interleaved symmetric mode. A remote attacker could use a spoofed packet that, when processed by an ntpd client, would cause that client to reject all future legitimate server responses, effectively disabling time synchronization on that client. (CVE-2016-1548)
+
+* A flaw was found in the way NTP's libntp performed message authentication. An attacker able to observe the timing of the comparison function used in packet authentication could potentially use this flaw to recover the message digest. (CVE-2016-1550)
+
+* An out-of-bounds access flaw was found in the way ntpd processed certain packets. An authenticated attacker could use a crafted packet to create a peer association with hmode of 7 and larger, which could potentially (although highly unlikely) cause ntpd to crash. (CVE-2016-2518)
+
+The CVE-2016-1548 issue was discovered by Miroslav Lichvar (Red Hat).</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-05-31"/>
+     <updated date="2016-05-31"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-7979">CVE-2015-7979</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-1547">CVE-2016-1547</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-1548">CVE-2016-1548</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-1550">CVE-2016-1550</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-2518">CVE-2016-2518</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1300271" id="1300271">CVE-2015-7979 ntp: off-path denial of service on authenticated broadcast mode</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1331461" id="1331461">CVE-2016-1547 ntp: crypto-NAK preemptable association denial of service</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1331462" id="1331462">CVE-2016-1548 ntp: ntpd switching to interleaved mode with spoofed packets</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1331464" id="1331464">CVE-2016-1550 ntp: libntp message digest disclosure</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1331468" id="1331468">CVE-2016-2518 ntp: out-of-bounds references on crafted packet</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="ntp is earlier than 0:4.2.6p5-22.el7_2.2" test_ref="oval:com.redhat.rhsa:tst:20161141005"/>
+       <criterion comment="ntp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160063008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntp-doc is earlier than 0:4.2.6p5-22.el7_2.2" test_ref="oval:com.redhat.rhsa:tst:20161141013"/>
+       <criterion comment="ntp-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160063012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntp-perl is earlier than 0:4.2.6p5-22.el7_2.2" test_ref="oval:com.redhat.rhsa:tst:20161141011"/>
+       <criterion comment="ntp-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160063006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntpdate is earlier than 0:4.2.6p5-22.el7_2.2" test_ref="oval:com.redhat.rhsa:tst:20161141009"/>
+       <criterion comment="ntpdate is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160063010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="sntp is earlier than 0:4.2.6p5-22.el7_2.2" test_ref="oval:com.redhat.rhsa:tst:20161141007"/>
+       <criterion comment="sntp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160063019"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="ntp is earlier than 0:4.2.6p5-10.el6.1" test_ref="oval:com.redhat.rhsa:tst:20161141019"/>
+       <criterion comment="ntp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160063008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntp-doc is earlier than 0:4.2.6p5-10.el6.1" test_ref="oval:com.redhat.rhsa:tst:20161141022"/>
+       <criterion comment="ntp-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160063012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntp-perl is earlier than 0:4.2.6p5-10.el6.1" test_ref="oval:com.redhat.rhsa:tst:20161141020"/>
+       <criterion comment="ntp-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160063006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ntpdate is earlier than 0:4.2.6p5-10.el6.1" test_ref="oval:com.redhat.rhsa:tst:20161141021"/>
+       <criterion comment="ntpdate is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160063010"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -18223,6 +18331,42 @@ Security Fix(es):
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161140005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp is earlier than 0:4.2.6p5-22.el7_2.2" id="oval:com.redhat.rhsa:tst:20161141005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160063006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161141003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="sntp is earlier than 0:4.2.6p5-22.el7_2.2" id="oval:com.redhat.rhsa:tst:20161141007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160063009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161141003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntpdate is earlier than 0:4.2.6p5-22.el7_2.2" id="oval:com.redhat.rhsa:tst:20161141009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160063007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161141003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp-perl is earlier than 0:4.2.6p5-22.el7_2.2" id="oval:com.redhat.rhsa:tst:20161141011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160063005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161141003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp-doc is earlier than 0:4.2.6p5-22.el7_2.2" id="oval:com.redhat.rhsa:tst:20161141013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160063008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161141003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp is earlier than 0:4.2.6p5-10.el6.1" id="oval:com.redhat.rhsa:tst:20161141019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160063006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161141005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp-perl is earlier than 0:4.2.6p5-10.el6.1" id="oval:com.redhat.rhsa:tst:20161141020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160063005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161141005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntpdate is earlier than 0:4.2.6p5-10.el6.1" id="oval:com.redhat.rhsa:tst:20161141021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160063007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161141005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ntp-doc is earlier than 0:4.2.6p5-10.el6.1" id="oval:com.redhat.rhsa:tst:20161141022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160063008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161141005"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -19870,6 +20014,12 @@ Security Fix(es):
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161140003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">7:3.4.14-9.el6_8.3</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161141003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:4.2.6p5-22.el7_2.2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161141005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:4.2.6p5-10.el6.1</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
