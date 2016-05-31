@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-05-23T01:30:01</oval:timestamp>
+  <oval:timestamp>2016-05-31T01:59:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -12071,6 +12071,244 @@ Red Hat would like to thank Julien Bernard (Viagénie) for reporting this issue.
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161137" version="601">
+   <metadata>
+    <title>RHSA-2016:1137: openssl security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1137-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1137" source="RHSA"/>
+    <reference ref_id="CVE-2016-2108" ref_url="https://access.redhat.com/security/cve/CVE-2016-2108" source="CVE"/>
+    <description>OpenSSL is a toolkit that implements the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) protocols, as well as a full-strength general-purpose cryptography library.
+
+Security Fix(es):
+
+* A flaw was found in the way OpenSSL encoded certain ASN.1 data structures. An attacker could use this flaw to create a specially crafted certificate which, when verified or re-encoded by OpenSSL, could cause it to crash, or execute arbitrary code using the permissions of the user running an application compiled against the OpenSSL library. (CVE-2016-2108)
+
+Red Hat would like to thank the OpenSSL project for reporting this issue. Upstream acknowledges Huzaifa Sidhpurwala (Red Hat), Hanno Böck, and David Benjamin (Google) as the original reporters.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-05-31"/>
+     <updated date="2016-05-31"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-2108">CVE-2016-2108</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1331402" id="1331402">CVE-2016-2108 openssl: Memory corruption in the ASN.1 encoder</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="openssl is earlier than 0:0.9.8e-40.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161137004"/>
+      <criterion comment="openssl is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160302007"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssl-devel is earlier than 0:0.9.8e-40.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161137002"/>
+      <criterion comment="openssl-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160302003"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="openssl-perl is earlier than 0:0.9.8e-40.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161137006"/>
+      <criterion comment="openssl-perl is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160302005"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161138" version="601">
+   <metadata>
+    <title>RHSA-2016:1138: squid security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1138-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1138" source="RHSA"/>
+    <reference ref_id="CVE-2016-4051" ref_url="https://access.redhat.com/security/cve/CVE-2016-4051" source="CVE"/>
+    <reference ref_id="CVE-2016-4052" ref_url="https://access.redhat.com/security/cve/CVE-2016-4052" source="CVE"/>
+    <reference ref_id="CVE-2016-4053" ref_url="https://access.redhat.com/security/cve/CVE-2016-4053" source="CVE"/>
+    <reference ref_id="CVE-2016-4054" ref_url="https://access.redhat.com/security/cve/CVE-2016-4054" source="CVE"/>
+    <reference ref_id="CVE-2016-4554" ref_url="https://access.redhat.com/security/cve/CVE-2016-4554" source="CVE"/>
+    <reference ref_id="CVE-2016-4556" ref_url="https://access.redhat.com/security/cve/CVE-2016-4556" source="CVE"/>
+    <description>Squid is a high-performance proxy caching server for web clients, supporting FTP, Gopher, and HTTP data objects.
+
+Security Fix(es):
+
+* A buffer overflow flaw was found in the way the Squid cachemgr.cgi utility processed remotely relayed Squid input. When the CGI interface utility is used, a remote attacker could possibly use this flaw to execute arbitrary code. (CVE-2016-4051)
+
+* Buffer overflow and input validation flaws were found in the way Squid processed ESI responses. If Squid was used as a reverse proxy, or for TLS/HTTPS interception, a remote attacker able to control ESI components on an HTTP server could use these flaws to crash Squid, disclose parts of the stack memory, or possibly execute arbitrary code as the user running Squid. (CVE-2016-4052, CVE-2016-4053, CVE-2016-4054)
+
+* An input validation flaw was found in Squid's mime_get_header_field() function, which is used to search for headers within HTTP requests. An attacker could send an HTTP request from the client side with specially crafted header Host header that bypasses same-origin security protections, causing Squid operating as interception or reverse-proxy to contact the wrong origin server. It could also be used for cache poisoning for client not following RFC 7230. (CVE-2016-4554)
+
+* An incorrect reference counting flaw was found in the way Squid processes ESI responses. If Squid is configured as reverse-proxy, for TLS/HTTPS interception, an attacker controlling a server accessed by Squid, could crash the squid worker, causing a Denial of Service attack. (CVE-2016-4556)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-05-31"/>
+     <updated date="2016-05-31"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4051">CVE-2016-4051</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4052">CVE-2016-4052</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4053">CVE-2016-4053</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4054">CVE-2016-4054</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4554">CVE-2016-4554</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4556">CVE-2016-4556</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1329126" id="1329126">CVE-2016-4051 squid: buffer overflow in cachemgr.cgi</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1329136" id="1329136">CVE-2016-4052 CVE-2016-4053 CVE-2016-4054 squid: multiple issues in ESI processing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334241" id="1334241">CVE-2016-4554 squid: Header Smuggling issue in HTTP Request processing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334786" id="1334786">CVE-2016-4556 squid: SIGSEGV in ESIContext response handling</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="squid is earlier than 7:3.1.23-16.el6_8.4" test_ref="oval:com.redhat.rhsa:tst:20161138005"/>
+    <criterion comment="squid is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161138006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161139" version="601">
+   <metadata>
+    <title>RHSA-2016:1139: squid security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1139-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1139" source="RHSA"/>
+    <reference ref_id="CVE-2016-4051" ref_url="https://access.redhat.com/security/cve/CVE-2016-4051" source="CVE"/>
+    <reference ref_id="CVE-2016-4052" ref_url="https://access.redhat.com/security/cve/CVE-2016-4052" source="CVE"/>
+    <reference ref_id="CVE-2016-4053" ref_url="https://access.redhat.com/security/cve/CVE-2016-4053" source="CVE"/>
+    <reference ref_id="CVE-2016-4054" ref_url="https://access.redhat.com/security/cve/CVE-2016-4054" source="CVE"/>
+    <reference ref_id="CVE-2016-4553" ref_url="https://access.redhat.com/security/cve/CVE-2016-4553" source="CVE"/>
+    <reference ref_id="CVE-2016-4554" ref_url="https://access.redhat.com/security/cve/CVE-2016-4554" source="CVE"/>
+    <reference ref_id="CVE-2016-4555" ref_url="https://access.redhat.com/security/cve/CVE-2016-4555" source="CVE"/>
+    <reference ref_id="CVE-2016-4556" ref_url="https://access.redhat.com/security/cve/CVE-2016-4556" source="CVE"/>
+    <description>Squid is a high-performance proxy caching server for web clients, supporting FTP, Gopher, and HTTP data objects.
+
+Security Fix(es):
+
+* A buffer overflow flaw was found in the way the Squid cachemgr.cgi utility processed remotely relayed Squid input. When the CGI interface utility is used, a remote attacker could possibly use this flaw to execute arbitrary code. (CVE-2016-4051)
+
+* Buffer overflow and input validation flaws were found in the way Squid processed ESI responses. If Squid was used as a reverse proxy, or for TLS/HTTPS interception, a remote attacker able to control ESI components on an HTTP server could use these flaws to crash Squid, disclose parts of the stack memory, or possibly execute arbitrary code as the user running Squid. (CVE-2016-4052, CVE-2016-4053, CVE-2016-4054)
+
+* An input validation flaw was found in the way Squid handled intercepted HTTP Request messages. An attacker could use this flaw to bypass the protection against issues related to CVE-2009-0801, and perform cache poisoning attacks on Squid. (CVE-2016-4553)
+
+* An input validation flaw was found in Squid's mime_get_header_field() function, which is used to search for headers within HTTP requests. An attacker could send an HTTP request from the client side with specially crafted header Host header that bypasses same-origin security protections, causing Squid operating as interception or reverse-proxy to contact the wrong origin server. It could also be used for cache poisoning for client not following RFC 7230. (CVE-2016-4554)
+
+* A NULL pointer dereference flaw was found in the way Squid processes ESI responses. If Squid was used as a reverse proxy or for TLS/HTTPS interception, a malicious server could use this flaw to crash the Squid worker process. (CVE-2016-4555)
+
+* An incorrect reference counting flaw was found in the way Squid processes ESI responses. If Squid is configured as reverse-proxy, for TLS/HTTPS interception, an attacker controlling a server accessed by Squid, could crash the squid worker, causing a Denial of Service attack. (CVE-2016-4556)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-05-31"/>
+     <updated date="2016-05-31"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4051">CVE-2016-4051</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4052">CVE-2016-4052</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4053">CVE-2016-4053</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4054">CVE-2016-4054</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4553">CVE-2016-4553</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4554">CVE-2016-4554</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4555">CVE-2016-4555</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4556">CVE-2016-4556</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1329126" id="1329126">CVE-2016-4051 squid: buffer overflow in cachemgr.cgi</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1329136" id="1329136">CVE-2016-4052 CVE-2016-4053 CVE-2016-4054 squid: multiple issues in ESI processing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334233" id="1334233">CVE-2016-4553 squid: Cache poisoning issue in HTTP Request handling</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334241" id="1334241">CVE-2016-4554 squid: Header Smuggling issue in HTTP Request processing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334246" id="1334246">CVE-2016-4555 squid: SegFault from ESIInclude::Start</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334786" id="1334786">CVE-2016-4556 squid: SIGSEGV in ESIContext response handling</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="squid is earlier than 7:3.3.8-26.el7_2.3" test_ref="oval:com.redhat.rhsa:tst:20161139007"/>
+      <criterion comment="squid is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161138006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="squid-sysvinit is earlier than 7:3.3.8-26.el7_2.3" test_ref="oval:com.redhat.rhsa:tst:20161139005"/>
+      <criterion comment="squid-sysvinit is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161139006"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161140" version="601">
+   <metadata>
+    <title>RHSA-2016:1140: squid34 security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1140-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1140" source="RHSA"/>
+    <reference ref_id="CVE-2016-4051" ref_url="https://access.redhat.com/security/cve/CVE-2016-4051" source="CVE"/>
+    <reference ref_id="CVE-2016-4052" ref_url="https://access.redhat.com/security/cve/CVE-2016-4052" source="CVE"/>
+    <reference ref_id="CVE-2016-4053" ref_url="https://access.redhat.com/security/cve/CVE-2016-4053" source="CVE"/>
+    <reference ref_id="CVE-2016-4054" ref_url="https://access.redhat.com/security/cve/CVE-2016-4054" source="CVE"/>
+    <reference ref_id="CVE-2016-4553" ref_url="https://access.redhat.com/security/cve/CVE-2016-4553" source="CVE"/>
+    <reference ref_id="CVE-2016-4554" ref_url="https://access.redhat.com/security/cve/CVE-2016-4554" source="CVE"/>
+    <reference ref_id="CVE-2016-4555" ref_url="https://access.redhat.com/security/cve/CVE-2016-4555" source="CVE"/>
+    <reference ref_id="CVE-2016-4556" ref_url="https://access.redhat.com/security/cve/CVE-2016-4556" source="CVE"/>
+    <description>The &quot;squid34&quot; packages provide version 3.4 of Squid, a high-performance proxy caching server for web clients, supporting FTP, Gopher, and HTTP data objects. Note that apart from &quot;squid34&quot;, this version of Red Hat Enterprise Linux also includes the &quot;squid&quot; packages which provide Squid version 3.1.
+
+Security Fix(es):
+
+* A buffer overflow flaw was found in the way the Squid cachemgr.cgi utility processed remotely relayed Squid input. When the CGI interface utility is used, a remote attacker could possibly use this flaw to execute arbitrary code. (CVE-2016-4051)
+
+* Buffer overflow and input validation flaws were found in the way Squid processed ESI responses. If Squid was used as a reverse proxy, or for TLS/HTTPS interception, a remote attacker able to control ESI components on an HTTP server could use these flaws to crash Squid, disclose parts of the stack memory, or possibly execute arbitrary code as the user running Squid. (CVE-2016-4052, CVE-2016-4053, CVE-2016-4054)
+
+* An input validation flaw was found in the way Squid handled intercepted HTTP Request messages. An attacker could use this flaw to bypass the protection against issues related to CVE-2009-0801, and perform cache poisoning attacks on Squid. (CVE-2016-4553)
+
+* An input validation flaw was found in Squid's mime_get_header_field() function, which is used to search for headers within HTTP requests. An attacker could send an HTTP request from the client side with specially crafted header Host header that bypasses same-origin security protections, causing Squid operating as interception or reverse-proxy to contact the wrong origin server. It could also be used for cache poisoning for client not following RFC 7230. (CVE-2016-4554)
+
+* A NULL pointer dereference flaw was found in the way Squid processes ESI responses. If Squid was used as a reverse proxy or for TLS/HTTPS interception, a malicious server could use this flaw to crash the Squid worker process. (CVE-2016-4555)
+
+* An incorrect reference counting flaw was found in the way Squid processes ESI responses. If Squid is configured as reverse-proxy, for TLS/HTTPS interception, an attacker controlling a server accessed by Squid, could crash the squid worker, causing a Denial of Service attack. (CVE-2016-4556)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-05-31"/>
+     <updated date="2016-05-31"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4051">CVE-2016-4051</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4052">CVE-2016-4052</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4053">CVE-2016-4053</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4054">CVE-2016-4054</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4553">CVE-2016-4553</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4554">CVE-2016-4554</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4555">CVE-2016-4555</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4556">CVE-2016-4556</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1329126" id="1329126">CVE-2016-4051 squid: buffer overflow in cachemgr.cgi</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1329136" id="1329136">CVE-2016-4052 CVE-2016-4053 CVE-2016-4054 squid: multiple issues in ESI processing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334233" id="1334233">CVE-2016-4553 squid: Cache poisoning issue in HTTP Request handling</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334241" id="1334241">CVE-2016-4554 squid: Header Smuggling issue in HTTP Request processing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334246" id="1334246">CVE-2016-4555 squid: SegFault from ESIInclude::Start</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334786" id="1334786">CVE-2016-4556 squid: SIGSEGV in ESIContext response handling</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="squid34 is earlier than 7:3.4.14-9.el6_8.3" test_ref="oval:com.redhat.rhsa:tst:20161140005"/>
+    <criterion comment="squid34 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161140006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -17945,6 +18183,46 @@ Red Hat would like to thank Julien Bernard (Viagénie) for reporting this issue.
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161086006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-devel is earlier than 0:0.9.8e-40.el5_11" id="oval:com.redhat.rhsa:tst:20161137002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161137003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl is earlier than 0:0.9.8e-40.el5_11" id="oval:com.redhat.rhsa:tst:20161137004" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161137003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-perl is earlier than 0:0.9.8e-40.el5_11" id="oval:com.redhat.rhsa:tst:20161137006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161137003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid is earlier than 7:3.1.23-16.el6_8.4" id="oval:com.redhat.rhsa:tst:20161138005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161138005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161138003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161138006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161138005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid-sysvinit is earlier than 7:3.3.8-26.el7_2.3" id="oval:com.redhat.rhsa:tst:20161139005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161139005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161139003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid-sysvinit is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161139006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161139005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid is earlier than 7:3.3.8-26.el7_2.3" id="oval:com.redhat.rhsa:tst:20161139007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161138005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161139003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid34 is earlier than 7:3.4.14-9.el6_8.3" id="oval:com.redhat.rhsa:tst:20161140005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161140005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161140003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid34 is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161140006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161140005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -19000,6 +19278,15 @@ Red Hat would like to thank Julien Bernard (Viagénie) for reporting this issue.
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161086006" version="601">
    <red-def:name>libndp-devel</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161138005" version="601">
+   <red-def:name>squid</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161139005" version="601">
+   <red-def:name>squid-sysvinit</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161140005" version="601">
+   <red-def:name>squid34</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -19571,6 +19858,18 @@ Red Hat would like to thank Julien Bernard (Viagénie) for reporting this issue.
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161086003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:1.2-6.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161137003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.9.8e-40.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161138003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">7:3.1.23-16.el6_8.4</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161139003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">7:3.3.8-26.el7_2.3</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161140003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">7:3.4.14-9.el6_8.3</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
