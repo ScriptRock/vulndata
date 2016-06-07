@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-05-31T04:12:01</oval:timestamp>
+  <oval:timestamp>2016-06-06T11:56:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -12417,6 +12417,112 @@ The CVE-2016-1548 issue was discovered by Miroslav Lichvar (Red Hat).</descripti
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161204" version="601">
+   <metadata>
+    <title>RHSA-2016:1204: spice-server security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1204-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1204" source="RHSA"/>
+    <reference ref_id="CVE-2016-0749" ref_url="https://access.redhat.com/security/cve/CVE-2016-0749" source="CVE"/>
+    <reference ref_id="CVE-2016-2150" ref_url="https://access.redhat.com/security/cve/CVE-2016-2150" source="CVE"/>
+    <description>The Simple Protocol for Independent Computing Environments (SPICE) is a remote display protocol for virtual environments. SPICE users can access a virtualized desktop or server from the local system or any system with network access to the server. SPICE is used in Red Hat Enterprise Linux for viewing virtualized guests running on the Kernel-based Virtual Machine (KVM) hypervisor or on Red Hat Enterprise Virtualization Hypervisors.
+
+Security Fix(es):
+
+* A memory allocation flaw, leading to a heap-based buffer overflow, was found in spice's smartcard interaction, which runs under the QEMU-KVM context on the host. A user connecting to a guest VM using spice could potentially use this flaw to crash the QEMU-KVM process or execute arbitrary code with the privileges of the host's QEMU-KVM process. (CVE-2016-0749)
+
+* A memory access flaw was found in the way spice handled certain guests using crafted primary surface parameters. A user in a guest could use this flaw to read from and write to arbitrary memory locations on the host. (CVE-2016-2150)
+
+The CVE-2016-0749 issue was discovered by Jing Zhao (Red Hat) and the CVE-2016-2150 issue was discovered by Frediano Ziglio (Red Hat).</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-06-06"/>
+     <updated date="2016-06-06"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0749">CVE-2016-0749</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-2150">CVE-2016-2150</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1300646" id="1300646">CVE-2016-0749 spice: heap-based memory corruption within smartcard handling</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1313496" id="1313496">CVE-2016-2150 spice: Host memory access from guest with invalid primary surface parameters</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="spice-server is earlier than 0:0.12.4-13.el6.1" test_ref="oval:com.redhat.rhsa:tst:20161204005"/>
+      <criterion comment="spice-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161204006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="spice-server-devel is earlier than 0:0.12.4-13.el6.1" test_ref="oval:com.redhat.rhsa:tst:20161204007"/>
+      <criterion comment="spice-server-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161204008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161205" version="601">
+   <metadata>
+    <title>RHSA-2016:1205: spice security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1205-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1205" source="RHSA"/>
+    <reference ref_id="CVE-2016-0749" ref_url="https://access.redhat.com/security/cve/CVE-2016-0749" source="CVE"/>
+    <reference ref_id="CVE-2016-2150" ref_url="https://access.redhat.com/security/cve/CVE-2016-2150" source="CVE"/>
+    <description>The Simple Protocol for Independent Computing Environments (SPICE) is a remote display system built for virtual environments which allows the user to view a computing 'desktop' environment not only on the machine where it is running, but from anywhere on the Internet and from a wide variety of machine architectures.
+
+Security Fix(es):
+
+* A memory allocation flaw, leading to a heap-based buffer overflow, was found in spice's smartcard interaction, which runs under the QEMU-KVM context on the host. A user connecting to a guest VM using spice could potentially use this flaw to crash the QEMU-KVM process or execute arbitrary code with the privileges of the host's QEMU-KVM process. (CVE-2016-0749)
+
+* A memory access flaw was found in the way spice handled certain guests using crafted primary surface parameters. A user in a guest could use this flaw to read from and write to arbitrary memory locations on the host. (CVE-2016-2150)
+
+The CVE-2016-0749 issue was discovered by Jing Zhao (Red Hat) and the CVE-2016-2150 issue was discovered by Frediano Ziglio (Red Hat).</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-06-06"/>
+     <updated date="2016-06-06"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0749">CVE-2016-0749</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-2150">CVE-2016-2150</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1300646" id="1300646">CVE-2016-0749 spice: heap-based memory corruption within smartcard handling</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1313496" id="1313496">CVE-2016-2150 spice: Host memory access from guest with invalid primary surface parameters</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="spice is earlier than 0:0.12.4-15.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20161205009"/>
+      <criterion comment="spice is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161205010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="spice-server is earlier than 0:0.12.4-15.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20161205005"/>
+      <criterion comment="spice-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161204006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="spice-server-devel is earlier than 0:0.12.4-15.el7_2.1" test_ref="oval:com.redhat.rhsa:tst:20161205007"/>
+      <criterion comment="spice-server-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161204008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -18367,6 +18473,38 @@ The CVE-2016-1548 issue was discovered by Miroslav Lichvar (Red Hat).</descripti
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160063008"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161141005"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="spice-server is earlier than 0:0.12.4-13.el6.1" id="oval:com.redhat.rhsa:tst:20161204005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161204005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161204003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="spice-server is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161204006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161204005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="spice-server-devel is earlier than 0:0.12.4-13.el6.1" id="oval:com.redhat.rhsa:tst:20161204007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161204006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161204003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="spice-server-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161204008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161204006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="spice-server is earlier than 0:0.12.4-15.el7_2.1" id="oval:com.redhat.rhsa:tst:20161205005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161204005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161205003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="spice-server-devel is earlier than 0:0.12.4-15.el7_2.1" id="oval:com.redhat.rhsa:tst:20161205007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161204006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161205003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="spice is earlier than 0:0.12.4-15.el7_2.1" id="oval:com.redhat.rhsa:tst:20161205009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161205007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161205003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="spice is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161205010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161205007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -19431,6 +19569,15 @@ The CVE-2016-1548 issue was discovered by Miroslav Lichvar (Red Hat).</descripti
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161140005" version="601">
    <red-def:name>squid34</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161204005" version="601">
+   <red-def:name>spice-server</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161204006" version="601">
+   <red-def:name>spice-server-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161205007" version="601">
+   <red-def:name>spice</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -20020,6 +20167,12 @@ The CVE-2016-1548 issue was discovered by Miroslav Lichvar (Red Hat).</descripti
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161141005" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:4.2.6p5-10.el6.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161204003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.12.4-13.el6.1</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161205003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.12.4-15.el7_2.1</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
