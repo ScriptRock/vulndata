@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-06-08T13:02:02</oval:timestamp>
+  <oval:timestamp>2016-06-16T18:48:02</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -12599,6 +12599,126 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161237" version="601">
+   <metadata>
+    <title>RHSA-2016:1237: ImageMagick security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1237-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1237" source="RHSA"/>
+    <reference ref_id="CVE-2015-8895" ref_url="https://access.redhat.com/security/cve/CVE-2015-8895" source="CVE"/>
+    <reference ref_id="CVE-2015-8896" ref_url="https://access.redhat.com/security/cve/CVE-2015-8896" source="CVE"/>
+    <reference ref_id="CVE-2015-8897" ref_url="https://access.redhat.com/security/cve/CVE-2015-8897" source="CVE"/>
+    <reference ref_id="CVE-2015-8898" ref_url="https://access.redhat.com/security/cve/CVE-2015-8898" source="CVE"/>
+    <reference ref_id="CVE-2016-5118" ref_url="https://access.redhat.com/security/cve/CVE-2016-5118" source="CVE"/>
+    <reference ref_id="CVE-2016-5239" ref_url="https://access.redhat.com/security/cve/CVE-2016-5239" source="CVE"/>
+    <reference ref_id="CVE-2016-5240" ref_url="https://access.redhat.com/security/cve/CVE-2016-5240" source="CVE"/>
+    <description>ImageMagick is an image display and manipulation tool for the X Window System that can read and write multiple image formats.
+
+Security Fix(es):
+
+* It was discovered that ImageMagick did not properly sanitize certain input before using it to invoke processes. A remote attacker could create a specially crafted image that, when processed by an application using ImageMagick or an unsuspecting user using the ImageMagick utilities, would lead to arbitrary execution of shell commands with the privileges of the user running the application. (CVE-2016-5118)
+
+* It was discovered that ImageMagick did not properly sanitize certain input before passing it to the gnuplot delegate functionality. A remote attacker could create a specially crafted image that, when processed by an application using ImageMagick or an unsuspecting user using the ImageMagick utilities, would lead to arbitrary execution of shell commands with the privileges of the user running the application. (CVE-2016-5239)
+
+* Multiple flaws have been discovered in ImageMagick. A remote attacker could, for example, create specially crafted images that, when processed by an application using ImageMagick or an unsuspecting user using the ImageMagick utilities, would result in a memory corruption and, potentially, execution of arbitrary code, a denial of service, or an application crash. (CVE-2015-8896, CVE-2015-8895, CVE-2016-5240, CVE-2015-8897, CVE-2015-8898)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-06-16"/>
+     <updated date="2016-06-16"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8895">CVE-2015-8895</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8896">CVE-2015-8896</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8897">CVE-2015-8897</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8898">CVE-2015-8898</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5118">CVE-2016-5118</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5239">CVE-2016-5239</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5240">CVE-2016-5240</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1269553" id="1269553">CVE-2015-8895 ImageMagick: Integer and buffer overflow in coders/icon.c</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1269562" id="1269562">CVE-2015-8896 ImageMagick: Integer truncation vulnerability in coders/pict.c</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1333417" id="1333417">CVE-2016-5240 ImageMagick: SVG converting issue resulting in DoS</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334188" id="1334188">CVE-2016-5239 ImageMagick,GraphicsMagick: Gnuplot delegate vulnerability allowing command injection</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1340814" id="1340814">CVE-2016-5118 ImageMagick: Remote code execution via filename</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1344264" id="1344264">CVE-2015-8898 ImageMagick: Prevent NULL pointer access in magick/constitute.c</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1344271" id="1344271">CVE-2015-8897 ImageMagick: Crash due to out of bounds error in SpliceImage</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="ImageMagick is earlier than 0:6.7.8.9-15.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161237009"/>
+       <criterion comment="ImageMagick is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726016"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ImageMagick-c++ is earlier than 0:6.7.8.9-15.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161237007"/>
+       <criterion comment="ImageMagick-c++ is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ImageMagick-c++-devel is earlier than 0:6.7.8.9-15.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161237013"/>
+       <criterion comment="ImageMagick-c++-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ImageMagick-devel is earlier than 0:6.7.8.9-15.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161237015"/>
+       <criterion comment="ImageMagick-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ImageMagick-doc is earlier than 0:6.7.8.9-15.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161237011"/>
+       <criterion comment="ImageMagick-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ImageMagick-perl is earlier than 0:6.7.8.9-15.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161237005"/>
+       <criterion comment="ImageMagick-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726014"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="ImageMagick is earlier than 0:6.7.2.7-5.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161237022"/>
+       <criterion comment="ImageMagick is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726016"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ImageMagick-c++ is earlier than 0:6.7.2.7-5.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161237021"/>
+       <criterion comment="ImageMagick-c++ is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ImageMagick-c++-devel is earlier than 0:6.7.2.7-5.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161237025"/>
+       <criterion comment="ImageMagick-c++-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ImageMagick-devel is earlier than 0:6.7.2.7-5.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161237026"/>
+       <criterion comment="ImageMagick-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ImageMagick-doc is earlier than 0:6.7.2.7-5.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161237023"/>
+       <criterion comment="ImageMagick-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726012"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="ImageMagick-perl is earlier than 0:6.7.2.7-5.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161237024"/>
+       <criterion comment="ImageMagick-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160726014"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -18593,6 +18713,54 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161217008"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick-perl is earlier than 0:6.7.8.9-15.el7_2" id="oval:com.redhat.rhsa:tst:20161237005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick-c++ is earlier than 0:6.7.8.9-15.el7_2" id="oval:com.redhat.rhsa:tst:20161237007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick is earlier than 0:6.7.8.9-15.el7_2" id="oval:com.redhat.rhsa:tst:20161237009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick-doc is earlier than 0:6.7.8.9-15.el7_2" id="oval:com.redhat.rhsa:tst:20161237011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick-c++-devel is earlier than 0:6.7.8.9-15.el7_2" id="oval:com.redhat.rhsa:tst:20161237013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick-devel is earlier than 0:6.7.8.9-15.el7_2" id="oval:com.redhat.rhsa:tst:20161237015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick-c++ is earlier than 0:6.7.2.7-5.el6_8" id="oval:com.redhat.rhsa:tst:20161237021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick is earlier than 0:6.7.2.7-5.el6_8" id="oval:com.redhat.rhsa:tst:20161237022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick-doc is earlier than 0:6.7.2.7-5.el6_8" id="oval:com.redhat.rhsa:tst:20161237023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick-perl is earlier than 0:6.7.2.7-5.el6_8" id="oval:com.redhat.rhsa:tst:20161237024" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick-c++-devel is earlier than 0:6.7.2.7-5.el6_8" id="oval:com.redhat.rhsa:tst:20161237025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ImageMagick-devel is earlier than 0:6.7.2.7-5.el6_8" id="oval:com.redhat.rhsa:tst:20161237026" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237005"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -20270,6 +20438,12 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161217008" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:45.2.0-1.el6_8</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161237003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:6.7.8.9-15.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161237005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:6.7.2.7-5.el6_8</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
