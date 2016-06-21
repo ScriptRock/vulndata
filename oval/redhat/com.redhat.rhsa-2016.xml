@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-06-16T18:48:02</oval:timestamp>
+  <oval:timestamp>2016-06-21T17:25:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -12719,6 +12719,73 @@ Security Fix(es):
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161267" version="601">
+   <metadata>
+    <title>RHSA-2016:1267: setroubleshoot and setroubleshoot-plugins security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1267-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1267" source="RHSA"/>
+    <reference ref_id="CVE-2016-4444" ref_url="https://access.redhat.com/security/cve/CVE-2016-4444" source="CVE"/>
+    <reference ref_id="CVE-2016-4445" ref_url="https://access.redhat.com/security/cve/CVE-2016-4445" source="CVE"/>
+    <reference ref_id="CVE-2016-4446" ref_url="https://access.redhat.com/security/cve/CVE-2016-4446" source="CVE"/>
+    <reference ref_id="CVE-2016-4989" ref_url="https://access.redhat.com/security/cve/CVE-2016-4989" source="CVE"/>
+    <description>The setroubleshoot packages provide tools to help diagnose SELinux problems. When Access Vector Cache (AVC) messages are returned, an alert can be generated that provides information about the problem and helps to track its resolution.
+
+The setroubleshoot-plugins package provides a set of analysis plugins for use with setroubleshoot. Each plugin has the capacity to analyze SELinux AVC data and system data to provide user friendly reports describing how to interpret SELinux AVC denials.
+
+Security Fix(es):
+
+* Shell command injection flaws were found in the way the setroubleshoot executed external commands. A local attacker able to trigger certain SELinux denials could use these flaws to execute arbitrary code with root privileges. (CVE-2016-4445, CVE-2016-4989)
+
+* Shell command injection flaws were found in the way the setroubleshoot allow_execmod and allow_execstack plugins executed external commands. A local attacker able to trigger an execmod or execstack SELinux denial could use these flaws to execute arbitrary code with root privileges. (CVE-2016-4444, CVE-2016-4446)
+
+The CVE-2016-4444 and CVE-2016-4446 issues were discovered by Milos Malik (Red Hat) and the CVE-2016-4445 and CVE-2016-4989 issues were discovered by Red Hat Product Security.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-06-21"/>
+     <updated date="2016-06-21"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4444">CVE-2016-4444</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4445">CVE-2016-4445</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4446">CVE-2016-4446</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4989">CVE-2016-4989</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1332644" id="1332644">CVE-2016-4444 setroubleshoot-plugins: insecure commands.getstatusoutput use in the allow_execmod plugin</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1339183" id="1339183">CVE-2016-4445 setroubleshoot: insecure use of commands.getstatusoutput</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1339250" id="1339250">CVE-2016-4446 setroubleshoot-plugins: insecure commands.getoutput use in the allow_execstack plugin</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1346461" id="1346461">CVE-2016-4989 setroubleshoot: command injection issues</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="setroubleshoot-plugins is earlier than 0:3.0.40-3.1.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161267005"/>
+      <criterion comment="setroubleshoot-plugins is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161267006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="setroubleshoot is earlier than 0:3.0.47-12.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161267007"/>
+      <criterion comment="setroubleshoot is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161267008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="setroubleshoot-doc is earlier than 0:3.0.47-12.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161267011"/>
+      <criterion comment="setroubleshoot-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161267012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="setroubleshoot-server is earlier than 0:3.0.47-12.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161267009"/>
+      <criterion comment="setroubleshoot-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161267010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -18761,6 +18828,38 @@ Security Fix(es):
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160726006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161237005"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="setroubleshoot-plugins is earlier than 0:3.0.40-3.1.el6_8" id="oval:com.redhat.rhsa:tst:20161267005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161267005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161267003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="setroubleshoot-plugins is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161267006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161267005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="setroubleshoot is earlier than 0:3.0.47-12.el6_8" id="oval:com.redhat.rhsa:tst:20161267007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161267006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161267004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="setroubleshoot is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161267008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161267006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="setroubleshoot-server is earlier than 0:3.0.47-12.el6_8" id="oval:com.redhat.rhsa:tst:20161267009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161267007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161267004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="setroubleshoot-server is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161267010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161267007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="setroubleshoot-doc is earlier than 0:3.0.47-12.el6_8" id="oval:com.redhat.rhsa:tst:20161267011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161267008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161267004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="setroubleshoot-doc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161267012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161267008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -19834,6 +19933,18 @@ Security Fix(es):
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161205007" version="601">
    <red-def:name>spice</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161267005" version="601">
+   <red-def:name>setroubleshoot-plugins</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161267006" version="601">
+   <red-def:name>setroubleshoot</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161267007" version="601">
+   <red-def:name>setroubleshoot-server</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161267008" version="601">
+   <red-def:name>setroubleshoot-doc</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -20444,6 +20555,12 @@ Security Fix(es):
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161237005" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:6.7.2.7-5.el6_8</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161267003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.0.40-3.1.el6_8</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161267004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.0.47-12.el6_8</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
