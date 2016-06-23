@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-06-23T06:33:01</oval:timestamp>
+  <oval:timestamp>2016-06-23T11:44:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -12972,6 +12972,102 @@ Note: On Red Hat Enterprise Linux 7.0 and 7.1, the setroubleshoot is run with ro
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161296" version="601">
+   <metadata>
+    <title>RHSA-2016:1296: ocaml security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1296-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1296" source="RHSA"/>
+    <reference ref_id="CVE-2015-8869" ref_url="https://access.redhat.com/security/cve/CVE-2015-8869" source="CVE"/>
+    <description>OCaml is a high-level, strongly-typed, functional, and object-oriented
+programming language from the ML family of languages. The ocaml packages
+contain two batch compilers (a fast bytecode compiler and an optimizing
+native-code compiler), an interactive top level system, parsing tools
+(Lex, Yacc, Camlp4), a replay debugger, a documentation generator, and
+a comprehensive library.
+
+Security Fix(es):
+
+* OCaml versions 4.02.3 and earlier have a runtime bug that, on 64-bit
+platforms, causes size arguments to internal memmove calls to be
+sign-extended from 32- to 64-bits before being passed to the memmove
+function. This leads to arguments between 2GiB and 4GiB being interpreted
+as larger than they are (specifically, a bit below 2^64), causing a
+buffer overflow. Further, arguments between 4GiB and 6GiB are interpreted
+as 4GiB smaller than they should be, causing a possible information
+leak. (CVE-2015-8869)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-06-23"/>
+     <updated date="2016-06-23"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8869">CVE-2015-8869</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1332090" id="1332090">CVE-2015-8869 ocaml: sizes arguments are sign-extended from 32 to 64 bits</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="ocaml is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296025"/>
+      <criterion comment="ocaml is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296026"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-camlp4 is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296011"/>
+      <criterion comment="ocaml-camlp4 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-camlp4-devel is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296007"/>
+      <criterion comment="ocaml-camlp4-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-compiler-libs is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296015"/>
+      <criterion comment="ocaml-compiler-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-docs is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296019"/>
+      <criterion comment="ocaml-docs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-emacs is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296017"/>
+      <criterion comment="ocaml-emacs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-labltk is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296005"/>
+      <criterion comment="ocaml-labltk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-labltk-devel is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296009"/>
+      <criterion comment="ocaml-labltk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-ocamldoc is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296021"/>
+      <criterion comment="ocaml-ocamldoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-runtime is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296013"/>
+      <criterion comment="ocaml-runtime is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-source is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296023"/>
+      <criterion comment="ocaml-source is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ocaml-x11 is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296027"/>
+      <criterion comment="ocaml-x11 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296028"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -19106,6 +19202,102 @@ Note: On Red Hat Enterprise Linux 7.0 and 7.1, the setroubleshoot is run with ro
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161267007"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161293004"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-labltk is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-labltk is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-camlp4-devel is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-camlp4-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-labltk-devel is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-labltk-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-camlp4 is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-camlp4 is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-runtime is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-runtime is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-compiler-libs is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-compiler-libs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-emacs is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-emacs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-docs is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-docs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-ocamldoc is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-ocamldoc is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-source is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-source is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296024" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296026" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-x11 is earlier than 0:4.01.0-22.7.el7_2" id="oval:com.redhat.rhsa:tst:20161296027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161296003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ocaml-x11 is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296028" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -20203,6 +20395,42 @@ Note: On Red Hat Enterprise Linux 7.0 and 7.1, the setroubleshoot is run with ro
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161292008" version="601">
    <red-def:name>libxml2</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296005" version="601">
+   <red-def:name>ocaml-labltk</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296006" version="601">
+   <red-def:name>ocaml-camlp4-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296007" version="601">
+   <red-def:name>ocaml-labltk-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296008" version="601">
+   <red-def:name>ocaml-camlp4</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296009" version="601">
+   <red-def:name>ocaml-runtime</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296010" version="601">
+   <red-def:name>ocaml-compiler-libs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296011" version="601">
+   <red-def:name>ocaml-emacs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296012" version="601">
+   <red-def:name>ocaml-docs</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296013" version="601">
+   <red-def:name>ocaml-ocamldoc</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296014" version="601">
+   <red-def:name>ocaml-source</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296015" version="601">
+   <red-def:name>ocaml</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296016" version="601">
+   <red-def:name>ocaml-x11</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -20831,6 +21059,9 @@ Note: On Red Hat Enterprise Linux 7.0 and 7.1, the setroubleshoot is run with ro
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161293004" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:3.2.24-4.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161296003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:4.01.0-22.7.el7_2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
