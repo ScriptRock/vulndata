@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-06-23T11:44:01</oval:timestamp>
+  <oval:timestamp>2016-06-23T12:31:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -12786,6 +12786,170 @@ The CVE-2016-4444 and CVE-2016-4446 issues were discovered by Milos Malik (Red H
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161277" version="601">
+   <metadata>
+    <title>RHSA-2016:1277: kernel security and bug fix update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1277-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1277" source="RHSA"/>
+    <reference ref_id="CVE-2015-8767" ref_url="https://access.redhat.com/security/cve/CVE-2015-8767" source="CVE"/>
+    <reference ref_id="CVE-2016-4565" ref_url="https://access.redhat.com/security/cve/CVE-2016-4565" source="CVE"/>
+    <description>The kernel packages contain the Linux kernel, the core of any Linux
+operating system.
+
+These updated kernel packages include several security issues and numerous
+bug fixes, some of which you can see below. Space precludes documenting
+all of these bug fixes in this advisory. To see the complete list of bug
+fixes, users are directed to the related Knowledge Article:
+https://access.redhat.com/articles/2361921.
+
+Security Fixes:
+
+* A flaw was found in the way certain interfaces of the Linux kernel's
+Infiniband subsystem used write() as bi-directional ioctl() replacement,
+which could lead to insufficient memory security checks when being invoked
+using the splice() system call. A local unprivileged user on a system
+with either Infiniband hardware present or RDMA Userspace Connection
+Manager Access module explicitly loaded, could use this flaw to escalate
+their privileges on the system. (CVE-2016-4565, Important)
+
+* A race condition flaw was found in the way the Linux kernel's SCTP
+implementation handled sctp_accept() during the processing of heartbeat
+timeout events. A remote attacker could use this flaw to prevent further
+connections to be accepted by the SCTP server running on the system,
+resulting in a denial of service. (CVE-2015-8767, Moderate)
+
+Red Hat would like to thank Jann Horn for reporting CVE-2016-4565.
+
+Bug Fixes:
+
+* When Small Computer System Interface (SCSI) devices were removed or
+deleted, a system crash could occur due to a race condition between listing
+all SCSI devices and SCSI device removal. The provided patch ensures that
+the starting node for the klist_iter_init_node() function is actually a
+member of the list before using it. As a result, a system crash no longer
+occurs in the described scenario. (BZ#1333403)
+
+* This update offers a reworked series of patches for the resizable hash
+table (rhashtable) including a number of backported bug fixes and
+enhancements from upstream. (BZ#1328801)
+
+* Previously, the same value of the mperf Model-Specific Register (MSR)
+read twice in a row could lead to a kernel panic due to the divide-by-zero
+error. The provided patch fixes this bug, and the kernel now handles two
+identical values of mperf gracefully. (BZ#1334438)
+
+* When a transparent proxy application was running and the number of
+established connections on the computer exceeded one million, unrelated
+processes, such as curl or ssh, were unable to bind to a local IP on the
+box to initiate a connection. The provided patch fixes the cooperation of
+the REUSEADDR/NOREUSEADDR socket option, and thus prevents the local port
+from being exhausted. As a result, the aforementioned bug no longer occurs
+in the described scenario. (BZ#1323960)
+
+* Previously, the kernel support for non-local bind for the IPv6 protocol
+was incomplete. As a consequence, an attempt to bind a socket to an IPv6
+address that is not assigned to the host could fail. The provided patch
+includes changes in the ip_nonlocal_bind variable, which is now set to
+allow binding to an IPv6 address that is not assigned to the host. As a
+result, Linux servers are now able to bind to non-local IPv6 addresses as
+expected. (BZ#1324502)
+
+* On some servers with a faster CPU, USB initialization could previously
+lead to a kernel hang during boot. If this inconvenience occurred when
+booting the second kernel during the kdump operation, the kdump service
+failed and the vmcore was lost. The provided upstream patch fixes this bug,
+and the kernel no longer hangs after USB initialization. (BZ#1327581)
+
+* Previously, when running iperf servers using the mlx4_en module, a kernel
+panic occurred. The underlying source code has been fixed, and the kernel
+panic no longer occurs in the described scenario. (BZ#1327583)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-06-23"/>
+     <updated date="2016-06-23"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8767">CVE-2015-8767</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4565">CVE-2016-4565</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1297389" id="1297389">CVE-2015-8767 kernel: SCTP denial of service during timeout</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1310570" id="1310570">CVE-2016-4565 kernel: infiniband: Unprivileged process can overwrite kernel memory using rdma_ucm.ko</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kernel is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277011"/>
+      <criterion comment="kernel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-abi-whitelists is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277005"/>
+      <criterion comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160064006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-bootwrapper is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277031"/>
+      <criterion comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004028"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-debug is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277021"/>
+      <criterion comment="kernel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-debug-devel is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277017"/>
+      <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-devel is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277019"/>
+      <criterion comment="kernel-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004026"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-doc is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277007"/>
+      <criterion comment="kernel-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-headers is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277009"/>
+      <criterion comment="kernel-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-kdump is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277013"/>
+      <criterion comment="kernel-kdump is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-kdump-devel is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277023"/>
+      <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-tools is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277027"/>
+      <criterion comment="kernel-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160064030"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-tools-libs is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277033"/>
+      <criterion comment="kernel-tools-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160064034"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-tools-libs-devel is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277029"/>
+      <criterion comment="kernel-tools-libs-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160064032"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="perf is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277025"/>
+      <criterion comment="perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-perf is earlier than 0:3.10.0-327.22.2.el7" test_ref="oval:com.redhat.rhsa:tst:20161277015"/>
+      <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004018"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20161292" version="601">
    <metadata>
     <title>RHSA-2016:1292: libxml2 security update (Important)</title>
@@ -13064,6 +13228,145 @@ leak. (CVE-2015-8869)</description>
      <criteria operator="AND">
       <criterion comment="ocaml-x11 is earlier than 0:4.01.0-22.7.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161296027"/>
       <criterion comment="ocaml-x11 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161296028"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161301" version="601">
+   <metadata>
+    <title>RHSA-2016:1301: kernel-rt security, bug fix, and enhancement update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1301-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1301" source="RHSA"/>
+    <reference ref_id="CVE-2015-8767" ref_url="https://access.redhat.com/security/cve/CVE-2015-8767" source="CVE"/>
+    <reference ref_id="CVE-2016-3707" ref_url="https://access.redhat.com/security/cve/CVE-2016-3707" source="CVE"/>
+    <reference ref_id="CVE-2016-4565" ref_url="https://access.redhat.com/security/cve/CVE-2016-4565" source="CVE"/>
+    <description>The kernel-rt packages contain the Linux kernel, the core of any Linux
+operating system.
+
+The following packages have been upgraded to a newer upstream version:
+kernel-rt (3.10.0-327.22.1). This version provides a number of bug fixes
+and enhancements, including:
+
+* [netdrv] ixgbevf: fix spoofed packets with random MAC and use ether_addr_copy instead of memcpy 
+* [mm] mmu_notifier: fix memory corruption 
+* [mm] hugetlbfs: optimize when NUMA=n 
+* [mm] optimize put_mems_allowed() usage 
+* [x86] mm: suitable memory should go to ZONE_MOVABLE 
+* [fs] xfs: fix splice/direct-IO deadlock 
+* [acpi] tables: Add acpi_subtable_proc to ACPI table parsers 
+* [acpi] table: Add new function to get table entries 
+* [net] ipv6: Nonlocal bind 
+* [net] ipv4: bind ip_nonlocal_bind to current netns 
+
+(BZ#1335747)
+
+Security Fix(es):
+
+* A flaw was found in the way certain interfaces of the Linux kernel's
+Infiniband subsystem used write() as bi-directional ioctl() replacement,
+which could lead to insufficient memory security checks when being invoked
+using the the splice() system call. A local unprivileged user on a system
+with either Infiniband hardware present or RDMA Userspace Connection
+Manager Access module explicitly loaded, could use this flaw to escalate
+their privileges on the system. (CVE-2016-4565, Important)
+
+* A race condition flaw was found in the way the Linux kernel's SCTP
+implementation handled sctp_accept() during the processing of heartbeat
+timeout events. A remote attacker could use this flaw to prevent further
+connections to be accepted by the SCTP server running on the system,
+resulting in a denial of service. (CVE-2015-8767, Moderate)
+
+* A flaw was found in the way the realtime kernel processed specially
+crafted ICMP echo requests. A remote attacker could use this flaw to
+trigger a sysrql function based on values in the ICMP packet, allowing them
+to remotely restart the system. Note that this feature is not enabled by
+default and requires elevated privileges to be configured. (CVE-2016-3707,
+Moderate)
+
+Red Hat would like to thank Jann Horn for reporting CVE-2016-4565.
+
+Bug Fix(es):
+
+* Previously, configuration changes to the Hewlett Packard Smart Array
+(HPSA) driver during I/O operations could set the phys_disk pointer to
+NULL. Consequently, kernel oops could occur while the HPSA driver was
+submitting ioaccel2 commands. An upstream patch has been provided to fix
+this bug, and the oops in the hpsa_scsi_ioaccel_raid_map() function no
+longer occurs. (BZ#1335411)
+
+* In a previous code update one extra spin_lock operation was left
+untouched. Consequently, a deadlock could occur when looping through cache
+pages. With this update, the extra lock operation has been removed from
+the source code and the deadlock no longer occurs in the described
+situation. (BZ#1327073)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-06-23"/>
+     <updated date="2016-06-23"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8767">CVE-2015-8767</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-3707">CVE-2016-3707</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4565">CVE-2016-4565</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1297389" id="1297389">CVE-2015-8767 kernel: SCTP denial of service during timeout</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1310570" id="1310570">CVE-2016-4565 kernel: infiniband: Unprivileged process can overwrite kernel memory using rdma_ucm.ko</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1327073" id="1327073">deadlock in fscache code (merge error)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1327484" id="1327484">CVE-2016-3707 kernel-rt: Sending SysRq command via ICMP echo request</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1334459" id="1334459">rt: Use IPI to trigger RT task push migration instead of pulling</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1335747" id="1335747">kernel-rt: update to the RHEL7.2.z batch#5 source tree</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras_rt:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kernel-rt is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161301023"/>
+      <criterion comment="kernel-rt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161301021"/>
+      <criterion comment="kernel-rt-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug-devel is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161301007"/>
+      <criterion comment="kernel-rt-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161301017"/>
+      <criterion comment="kernel-rt-debug-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-devel is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161301011"/>
+      <criterion comment="kernel-rt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-doc is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161301005"/>
+      <criterion comment="kernel-rt-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-kvm is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161301009"/>
+      <criterion comment="kernel-rt-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161301019"/>
+      <criterion comment="kernel-rt-trace is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace-devel is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161301013"/>
+      <criterion comment="kernel-rt-trace-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161301015"/>
+      <criterion comment="kernel-rt-trace-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065018"/>
      </criteria>
     </criteria>
    </criteria>
@@ -19142,6 +19445,66 @@ leak. (CVE-2015-8869)</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161267008"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-abi-whitelists is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160064005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-doc is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-headers is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-kdump is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-perf is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-debug-devel is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-devel is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-debug is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-kdump-devel is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="perf is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-tools is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160064017"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-tools-libs-devel is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277029" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160064018"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-bootwrapper is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277031" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-tools-libs is earlier than 0:3.10.0-327.22.2.el7" id="oval:com.redhat.rhsa:tst:20161277033" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160064019"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161277003"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="libxml2-python is earlier than 0:2.9.1-6.el7_2.3" id="oval:com.redhat.rhsa:tst:20161292005" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161292005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161292003"/>
@@ -19297,6 +19660,46 @@ leak. (CVE-2015-8869)</description>
   <red-def:rpminfo_test check="at least one" comment="ocaml-x11 is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161296028" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161296016"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-doc is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" id="oval:com.redhat.rhsa:tst:20161301005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161301003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug-devel is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" id="oval:com.redhat.rhsa:tst:20161301007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161301003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-kvm is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" id="oval:com.redhat.rhsa:tst:20161301009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161301003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-devel is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" id="oval:com.redhat.rhsa:tst:20161301011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161301003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace-devel is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" id="oval:com.redhat.rhsa:tst:20161301013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161301003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" id="oval:com.redhat.rhsa:tst:20161301015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161301003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" id="oval:com.redhat.rhsa:tst:20161301017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161301003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" id="oval:com.redhat.rhsa:tst:20161301019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161301003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" id="oval:com.redhat.rhsa:tst:20161301021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161301003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt is earlier than 0:3.10.0-327.22.2.rt56.230.el7_2" id="oval:com.redhat.rhsa:tst:20161301023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161301003"/>
   </red-def:rpminfo_test>
  </tests>
  <objects>
@@ -21048,6 +21451,9 @@ leak. (CVE-2015-8869)</description>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161267004" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:3.0.47-12.el6_8</red-def:evr>
   </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161277003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.10.0-327.22.2.el7</red-def:evr>
+  </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161292003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:2.9.1-6.el7_2.3</red-def:evr>
   </red-def:rpminfo_state>
@@ -21062,6 +21468,9 @@ leak. (CVE-2015-8869)</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161296003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:4.01.0-22.7.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161301003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.10.0-327.22.2.rt56.230.el7_2</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
