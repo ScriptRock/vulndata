@@ -21141,6 +21141,67 @@
 		    </criteria>
 		  </criteria>
 		</definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.cisecurity:def:884" version="1">
+		  <metadata>
+		    <title>Windows Search Component Denial of Service Vulnerability - CVE-2016-3230 (MS16-082)</title>
+		    <affected family="windows">
+		      <platform>Microsoft Windows 7</platform>
+		      <platform>Microsoft Windows Server 2008 R2</platform>
+		      <platform>Microsoft Windows Server 2012</platform>
+		      <platform>Microsoft Windows 8.1</platform>
+		      <platform>Microsoft Windows Server 2012 R2</platform>
+		      <platform>Microsoft Windows 10</platform>
+		    </affected>
+		    <reference ref_id="CVE-2016-3230" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3230" source="CVE" />
+		    <description>The Search component in Microsoft Windows 7, Windows Server 2008 R2 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, and Windows 10 Gold and 1511 allows local users to cause a denial of service (performance degradation) via a crafted application, aka "Windows Search Component Denial of Service Vulnerability."</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2016-06-22T14:04:13+08:00">
+		          <contributor organization="DTCC">Alexander Chua</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria comment="Check for installation of vulnerable Windows OS + vulnerable file version" operator="OR">
+		    <criteria comment="Microsoft Windows 7/Server 2008 R2 is installed + file version" operator="AND">
+		      <criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+		        <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+		        <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+		        <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+		        <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+		      </criteria>
+		      <criterion comment="Check if structuredquery.dll version is less than 7.0.7601.23451" test_ref="oval:org.cisecurity:tst:1468" />
+		    </criteria>
+		    <criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed + file version" operator="AND">
+		      <criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed" operator="OR">
+		        <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+		        <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+		        <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+		      </criteria>
+		      <criterion comment="Check if structuredquery.dll version is less than 7.0.9600.18334" test_ref="oval:org.cisecurity:tst:1472" />
+		    </criteria>
+		    <criteria comment="Microsoft Windows Server 2012 is installed + file version" operator="AND">
+		      <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+		      <criterion comment="Check if structuredquery.dll version is less than 7.0.9200.21858" test_ref="oval:org.cisecurity:tst:1469" />
+		    </criteria>
+		    <criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+		      <criteria comment="Microsoft Windows 10 is installed" operator="OR">
+		        <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+		        <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+		      </criteria>
+		      <criterion comment="Check if structuredquery.dll version is less than 7.0.10240.16942" test_ref="oval:org.cisecurity:tst:1470" />
+		    </criteria>
+		    <criteria comment="Microsoft Windows 10 Version 1511 is installed + file version" operator="AND">
+		      <criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+		        <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+		        <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+		      </criteria>
+		      <criterion comment="Check if structuredquery.dll version is less than 7.0.10586.420" test_ref="oval:org.cisecurity:tst:1471" />
+		    </criteria>
+		  </criteria>
+		</definition>
     <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.mitre.oval:def:228" version="10">
 		  <metadata>
 		    <title>Microsoft Windows Vista is installed</title>
@@ -28781,6 +28842,26 @@
 		  <object object_ref="oval:org.cisecurity:obj:363" />
 		  <state state_ref="oval:org.cisecurity:ste:1090" />
 		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if structuredquery.dll version is less than 7.0.7601.23451" id="oval:org.cisecurity:tst:1468" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:7733" />
+		  <state state_ref="oval:org.cisecurity:ste:1129" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if structuredquery.dll version is less than 7.0.9200.21858" id="oval:org.cisecurity:tst:1469" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:7733" />
+		  <state state_ref="oval:org.cisecurity:ste:1127" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if structuredquery.dll version is less than 7.0.10240.16942" id="oval:org.cisecurity:tst:1470" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:7733" />
+		  <state state_ref="oval:org.cisecurity:ste:1126" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if structuredquery.dll version is less than 7.0.10586.420" id="oval:org.cisecurity:tst:1471" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:7733" />
+		  <state state_ref="oval:org.cisecurity:ste:1128" />
+		</file_test>
+    <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Check if structuredquery.dll version is less than 7.0.9600.18334" id="oval:org.cisecurity:tst:1472" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:7733" />
+		  <state state_ref="oval:org.cisecurity:ste:1130" />
+		</file_test>
     <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." id="oval:org.mitre.oval:tst:38" version="3">
 		  <object object_ref="oval:org.mitre.oval:obj:1517" />
 		</file_test>
@@ -30176,6 +30257,10 @@
 		  <key>SOFTWARE\Microsoft\Office\14.0\Word\InstallRoot</key>
 		  <name xsi:nil="true" />
 		</registry_object>
+    <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:obj:7733" version="17">
+		  <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
+		  <filename>Structuredquery.dll</filename>
+		</file_object>
     <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:obj:7742" version="14">
 		  <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
 		  <filename>VBScript.dll</filename>
@@ -32696,6 +32781,21 @@
 		</file_state>
     <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches version less than 6.0.6002.19659" id="oval:org.cisecurity:ste:1125" version="1">
 		  <version datatype="version" operation="less than">6.0.6002.19659</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches version less than 7.0.10240.16942" id="oval:org.cisecurity:ste:1126" version="1">
+		  <version datatype="version" operation="less than">7.0.10240.16942</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches version less than 7.0.9200.21858" id="oval:org.cisecurity:ste:1127" version="1">
+		  <version datatype="version" operation="less than">7.0.9200.21858</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches version less than 7.0.10586.420" id="oval:org.cisecurity:ste:1128" version="1">
+		  <version datatype="version" operation="less than">7.0.10586.420</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches version less than 7.0.7601.23451" id="oval:org.cisecurity:ste:1129" version="1">
+		  <version datatype="version" operation="less than">7.0.7601.23451</version>
+		</file_state>
+    <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="State matches version less than 7.0.9600.18334" id="oval:org.cisecurity:ste:1130" version="1">
+		  <version datatype="version" operation="less than">7.0.9600.18334</version>
 		</file_state>
     <family_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Microsoft Windows family" id="oval:org.mitre.oval:ste:99" version="2">
 		  <family operation="case insensitive equals">windows</family>
