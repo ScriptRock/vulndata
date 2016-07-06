@@ -1192,37 +1192,36 @@
 		    </oval-def:criteria>
 		  </oval-def:criteria>
 		</oval-def:definition>
-    <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:5574" version="1">
-		  <oval-def:metadata>
-		    <oval-def:title>Cisco IOS Input Access List Packet Leakage Flaw</oval-def:title>
-		    <oval-def:affected family="ios">
-		      <oval-def:platform>Cisco IOS</oval-def:platform>
-		    </oval-def:affected>
-		    <oval-def:reference ref_id="CVE-1999-0445" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-1999-0445" source="CVE" />
-		    <oval-def:description>In Cisco routers under some versions of IOS 12.0 running NAT, some packets may not be filtered by input access list filters.</oval-def:description>
-		    <oval-def:oval_repository>
-		      <oval-def:dates>
-		        <oval-def:submitted date="2008-05-02T11:06:36.000-04:00">
-		          <oval-def:contributor organization="Hewlett-Packard">Yuzheng Zhou</oval-def:contributor>
-		        </oval-def:submitted>
-		        <oval-def:status_change date="2008-07-30T16:33:39.440-04:00">DRAFT</oval-def:status_change>
-		        <oval-def:status_change date="2008-08-18T04:00:40.924-04:00">INTERIM</oval-def:status_change>
-		        <oval-def:status_change date="2008-09-08T04:00:28.181-04:00">ACCEPTED</oval-def:status_change>
-		      </oval-def:dates>
-		      <oval-def:status>ACCEPTED</oval-def:status>
-		      <oval-def:min_schema_version>5.3</oval-def:min_schema_version>
-		    </oval-def:oval_repository>
-		  </oval-def:metadata>
-		  <oval-def:criteria comment="Cisco ISO meets CVE-1999-0445" operator="AND">
-		    <oval-def:criterion comment="IOS vulnerable versions" test_ref="oval:org.mitre.oval:tst:8290" />
-		    <oval-def:criterion comment="IOS vulnerable versions" negate="true" test_ref="oval:org.mitre.oval:tst:8748" />
-		    <oval-def:criterion comment="config contains: ip access-group \S+ in" test_ref="oval:org.mitre.oval:tst:8685" />
-		    <oval-def:criteria operator="OR">
-		      <oval-def:criterion comment="config contains: ip nat inside" test_ref="oval:org.mitre.oval:tst:9093" />
-		      <oval-def:criterion comment="config contains: ip nat outside" test_ref="oval:org.mitre.oval:tst:8816" />
-		    </oval-def:criteria>
-		  </oval-def:criteria>
-		</oval-def:definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:5574" version="2">
+		  <metadata>
+		    <title>Cisco IOS Input Access List Packet Leakage Flaw</title>
+		    <affected family="ios">
+		      <platform>Cisco IOS</platform>
+		    </affected>
+		    <reference ref_id="CVE-1999-0445" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-1999-0445" source="CVE" />
+		    <description>In Cisco routers under some versions of IOS 12.0 running NAT, some packets may not be filtered by input access list filters.</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2008-05-02T11:06:36.000-04:00">
+		          <contributor organization="Hewlett-Packard">Yuzheng Zhou</contributor>
+		        </submitted>
+		        <status_change date="2008-07-30T16:33:39.440-04:00">DRAFT</status_change>
+		        <status_change date="2008-08-18T04:00:40.924-04:00">INTERIM</status_change>
+		        <status_change date="2008-09-08T04:00:28.181-04:00">ACCEPTED</status_change>
+		      </dates>
+		      <status>ACCEPTED</status>
+		    </oval_repository>
+		  </metadata>
+		  <criteria>
+		    <criterion comment="IOS vulnerable versions" test_ref="oval:org.mitre.oval:tst:8290" />
+		    <criterion comment="IOS vulnerable versions" negate="true" test_ref="oval:org.mitre.oval:tst:8748" />
+		    <criterion comment="config contains: ip access-group \S+ in" test_ref="oval:org.mitre.oval:tst:8685" />
+		    <criteria comment="ip nat inside,ip nat outside" operator="OR">
+		      <criterion comment="config contains: ip nat inside" test_ref="oval:org.mitre.oval:tst:9169" />
+		      <criterion comment="config contains: ip nat outside" test_ref="oval:org.mitre.oval:tst:9313" />
+		    </criteria>
+		  </criteria>
+		</definition>
     <oval-def:definition xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:5575" version="1">
 		  <oval-def:metadata>
 		    <oval-def:title>Cisco PIX CBAC Fragmentation Attack</oval-def:title>
@@ -4282,10 +4281,6 @@
 		  <object object_ref="oval:org.mitre.oval:obj:6251" />
 		  <state state_ref="oval:org.mitre.oval:ste:4079" />
 		</version_test>
-    <line_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="at least one" check_existence="at_least_one_exists" comment="config contains: ip nat outside" id="oval:org.mitre.oval:tst:8816" version="1">
-		  <object object_ref="oval:org.mitre.oval:obj:6385" />
-		  <state state_ref="oval:org.mitre.oval:ste:4233" />
-		</line_test>
     <version_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="at least one" check_existence="at_least_one_exists" comment="IOS vulnerable versions" id="oval:org.mitre.oval:tst:8821" version="2">
 		  <object object_ref="oval:org.mitre.oval:obj:6251" />
 		  <state state_ref="oval:org.mitre.oval:ste:4238" />
@@ -4637,10 +4632,6 @@
     <line_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="at least one" check_existence="at_least_one_exists" comment="config contains: aaa new-model" id="oval:org.mitre.oval:tst:9089" version="1">
 		  <object object_ref="oval:org.mitre.oval:obj:6385" />
 		  <state state_ref="oval:org.mitre.oval:ste:4071" />
-		</line_test>
-    <line_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="at least one" check_existence="at_least_one_exists" comment="config contains: ip nat inside" id="oval:org.mitre.oval:tst:9093" version="1">
-		  <object object_ref="oval:org.mitre.oval:obj:6385" />
-		  <state state_ref="oval:org.mitre.oval:ste:3537" />
 		</line_test>
     <line_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="at least one" check_existence="at_least_one_exists" comment="config contains: authentication open eap" id="oval:org.mitre.oval:tst:9094" version="1">
 		  <object object_ref="oval:org.mitre.oval:obj:6385" />
