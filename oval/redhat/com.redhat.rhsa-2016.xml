@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-07-18T09:30:01</oval:timestamp>
+  <oval:timestamp>2016-07-18T13:30:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -13532,6 +13532,171 @@ functions provided by the ipv6.ko kernel module, which added a dependency on tha
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161421" version="601">
+   <metadata>
+    <title>RHSA-2016:1421: httpd security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1421-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1421" source="RHSA"/>
+    <reference ref_id="CVE-2016-5387" ref_url="https://access.redhat.com/security/cve/CVE-2016-5387" source="CVE"/>
+    <description>The httpd packages provide the Apache HTTP Server, a powerful, efficient, and extensible web server.
+
+Security Fix(es):
+
+* It was discovered that httpd used the value of the Proxy header from HTTP requests to initialize the HTTP_PROXY environment variable for CGI scripts, which in turn was incorrectly used by certain HTTP client implementations to configure the proxy for outgoing HTTP requests. A remote attacker could possibly use this flaw to redirect HTTP requests performed by a CGI script to an attacker-controlled proxy via a malicious HTTP request. (CVE-2016-5387)
+
+Note: After this update, httpd will no longer pass the value of the Proxy request header to scripts via the HTTP_PROXY environment variable.
+
+Red Hat would like to thank Scott Geary (VendHQ) for reporting this issue.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-07-18"/>
+     <updated date="2016-07-18"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5387">CVE-2016-5387</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1353755" id="1353755">CVE-2016-5387 Apache HTTPD: sets environmental variable based on user supplied Proxy request header</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001"/>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="httpd is earlier than 0:2.2.3-92.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161421006"/>
+       <criterion comment="httpd is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20161421007"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="httpd-devel is earlier than 0:2.2.3-92.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161421002"/>
+       <criterion comment="httpd-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20161421003"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="httpd-manual is earlier than 0:2.2.3-92.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161421004"/>
+       <criterion comment="httpd-manual is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20161421005"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="mod_ssl is earlier than 1:2.2.3-92.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161421008"/>
+       <criterion comment="mod_ssl is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20161421009"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="httpd is earlier than 0:2.2.15-54.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161421018"/>
+       <criterion comment="httpd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161421019"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="httpd-devel is earlier than 0:2.2.15-54.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161421014"/>
+       <criterion comment="httpd-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161421015"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="httpd-manual is earlier than 0:2.2.15-54.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161421022"/>
+       <criterion comment="httpd-manual is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161421023"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="httpd-tools is earlier than 0:2.2.15-54.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161421020"/>
+       <criterion comment="httpd-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161421021"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="mod_ssl is earlier than 1:2.2.15-54.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161421016"/>
+       <criterion comment="mod_ssl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161421017"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161422" version="601">
+   <metadata>
+    <title>RHSA-2016:1422: httpd security and bug fix update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1422-00" ref_url="https://access.redhat.com/errata/RHSA-2016:1422" source="RHSA"/>
+    <reference ref_id="CVE-2016-5387" ref_url="https://access.redhat.com/security/cve/CVE-2016-5387" source="CVE"/>
+    <description>The httpd packages provide the Apache HTTP Server, a powerful, efficient, and extensible web server.
+
+Security Fix(es):
+
+* It was discovered that httpd used the value of the Proxy header from HTTP requests to initialize the HTTP_PROXY environment variable for CGI scripts, which in turn was incorrectly used by certain HTTP client implementations to configure the proxy for outgoing HTTP requests. A remote attacker could possibly use this flaw to redirect HTTP requests performed by a CGI script to an attacker-controlled proxy via a malicious HTTP request. (CVE-2016-5387)
+
+Note: After this update, httpd will no longer pass the value of the Proxy request header to scripts via the HTTP_PROXY environment variable.
+
+Red Hat would like to thank Scott Geary (VendHQ) for reporting this issue.
+
+Bug Fix(es):
+
+* In a caching proxy configuration, the mod_cache module would treat content as stale if the Expires header changed when refreshing a cached response. As a consequence, an origin server returning content without a fixed Expires header would not be treated as cacheable. The mod_cache module has been fixed to ignore changes in the Expires header when refreshing content. As a result, such content is now cacheable, improving performance and reducing load at the origin server. (BZ#1347648)
+
+* The HTTP status code 451 &quot;Unavailable For Legal Reasons&quot; was not usable in the httpd configuration. As a consequence, modules such as mod_rewrite could not be configured to return a 451 error if required for legal purposes. The 451 status code has been added to the list of available error codes, and modules can now be configured to return a 451 error if required. (BZ#1353269)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-07-18"/>
+     <updated date="2016-07-18"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5387">CVE-2016-5387</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1347648" id="1347648">Apache can not cache content if Expires header is modified</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1353269" id="1353269">Support sending http 451 status code from RewriteRule</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1353755" id="1353755">CVE-2016-5387 Apache HTTPD: sets environmental variable based on user supplied Proxy request header</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="httpd is earlier than 0:2.4.6-40.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20161422009"/>
+      <criterion comment="httpd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161421019"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="httpd-devel is earlier than 0:2.4.6-40.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20161422013"/>
+      <criterion comment="httpd-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161421015"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="httpd-manual is earlier than 0:2.4.6-40.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20161422019"/>
+      <criterion comment="httpd-manual is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161421023"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="httpd-tools is earlier than 0:2.4.6-40.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20161422005"/>
+      <criterion comment="httpd-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161421021"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mod_ldap is earlier than 0:2.4.6-40.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20161422007"/>
+      <criterion comment="mod_ldap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161422008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mod_proxy_html is earlier than 1:2.4.6-40.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20161422015"/>
+      <criterion comment="mod_proxy_html is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161422016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mod_session is earlier than 0:2.4.6-40.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20161422017"/>
+      <criterion comment="mod_session is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161422018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="mod_ssl is earlier than 1:2.4.6-40.el7_2.4" test_ref="oval:com.redhat.rhsa:tst:20161422011"/>
+      <criterion comment="mod_ssl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161421017"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -19926,6 +20091,122 @@ functions provided by the ipv6.ko kernel module, which added a dependency on tha
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004016"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161406003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-devel is earlier than 0:2.2.3-92.el5_11" id="oval:com.redhat.rhsa:tst:20161421002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161421004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-devel is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20161421003" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-manual is earlier than 0:2.2.3-92.el5_11" id="oval:com.redhat.rhsa:tst:20161421004" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161421004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-manual is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20161421005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd is earlier than 0:2.2.3-92.el5_11" id="oval:com.redhat.rhsa:tst:20161421006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161421004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20161421007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_ssl is earlier than 1:2.2.3-92.el5_11" id="oval:com.redhat.rhsa:tst:20161421008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161421005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_ssl is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20161421009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-devel is earlier than 0:2.2.15-54.el6_8" id="oval:com.redhat.rhsa:tst:20161421014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161421007"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161421015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_ssl is earlier than 1:2.2.15-54.el6_8" id="oval:com.redhat.rhsa:tst:20161421016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161421008"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_ssl is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161421017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd is earlier than 0:2.2.15-54.el6_8" id="oval:com.redhat.rhsa:tst:20161421018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161421007"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161421019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-tools is earlier than 0:2.2.15-54.el6_8" id="oval:com.redhat.rhsa:tst:20161421020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161421007"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-tools is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161421021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-manual is earlier than 0:2.2.15-54.el6_8" id="oval:com.redhat.rhsa:tst:20161421022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161421007"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-manual is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161421023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-tools is earlier than 0:2.4.6-40.el7_2.4" id="oval:com.redhat.rhsa:tst:20161422005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161422003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_ldap is earlier than 0:2.4.6-40.el7_2.4" id="oval:com.redhat.rhsa:tst:20161422007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161422006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161422003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_ldap is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161422008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161422006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd is earlier than 0:2.4.6-40.el7_2.4" id="oval:com.redhat.rhsa:tst:20161422009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161422003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_ssl is earlier than 1:2.4.6-40.el7_2.4" id="oval:com.redhat.rhsa:tst:20161422011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161422004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-devel is earlier than 0:2.4.6-40.el7_2.4" id="oval:com.redhat.rhsa:tst:20161422013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161422003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_proxy_html is earlier than 1:2.4.6-40.el7_2.4" id="oval:com.redhat.rhsa:tst:20161422015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161422010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161422004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_proxy_html is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161422016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161422010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_session is earlier than 0:2.4.6-40.el7_2.4" id="oval:com.redhat.rhsa:tst:20161422017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161422011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161422003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_session is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161422018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161422011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="httpd-manual is earlier than 0:2.4.6-40.el7_2.4" id="oval:com.redhat.rhsa:tst:20161422019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161421003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161422003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -21059,6 +21340,30 @@ functions provided by the ipv6.ko kernel module, which added a dependency on tha
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161296016" version="601">
    <red-def:name>ocaml-x11</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161421002" version="601">
+   <red-def:name>httpd-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161421003" version="601">
+   <red-def:name>httpd-manual</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161421004" version="601">
+   <red-def:name>httpd</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161421005" version="601">
+   <red-def:name>mod_ssl</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161421010" version="601">
+   <red-def:name>httpd-tools</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161422006" version="601">
+   <red-def:name>mod_ldap</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161422010" version="601">
+   <red-def:name>mod_proxy_html</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161422011" version="601">
+   <red-def:name>mod_session</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -21708,6 +22013,24 @@ functions provided by the ipv6.ko kernel module, which added a dependency on tha
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161406003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:2.6.32-642.3.1.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161421004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.2.3-92.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161421005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:2.2.3-92.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161421007" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.2.15-54.el6_8</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161421008" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:2.2.15-54.el6_8</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161422003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.4.6-40.el7_2.4</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161422004" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:2.4.6-40.el7_2.4</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
