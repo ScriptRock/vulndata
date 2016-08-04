@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-08-03T04:07:01</oval:timestamp>
+  <oval:timestamp>2016-08-04T08:26:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -15155,6 +15155,44 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161573" version="601">
+   <metadata>
+    <title>RHSA-2016:1573: squid security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1573-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-1573.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-5408" ref_url="https://access.redhat.com/security/cve/CVE-2016-5408" source="CVE"/>
+    <description>Squid is a high-performance proxy caching server for web clients, supporting FTP, Gopher, and HTTP data objects.
+
+Security Fix(es):
+
+* It was found that the fix for CVE-2016-4051 released via RHSA-2016:1138 did not properly prevent the stack overflow in the munge_other_line() function. A remote attacker could send specially crafted data to the Squid proxy, which would exploit the cachemgr CGI utility, possibly triggering execution of arbitrary code. (CVE-2016-5408)
+
+Red Hat would like to thank Amos Jeffries (Squid) for reporting this issue.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-08-04"/>
+     <updated date="2016-08-04"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5408">CVE-2016-5408</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1359203" id="1359203">CVE-2016-5408 squid: Buffer overflow vulnerability in cachemgr.cgi tool</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="squid is earlier than 7:3.1.23-16.el6_8.6" test_ref="oval:com.redhat.rhsa:tst:20161573005"/>
+    <criterion comment="squid is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161138006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -22273,6 +22311,10 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161551008"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="squid is earlier than 7:3.1.23-16.el6_8.6" id="oval:com.redhat.rhsa:tst:20161573005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161138005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161573003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -24181,6 +24223,9 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161551008" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:45.3.0-1.el6_8</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161573003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">7:3.1.23-16.el6_8.6</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
