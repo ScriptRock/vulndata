@@ -1,6 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <definitions>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="inventory" id="oval:org.cisecurity:def:457" version="7">
+		  <metadata>
+		    <title>Debian GNU/Linux 3.0 is installed</title>
+		    <affected family="unix">
+		      <platform>Debian GNU/Linux 3.0</platform>
+		    </affected>
+		    <reference ref_id="cpe:/o:debian:debian_gnu/linux:3.0" source="CPE" />
+		    <description>Debian GNU/Linux 3.0 (woody) is installed</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2016-04-11T20:12:03-05:00">
+		          <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+		        </submitted>
+		        <status_change date="2016-04-15T10:00:00.000-04:00">DRAFT</status_change>
+		        <status_change date="2016-04-29T12:00:00.000-05:00">INTERIM</status_change>
+		        <status_change date="2016-05-14T15:00:00.000-05:00">ACCEPTED</status_change>
+		      </dates>
+		      <status>ACCEPTED</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria>
+		    <criterion comment="Debian GNU/Linux 3.0 is installed" test_ref="oval:org.cisecurity:tst:751" />
+		  </criteria>
+		</definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="patch" id="oval:org.cisecurity:def:1014" version="1">
+		  <metadata>
+		    <title>DSA-363-1 -- postfix -- denial of service, bounce-scanning</title>
+		    <affected family="unix">
+		      <platform>Debian GNU/Linux 3.0</platform>
+		      <product>postfix</product>
+		    </affected>
+		    <reference ref_id="DSA-363-1" ref_url="https://www.debian.org/security/2003/dsa-363" source="VENDOR" />
+		    <reference ref_id="CVE-2003-0468" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-0468" source="CVE" />
+		    <reference ref_id="CVE-2003-0540" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-0540" source="CVE" />
+		    <description>The postfix mail transport agent in Debian 3.0 contains two vulnerabilities.</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2016-04-05T12:34:53">
+		          <contributor organization="ALTX-SOFT">Sergey Artykhov</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria>
+		    <extend_definition comment="Debian GNU/Linux 3.0 is installed" definition_ref="oval:org.cisecurity:def:457" />
+		    <criterion comment="postfix is earlier than 0:1.1.11-0.woody3" test_ref="oval:org.cisecurity:tst:1619" />
+		  </criteria>
+		</definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="patch" id="oval:org.cisecurity:def:1019" version="1">
+		  <metadata>
+		    <title>DSA-362-1 -- mindi -- insecure temporary file</title>
+		    <affected family="unix">
+		      <platform>Debian GNU/Linux 3.0</platform>
+		      <product>mindi</product>
+		    </affected>
+		    <reference ref_id="DSA-362-1" ref_url="https://www.debian.org/security/2003/dsa-362" source="VENDOR" />
+		    <reference ref_id="CVE-2003-0617" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-0617" source="CVE" />
+		    <description>mindi, a program for creating boot/root disks, does not take appropriate security precautions when creating temporary files. This bug could potentially be exploited to overwrite arbitrary files with the privileges of the user running mindi.</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2016-04-05T12:34:53">
+		          <contributor organization="ALTX-SOFT">Sergey Artykhov</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria>
+		    <extend_definition comment="Debian GNU/Linux 3.0 is installed" definition_ref="oval:org.cisecurity:def:457" />
+		    <criterion comment="mindi is earlier than 0:0.58.r5-1woody1" test_ref="oval:org.cisecurity:tst:1640" />
+		  </criteria>
+		</definition>
+    <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="patch" id="oval:org.cisecurity:def:1020" version="1">
+		  <metadata>
+		    <title>DSA-364-3 -- man-db -- buffer overflows, arbitrary command execution</title>
+		    <affected family="unix">
+		      <platform>Debian GNU/Linux 3.0</platform>
+		      <product>man-db</product>
+		    </affected>
+		    <reference ref_id="DSA-364-3" ref_url="https://www.debian.org/security/2003/dsa-364" source="VENDOR" />
+		    <reference ref_id="CVE-2003-0620" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-0620" source="CVE" />
+		    <reference ref_id="CVE-2003-0645" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-0645" source="CVE" />
+		    <description>man-db provides the standard man(1) command on Debian systems. During configuration of this package, the administrator is asked whether man(1) should run setuid to a dedicated user ("man") in order to provide a shared cache of preformatted manual pages. The default is for man(1) NOT to be setuid, and in this configuration no known vulnerability exists. However, if the user explicitly requests setuid operation, a local attacker could exploit either of the following bugs to execute arbitrary code as the "man" user.</description>
+		    <oval_repository>
+		      <dates>
+		        <submitted date="2016-04-05T12:34:53">
+		          <contributor organization="ALTX-SOFT">Sergey Artykhov</contributor>
+		        </submitted>
+		      </dates>
+		      <status>INITIAL SUBMISSION</status>
+		      <min_schema_version>5.10</min_schema_version>
+		    </oval_repository>
+		  </metadata>
+		  <criteria>
+		    <extend_definition comment="Debian GNU/Linux 3.0 is installed" definition_ref="oval:org.cisecurity:def:457" />
+		    <criterion comment="man-db is earlier than 0:2.3.20-18.woody.4" test_ref="oval:org.cisecurity:tst:1636" />
+		  </criteria>
+		</definition>
     <definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" class="vulnerability" id="oval:org.mitre.oval:def:2" version="12">
 		  <metadata>
 		    <title>Mutt BO Vulnerability in balsa</title>
@@ -4334,6 +4436,22 @@
 		</definition>
   </definitions>
   <tests>
+    <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Debian GNU/Linux 3.0 is installed" id="oval:org.cisecurity:tst:751" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:15583" />
+		  <state state_ref="oval:org.cisecurity:ste:627" />
+		</textfilecontent54_test>
+    <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="postfix is earlier than 0:1.1.11-0.woody3" id="oval:org.cisecurity:tst:1619" version="1">
+		  <object object_ref="oval:org.mitre.oval:obj:8366" />
+		  <state state_ref="oval:org.cisecurity:ste:1322" />
+		</dpkginfo_test>
+    <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="man-db is earlier than 0:2.3.20-18.woody.4" id="oval:org.cisecurity:tst:1636" version="1">
+		  <object object_ref="oval:org.cisecurity:obj:402" />
+		  <state state_ref="oval:org.cisecurity:ste:1342" />
+		</dpkginfo_test>
+    <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="mindi is earlier than 0:0.58.r5-1woody1" id="oval:org.cisecurity:tst:1640" version="1">
+		  <object object_ref="oval:org.cisecurity:obj:403" />
+		  <state state_ref="oval:org.cisecurity:ste:1349" />
+		</dpkginfo_test>
     <inetlisteningservers_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="at least one" check_existence="at_least_one_exists" comment="ypserv is listening on the network" id="oval:org.mitre.oval:tst:2450" version="3">
 		  <object object_ref="oval:org.mitre.oval:obj:941" />
 		  <state state_ref="oval:org.mitre.oval:ste:2295" />
@@ -5002,6 +5120,12 @@
 		</rpminfo_test>
   </tests>
   <objects>
+    <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="man-db package information" id="oval:org.cisecurity:obj:402" version="1">
+		  <name>man-db</name>
+		</dpkginfo_object>
+    <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="mindi package information" id="oval:org.cisecurity:obj:403" version="1">
+		  <name>mindi</name>
+		</dpkginfo_object>
     <patch_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris" id="oval:org.mitre.oval:obj:301" version="1">
 		  <base datatype="int" operation="equals">107893</base>
 		</patch_object>
@@ -5225,6 +5349,9 @@
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="gtkhtml package information" id="oval:org.mitre.oval:obj:4588" version="2">
 		  <name>gtkhtml</name>
 		</rpminfo_object>
+    <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="postfix package information" id="oval:org.mitre.oval:obj:8366" version="1">
+		  <name>postfix</name>
+		</dpkginfo_object>
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="gnupg package information" id="oval:org.mitre.oval:obj:13847" version="2">
 		  <name>gnupg</name>
 		</rpminfo_object>
@@ -5315,8 +5442,26 @@
     <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="gdm package information" id="oval:org.mitre.oval:obj:14698" version="2">
 		  <name>gdm</name>
 		</rpminfo_object>
+    <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Object holds Debian version" id="oval:org.mitre.oval:obj:15583" version="2">
+		  <path>/etc</path>
+		  <filename>debian_version</filename>
+		  <pattern operation="pattern match">^(\d\.\d).*$</pattern>
+		  <instance datatype="int">1</instance>
+		</textfilecontent54_object>
   </objects>
   <states>
+    <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="State matches if version is 3.0" id="oval:org.cisecurity:ste:627" version="1">
+		  <subexpression>3.0</subexpression>
+		</textfilecontent54_state>
+    <dpkginfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="version is earlier than 0:1.1.11-0.woody3" id="oval:org.cisecurity:ste:1322" version="1">
+		  <evr datatype="evr_string" operation="less than">0:1.1.11-0.woody3</evr>
+		</dpkginfo_state>
+    <dpkginfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="version is earlier than 0:2.3.20-18.woody.4" id="oval:org.cisecurity:ste:1342" version="1">
+		  <evr datatype="evr_string" operation="less than">0:2.3.20-18.woody.4</evr>
+		</dpkginfo_state>
+    <dpkginfo_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="version is earlier than 0:0.58.r5-1woody1" id="oval:org.cisecurity:ste:1349" version="1">
+		  <evr datatype="evr_string" operation="less than">0:0.58.r5-1woody1</evr>
+		</dpkginfo_state>
     <inetlisteningservers_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" id="oval:org.mitre.oval:ste:2295" version="1">
 		  <program_name operation="pattern match">^.*ypserv.*</program_name>
 		</inetlisteningservers_state>
