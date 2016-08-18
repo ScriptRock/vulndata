@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-08-11T18:11:01</oval:timestamp>
+  <oval:timestamp>2016-08-18T14:40:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -15722,6 +15722,205 @@ Bug Fix(es):
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161626" version="601">
+   <metadata>
+    <title>RHSA-2016:1626: python security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1626-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-1626.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-0772" ref_url="https://access.redhat.com/security/cve/CVE-2016-0772" source="CVE"/>
+    <reference ref_id="CVE-2016-1000110" ref_url="https://access.redhat.com/security/cve/CVE-2016-1000110" source="CVE"/>
+    <reference ref_id="CVE-2016-5699" ref_url="https://access.redhat.com/security/cve/CVE-2016-5699" source="CVE"/>
+    <description>Python is an interpreted, interactive, object-oriented programming language, which includes modules, classes, exceptions, very high level dynamic data types and dynamic typing. Python supports interfaces to many system calls and libraries, as well as to various windowing systems.
+
+Security Fix(es):
+
+* It was discovered that the Python CGIHandler class did not properly protect against the HTTP_PROXY variable name clash in a CGI context. A remote attacker could possibly use this flaw to redirect HTTP requests performed by a Python CGI script to an attacker-controlled proxy via a malicious HTTP request. (CVE-2016-1000110)
+
+* It was found that Python's smtplib library did not return an exception when StartTLS failed to be established in the SMTP.starttls() function. A man in the middle attacker could strip out the STARTTLS command without generating an exception on the Python SMTP client application, preventing the establishment of the TLS layer. (CVE-2016-0772)
+
+* It was found that the Python's httplib library (used by urllib, urllib2 and others) did not properly check HTTPConnection.putheader() function arguments. An attacker could use this flaw to inject additional headers in a Python application that allowed user provided header names or values. (CVE-2016-5699)
+
+Red Hat would like to thank Scott Geary (VendHQ) for reporting CVE-2016-1000110.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-08-18"/>
+     <updated date="2016-08-18"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-0772">CVE-2016-0772</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-1000110">CVE-2016-1000110</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5699">CVE-2016-5699</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1303647" id="1303647">CVE-2016-0772 python: smtplib StartTLS stripping attack</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1303699" id="1303699">CVE-2016-5699 python: http protocol steam injection attack</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1351584" id="1351584">Python brew builds fail for RHEL 7.2</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1357334" id="1357334">CVE-2016-1000110 Python CGIHandler: sets environmental variable based on user supplied Proxy request header</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1365200" id="1365200">Upstream tests cause building python package on brew stall and leave orphan processes that need manually kill</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="python is earlier than 0:2.7.5-38.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161626013"/>
+       <criterion comment="python is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="python-debug is earlier than 0:2.7.5-38.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161626015"/>
+       <criterion comment="python-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626016"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="python-devel is earlier than 0:2.7.5-38.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161626007"/>
+       <criterion comment="python-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="python-libs is earlier than 0:2.7.5-38.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161626017"/>
+       <criterion comment="python-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626018"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="python-test is earlier than 0:2.7.5-38.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161626009"/>
+       <criterion comment="python-test is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="python-tools is earlier than 0:2.7.5-38.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161626005"/>
+       <criterion comment="python-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="tkinter is earlier than 0:2.7.5-38.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161626011"/>
+       <criterion comment="tkinter is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626012"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="python is earlier than 0:2.6.6-66.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161626023"/>
+       <criterion comment="python is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626014"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="python-devel is earlier than 0:2.6.6-66.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161626026"/>
+       <criterion comment="python-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="python-libs is earlier than 0:2.6.6-66.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161626028"/>
+       <criterion comment="python-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626018"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="python-test is earlier than 0:2.6.6-66.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161626025"/>
+       <criterion comment="python-test is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="python-tools is earlier than 0:2.6.6-66.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161626024"/>
+       <criterion comment="python-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="tkinter is earlier than 0:2.6.6-66.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161626027"/>
+       <criterion comment="tkinter is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161626012"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161632" version="601">
+   <metadata>
+    <title>RHSA-2016:1632: kernel-rt security and bug fix update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1632-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-1632.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-5696" ref_url="https://access.redhat.com/security/cve/CVE-2016-5696" source="CVE"/>
+    <description>The kernel-rt packages provide the Real Time Linux Kernel, which enables fine-tuning for systems with extremely high determinism requirements.
+
+It was found that the RFC 5961 challenge ACK rate limiting as implemented 
+in the Linux kernel's networking subsystem allowed an off-path attacker to 
+leak certain information about a given connection by creating congestion on 
+the global challenge ACK rate limit counter and then measuring the changes 
+by probing packets. An off-path attacker could use this flaw to either 
+terminate TCP connection and/or inject payload into non-secured TCP 
+connection between two endpoints on the network. (CVE-2016-5696, Important)
+
+Red Hat would like to thank Yue Cao from Cyber Security Group in the CS
+department of University of California, Riverside, for reporting this issue.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-08-18"/>
+     <updated date="2016-08-18"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5696">CVE-2016-5696</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1354708" id="1354708">CVE-2016-5696 kernel: challenge ACK counter information disclosure.</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_extras_rt:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kernel-rt is earlier than 0:3.10.0-327.28.3.rt56.235.el7" test_ref="oval:com.redhat.rhsa:tst:20161632009"/>
+      <criterion comment="kernel-rt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug is earlier than 0:3.10.0-327.28.3.rt56.235.el7" test_ref="oval:com.redhat.rhsa:tst:20161632019"/>
+      <criterion comment="kernel-rt-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug-devel is earlier than 0:3.10.0-327.28.3.rt56.235.el7" test_ref="oval:com.redhat.rhsa:tst:20161632011"/>
+      <criterion comment="kernel-rt-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-327.28.3.rt56.235.el7" test_ref="oval:com.redhat.rhsa:tst:20161632013"/>
+      <criterion comment="kernel-rt-debug-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-devel is earlier than 0:3.10.0-327.28.3.rt56.235.el7" test_ref="oval:com.redhat.rhsa:tst:20161632023"/>
+      <criterion comment="kernel-rt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-doc is earlier than 0:3.10.0-327.28.3.rt56.235.el7" test_ref="oval:com.redhat.rhsa:tst:20161632005"/>
+      <criterion comment="kernel-rt-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-kvm is earlier than 0:3.10.0-327.28.3.rt56.235.el7" test_ref="oval:com.redhat.rhsa:tst:20161632015"/>
+      <criterion comment="kernel-rt-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace is earlier than 0:3.10.0-327.28.3.rt56.235.el7" test_ref="oval:com.redhat.rhsa:tst:20161632017"/>
+      <criterion comment="kernel-rt-trace is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace-devel is earlier than 0:3.10.0-327.28.3.rt56.235.el7" test_ref="oval:com.redhat.rhsa:tst:20161632007"/>
+      <criterion comment="kernel-rt-trace-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-327.28.3.rt56.235.el7" test_ref="oval:com.redhat.rhsa:tst:20161632021"/>
+      <criterion comment="kernel-rt-trace-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160065018"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -23240,6 +23439,126 @@ Bug Fix(es):
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161609028"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161613003"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-tools is earlier than 0:2.7.5-38.el7_2" id="oval:com.redhat.rhsa:tst:20161626005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-tools is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161626006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-devel is earlier than 0:2.7.5-38.el7_2" id="oval:com.redhat.rhsa:tst:20161626007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161626008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-test is earlier than 0:2.7.5-38.el7_2" id="oval:com.redhat.rhsa:tst:20161626009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-test is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161626010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tkinter is earlier than 0:2.7.5-38.el7_2" id="oval:com.redhat.rhsa:tst:20161626011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tkinter is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161626012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python is earlier than 0:2.7.5-38.el7_2" id="oval:com.redhat.rhsa:tst:20161626013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161626014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-debug is earlier than 0:2.7.5-38.el7_2" id="oval:com.redhat.rhsa:tst:20161626015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-debug is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161626016" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-libs is earlier than 0:2.7.5-38.el7_2" id="oval:com.redhat.rhsa:tst:20161626017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-libs is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161626018" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python is earlier than 0:2.6.6-66.el6_8" id="oval:com.redhat.rhsa:tst:20161626023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-tools is earlier than 0:2.6.6-66.el6_8" id="oval:com.redhat.rhsa:tst:20161626024" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-test is earlier than 0:2.6.6-66.el6_8" id="oval:com.redhat.rhsa:tst:20161626025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-devel is earlier than 0:2.6.6-66.el6_8" id="oval:com.redhat.rhsa:tst:20161626026" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="tkinter is earlier than 0:2.6.6-66.el6_8" id="oval:com.redhat.rhsa:tst:20161626027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-libs is earlier than 0:2.6.6-66.el6_8" id="oval:com.redhat.rhsa:tst:20161626028" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161626011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161626005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-doc is earlier than 0:3.10.0-327.28.3.rt56.235.el7" id="oval:com.redhat.rhsa:tst:20161632005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161632003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace-devel is earlier than 0:3.10.0-327.28.3.rt56.235.el7" id="oval:com.redhat.rhsa:tst:20161632007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161632003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt is earlier than 0:3.10.0-327.28.3.rt56.235.el7" id="oval:com.redhat.rhsa:tst:20161632009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161632003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug-devel is earlier than 0:3.10.0-327.28.3.rt56.235.el7" id="oval:com.redhat.rhsa:tst:20161632011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161632003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-327.28.3.rt56.235.el7" id="oval:com.redhat.rhsa:tst:20161632013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161632003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-kvm is earlier than 0:3.10.0-327.28.3.rt56.235.el7" id="oval:com.redhat.rhsa:tst:20161632015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161632003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace is earlier than 0:3.10.0-327.28.3.rt56.235.el7" id="oval:com.redhat.rhsa:tst:20161632017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161632003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-debug is earlier than 0:3.10.0-327.28.3.rt56.235.el7" id="oval:com.redhat.rhsa:tst:20161632019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161632003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-327.28.3.rt56.235.el7" id="oval:com.redhat.rhsa:tst:20161632021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161632003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-rt-devel is earlier than 0:3.10.0-327.28.3.rt56.235.el7" id="oval:com.redhat.rhsa:tst:20161632023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160065009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161632003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -24511,6 +24830,27 @@ Bug Fix(es):
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161613028" version="601">
    <red-def:name>php-mysqlnd</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161626005" version="601">
+   <red-def:name>python-tools</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161626006" version="601">
+   <red-def:name>python-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161626007" version="601">
+   <red-def:name>python-test</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161626008" version="601">
+   <red-def:name>tkinter</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161626009" version="601">
+   <red-def:name>python</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161626010" version="601">
+   <red-def:name>python-debug</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161626011" version="601">
+   <red-def:name>python-libs</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -25250,6 +25590,15 @@ Bug Fix(es):
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161613003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:5.4.16-36.3.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161626003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.7.5-38.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161626005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.6.6-66.el6_8</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161632003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.10.0-327.28.3.rt56.235.el7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
