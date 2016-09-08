@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-09-08T11:13:01</oval:timestamp>
+  <oval:timestamp>2016-09-08T11:29:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20110004" version="502">
@@ -29685,6 +29685,63 @@ contain backported patches to correct these issues.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20111741" version="604">
+   <metadata>
+    <title>RHSA-2011:1741: php-pear security and bug fix update (Low)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2011:1741-03" ref_url="https://rhn.redhat.com/errata/RHSA-2011-1741.html" source="RHSA"/>
+    <reference ref_id="CVE-2011-1072" ref_url="https://access.redhat.com/security/cve/CVE-2011-1072" source="CVE"/>
+    <description>The php-pear package contains the PHP Extension and Application Repository
+(PEAR), a framework and distribution system for reusable PHP components.
+
+It was found that the &quot;pear&quot; command created temporary files in an insecure
+way when installing packages. A malicious, local user could use this flaw
+to conduct a symbolic link attack, allowing them to overwrite the contents
+of arbitrary files accessible to the victim running the &quot;pear install&quot;
+command. (CVE-2011-1072)
+
+This update also fixes the following bugs:
+
+* The php-pear package has been upgraded to version 1.9.4, which provides a
+number of bug fixes over the previous version. (BZ#651897)
+
+* Prior to this update, php-pear created a cache in the
+&quot;/var/cache/php-pear/&quot; directory when attempting to list all packages. As a
+consequence, php-pear failed to create or update the cache file as a
+regular user without sufficient file permissions and could not list all
+packages. With this update, php-pear no longer fails if writing to the
+cache directory is not permitted. Now, all packages are listed as expected.
+(BZ#747361)
+
+All users of php-pear are advised to upgrade to this updated package, which
+corrects these issues.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2011 Red Hat, Inc.</rights>
+     <issued date="2011-12-06"/>
+     <updated date="2011-12-06"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2011-1072">CVE-2011-1072</cve>
+     <bugzilla href="https://bugzilla.redhat.com/651897" id="651897">update php-pear to 1.9.4</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/681982" id="681982">CVE-2011-1072 php-pear: symlink vulnerability in PEAR installer</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/747361" id="747361">pear list-all fails for regular user</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="php-pear is earlier than 1:1.9.4-4.el6" test_ref="oval:com.redhat.rhsa:tst:20111741005"/>
+    <criterion comment="php-pear is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20111741006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20110007001"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20110007002"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20110007003"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20110007004"/>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20111777" version="502">
    <metadata>
     <title>RHSA-2011:1777: qemu-kvm security update (Important)</title>
@@ -45545,6 +45602,14 @@ contain a backported patch to correct this issue.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111694006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20110007001"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="php-pear is earlier than 1:1.9.4-4.el6" id="oval:com.redhat.rhsa:tst:20111741005" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111741005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111741003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="php-pear is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20111741006" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111741005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20110007001"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="qemu-kvm is earlier than 2:0.12.1.2-2.209.el6_2.1" id="oval:com.redhat.rhsa:tst:20111777005" version="502">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110345005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111777003"/>
@@ -48893,6 +48958,9 @@ contain a backported patch to correct this issue.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20111694006" version="604">
    <red-def:name>libcap-devel</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20111741005" version="604">
+   <red-def:name>php-pear</red-def:name>
+  </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20111807005" version="502">
    <red-def:name>jasper</red-def:name>
   </red-def:rpminfo_object>
@@ -50499,6 +50567,9 @@ contain a backported patch to correct this issue.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111694003" version="604">
    <red-def:evr datatype="evr_string" operation="less than">0:2.16-5.5.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111741003" version="604">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.9.4-4.el6</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111777003" version="502">
    <red-def:evr datatype="evr_string" operation="less than">2:0.12.1.2-2.209.el6_2.1</red-def:evr>
