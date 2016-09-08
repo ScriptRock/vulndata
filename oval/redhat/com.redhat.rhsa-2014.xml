@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-09-05T10:17:02</oval:timestamp>
+  <oval:timestamp>2016-09-08T11:13:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20140015" version="601">
@@ -3363,6 +3363,138 @@ this update.</description>
      <criteria operator="AND">
       <criterion comment="postgresql-libs is earlier than 0:8.1.23-10.el5_10" test_ref="oval:com.redhat.rhsa:tst:20140249010"/>
       <criterion comment="postgresql-libs is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20140249011"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20140255" version="602">
+   <metadata>
+    <title>RHSA-2014:0255: subversion security update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2014:0255-01" ref_url="https://rhn.redhat.com/errata/RHSA-2014-0255.html" source="RHSA"/>
+    <reference ref_id="CVE-2013-1968" ref_url="https://access.redhat.com/security/cve/CVE-2013-1968" source="CVE"/>
+    <reference ref_id="CVE-2013-2112" ref_url="https://access.redhat.com/security/cve/CVE-2013-2112" source="CVE"/>
+    <reference ref_id="CVE-2014-0032" ref_url="https://access.redhat.com/security/cve/CVE-2014-0032" source="CVE"/>
+    <description>Subversion (SVN) is a concurrent version control system which enables one
+or more users to collaborate in developing and maintaining a hierarchy of
+files and directories while keeping a history of all changes. The
+mod_dav_svn module is used with the Apache HTTP Server to allow access to
+Subversion repositories via HTTP.
+
+A flaw was found in the way the mod_dav_svn module handled OPTIONS
+requests. A remote attacker with read access to an SVN repository served
+via HTTP could use this flaw to cause the httpd process that handled such a
+request to crash. (CVE-2014-0032)
+
+A flaw was found in the way Subversion handled file names with newline
+characters when the FSFS repository format was used. An attacker with
+commit access to an SVN repository could corrupt a revision by committing a
+specially crafted file. (CVE-2013-1968)
+
+A flaw was found in the way the svnserve tool of Subversion handled remote
+client network connections. An attacker with read access to an SVN
+repository served via svnserve could use this flaw to cause the svnserve
+daemon to exit, leading to a denial of service. (CVE-2013-2112)
+
+All subversion users should upgrade to these updated packages, which
+contain backported patches to correct these issues. After installing the
+updated packages, for the update to take effect, you must restart the httpd
+daemon, if you are using mod_dav_svn, and the svnserve daemon, if you are
+serving Subversion repositories via the svn:// protocol.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2014 Red Hat, Inc.</rights>
+     <issued date="2014-03-05"/>
+     <updated date="2014-03-05"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2013-1968">CVE-2013-1968</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2013-2112">CVE-2013-2112</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2014-0032">CVE-2014-0032</cve>
+     <bugzilla href="https://bugzilla.redhat.com/970014" id="970014">CVE-2013-1968 subversion (FSFS format): Filenames with newline character can lead to revision corruption</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/970037" id="970037">CVE-2013-2112 subversion: Remote DoS due improper handling of early-closing TCP connections</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1062042" id="1062042">CVE-2014-0032 subversion: mod_dav_svn crash when handling certain requests with SVNListParentPath on</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20140016001"/>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="mod_dav_svn is earlier than 0:1.6.11-12.el5_10" test_ref="oval:com.redhat.rhsa:tst:20140255006"/>
+       <criterion comment="mod_dav_svn is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20140255007"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion is earlier than 0:1.6.11-12.el5_10" test_ref="oval:com.redhat.rhsa:tst:20140255002"/>
+       <criterion comment="subversion is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20140255003"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-devel is earlier than 0:1.6.11-12.el5_10" test_ref="oval:com.redhat.rhsa:tst:20140255004"/>
+       <criterion comment="subversion-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20140255005"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-javahl is earlier than 0:1.6.11-12.el5_10" test_ref="oval:com.redhat.rhsa:tst:20140255008"/>
+       <criterion comment="subversion-javahl is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20140255009"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-perl is earlier than 0:1.6.11-12.el5_10" test_ref="oval:com.redhat.rhsa:tst:20140255010"/>
+       <criterion comment="subversion-perl is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20140255011"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-ruby is earlier than 0:1.6.11-12.el5_10" test_ref="oval:com.redhat.rhsa:tst:20140255012"/>
+       <criterion comment="subversion-ruby is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20140255013"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20140015001"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20140015002"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20140015003"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20140015004"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="mod_dav_svn is earlier than 0:1.6.11-10.el6_5" test_ref="oval:com.redhat.rhsa:tst:20140255020"/>
+       <criterion comment="mod_dav_svn is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20140255021"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion is earlier than 0:1.6.11-10.el6_5" test_ref="oval:com.redhat.rhsa:tst:20140255018"/>
+       <criterion comment="subversion is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20140255019"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-devel is earlier than 0:1.6.11-10.el6_5" test_ref="oval:com.redhat.rhsa:tst:20140255030"/>
+       <criterion comment="subversion-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20140255031"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-gnome is earlier than 0:1.6.11-10.el6_5" test_ref="oval:com.redhat.rhsa:tst:20140255034"/>
+       <criterion comment="subversion-gnome is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20140255035"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-javahl is earlier than 0:1.6.11-10.el6_5" test_ref="oval:com.redhat.rhsa:tst:20140255028"/>
+       <criterion comment="subversion-javahl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20140255029"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-kde is earlier than 0:1.6.11-10.el6_5" test_ref="oval:com.redhat.rhsa:tst:20140255026"/>
+       <criterion comment="subversion-kde is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20140255027"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-perl is earlier than 0:1.6.11-10.el6_5" test_ref="oval:com.redhat.rhsa:tst:20140255022"/>
+       <criterion comment="subversion-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20140255023"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-ruby is earlier than 0:1.6.11-10.el6_5" test_ref="oval:com.redhat.rhsa:tst:20140255032"/>
+       <criterion comment="subversion-ruby is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20140255033"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="subversion-svn2cl is earlier than 0:1.6.11-10.el6_5" test_ref="oval:com.redhat.rhsa:tst:20140255024"/>
+       <criterion comment="subversion-svn2cl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20140255025"/>
+      </criteria>
      </criteria>
     </criteria>
    </criteria>
@@ -29659,6 +29791,126 @@ update, the ntpd daemon will restart automatically.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140249011"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140016001"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion is earlier than 0:1.6.11-12.el5_10" id="oval:com.redhat.rhsa:tst:20140255002" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20140255003" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140016001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-devel is earlier than 0:1.6.11-12.el5_10" id="oval:com.redhat.rhsa:tst:20140255004" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-devel is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20140255005" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140016001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_dav_svn is earlier than 0:1.6.11-12.el5_10" id="oval:com.redhat.rhsa:tst:20140255006" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_dav_svn is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20140255007" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140016001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-javahl is earlier than 0:1.6.11-12.el5_10" id="oval:com.redhat.rhsa:tst:20140255008" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-javahl is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20140255009" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140016001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-perl is earlier than 0:1.6.11-12.el5_10" id="oval:com.redhat.rhsa:tst:20140255010" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-perl is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20140255011" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140016001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-ruby is earlier than 0:1.6.11-12.el5_10" id="oval:com.redhat.rhsa:tst:20140255012" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-ruby is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20140255013" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140016001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion is earlier than 0:1.6.11-10.el6_5" id="oval:com.redhat.rhsa:tst:20140255018" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20140255019" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140015001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_dav_svn is earlier than 0:1.6.11-10.el6_5" id="oval:com.redhat.rhsa:tst:20140255020" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="mod_dav_svn is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20140255021" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140015001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-perl is earlier than 0:1.6.11-10.el6_5" id="oval:com.redhat.rhsa:tst:20140255022" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-perl is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20140255023" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140015001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-svn2cl is earlier than 0:1.6.11-10.el6_5" id="oval:com.redhat.rhsa:tst:20140255024" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-svn2cl is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20140255025" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140015001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-kde is earlier than 0:1.6.11-10.el6_5" id="oval:com.redhat.rhsa:tst:20140255026" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-kde is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20140255027" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140015001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-javahl is earlier than 0:1.6.11-10.el6_5" id="oval:com.redhat.rhsa:tst:20140255028" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-javahl is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20140255029" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140015001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-devel is earlier than 0:1.6.11-10.el6_5" id="oval:com.redhat.rhsa:tst:20140255030" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20140255031" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140015001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-ruby is earlier than 0:1.6.11-10.el6_5" id="oval:com.redhat.rhsa:tst:20140255032" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-ruby is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20140255033" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140015001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-gnome is earlier than 0:1.6.11-10.el6_5" id="oval:com.redhat.rhsa:tst:20140255034" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140255006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="subversion-gnome is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20140255035" version="602">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140255014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140015001"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="sudo is earlier than 0:1.7.2p1-29.el5_10" id="oval:com.redhat.rhsa:tst:20140266002" version="601">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20140266002"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20140266003"/>
@@ -40141,6 +40393,33 @@ update, the ntpd daemon will restart automatically.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140249011" version="601">
    <red-def:name>postgresql-tcl</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140255002" version="602">
+   <red-def:name>subversion</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140255003" version="602">
+   <red-def:name>subversion-devel</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140255004" version="602">
+   <red-def:name>mod_dav_svn</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140255005" version="602">
+   <red-def:name>subversion-javahl</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140255006" version="602">
+   <red-def:name>subversion-perl</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140255007" version="602">
+   <red-def:name>subversion-ruby</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140255012" version="602">
+   <red-def:name>subversion-svn2cl</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140255013" version="602">
+   <red-def:name>subversion-kde</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140255014" version="602">
+   <red-def:name>subversion-gnome</red-def:name>
+  </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20140266002" version="601">
    <red-def:name>sudo</red-def:name>
   </red-def:rpminfo_object>
@@ -41747,6 +42026,12 @@ update, the ntpd daemon will restart automatically.</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20140249003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:8.1.23-10.el5_10</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20140255004" version="602">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.6.11-12.el5_10</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20140255006" version="602">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.6.11-10.el6_5</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20140266003" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:1.7.2p1-29.el5_10</red-def:evr>

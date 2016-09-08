@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-09-05T10:17:02</oval:timestamp>
+  <oval:timestamp>2016-09-08T11:13:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20110004" version="502">
@@ -28811,6 +28811,158 @@ the update, cyrus-imapd will be restarted automatically.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20111531" version="604">
+   <metadata>
+    <title>RHSA-2011:1531: qemu-kvm security, bug fix, and enhancement update (Moderate)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2011:1531-03" ref_url="https://rhn.redhat.com/errata/RHSA-2011-1531.html" source="RHSA"/>
+    <reference ref_id="CVE-2011-2527" ref_url="https://access.redhat.com/security/cve/CVE-2011-2527" source="CVE"/>
+    <description>KVM (Kernel-based Virtual Machine) is a full virtualization solution for
+Linux on AMD64 and Intel 64 systems. qemu-kvm is the user-space component
+for running virtual machines using KVM.
+
+It was found that qemu-kvm did not properly drop supplemental group
+privileges when the root user started guests from the command line
+(&quot;/usr/libexec/qemu-kvm&quot;) with the &quot;-runas&quot; option. A qemu-kvm process
+started this way could use this flaw to gain access to files on the host
+that are accessible to the supplementary groups and not accessible to the
+primary group. (CVE-2011-2527)
+
+Note: This issue only affected qemu-kvm when it was started directly from
+the command line. It did not affect the Red Hat Enterprise Virtualization
+platform or applications that start qemu-kvm via libvirt, such as the
+Virtual Machine Manager (virt-manager).
+
+This update also fixes several bugs and adds various enhancements.
+Documentation for these bug fixes and enhancements will be available
+shortly from the Technical Notes document, linked to in the References
+section.
+
+All users of qemu-kvm are advised to upgrade to these updated packages,
+which contain backported patches to correct these issues and add these
+enhancements. After installing this update, shut down all running virtual
+machines. Once all virtual machines have shut down, start them again for
+this update to take effect.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Moderate</severity>
+     <rights>Copyright 2011 Red Hat, Inc.</rights>
+     <issued date="2011-12-06"/>
+     <updated date="2011-12-06"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2011-2527">CVE-2011-2527</cve>
+     <bugzilla href="https://bugzilla.redhat.com/561414" id="561414">Writes to virtual usb-storage produce I/O errors</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/599306" id="599306">Some strange behaviors on key's appearance viewed by using vnc</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/609342" id="609342">rhel3u9 install can't find package after inserting second CD, but install can continue</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/621482" id="621482">[RFE] Be able to get progress from qemu-img</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/624983" id="624983">QEMU should support the newer set of MSRs for kvmclock</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/627585" id="627585">Improve error messages for bad options in -drive and -device</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/633370" id="633370">[6.1 FEAT] Enhance QED image format to support streaming from remote systems</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/633380" id="633380">[6.2 FEAT] Include QED image format for KVM guests</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/645351" id="645351">Add support for USB 2.0 (EHCI) to QEMU</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/655719" id="655719">no error pops when change cd to non-exist file</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/656779" id="656779">Core dumped when hot plug/un-plug virtio serial port to the same chardev</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/658467" id="658467">kvm clock breaks migration result stability -  for unit test propose</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/669581" id="669581">Migration Never end while Use firewall reject migration tcp port</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/676982" id="676982">RFE: no qmp command for live snapshot</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/678729" id="678729">Hotplug VF/PF with invalid addr value leading to qemu-kvm process quit with core dump</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/678731" id="678731">Update qemu-kvm -device pci-assign,?  properties</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/680378" id="680378">no error message when loading zero size internal snapshot</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/681736" id="681736">Guest-&gt;Host communication stops for other ports after one port is unplugged</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/682227" id="682227">qemu-kvm doesn't exit when binding to specified port fails</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/693645" id="693645">RFE: add spice option to enable/disable copy paste</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/694373" id="694373">ballooning value reset to original value after setting a negative number</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/694378" id="694378">Core dump occurs when ballooning memory to 0</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/698537" id="698537">ide: core dump when stop/cont guest</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/700134" id="700134">[qemu-kvm] - qxl runs i/o requests synchronously</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/705070" id="705070">QMP: screendump command does not allow specification of monitor to capture</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/707130" id="707130">ACPI description of serial and parallel ports incorrect with -chardev/-device</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/709397" id="709397">virtio-serial unthrottling needs to use a bottomhalf to avoid recursion</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/710046" id="710046">qemu-kvm prints warning &quot;Using CPU model [...]&quot; (with patch)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/711354" id="711354">Fix and enable enough of SCSI to make usb-storage work</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/712046" id="712046">Qemu allocates an existed macaddress to hotpluged nic</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/714773" id="714773">qemu missing marker for qemu.kvm.qemu_vmalloc</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/715017" id="715017">Report disk latency (read and write) for each storage device</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/715141" id="715141">Wrong Ethertype for RARP</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/715582" id="715582">qemu-kvm doesn't report error when supplied negative spice port value</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/717958" id="717958">qemu-kvm start vnc even though -spice ... is supplied</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/718664" id="718664">Migration from host RHEL6.1+ to host RHEL6.0.z failed with floppy</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/720237" id="720237">usb migration compatibility</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/720773" id="720773">CVE-2011-2527 qemu: when started as root, extra groups are not dropped correctly</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/720979" id="720979">do not use next  as a variable name in qemu-kvm systemtap tapset</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/722728" id="722728">Update qemu-img convert/re-base man page</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/723270" id="723270">Report cdrom tray status in a monitor command such as info block</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/723858" id="723858">usb: add companion controller support</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/723863" id="723863">usb: fixes various issues.</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/723864" id="723864">usb: compile out the crap</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/723870" id="723870">tag devices without migration support</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/725565" id="725565">migration subsections are still broken</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/725625" id="725625">Hot unplug one virtio balloon device cause another balloon device unavailable</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/725965" id="725965">spice client mouse doesn't work after migration</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/726014" id="726014">Fix memleak on exit in virtio-balloon</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/726015" id="726015">Fix memleak on exit in virtio-blk</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/726020" id="726020">Fix memleaks in all virtio devices</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/726023" id="726023">Migration after hot-unplug virtio-balloon will not succeed</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/728120" id="728120">print error on usb speed mismatch between device and bus/port</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/728464" id="728464">QEMU does not honour '-no-shutdown' flag after the first shutdown attempt</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/729104" id="729104">qemu-kvm: pci needs multifunction property</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/729572" id="729572">qcow2: Loading internal snapshot can corrupt image</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/729621" id="729621">ASSERT worker-&gt;running failed on source qemu during migration with Spice session</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/729869" id="729869">qxl: primary surface not saved on migration</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/729969" id="729969">Make screendump command available in QMP</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/731759" id="731759">SPICE: migration fails with  warning: error while loading state section id 4</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/732949" id="732949">Guest screen becomes abnormal after migration with spice</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/733010" id="733010">core dump when issue fdisk -l in guest which has two usb-storage attached</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/733993" id="733993">migration target can crash (assert(d-&gt;ssd.running))</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/734860" id="734860">qemu-kvm: segfault when missing host parameter for socket chardev</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/734995" id="734995">Core dump when hotplug three usb-hub into the same port under both uhci and ehci</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/735716" id="735716">QEMU should report the PID of the process that sent it signals for troubleshooting purposes</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/736975" id="736975">Qemu-kvm fails to unregister virtio-balloon-pci device when unplugging</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/737921" id="737921">Spice password on migration target expires before Spice client is connected</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/738487" id="738487">Fix termination by signal with -no-shutdown</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/738555" id="738555">Stop exposing -enable-nested</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/739480" id="739480">qemu-kvm core dumps when migration with reboot</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/740547" id="740547">qxl: migrating in vga mode causes a &quot;panic: virtual address out of range&quot;</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/741878" id="741878">USB tablet mouse does not work well when migrating between 6.2&lt;-&gt;6.2 hosts and 6.1&lt;-&gt;6.2 hosts</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/742401" id="742401">qemu-kvm disable live snapshot support</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/742458" id="742458">Tracker Bug:Big block layer backport</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/742469" id="742469">Drives can not be locked without media present</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/742476" id="742476">Make eject fail for non-removable drives even with -f</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/742480" id="742480">Don't let locked flag prevent medium load</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/742484" id="742484">should be also have  snapshot on floppy</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/743269" id="743269">Hot unplug of snapshot device crashes</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/743342" id="743342">IDE CD-ROM tray state gets lost on migration</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/743391" id="743391">KVM guest limited to 40bit of physical address space</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/744518" id="744518">qemu-kvm core dumps when qxl-linux guest migrate with reboot</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/744780" id="744780">use-after-free in QEMU SCSI target code</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20110007001"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20110007002"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20110007003"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20110007004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="qemu-img is earlier than 2:0.12.1.2-2.209.el6" test_ref="oval:com.redhat.rhsa:tst:20111531009"/>
+      <criterion comment="qemu-img is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110345008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="qemu-kvm is earlier than 2:0.12.1.2-2.209.el6" test_ref="oval:com.redhat.rhsa:tst:20111531005"/>
+      <criterion comment="qemu-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110345006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.209.el6" test_ref="oval:com.redhat.rhsa:tst:20111531007"/>
+      <criterion comment="qemu-kvm-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110345010"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20111533" version="505">
    <metadata>
     <title>RHSA-2011:1533: ipa security and bug fix update (Moderate)</title>
@@ -29105,6 +29257,70 @@ packages, which correct these issues.</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20111534" version="604">
+   <metadata>
+    <title>RHSA-2011:1534: nfs-utils security, bug fix, and enhancement update (Low)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2011:1534-03" ref_url="https://rhn.redhat.com/errata/RHSA-2011-1534.html" source="RHSA"/>
+    <reference ref_id="CVE-2011-1749" ref_url="https://access.redhat.com/security/cve/CVE-2011-1749" source="CVE"/>
+    <reference ref_id="CVE-2011-2500" ref_url="https://access.redhat.com/security/cve/CVE-2011-2500" source="CVE"/>
+    <description>The nfs-utils packages provide a daemon for the kernel Network File System
+(NFS) server, and related tools such as the mount.nfs, umount.nfs, and
+showmount programs.
+
+A flaw was found in the way nfs-utils performed IP based authentication of
+mount requests. In configurations where a directory was exported to a group
+of systems using a DNS wildcard or NIS (Network Information Service)
+netgroup, an attacker could possibly gain access to other directories
+exported to a specific host or subnet, bypassing intended access
+restrictions. (CVE-2011-2500)
+
+It was found that the mount.nfs tool did not handle certain errors
+correctly when updating the mtab (mounted file systems table) file. A local
+attacker could use this flaw to corrupt the mtab file. (CVE-2011-1749)
+
+This update also fixes several bugs and adds an enhancement. Documentation
+for these bug fixes and the enhancement will be available shortly from the
+Technical Notes document, linked to in the References section.
+
+Users of nfs-utils are advised to upgrade to these updated packages, which
+contain backported patches to resolve these issues and add this
+enhancement. After installing this update, the nfs service will be
+restarted automatically.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2011 Red Hat, Inc.</rights>
+     <issued date="2011-12-06"/>
+     <updated date="2011-12-06"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2011-1749">CVE-2011-1749</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2011-2500">CVE-2011-2500</cve>
+     <bugzilla href="https://bugzilla.redhat.com/692702" id="692702">rpc.idmapd sometimes fails to start due to sunrpc</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/697975" id="697975">CVE-2011-1749 nfs-utils: mount.nfs fails to anticipate RLIMIT_FSIZE</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/702273" id="702273">Cannot umount NFS mount containing spaces</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/715078" id="715078">update exports(5) manpage with details about ipv6 configuration</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/716949" id="716949">CVE-2011-2500 nfs-utils: Improper authentication of an incoming request when an IP based authentication used</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/720479" id="720479">nfs-utils-1.2.3 breaks svcgssd - incorrectly orders libraries when built from source</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/723438" id="723438">rpc.mountd can segfault with showmount - REFERENCE TO PATCH THAT FIXES THIS</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/729001" id="729001">Debug file missing in debuginfo package for a binary</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/747400" id="747400">RHEL 6.2 beta rpcdebug has no flag for pNFS debug</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="nfs-utils is earlier than 1:1.2.3-15.el6" test_ref="oval:com.redhat.rhsa:tst:20111534005"/>
+    <criterion comment="nfs-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20111534006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20110007001"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20110007002"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20110007003"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20110007004"/>
+    </criteria>
+   </criteria>
+  </definition>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20111536" version="504">
    <metadata>
     <title>RHSA-2011:1536: sos security, bug fix, and enhancement update (Low)</title>
@@ -29157,6 +29373,256 @@ enhancements.</description>
    <criteria operator="AND">
     <criterion comment="sos is earlier than 0:2.2-17.el6" test_ref="oval:com.redhat.rhsa:tst:20111536005"/>
     <criterion comment="sos is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20111536006"/>
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20110007001"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20110007002"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20110007003"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20110007004"/>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20111581" version="604">
+   <metadata>
+    <title>RHSA-2011:1581: ruby security, bug fix, and enhancement update (Low)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2011:1581-03" ref_url="https://rhn.redhat.com/errata/RHSA-2011-1581.html" source="RHSA"/>
+    <reference ref_id="CVE-2011-2705" ref_url="https://access.redhat.com/security/cve/CVE-2011-2705" source="CVE"/>
+    <reference ref_id="CVE-2011-3009" ref_url="https://access.redhat.com/security/cve/CVE-2011-3009" source="CVE"/>
+    <description>Ruby is an extensible, interpreted, object-oriented, scripting language. It
+has features to process text files and to do system management tasks.
+
+It was found that Ruby did not reinitialize the PRNG (pseudorandom number
+generator) after forking a child process. This could eventually lead to the
+PRNG returning the same result twice. An attacker keeping track of the
+values returned by one child process could use this flaw to predict the
+values the PRNG would return in other child processes (as long as the
+parent process persisted). (CVE-2011-3009)
+
+A flaw was found in the Ruby SecureRandom module. When using the
+SecureRandom.random_bytes class, the PRNG state was not modified after
+forking a child process. This could eventually lead to
+SecureRandom.random_bytes returning the same string more than once. An
+attacker keeping track of the strings returned by one child process could
+use this flaw to predict the strings SecureRandom.random_bytes would return
+in other child processes (as long as the parent process persisted).
+(CVE-2011-2705)
+
+This update also fixes the following bugs:
+
+* The ruby package has been upgraded to upstream point release 1.8.7-p352,
+which provides a number of bug fixes over the previous version. (BZ#706332)
+
+* The MD5 message-digest algorithm is not a FIPS-approved algorithm.
+Consequently, when a Ruby script attempted to calculate an MD5 checksum in
+FIPS mode, the interpreter terminated unexpectedly. This bug has been fixed
+and an exception is now raised in the described scenario. (BZ#717709)
+
+* Due to inappropriately handled line continuations in the mkconfig.rb
+source file, an attempt to build the ruby package resulted in unexpected
+termination. An upstream patch has been applied to address this issue and
+the ruby package can now be built properly. (BZ#730287)
+
+* When the 32-bit ruby-libs library was installed on a 64-bit machine, the
+mkmf library failed to load various modules necessary for building
+Ruby-related packages. This bug has been fixed and mkmf now works properly
+in the described scenario. (BZ#674787)
+
+* Previously, the load paths for scripts and binary modules were duplicated
+on the i386 architecture. Consequently, an ActiveSupport test failed. With
+this update, the load paths are no longer stored in duplicates on the i386
+architecture. (BZ#722887)
+
+This update also adds the following enhancement:
+
+* With this update, SystemTap probes have been added to the ruby package.
+(BZ#673162)
+
+All users of ruby are advised to upgrade to these updated packages, which
+resolve these issues and add this enhancement.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2011 Red Hat, Inc.</rights>
+     <issued date="2011-12-06"/>
+     <updated date="2011-12-06"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2011-2705">CVE-2011-2705</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2011-3009">CVE-2011-3009</cve>
+     <bugzilla href="https://bugzilla.redhat.com/673162" id="673162">RFE: add systemtap static probes to Ruby</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/674787" id="674787">multilib breaks mkmf.rb</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/706332" id="706332">Update Ruby to the latest point release</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/717709" id="717709">MD5 makes ruby interpreter crash in FIPS mode</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/722415" id="722415">CVE-2011-2686 CVE-2011-2705 CVE-2011-3009 ruby: Properly initialize the random number generator when forking new process</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/722887" id="722887">Load paths duplicated for i386 =&gt;ActiveSupport build fails on i386</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/730287" id="730287">It's not possible to build ruby package</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20110007001"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20110007002"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20110007003"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20110007004"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="ruby is earlier than 0:1.8.7.352-3.el6" test_ref="oval:com.redhat.rhsa:tst:20111581005"/>
+      <criterion comment="ruby is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110910006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ruby-devel is earlier than 0:1.8.7.352-3.el6" test_ref="oval:com.redhat.rhsa:tst:20111581017"/>
+      <criterion comment="ruby-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110910016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ruby-docs is earlier than 0:1.8.7.352-3.el6" test_ref="oval:com.redhat.rhsa:tst:20111581019"/>
+      <criterion comment="ruby-docs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110910012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ruby-irb is earlier than 0:1.8.7.352-3.el6" test_ref="oval:com.redhat.rhsa:tst:20111581009"/>
+      <criterion comment="ruby-irb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110910018"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ruby-libs is earlier than 0:1.8.7.352-3.el6" test_ref="oval:com.redhat.rhsa:tst:20111581007"/>
+      <criterion comment="ruby-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110910020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ruby-rdoc is earlier than 0:1.8.7.352-3.el6" test_ref="oval:com.redhat.rhsa:tst:20111581021"/>
+      <criterion comment="ruby-rdoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110910022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ruby-ri is earlier than 0:1.8.7.352-3.el6" test_ref="oval:com.redhat.rhsa:tst:20111581013"/>
+      <criterion comment="ruby-ri is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110910014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ruby-static is earlier than 0:1.8.7.352-3.el6" test_ref="oval:com.redhat.rhsa:tst:20111581015"/>
+      <criterion comment="ruby-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110910010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="ruby-tcltk is earlier than 0:1.8.7.352-3.el6" test_ref="oval:com.redhat.rhsa:tst:20111581011"/>
+      <criterion comment="ruby-tcltk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20110910008"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20111615" version="604">
+   <metadata>
+    <title>RHSA-2011:1615: virt-v2v security and bug fix update (Low)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2011:1615-03" ref_url="https://rhn.redhat.com/errata/RHSA-2011-1615.html" source="RHSA"/>
+    <reference ref_id="CVE-2011-1773" ref_url="https://access.redhat.com/security/cve/CVE-2011-1773" source="CVE"/>
+    <description>virt-v2v is a tool for converting and importing virtual machines to
+libvirt-managed KVM (Kernel-based Virtual Machine), or Red Hat Enterprise
+Virtualization.
+
+Using virt-v2v to convert a guest that has a password-protected VNC console
+to a KVM guest removed that password protection from the converted guest:
+after conversion, a password was not required to access the converted
+guest's VNC console. Now, converted guests will require the same VNC
+console password as the original guest. Note that when converting a guest
+to run on Red Hat Enterprise Virtualization, virt-v2v will display a
+warning that VNC passwords are not supported. (CVE-2011-1773)
+
+Note: The Red Hat Enterprise Linux 6.2 perl-Sys-Virt update must also be
+installed to correct CVE-2011-1773.
+
+Bug fixes:
+
+* When converting a guest virtual machine (VM), whose name contained
+certain characters, virt-v2v would create a converted guest with a
+corrupted name. Now, virt-v2v will not corrupt guest names. (BZ#665883)
+
+* There were numerous usability issues when running virt-v2v as a non-root
+user. This update makes it simpler to run virt-v2v as a non-root user.
+(BZ#671094)
+
+* virt-v2v failed to convert a Microsoft Windows guest with Windows
+Recovery Console installed in a separate partition. Now, virt-v2v will
+successfully convert a guest with Windows Recovery Console installed in a
+separate partition by ignoring that partition. (BZ#673066)
+
+* virt-v2v failed to convert a Red Hat Enterprise Linux guest which did not
+have the symlink &quot;/boot/grub/menu.lst&quot;. With this update, virt-v2v can
+select a grub configuration file from several places. (BZ#694364)
+
+* This update removes information about the usage of deprecated command
+line options in the virt-v2v man page. (BZ#694370)
+
+* virt-v2v would fail to correctly change the allocation policy, (sparse or
+preallocated) when converting a guest with QCOW2 image format. The error
+message &quot;Cannot import VM, The selected disk configuration is not
+supported&quot; was displayed. With this update, allocation policy changes to a
+guest with QCOW2 storage will work correctly. (BZ#696089)
+
+* The options &quot;--network&quot; and &quot;--bridge&quot; can not be used in conjunction
+when converting a guest, but no error message was displayed. With this
+update, virt-v2v will now display an error message if the mutually
+exclusive &quot;--network&quot; and &quot;--bridge&quot; command line options are both
+specified. (BZ#700759)
+
+* virt-v2v failed to convert a multi-boot guest, and did not clean up
+temporary storage and mount points after failure. With this update,
+virt-v2v will prompt for which operating system to convert from a
+multi-boot guest, and will correctly clean up if the process fails.
+(BZ#702007)
+
+* virt-v2v failed to correctly configure modprobe aliases when converting a
+VMware ESX guest with VMware Tools installed. With this update, modprobe
+aliases will be correctly configured. (BZ#707261)
+
+* When converting a guest with preallocated raw storage using the
+libvirtxml input method, virt-v2v failed with the erroneous error message
+&quot;size(X) &lt; usage(Y)&quot;. This update removes this erroneous error. (BZ#727489)
+
+* When converting a Red Hat Enterprise Linux guest, virt-v2v did not check
+that the Cirrus X driver was available before configuring it. With this
+update, virt-v2v will attempt to install the Cirrus X driver if it is
+required. (BZ#708961)
+
+* VirtIO systems do not support the Windows Recovery Console on 32-bit
+Windows XP. The virt-v2v man page has been updated to note this. On Windows
+XP Professional x64 Edition, however, if Windows Recovery Console is
+re-installed after conversion, it will work as expected. (BZ#732421)
+
+* Placing comments in the guest fstab file by means of the leading &quot;#&quot;
+symbol caused an &quot;unknown filesystem&quot; error after conversion of a guest.
+With this update comments can now be used and error messages will not be
+displayed. (BZ#677870)
+
+Users of virt-v2v should upgrade to this updated package, which fixes these
+issues and upgrades virt-v2v to version 0.8.3.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Low</severity>
+     <rights>Copyright 2011 Red Hat, Inc.</rights>
+     <issued date="2011-12-06"/>
+     <updated date="2011-12-06"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2011-1773">CVE-2011-1773</cve>
+     <bugzilla href="https://bugzilla.redhat.com/665883" id="665883">virt-v2v: Special character in vm name from vmware ESX not showing correct</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/671094" id="671094">Cannot convert VM to libvirt with non-root user</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/672831" id="672831">virt-v2v should use core libguestfs inspection</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/673066" id="673066">virt-v2v does not work with guests that have the Windows Recovery Console installed</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/677870" id="677870">[RFE] virt-v2v show the warning info after convert rhel4u8 guest if comment a line of swap in the fstab</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/700759" id="700759">Suggest give warning message if specify both -n and -b for converting</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/702007" id="702007">v2v fails to remove the mounted export domain when the guest has multiboot OSes</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/702754" id="702754">CVE-2011-1773 virt-v2v: vnc password protection is missing after vm conversion</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/707261" id="707261">Vmware-tools will re-add the default network driver in /etc/modprobe.conf after conversion if ethX device entry missing</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/708961" id="708961">virt-v2v should check or auto install  cirrus driver for guest which has not cirrus driver</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/725685" id="725685">xenpv linux guest  can not start after conversion because qemu get 'aio' invalid format</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/727489" id="727489">libvirtxml fails if a volume's size is greater than the size reported by qemu-img</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/729877" id="729877">virt-v2v do not install  virt-v2v.db  file cause some issue</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/732421" id="732421">Guest will BSOD if boot from Windows Recovery Console after conversion</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="virt-v2v is earlier than 0:0.8.3-5.el6" test_ref="oval:com.redhat.rhsa:tst:20111615005"/>
+    <criterion comment="virt-v2v is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20111615006"/>
     <criteria operator="OR">
      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20110007001"/>
      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20110007002"/>
@@ -44943,6 +45409,18 @@ contain a backported patch to correct this issue.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110859003"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111508009"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="qemu-kvm is earlier than 2:0.12.1.2-2.209.el6" id="oval:com.redhat.rhsa:tst:20111531005" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110345005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111531003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.209.el6" id="oval:com.redhat.rhsa:tst:20111531007" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110345007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111531003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="qemu-img is earlier than 2:0.12.1.2-2.209.el6" id="oval:com.redhat.rhsa:tst:20111531009" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110345006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111531003"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="ipa is earlier than 0:2.1.3-9.el6" id="oval:com.redhat.rhsa:tst:20111533005" version="505">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111533005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111533003"/>
@@ -44991,12 +45469,64 @@ contain a backported patch to correct this issue.</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111533010"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20110007001"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nfs-utils is earlier than 1:1.2.3-15.el6" id="oval:com.redhat.rhsa:tst:20111534005" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111534005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111534003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="nfs-utils is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20111534006" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111534005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20110007001"/>
+  </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="sos is earlier than 0:2.2-17.el6" id="oval:com.redhat.rhsa:tst:20111536005" version="504">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111536005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111536003"/>
   </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="sos is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20111536006" version="504">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111536005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20110007001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ruby is earlier than 0:1.8.7.352-3.el6" id="oval:com.redhat.rhsa:tst:20111581005" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110908002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111581003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ruby-libs is earlier than 0:1.8.7.352-3.el6" id="oval:com.redhat.rhsa:tst:20111581007" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110908004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111581003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ruby-irb is earlier than 0:1.8.7.352-3.el6" id="oval:com.redhat.rhsa:tst:20111581009" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110909010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111581003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ruby-tcltk is earlier than 0:1.8.7.352-3.el6" id="oval:com.redhat.rhsa:tst:20111581011" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110908003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111581003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ruby-ri is earlier than 0:1.8.7.352-3.el6" id="oval:com.redhat.rhsa:tst:20111581013" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110909003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111581003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ruby-static is earlier than 0:1.8.7.352-3.el6" id="oval:com.redhat.rhsa:tst:20111581015" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110910007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111581003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ruby-devel is earlier than 0:1.8.7.352-3.el6" id="oval:com.redhat.rhsa:tst:20111581017" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110908007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111581003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ruby-docs is earlier than 0:1.8.7.352-3.el6" id="oval:com.redhat.rhsa:tst:20111581019" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110908008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111581003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="ruby-rdoc is earlier than 0:1.8.7.352-3.el6" id="oval:com.redhat.rhsa:tst:20111581021" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20110909008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111581003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="virt-v2v is earlier than 0:0.8.3-5.el6" id="oval:com.redhat.rhsa:tst:20111615005" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111615005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20111615003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="virt-v2v is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20111615006" version="604">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20111615005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20110007001"/>
   </red-def:rpminfo_test>
   <red-def:rpminfo_test check="at least one" comment="libcap is earlier than 0:2.16-5.5.el6" id="oval:com.redhat.rhsa:tst:20111694005" version="604">
@@ -48348,8 +48878,14 @@ contain a backported patch to correct this issue.</description>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20111533010" version="505">
    <red-def:name>ipa-server-selinux</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20111534005" version="604">
+   <red-def:name>nfs-utils</red-def:name>
+  </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20111536005" version="504">
    <red-def:name>sos</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20111615005" version="604">
+   <red-def:name>virt-v2v</red-def:name>
   </red-def:rpminfo_object>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20111694005" version="604">
    <red-def:name>libcap</red-def:name>
@@ -49943,11 +50479,23 @@ contain a backported patch to correct this issue.</description>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111508009" version="502">
    <red-def:evr datatype="evr_string" operation="less than">0:2.3.16-6.el6_1.4</red-def:evr>
   </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111531003" version="604">
+   <red-def:evr datatype="evr_string" operation="less than">2:0.12.1.2-2.209.el6</red-def:evr>
+  </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111533003" version="505">
    <red-def:evr datatype="evr_string" operation="less than">0:2.1.3-9.el6</red-def:evr>
   </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111534003" version="604">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.2.3-15.el6</red-def:evr>
+  </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111536003" version="504">
    <red-def:evr datatype="evr_string" operation="less than">0:2.2-17.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111581003" version="604">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.8.7.352-3.el6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111615003" version="604">
+   <red-def:evr datatype="evr_string" operation="less than">0:0.8.3-5.el6</red-def:evr>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20111694003" version="604">
    <red-def:evr datatype="evr_string" operation="less than">0:2.16-5.5.el6</red-def:evr>
