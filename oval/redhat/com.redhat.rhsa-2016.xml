@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-09-12T04:59:01</oval:timestamp>
+  <oval:timestamp>2016-09-12T16:13:01</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -16439,6 +16439,210 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161844" version="601">
+   <metadata>
+    <title>RHSA-2016:1844: libarchive security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1844-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-1844.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-8916" ref_url="https://access.redhat.com/security/cve/CVE-2015-8916" source="CVE"/>
+    <reference ref_id="CVE-2015-8917" ref_url="https://access.redhat.com/security/cve/CVE-2015-8917" source="CVE"/>
+    <reference ref_id="CVE-2015-8919" ref_url="https://access.redhat.com/security/cve/CVE-2015-8919" source="CVE"/>
+    <reference ref_id="CVE-2015-8920" ref_url="https://access.redhat.com/security/cve/CVE-2015-8920" source="CVE"/>
+    <reference ref_id="CVE-2015-8921" ref_url="https://access.redhat.com/security/cve/CVE-2015-8921" source="CVE"/>
+    <reference ref_id="CVE-2015-8922" ref_url="https://access.redhat.com/security/cve/CVE-2015-8922" source="CVE"/>
+    <reference ref_id="CVE-2015-8923" ref_url="https://access.redhat.com/security/cve/CVE-2015-8923" source="CVE"/>
+    <reference ref_id="CVE-2015-8924" ref_url="https://access.redhat.com/security/cve/CVE-2015-8924" source="CVE"/>
+    <reference ref_id="CVE-2015-8925" ref_url="https://access.redhat.com/security/cve/CVE-2015-8925" source="CVE"/>
+    <reference ref_id="CVE-2015-8926" ref_url="https://access.redhat.com/security/cve/CVE-2015-8926" source="CVE"/>
+    <reference ref_id="CVE-2015-8928" ref_url="https://access.redhat.com/security/cve/CVE-2015-8928" source="CVE"/>
+    <reference ref_id="CVE-2015-8930" ref_url="https://access.redhat.com/security/cve/CVE-2015-8930" source="CVE"/>
+    <reference ref_id="CVE-2015-8931" ref_url="https://access.redhat.com/security/cve/CVE-2015-8931" source="CVE"/>
+    <reference ref_id="CVE-2015-8932" ref_url="https://access.redhat.com/security/cve/CVE-2015-8932" source="CVE"/>
+    <reference ref_id="CVE-2015-8934" ref_url="https://access.redhat.com/security/cve/CVE-2015-8934" source="CVE"/>
+    <reference ref_id="CVE-2016-1541" ref_url="https://access.redhat.com/security/cve/CVE-2016-1541" source="CVE"/>
+    <reference ref_id="CVE-2016-4300" ref_url="https://access.redhat.com/security/cve/CVE-2016-4300" source="CVE"/>
+    <reference ref_id="CVE-2016-4302" ref_url="https://access.redhat.com/security/cve/CVE-2016-4302" source="CVE"/>
+    <reference ref_id="CVE-2016-4809" ref_url="https://access.redhat.com/security/cve/CVE-2016-4809" source="CVE"/>
+    <reference ref_id="CVE-2016-5418" ref_url="https://access.redhat.com/security/cve/CVE-2016-5418" source="CVE"/>
+    <reference ref_id="CVE-2016-5844" ref_url="https://access.redhat.com/security/cve/CVE-2016-5844" source="CVE"/>
+    <reference ref_id="CVE-2016-6250" ref_url="https://access.redhat.com/security/cve/CVE-2016-6250" source="CVE"/>
+    <reference ref_id="CVE-2016-7166" ref_url="https://access.redhat.com/security/cve/CVE-2016-7166" source="CVE"/>
+    <description>The libarchive programming library can create and read several different streaming archive formats, including GNU tar, cpio, and ISO 9660 CD-ROM images. Libarchive is used notably in the bsdtar utility, scripting language bindings such as python-libarchive, and several popular desktop file managers.
+
+Security Fix(es):
+
+* A flaw was found in the way libarchive handled hardlink archive entries of non-zero size. Combined with flaws in libarchive's file system sandboxing, this issue could cause an application using libarchive to overwrite arbitrary files with arbitrary data from the archive. (CVE-2016-5418)
+
+* Multiple out-of-bounds write flaws were found in libarchive. Specially crafted ZIP, 7ZIP, or RAR files could cause a heap overflow, potentially allowing code execution in the context of the application using libarchive. (CVE-2016-1541, CVE-2016-4300, CVE-2016-4302)
+
+* Multiple out-of-bounds read flaws were found in libarchive. Specially crafted LZA/LZH, AR, MTREE, ZIP, TAR, or RAR files could cause the application to read data out of bounds, potentially disclosing a small amount of application memory, or causing an application crash. (CVE-2015-8919, CVE-2015-8920, CVE-2015-8921, CVE-2015-8923, CVE-2015-8924, CVE-2015-8925, CVE-2015-8926, CVE-2015-8928, CVE-2015-8934)
+
+* Multiple NULL pointer dereference flaws were found in libarchive. Specially crafted RAR, CAB, or 7ZIP files could cause an application using libarchive to crash. (CVE-2015-8916, CVE-2015-8917, CVE-2015-8922)
+
+* Multiple infinite loop / resource exhaustion flaws were found in libarchive. Specially crafted GZIP or ISO files could cause the application to consume an excessive amount of resources, eventually leading to a crash on memory exhaustion. (CVE-2016-7166, CVE-2015-8930)
+
+* A denial of service vulnerability was found in libarchive. A specially crafted CPIO archive containing a symbolic link to a large target path could cause memory allocation to fail, causing an application using libarchive that attempted to view or extract such archive to crash. (CVE-2016-4809)
+
+* An integer overflow flaw, leading to a buffer overflow, was found in libarchive's construction of ISO9660 volumes. Attempting to create an ISO9660 volume with 2 GB or 4 GB file names could cause the application to attempt to allocate 20 GB of memory. If this were to succeed, it could lead to an out of bounds write on the heap and potential code execution. (CVE-2016-6250)
+
+* Multiple instances of undefined behavior due to arithmetic overflow were found in libarchive. Specially crafted MTREE archives, Compress streams, or ISO9660 volumes could potentially cause the application to fail to read the archive, or to crash. (CVE-2015-8931, CVE-2015-8932, CVE-2016-5844)
+
+Red Hat would like to thank Insomnia Security for reporting CVE-2016-5418.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-09-12"/>
+     <updated date="2016-09-12"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8916">CVE-2015-8916</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8917">CVE-2015-8917</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8919">CVE-2015-8919</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8920">CVE-2015-8920</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8921">CVE-2015-8921</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8922">CVE-2015-8922</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8923">CVE-2015-8923</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8924">CVE-2015-8924</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8925">CVE-2015-8925</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8926">CVE-2015-8926</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8928">CVE-2015-8928</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8930">CVE-2015-8930</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8931">CVE-2015-8931</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8932">CVE-2015-8932</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8934">CVE-2015-8934</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-1541">CVE-2016-1541</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4300">CVE-2016-4300</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4302">CVE-2016-4302</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4809">CVE-2016-4809</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5418">CVE-2016-5418</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5844">CVE-2016-5844</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-6250">CVE-2016-6250</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-7166">CVE-2016-7166</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1334211" id="1334211">CVE-2016-1541 libarchive: zip_read_mac_metadata() heap-based buffer overflow</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1347084" id="1347084">CVE-2016-4809 libarchive: Memory allocate error with symbolic links in cpio archives</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1347085" id="1347085">CVE-2016-6250 libarchive: Buffer overflow when writing large iso9660 containers</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1347086" id="1347086">CVE-2016-7166 libarchive: Denial of service using a crafted gzip file</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348412" id="1348412">CVE-2015-8916 libarchive: NULL pointer access in RAR parser through bsdtar</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348413" id="1348413">CVE-2015-8917 libarchive: NULL pointer access in CAB parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348414" id="1348414">CVE-2015-8919 libarchive: Heap out of bounds read in LHA/LZH parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348416" id="1348416">CVE-2015-8920 libarchive: Stack out of bounds read in ar parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348419" id="1348419">CVE-2015-8922 libarchive: NULL pointer access in 7z parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348421" id="1348421">CVE-2015-8924 libarchive: Heap out of bounds read in TAR parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348423" id="1348423">CVE-2015-8925 libarchive: Unclear invalid memory read in mtree parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348424" id="1348424">CVE-2015-8926 libarchive: NULL pointer access in RAR parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348429" id="1348429">CVE-2015-8928 libarchive: Heap out of bounds read in mtree parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348439" id="1348439">CVE-2016-4300 libarchive: Heap buffer overflow vulnerability in the 7zip read_SubStreamsInfo</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348444" id="1348444">CVE-2016-4302 libarchive: Heap buffer overflow in the Rar decompression functionality</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348772" id="1348772">CVE-2015-8921 libarchive: Global out of bounds read in mtree parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348773" id="1348773">CVE-2015-8923 libarchive: Unclear crashes in ZIP parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348779" id="1348779">CVE-2015-8931 libarchive: Undefined behavior (signed integer overflow) in mtree parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348780" id="1348780">CVE-2015-8932 libarchive: Undefined behavior / invalid shiftleft in TAR parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1349204" id="1349204">CVE-2015-8930 libarchive: Endless loop in ISO parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1349229" id="1349229">CVE-2015-8934 libarchive: out of bounds heap read in RAR parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1350280" id="1350280">CVE-2016-5844 libarchive: undefined behaviour (integer overflow) in iso parser</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+     <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+     <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="bsdcpio is earlier than 0:3.1.2-10.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161844007"/>
+      <criterion comment="bsdcpio is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161844008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="bsdtar is earlier than 0:3.1.2-10.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161844005"/>
+      <criterion comment="bsdtar is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161844006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libarchive is earlier than 0:3.1.2-10.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161844009"/>
+      <criterion comment="libarchive is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161844010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libarchive-devel is earlier than 0:3.1.2-10.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161844011"/>
+      <criterion comment="libarchive-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161844012"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161850" version="601">
+   <metadata>
+    <title>RHSA-2016:1850: libarchive security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1850-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-1850.html" source="RHSA"/>
+    <reference ref_id="CVE-2015-8920" ref_url="https://access.redhat.com/security/cve/CVE-2015-8920" source="CVE"/>
+    <reference ref_id="CVE-2015-8921" ref_url="https://access.redhat.com/security/cve/CVE-2015-8921" source="CVE"/>
+    <reference ref_id="CVE-2015-8932" ref_url="https://access.redhat.com/security/cve/CVE-2015-8932" source="CVE"/>
+    <reference ref_id="CVE-2016-4809" ref_url="https://access.redhat.com/security/cve/CVE-2016-4809" source="CVE"/>
+    <reference ref_id="CVE-2016-5418" ref_url="https://access.redhat.com/security/cve/CVE-2016-5418" source="CVE"/>
+    <reference ref_id="CVE-2016-5844" ref_url="https://access.redhat.com/security/cve/CVE-2016-5844" source="CVE"/>
+    <reference ref_id="CVE-2016-7166" ref_url="https://access.redhat.com/security/cve/CVE-2016-7166" source="CVE"/>
+    <description>The libarchive programming library can create and read several different streaming archive formats, including GNU tar, cpio and ISO 9660 CD-ROM images. Libarchive is used notably in the bsdtar utility, scripting language bindings such as python-libarchive, and several popular desktop file managers.
+
+Security Fix(es):
+
+* A flaw was found in the way libarchive handled hardlink archive entries of non-zero size. Combined with flaws in libarchive's file system sandboxing, this issue could cause an application using libarchive to overwrite arbitrary files with arbitrary data from the archive. (CVE-2016-5418)
+
+* Multiple out-of-bounds read flaws were found in libarchive. Specially crafted AR or MTREE files could cause the application to read data out of bounds, potentially disclosing a small amount of application memory, or causing an application crash. (CVE-2015-8920, CVE-2015-8921)
+
+* A denial of service vulnerability was found in libarchive's handling of GZIP streams. A crafted GZIP file could cause libarchive to allocate an excessive amount of memory, eventually leading to a crash. (CVE-2016-7166)
+
+* A denial of service vulnerability was found in libarchive. A specially crafted CPIO archive containing a symbolic link to a large target path could cause memory allocation to fail, causing an application using libarchive that attempted to view or extract such archive to crash. (CVE-2016-4809)
+
+* Multiple instances of undefined behavior due to arithmetic overflow were found in libarchive. Specially crafted Compress streams or ISO9660 volumes could potentially cause the application to fail to read the archive, or to crash. (CVE-2015-8932, CVE-2016-5844)
+
+Red Hat would like to thank Insomnia Security for reporting CVE-2016-5418.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-09-12"/>
+     <updated date="2016-09-12"/>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8920">CVE-2015-8920</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8921">CVE-2015-8921</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2015-8932">CVE-2015-8932</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-4809">CVE-2016-4809</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5418">CVE-2016-5418</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-5844">CVE-2016-5844</cve>
+     <cve href="https://access.redhat.com/security/cve/CVE-2016-7166">CVE-2016-7166</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1347084" id="1347084">CVE-2016-4809 libarchive: Memory allocate error with symbolic links in cpio archives</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1347086" id="1347086">CVE-2016-7166 libarchive: Denial of service using a crafted gzip file</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348416" id="1348416">CVE-2015-8920 libarchive: Stack out of bounds read in ar parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348772" id="1348772">CVE-2015-8921 libarchive: Global out of bounds read in mtree parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1348780" id="1348780">CVE-2015-8932 libarchive: Undefined behavior / invalid shiftleft in TAR parser</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1350280" id="1350280">CVE-2016-5844 libarchive: undefined behaviour (integer overflow) in iso parser</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="libarchive is earlier than 0:2.8.3-7.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161850005"/>
+      <criterion comment="libarchive is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161844010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="libarchive-devel is earlier than 0:2.8.3-7.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161850007"/>
+      <criterion comment="libarchive-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20161844012"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -24317,6 +24521,46 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160001002"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161551008"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bsdtar is earlier than 0:3.1.2-10.el7_2" id="oval:com.redhat.rhsa:tst:20161844005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161844005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161844003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bsdtar is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161844006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161844005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bsdcpio is earlier than 0:3.1.2-10.el7_2" id="oval:com.redhat.rhsa:tst:20161844007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161844006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161844003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bsdcpio is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161844008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161844006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libarchive is earlier than 0:3.1.2-10.el7_2" id="oval:com.redhat.rhsa:tst:20161844009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161844007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161844003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libarchive is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161844010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161844007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libarchive-devel is earlier than 0:3.1.2-10.el7_2" id="oval:com.redhat.rhsa:tst:20161844011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161844008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161844003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libarchive-devel is signed with Red Hat redhatrelease2 key" id="oval:com.redhat.rhsa:tst:20161844012" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161844008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001002"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libarchive is earlier than 0:2.8.3-7.el6_8" id="oval:com.redhat.rhsa:tst:20161850005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161844007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161850003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="libarchive-devel is earlier than 0:2.8.3-7.el6_8" id="oval:com.redhat.rhsa:tst:20161850007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161844008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161850003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -25609,6 +25853,18 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161626011" version="601">
    <red-def:name>python-libs</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161844005" version="601">
+   <red-def:name>bsdtar</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161844006" version="601">
+   <red-def:name>bsdcpio</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161844007" version="601">
+   <red-def:name>libarchive</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161844008" version="601">
+   <red-def:name>libarchive-devel</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -26378,6 +26634,12 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161797005" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:3.0.0-50.el6_8.2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161844003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:3.1.2-10.el7_2</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161850003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.8.3-7.el6_8</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
