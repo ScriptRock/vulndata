@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-09-26T09:59:59</oval:timestamp>
+  <oval:timestamp>2016-09-27T09:50:36</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -16956,6 +16956,139 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161940" version="601">
+   <metadata>
+    <title>RHSA-2016:1940: openssl security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+     <platform>Red Hat Enterprise Linux 7</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1940-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-1940.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-2177" ref_url="https://access.redhat.com/security/cve/CVE-2016-2177" source="CVE"/>
+    <reference ref_id="CVE-2016-2178" ref_url="https://access.redhat.com/security/cve/CVE-2016-2178" source="CVE"/>
+    <reference ref_id="CVE-2016-2179" ref_url="https://access.redhat.com/security/cve/CVE-2016-2179" source="CVE"/>
+    <reference ref_id="CVE-2016-2180" ref_url="https://access.redhat.com/security/cve/CVE-2016-2180" source="CVE"/>
+    <reference ref_id="CVE-2016-2181" ref_url="https://access.redhat.com/security/cve/CVE-2016-2181" source="CVE"/>
+    <reference ref_id="CVE-2016-2182" ref_url="https://access.redhat.com/security/cve/CVE-2016-2182" source="CVE"/>
+    <reference ref_id="CVE-2016-6302" ref_url="https://access.redhat.com/security/cve/CVE-2016-6302" source="CVE"/>
+    <reference ref_id="CVE-2016-6304" ref_url="https://access.redhat.com/security/cve/CVE-2016-6304" source="CVE"/>
+    <reference ref_id="CVE-2016-6306" ref_url="https://access.redhat.com/security/cve/CVE-2016-6306" source="CVE"/>
+    <description>OpenSSL is a toolkit that implements the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) protocols, as well as a full-strength general-purpose cryptography library.
+
+Security Fix(es):
+
+* A memory leak flaw was found in the way OpenSSL handled TLS status request extension data during session renegotiation. A remote attacker could cause a TLS server using OpenSSL to consume an excessive amount of memory and, possibly, exit unexpectedly after exhausting all available memory, if it enabled OCSP stapling support. (CVE-2016-6304)
+
+* It was discovered that OpenSSL did not always use constant time operations when computing Digital Signature Algorithm (DSA) signatures. A local attacker could possibly use this flaw to obtain a private DSA key belonging to another user or service running on the same system. (CVE-2016-2178)
+
+* It was discovered that the Datagram TLS (DTLS) implementation could fail to release memory in certain cases. A malicious DTLS client could cause a DTLS server using OpenSSL to consume an excessive amount of memory and, possibly, exit unexpectedly after exhausting all available memory. (CVE-2016-2179)
+
+* A flaw was found in the Datagram TLS (DTLS) replay protection implementation in OpenSSL. A remote attacker could possibly use this flaw to make a DTLS server using OpenSSL to reject further packets sent from a DTLS client over an established DTLS connection. (CVE-2016-2181)
+
+* An out of bounds write flaw was discovered in the OpenSSL BN_bn2dec() function. An attacker able to make an application using OpenSSL to process a large BIGNUM could cause the application to crash or, possibly, execute arbitrary code. (CVE-2016-2182)
+
+* A flaw was found in the DES/3DES cipher was used as part of the TLS/SSL protocol. A man-in-the-middle attacker could use this flaw to recover some plaintext data by capturing large amounts of encrypted traffic between TLS/SSL server and client if the communication used a DES/3DES based ciphersuite. (CVE-2016-2183)
+
+This update mitigates the CVE-2016-2183 issue by lowering priority of DES cipher suites so they are not preferred over cipher suites using AES. For compatibility reasons, DES cipher suites remain enabled by default and included in the set of cipher suites identified by the HIGH cipher string. Future updates may move them to MEDIUM or not enable them by default.
+
+* An integer underflow flaw leading to a buffer over-read was found in the way OpenSSL parsed TLS session tickets. A remote attacker could use this flaw to crash a TLS server using OpenSSL if it used SHA-512 as HMAC for session tickets. (CVE-2016-6302)
+
+* Multiple integer overflow flaws were found in the way OpenSSL performed pointer arithmetic. A remote attacker could possibly use these flaws to cause a TLS/SSL server or client using OpenSSL to crash. (CVE-2016-2177)
+
+* An out of bounds read flaw was found in the way OpenSSL formatted Public Key Infrastructure Time-Stamp Protocol data for printing. An attacker could possibly cause an application using OpenSSL to crash if it printed time stamp data from the attacker. (CVE-2016-2180)
+
+* Multiple out of bounds read flaws were found in the way OpenSSL handled certain TLS/SSL protocol handshake messages. A remote attacker could possibly use these flaws to crash a TLS/SSL server or client using OpenSSL. (CVE-2016-6306)
+
+Red Hat would like to thank the OpenSSL project for reporting CVE-2016-6304 and CVE-2016-6306 and OpenVPN for reporting CVE-2016-2183. Upstream acknowledges Shi Lei (Gear Team of Qihoo 360 Inc.) as the original reporter of CVE-2016-6304 and CVE-2016-6306; and Karthikeyan Bhargavan (Inria) and Gaëtan Leurent (Inria) as the original reporters of CVE-2016-2183.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-09-27"/>
+     <updated date="2016-09-27"/>
+     <cve cvss2="2.6/AV:N/AC:H/Au:N/C:N/I:N/A:P" cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-190" href="https://access.redhat.com/security/cve/CVE-2016-2177" impact="low" public="20160505">CVE-2016-2177</cve>
+     <cve cvss2="1.9/AV:L/AC:M/Au:N/C:P/I:N/A:N" cvss3="5.1/CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N" cwe="CWE-385" href="https://access.redhat.com/security/cve/CVE-2016-2178" impact="moderate" public="20160523">CVE-2016-2178</cve>
+     <cve cvss2="5.0/AV:N/AC:L/Au:N/C:N/I:N/A:P" cvss3="5.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L" cwe="CWE-772" href="https://access.redhat.com/security/cve/CVE-2016-2179" impact="moderate" public="20160630">CVE-2016-2179</cve>
+     <cve cvss2="1.9/AV:L/AC:M/Au:N/C:N/I:N/A:P" cvss3="5.1/CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2016-2180" impact="low" public="20160721">CVE-2016-2180</cve>
+     <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2016-2181" impact="moderate" public="20160705">CVE-2016-2181</cve>
+     <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="6.2/CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-391" href="https://access.redhat.com/security/cve/CVE-2016-2182" impact="moderate" public="20160816">CVE-2016-2182</cve>
+     <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-190 CWE-125" href="https://access.redhat.com/security/cve/CVE-2016-6302" impact="moderate" public="20160823">CVE-2016-6302</cve>
+     <cve cvss2="5.0/AV:N/AC:L/Au:N/C:N/I:N/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-400" href="https://access.redhat.com/security/cve/CVE-2016-6304" public="20160922">CVE-2016-6304</cve>
+     <cve cvss2="1.2/AV:L/AC:H/Au:N/C:N/I:N/A:P" cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2016-6306" impact="low" public="20160921">CVE-2016-6306</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1341705" id="1341705">CVE-2016-2177 openssl: Possible integer overflow vulnerabilities in codebase</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1343400" id="1343400">CVE-2016-2178 openssl: Non-constant time codepath followed for certain operations in DSA implementation</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1359615" id="1359615">CVE-2016-2180 OpenSSL: OOB read in TS_OBJ_print_bio()</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1367340" id="1367340">CVE-2016-2182 openssl: Out-of-bounds write caused by unchecked errors in BN_bn2dec()</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1369113" id="1369113">CVE-2016-2181 openssl: DTLS replay protection bypass allows DoS against DTLS connection</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1369383" id="1369383">CVE-2016-2183 SSL/TLS: Birthday attack against 64-bit block ciphers (SWEET32)</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1369504" id="1369504">CVE-2016-2179 openssl: DTLS memory exhaustion DoS when messages are not removed from fragment buffer</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1369855" id="1369855">CVE-2016-6302 openssl: Insufficient TLS session ticket HMAC length checks</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1377594" id="1377594">CVE-2016-6306 openssl: certificate message OOB reads</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1377600" id="1377600">CVE-2016-6304 openssl: OCSP Status Request extension unbounded memory growth</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="openssl is earlier than 1:1.0.1e-51.el7_2.7" test_ref="oval:com.redhat.rhsa:tst:20161940011"/>
+       <criterion comment="openssl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160008010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-devel is earlier than 1:1.0.1e-51.el7_2.7" test_ref="oval:com.redhat.rhsa:tst:20161940009"/>
+       <criterion comment="openssl-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160008006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-libs is earlier than 1:1.0.1e-51.el7_2.7" test_ref="oval:com.redhat.rhsa:tst:20161940013"/>
+       <criterion comment="openssl-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160008021"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-perl is earlier than 1:1.0.1e-51.el7_2.7" test_ref="oval:com.redhat.rhsa:tst:20161940005"/>
+       <criterion comment="openssl-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160008008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-static is earlier than 1:1.0.1e-51.el7_2.7" test_ref="oval:com.redhat.rhsa:tst:20161940007"/>
+       <criterion comment="openssl-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160008012"/>
+      </criteria>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+     <criteria operator="OR">
+      <criteria operator="AND">
+       <criterion comment="openssl is earlier than 0:1.0.1e-48.el6_8.3" test_ref="oval:com.redhat.rhsa:tst:20161940021"/>
+       <criterion comment="openssl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160008010"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-devel is earlier than 0:1.0.1e-48.el6_8.3" test_ref="oval:com.redhat.rhsa:tst:20161940022"/>
+       <criterion comment="openssl-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160008006"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-perl is earlier than 0:1.0.1e-48.el6_8.3" test_ref="oval:com.redhat.rhsa:tst:20161940019"/>
+       <criterion comment="openssl-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160008008"/>
+      </criteria>
+      <criteria operator="AND">
+       <criterion comment="openssl-static is earlier than 0:1.0.1e-48.el6_8.3" test_ref="oval:com.redhat.rhsa:tst:20161940020"/>
+       <criterion comment="openssl-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160008012"/>
+      </criteria>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -24986,6 +25119,42 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160071002"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161912008"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-perl is earlier than 1:1.0.1e-51.el7_2.7" id="oval:com.redhat.rhsa:tst:20161940005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161940003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-static is earlier than 1:1.0.1e-51.el7_2.7" id="oval:com.redhat.rhsa:tst:20161940007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161940003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-devel is earlier than 1:1.0.1e-51.el7_2.7" id="oval:com.redhat.rhsa:tst:20161940009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161940003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl is earlier than 1:1.0.1e-51.el7_2.7" id="oval:com.redhat.rhsa:tst:20161940011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161940003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-libs is earlier than 1:1.0.1e-51.el7_2.7" id="oval:com.redhat.rhsa:tst:20161940013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161940003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-perl is earlier than 0:1.0.1e-48.el6_8.3" id="oval:com.redhat.rhsa:tst:20161940019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161940005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-static is earlier than 0:1.0.1e-48.el6_8.3" id="oval:com.redhat.rhsa:tst:20161940020" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161940005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl is earlier than 0:1.0.1e-48.el6_8.3" id="oval:com.redhat.rhsa:tst:20161940021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161940005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="openssl-devel is earlier than 0:1.0.1e-48.el6_8.3" id="oval:com.redhat.rhsa:tst:20161940022" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161940005"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -27080,6 +27249,12 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161912008" version="602">
    <red-def:evr datatype="evr_string" operation="less than">0:45.4.0-1.el6_8</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161940003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">1:1.0.1e-51.el7_2.7</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161940005" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:1.0.1e-48.el6_8.3</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
