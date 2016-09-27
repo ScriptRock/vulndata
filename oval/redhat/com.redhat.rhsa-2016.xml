@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-09-27T09:50:36</oval:timestamp>
+  <oval:timestamp>2016-09-27T12:05:36</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -17089,6 +17089,64 @@ Red Hat would like to thank the OpenSSL project for reporting CVE-2016-6304 and 
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161943" version="601">
+   <metadata>
+    <title>RHSA-2016:1943: kvm security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1943-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-1943.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-3710" ref_url="https://access.redhat.com/security/cve/CVE-2016-3710" source="CVE"/>
+    <reference ref_id="CVE-2016-5403" ref_url="https://access.redhat.com/security/cve/CVE-2016-5403" source="CVE"/>
+    <description>KVM (for Kernel-based Virtual Machine) is a full virtualization solution for Linux on x86 hardware. Using KVM, one can run multiple virtual machines running unmodified Linux or Windows images. Each virtual machine has private virtualized hardware: a network card, disk, graphics adapter, etc.
+
+Security Fix(es):
+
+* An out-of-bounds read/write access flaw was found in the way QEMU's VGA emulation with VESA BIOS Extensions (VBE) support performed read/write operations using I/O port methods. A privileged guest user could use this flaw to execute arbitrary code on the host with the privileges of the host's QEMU process. (CVE-2016-3710)
+
+* Quick Emulator(QEMU) built with the virtio framework is vulnerable to an unbounded memory allocation issue. It was found that a malicious guest user could submit more requests than the virtqueue size permits. Processing a request allocates a VirtQueueElement results in unbounded memory allocation on the host controlled by the guest. (CVE-2016-5403)
+
+Red Hat would like to thank Wei Xiao (360 Marvel Team) and Qinghao Tang (360 Marvel Team) for reporting CVE-2016-3710 and hongzhenhao (Marvel Team) for reporting CVE-2016-5403.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-09-27"/>
+     <updated date="2016-09-27"/>
+     <cve cvss2="6.5/AV:A/AC:H/Au:S/C:C/I:C/A:C" cvss3="7.6/CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2016-3710" public="20160509">CVE-2016-3710</cve>
+     <cve cvss2="2.3/AV:A/AC:M/Au:S/C:N/I:N/A:P" cvss3="3.4/CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:L" href="https://access.redhat.com/security/cve/CVE-2016-5403" impact="moderate" public="20160727">CVE-2016-5403</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1331401" id="1331401">CVE-2016-3710 qemu: incorrect banked access bounds checking in vga module</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1358359" id="1358359">CVE-2016-5403 Qemu: virtio: unbounded memory allocation on host via guest leading to DoS</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/a:redhat:rhel_virtualization:5</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kmod-kvm is earlier than 0:83-276.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161943002"/>
+      <criterion comment="kmod-kvm is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20161943003"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kmod-kvm-debug is earlier than 0:83-276.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161943010"/>
+      <criterion comment="kmod-kvm-debug is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20161943011"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kvm is earlier than 0:83-276.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161943004"/>
+      <criterion comment="kvm is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20161943005"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kvm-qemu-img is earlier than 0:83-276.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161943008"/>
+      <criterion comment="kvm-qemu-img is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20161943009"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kvm-tools is earlier than 0:83-276.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161943006"/>
+      <criterion comment="kvm-tools is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20161943007"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -25155,6 +25213,46 @@ Red Hat would like to thank the OpenSSL project for reporting CVE-2016-6304 and 
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160008005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161940005"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kmod-kvm is earlier than 0:83-276.el5_11" id="oval:com.redhat.rhsa:tst:20161943002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161943003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kmod-kvm is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20161943003" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kvm is earlier than 0:83-276.el5_11" id="oval:com.redhat.rhsa:tst:20161943004" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161943003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kvm is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20161943005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kvm-tools is earlier than 0:83-276.el5_11" id="oval:com.redhat.rhsa:tst:20161943006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161943003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kvm-tools is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20161943007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kvm-qemu-img is earlier than 0:83-276.el5_11" id="oval:com.redhat.rhsa:tst:20161943008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161943003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kvm-qemu-img is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20161943009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kmod-kvm-debug is earlier than 0:83-276.el5_11" id="oval:com.redhat.rhsa:tst:20161943010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161943003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kmod-kvm-debug is signed with Red Hat redhatrelease key" id="oval:com.redhat.rhsa:tst:20161943011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -26459,6 +26557,21 @@ Red Hat would like to thank the OpenSSL project for reporting CVE-2016-6304 and 
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161844008" version="603">
    <red-def:name>libarchive-devel</red-def:name>
   </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161943002" version="601">
+   <red-def:name>kmod-kvm</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161943003" version="601">
+   <red-def:name>kvm</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161943004" version="601">
+   <red-def:name>kvm-tools</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161943005" version="601">
+   <red-def:name>kvm-qemu-img</red-def:name>
+  </red-def:rpminfo_object>
+  <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20161943006" version="601">
+   <red-def:name>kmod-kvm-debug</red-def:name>
+  </red-def:rpminfo_object>
  </objects>
  <states>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -27255,6 +27368,9 @@ Red Hat would like to thank the OpenSSL project for reporting CVE-2016-6304 and 
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161940005" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:1.0.1e-48.el6_8.3</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161943003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:83-276.el5_11</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
