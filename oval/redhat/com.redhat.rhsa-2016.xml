@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-09-27T13:27:57</oval:timestamp>
+  <oval:timestamp>2016-09-28T07:24:35</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -17147,6 +17147,59 @@ Red Hat would like to thank Wei Xiao (360 Marvel Team) and Qinghao Tang (360 Mar
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161945" version="601">
+   <metadata>
+    <title>RHSA-2016:1945: bind97 security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 5</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1945-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-1945.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-2776" ref_url="https://access.redhat.com/security/cve/CVE-2016-2776" source="CVE"/>
+    <description>The Berkeley Internet Name Domain (BIND) is an implementation of the Domain Name System (DNS) protocols. BIND includes a DNS server (named); a resolver library (routines for applications to use when interfacing with DNS); and tools for verifying that the DNS server is operating correctly.
+
+Security Fix(es):
+
+* A denial of service flaw was found in the way BIND constructed a response to a query that met certain criteria. A remote attacker could use this flaw to make named exit unexpectedly with an assertion failure via a specially crafted DNS request packet. (CVE-2016-2776)
+
+Red Hat would like to thank ISC for reporting this issue.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-09-28"/>
+     <updated date="2016-09-28"/>
+     <cve cvss2="5.0/AV:N/AC:L/Au:N/C:N/I:N/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-617" href="https://access.redhat.com/security/cve/CVE-2016-2776" public="20160927">CVE-2016-2776</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1378380" id="1378380">CVE-2016-2776 bind: assertion failure in buffer.c while building responses to a specifically constructed request</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001"/>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="bind97 is earlier than 32:9.7.0-21.P2.el5_11.7" test_ref="oval:com.redhat.rhsa:tst:20161945008"/>
+      <criterion comment="bind97 is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160074003"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="bind97-chroot is earlier than 32:9.7.0-21.P2.el5_11.7" test_ref="oval:com.redhat.rhsa:tst:20161945002"/>
+      <criterion comment="bind97-chroot is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160074009"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="bind97-devel is earlier than 32:9.7.0-21.P2.el5_11.7" test_ref="oval:com.redhat.rhsa:tst:20161945004"/>
+      <criterion comment="bind97-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160074007"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="bind97-libs is earlier than 32:9.7.0-21.P2.el5_11.7" test_ref="oval:com.redhat.rhsa:tst:20161945010"/>
+      <criterion comment="bind97-libs is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160074011"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="bind97-utils is earlier than 32:9.7.0-21.P2.el5_11.7" test_ref="oval:com.redhat.rhsa:tst:20161945006"/>
+      <criterion comment="bind97-utils is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160074005"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -25253,6 +25306,26 @@ Red Hat would like to thank Wei Xiao (360 Marvel Team) and Qinghao Tang (360 Mar
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161943006"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20160001001"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind97-chroot is earlier than 32:9.7.0-21.P2.el5_11.7" id="oval:com.redhat.rhsa:tst:20161945002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160074005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161945003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind97-devel is earlier than 32:9.7.0-21.P2.el5_11.7" id="oval:com.redhat.rhsa:tst:20161945004" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160074004"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161945003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind97-utils is earlier than 32:9.7.0-21.P2.el5_11.7" id="oval:com.redhat.rhsa:tst:20161945006" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160074003"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161945003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind97 is earlier than 32:9.7.0-21.P2.el5_11.7" id="oval:com.redhat.rhsa:tst:20161945008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160074002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161945003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="bind97-libs is earlier than 32:9.7.0-21.P2.el5_11.7" id="oval:com.redhat.rhsa:tst:20161945010" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160074006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161945003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -27371,6 +27444,9 @@ Red Hat would like to thank Wei Xiao (360 Marvel Team) and Qinghao Tang (360 Mar
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161943003" version="602">
    <red-def:evr datatype="evr_string" operation="less than">0:83-276.el5_11</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161945003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">32:9.7.0-21.P2.el5_11.7</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
