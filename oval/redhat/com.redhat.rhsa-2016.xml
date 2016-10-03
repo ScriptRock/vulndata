@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-10-01T19:17:06</oval:timestamp>
+  <oval:timestamp>2016-10-03T13:23:37</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -17425,6 +17425,68 @@ Red Hat would like to thank Scott Geary (VendHQ) for reporting this issue.</desc
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20161985" version="601">
+   <metadata>
+    <title>RHSA-2016:1985: thunderbird security update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 5</platform>
+     <platform>Red Hat Enterprise Linux 7</platform>
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:1985-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-1985.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-5257" ref_url="https://access.redhat.com/security/cve/CVE-2016-5257" source="CVE"/>
+    <description>Mozilla Thunderbird is a standalone mail and newsgroup client.
+
+This update upgrades Thunderbird to version 45.4.0.
+
+Security Fix(es):
+
+* Multiple flaws were found in the processing of malformed web content. A web page containing malicious content could cause Thunderbird to crash or, potentially, execute arbitrary code with the privileges of the user running Thunderbird. (CVE-2016-5257)
+
+Red Hat would like to thank the Mozilla project for reporting these issues. Upstream acknowledges Christoph Diehl, Andrew McCreight, Dan Minor, Byron Campen, Jon Coppeard, Steve Fink, Tyson Smith, Philipp and Carsten Book as the original reporters.</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-10-03"/>
+     <updated date="2016-10-03"/>
+     <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L" href="https://access.redhat.com/security/cve/CVE-2016-5257" impact="critical" public="20160920">CVE-2016-5257</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1377543" id="1377543">CVE-2016-5257 Mozilla: Memory safety bugs fixed in Firefox ESR 45.4 (MFSA 2016-85, MFSA 2016-86)</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+      <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+      <cpe>cpe:/a:redhat:rhel_productivity:5</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="OR">
+    <criteria operator="AND">
+     <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001"/>
+     <criterion comment="thunderbird is earlier than 0:45.4.0-1.el5_11" test_ref="oval:com.redhat.rhsa:tst:20161985002"/>
+     <criterion comment="thunderbird is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20160001003"/>
+    </criteria>
+    <criteria operator="AND">
+     <criterion comment="thunderbird is earlier than 0:45.4.0-1.el7_2" test_ref="oval:com.redhat.rhsa:tst:20161985008"/>
+     <criterion comment="thunderbird is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160001009"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011"/>
+      <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012"/>
+      <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013"/>
+     </criteria>
+    </criteria>
+    <criteria operator="AND">
+     <criterion comment="thunderbird is earlier than 0:45.4.0-1.el6_8" test_ref="oval:com.redhat.rhsa:tst:20161985014"/>
+     <criterion comment="thunderbird is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160001009"/>
+     <criteria operator="OR">
+      <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+      <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+      <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -25674,6 +25736,18 @@ Red Hat would like to thank Scott Geary (VendHQ) for reporting this issue.</desc
   <red-def:rpminfo_test check="at least one" comment="python-twisted-web is earlier than 0:8.2.0-5.el6_8" id="oval:com.redhat.rhsa:tst:20161978011" version="602">
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20161978005"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161978005"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="thunderbird is earlier than 0:45.4.0-1.el5_11" id="oval:com.redhat.rhsa:tst:20161985002" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160001002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161912004"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="thunderbird is earlier than 0:45.4.0-1.el7_2" id="oval:com.redhat.rhsa:tst:20161985008" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160001002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161912006"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="thunderbird is earlier than 0:45.4.0-1.el6_8" id="oval:com.redhat.rhsa:tst:20161985014" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160001002"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161912008"/>
   </red-def:rpminfo_test>
  </tests>
  <objects>
