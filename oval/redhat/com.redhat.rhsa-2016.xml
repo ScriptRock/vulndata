@@ -4,7 +4,7 @@
   <oval:product_name>Red Hat OVAL Patch Definition Merger</oval:product_name>
   <oval:product_version>3</oval:product_version>
   <oval:schema_version>5.10</oval:schema_version>
-  <oval:timestamp>2016-10-03T15:24:37</oval:timestamp>
+  <oval:timestamp>2016-10-04T17:09:39</oval:timestamp>
  </generator>
  <definitions>
   <definition class="patch" id="oval:com.redhat.rhsa:def:20160001" version="601">
@@ -17528,6 +17528,121 @@ https://access.redhat.com/support/policy/updates/errata/</description>
     </criteria>
    </criteria>
   </definition>
+  <definition class="patch" id="oval:com.redhat.rhsa:def:20162006" version="601">
+   <metadata>
+    <title>RHSA-2016:2006: kernel security and bug fix update (Important)</title>
+    <affected family="unix">
+     <platform>Red Hat Enterprise Linux 6</platform>
+    </affected>
+    <reference ref_id="RHSA-2016:2006-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-2006.html" source="RHSA"/>
+    <reference ref_id="CVE-2016-4470" ref_url="https://access.redhat.com/security/cve/CVE-2016-4470" source="CVE"/>
+    <reference ref_id="CVE-2016-5829" ref_url="https://access.redhat.com/security/cve/CVE-2016-5829" source="CVE"/>
+    <description>The kernel packages contain the Linux kernel, the core of any Linux operating system.
+
+Security Fix(es):
+
+* A flaw was found in the Linux kernel's keyring handling code, where in key_reject_and_link() an uninitialized variable would eventually lead to arbitrary free address which could allow attacker to use a use-after-free style attack. (CVE-2016-4470, Important)
+
+* A heap-based buffer overflow vulnerability was found in the Linux kernel's hiddev driver. This flaw could allow a local attacker to corrupt kernel memory, possible privilege escalation or crashing the system. (CVE-2016-5829, Moderate)
+
+The CVE-2016-4470 issue was discovered by David Howells (Red Hat Inc.).
+
+Bug Fix(es):
+
+* Previously, when two NFS shares with different security settings were mounted, the I/O operations to the kerberos-authenticated mount caused the RPC_CRED_KEY_EXPIRE_SOON parameter to be set, but the parameter was not unset when performing the I/O operations on the sec=sys mount. Consequently, writes to both NFS shares had the same parameters, regardless of their security settings. This update fixes this problem by moving the NO_CRKEY_TIMEOUT parameter to the auth-&gt;au_flags field. As a result, NFS shares with different security settings are now handled as expected. (BZ#1366962)
+
+* In some circumstances, resetting a Fibre Channel over Ethernet (FCoE) interface could lead to a kernel panic, due to invalid information extracted from the FCoE header. This update adds santiy checking to the cpu number extracted from the FCoE header. This ensures that subsequent operations address a valid cpu, and eliminates the kernel panic. (BZ#1359036)
+
+* Prior to this update, the following problems occurred with the way GSF2 transitioned files and directories from the &quot;unlinked&quot; state to the &quot;free&quot; state:
+
+The numbers reported for the df and the du commands in some cases got out of sync, which caused blocks in the file system to appear missing. The blocks were not actually missing, but they were left in the &quot;unlinked&quot; state.
+
+In some circumstances, GFS2 referenced a cluster lock that was already deleted, which led to a kernel panic.
+
+If an object was deleted and its space reused as a different object, GFS2 sometimes deleted the existing one, which caused file system corruption.
+
+With this update, the transition from &quot;unlinked&quot; to &quot;free&quot; state has been fixed. As a result, none of these three problems occur anymore. (BZ#1359037)
+
+* Previously, the GFS2 file system in some cases became unresponsive due to lock dependency problems between inodes and the cluster lock. This occurred most frequently on nearly full file systems where files and directories were being deleted and recreated at the same block location at the same time. With this update, a set of patches has been applied to fix these lock dependencies. As a result, GFS2 no longer hangs in the described circumstances. (BZ#1359038)
+
+* When used with controllers that do not support DCMD- MR_DCMD_PD_LIST_QUERY, the megaraid_sas driver can go into infinite error reporting loop of error reporting messages. This could cause difficulties with finding other important log messages, or even it could cause the disk to overflow. This bug has been fixed by ignoring the DCMD MR_DCMD_PD_LIST_QUERY query for controllers which do not support it and sending the DCMD SUCCESS status to the AEN functions. As a result, the error messages no longer appear when there is a change in the status of one of the arrays. (BZ#1359039)</description>
+    <advisory from="secalert@redhat.com">
+     <severity>Important</severity>
+     <rights>Copyright 2016 Red Hat, Inc.</rights>
+     <issued date="2016-10-04"/>
+     <updated date="2016-10-04"/>
+     <cve cvss2="6.9/AV:L/AC:M/Au:N/C:C/I:C/A:C" cvss3="7.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-253" href="https://access.redhat.com/security/cve/CVE-2016-4470" public="20160615">CVE-2016-4470</cve>
+     <cve cvss2="6.9/AV:L/AC:M/Au:N/C:C/I:C/A:C" cvss3="7.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-122" href="https://access.redhat.com/security/cve/CVE-2016-5829" impact="moderate" public="20160625">CVE-2016-5829</cve>
+     <bugzilla href="https://bugzilla.redhat.com/1341716" id="1341716">CVE-2016-4470 kernel: Uninitialized variable in request_key handling causes kernel crash in error handling path</bugzilla>
+     <bugzilla href="https://bugzilla.redhat.com/1350509" id="1350509">CVE-2016-5829 kernel: Heap buffer overflow in hiddev driver</bugzilla>
+     <affected_cpe_list>
+      <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+     </affected_cpe_list>
+    </advisory>
+   </metadata>
+   <criteria operator="AND">
+    <criteria operator="OR">
+     <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005"/>
+     <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006"/>
+     <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007"/>
+    </criteria>
+    <criteria operator="OR">
+     <criteria operator="AND">
+      <criterion comment="kernel is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006015"/>
+      <criterion comment="kernel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004022"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-abi-whitelists is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006005"/>
+      <criterion comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160064006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-bootwrapper is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006029"/>
+      <criterion comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004028"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-debug is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006019"/>
+      <criterion comment="kernel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004010"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-debug-devel is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006025"/>
+      <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004024"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-devel is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006013"/>
+      <criterion comment="kernel-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004026"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-doc is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006009"/>
+      <criterion comment="kernel-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004006"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-firmware is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006007"/>
+      <criterion comment="kernel-firmware is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004008"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-headers is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006017"/>
+      <criterion comment="kernel-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004014"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-kdump is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006027"/>
+      <criterion comment="kernel-kdump is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004012"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="kernel-kdump-devel is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006011"/>
+      <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004016"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="perf is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006021"/>
+      <criterion comment="perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004020"/>
+     </criteria>
+     <criteria operator="AND">
+      <criterion comment="python-perf is earlier than 0:2.6.32-642.6.1.el6" test_ref="oval:com.redhat.rhsa:tst:20162006023"/>
+      <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20160004018"/>
+     </criteria>
+    </criteria>
+   </criteria>
+  </definition>
  </definitions>
  <tests>
   <red-def:rpminfo_test check="at least one" comment="Red Hat Enterprise Linux 5 is installed" id="oval:com.redhat.rhsa:tst:20160001001" version="601">
@@ -25798,6 +25913,58 @@ https://access.redhat.com/support/policy/updates/errata/</description>
    <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160001001"/>
    <red-def:state state_ref="oval:com.redhat.rhsa:ste:20161990004"/>
   </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-abi-whitelists is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006005" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160064005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-firmware is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006007" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004006"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-doc is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006009" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004005"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-kdump-devel is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006011" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004010"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-devel is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006013" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004015"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006015" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004013"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-headers is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006017" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004009"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-debug is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006019" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004007"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="perf is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006021" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004012"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="python-perf is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006023" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004011"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-debug-devel is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006025" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004014"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-kdump is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006027" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004008"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
+  <red-def:rpminfo_test check="at least one" comment="kernel-bootwrapper is earlier than 0:2.6.32-642.6.1.el6" id="oval:com.redhat.rhsa:tst:20162006029" version="601">
+   <red-def:object object_ref="oval:com.redhat.rhsa:obj:20160004016"/>
+   <red-def:state state_ref="oval:com.redhat.rhsa:ste:20162006003"/>
+  </red-def:rpminfo_test>
  </tests>
  <objects>
   <red-def:rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -27943,6 +28110,9 @@ https://access.redhat.com/support/policy/updates/errata/</description>
   </red-def:rpminfo_state>
   <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20161990004" version="601">
    <red-def:evr datatype="evr_string" operation="less than">0:5Client-5.11.0.6</red-def:evr>
+  </red-def:rpminfo_state>
+  <red-def:rpminfo_state id="oval:com.redhat.rhsa:ste:20162006003" version="601">
+   <red-def:evr datatype="evr_string" operation="less than">0:2.6.32-642.6.1.el6</red-def:evr>
   </red-def:rpminfo_state>
  </states>
 </oval_definitions>
