@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1480924283</content_version>
+    <content_version>1481022560</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20160001" class="patch" version="601">
@@ -24925,6 +24925,77 @@ Red Hat would like to thank the Mozilla project for reporting this issue.</descr
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20162872" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2016:2872: sudo security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2016:2872-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-2872.html" source="RHSA" />
+        <reference ref_id="CVE-2016-7032" ref_url="https://access.redhat.com/security/cve/CVE-2016-7032" source="CVE" />
+        <reference ref_id="CVE-2016-7076" ref_url="https://access.redhat.com/security/cve/CVE-2016-7076" source="CVE" />
+        <description>The sudo packages contain the sudo utility which allows system administrators to provide certain users with the permission to execute privileged commands, which are used for system management purposes, without having to log in as root.
+
+Security Fix(es):
+
+* It was discovered that the sudo noexec restriction could have been bypassed if application run via sudo executed system(), popen(), or wordexp() C library functions with a user supplied argument. A local user permitted to run such application via sudo with noexec restriction could use these flaws to execute arbitrary commands with elevated privileges. (CVE-2016-7032, CVE-2016-7076)
+
+These issues were discovered by Florian Weimer (Red Hat).</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2016 Red Hat, Inc.</rights>
+          <issued date="2016-12-06" />
+          <updated date="2016-12-06" />
+          <cve cvss2="6.6/AV:L/AC:M/Au:S/C:C/I:C/A:C" cvss3="6.4/CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-184" href="https://access.redhat.com/security/cve/CVE-2016-7032" public="20161026">CVE-2016-7032</cve>
+          <cve cvss2="6.6/AV:L/AC:M/Au:S/C:C/I:C/A:C" cvss3="6.4/CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-184" href="https://access.redhat.com/security/cve/CVE-2016-7076" public="20161026">CVE-2016-7076</cve>
+          <bugzilla id="1372830" href="https://bugzilla.redhat.com/1372830">CVE-2016-7032 sudo: noexec bypass via system() and popen()</bugzilla>
+          <bugzilla id="1384982" href="https://bugzilla.redhat.com/1384982">CVE-2016-7076 sudo: noexec bypass via wordexp()</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="OR">
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001004" />
+            <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001005" />
+            <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001006" />
+            <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001007" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="sudo is earlier than 0:1.8.6p3-25.el6_8" test_ref="oval:com.redhat.rhsa:tst:20162872005" />
+              <criterion comment="sudo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20162593006" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="sudo-devel is earlier than 0:1.8.6p3-25.el6_8" test_ref="oval:com.redhat.rhsa:tst:20162872007" />
+              <criterion comment="sudo-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20162593008" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20160001010" />
+            <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20160001011" />
+            <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20160001012" />
+            <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20160001013" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="sudo is earlier than 0:1.8.6p7-21.el7_3" test_ref="oval:com.redhat.rhsa:tst:20162872014" />
+              <criterion comment="sudo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20162593006" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="sudo-devel is earlier than 0:1.8.6p7-21.el7_3" test_ref="oval:com.redhat.rhsa:tst:20162872013" />
+              <criterion comment="sudo-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20162593008" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20160001001" check="at least one" comment="Red Hat Enterprise Linux 5 is installed" version="601">
@@ -37627,6 +37698,22 @@ Red Hat would like to thank the Mozilla project for reporting this issue.</descr
       <object object_ref="oval:com.redhat.rhsa:obj:20160001002" />
       <state state_ref="oval:com.redhat.rhsa:ste:20162843008" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20162872005" check="at least one" comment="sudo is earlier than 0:1.8.6p3-25.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20162593005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20162872003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20162872007" check="at least one" comment="sudo-devel is earlier than 0:1.8.6p3-25.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20162593006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20162872003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20162872013" check="at least one" comment="sudo-devel is earlier than 0:1.8.6p7-21.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20162593006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20162872005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20162872014" check="at least one" comment="sudo is earlier than 0:1.8.6p7-21.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20162593005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20162872005" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -41122,6 +41209,12 @@ Red Hat would like to thank the Mozilla project for reporting this issue.</descr
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20162843008" version="602">
       <evr datatype="evr_string" operation="less than">0:45.5.1-1.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20162872003" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.8.6p3-25.el6_8</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20162872005" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.8.6p7-21.el7_3</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
