@@ -8278,20 +8278,62 @@
     <vuln:summary>The file scanning mechanism of JFilterInput::isFileSafe() in Joomla! CMS before 3.6.5 does not consider alternative PHP file extensions when checking uploaded files for PHP content, which enables a user to upload and execute files with the `.php6`, `.php7`, `.phtml`, and `.phpt` extensions. Additionally, JHelperMedia::canUpload() did not blacklist these file extensions as uploadable file types.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9837">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:joomla:joomla%21:3.6.4" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:joomla:joomla%21:3.6.4</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2016-9837</vuln:cve-id>
     <vuln:published-datetime>2016-12-16T04:59:00.310-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2016-12-16T04:59:00.310-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2016-12-16T12:08:29.263-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-264" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://www.joomla.org/announcements/release-news/5693-joomla-3-6-5-released.html" xml:lang="en">https://www.joomla.org/announcements/release-news/5693-joomla-3-6-5-released.html</vuln:reference>
     </vuln:references>
     <vuln:summary>An issue was discovered in templates/beez3/html/com_content/article/default.php in Joomla! before 3.6.5. Inadequate permissions checks in the Beez3 layout override of the com_content article view allow users to view articles that should not be publicly accessible, as demonstrated by an index.php?option=com_content&amp;view=article&amp;id=1&amp;template=beez3 request.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9838">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:joomla:joomla%21:3.6.4" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:joomla:joomla%21:3.6.4</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2016-9838</vuln:cve-id>
     <vuln:published-datetime>2016-12-16T04:59:00.327-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2016-12-16T04:59:00.340-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2016-12-16T12:06:45.577-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-284" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://www.joomla.org/announcements/release-news/5693-joomla-3-6-5-released.html" xml:lang="en">https://www.joomla.org/announcements/release-news/5693-joomla-3-6-5-released.html</vuln:reference>
     </vuln:references>
@@ -11255,44 +11297,146 @@
     <vuln:summary>An issue was discovered in Asterisk Open Source 11.x before 11.25.1, 13.x before 13.13.1, and 14.x before 14.2.1 and Certified Asterisk 11.x before 11.6-cert16 and 13.x before 13.8-cert4. The chan_sip channel driver has a liberal definition for whitespace when attempting to strip the content between a SIP header name and a colon character. Rather than following RFC 3261 and stripping only spaces and horizontal tabs, Asterisk treats any non-printable ASCII character as if it were whitespace. This means that headers such as Contact\x01: will be seen as a valid Contact header. This mostly does not pose a problem until Asterisk is placed in tandem with an authenticating SIP proxy. In such a case, a crafty combination of valid and invalid To headers can cause a proxy to allow an INVITE request into Asterisk without authentication since it believes the request is an in-dialog request. However, because of the bug described above, the request will look like an out-of-dialog request to Asterisk. Asterisk will then process the request as a new call. The result is that Asterisk can process calls from unvetted sources without any authentication. If you do not use a proxy for authentication, then this issue does not affect you. If your proxy is dialog-aware (meaning that the proxy keeps track of what dialogs are currently valid), then this issue does not affect you. If you use chan_pjsip instead of chan_sip, then this issue does not affect you.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9964">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:bottlepy:bottle:0.12.10" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:bottlepy:bottle:0.12.10</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2016-9964</vuln:cve-id>
     <vuln:published-datetime>2016-12-16T04:59:00.373-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2016-12-16T04:59:00.373-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2016-12-16T12:05:50.897-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>4.3</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-93" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/bottlepy/bottle/commit/6d7e13da0f998820800ecb3fe9ccee4189aefb54" xml:lang="en">https://github.com/bottlepy/bottle/commit/6d7e13da0f998820800ecb3fe9ccee4189aefb54</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/bottlepy/bottle/issues/913" xml:lang="en">https://github.com/bottlepy/bottle/issues/913</vuln:reference>
     </vuln:references>
     <vuln:summary>redirect() in bottle.py in bottle 0.12.10 doesn't filter a "\r\n" sequence, which leads to a CRLF attack, as demonstrated by a redirect("233\r\nSet-Cookie: name=salt") call.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9965">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:5.0" />
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:5.1" />
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:6.0" />
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:7.0" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:5.0</vuln:product>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:5.1</vuln:product>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:6.0</vuln:product>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:7.0</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2016-9965</vuln:cve-id>
     <vuln:published-datetime>2016-12-16T04:59:00.403-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2016-12-16T04:59:00.403-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2016-12-16T12:01:14.003-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>10.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>COMPLETE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>COMPLETE</cvss:integrity-impact>
+        <cvss:availability-impact>COMPLETE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-388" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="http://security.samsungmobile.com/smrupdate.html#SMR-DEC-2016" xml:lang="en">http://security.samsungmobile.com/smrupdate.html#SMR-DEC-2016</vuln:reference>
     </vuln:references>
     <vuln:summary>Lack of appropriate exception handling in some receivers of the Telecom application on Samsung Note devices with L(5.0/5.1), M(6.0), and N(7.0) software allows attackers to crash the system easily resulting in a possible DoS attack, or possibly gain privileges. The Samsung ID is SVE-2016-7119.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9966">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:5.0" />
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:5.1" />
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:6.0" />
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:7.0" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:5.0</vuln:product>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:5.1</vuln:product>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:6.0</vuln:product>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:7.0</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2016-9966</vuln:cve-id>
     <vuln:published-datetime>2016-12-16T04:59:00.420-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2016-12-16T04:59:00.420-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2016-12-16T11:58:06.210-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>10.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>COMPLETE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>COMPLETE</cvss:integrity-impact>
+        <cvss:availability-impact>COMPLETE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-388" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="http://security.samsungmobile.com/smrupdate.html#SMR-DEC-2016" xml:lang="en">http://security.samsungmobile.com/smrupdate.html#SMR-DEC-2016</vuln:reference>
     </vuln:references>
     <vuln:summary>Lack of appropriate exception handling in some receivers of the Telecom application on Samsung Note devices with L(5.0/5.1), M(6.0), and N(7.0) software allows attackers to crash the system easily resulting in a possible DoS attack, or possibly gain privileges. The Samsung ID is SVE-2016-7120.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9967">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:5.0" />
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:5.1" />
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:6.0" />
+        <cpe-lang:fact-ref name="cpe:/o:samsung:samsung_mobile:7.0" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:5.0</vuln:product>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:5.1</vuln:product>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:6.0</vuln:product>
+      <vuln:product>cpe:/o:samsung:samsung_mobile:7.0</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2016-9967</vuln:cve-id>
     <vuln:published-datetime>2016-12-16T04:59:00.450-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2016-12-16T04:59:00.450-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2016-12-16T11:56:17.697-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>10.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>COMPLETE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>COMPLETE</cvss:integrity-impact>
+        <cvss:availability-impact>COMPLETE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-388" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="http://security.samsungmobile.com/smrupdate.html#SMR-DEC-2016" xml:lang="en">http://security.samsungmobile.com/smrupdate.html#SMR-DEC-2016</vuln:reference>
     </vuln:references>
