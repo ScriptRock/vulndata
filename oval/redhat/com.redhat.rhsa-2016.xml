@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1482234577</content_version>
+    <content_version>1482247698</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20160001" class="patch" version="601">
@@ -25171,6 +25171,52 @@ Bug Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20162963" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2016:2963: xen security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 5</platform>
+        </affected>
+        <reference ref_id="RHSA-2016:2963-00" ref_url="https://rhn.redhat.com/errata/RHSA-2016-2963.html" source="RHSA" />
+        <reference ref_id="CVE-2016-9637" ref_url="https://access.redhat.com/security/cve/CVE-2016-9637" source="CVE" />
+        <description>Xen is a virtual machine monitor
+
+Security Fix(es):
+
+* An out of bounds array access issue was found in the Xen virtual machine monitor, built with the QEMU ioport support. It could occur while doing ioport read/write operations, if guest was to supply a 32bit address parameter. A privileged guest user/process could use this flaw to potentially escalate their privileges on a host. (CVE-2016-9637)
+
+Red Hat would like to thank the Xen project for reporting this issue.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2016 Red Hat, Inc.</rights>
+          <issued date="2016-12-20" />
+          <updated date="2016-12-20" />
+          <cve cvss2="6.5/AV:A/AC:H/Au:S/C:C/I:C/A:C" cvss3="7.6/CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:H" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2016-9637" public="20161206">CVE-2016-9637</cve>
+          <bugzilla id="1397043" href="https://bugzilla.redhat.com/1397043">CVE-2016-9637 XSA199 Xen: qemu ioport out-of-bounds array access (XSA-199)</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+            <cpe>cpe:/a:redhat:rhel_virtualization:5</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20160001001" />
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="xen is earlier than 0:3.0.3-148.el5_11" test_ref="oval:com.redhat.rhsa:tst:20162963006" />
+            <criterion comment="xen is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20162963007" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="xen-devel is earlier than 0:3.0.3-148.el5_11" test_ref="oval:com.redhat.rhsa:tst:20162963004" />
+            <criterion comment="xen-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20162963005" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="xen-libs is earlier than 0:3.0.3-148.el5_11" test_ref="oval:com.redhat.rhsa:tst:20162963002" />
+            <criterion comment="xen-libs is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20162963003" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20160001001" check="at least one" comment="Red Hat Enterprise Linux 5 is installed" version="601">
@@ -37949,6 +37995,30 @@ Bug Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20160045012" />
       <state state_ref="oval:com.redhat.rhsa:ste:20162962003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20162963002" check="at least one" comment="xen-libs is earlier than 0:3.0.3-148.el5_11" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20162963002" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20162963003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20162963003" check="at least one" comment="xen-libs is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20162963002" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20160001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20162963004" check="at least one" comment="xen-devel is earlier than 0:3.0.3-148.el5_11" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20162963003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20162963003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20162963005" check="at least one" comment="xen-devel is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20162963003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20160001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20162963006" check="at least one" comment="xen is earlier than 0:3.0.3-148.el5_11" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20162963004" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20162963003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20162963007" check="at least one" comment="xen is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20162963004" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20160001001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20160001001" version="601">
@@ -40339,6 +40409,15 @@ Bug Fix(es):
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20162824007" version="602">
       <name>expat-static</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20162963002" version="601">
+      <name>xen-libs</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20162963003" version="601">
+      <name>xen-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20162963004" version="601">
+      <name>xen</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20160001001" version="601">
@@ -41462,6 +41541,9 @@ Bug Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20162962003" version="601">
       <evr datatype="evr_string" operation="less than">0:2.6.18-417.el5</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20162963003" version="601">
+      <evr datatype="evr_string" operation="less than">0:3.0.3-148.el5_11</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
