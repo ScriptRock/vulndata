@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions schemaLocation="http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd">
+  <generator>
+    <product_name>Red Hat OVAL Patch Definition Merger</product_name>
+    <product_version>3</product_version>
+    <schema_version>5.10</schema_version>
+    <content_version>1483354638</content_version>
+  </generator>
+  <definitions>
+    <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0001: ipa security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0001-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0001.html" source="RHSA" />
+        <reference ref_id="CVE-2016-7030" ref_url="https://access.redhat.com/security/cve/CVE-2016-7030" source="CVE" />
+        <reference ref_id="CVE-2016-9575" ref_url="https://access.redhat.com/security/cve/CVE-2016-9575" source="CVE" />
+        <description>Red Hat Identity Management (IdM) is a centralized authentication, identity management, and authorization solution for both traditional and cloud-based enterprise environments.
+
+Security Fix(es):
+
+* It was discovered that the default IdM password policies that lock out accounts after a certain number of failed login attempts were also applied to host and service accounts. A remote unauthenticated user could use this flaw to cause a denial of service attack against kerberized services. (CVE-2016-7030)
+
+* It was found that IdM's certprofile-mod command did not properly check the user's permissions while modifying certificate profiles. An authenticated, unprivileged attacker could use this flaw to modify profiles to issue certificates with arbitrary naming or key usage information and subsequently use such certificates for other attacks. (CVE-2016-9575)
+
+The CVE-2016-7030 issue was discovered by Petr Spacek (Red Hat) and the CVE-2016-9575 issue was discovered by Liam Campbell (Red Hat).</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-01-02" />
+          <updated date="2017-01-02" />
+          <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" href="https://access.redhat.com/security/cve/CVE-2016-7030" public="20161214">CVE-2016-7030</cve>
+          <cve cvss2="6.5/AV:N/AC:L/Au:S/C:P/I:P/A:P" cvss3="6.3/CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L" cwe="CWE-863" href="https://access.redhat.com/security/cve/CVE-2016-9575" public="20161214">CVE-2016-9575</cve>
+          <bugzilla id="1370493" href="https://bugzilla.redhat.com/1370493">CVE-2016-7030 ipa: DoS attack against kerberized services by abusing password policy</bugzilla>
+          <bugzilla id="1395311" href="https://bugzilla.redhat.com/1395311">CVE-2016-9575 ipa: Insufficient permission check in certprofile-mod</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="ipa is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001029" />
+            <criterion comment="ipa is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="ipa-admintools is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001021" />
+            <criterion comment="ipa-admintools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="ipa-client is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001005" />
+            <criterion comment="ipa-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="ipa-client-common is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001025" />
+            <criterion comment="ipa-client-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="ipa-common is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001017" />
+            <criterion comment="ipa-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="ipa-python-compat is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001023" />
+            <criterion comment="ipa-python-compat is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="ipa-server is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001009" />
+            <criterion comment="ipa-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="ipa-server-common is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001015" />
+            <criterion comment="ipa-server-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="ipa-server-dns is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001013" />
+            <criterion comment="ipa-server-dns is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="ipa-server-trust-ad is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001007" />
+            <criterion comment="ipa-server-trust-ad is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python2-ipaclient is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001027" />
+            <criterion comment="python2-ipaclient is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python2-ipalib is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001019" />
+            <criterion comment="python2-ipalib is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python2-ipaserver is earlier than 0:4.4.0-14.el7_3.1.1" test_ref="oval:com.redhat.rhsa:tst:20170001011" />
+            <criterion comment="python2-ipaserver is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170001012" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001001" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001002" check="at least one" comment="Red Hat Enterprise Linux 7 Server is installed" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001002" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001003" check="at least one" comment="Red Hat Enterprise Linux 7 Workstation is installed" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001004" check="at least one" comment="Red Hat Enterprise Linux 7 ComputeNode is installed" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001004" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001005" check="at least one" comment="ipa-client is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001006" check="at least one" comment="ipa-client is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001007" check="at least one" comment="ipa-server-trust-ad is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001008" check="at least one" comment="ipa-server-trust-ad is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001009" check="at least one" comment="ipa-server is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001010" check="at least one" comment="ipa-server is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001011" check="at least one" comment="python2-ipaserver is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001012" check="at least one" comment="python2-ipaserver is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001013" check="at least one" comment="ipa-server-dns is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001014" check="at least one" comment="ipa-server-dns is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001015" check="at least one" comment="ipa-server-common is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001016" check="at least one" comment="ipa-server-common is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001017" check="at least one" comment="ipa-common is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001018" check="at least one" comment="ipa-common is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001019" check="at least one" comment="python2-ipalib is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001020" check="at least one" comment="python2-ipalib is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001021" check="at least one" comment="ipa-admintools is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001022" check="at least one" comment="ipa-admintools is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001023" check="at least one" comment="ipa-python-compat is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001024" check="at least one" comment="ipa-python-compat is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001025" check="at least one" comment="ipa-client-common is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001026" check="at least one" comment="ipa-client-common is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001027" check="at least one" comment="python2-ipaclient is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001028" check="at least one" comment="python2-ipaclient is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001029" check="at least one" comment="ipa is earlier than 0:4.4.0-14.el7_3.1.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001030" check="at least one" comment="ipa is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170001017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+  </tests>
+  <objects>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="601">
+      <name>redhat-release-client</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001002" version="601">
+      <name>redhat-release-server</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001003" version="601">
+      <name>redhat-release-workstation</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001004" version="601">
+      <name>redhat-release-computenode</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001005" version="601">
+      <name>ipa-client</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001006" version="601">
+      <name>ipa-server-trust-ad</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001007" version="601">
+      <name>ipa-server</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001008" version="601">
+      <name>python2-ipaserver</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001009" version="601">
+      <name>ipa-server-dns</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001010" version="601">
+      <name>ipa-server-common</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001011" version="601">
+      <name>ipa-common</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001012" version="601">
+      <name>python2-ipalib</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001013" version="601">
+      <name>ipa-admintools</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001014" version="601">
+      <name>ipa-python-compat</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001015" version="601">
+      <name>ipa-client-common</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001016" version="601">
+      <name>python2-ipaclient</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001017" version="601">
+      <name>ipa</name>
+    </rpminfo_object>
+  </objects>
+  <states>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="601">
+      <signature_keyid operation="equals">199e2f91fd431d51</signature_keyid>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001002" version="601">
+      <version operation="pattern match">^7[^\d]</version>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001003" version="601">
+      <evr datatype="evr_string" operation="less than">0:4.4.0-14.el7_3.1.1</evr>
+    </rpminfo_state>
+  </states>
+</oval_definitions>
