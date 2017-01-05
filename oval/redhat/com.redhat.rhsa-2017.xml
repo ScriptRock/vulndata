@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1483524750</content_version>
+    <content_version>1483610907</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -241,6 +241,227 @@ Security Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170018" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0018: gstreamer-plugins-bad-free security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0018-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0018.html" source="RHSA" />
+        <reference ref_id="CVE-2016-9445" ref_url="https://access.redhat.com/security/cve/CVE-2016-9445" source="CVE" />
+        <reference ref_id="CVE-2016-9447" ref_url="https://access.redhat.com/security/cve/CVE-2016-9447" source="CVE" />
+        <reference ref_id="CVE-2016-9809" ref_url="https://access.redhat.com/security/cve/CVE-2016-9809" source="CVE" />
+        <description>GStreamer is a streaming media framework based on graphs of filters which operate on media data. The gstreamer-plugins-bad-free package contains a collection of plug-ins for GStreamer.
+
+Security Fix(es):
+
+* An integer overflow flaw, leading to a heap-based buffer overflow, was found in GStreamer's VMware VMnc video file format decoding plug-in. A remote attacker could use this flaw to cause an application using GStreamer to crash or, potentially, execute arbitrary code with the privileges of the user running the application. (CVE-2016-9445)
+
+* A memory corruption flaw was found in GStreamer's Nintendo NSF music file format decoding plug-in. A remote attacker could use this flaw to cause an application using GStreamer to crash or, potentially, execute arbitrary code with the privileges of the user running the application. (CVE-2016-9447)
+
+* An out-of-bounds heap read flaw was found in GStreamer's H.264 parser. A remote attacker could use this flaw to cause an application using GStreamer to crash. (CVE-2016-9809)
+
+Note: This update removes the vulnerable Nintendo NSF plug-in.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-01-05" />
+          <updated date="2017-01-05" />
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" cwe="CWE-190 CWE-122" href="https://access.redhat.com/security/cve/CVE-2016-9445" public="20161115">CVE-2016-9445</cve>
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2016-9447" public="20161114">CVE-2016-9447</cve>
+          <cve cvss2="2.6/AV:N/AC:H/Au:N/C:N/I:N/A:P" cvss3="3.1/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L" cwe="CWE-193" href="https://access.redhat.com/security/cve/CVE-2016-9809" impact="low" public="20161123">CVE-2016-9809</cve>
+          <bugzilla id="1395126" href="https://bugzilla.redhat.com/1395126">CVE-2016-9447 gstreamer-plugins-bad-free: Memory corruption flaw in NSF decoder</bugzilla>
+          <bugzilla id="1395767" href="https://bugzilla.redhat.com/1395767">CVE-2016-9445 gstreamer-plugins-bad-free: Integer overflow when allocating render buffer in VMnc decoder</bugzilla>
+          <bugzilla id="1401880" href="https://bugzilla.redhat.com/1401880">CVE-2016-9809 gstreamer-plugins-bad-free: Off-by-one read in gst_h264_parse_set_caps</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="gstreamer-plugins-bad-free is earlier than 0:0.10.23-22.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170018009" />
+            <criterion comment="gstreamer-plugins-bad-free is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170018010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="gstreamer-plugins-bad-free-devel is earlier than 0:0.10.23-22.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170018007" />
+            <criterion comment="gstreamer-plugins-bad-free-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170018008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="gstreamer-plugins-bad-free-devel-docs is earlier than 0:0.10.23-22.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170018005" />
+            <criterion comment="gstreamer-plugins-bad-free-devel-docs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170018006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170019" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0019: gstreamer-plugins-good security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0019-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0019.html" source="RHSA" />
+        <reference ref_id="CVE-2016-9634" ref_url="https://access.redhat.com/security/cve/CVE-2016-9634" source="CVE" />
+        <reference ref_id="CVE-2016-9635" ref_url="https://access.redhat.com/security/cve/CVE-2016-9635" source="CVE" />
+        <reference ref_id="CVE-2016-9636" ref_url="https://access.redhat.com/security/cve/CVE-2016-9636" source="CVE" />
+        <reference ref_id="CVE-2016-9807" ref_url="https://access.redhat.com/security/cve/CVE-2016-9807" source="CVE" />
+        <reference ref_id="CVE-2016-9808" ref_url="https://access.redhat.com/security/cve/CVE-2016-9808" source="CVE" />
+        <description>GStreamer is a streaming media framework based on graphs of filters which operate on media data. The gstreamer-plugins-good packages contain a collection of well-supported plug-ins of good quality and under the LGPL license.
+
+Security Fix(es):
+
+* Multiple flaws were discovered in GStreamer's FLC/FLI/FLX media file format decoding plug-in. A remote attacker could use these flaws to cause an application using GStreamer to crash or, potentially, execute arbitrary code with the privileges of the user running the application. (CVE-2016-9634, CVE-2016-9635, CVE-2016-9636, CVE-2016-9808)
+
+* An invalid memory read access flaw was found in GStreamer's FLC/FLI/FLX media file format decoding plug-in. A remote attacker could use this flaw to cause an application using GStreamer to crash. (CVE-2016-9807)
+
+Note: This update removes the vulnerable FLC/FLI/FLX plug-in.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-01-05" />
+          <updated date="2017-01-05" />
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2016-9634" public="20161121">CVE-2016-9634</cve>
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2016-9635" public="20161121">CVE-2016-9635</cve>
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2016-9636" public="20161121">CVE-2016-9636</cve>
+          <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="4.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2016-9807" impact="low" public="20161122">CVE-2016-9807</cve>
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2016-9808" public="20161121">CVE-2016-9808</cve>
+          <bugzilla id="1397441" href="https://bugzilla.redhat.com/1397441">CVE-2016-9634 CVE-2016-9635 CVE-2016-9636 CVE-2016-9808 gstreamer-plugins-good: Heap buffer overflow in FLIC decoder</bugzilla>
+          <bugzilla id="1401874" href="https://bugzilla.redhat.com/1401874">CVE-2016-9807 gstreamer-plugins-good: Invalid memory read in flx_decode_chunks</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="gstreamer-plugins-good is earlier than 0:0.10.31-12.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170019005" />
+            <criterion comment="gstreamer-plugins-good is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170019006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="gstreamer-plugins-good-devel-docs is earlier than 0:0.10.31-12.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170019007" />
+            <criterion comment="gstreamer-plugins-good-devel-docs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170019008" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170020" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0020: gstreamer1-plugins-good security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0020-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0020.html" source="RHSA" />
+        <reference ref_id="CVE-2016-9634" ref_url="https://access.redhat.com/security/cve/CVE-2016-9634" source="CVE" />
+        <reference ref_id="CVE-2016-9635" ref_url="https://access.redhat.com/security/cve/CVE-2016-9635" source="CVE" />
+        <reference ref_id="CVE-2016-9636" ref_url="https://access.redhat.com/security/cve/CVE-2016-9636" source="CVE" />
+        <reference ref_id="CVE-2016-9807" ref_url="https://access.redhat.com/security/cve/CVE-2016-9807" source="CVE" />
+        <reference ref_id="CVE-2016-9808" ref_url="https://access.redhat.com/security/cve/CVE-2016-9808" source="CVE" />
+        <description>GStreamer is a streaming media framework based on graphs of filters which operate on media data. The gstreamer1-plugins-good packages contain a collection of well-supported plug-ins of good quality and under the LGPL license.
+
+Security Fix(es):
+
+* Multiple flaws were discovered in GStreamer's FLC/FLI/FLX media file format decoding plug-in. A remote attacker could use these flaws to cause an application using GStreamer to crash or, potentially, execute arbitrary code with the privileges of the user running the application. (CVE-2016-9634, CVE-2016-9635, CVE-2016-9636, CVE-2016-9808)
+
+* An invalid memory read access flaw was found in GStreamer's FLC/FLI/FLX media file format decoding plug-in. A remote attacker could use this flaw to cause an application using GStreamer to crash. (CVE-2016-9807)
+
+Note: This update removes the vulnerable FLC/FLI/FLX plug-in.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-01-05" />
+          <updated date="2017-01-05" />
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2016-9634" public="20161121">CVE-2016-9634</cve>
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2016-9635" public="20161121">CVE-2016-9635</cve>
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2016-9636" public="20161121">CVE-2016-9636</cve>
+          <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="4.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2016-9807" impact="low" public="20161122">CVE-2016-9807</cve>
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2016-9808" public="20161121">CVE-2016-9808</cve>
+          <bugzilla id="1397441" href="https://bugzilla.redhat.com/1397441">CVE-2016-9634 CVE-2016-9635 CVE-2016-9636 CVE-2016-9808 gstreamer-plugins-good: Heap buffer overflow in FLIC decoder</bugzilla>
+          <bugzilla id="1401874" href="https://bugzilla.redhat.com/1401874">CVE-2016-9807 gstreamer-plugins-good: Invalid memory read in flx_decode_chunks</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="gstreamer1-plugins-good is earlier than 0:1.4.5-3.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170020005" />
+        <criterion comment="gstreamer1-plugins-good is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170020006" />
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170021" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0021: gstreamer1-plugins-bad-free security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0021-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0021.html" source="RHSA" />
+        <reference ref_id="CVE-2016-9445" ref_url="https://access.redhat.com/security/cve/CVE-2016-9445" source="CVE" />
+        <reference ref_id="CVE-2016-9809" ref_url="https://access.redhat.com/security/cve/CVE-2016-9809" source="CVE" />
+        <reference ref_id="CVE-2016-9812" ref_url="https://access.redhat.com/security/cve/CVE-2016-9812" source="CVE" />
+        <reference ref_id="CVE-2016-9813" ref_url="https://access.redhat.com/security/cve/CVE-2016-9813" source="CVE" />
+        <description>GStreamer is a streaming media framework based on graphs of filters which operate on media data. The gstreamer1-plugins-bad-free package contains a collection of plug-ins for GStreamer.
+
+Security Fix(es):
+
+* An integer overflow flaw, leading to a heap-based buffer overflow, was found in GStreamer's VMware VMnc video file format decoding plug-in. A remote attacker could use this flaw to cause an application using GStreamer to crash or, potentially, execute arbitrary code with the privileges of the user running the application. (CVE-2016-9445)
+
+* Multiple flaws were discovered in GStreamer's H.264 and MPEG-TS plug-ins. A remote attacker could use these flaws to cause an application using GStreamer to crash. (CVE-2016-9809, CVE-2016-9812, CVE-2016-9813)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-01-05" />
+          <updated date="2017-01-05" />
+          <cve cvss2="6.8/AV:N/AC:M/Au:N/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" cwe="CWE-190 CWE-122" href="https://access.redhat.com/security/cve/CVE-2016-9445" public="20161115">CVE-2016-9445</cve>
+          <cve cvss2="2.6/AV:N/AC:H/Au:N/C:N/I:N/A:P" cvss3="3.1/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L" cwe="CWE-193" href="https://access.redhat.com/security/cve/CVE-2016-9809" impact="low" public="20161123">CVE-2016-9809</cve>
+          <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="4.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2016-9812" impact="low" public="20161124">CVE-2016-9812</cve>
+          <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="4.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L" cwe="CWE-125 CWE-476" href="https://access.redhat.com/security/cve/CVE-2016-9813" impact="low" public="20161125">CVE-2016-9813</cve>
+          <bugzilla id="1395767" href="https://bugzilla.redhat.com/1395767">CVE-2016-9445 gstreamer-plugins-bad-free: Integer overflow when allocating render buffer in VMnc decoder</bugzilla>
+          <bugzilla id="1401880" href="https://bugzilla.redhat.com/1401880">CVE-2016-9809 gstreamer-plugins-bad-free: Off-by-one read in gst_h264_parse_set_caps</bugzilla>
+          <bugzilla id="1401930" href="https://bugzilla.redhat.com/1401930">CVE-2016-9812 gstreamer1-plugins-bad-free: Out-of-bounds read in gst_mpegts_section_new</bugzilla>
+          <bugzilla id="1401934" href="https://bugzilla.redhat.com/1401934">CVE-2016-9813 gstreamer-plugins-bad-free: NULL pointer dereference in mpegts parser</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="gstreamer1-plugins-bad-free is earlier than 0:1.4.5-6.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170021005" />
+            <criterion comment="gstreamer1-plugins-bad-free is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170021006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="gstreamer1-plugins-bad-free-devel is earlier than 0:1.4.5-6.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170021007" />
+            <criterion comment="gstreamer1-plugins-bad-free-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170021008" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -435,6 +656,70 @@ Security Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20170013005" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170014003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170018005" check="at least one" comment="gstreamer-plugins-bad-free-devel-docs is earlier than 0:0.10.23-22.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170018005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170018003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170018006" check="at least one" comment="gstreamer-plugins-bad-free-devel-docs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170018005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170018007" check="at least one" comment="gstreamer-plugins-bad-free-devel is earlier than 0:0.10.23-22.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170018006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170018003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170018008" check="at least one" comment="gstreamer-plugins-bad-free-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170018006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170018009" check="at least one" comment="gstreamer-plugins-bad-free is earlier than 0:0.10.23-22.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170018007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170018003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170018010" check="at least one" comment="gstreamer-plugins-bad-free is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170018007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170019005" check="at least one" comment="gstreamer-plugins-good is earlier than 0:0.10.31-12.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170019005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170019003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170019006" check="at least one" comment="gstreamer-plugins-good is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170019005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170019007" check="at least one" comment="gstreamer-plugins-good-devel-docs is earlier than 0:0.10.31-12.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170019006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170019003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170019008" check="at least one" comment="gstreamer-plugins-good-devel-docs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170019006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170020005" check="at least one" comment="gstreamer1-plugins-good is earlier than 0:1.4.5-3.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170020005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170020003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170020006" check="at least one" comment="gstreamer1-plugins-good is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170020005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170021005" check="at least one" comment="gstreamer1-plugins-bad-free is earlier than 0:1.4.5-6.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170021005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170021003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170021006" check="at least one" comment="gstreamer1-plugins-bad-free is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170021005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170021007" check="at least one" comment="gstreamer1-plugins-bad-free-devel is earlier than 0:1.4.5-6.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170021006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170021003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170021008" check="at least one" comment="gstreamer1-plugins-bad-free-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170021006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -503,6 +788,30 @@ Security Fix(es):
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170013009" version="601">
       <name>ghostscript-doc</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170018005" version="601">
+      <name>gstreamer-plugins-bad-free-devel-docs</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170018006" version="601">
+      <name>gstreamer-plugins-bad-free-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170018007" version="601">
+      <name>gstreamer-plugins-bad-free</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170019005" version="601">
+      <name>gstreamer-plugins-good</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170019006" version="601">
+      <name>gstreamer-plugins-good-devel-docs</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170020005" version="601">
+      <name>gstreamer1-plugins-good</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170021005" version="601">
+      <name>gstreamer1-plugins-bad-free</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170021006" version="601">
+      <name>gstreamer1-plugins-bad-free-devel</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -522,6 +831,18 @@ Security Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170014003" version="601">
       <evr datatype="evr_string" operation="less than">0:8.70-21.el6_8.1</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170018003" version="601">
+      <evr datatype="evr_string" operation="less than">0:0.10.23-22.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170019003" version="601">
+      <evr datatype="evr_string" operation="less than">0:0.10.31-12.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170020003" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.4.5-3.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170021003" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.4.5-6.el7_3</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
