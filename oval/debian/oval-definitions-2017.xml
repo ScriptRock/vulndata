@@ -304,6 +304,29 @@ arbitrary code if a malformed binary is parsed.
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.debian:def:20175226" class="vulnerability" version="1">
+      <metadata>
+        <title>CVE-2017-5226</title>
+        <affected family="unix">
+          <platform>Debian GNU/Linux 9.0</platform>
+          <product>bubblewrap</product>
+        </affected>
+        <reference ref_id="CVE-2017-5226" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5226" source="CVE" />
+        <description />
+        <debian>
+          <moreinfo />
+        </debian>
+      </metadata>
+      <criteria comment="Release section" operator="AND">
+        <criterion comment="Debian 9.0 is installed" test_ref="oval:org.debian.oval:tst:1" />
+        <criteria comment="Architecture section" operator="OR">
+          <criteria comment="Architecture independent section" operator="AND">
+            <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+            <criterion comment="bubblewrap DPKG is earlier than 0" test_ref="oval:org.debian.oval:tst:23" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <textfilecontent_test id="oval:org.debian.oval:tst:1" check="all" check_existence="at_least_one_exists" comment="Debian GNU/Linux 9.0 is installed" version="1">
@@ -393,6 +416,10 @@ arbitrary code if a malformed binary is parsed.
       <object object_ref="oval:org.debian.oval:obj:5" />
       <state state_ref="oval:org.debian.oval:ste:16" />
     </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:23" check="all" check_existence="at_least_one_exists" comment="bubblewrap is earlier than 0" version="1">
+      <object object_ref="oval:org.debian.oval:obj:6" />
+      <state state_ref="oval:org.debian.oval:ste:17" />
+    </dpkginfo_test>
   </tests>
   <objects>
     <textfilecontent_object id="oval:org.debian.oval:obj:1" version="1">
@@ -409,6 +436,9 @@ arbitrary code if a malformed binary is parsed.
     </dpkginfo_object>
     <dpkginfo_object id="oval:org.debian.oval:obj:5" version="1">
       <name>icoutils</name>
+    </dpkginfo_object>
+    <dpkginfo_object id="oval:org.debian.oval:obj:6" version="1">
+      <name>bubblewrap</name>
     </dpkginfo_object>
   </objects>
   <states>
@@ -459,6 +489,9 @@ arbitrary code if a malformed binary is parsed.
     </dpkginfo_state>
     <dpkginfo_state id="oval:org.debian.oval:ste:16" version="1">
       <evr datatype="evr_string" operation="less than">0:0.31.0-4</evr>
+    </dpkginfo_state>
+    <dpkginfo_state id="oval:org.debian.oval:ste:17" version="1">
+      <evr datatype="evr_string" operation="less than">0:0</evr>
     </dpkginfo_state>
   </states>
 </oval_definitions>
