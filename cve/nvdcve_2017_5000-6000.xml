@@ -155,4 +155,18 @@
     </vuln:references>
     <vuln:summary>Installing a zero-permission Android application on certain Samsung Android devices with KK(4.4), L(5.0/5.1), and M(6.0) software can continually crash the system_server process in the Android OS. The zero-permission app will create an active install session for a separate app that it has embedded within it. The active install session of the embedded app is performed using the android.content.pm.PackageInstaller class and its nested classes in the Android API. The active install session will write the embedded APK file to the /data/app directory, but the app will not be installed since third-party applications cannot programmatically install apps. Samsung has modified AOSP in order to accelerate the parsing of APKs by introducing the com.android.server.pm.PackagePrefetcher class and its nested classes. These classes will parse the APKs present in the /data/app directory and other directories, even if the app is not actually installed. The embedded APK that was written to the /data/app directory via the active install session has a very large but valid AndroidManifest.xml file. Specifically, the AndroidManifest.xml file contains a very large string value for the name of a permission-tree that it declares. When system_server tries to parse the APK file of the embedded app from the active install session, it will crash due to an uncaught error (i.e., java.lang.OutOfMemoryError) or an uncaught exception (i.e., std::bad_alloc) because of memory constraints. The Samsung Android device will encounter a soft reboot due to a system_server crash, and this action will keep repeating since parsing the APKs in the /data/app directory as performed by the system_server process is part of the normal boot process. The Samsung ID is SVE-2016-6917.</vuln:summary>
   </entry>
+  <entry id="CVE-2017-5340">
+    <vuln:cve-id>CVE-2017-5340</vuln:cve-id>
+    <vuln:published-datetime>2017-01-11T01:59:00.160-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-11T01:59:00.177-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://bugs.php.net/bug.php?id=73832" xml:lang="en">https://bugs.php.net/bug.php?id=73832</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://github.com/php/php-src/commit/4cc0286f2f3780abc6084bcdae5dce595daa3c12" xml:lang="en">https://github.com/php/php-src/commit/4cc0286f2f3780abc6084bcdae5dce595daa3c12</vuln:reference>
+    </vuln:references>
+    <vuln:summary>Zend/zend_hash.c in PHP before 7.0.15 and 7.1.x before 7.1.1 mishandles certain cases that require large array allocations, which allows remote attackers to execute arbitrary code or cause a denial of service (integer overflow, uninitialized memory access, and use of arbitrary destructor function pointers) via crafted serialized data.</vuln:summary>
+  </entry>
 </nvd>
