@@ -158,6 +158,31 @@
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:1694" class="patch" version="1">
+      <metadata>
+        <title>DSA-3756-1 -- icoutils -- security update</title>
+        <affected family="unix">
+          <platform>Debian 8</platform>
+          <product>icoutils</product>
+        </affected>
+        <reference ref_id="DSA-3756-1" ref_url="https://www.debian.org/security/dsa-3756" source="VENDOR" />
+        <reference ref_id="CVE-2017-5208" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5208" source="CVE" />
+        <description>Choongwoo Han discovered that a programming error in the wrestool tool of the icoutils suite allows denial of service or the execution of arbitrary code if a malformed binary is parsed.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-01-09T12:21:58">
+              <contributor organization="ALTX-SOFT">Sergey Artykhov</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <extend_definition comment="Debian 8 is installed" definition_ref="oval:org.mitre.oval:def:28919" />
+        <criterion comment="icoutils is earlier than 0:0.31.0-2+deb8u1" test_ref="oval:org.cisecurity:tst:2433" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:5267" class="inventory" version="5">
       <metadata>
         <title>IBM AIX 6.1 is installed</title>
@@ -219,6 +244,31 @@
       <criteria>
         <criterion comment="IBM AIX version is greater than or equal 7100-00" test_ref="oval:org.mitre.oval:tst:87141" />
         <criterion comment="IBM AIX version is less than 8100-00" test_ref="oval:org.mitre.oval:tst:87164" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:28919" class="inventory" version="32">
+      <metadata>
+        <title>Debian 8 is installed</title>
+        <affected family="unix">
+          <platform>Debian 8</platform>
+        </affected>
+        <reference ref_id="cpe:/o:debian:debian:8" source="CPE" />
+        <description>Debian 8 (Jessie) is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2015-04-27T13:00:00">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </submitted>
+            <status_change date="2015-04-28T15:08:47.718-04:00">DRAFT</status_change>
+            <status_change date="2015-05-18T04:00:12.845-04:00">INTERIM</status_change>
+            <status_change date="2015-06-08T04:00:15.077-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Debian 8 is installed" test_ref="oval:org.mitre.oval:tst:138403" />
       </criteria>
     </definition>
   </definitions>
@@ -307,6 +357,10 @@
       <object object_ref="oval:org.cisecurity:obj:532" />
       <state state_ref="oval:org.mitre.oval:ste:39185" />
     </interim_fix_test>
+    <dpkginfo_test id="oval:org.cisecurity:tst:2433" check="all" check_existence="at_least_one_exists" comment="icoutils is earlier than 0:0.31.0-2+deb8u1" version="1">
+      <object object_ref="oval:org.cisecurity:obj:536" />
+      <state state_ref="oval:org.cisecurity:ste:1922" />
+    </dpkginfo_test>
     <oslevel_test id="oval:org.mitre.oval:tst:7699" check="at least one" check_existence="at_least_one_exists" comment="IBM AIX version is greater than or equal 6100-00" version="2">
       <object object_ref="oval:org.mitre.oval:obj:5715" />
       <state state_ref="oval:org.mitre.oval:ste:3903" />
@@ -347,6 +401,10 @@
       <object object_ref="oval:org.mitre.oval:obj:42746" />
       <state state_ref="oval:org.mitre.oval:ste:34958" />
     </fileset_test>
+    <textfilecontent54_test id="oval:org.mitre.oval:tst:138403" check="all" check_existence="at_least_one_exists" comment="Debian 8 is installed" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:26771" />
+      <state state_ref="oval:org.mitre.oval:ste:38227" />
+    </textfilecontent54_test>
   </tests>
   <objects>
     <interim_fix_object id="oval:org.cisecurity:obj:148" version="1">
@@ -370,11 +428,20 @@
     <fileset_object id="oval:org.cisecurity:obj:534" version="1">
       <flstinst>lwi.runtime</flstinst>
     </fileset_object>
+    <dpkginfo_object id="oval:org.cisecurity:obj:536" comment="icoutils package information" version="1">
+      <name>icoutils</name>
+    </dpkginfo_object>
     <uname_object id="oval:org.mitre.oval:obj:2759" comment="The single uname object." version="1" />
     <fileset_object id="oval:org.mitre.oval:obj:5613" version="2">
       <flstinst>bos.net.tcp.client</flstinst>
     </fileset_object>
     <oslevel_object id="oval:org.mitre.oval:obj:5715" comment="The single oslevel object." version="1" />
+    <textfilecontent54_object id="oval:org.mitre.oval:obj:26771" comment="Object holds Debian version" version="2">
+      <path>/etc</path>
+      <filename>debian_version</filename>
+      <pattern operation="pattern match">^(\d).*$</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
     <swlist_object id="oval:org.mitre.oval:obj:30405" version="2">
       <swlist>NameService.BIND-AUX</swlist>
     </swlist_object>
@@ -416,6 +483,9 @@
     <fileset_state id="oval:org.cisecurity:ste:1921" version="1">
       <level datatype="version" operation="less than or equal">6.1.9.99</level>
     </fileset_state>
+    <dpkginfo_state id="oval:org.cisecurity:ste:1922" comment="version is earlier than 0:0.31.0-2+deb8u1" version="1">
+      <evr datatype="evr_string" operation="less than">0:0.31.0-2+deb8u1</evr>
+    </dpkginfo_state>
     <uname_state id="oval:org.mitre.oval:ste:3284" version="2">
       <os_release>B.11.31</os_release>
     </uname_state>
@@ -440,6 +510,9 @@
     <fileset_state id="oval:org.mitre.oval:ste:34958" version="2">
       <level datatype="version" operation="greater than or equal">1.0.1.500</level>
     </fileset_state>
+    <textfilecontent54_state id="oval:org.mitre.oval:ste:38227" comment="State matches version 8" version="2">
+      <subexpression>8</subexpression>
+    </textfilecontent54_state>
     <interim_fix_state id="oval:org.mitre.oval:ste:39185" version="2">
       <state>STABLE</state>
     </interim_fix_state>

@@ -324,6 +324,246 @@
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:1704" class="compliance" version="1">
+      <metadata>
+        <title>Remove OneDrive option located in the navigation panel of File Explorer on Windows 10.</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 10 Home</platform>
+          <platform>Microsoft Windows 10 Professional</platform>
+          <platform>Microsoft Windows 10 Enterprise</platform>
+          <product>OneDrive</product>
+        </affected>
+        <description>This method is ideal for users of Windows 10 Home, but also for Professional, Enterprise or Education, who want to get rid of OneDrive. It’s completely reversible if you ever want to use OneDrive again.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-01-08T12:00:00.000-04:00">
+              <contributor organization="CERT Civis.Net">Franck MAHE</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Verify 'System.IsPinnedToNameSpaceTree' is set to '0'" test_ref="oval:org.cisecurity:tst:2442" />
+        <criterion comment="On 64bits release, verify 'System.IsPinnedToNameSpaceTree' is set to '0'" test_ref="oval:org.cisecurity:tst:2441" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:1705" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability - CVE-2017-0004 (MS17-004)</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+        </affected>
+        <reference ref_id="CVE-2017-0004" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0004" source="CVE" />
+        <description>LSASS service</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-01-10T20:45:11+01:00">
+              <contributor organization="FRHACK">Jerome Athias</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Windows OS + vulnerable file version" operator="OR">
+        <criteria comment="Windows Server 2008 R2/Windows 7 is installed + file version" operator="AND">
+          <criteria comment="Windows Server 2008 R2/Windows 7 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+          </criteria>
+          <criterion comment="Check if lsasrv.dll version is less than 6.1.7601.23642" test_ref="oval:org.cisecurity:tst:2444" />
+        </criteria>
+        <criteria comment="Windows Server 2008 is installed + file version" operator="AND">
+          <criteria comment="Windows Server 2008 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+            <extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+            <extend_definition comment="Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6150" />
+          </criteria>
+          <criterion comment="Check if lsasrv.dll version is less than 6.0.6002.19725" test_ref="oval:org.cisecurity:tst:2443" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:5653" class="inventory" version="38">
+      <metadata>
+        <title>Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+        </affected>
+        <reference ref_id="cpe:/o:microsoft:windows_server_2008::sp2:x86" source="CPE" />
+        <description>The operating system installed on the system is Microsoft Windows Server 2008 (32-bit) Service Pack 2</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2009-05-04T16:00:00">
+              <contributor organization="Gideon Technologies, Inc.">Dragos Prisaca</contributor>
+            </submitted>
+            <status_change date="2009-05-07T11:17:37.121-04:00">DRAFT</status_change>
+            <status_change date="2009-05-25T04:01:42.700-04:00">INTERIM</status_change>
+            <status_change date="2009-06-22T04:00:24.249-04:00">ACCEPTED</status_change>
+            <modified comment="Changed registry check for amd64 to be a case insensitive equals" date="2009-09-04T10:48:00.140-05:00">
+              <contributor organization="Hewlett-Packard">Todd Dolinsky</contributor>
+            </modified>
+            <status_change date="2009-09-07T04:00:26.467-04:00">INTERIM</status_change>
+            <status_change date="2009-09-28T04:00:07.133-04:00">ACCEPTED</status_change>
+            <modified comment="Replaced negation of test for x64 with a case insensitive test for x86, added a negated test for 2008 R2 and changed the tests for SP2 and windows to be case insensitive" date="2009-12-02T16:05:00.749-04:00">
+              <contributor organization="National Institute of Standards and Technology">Tim Harrison</contributor>
+            </modified>
+            <status_change date="2009-12-02T16:05:00.749-04:00">INTERIM</status_change>
+            <modified comment="Added anchors and spaces to regular expression" date="2009-12-04T14:54:00.233-05:00">
+              <contributor organization="National Institute of Standards and Technology">Tim Harrison</contributor>
+            </modified>
+            <modified comment="Added anchors and spaces to regular expression" date="2009-12-04T14:56:00.439-05:00">
+              <contributor organization="National Institute of Standards and Technology">Tim Harrison</contributor>
+            </modified>
+            <modified comment="Updating regex to include parenthesis" date="2009-12-08T17:32:00.144-05:00">
+              <contributor organization="National Institute of Standards and Technology">Tim Harrison</contributor>
+            </modified>
+            <status_change date="2010-01-04T04:01:38.208-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:5653 - Corrected the CPE names for Windows Server 2008" date="2010-12-21T10:57:00.617-05:00">
+              <contributor organization="The MITRE Corporation">Jonathan Baker</contributor>
+            </modified>
+            <status_change date="2010-12-21T11:00:21.376-05:00">INTERIM</status_change>
+            <status_change date="2011-02-07T04:00:12.818-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:717 - Added an additional test for Windows Server 2003 platforms to test for the existence of the NT Directory Services" date="2011-04-25T14:34:00.432-04:00">
+              <contributor organization="Telos">Sudhir Gandhe</contributor>
+            </modified>
+            <status_change date="2011-04-25T14:45:40.947-04:00">INTERIM</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:717 - Reverted mistaken switch of obj:717 (Service Pack) and obj:15869 (NT Directory Services)" date="2011-04-26T11:53:00.464-04:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </modified>
+            <status_change date="2011-05-16T04:03:12.167-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99" />
+        <criterion comment="Windows Server 2008 is installed" test_ref="oval:org.mitre.oval:tst:7697" />
+        <criterion comment="a version of Windows for the x86 architecture is installed" test_ref="oval:org.mitre.oval:tst:3823" />
+        <criterion comment="Win2K/XP/2003/Vista/2008 service pack 2 is installed" test_ref="oval:org.mitre.oval:tst:3019" />
+        <criterion comment="Windows Server 2008 R2 is installed" negate="true" test_ref="oval:org.mitre.oval:tst:10317" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:6150" class="inventory" version="32">
+      <metadata>
+        <title>Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+        </affected>
+        <reference ref_id="cpe:/o:microsoft:windows_server_2008::sp2:itanium" source="CPE" />
+        <description>The operating system installed on the system is Microsoft Windows Server 2008 Itanium Edition Service Pack 2</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2009-05-04T16:00:00">
+              <contributor organization="Gideon Technologies, Inc.">Dragos Prisaca</contributor>
+            </submitted>
+            <modified comment="Updated comment to include Vista and Server 2008" date="2009-05-07T10:32:00.713-04:00">
+              <contributor organization="Gideon Technologies, Inc.">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2009-05-07T11:17:27.535-04:00">DRAFT</status_change>
+            <status_change date="2009-05-25T04:02:02.357-04:00">INTERIM</status_change>
+            <status_change date="2009-06-22T04:00:30.433-04:00">ACCEPTED</status_change>
+            <modified comment="Changed the tests for ia64, SP2, and windows to be case insensitive" date="2009-12-02T16:05:00.749-04:00">
+              <contributor organization="National Institute of Standards and Technology">Tim Harrison</contributor>
+            </modified>
+            <status_change date="2009-12-02T16:05:00.749-04:00">INTERIM</status_change>
+            <modified comment="Added anchors and spaces to regular expression" date="2009-12-04T14:54:00.233-05:00">
+              <contributor organization="National Institute of Standards and Technology">Tim Harrison</contributor>
+            </modified>
+            <status_change date="2009-12-21T04:00:47.950-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:6150 - Corrected the CPE names for Windows Server 2008" date="2010-12-21T10:57:00.617-05:00">
+              <contributor organization="The MITRE Corporation">Jonathan Baker</contributor>
+            </modified>
+            <status_change date="2010-12-21T11:00:20.359-05:00">INTERIM</status_change>
+            <status_change date="2011-02-07T04:00:14.142-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:717 - Added an additional test for Windows Server 2003 platforms to test for the existence of the NT Directory Services" date="2011-04-25T14:34:00.432-04:00">
+              <contributor organization="Telos">Sudhir Gandhe</contributor>
+            </modified>
+            <status_change date="2011-04-25T14:43:51.991-04:00">INTERIM</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:717 - Reverted mistaken switch of obj:717 (Service Pack) and obj:15869 (NT Directory Services)" date="2011-04-26T11:53:00.464-04:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </modified>
+            <status_change date="2011-05-16T04:03:16.905-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99" />
+        <criterion comment="Windows Server 2008 is installed" test_ref="oval:org.mitre.oval:tst:7697" />
+        <criterion comment="a version of Windows for the ia64 architecture is installed" test_ref="oval:org.mitre.oval:tst:2747" />
+        <criterion comment="Win2K/XP/2003/Vista/2008 service pack 2 is installed" test_ref="oval:org.mitre.oval:tst:3019" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:6216" class="inventory" version="40">
+      <metadata>
+        <title>Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+        </affected>
+        <reference ref_id="cpe:/o:microsoft:windows_server_2008::sp2:x64" source="CPE" />
+        <description>The operating system installed on the system is Microsoft Windows Server 2008 x64 Edition Service Pack 2</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2009-05-04T16:00:00">
+              <contributor organization="Gideon Technologies, Inc.">Dragos Prisaca</contributor>
+            </submitted>
+            <status_change date="2009-05-07T11:17:37.293-04:00">DRAFT</status_change>
+            <status_change date="2009-05-25T04:02:07.677-04:00">INTERIM</status_change>
+            <status_change date="2009-06-22T04:00:31.225-04:00">ACCEPTED</status_change>
+            <modified comment="Changed registry check for amd64 to be a case insensitive equals" date="2009-09-04T10:48:00.140-05:00">
+              <contributor organization="Hewlett-Packard">Todd Dolinsky</contributor>
+            </modified>
+            <status_change date="2009-09-07T04:00:28.404-04:00">INTERIM</status_change>
+            <status_change date="2009-09-28T04:00:16.986-04:00">ACCEPTED</status_change>
+            <modified comment="Changed registry check for amd64 to be case insensitive equals" date="2009-11-19T18:33:00.593-05:00">
+              <contributor organization="Hewlett-Packard">Todd Dolinsky</contributor>
+            </modified>
+            <status_change date="2009-11-19T18:35:08.857-05:00">INTERIM</status_change>
+            <modified comment="Changed the tests for SP2 and windows to be case insensitive" date="2009-12-02T16:05:00.749-04:00">
+              <contributor organization="National Institute of Standards and Technology">Tim Harrison</contributor>
+            </modified>
+            <modified comment="Added anchors and spaces to regular expression" date="2009-12-04T14:54:00.233-05:00">
+              <contributor organization="National Institute of Standards and Technology">Tim Harrison</contributor>
+            </modified>
+            <status_change date="2009-12-21T04:00:49.331-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:6216 - Corrected the CPE names for Windows Server 2008" date="2010-12-21T10:57:00.617-05:00">
+              <contributor organization="The MITRE Corporation">Jonathan Baker</contributor>
+            </modified>
+            <status_change date="2010-12-21T11:00:20.808-05:00">INTERIM</status_change>
+            <status_change date="2011-02-07T04:00:14.501-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:717 - Added an additional test for Windows Server 2003 platforms to test for the existence of the NT Directory Services" date="2011-04-25T14:34:00.432-04:00">
+              <contributor organization="Telos">Sudhir Gandhe</contributor>
+            </modified>
+            <status_change date="2011-04-25T14:44:24.321-04:00">INTERIM</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:717 - Reverted mistaken switch of obj:717 (Service Pack) and obj:15869 (NT Directory Services)" date="2011-04-26T11:53:00.464-04:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </modified>
+            <status_change date="2011-05-16T04:03:17.572-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:3180 - new inventory for SQL Server 2008 R2 64-bit" date="2013-07-05T09:33:00.078-04:00">
+              <contributor organization="ALTX-SOFT">Maria Kedovskaya</contributor>
+            </modified>
+            <status_change date="2013-07-05T09:37:48.609-04:00">INTERIM</status_change>
+            <status_change date="2013-07-22T04:03:09.474-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99" />
+        <criterion comment="Windows Server 2008 is installed" test_ref="oval:org.mitre.oval:tst:7697" />
+        <criterion comment="a version of Windows for the x64 architecture is installed" test_ref="oval:org.mitre.oval:tst:3653" />
+        <criterion comment="Win2K/XP/2003/Vista/2008 service pack 2 is installed" test_ref="oval:org.mitre.oval:tst:3019" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:6700" class="inventory" version="51">
       <metadata>
         <title>Adobe Flash Player is installed</title>
@@ -574,6 +814,180 @@
         <criterion comment="Check if Google Chrome is installed" test_ref="oval:org.mitre.oval:tst:41561" />
       </criteria>
     </definition>
+    <definition id="oval:org.mitre.oval:def:12292" class="inventory" version="37">
+      <metadata>
+        <title>Microsoft Windows 7 (32-bit) Service Pack 1 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+        </affected>
+        <reference ref_id="cpe:/o:microsoft:windows_7::sp1:x86" source="CPE" />
+        <description>The operating system installed on the system is Microsoft Windows 7 (32-bit) Service Pack 1</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2011-02-23T11:42:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </submitted>
+            <status_change date="2011-02-28T09:34:48.696-05:00">DRAFT</status_change>
+            <status_change date="2011-03-21T04:00:07.252-04:00">INTERIM</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:12087 - Modified pattern match for ste:12087." date="2011-03-29T13:23:00.865-04:00">
+              <contributor organization="SecPod Technologies">Chandan S</contributor>
+            </modified>
+            <status_change date="2011-04-18T04:00:16.014-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:12087 - Updated comment for ste:12087" date="2011-05-04T09:09:00.463-04:00">
+              <contributor organization="Secure Elements, Inc.">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2011-05-04T09:14:35.212-04:00">INTERIM</status_change>
+            <status_change date="2011-05-23T04:00:09.781-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:5027 - removed extraneous whitespace from regex" date="2015-05-21T13:26:00.569-04:00">
+              <contributor organization="The MITRE Corporation">Mike Cokus</contributor>
+            </modified>
+            <status_change date="2015-05-21T13:29:02.409-04:00">INTERIM</status_change>
+            <status_change date="2015-06-08T04:00:04.456-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99" />
+        <criterion comment="Windows 7 is installed" test_ref="oval:org.mitre.oval:tst:10792" />
+        <criterion comment="a version of Windows for the x86 architecture is installed" test_ref="oval:org.mitre.oval:tst:3823" />
+        <criterion comment="Service Pack 1 is installed" test_ref="oval:org.mitre.oval:tst:41933" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:12567" class="inventory" version="39">
+      <metadata>
+        <title>Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008 R2</platform>
+        </affected>
+        <reference ref_id="cpe:/o:microsoft:windows_server_2008:r2:sp1:x64" source="CPE" />
+        <description>The operating system installed on the system is Microsoft Windows Server 2008 R2 x64 Service Pack 1</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2011-03-08T14:00:00">
+              <contributor organization="Symantec Corporation">Josh Turpin</contributor>
+            </submitted>
+            <status_change date="2011-03-08T13:52:14.186-05:00">DRAFT</status_change>
+            <status_change date="2011-03-28T04:00:09.125-04:00">INTERIM</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:12087 - Modified pattern match for ste:12087." date="2011-03-29T13:23:00.865-04:00">
+              <contributor organization="SecPod Technologies">Chandan S</contributor>
+            </modified>
+            <status_change date="2011-04-18T04:00:28.076-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:12087 - Updated comment for ste:12087" date="2011-05-04T09:09:00.463-04:00">
+              <contributor organization="Secure Elements, Inc.">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2011-05-04T09:14:36.142-04:00">INTERIM</status_change>
+            <status_change date="2011-05-23T04:00:13.850-04:00">ACCEPTED</status_change>
+            <status_change date="2012-03-05T14:24:10.103-05:00">INTERIM</status_change>
+            <modified comment="Added Windows Server 2008 R2 platform" date="2012-03-05T14:24:10.103-05:00">
+              <contributor organization="Symantec Corporation">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2012-03-26T04:02:10.076-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:3180 - new inventory for SQL Server 2008 R2 64-bit" date="2013-07-05T09:33:00.078-04:00">
+              <contributor organization="ALTX-SOFT">Maria Kedovskaya</contributor>
+            </modified>
+            <status_change date="2013-07-05T09:37:56.866-04:00">INTERIM</status_change>
+            <status_change date="2013-07-22T04:00:08.743-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99" />
+        <criterion comment="Windows Server 2008 R2 is installed" test_ref="oval:org.mitre.oval:tst:10317" />
+        <criterion comment="a version of Windows for the x64 architecture is installed" test_ref="oval:org.mitre.oval:tst:3653" />
+        <criterion comment="Service Pack 1 is installed" test_ref="oval:org.mitre.oval:tst:41933" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:12583" class="inventory" version="31">
+      <metadata>
+        <title>Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008 R2</platform>
+        </affected>
+        <reference ref_id="cpe:/o:microsoft:windows_server_2008:r2:sp1:itanium" source="CPE" />
+        <description>The operating system installed on the system is Microsoft Windows Server 2008 R2 Itanium Edition Service Pack 1</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2011-03-08T14:00:00">
+              <contributor organization="Symantec Corporation">Josh Turpin</contributor>
+            </submitted>
+            <status_change date="2011-03-08T13:52:14.351-05:00">DRAFT</status_change>
+            <status_change date="2011-03-28T04:00:09.481-04:00">INTERIM</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:12087 - Modified pattern match for ste:12087." date="2011-03-29T13:23:00.865-04:00">
+              <contributor organization="SecPod Technologies">Chandan S</contributor>
+            </modified>
+            <status_change date="2011-04-18T04:00:29.145-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:12087 - Updated comment for ste:12087" date="2011-05-04T09:09:00.463-04:00">
+              <contributor organization="Secure Elements, Inc.">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2011-05-04T09:14:35.800-04:00">INTERIM</status_change>
+            <status_change date="2011-05-23T04:00:14.534-04:00">ACCEPTED</status_change>
+            <status_change date="2012-03-05T14:24:10.087-05:00">INTERIM</status_change>
+            <modified comment="Added Windows Server 2008 R2 platform" date="2012-03-05T14:24:10.087-05:00">
+              <contributor organization="Symantec Corporation">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2012-03-26T04:02:12.279-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99" />
+        <criterion comment="Windows Server 2008 R2 is installed" test_ref="oval:org.mitre.oval:tst:10317" />
+        <criterion comment="a version of Windows for the ia64 architecture is installed" test_ref="oval:org.mitre.oval:tst:2747" />
+        <criterion comment="Service Pack 1 is installed" test_ref="oval:org.mitre.oval:tst:41933" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:12627" class="inventory" version="39">
+      <metadata>
+        <title>Microsoft Windows 7 x64 Service Pack 1 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+        </affected>
+        <reference ref_id="cpe:/o:microsoft:windows_7::sp1:x64" source="CPE" />
+        <description>The operating system installed on the system is Microsoft Windows 7 x64 Service Pack 1</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2011-02-23T11:42:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </submitted>
+            <status_change date="2011-02-28T09:34:48.913-05:00">DRAFT</status_change>
+            <status_change date="2011-03-21T04:00:13.798-04:00">INTERIM</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:12087 - Modified pattern match for ste:12087." date="2011-03-29T13:23:00.865-04:00">
+              <contributor organization="SecPod Technologies">Chandan S</contributor>
+            </modified>
+            <status_change date="2011-04-18T04:00:32.009-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:12087 - Updated comment for ste:12087" date="2011-05-04T09:09:00.463-04:00">
+              <contributor organization="Secure Elements, Inc.">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2011-05-04T09:14:35.542-04:00">INTERIM</status_change>
+            <status_change date="2011-05-23T04:00:15.251-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:3180 - new inventory for SQL Server 2008 R2 64-bit" date="2013-07-05T09:33:00.078-04:00">
+              <contributor organization="ALTX-SOFT">Maria Kedovskaya</contributor>
+            </modified>
+            <status_change date="2013-07-05T09:37:53.419-04:00">INTERIM</status_change>
+            <status_change date="2013-07-22T04:00:09.204-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:5027 - removed extraneous whitespace from regex" date="2015-05-21T13:26:00.569-04:00">
+              <contributor organization="The MITRE Corporation">Mike Cokus</contributor>
+            </modified>
+            <status_change date="2015-05-21T13:29:02.486-04:00">INTERIM</status_change>
+            <status_change date="2015-06-08T04:00:07.949-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99" />
+        <criterion comment="Windows 7 is installed" test_ref="oval:org.mitre.oval:tst:10792" />
+        <criterion comment="a version of Windows for the x64 architecture is installed" test_ref="oval:org.mitre.oval:tst:3653" />
+        <criterion comment="Service Pack 1 is installed" test_ref="oval:org.mitre.oval:tst:41933" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:26286" class="inventory" version="14">
       <metadata>
         <title>MariaDB is installed on Windows</title>
@@ -812,8 +1226,56 @@
       <object object_ref="oval:org.mitre.oval:obj:23398" />
       <state state_ref="oval:org.cisecurity:ste:1912" />
     </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:2441" check="all" check_existence="at_least_one_exists" comment="On 64bits release, verify if 'System.IsPinnedToNameSpaceTree' is set to '0'" version="1">
+      <object object_ref="oval:org.cisecurity:obj:542" />
+      <state state_ref="oval:org.cisecurity:ste:1931" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:2442" check="all" check_existence="at_least_one_exists" comment="Verify if 'System.IsPinnedToNameSpaceTree' is set to '0'" version="1">
+      <object object_ref="oval:org.cisecurity:obj:541" />
+      <state state_ref="oval:org.cisecurity:ste:1931" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:2443" check="all" check_existence="at_least_one_exists" comment="Check if lsasrv.dll version is less than 6.0.6002.19725" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:512" />
+      <state state_ref="oval:org.cisecurity:ste:1933" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2444" check="all" check_existence="at_least_one_exists" comment="Check if lsasrv.dll version is less than 6.1.7601.23642" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:512" />
+      <state state_ref="oval:org.cisecurity:ste:1932" />
+    </file_test>
+    <family_test id="oval:org.mitre.oval:tst:99" check="only one" check_existence="at_least_one_exists" comment="the installed operating system is part of the Microsoft Windows family" version="6">
+      <object object_ref="oval:org.mitre.oval:obj:99" />
+      <state state_ref="oval:org.mitre.oval:ste:99" />
+    </family_test>
+    <registry_test id="oval:org.mitre.oval:tst:2747" check="at least one" check_existence="at_least_one_exists" comment="a version of Windows for the ia64 architecture is installed" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:1576" />
+      <state state_ref="oval:org.mitre.oval:ste:2568" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:3019" check="at least one" check_existence="at_least_one_exists" comment="Win2K/XP/2003/Vista/2008 service pack 2 is installed" version="4">
+      <object object_ref="oval:org.mitre.oval:obj:717" />
+      <state state_ref="oval:org.mitre.oval:ste:2827" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:3653" check="at least one" check_existence="at_least_one_exists" comment="a version of Windows for the x64 architecture is installed" version="4">
+      <object object_ref="oval:org.mitre.oval:obj:1576" />
+      <state state_ref="oval:org.mitre.oval:ste:3180" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:3823" check="at least one" check_existence="at_least_one_exists" comment="a version of Windows for the x86 architecture is installed" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:1576" />
+      <state state_ref="oval:org.mitre.oval:ste:3649" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:7697" check="at least one" check_existence="at_least_one_exists" comment="Windows Server 2008 is installed" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:5590" />
+      <state state_ref="oval:org.mitre.oval:ste:3207" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:10317" check="at least one" check_existence="at_least_one_exists" comment="Windows Server 2008 R2 is installed" version="4">
+      <object object_ref="oval:org.mitre.oval:obj:5590" />
+      <state state_ref="oval:org.mitre.oval:ste:5506" />
+    </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:10714" check="at least one" check_existence="at_least_one_exists" comment="Adobe Flash Player is installed on the system" version="6">
       <object object_ref="oval:org.mitre.oval:obj:7290" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:10792" check="at least one" check_existence="at_least_one_exists" comment="Windows 7 is installed" version="5">
+      <object object_ref="oval:org.mitre.oval:obj:5590" />
+      <state state_ref="oval:org.mitre.oval:ste:5027" />
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:11350" check="at least one" check_existence="at_least_one_exists" comment="Adobe AIR is installed on the system" version="3">
       <object object_ref="oval:org.mitre.oval:obj:7370" />
@@ -829,6 +1291,10 @@
     <registry_test id="oval:org.mitre.oval:tst:41561" check="at least one" check_existence="at_least_one_exists" comment="Check if Google Chrome is installed" version="21">
       <object object_ref="oval:org.mitre.oval:obj:16251" />
       <state state_ref="oval:org.mitre.oval:ste:11937" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:41933" check="at least one" check_existence="at_least_one_exists" comment="Service Pack 1 is installed" version="3">
+      <object object_ref="oval:org.mitre.oval:obj:15897" />
+      <state state_ref="oval:org.mitre.oval:ste:12087" />
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:122546" check="at least one" check_existence="at_least_one_exists" comment="MySQL 5.6 is installed" version="11">
       <object object_ref="oval:org.mitre.oval:obj:911" />
@@ -956,16 +1422,47 @@
       <path var_check="at least one" var_ref="oval:org.cisecurity:var:54" />
       <filename>Mso.dll</filename>
     </file_object>
+    <registry_object id="oval:org.cisecurity:obj:541" comment="HKCR\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}\System.IsPinnedToNameSpaceTree" version="1">
+      <hive datatype="string">HKEY_CLASSES_ROOT</hive>
+      <key datatype="string">CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}</key>
+      <name datatype="string">System.IsPinnedToNameSpaceTree</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:542" comment="HKCR\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}\System.IsPinnedToNameSpaceTree" version="1">
+      <behaviors windows_view="64_bit" />
+      <hive datatype="string">HKEY_CLASSES_ROOT</hive>
+      <key datatype="string">Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}</key>
+      <name datatype="string">System.IsPinnedToNameSpaceTree</name>
+    </registry_object>
+    <family_object id="oval:org.mitre.oval:obj:99" comment="This is the default family object. Only one family object should exist." version="1" />
     <registry_object id="oval:org.mitre.oval:obj:219" comment="This registry key identifies the system root." version="2">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
       <name>SystemRoot</name>
+    </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:512" version="35">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
+      <filename>lsasrv.dll</filename>
+    </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:717" comment="This registry key holds the service pack installed on the host if one is present." version="3">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+      <name>CSDVersion</name>
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:911" comment="Object holds Uninstall!DisplayName registry key" version="11">
       <set>
         <object_reference>oval:org.mitre.oval:obj:41928</object_reference>
         <object_reference>oval:org.mitre.oval:obj:41329</object_reference>
       </set>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:1576" comment="This registry key identifies the architecture on the system" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SYSTEM\CurrentControlSet\Control\Session Manager\Environment</key>
+      <name>PROCESSOR_ARCHITECTURE</name>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:5590" comment="This registry key identifies the Windows ProductName" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+      <name>ProductName</name>
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:7160" comment="Registry that holds the DisplayVersion of the Adobe AIR installed" version="2">
       <set>
@@ -999,6 +1496,11 @@
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Google Chrome</key>
       <name>DisplayName</name>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:15897" comment="This registry key holds the BuildLab" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+      <name>BuildLab</name>
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:16251" comment="The registry key to check if Google Chrome is installed" version="20">
       <set>
@@ -1211,6 +1713,40 @@
     <registry_state id="oval:org.cisecurity:ste:1918" comment="State matches version less than 5.7.15" version="1">
       <value datatype="version" operation="less than">5.7.15</value>
     </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:1931" comment="System.IsPinnedToNameSpaceTree = 0 (reg_dword)" version="1">
+      <type>reg_dword</type>
+      <value datatype="int">0</value>
+    </registry_state>
+    <file_state id="oval:org.cisecurity:ste:1932" comment="State matches version less than 6.1.7601.23642" version="1">
+      <version datatype="version" operation="less than">6.1.7601.23642</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:1933" comment="State matches version less than 6.0.6002.19725" version="1">
+      <version datatype="version" operation="less than">6.0.6002.19725</version>
+    </file_state>
+    <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="2">
+      <family operation="case insensitive equals">windows</family>
+    </family_state>
+    <registry_state id="oval:org.mitre.oval:ste:2568" comment="ia64 architecture" version="2">
+      <value operation="case insensitive equals">ia64</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:2827" comment="The registry key has a value of Service Pack 2" version="2">
+      <value operation="case insensitive equals">Service Pack 2</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:3180" comment="amd64 architecture" version="4">
+      <value operation="pattern match">^[Aa][Mm][Dd]64$</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:3207" comment="The registry key matches with 2008" version="3">
+      <value operation="pattern match">^[a-zA-Z0-9\(\)\s]*2008[a-zA-Z0-9\(\)\s]*$</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:3649" comment="x86 architecture" version="2">
+      <value operation="case insensitive equals">x86</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:5027" comment="The registry key matches with Windows 7" version="5">
+      <value operation="pattern match">^[A-Za-z0-9\(\)\s]*[Ww][Ii][Nn][Dd][Oo][Ww][Ss] 7[A-Za-z0-9\(\)\s]*$</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:5506" comment="The registry key matches with 2008 R2" version="4">
+      <value operation="pattern match">^[a-zA-Z0-9\(\)\s]*2008 [Rr]2[a-zA-Z0-9\(\)\s]*$</value>
+    </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:5689" comment="Regex matching the Adobe AIR.* installed" version="1">
       <value operation="pattern match">^Adobe AIR.*$</value>
     </registry_state>
@@ -1219,6 +1755,9 @@
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:11937" comment="The registry key matches with any version of Google Chrome" version="2">
       <value operation="pattern match">^Google Chrome.*$</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:12087" comment="Value matches ^\d+\.win7sp1.*$" version="3">
+      <value operation="pattern match">^\d+\.win7sp1.*$</value>
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:33569" comment="MySQL 5.6 check" version="1">
       <value>MySQL Server 5.6</value>
@@ -1247,6 +1786,12 @@
       <concat>
         <object_component item_field="value" object_ref="oval:org.cisecurity:obj:524" />
         <literal_component>\root\vfs\ProgramFilesCommonx86\Microsoft Shared\OFFICE16</literal_component>
+      </concat>
+    </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:200" comment="Windows System32 directory" datatype="string" version="11">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
+        <literal_component>\System32</literal_component>
       </concat>
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:224" comment="Macromedia Flash subdirectory of Windows system 32 directory" datatype="string" version="23">
