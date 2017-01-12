@@ -165,6 +165,24 @@
     </vuln:references>
     <vuln:summary>Installing a zero-permission Android application on certain Samsung Android devices with KK(4.4), L(5.0/5.1), and M(6.0) software can continually crash the system_server process in the Android OS. The zero-permission app will create an active install session for a separate app that it has embedded within it. The active install session of the embedded app is performed using the android.content.pm.PackageInstaller class and its nested classes in the Android API. The active install session will write the embedded APK file to the /data/app directory, but the app will not be installed since third-party applications cannot programmatically install apps. Samsung has modified AOSP in order to accelerate the parsing of APKs by introducing the com.android.server.pm.PackagePrefetcher class and its nested classes. These classes will parse the APKs present in the /data/app directory and other directories, even if the app is not actually installed. The embedded APK that was written to the /data/app directory via the active install session has a very large but valid AndroidManifest.xml file. Specifically, the AndroidManifest.xml file contains a very large string value for the name of a permission-tree that it declares. When system_server tries to parse the APK file of the embedded app from the active install session, it will crash due to an uncaught error (i.e., java.lang.OutOfMemoryError) or an uncaught exception (i.e., std::bad_alloc) because of memory constraints. The Samsung Android device will encounter a soft reboot due to a system_server crash, and this action will keep repeating since parsing the APKs in the /data/app directory as performed by the system_server process is part of the normal boot process. The Samsung ID is SVE-2016-6917.</vuln:summary>
   </entry>
+  <entry id="CVE-2017-5225">
+    <vuln:cve-id>CVE-2017-5225</vuln:cve-id>
+    <vuln:published-datetime>2017-01-12T06:59:00.133-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-12T06:59:00.150-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://bugzilla.maptools.org/show_bug.cgi?id=2656" xml:lang="en">http://bugzilla.maptools.org/show_bug.cgi?id=2656</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://bugzilla.maptools.org/show_bug.cgi?id=2657" xml:lang="en">http://bugzilla.maptools.org/show_bug.cgi?id=2657</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://github.com/vadz/libtiff/commit/5c080298d59efa53264d7248bbe3a04660db6ef7" xml:lang="en">https://github.com/vadz/libtiff/commit/5c080298d59efa53264d7248bbe3a04660db6ef7</vuln:reference>
+    </vuln:references>
+    <vuln:summary>LibTIFF version 4.0.7 is vulnerable to a heap buffer overflow in the tools/tiffcp resulting in DoS or code execution via a crafted BitsPerSample value.</vuln:summary>
+  </entry>
   <entry id="CVE-2017-5340">
     <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
       <cpe-lang:logical-test operator="OR" negate="false">
@@ -227,5 +245,59 @@
       <vuln:reference href="https://github.com/php/php-src/commit/4cc0286f2f3780abc6084bcdae5dce595daa3c12" xml:lang="en">https://github.com/php/php-src/commit/4cc0286f2f3780abc6084bcdae5dce595daa3c12</vuln:reference>
     </vuln:references>
     <vuln:summary>Zend/zend_hash.c in PHP before 7.0.15 and 7.1.x before 7.1.1 mishandles certain cases that require large array allocations, which allows remote attackers to execute arbitrary code or cause a denial of service (integer overflow, uninitialized memory access, and use of arbitrary destructor function pointers) via crafted serialized data.</vuln:summary>
+  </entry>
+  <entry id="CVE-2017-5345">
+    <vuln:cve-id>CVE-2017-5345</vuln:cve-id>
+    <vuln:published-datetime>2017-01-12T01:59:00.360-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-12T01:59:00.360-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://github.com/semplon/GeniXCMS/commit/6e21c01d87672d81080450e6913e0093a02bfab8" xml:lang="en">https://github.com/semplon/GeniXCMS/commit/6e21c01d87672d81080450e6913e0093a02bfab8</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://github.com/semplon/GeniXCMS/issues/60" xml:lang="en">https://github.com/semplon/GeniXCMS/issues/60</vuln:reference>
+    </vuln:references>
+    <vuln:summary>SQL injection vulnerability in inc/lib/Control/Ajax/tags-ajax.control.php in GeniXCMS 0.0.8 allows remote authenticated editors to execute arbitrary SQL commands via the term parameter to the default URI.</vuln:summary>
+  </entry>
+  <entry id="CVE-2017-5346">
+    <vuln:cve-id>CVE-2017-5346</vuln:cve-id>
+    <vuln:published-datetime>2017-01-12T01:59:00.390-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-12T01:59:00.390-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://github.com/semplon/GeniXCMS/issues/61" xml:lang="en">https://github.com/semplon/GeniXCMS/issues/61</vuln:reference>
+    </vuln:references>
+    <vuln:summary>SQL injection vulnerability in inc/lib/Control/Backend/posts.control.php in GeniXCMS 0.0.8 allows remote authenticated administrators to execute arbitrary SQL commands via the id parameter to gxadmin/index.php.</vuln:summary>
+  </entry>
+  <entry id="CVE-2017-5347">
+    <vuln:cve-id>CVE-2017-5347</vuln:cve-id>
+    <vuln:published-datetime>2017-01-12T01:59:00.420-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-12T01:59:00.420-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://github.com/semplon/GeniXCMS/issues/61" xml:lang="en">https://github.com/semplon/GeniXCMS/issues/61</vuln:reference>
+    </vuln:references>
+    <vuln:summary>SQL injection vulnerability in inc/mod/newsletter/options.php in GeniXCMS 0.0.8 allows remote authenticated administrators to execute arbitrary SQL commands via the recipient parameter to gxadmin/index.php.</vuln:summary>
+  </entry>
+  <entry id="CVE-2017-5350">
+    <vuln:cve-id>CVE-2017-5350</vuln:cve-id>
+    <vuln:published-datetime>2017-01-12T01:59:00.453-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-12T01:59:00.453-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://security.samsungmobile.com/smrupdate.html#SMR-JAN-2017" xml:lang="en">http://security.samsungmobile.com/smrupdate.html#SMR-JAN-2017</vuln:reference>
+    </vuln:references>
+    <vuln:summary>Samsung Note devices with L(5.0/5.1), M(6.0), and N(7.0) software allow attackers to crash systemUI by leveraging incomplete exception handling. The Samsung ID is SVE-2016-7122.</vuln:summary>
+  </entry>
+  <entry id="CVE-2017-5351">
+    <vuln:cve-id>CVE-2017-5351</vuln:cve-id>
+    <vuln:published-datetime>2017-01-12T01:59:00.467-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-12T01:59:00.483-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://security.samsungmobile.com/smrupdate.html#SMR-JAN-2017" xml:lang="en">http://security.samsungmobile.com/smrupdate.html#SMR-JAN-2017</vuln:reference>
+    </vuln:references>
+    <vuln:summary>Samsung Note devices with KK(4.4), L(5.0/5.1), and M(6.0) software allow attackers to crash the system by creating an arbitrarily large number of active VR service threads. The Samsung ID is SVE-2016-7650.</vuln:summary>
   </entry>
 </nvd>
