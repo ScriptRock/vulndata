@@ -275,16 +275,39 @@
     <vuln:summary>Django before 1.8.x before 1.8.16, 1.9.x before 1.9.11, and 1.10.x before 1.10.3, when settings.DEBUG is True, allow remote attackers to conduct DNS rebinding attacks by leveraging failure to validate the HTTP Host header against settings.ALLOWED_HOSTS.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9015">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:python:urllib3:1.17" />
+        <cpe-lang:fact-ref name="cpe:/a:python:urllib3:1.18" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:python:urllib3:1.17</vuln:product>
+      <vuln:product>cpe:/a:python:urllib3:1.18</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2016-9015</vuln:cve-id>
     <vuln:published-datetime>2017-01-11T11:59:00.347-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2017-01-11T11:59:00.347-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
-      <vuln:source>BID</vuln:source>
-      <vuln:reference href="http://www.securityfocus.com/bid/93941" xml:lang="en">93941</vuln:reference>
-    </vuln:references>
+    <vuln:last-modified-datetime>2017-01-13T08:09:19.913-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>2.6</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>HIGH</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-295" />
     <vuln:references xml:lang="en" reference_type="UNKNOWN">
       <vuln:source>MLIST</vuln:source>
       <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/10/27/6" xml:lang="en">[oss-security] 20161027 CVE-2016-9015: Python urllib3 1.17 and 1.18 certificate verification failure</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
+      <vuln:source>BID</vuln:source>
+      <vuln:reference href="http://www.securityfocus.com/bid/93941" xml:lang="en">93941</vuln:reference>
     </vuln:references>
     <vuln:summary>Versions 1.17 and 1.18 of the Python urllib3 library suffer from a vulnerability that can cause them, in certain configurations, to not correctly validate TLS certificates. This places users of the library with those configurations at risk of man-in-the-middle and information leakage attacks. This vulnerability affects users using versions 1.17 and 1.18 of the urllib3 library, who are using the optional PyOpenSSL support for TLS instead of the regular standard library TLS backend, and who are using OpenSSL 1.1.0 via PyOpenSSL. This is an extremely uncommon configuration, so the security impact of this vulnerability is low.</vuln:summary>
   </entry>
@@ -1188,6 +1211,28 @@
     </vuln:references>
     <vuln:summary>Memory leak in the v9fs_write function in hw/9pfs/9p.c in QEMU (aka Quick Emulator) allows local guest OS administrators to cause a denial of service (memory consumption) by leveraging failure to free an IO vector.</vuln:summary>
   </entry>
+  <entry id="CVE-2016-9107">
+    <vuln:cve-id>CVE-2016-9107</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:00.823-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:00.823-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://dev.gajim.org/gajim/gajim-plugins/issues/145" xml:lang="en">https://dev.gajim.org/gajim/gajim-plugins/issues/145</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://trac-plugins.gajim.org/changeset/c7c2e519ed63377bc943dd01c4661b0fe49321ae" xml:lang="en">https://trac-plugins.gajim.org/changeset/c7c2e519ed63377bc943dd01c4661b0fe49321ae</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/10/30/2" xml:lang="en">[oss-security] 20161030 gajim otr plugin cleartext leak</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/10/30/11" xml:lang="en">[oss-security] 20161030 Re: gajim otr plugin cleartext leak</vuln:reference>
+    </vuln:references>
+    <vuln:summary>The OTR plugin for Gajim sends information in cleartext when using XHTML, which allows remote attackers to obtain sensitive information via unspecified vectors.</vuln:summary>
+  </entry>
   <entry id="CVE-2016-9111">
     <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
       <cpe-lang:logical-test operator="OR" negate="false">
@@ -1526,14 +1571,787 @@
     <vuln:summary>Race condition in the ion_ioctl function in drivers/staging/android/ion/ion.c in the Linux kernel before 4.6 allows local users to gain privileges or cause a denial of service (use-after-free) by calling ION_IOC_FREE on two CPUs at the same time.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9131">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.1:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.3:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.3:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc8" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc9" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc10" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.1:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.2:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.3:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.3:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.3:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc8" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.5:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.5:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.6:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.7:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.7:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.7:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.8" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.9" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.9:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:b4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.1:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.3:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.3:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.5:p2_w1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.5:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.5:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.6:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:b4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.2:p2_w1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.2:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:p5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4::~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:b1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r2:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r3:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r4:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r4-p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r5:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r5-b1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r5-p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r5-rc1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:p2_w1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:p2_w2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6::~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r2:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r3:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r4:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r4_p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r5:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r5_b1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r5_p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r6:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r6_b1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r6_rc1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r6_rc2:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r7:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r7_p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r7_p2:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r9:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r9_p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.1:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.1:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.1:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.2:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.2:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.3:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.4:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.4:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.4:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.5:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.5:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.5:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.6:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.6:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.6:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.6:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.1:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.1:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.1:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.1:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.2:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.2:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.3:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.3:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.3:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.3:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.5:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.5:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.5:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.5:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.5:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.5:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.6:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.6:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.6:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.0:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.0:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.1:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.1:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.1:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.1:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.2:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.3:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.3:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.3:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.3:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.4:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.6:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.7:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.7:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.7:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.7:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:rc1" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.1:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.3:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.3:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc8</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc9</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc10</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.1:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.2:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.3:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.3:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.3:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc8</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.5:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.5:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.6:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.7:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.7:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.7:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.8</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.9:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.9</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:b4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.1:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.3:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.3:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.5:p2_w1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.5:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.5:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.6:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:b4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.2:p2_w1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.2:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:p5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4::~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:b1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r2:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r3:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r4:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r4-p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r5:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r5-b1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r5-p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r5-rc1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:p2_w1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:p2_w2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6::~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r2:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r3:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r4:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r4_p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r5:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r5_b1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r5_p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r6:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r6_b1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r6_rc1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r6_rc2:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r7:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r7_p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r7_p2:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r9:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r9_p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.1:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.1:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.1:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.2:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.2:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.3:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.4:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.4:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.4:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.5:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.5:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.5:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.6:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.6:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.6:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.6:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.1:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.1:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.1:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.1:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.2:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.2:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.3:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.3:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.3:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.3:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.5:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.5:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.5:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.5:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.5:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.5:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.6:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.6:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.6:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.0:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.0:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.1:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.1:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.1:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.1:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.2:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.3:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.3:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.3:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.3:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.4:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.6:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.7:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.7:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.7:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.7:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:rc1</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2016-9131</vuln:cve-id>
     <vuln:published-datetime>2017-01-12T01:59:00.250-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2017-01-12T21:59:03.307-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2017-01-13T08:15:13.630-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-20" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>BID</vuln:source>
       <vuln:reference href="http://www.securityfocus.com/bid/95386" xml:lang="en">95386</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://kb.isc.org/article/AA-01439/74/CVE-2016-9131" xml:lang="en">https://kb.isc.org/article/AA-01439/74/CVE-2016-9131</vuln:reference>
     </vuln:references>
@@ -1791,10 +2609,37 @@
     <vuln:summary>PHP through 5.6.27 and 7.x through 7.0.12 mishandles property modification during __wakeup processing, which allows remote attackers to cause a denial of service or possibly have unspecified other impact via crafted serialized data, as demonstrated by Exception::__toString with DateInterval::__wakeup.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9147">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:s6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:p1" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:s6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:p1</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2016-9147</vuln:cve-id>
     <vuln:published-datetime>2017-01-12T01:59:00.280-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2017-01-12T01:59:00.297-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2017-01-13T08:15:38.963-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-20" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://kb.isc.org/article/AA-01440/74/CVE-2016-9147" xml:lang="en">https://kb.isc.org/article/AA-01440/74/CVE-2016-9147</vuln:reference>
     </vuln:references>
@@ -5545,6 +6390,72 @@
     <vuln:last-modified-datetime>2016-12-06T13:59:01.553-05:00</vuln:last-modified-datetime>
     <vuln:summary>** REJECT **  DO NOT USE THIS CANDIDATE NUMBER.  ConsultIDs: none.  Reason: This candidate was withdrawn by its CNA.  Further investigation showed that it was not a security issue.  Notes: none.</vuln:summary>
   </entry>
+  <entry id="CVE-2016-9310">
+    <vuln:cve-id>CVE-2016-9310</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:00.857-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:00.870-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CERT-VN</vuln:source>
+      <vuln:reference href="https://www.kb.cert.org/vuls/id/633847" xml:lang="en">VU#633847</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://nwtime.org/ntp428p9_release/" xml:lang="en">http://nwtime.org/ntp428p9_release/</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://support.ntp.org/bin/view/Main/NtpBug3118" xml:lang="en">http://support.ntp.org/bin/view/Main/NtpBug3118</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://support.ntp.org/bin/view/Main/SecurityNotice#Recent_Vulnerabilities" xml:lang="en">http://support.ntp.org/bin/view/Main/SecurityNotice#Recent_Vulnerabilities</vuln:reference>
+    </vuln:references>
+    <vuln:summary>The control mode (mode 6) functionality in ntpd in NTP before 4.2.8p9 allows remote attackers to set or unset traps via a crafted control mode packet.</vuln:summary>
+  </entry>
+  <entry id="CVE-2016-9311">
+    <vuln:cve-id>CVE-2016-9311</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:00.903-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:00.903-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CERT-VN</vuln:source>
+      <vuln:reference href="https://www.kb.cert.org/vuls/id/633847" xml:lang="en">VU#633847</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://nwtime.org/ntp428p9_release/" xml:lang="en">http://nwtime.org/ntp428p9_release/</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://support.ntp.org/bin/view/Main/NtpBug3119" xml:lang="en">http://support.ntp.org/bin/view/Main/NtpBug3119</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://support.ntp.org/bin/view/Main/SecurityNotice#Recent_Vulnerabilities" xml:lang="en">http://support.ntp.org/bin/view/Main/SecurityNotice#Recent_Vulnerabilities</vuln:reference>
+    </vuln:references>
+    <vuln:summary>ntpd in NTP before 4.2.8p9, when the trap service is enabled, allows remote attackers to cause a denial of service (NULL pointer dereference and crash) via a crafted packet.</vuln:summary>
+  </entry>
+  <entry id="CVE-2016-9312">
+    <vuln:cve-id>CVE-2016-9312</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:00.933-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:00.950-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CERT-VN</vuln:source>
+      <vuln:reference href="https://www.kb.cert.org/vuls/id/633847" xml:lang="en">VU#633847</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://nwtime.org/ntp428p9_release/" xml:lang="en">http://nwtime.org/ntp428p9_release/</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://support.ntp.org/bin/view/Main/NtpBug3110" xml:lang="en">http://support.ntp.org/bin/view/Main/NtpBug3110</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="http://support.ntp.org/bin/view/Main/SecurityNotice#Recent_Vulnerabilities" xml:lang="en">http://support.ntp.org/bin/view/Main/SecurityNotice#Recent_Vulnerabilities</vuln:reference>
+    </vuln:references>
+    <vuln:summary>ntpd in NTP before 4.2.8p9, when running on Windows, allows remote attackers to cause a denial of service via a large UDP packet.</vuln:summary>
+  </entry>
   <entry id="CVE-2016-9313">
     <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
       <cpe-lang:logical-test operator="OR" negate="false">
@@ -6834,10 +7745,665 @@
     <vuln:summary>An issue was discovered in the Tatsuya Kinoshita w3m fork before 0.5.3-31. w3m allows remote attackers to cause a denial of service (segmentation fault and crash) via a crafted HTML page.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9444">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.0:rc6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.0.1:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.1:rc7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.3:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.1.3:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc8" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc9" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.0:rc10" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.1:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.2:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.3:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.3:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.3:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.4:rc8" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.5:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.5:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.6:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.7:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.7:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.7:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.8" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.9" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.2.9:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:b4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.0:rc4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.1:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.3:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.3:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.5:p2_w1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.5:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.5:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.3.6:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:a6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:b4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.2:p2_w1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.2:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:p5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4::~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:b1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r2:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r3:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r4:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r4-p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r5:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r5-b1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r5-p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.4:r5-rc1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:a7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:p2_w1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:p2_w2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.1:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.5.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6::~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r2:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r3:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r4:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r4_p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r5:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r5_b1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r5_p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r6:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r6_b1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r6_rc1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r6_rc2:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r7:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r7_p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r7_p2:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r9:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.6:r9_p1:~~esv~~~" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.1:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.1:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.1:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.2:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.2:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.3:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.4:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.4:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.4:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.5:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.5:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.5:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.6:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.6:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.6:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.6:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.7.7" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.8.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s5" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.8:s6" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.9.9:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.0:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.1:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.2:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.3:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:p2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:p3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:p4" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.10.4:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:a1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:a2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:b3" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:p1" />
+        <cpe-lang:fact-ref name="cpe:/a:isc:bind:9.11.0:rc1" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.0:rc6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.1:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1:rc7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.3:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.3:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc8</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc9</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0:rc10</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.1:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.2:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.3:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.3:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.3:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4:rc8</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.5:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.5:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.6:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.7:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.7:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.7:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.8</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.9:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2.9</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:b4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0:rc4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.1:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.3:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.3:rc3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.5:p2_w1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.5:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.5:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.6:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3.6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:a6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:b4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.2:p2_w1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.2:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:p5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4::~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:b1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r2:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r3:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r4:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r4-p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r5:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r5-b1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r5-p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4:r5-rc1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:a7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:p2_w1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:p2_w2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6::~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r2:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r3:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r4:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r4_p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r5:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r5_b1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r5_p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r6:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r6_b1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r6_rc1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r6_rc2:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r7:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r7_p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r7_p2:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r9:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.6:r9_p1:~~esv~~~</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.1:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.1:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.1:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.2:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.2:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.3:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.4:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.4:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.4:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.5:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.5:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.5:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.6:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.6:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.6:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.6:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.7.7</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.8.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s5</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.8:s6</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.9.9</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.0</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.2:rc2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:p2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:p3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:p4</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.10.4:rc1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:a1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:a2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:a3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:b1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:b2</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:b3</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:p1</vuln:product>
+      <vuln:product>cpe:/a:isc:bind:9.11.0:rc1</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2016-9444</vuln:cve-id>
     <vuln:published-datetime>2017-01-12T01:59:00.327-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2017-01-12T01:59:00.327-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2017-01-13T08:14:31.643-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-20" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://kb.isc.org/article/AA-01441/74/CVE-2016-9444" xml:lang="en">https://kb.isc.org/article/AA-01441/74/CVE-2016-9444</vuln:reference>
     </vuln:references>
@@ -10052,6 +11618,164 @@
       <vuln:reference href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=92964c79b357efd980812c4de5c1fd2ec8bb5520" xml:lang="en">http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=92964c79b357efd980812c4de5c1fd2ec8bb5520</vuln:reference>
     </vuln:references>
     <vuln:summary>Race condition in the netlink_dump function in net/netlink/af_netlink.c in the Linux kernel before 4.6.3 allows local users to cause a denial of service (double free) or possibly have unspecified other impact via a crafted application that makes sendmsg system calls, leading to a free operation associated with a new dump that started earlier than anticipated.</vuln:summary>
+  </entry>
+  <entry id="CVE-2016-9807">
+    <vuln:cve-id>CVE-2016-9807</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:00.980-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:00.997-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://bugzilla.gnome.org/show_bug.cgi?id=774859" xml:lang="en">https://bugzilla.gnome.org/show_bug.cgi?id=774859</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://cgit.freedesktop.org/gstreamer/gst-plugins-good/commit/?id=153a8ae752c90d07190ef45803422a4f71ea8bff" xml:lang="en">https://cgit.freedesktop.org/gstreamer/gst-plugins-good/commit/?id=153a8ae752c90d07190ef45803422a4f71ea8bff</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://gstreamer.freedesktop.org/releases/1.10/#1.10.2" xml:lang="en">https://gstreamer.freedesktop.org/releases/1.10/#1.10.2</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/01/2" xml:lang="en">[oss-security] 20161201 gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/05/8" xml:lang="en">[oss-security] 20161204 Re: gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:summary>The flx_decode_chunks function in gst/flx/gstflxdec.c in GStreamer before 1.10.2 allows remote attackers to cause a denial of service (invalid memory read and crash) via a crafted FLIC file.</vuln:summary>
+  </entry>
+  <entry id="CVE-2016-9808">
+    <vuln:cve-id>CVE-2016-9808</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:01.043-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:01.043-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://gstreamer.freedesktop.org/releases/1.10/#1.10.2" xml:lang="en">https://gstreamer.freedesktop.org/releases/1.10/#1.10.2</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://scarybeastsecurity.blogspot.com/2016/11/0day-poc-incorrect-fix-for-gstreamer.html" xml:lang="en">https://scarybeastsecurity.blogspot.com/2016/11/0day-poc-incorrect-fix-for-gstreamer.html</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/01/2" xml:lang="en">[oss-security] 20161201 gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/05/8" xml:lang="en">[oss-security] 20161204 Re: gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:summary>The FLIC decoder in GStreamer before 1.10.2 allows remote attackers to cause a denial of service (out-of-bounds write and crash) via a crafted series of skip and count pairs.</vuln:summary>
+  </entry>
+  <entry id="CVE-2016-9809">
+    <vuln:cve-id>CVE-2016-9809</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:01.200-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:01.217-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://bugzilla.gnome.org/show_bug.cgi?id=774896" xml:lang="en">https://bugzilla.gnome.org/show_bug.cgi?id=774896</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://gstreamer.freedesktop.org/releases/1.10/#1.10.2" xml:lang="en">https://gstreamer.freedesktop.org/releases/1.10/#1.10.2</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/01/2" xml:lang="en">[oss-security] 20161201 gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/05/8" xml:lang="en">[oss-security] 20161204 Re: gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:summary>Off-by-one error in the gst_h264_parse_set_caps function in GStreamer before 1.10.2 allows remote attackers to have unspecified impact via a crafted file, which triggers an out-of-bounds read.</vuln:summary>
+  </entry>
+  <entry id="CVE-2016-9810">
+    <vuln:cve-id>CVE-2016-9810</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:01.230-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:01.247-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://bugzilla.gnome.org/show_bug.cgi?id=774897" xml:lang="en">https://bugzilla.gnome.org/show_bug.cgi?id=774897</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://gstreamer.freedesktop.org/releases/1.10/#1.10.2" xml:lang="en">https://gstreamer.freedesktop.org/releases/1.10/#1.10.2</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/01/2" xml:lang="en">[oss-security] 20161201 gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/05/8" xml:lang="en">[oss-security] 20161204 Re: gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:summary>The gst_decode_chain_free_internal function in the flxdex decoder in gst-plugins-good in GStreamer before 1.10.2 allows remote attackers to cause a denial of service (invalid memory read and crash) via an invalid file, which triggers an incorrect unref call.</vuln:summary>
+  </entry>
+  <entry id="CVE-2016-9811">
+    <vuln:cve-id>CVE-2016-9811</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:01.277-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:01.293-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://bugzilla.gnome.org/show_bug.cgi?id=774902" xml:lang="en">https://bugzilla.gnome.org/show_bug.cgi?id=774902</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://gstreamer.freedesktop.org/releases/1.10/#1.10.2" xml:lang="en">https://gstreamer.freedesktop.org/releases/1.10/#1.10.2</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/01/2" xml:lang="en">[oss-security] 20161201 gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/05/8" xml:lang="en">[oss-security] 20161204 Re: gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:summary>The windows_icon_typefind function in gst-plugins-base in GStreamer before 1.10.2, when G_SLICE is set to always-malloc, allows remote attackers to cause a denial of service (out-of-bounds read) via a crafted ico file.</vuln:summary>
+  </entry>
+  <entry id="CVE-2016-9812">
+    <vuln:cve-id>CVE-2016-9812</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:01.323-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:01.323-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://bugzilla.gnome.org/show_bug.cgi?id=775048" xml:lang="en">https://bugzilla.gnome.org/show_bug.cgi?id=775048</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://gstreamer.freedesktop.org/releases/1.10/#1.10.2" xml:lang="en">https://gstreamer.freedesktop.org/releases/1.10/#1.10.2</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/01/2" xml:lang="en">[oss-security] 20161201 gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/05/8" xml:lang="en">[oss-security] 20161204 Re: gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:summary>The gst_mpegts_section_new function in the mpegts decoder in GStreamer before 1.10.2 allows remote attackers to cause a denial of service (out-of-bounds read) via a too small section.</vuln:summary>
+  </entry>
+  <entry id="CVE-2016-9813">
+    <vuln:cve-id>CVE-2016-9813</vuln:cve-id>
+    <vuln:published-datetime>2017-01-13T11:59:01.357-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-01-13T11:59:01.370-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://bugzilla.gnome.org/show_bug.cgi?id=775120" xml:lang="en">https://bugzilla.gnome.org/show_bug.cgi?id=775120</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://gstreamer.freedesktop.org/releases/1.10/#1.10.2" xml:lang="en">https://gstreamer.freedesktop.org/releases/1.10/#1.10.2</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/01/2" xml:lang="en">[oss-security] 20161201 gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MLIST</vuln:source>
+      <vuln:reference href="http://www.openwall.com/lists/oss-security/2016/12/05/8" xml:lang="en">[oss-security] 20161204 Re: gstreamer multiple issues</vuln:reference>
+    </vuln:references>
+    <vuln:summary>The _parse_pat function in the mpegts parser in GStreamer before 1.10.2 allows remote attackers to cause a denial of service (NULL pointer dereference and crash) via a crafted file.</vuln:summary>
   </entry>
   <entry id="CVE-2016-9832">
     <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
