@@ -370,6 +370,26 @@
     </vuln:references>
     <vuln:summary>Installing a zero-permission Android application on certain Samsung Android devices with KK(4.4), L(5.0/5.1), and M(6.0) software can continually crash the system_server process in the Android OS. The zero-permission app will create an active install session for a separate app that it has embedded within it. The active install session of the embedded app is performed using the android.content.pm.PackageInstaller class and its nested classes in the Android API. The active install session will write the embedded APK file to the /data/app directory, but the app will not be installed since third-party applications cannot programmatically install apps. Samsung has modified AOSP in order to accelerate the parsing of APKs by introducing the com.android.server.pm.PackagePrefetcher class and its nested classes. These classes will parse the APKs present in the /data/app directory and other directories, even if the app is not actually installed. The embedded APK that was written to the /data/app directory via the active install session has a very large but valid AndroidManifest.xml file. Specifically, the AndroidManifest.xml file contains a very large string value for the name of a permission-tree that it declares. When system_server tries to parse the APK file of the embedded app from the active install session, it will crash due to an uncaught error (i.e., java.lang.OutOfMemoryError) or an uncaught exception (i.e., std::bad_alloc) because of memory constraints. The Samsung Android device will encounter a soft reboot due to a system_server crash, and this action will keep repeating since parsing the APKs in the /data/app directory as performed by the system_server process is part of the normal boot process. The Samsung ID is SVE-2016-6917.</vuln:summary>
   </entry>
+  <entry id="CVE-2017-5218">
+    <vuln:cve-id>CVE-2017-5218</vuln:cve-id>
+    <vuln:published-datetime>2017-02-02T02:59:00.130-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-02-02T02:59:00.147-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="http://research.aurainfosec.io/disclosures/sagecrm-CVE-2017-5219-CVE-2017-5218/" xml:lang="en">http://research.aurainfosec.io/disclosures/sagecrm-CVE-2017-5219-CVE-2017-5218/</vuln:reference>
+    </vuln:references>
+    <vuln:summary>A SQL Injection issue was discovered in SageCRM 7.x before 7.3 SP3. The AP_DocumentUI.asp web resource includes Utilityfuncs.js when the file is opened or viewed. This file crafts a SQL statement to identify the database that is to be in use with the current user's session. The database variable can be populated from the URL, and when supplied non-expected characters, can be manipulated to obtain access to the underlying database. The /CRM/CustomPages/ACCPAC/AP_DocumentUI.asp?SID=&lt;VALID-SID&gt;&amp;database=1';WAITFOR DELAY '0:0:5'-- URI is a Proof of Concept.</vuln:summary>
+  </entry>
+  <entry id="CVE-2017-5219">
+    <vuln:cve-id>CVE-2017-5219</vuln:cve-id>
+    <vuln:published-datetime>2017-02-02T02:59:00.177-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-02-02T02:59:00.177-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="http://research.aurainfosec.io/disclosures/sagecrm-CVE-2017-5219-CVE-2017-5218/" xml:lang="en">http://research.aurainfosec.io/disclosures/sagecrm-CVE-2017-5219-CVE-2017-5218/</vuln:reference>
+    </vuln:references>
+    <vuln:summary>An issue was discovered in SageCRM 7.x before 7.3 SP3. The Component Manager functionality, provided by SageCRM, permits additional components to be added to the application to enhance provided functionality. This functionality allows a zip file to be uploaded, containing a valid .ecf component file, which will be extracted to the inf directory outside of the webroot. By creating a zip file containing an empty .ecf file, to pass file-validation checks, any other file provided in zip file will be extracted onto the filesystem. In this case, a web shell with the filename '..\WWWRoot\CustomPages\aspshell.asp' was included within the zip file that, when extracted, traversed back out of the inf directory and into the SageCRM webroot. This permitted remote interaction with the underlying filesystem with the highest privilege level, SYSTEM.</vuln:summary>
+  </entry>
   <entry id="CVE-2017-5223">
     <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
       <cpe-lang:logical-test operator="OR" negate="false">
