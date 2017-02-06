@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1486184931</content_version>
+    <content_version>1486362068</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -2208,6 +2208,218 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170252" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0252: ntp security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0252-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0252.html" source="RHSA" />
+        <reference ref_id="CVE-2016-7426" ref_url="https://access.redhat.com/security/cve/CVE-2016-7426" source="CVE" />
+        <reference ref_id="CVE-2016-7429" ref_url="https://access.redhat.com/security/cve/CVE-2016-7429" source="CVE" />
+        <reference ref_id="CVE-2016-7433" ref_url="https://access.redhat.com/security/cve/CVE-2016-7433" source="CVE" />
+        <reference ref_id="CVE-2016-9310" ref_url="https://access.redhat.com/security/cve/CVE-2016-9310" source="CVE" />
+        <reference ref_id="CVE-2016-9311" ref_url="https://access.redhat.com/security/cve/CVE-2016-9311" source="CVE" />
+        <description>The Network Time Protocol (NTP) is used to synchronize a computer's time with another referenced time source. These packages include the ntpd service which continuously adjusts system time and utilities used to query and configure the ntpd service.
+
+Security Fix(es):
+
+* It was found that when ntp is configured with rate limiting for all associations the limits are also applied to responses received from its configured sources. A remote attacker who knows the sources can cause a denial of service by preventing ntpd from accepting valid responses from its sources. (CVE-2016-7426)
+
+* A flaw was found in the control mode functionality of ntpd. A remote attacker could send a crafted control mode packet which could lead to information disclosure or result in DDoS amplification attacks. (CVE-2016-9310)
+
+* A flaw was found in the way ntpd implemented the trap service. A remote attacker could send a specially crafted packet to cause a null pointer dereference that will crash ntpd, resulting in a denial of service. (CVE-2016-9311)
+
+* A flaw was found in the way ntpd running on a host with multiple network interfaces handled certain server responses. A remote attacker could use this flaw which would cause ntpd to not synchronize with the source. (CVE-2016-7429)
+
+* A flaw was found in the way ntpd calculated the root delay. A remote attacker could send a specially-crafted spoofed packet to cause denial of service or in some special cases even crash. (CVE-2016-7433)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-02-06" />
+          <updated date="2017-02-06" />
+          <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-400" href="https://access.redhat.com/security/cve/CVE-2016-7426" public="20161121">CVE-2016-7426</cve>
+          <cve cvss2="2.6/AV:N/AC:H/Au:N/C:N/I:N/A:P" cvss3="3.7/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L" cwe="CWE-227" href="https://access.redhat.com/security/cve/CVE-2016-7429" impact="low" public="20161121">CVE-2016-7429</cve>
+          <cve cvss2="1.2/AV:L/AC:H/Au:N/C:N/I:N/A:P" cvss3="2.9/CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L" cwe="CWE-682" href="https://access.redhat.com/security/cve/CVE-2016-7433" impact="low" public="20161121">CVE-2016-7433</cve>
+          <cve cvss2="5.8/AV:N/AC:M/Au:N/C:P/I:N/A:P" cvss3="4.8/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:L" cwe="CWE-400" href="https://access.redhat.com/security/cve/CVE-2016-9310" public="20161121">CVE-2016-9310</cve>
+          <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-476" href="https://access.redhat.com/security/cve/CVE-2016-9311" public="20161121">CVE-2016-9311</cve>
+          <bugzilla id="1397319" href="https://bugzilla.redhat.com/1397319">CVE-2016-9310 ntp: Mode 6 unauthenticated trap information disclosure and DDoS vector</bugzilla>
+          <bugzilla id="1397341" href="https://bugzilla.redhat.com/1397341">CVE-2016-7429 ntp: Attack on interface selection</bugzilla>
+          <bugzilla id="1397345" href="https://bugzilla.redhat.com/1397345">CVE-2016-7426 ntp: Client rate limiting and server responses</bugzilla>
+          <bugzilla id="1397347" href="https://bugzilla.redhat.com/1397347">CVE-2016-7433 ntp: Broken initial sync calculations regression</bugzilla>
+          <bugzilla id="1398350" href="https://bugzilla.redhat.com/1398350">CVE-2016-9311 ntp: Null pointer dereference when trap service is enabled</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="OR">
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+            <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+            <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+            <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="ntp is earlier than 0:4.2.6p5-10.el6_8.2" test_ref="oval:com.redhat.rhsa:tst:20170252009" />
+              <criterion comment="ntp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170252010" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="ntp-doc is earlier than 0:4.2.6p5-10.el6_8.2" test_ref="oval:com.redhat.rhsa:tst:20170252011" />
+              <criterion comment="ntp-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170252012" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="ntp-perl is earlier than 0:4.2.6p5-10.el6_8.2" test_ref="oval:com.redhat.rhsa:tst:20170252007" />
+              <criterion comment="ntp-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170252008" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="ntpdate is earlier than 0:4.2.6p5-10.el6_8.2" test_ref="oval:com.redhat.rhsa:tst:20170252005" />
+              <criterion comment="ntpdate is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170252006" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+            <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+            <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+            <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="ntp is earlier than 0:4.2.6p5-25.el7_3.1" test_ref="oval:com.redhat.rhsa:tst:20170252017" />
+              <criterion comment="ntp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170252010" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="ntp-doc is earlier than 0:4.2.6p5-25.el7_3.1" test_ref="oval:com.redhat.rhsa:tst:20170252021" />
+              <criterion comment="ntp-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170252012" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="ntp-perl is earlier than 0:4.2.6p5-25.el7_3.1" test_ref="oval:com.redhat.rhsa:tst:20170252022" />
+              <criterion comment="ntp-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170252008" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="ntpdate is earlier than 0:4.2.6p5-25.el7_3.1" test_ref="oval:com.redhat.rhsa:tst:20170252018" />
+              <criterion comment="ntpdate is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170252006" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="sntp is earlier than 0:4.2.6p5-25.el7_3.1" test_ref="oval:com.redhat.rhsa:tst:20170252019" />
+              <criterion comment="sntp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170252020" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170253" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0253: spice-server security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0253-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0253.html" source="RHSA" />
+        <reference ref_id="CVE-2016-9577" ref_url="https://access.redhat.com/security/cve/CVE-2016-9577" source="CVE" />
+        <reference ref_id="CVE-2016-9578" ref_url="https://access.redhat.com/security/cve/CVE-2016-9578" source="CVE" />
+        <description>The Simple Protocol for Independent Computing Environments (SPICE) is a remote display protocol for virtual environments. SPICE users can access a virtualized desktop or server from the local system or any system with network access to the server. SPICE is used in Red Hat Enterprise Linux for viewing virtualized guests running on the Kernel-based Virtual Machine (KVM) hypervisor or on Red Hat Enterprise Virtualization Hypervisors.
+
+Security Fix(es):
+
+* A vulnerability was discovered in spice in the server's protocol handling. An authenticated attacker could send crafted messages to the spice server causing a heap overflow leading to a crash or possible code execution. (CVE-2016-9577)
+
+* A vulnerability was discovered in spice in the server's protocol handling. An attacker able to connect to the spice server could send crafted messages which would cause the process to crash. (CVE-2016-9578)
+
+These issues were discovered by Frediano Ziglio (Red Hat).</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-02-06" />
+          <updated date="2017-02-06" />
+          <cve cvss2="6.0/AV:N/AC:M/Au:S/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-20 CWE-122" href="https://access.redhat.com/security/cve/CVE-2016-9577" public="20170206">CVE-2016-9577</cve>
+          <cve cvss2="5.0/AV:N/AC:L/Au:N/C:N/I:N/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-20 CWE-770" href="https://access.redhat.com/security/cve/CVE-2016-9578" public="20170206">CVE-2016-9578</cve>
+          <bugzilla id="1399566" href="https://bugzilla.redhat.com/1399566">CVE-2016-9578 spice: Remote DoS via crafted message</bugzilla>
+          <bugzilla id="1401603" href="https://bugzilla.redhat.com/1401603">CVE-2016-9577 spice: Buffer overflow in main_channel_alloc_msg_rcv_buf when reading large messages</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="spice-server is earlier than 0:0.12.4-13.el6_8.2" test_ref="oval:com.redhat.rhsa:tst:20170253007" />
+            <criterion comment="spice-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170253008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="spice-server-devel is earlier than 0:0.12.4-13.el6_8.2" test_ref="oval:com.redhat.rhsa:tst:20170253005" />
+            <criterion comment="spice-server-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170253006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170254" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0254: spice security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0254-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0254.html" source="RHSA" />
+        <reference ref_id="CVE-2016-9577" ref_url="https://access.redhat.com/security/cve/CVE-2016-9577" source="CVE" />
+        <reference ref_id="CVE-2016-9578" ref_url="https://access.redhat.com/security/cve/CVE-2016-9578" source="CVE" />
+        <description>The Simple Protocol for Independent Computing Environments (SPICE) is a remote display system built for virtual environments which allows the user to view a computing 'desktop' environment not only on the machine where it is running, but from anywhere on the Internet and from a wide variety of machine architectures.
+
+Security Fix(es):
+
+* A vulnerability was discovered in spice in the server's protocol handling. An authenticated attacker could send crafted messages to the spice server causing a heap overflow leading to a crash or possible code execution. (CVE-2016-9577)
+
+* A vulnerability was discovered in spice in the server's protocol handling. An attacker able to connect to the spice server could send crafted messages which would cause the process to crash. (CVE-2016-9578)
+
+These issues were discovered by Frediano Ziglio (Red Hat).</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-02-06" />
+          <updated date="2017-02-06" />
+          <cve cvss2="6.0/AV:N/AC:M/Au:S/C:P/I:P/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-20 CWE-122" href="https://access.redhat.com/security/cve/CVE-2016-9577" public="20170206">CVE-2016-9577</cve>
+          <cve cvss2="5.0/AV:N/AC:L/Au:N/C:N/I:N/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-20 CWE-770" href="https://access.redhat.com/security/cve/CVE-2016-9578" public="20170206">CVE-2016-9578</cve>
+          <bugzilla id="1399566" href="https://bugzilla.redhat.com/1399566">CVE-2016-9578 spice: Remote DoS via crafted message</bugzilla>
+          <bugzilla id="1401603" href="https://bugzilla.redhat.com/1401603">CVE-2016-9577 spice: Buffer overflow in main_channel_alloc_msg_rcv_buf when reading large messages</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="spice is earlier than 0:0.12.4-20.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170254009" />
+            <criterion comment="spice is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170254010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="spice-server is earlier than 0:0.12.4-20.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170254005" />
+            <criterion comment="spice-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170253008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="spice-server-devel is earlier than 0:0.12.4-20.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170254007" />
+            <criterion comment="spice-server-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170253006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -3598,6 +3810,94 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
       <object object_ref="oval:com.redhat.rhsa:obj:20170238002" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170190008" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252005" check="at least one" comment="ntpdate is earlier than 0:4.2.6p5-10.el6_8.2" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170252003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252006" check="at least one" comment="ntpdate is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252007" check="at least one" comment="ntp-perl is earlier than 0:4.2.6p5-10.el6_8.2" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170252003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252008" check="at least one" comment="ntp-perl is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252009" check="at least one" comment="ntp is earlier than 0:4.2.6p5-10.el6_8.2" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170252003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252010" check="at least one" comment="ntp is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252011" check="at least one" comment="ntp-doc is earlier than 0:4.2.6p5-10.el6_8.2" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170252003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252012" check="at least one" comment="ntp-doc is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252017" check="at least one" comment="ntp is earlier than 0:4.2.6p5-25.el7_3.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170252005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252018" check="at least one" comment="ntpdate is earlier than 0:4.2.6p5-25.el7_3.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170252005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252019" check="at least one" comment="sntp is earlier than 0:4.2.6p5-25.el7_3.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170252005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252020" check="at least one" comment="sntp is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252021" check="at least one" comment="ntp-doc is earlier than 0:4.2.6p5-25.el7_3.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170252005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170252022" check="at least one" comment="ntp-perl is earlier than 0:4.2.6p5-25.el7_3.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170252006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170252005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170253005" check="at least one" comment="spice-server-devel is earlier than 0:0.12.4-13.el6_8.2" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170253005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170253003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170253006" check="at least one" comment="spice-server-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170253005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170253007" check="at least one" comment="spice-server is earlier than 0:0.12.4-13.el6_8.2" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170253006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170253003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170253008" check="at least one" comment="spice-server is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170253006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170254005" check="at least one" comment="spice-server is earlier than 0:0.12.4-20.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170253006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170254003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170254007" check="at least one" comment="spice-server-devel is earlier than 0:0.12.4-20.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170253005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170254003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170254009" check="at least one" comment="spice is earlier than 0:0.12.4-20.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170254007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170254003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170254010" check="at least one" comment="spice is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170254007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -4017,6 +4317,30 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170238002" version="602">
       <name>thunderbird</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170252005" version="601">
+      <name>ntpdate</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170252006" version="601">
+      <name>ntp-perl</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170252007" version="601">
+      <name>ntp</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170252008" version="601">
+      <name>ntp-doc</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170252009" version="601">
+      <name>sntp</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170253005" version="601">
+      <name>spice-server-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170253006" version="601">
+      <name>spice-server</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170254007" version="601">
+      <name>spice</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -4126,6 +4450,18 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170225005" version="602">
       <evr datatype="evr_string" operation="less than">0:4.0.3-27.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170252003" version="601">
+      <evr datatype="evr_string" operation="less than">0:4.2.6p5-10.el6_8.2</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170252005" version="601">
+      <evr datatype="evr_string" operation="less than">0:4.2.6p5-25.el7_3.1</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170253003" version="601">
+      <evr datatype="evr_string" operation="less than">0:0.12.4-13.el6_8.2</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170254003" version="601">
+      <evr datatype="evr_string" operation="less than">0:0.12.4-20.el7_3</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
