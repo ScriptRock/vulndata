@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <oval_definitions>
   <definitions>
-    <definition id="oval:org.cisecurity:def:1682" class="vulnerability" version="6">
+    <definition id="oval:org.cisecurity:def:1682" class="vulnerability" version="7">
       <metadata>
         <title>HP-UX BIND Service running named, Remote Denial of Service (DoS)</title>
         <affected family="unix">
@@ -30,7 +30,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:1683" class="vulnerability" version="6">
+    <definition id="oval:org.cisecurity:def:1683" class="vulnerability" version="7">
       <metadata>
         <title>HP-UX BIND Service running named, Remote Denial of Service (DoS)</title>
         <affected family="unix">
@@ -1131,6 +1131,58 @@
         <criterion comment="wordpress is earlier than 0:4.1+dfsg-1+deb8u12" test_ref="oval:org.cisecurity:tst:2517" />
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:1820" class="vulnerability" version="1">
+      <metadata>
+        <title>HP-UX Tomcat-based Servlet Engine, Remote Denial of Service (DoS), URL Redirection</title>
+        <affected family="unix">
+          <platform>HP-UX 11</platform>
+        </affected>
+        <reference ref_id="CVE-2016-3092" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3092" source="CVE" />
+        <description>The MultipartStream class in Apache Commons Fileupload before 1.3.2, as used in Apache Tomcat 7.x before 7.0.70, 8.x before 8.0.36, 8.5.x before 8.5.3, and 9.x before 9.0.0.M7 and other products, allows remote attackers to cause a denial of service (CPU consumption) via a long boundary string.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-02-07T11:43:28.000-05:00">
+              <contributor organization="Hewlett-Packard-Enterprise">Saju</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="HP-UX B.11.31" test_ref="oval:org.mitre.oval:tst:8260" />
+        <criteria comment="filesets test" operator="OR">
+          <criterion comment="hpuxws22TOMCAT.TOMCAT version is less than D.7.0.70.01" test_ref="oval:org.cisecurity:tst:2528" />
+          <criterion comment="hpuxws22TOMCAT.TOMCAT2 version is less than D.7.0.70.01" test_ref="oval:org.cisecurity:tst:2527" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:1821" class="vulnerability" version="1">
+      <metadata>
+        <title>HP-UX Tomcat-based Servlet Engine, Remote Denial of Service (DoS), URL Redirection</title>
+        <affected family="unix">
+          <platform>HP-UX 11</platform>
+        </affected>
+        <reference ref_id="CVE-2016-5388" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5388" source="CVE" />
+        <description>Apache Tomcat through 8.5.4, when the CGI Servlet is enabled, follows RFC 3875 section 4.1.18 and therefore does not protect applications from the presence of untrusted client data in the HTTP_PROXY environment variable, which might allow remote attackers to redirect an application's outbound HTTP traffic to an arbitrary proxy server via a crafted Proxy header in an HTTP request, aka an "httpoxy" issue. NOTE: the vendor states "A mitigation is planned for future releases of Tomcat, tracked as CVE-2016-5388"; in other words, this is not a CVE ID for a vulnerability.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-02-07T11:43:28.000-05:00">
+              <contributor organization="Hewlett-Packard-Enterprise">Saju</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="HP-UX B.11.31" test_ref="oval:org.mitre.oval:tst:8260" />
+        <criteria comment="filesets test" operator="OR">
+          <criterion comment="hpuxws22TOMCAT.TOMCAT version is less than D.7.0.70.01" test_ref="oval:org.cisecurity:tst:2528" />
+          <criterion comment="hpuxws22TOMCAT.TOMCAT2 version is less than D.7.0.70.01" test_ref="oval:org.cisecurity:tst:2527" />
+        </criteria>
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:5267" class="inventory" version="9">
       <metadata>
         <title>IBM AIX 6.1 is installed</title>
@@ -1425,6 +1477,14 @@
       <object object_ref="oval:org.mitre.oval:obj:15407" />
       <state state_ref="oval:org.cisecurity:ste:1986" />
     </dpkginfo_test>
+    <swlist_test id="oval:org.cisecurity:tst:2527" check="at least one" check_existence="at_least_one_exists" comment="hpuxws22TOMCAT.TOMCAT2 version is less than D.7.0.70.01" version="1">
+      <object object_ref="oval:org.cisecurity:obj:373" />
+      <state state_ref="oval:org.cisecurity:ste:1994" />
+    </swlist_test>
+    <swlist_test id="oval:org.cisecurity:tst:2528" check="at least one" check_existence="at_least_one_exists" comment="hpuxws22TOMCAT.TOMCAT version is less than D.7.0.70.01" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:7644" />
+      <state state_ref="oval:org.cisecurity:ste:1994" />
+    </swlist_test>
     <oslevel_test id="oval:org.mitre.oval:tst:7699" check="at least one" check_existence="at_least_one_exists" comment="IBM AIX version is greater than or equal 6100-00" version="2">
       <object object_ref="oval:org.mitre.oval:obj:5715" />
       <state state_ref="oval:org.mitre.oval:ste:3903" />
@@ -1486,6 +1546,9 @@
     <dpkginfo_object id="oval:org.cisecurity:obj:344" comment="firefox-esr package information" version="1">
       <name>firefox-esr</name>
     </dpkginfo_object>
+    <swlist_object id="oval:org.cisecurity:obj:373" version="2">
+      <swlist>hpuxws22TOMCAT.TOMCAT2</swlist>
+    </swlist_object>
     <interim_fix_object id="oval:org.cisecurity:obj:529" version="1">
       <vuid>00F850C44C00072516073916</vuid>
     </interim_fix_object>
@@ -1533,6 +1596,9 @@
       <flstinst>bos.net.tcp.client</flstinst>
     </fileset_object>
     <oslevel_object id="oval:org.mitre.oval:obj:5715" comment="The single oslevel object." version="1" />
+    <swlist_object id="oval:org.mitre.oval:obj:7644" version="2">
+      <swlist>hpuxws22TOMCAT.TOMCAT</swlist>
+    </swlist_object>
     <dpkginfo_object id="oval:org.mitre.oval:obj:7747" comment="openssl package information" version="1">
       <name>openssl</name>
     </dpkginfo_object>
@@ -1718,6 +1784,9 @@
     <dpkginfo_state id="oval:org.cisecurity:ste:1990" comment="version is earlier than 0:1.0.1t-1+deb8u6" version="1">
       <evr datatype="evr_string" operation="less than">0:1.0.1t-1+deb8u6</evr>
     </dpkginfo_state>
+    <swlist_state id="oval:org.cisecurity:ste:1994" version="1">
+      <version datatype="fileset_revision" operation="less than">D.7.0.70.01</version>
+    </swlist_state>
     <uname_state id="oval:org.mitre.oval:ste:3284" version="2">
       <os_release>B.11.31</os_release>
     </uname_state>
