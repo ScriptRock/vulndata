@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1486530521</content_version>
+    <content_version>1486984928</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -2420,6 +2420,184 @@ These issues were discovered by Frediano Ziglio (Red Hat).</description>
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170269" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0269: java-1.7.0-openjdk security update (Critical)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+          <platform>Red Hat Enterprise Linux 7</platform>
+          <platform>Red Hat Enterprise Linux 5</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0269-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0269.html" source="RHSA" />
+        <reference ref_id="CVE-2016-5546" ref_url="https://access.redhat.com/security/cve/CVE-2016-5546" source="CVE" />
+        <reference ref_id="CVE-2016-5547" ref_url="https://access.redhat.com/security/cve/CVE-2016-5547" source="CVE" />
+        <reference ref_id="CVE-2016-5548" ref_url="https://access.redhat.com/security/cve/CVE-2016-5548" source="CVE" />
+        <reference ref_id="CVE-2016-5552" ref_url="https://access.redhat.com/security/cve/CVE-2016-5552" source="CVE" />
+        <reference ref_id="CVE-2017-3231" ref_url="https://access.redhat.com/security/cve/CVE-2017-3231" source="CVE" />
+        <reference ref_id="CVE-2017-3241" ref_url="https://access.redhat.com/security/cve/CVE-2017-3241" source="CVE" />
+        <reference ref_id="CVE-2017-3252" ref_url="https://access.redhat.com/security/cve/CVE-2017-3252" source="CVE" />
+        <reference ref_id="CVE-2017-3253" ref_url="https://access.redhat.com/security/cve/CVE-2017-3253" source="CVE" />
+        <reference ref_id="CVE-2017-3261" ref_url="https://access.redhat.com/security/cve/CVE-2017-3261" source="CVE" />
+        <reference ref_id="CVE-2017-3272" ref_url="https://access.redhat.com/security/cve/CVE-2017-3272" source="CVE" />
+        <reference ref_id="CVE-2017-3289" ref_url="https://access.redhat.com/security/cve/CVE-2017-3289" source="CVE" />
+        <description>The java-1.7.0-openjdk packages provide the OpenJDK 7 Java Runtime Environment and the OpenJDK 7 Java Software Development Kit.
+
+Security Fix(es):
+
+* It was discovered that the RMI registry and DCG implementations in the RMI component of OpenJDK performed deserialization of untrusted inputs. A remote attacker could possibly use this flaw to execute arbitrary code with the privileges of RMI registry or a Java RMI application. (CVE-2017-3241)
+
+This issue was addressed by introducing whitelists of classes that can be deserialized by RMI registry or DCG. These whitelists can be customized using the newly introduced sun.rmi.registry.registryFilter and sun.rmi.transport.dgcFilter security properties.
+
+* Multiple flaws were discovered in the Libraries and Hotspot components in OpenJDK. An untrusted Java application or applet could use these flaws to completely bypass Java sandbox restrictions. (CVE-2017-3272, CVE-2017-3289)
+
+* A covert timing channel flaw was found in the DSA implementation in the Libraries component of OpenJDK. A remote attacker could possibly use this flaw to extract certain information about the used key via a timing side channel. (CVE-2016-5548)
+
+* It was discovered that the Libraries component of OpenJDK accepted ECSDA signatures using non-canonical DER encoding. This could cause a Java application to accept signature in an incorrect format not accepted by other cryptographic tools. (CVE-2016-5546)
+
+* It was discovered that the 2D component of OpenJDK performed parsing of iTXt and zTXt PNG image chunks even when configured to ignore metadata. An attacker able to make a Java application parse a specially crafted PNG image could cause the application to consume an excessive amount of memory. (CVE-2017-3253)
+
+* It was discovered that the Libraries component of OpenJDK did not validate the length of the object identifier read from the DER input before allocating memory to store the OID. An attacker able to make a Java application decode a specially crafted DER input could cause the application to consume an excessive amount of memory. (CVE-2016-5547)
+
+* It was discovered that the JAAS component of OpenJDK did not use the correct way to extract user DN from the result of the user search LDAP query. A specially crafted user LDAP entry could cause the application to use an incorrect DN. (CVE-2017-3252)
+
+* It was discovered that the Networking component of OpenJDK failed to properly parse user info from the URL. A remote attacker could cause a Java application to incorrectly parse an attacker supplied URL and interpret it differently from other applications processing the same URL. (CVE-2016-5552)
+
+* Multiple flaws were found in the Networking components in OpenJDK. An untrusted Java application or applet could use these flaws to bypass certain Java sandbox restrictions. (CVE-2017-3261, CVE-2017-3231)
+
+* A flaw was found in the way the DES/3DES cipher was used as part of the TLS/SSL protocol. A man-in-the-middle attacker could use this flaw to recover some plaintext data by capturing large amounts of encrypted traffic between TLS/SSL server and client if the communication used a DES/3DES based ciphersuite. (CVE-2016-2183)
+
+This update mitigates the CVE-2016-2183 issue by adding 3DES cipher suites to the list of legacy algorithms (defined using the jdk.tls.legacyAlgorithms security property) so they are only used if connecting TLS/SSL client and server do not share any other non-legacy cipher suite.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Critical</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-02-13" />
+          <updated date="2017-02-13" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2016-5546" impact="moderate" public="20170117">CVE-2016-5546</cve>
+          <cve cvss3="5.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L" cwe="CWE-770" href="https://access.redhat.com/security/cve/CVE-2016-5547" impact="moderate" public="20170117">CVE-2016-5547</cve>
+          <cve cvss3="6.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N" cwe="CWE-385" href="https://access.redhat.com/security/cve/CVE-2016-5548" impact="important" public="20170117">CVE-2016-5548</cve>
+          <cve cvss3="5.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2016-5552" impact="moderate" public="20170117">CVE-2016-5552</cve>
+          <cve cvss3="4.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N" href="https://access.redhat.com/security/cve/CVE-2017-3231" impact="moderate" public="20170117">CVE-2017-3231</cve>
+          <cve cvss3="8.1/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-502" href="https://access.redhat.com/security/cve/CVE-2017-3241" public="20170117">CVE-2017-3241</cve>
+          <cve cvss3="5.3/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2017-3252" impact="moderate" public="20170117">CVE-2017-3252</cve>
+          <cve cvss3="5.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L" cwe="CWE-770" href="https://access.redhat.com/security/cve/CVE-2017-3253" impact="moderate" public="20170117">CVE-2017-3253</cve>
+          <cve cvss3="4.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N" cwe="CWE-190 CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-3261" impact="moderate" public="20170117">CVE-2017-3261</cve>
+          <cve cvss3="8.8/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2017-3272" public="20170117">CVE-2017-3272</cve>
+          <cve cvss3="8.8/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2017-3289" public="20170117">CVE-2017-3289</cve>
+          <bugzilla id="1369383" href="https://bugzilla.redhat.com/1369383">CVE-2016-2183 SSL/TLS: Birthday attack against 64-bit block ciphers (SWEET32)</bugzilla>
+          <bugzilla id="1413554" href="https://bugzilla.redhat.com/1413554">CVE-2017-3272 OpenJDK: insufficient protected field access checks in atomic field updaters (Libraries, 8165344)</bugzilla>
+          <bugzilla id="1413562" href="https://bugzilla.redhat.com/1413562">CVE-2017-3289 OpenJDK: insecure class construction (Hotspot, 8167104)</bugzilla>
+          <bugzilla id="1413583" href="https://bugzilla.redhat.com/1413583">CVE-2017-3253 OpenJDK: imageio PNGImageReader failed to honor ignoreMetadata for iTXt and zTXt chunks (2D, 8166988)</bugzilla>
+          <bugzilla id="1413653" href="https://bugzilla.redhat.com/1413653">CVE-2017-3261 OpenJDK: integer overflow in SocketOutputStream boundary check (Networking, 8164147)</bugzilla>
+          <bugzilla id="1413717" href="https://bugzilla.redhat.com/1413717">CVE-2017-3231 OpenJDK: URLClassLoader insufficient access control checks (Networking, 8151934)</bugzilla>
+          <bugzilla id="1413764" href="https://bugzilla.redhat.com/1413764">CVE-2016-5547 OpenJDK: missing ObjectIdentifier length check (Libraries, 8168705)</bugzilla>
+          <bugzilla id="1413882" href="https://bugzilla.redhat.com/1413882">CVE-2016-5552 OpenJDK: incorrect URL parsing in URLStreamHandler (Networking, 8167223)</bugzilla>
+          <bugzilla id="1413906" href="https://bugzilla.redhat.com/1413906">CVE-2017-3252 OpenJDK: LdapLoginModule incorrect userDN extraction (JAAS, 8161743)</bugzilla>
+          <bugzilla id="1413911" href="https://bugzilla.redhat.com/1413911">CVE-2016-5546 OpenJDK: incorrect ECDSA signature extraction from the DER input (Libraries, 8168714)</bugzilla>
+          <bugzilla id="1413920" href="https://bugzilla.redhat.com/1413920">CVE-2016-5548 OpenJDK: DSA implementation timing attack (Libraries, 8168728)</bugzilla>
+          <bugzilla id="1413955" href="https://bugzilla.redhat.com/1413955">CVE-2017-3241 OpenJDK: untrusted input deserialization in RMI registry and DCG (RMI, 8156802)</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+            <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="OR">
+        <criteria operator="AND">
+          <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20170061001" />
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk is earlier than 1:1.7.0.131-2.6.9.0.el5_11" test_ref="oval:com.redhat.rhsa:tst:20170269008" />
+              <criterion comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170269009" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.131-2.6.9.0.el5_11" test_ref="oval:com.redhat.rhsa:tst:20170269004" />
+              <criterion comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170269005" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.131-2.6.9.0.el5_11" test_ref="oval:com.redhat.rhsa:tst:20170269006" />
+              <criterion comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170269007" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.131-2.6.9.0.el5_11" test_ref="oval:com.redhat.rhsa:tst:20170269010" />
+              <criterion comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170269011" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.131-2.6.9.0.el5_11" test_ref="oval:com.redhat.rhsa:tst:20170269002" />
+              <criterion comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170269003" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+            <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+            <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+            <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk is earlier than 1:1.7.0.131-2.6.9.0.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170269018" />
+              <criterion comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269019" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.131-2.6.9.0.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170269020" />
+              <criterion comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269021" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.131-2.6.9.0.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170269016" />
+              <criterion comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269017" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.131-2.6.9.0.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170269024" />
+              <criterion comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269025" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.131-2.6.9.0.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170269022" />
+              <criterion comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269023" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+            <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+            <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+            <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk is earlier than 1:1.7.0.131-2.6.9.0.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170269037" />
+              <criterion comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269019" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-accessibility is earlier than 1:1.7.0.131-2.6.9.0.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170269033" />
+              <criterion comment="java-1.7.0-openjdk-accessibility is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269034" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.131-2.6.9.0.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170269030" />
+              <criterion comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269021" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.131-2.6.9.0.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170269035" />
+              <criterion comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269017" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-headless is earlier than 1:1.7.0.131-2.6.9.0.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170269031" />
+              <criterion comment="java-1.7.0-openjdk-headless is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269032" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.131-2.6.9.0.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170269038" />
+              <criterion comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269025" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.131-2.6.9.0.el7_3" test_ref="oval:com.redhat.rhsa:tst:20170269036" />
+              <criterion comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269023" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -3898,6 +4076,122 @@ These issues were discovered by Frediano Ziglio (Red Hat).</description>
       <object object_ref="oval:com.redhat.rhsa:obj:20170254007" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269002" check="at least one" comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.131-2.6.9.0.el5_11" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269002" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269003" check="at least one" comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269002" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269004" check="at least one" comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.131-2.6.9.0.el5_11" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269005" check="at least one" comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269006" check="at least one" comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.131-2.6.9.0.el5_11" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269004" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269007" check="at least one" comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269004" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269008" check="at least one" comment="java-1.7.0-openjdk is earlier than 1:1.7.0.131-2.6.9.0.el5_11" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269009" check="at least one" comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269010" check="at least one" comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.131-2.6.9.0.el5_11" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269011" check="at least one" comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269016" check="at least one" comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.131-2.6.9.0.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269004" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269017" check="at least one" comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269004" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269018" check="at least one" comment="java-1.7.0-openjdk is earlier than 1:1.7.0.131-2.6.9.0.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269019" check="at least one" comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269020" check="at least one" comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.131-2.6.9.0.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269021" check="at least one" comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269022" check="at least one" comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.131-2.6.9.0.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269002" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269023" check="at least one" comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269002" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269024" check="at least one" comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.131-2.6.9.0.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269025" check="at least one" comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269030" check="at least one" comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.131-2.6.9.0.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269008" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269031" check="at least one" comment="java-1.7.0-openjdk-headless is earlier than 1:1.7.0.131-2.6.9.0.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269008" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269032" check="at least one" comment="java-1.7.0-openjdk-headless is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269033" check="at least one" comment="java-1.7.0-openjdk-accessibility is earlier than 1:1.7.0.131-2.6.9.0.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269008" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269034" check="at least one" comment="java-1.7.0-openjdk-accessibility is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269035" check="at least one" comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.131-2.6.9.0.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269004" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269008" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269036" check="at least one" comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.131-2.6.9.0.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269002" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269008" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269037" check="at least one" comment="java-1.7.0-openjdk is earlier than 1:1.7.0.131-2.6.9.0.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269008" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170269038" check="at least one" comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.131-2.6.9.0.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170269008" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -4341,6 +4635,27 @@ These issues were discovered by Frediano Ziglio (Red Hat).</description>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170254007" version="602">
       <name>spice</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170269002" version="601">
+      <name>java-1.7.0-openjdk-src</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170269003" version="601">
+      <name>java-1.7.0-openjdk-demo</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170269004" version="601">
+      <name>java-1.7.0-openjdk-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170269005" version="601">
+      <name>java-1.7.0-openjdk</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170269006" version="601">
+      <name>java-1.7.0-openjdk-javadoc</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170269011" version="601">
+      <name>java-1.7.0-openjdk-headless</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170269012" version="601">
+      <name>java-1.7.0-openjdk-accessibility</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -4462,6 +4777,15 @@ These issues were discovered by Frediano Ziglio (Red Hat).</description>
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170254003" version="602">
       <evr datatype="evr_string" operation="less than">0:0.12.4-20.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170269004" version="601">
+      <evr datatype="evr_string" operation="less than">1:1.7.0.131-2.6.9.0.el5_11</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170269006" version="601">
+      <evr datatype="evr_string" operation="less than">1:1.7.0.131-2.6.9.0.el6_8</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170269008" version="601">
+      <evr datatype="evr_string" operation="less than">1:1.7.0.131-2.6.9.0.el7_3</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
