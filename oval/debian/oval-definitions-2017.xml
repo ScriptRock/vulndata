@@ -11765,6 +11765,51 @@ denial of service via an infinite loop.
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.debian:def:20176074" class="vulnerability" version="1">
+      <metadata>
+        <title>CVE-2017-6074</title>
+        <affected family="unix">
+          <platform>Debian GNU/Linux 7.0</platform>
+          <platform>Debian GNU/Linux 8.2</platform>
+          <platform>Debian GNU/Linux 9.0</platform>
+          <product>linux</product>
+        </affected>
+        <reference ref_id="CVE-2017-6074" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-6074" source="CVE" />
+        <description />
+        <debian>
+          <moreinfo />
+        </debian>
+      </metadata>
+      <criteria comment="Platform section" operator="OR">
+        <criteria comment="Release section" operator="AND">
+          <criterion comment="Debian 7.0 is installed" test_ref="oval:org.debian.oval:tst:1" />
+          <criteria comment="Architecture section" operator="OR">
+            <criteria comment="Architecture independent section" operator="AND">
+              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+              <criterion comment="linux DPKG is earlier than 0" test_ref="oval:org.debian.oval:tst:729" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Release section" operator="AND">
+          <criterion comment="Debian 8.2 is installed" test_ref="oval:org.debian.oval:tst:4" />
+          <criteria comment="Architecture section" operator="OR">
+            <criteria comment="Architecture independent section" operator="AND">
+              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+              <criterion comment="linux DPKG is earlier than 0" test_ref="oval:org.debian.oval:tst:730" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Release section" operator="AND">
+          <criterion comment="Debian 9.0 is installed" test_ref="oval:org.debian.oval:tst:6" />
+          <criteria comment="Architecture section" operator="OR">
+            <criteria comment="Architecture independent section" operator="AND">
+              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+              <criterion comment="linux DPKG is earlier than 0" test_ref="oval:org.debian.oval:tst:731" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <textfilecontent_test id="oval:org.debian.oval:tst:1" check="all" check_existence="at_least_one_exists" comment="Debian GNU/Linux 7.0 is installed" version="1">
@@ -14678,6 +14723,18 @@ denial of service via an infinite loop.
       <object object_ref="oval:org.debian.oval:obj:83" />
       <state state_ref="oval:org.debian.oval:ste:411" />
     </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:729" check="all" check_existence="at_least_one_exists" comment="linux is earlier than 0" version="1">
+      <object object_ref="oval:org.debian.oval:obj:10" />
+      <state state_ref="oval:org.debian.oval:ste:412" />
+    </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:730" check="all" check_existence="at_least_one_exists" comment="linux is earlier than 0" version="1">
+      <object object_ref="oval:org.debian.oval:obj:10" />
+      <state state_ref="oval:org.debian.oval:ste:412" />
+    </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:731" check="all" check_existence="at_least_one_exists" comment="linux is earlier than 0" version="1">
+      <object object_ref="oval:org.debian.oval:obj:10" />
+      <state state_ref="oval:org.debian.oval:ste:412" />
+    </dpkginfo_test>
   </tests>
   <objects>
     <textfilecontent_object id="oval:org.debian.oval:obj:1" version="1">
@@ -16163,6 +16220,9 @@ denial of service via an infinite loop.
     </dpkginfo_state>
     <dpkginfo_state id="oval:org.debian.oval:ste:411" version="1">
       <evr datatype="evr_string" operation="less than">0:2.1.5-1</evr>
+    </dpkginfo_state>
+    <dpkginfo_state id="oval:org.debian.oval:ste:412" version="1">
+      <evr datatype="evr_string" operation="less than">0:0</evr>
     </dpkginfo_state>
   </states>
 </oval_definitions>
