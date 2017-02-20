@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1487308131</content_version>
+    <content_version>1487588381</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -2692,6 +2692,97 @@ Red Hat would like to thank ISC for reporting this issue. Upstream acknowledges 
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170286" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0286: openssl security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0286-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0286.html" source="RHSA" />
+        <reference ref_id="CVE-2016-8610" ref_url="https://access.redhat.com/security/cve/CVE-2016-8610" source="CVE" />
+        <reference ref_id="CVE-2017-3731" ref_url="https://access.redhat.com/security/cve/CVE-2017-3731" source="CVE" />
+        <description>OpenSSL is a toolkit that implements the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) protocols, as well as a full-strength general-purpose cryptography library.
+
+Security Fix(es):
+
+* An integer underflow leading to an out of bounds read flaw was found in OpenSSL. A remote attacker could possibly use this flaw to crash a 32-bit TLS/SSL server or client using OpenSSL if it used the RC4-MD5 cipher suite. (CVE-2017-3731)
+
+* A denial of service flaw was found in the way the TLS/SSL protocol defined processing of ALERT packets during a connection handshake. A remote attacker could use this flaw to make a TLS/SSL server consume an excessive amount of CPU and fail to accept connections form other clients. (CVE-2016-8610)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-02-20" />
+          <updated date="2017-02-20" />
+          <cve cvss2="4.3/AV:N/AC:M/Au:N/C:N/I:N/A:P" cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" href="https://access.redhat.com/security/cve/CVE-2016-8610" public="20161024">CVE-2016-8610</cve>
+          <cve cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-190 CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-3731" public="20170126">CVE-2017-3731</cve>
+          <bugzilla id="1384743" href="https://bugzilla.redhat.com/1384743">CVE-2016-8610 SSL/TLS: Malformed plain-text ALERT packets could cause remote DoS</bugzilla>
+          <bugzilla id="1416852" href="https://bugzilla.redhat.com/1416852">CVE-2017-3731 openssl: Truncated packet could crash via OOB read</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="OR">
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+            <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+            <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+            <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="openssl is earlier than 0:1.0.1e-48.el6_8.4" test_ref="oval:com.redhat.rhsa:tst:20170286009" />
+              <criterion comment="openssl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170286010" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="openssl-devel is earlier than 0:1.0.1e-48.el6_8.4" test_ref="oval:com.redhat.rhsa:tst:20170286005" />
+              <criterion comment="openssl-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170286006" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="openssl-perl is earlier than 0:1.0.1e-48.el6_8.4" test_ref="oval:com.redhat.rhsa:tst:20170286007" />
+              <criterion comment="openssl-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170286008" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="openssl-static is earlier than 0:1.0.1e-48.el6_8.4" test_ref="oval:com.redhat.rhsa:tst:20170286011" />
+              <criterion comment="openssl-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170286012" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+            <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+            <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+            <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="openssl is earlier than 1:1.0.1e-60.el7_3.1" test_ref="oval:com.redhat.rhsa:tst:20170286022" />
+              <criterion comment="openssl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170286010" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="openssl-devel is earlier than 1:1.0.1e-60.el7_3.1" test_ref="oval:com.redhat.rhsa:tst:20170286017" />
+              <criterion comment="openssl-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170286006" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="openssl-libs is earlier than 1:1.0.1e-60.el7_3.1" test_ref="oval:com.redhat.rhsa:tst:20170286019" />
+              <criterion comment="openssl-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170286020" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="openssl-perl is earlier than 1:1.0.1e-60.el7_3.1" test_ref="oval:com.redhat.rhsa:tst:20170286021" />
+              <criterion comment="openssl-perl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170286008" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="openssl-static is earlier than 1:1.0.1e-60.el7_3.1" test_ref="oval:com.redhat.rhsa:tst:20170286018" />
+              <criterion comment="openssl-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170286012" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -4342,6 +4433,62 @@ Red Hat would like to thank ISC for reporting this issue. Upstream acknowledges 
       <object object_ref="oval:com.redhat.rhsa:obj:20170062018" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170276003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286005" check="at least one" comment="openssl-devel is earlier than 0:1.0.1e-48.el6_8.4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170286003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286006" check="at least one" comment="openssl-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286007" check="at least one" comment="openssl-perl is earlier than 0:1.0.1e-48.el6_8.4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170286003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286008" check="at least one" comment="openssl-perl is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286009" check="at least one" comment="openssl is earlier than 0:1.0.1e-48.el6_8.4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170286003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286010" check="at least one" comment="openssl is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286011" check="at least one" comment="openssl-static is earlier than 0:1.0.1e-48.el6_8.4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170286003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286012" check="at least one" comment="openssl-static is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286017" check="at least one" comment="openssl-devel is earlier than 1:1.0.1e-60.el7_3.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170286005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286018" check="at least one" comment="openssl-static is earlier than 1:1.0.1e-60.el7_3.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170286005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286019" check="at least one" comment="openssl-libs is earlier than 1:1.0.1e-60.el7_3.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170286005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286020" check="at least one" comment="openssl-libs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286021" check="at least one" comment="openssl-perl is earlier than 1:1.0.1e-60.el7_3.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170286005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170286022" check="at least one" comment="openssl is earlier than 1:1.0.1e-60.el7_3.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170286007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170286005" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -4806,6 +4953,21 @@ Red Hat would like to thank ISC for reporting this issue. Upstream acknowledges 
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170269012" version="602">
       <name>java-1.7.0-openjdk-accessibility</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170286005" version="601">
+      <name>openssl-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170286006" version="601">
+      <name>openssl-perl</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170286007" version="601">
+      <name>openssl</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170286008" version="601">
+      <name>openssl-static</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170286009" version="601">
+      <name>openssl-libs</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -4939,6 +5101,12 @@ Red Hat would like to thank ISC for reporting this issue. Upstream acknowledges 
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170276003" version="602">
       <evr datatype="evr_string" operation="less than">32:9.9.4-38.el7_3.2</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170286003" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.0.1e-48.el6_8.4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170286005" version="601">
+      <evr datatype="evr_string" operation="less than">1:1.0.1e-60.el7_3.1</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
