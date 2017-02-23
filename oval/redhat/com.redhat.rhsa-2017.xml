@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1487783551</content_version>
+    <content_version>1487872179</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -3043,6 +3043,181 @@ Security Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170307" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0307: kernel security and bug fix update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0307-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0307.html" source="RHSA" />
+        <reference ref_id="CVE-2016-6136" ref_url="https://access.redhat.com/security/cve/CVE-2016-6136" source="CVE" />
+        <reference ref_id="CVE-2016-9555" ref_url="https://access.redhat.com/security/cve/CVE-2016-9555" source="CVE" />
+        <description>The kernel packages contain the Linux kernel, the core of any Linux operating system.
+
+Security Fix(es):
+
+* When creating audit records for parameters to executed children processes, an attacker can convince the Linux kernel audit subsystem can create corrupt records which may allow an attacker to misrepresent or evade logging of executing commands. (CVE-2016-6136, Moderate)
+
+* A flaw was found in the Linux kernel's implementation of the SCTP protocol. A remote attacker could trigger an out-of-bounds read with an offset of up to 64kB potentially causing the system to crash. (CVE-2016-9555, Moderate)
+
+Bug Fix(es):
+
+* The qlnic driver previously attempted to fetch pending transmission descriptors before all writes were complete, which lead to firmware hangs. With this update, the qlcnic driver has been fixed to complete all writes before the hardware fetches any pending transmission descriptors. As a result, the firmware no longer hangs with the qlcnic driver. (BZ#1403143)
+
+* Previously, when a NFS share was mounted, the file-system (FS) cache was incorrectly enabled even when the "-o fsc" option was not used in the mount command. Consequently, the cachefilesd service stored files in the NFS share even when not instructed to by the user. With this update, NFS does not use the FS cache if not instructed by the "-o fsc" option. As a result, NFS no longer enables caching if the "-o fsc" option is not used. (BZ#1399172)
+
+* Previously, an NFS client and NFS server got into a NFS4 protocol loop involving a WRITE action and a NFS4ERR_EXPIRED response when the current_fileid counter got to the wraparound point by overflowing the value of 32 bits. This update fixes the NFS server to handle the current_fileid wraparound. As a result, the described NFS4 protocol loop no longer occurs. (BZ#1399174)
+
+* Previously, certain configurations of the Hewlett Packard Smart Array (HPSA) devices caused hardware to be set offline incorrectly when the HPSA driver was expected to wait for existing I/O operations to complete. Consequently, a kernel panic occurred. This update prevents the described problem. As a result, the kernel panic no longer occurs. (BZ#1399175)
+
+* Previously, memory corruption by copying data into the wrong memory locations sometimes occurred, because the __copy_tofrom_user() function was returning incorrect values. This update fixes the __copy_tofrom_user() function so that it no longer returns larger values than the number of bytes it was asked to copy. As a result, memory corruption no longer occurs in he described scenario. (BZ#1398185)
+
+* Previously, guest virtual machines (VMs) on a Hyper-V server cluster got in some cases rebooted during the graceful node failover test, because the host kept sending heartbeat packets independently of guests responding to them. This update fixes the bug by properly responding to all the heartbeat messages in the queue, even if they are pending. As a result, guest VMs no longer get rebooted under the described circumstances. (BZ#1397739)
+
+* When the "punching hole" feature of the fallocate utility was used on an ext4 file system inode with extent depth of 1, the extent tree of the inode sometimes became corrupted. With this update, the underlying source code has been fixed, and extent tree corruption no longer occurs in the described situation. (BZ#1397808)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-02-23" />
+          <updated date="2017-02-23" />
+          <cve cvss2="3.3/AV:L/AC:M/Au:N/C:P/I:N/A:P" cvss3="5.3/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:H" cwe="CWE-362" href="https://access.redhat.com/security/cve/CVE-2016-6136" public="20160704">CVE-2016-6136</cve>
+          <cve cvss2="7.1/AV:N/AC:M/Au:N/C:N/I:N/A:C" cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2016-9555" public="20161025">CVE-2016-9555</cve>
+          <bugzilla id="1353533" href="https://bugzilla.redhat.com/1353533">CVE-2016-6136 kernel: Race condition vulnerability in execve argv arguments</bugzilla>
+          <bugzilla id="1397930" href="https://bugzilla.redhat.com/1397930">CVE-2016-9555 kernel: Slab out-of-bounds access in sctp_sf_ootb()</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307019" />
+            <criterion comment="kernel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-abi-whitelists is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307009" />
+            <criterion comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-bootwrapper is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307029" />
+            <criterion comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307013" />
+            <criterion comment="kernel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug-devel is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307017" />
+            <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-devel is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307023" />
+            <criterion comment="kernel-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-doc is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307005" />
+            <criterion comment="kernel-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-firmware is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307007" />
+            <criterion comment="kernel-firmware is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-headers is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307011" />
+            <criterion comment="kernel-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307025" />
+            <criterion comment="kernel-kdump is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump-devel is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307015" />
+            <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="perf is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307021" />
+            <criterion comment="perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-perf is earlier than 0:2.6.32-642.15.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170307027" />
+            <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036028" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170309" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0309: qemu-kvm security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0309-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0309.html" source="RHSA" />
+        <reference ref_id="CVE-2016-2857" ref_url="https://access.redhat.com/security/cve/CVE-2016-2857" source="CVE" />
+        <reference ref_id="CVE-2017-2615" ref_url="https://access.redhat.com/security/cve/CVE-2017-2615" source="CVE" />
+        <description>Kernel-based Virtual Machine (KVM) is a full virtualization solution for Linux on a variety of architectures. The qemu-kvm packages provide the user-space component for running virtual machines that use KVM.
+
+Security Fix(es):
+
+* Quick emulator (Qemu) built with the Cirrus CLGD 54xx VGA emulator support is vulnerable to an out-of-bounds access issue. It could occur while copying VGA data via bitblt copy in backward mode. A privileged user inside a guest could use this flaw to crash the Qemu process resulting in DoS or potentially execute arbitrary code on the host with privileges of Qemu process on the host. (CVE-2017-2615)
+
+* An out-of-bounds read-access flaw was found in the QEMU emulator built with IP checksum routines. The flaw could occur when computing a TCP/UDP packet's checksum, because a QEMU function used the packet's payload length without checking against the data buffer's size. A user inside a guest could use this flaw to crash the QEMU process (denial of service). (CVE-2016-2857)
+
+Red Hat would like to thank Wjjzhang (Tencent.com Inc.) Li Qiang (360.cn Inc.) for reporting CVE-2017-2615 and Ling Liu (Qihoo 360 Inc.) for reporting CVE-2016-2857.
+
+This update also fixes the following bug:
+
+* Previously, rebooting a guest virtual machine more than 128 times in a short period of time caused the guest to shut down instead of rebooting, because the virtqueue was not cleaned properly. This update ensures that the virtqueue is cleaned more reliably, which prevents the described problem from occurring. (BZ#1408389)
+
+All qemu-kvm users are advised to upgrade to these updated packages, which contain backported patches to correct these issues. After installing this update, shut down all running virtual machines. Once all virtual machines have shut down, start them again for this update to take effect.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-02-23" />
+          <updated date="2017-02-23" />
+          <cve cvss2="4.3/AV:A/AC:M/Au:N/C:P/I:N/A:P" cvss3="4.7/CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:L" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2016-2857" impact="low" public="20160217">CVE-2016-2857</cve>
+          <cve cvss2="4.9/AV:A/AC:M/Au:S/C:P/I:P/A:P" cvss3="5.5/CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:L" cwe="CWE-787" href="https://access.redhat.com/security/cve/CVE-2017-2615" public="20170124">CVE-2017-2615</cve>
+          <bugzilla id="1296567" href="https://bugzilla.redhat.com/1296567">CVE-2016-2857 Qemu: net: out of bounds read in net_checksum_calculate()</bugzilla>
+          <bugzilla id="1408389" href="https://bugzilla.redhat.com/1408389">[RHEL6.8.z] KVM guest shuts itself down after 128th reboot</bugzilla>
+          <bugzilla id="1418200" href="https://bugzilla.redhat.com/1418200">CVE-2017-2615 Qemu: display: cirrus: oob access while doing bitblt copy backward mode</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="qemu-guest-agent is earlier than 2:0.12.1.2-2.491.el6_8.6" test_ref="oval:com.redhat.rhsa:tst:20170309005" />
+            <criterion comment="qemu-guest-agent is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170309006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-img is earlier than 2:0.12.1.2-2.491.el6_8.6" test_ref="oval:com.redhat.rhsa:tst:20170309007" />
+            <criterion comment="qemu-img is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm is earlier than 2:0.12.1.2-2.491.el6_8.6" test_ref="oval:com.redhat.rhsa:tst:20170309011" />
+            <criterion comment="qemu-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.491.el6_8.6" test_ref="oval:com.redhat.rhsa:tst:20170309009" />
+            <criterion comment="qemu-kvm-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -4901,6 +5076,78 @@ Security Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20170091006" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170295003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307005" check="at least one" comment="kernel-doc is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307007" check="at least one" comment="kernel-firmware is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307009" check="at least one" comment="kernel-abi-whitelists is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307011" check="at least one" comment="kernel-headers is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307013" check="at least one" comment="kernel-debug is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307015" check="at least one" comment="kernel-kdump-devel is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307017" check="at least one" comment="kernel-debug-devel is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307019" check="at least one" comment="kernel is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307021" check="at least one" comment="perf is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307023" check="at least one" comment="kernel-devel is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307025" check="at least one" comment="kernel-kdump is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307027" check="at least one" comment="python-perf is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170307029" check="at least one" comment="kernel-bootwrapper is earlier than 0:2.6.32-642.15.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170307003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170309005" check="at least one" comment="qemu-guest-agent is earlier than 2:0.12.1.2-2.491.el6_8.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170309005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170309003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170309006" check="at least one" comment="qemu-guest-agent is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170309005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170309007" check="at least one" comment="qemu-img is earlier than 2:0.12.1.2-2.491.el6_8.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170083005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170309003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170309009" check="at least one" comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.491.el6_8.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170083007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170309003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170309011" check="at least one" comment="qemu-kvm is earlier than 2:0.12.1.2-2.491.el6_8.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170083006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170309003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -5380,6 +5627,9 @@ Security Fix(es):
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170286009" version="602">
       <name>openssl-libs</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170309005" version="601">
+      <name>qemu-guest-agent</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -5537,6 +5787,12 @@ Security Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170295003" version="601">
       <evr datatype="evr_string" operation="less than">0:3.10.0-514.6.1.rt56.430.el7</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170307003" version="601">
+      <evr datatype="evr_string" operation="less than">0:2.6.32-642.15.1.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170309003" version="601">
+      <evr datatype="evr_string" operation="less than">2:0.12.1.2-2.491.el6_8.6</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
