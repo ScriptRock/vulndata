@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1487912917</content_version>
+    <content_version>1487951991</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -3218,6 +3218,94 @@ All qemu-kvm users are advised to upgrade to these updated packages, which conta
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170323" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0323: kernel security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 5</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0323-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0323.html" source="RHSA" />
+        <reference ref_id="CVE-2017-2634" ref_url="https://access.redhat.com/security/cve/CVE-2017-2634" source="CVE" />
+        <reference ref_id="CVE-2017-6074" ref_url="https://access.redhat.com/security/cve/CVE-2017-6074" source="CVE" />
+        <description>The kernel packages contain the Linux kernel, the core of any Linux operating system.
+
+Security Fix(es):
+
+* A use-after-free flaw was found in the way the Linux kernel's Datagram Congestion Control Protocol (DCCP) implementation freed SKB (socket buffer) resources for a DCCP_PKT_REQUEST packet when the IPV6_RECVPKTINFO option is set on the socket. A local, unprivileged user could use this flaw to alter the kernel memory, allowing them to escalate their privileges on the system. (CVE-2017-6074, Important)
+
+* It was found that the Linux kernel's Datagram Congestion Control Protocol (DCCP) implementation used the IPv4-only inet_sk_rebuild_header() function for both IPv4 and IPv6 DCCP connections, which could result in memory corruptions. A remote attacker could use this flaw to crash the system. (CVE-2017-2634, Moderate)
+
+Important: This update disables the DCCP kernel module at load time by using the kernel module blacklist method. The module is disabled in an attempt to reduce further exposure to additional issues. Please see Red Hat Bugzilla (BZ#1425177) for additional information.
+
+Red Hat would like to thank Andrey Konovalov (Google) for reporting CVE-2017-6074. The CVE-2017-2634 issue was discovered by Wade Mealing (Red Hat Product Security).</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-02-24" />
+          <updated date="2017-02-24" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-476" href="https://access.redhat.com/security/cve/CVE-2017-2634" impact="moderate" public="20170224">CVE-2017-2634</cve>
+          <cve cvss3="7.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-416" href="https://access.redhat.com/security/cve/CVE-2017-6074" public="20170222">CVE-2017-6074</cve>
+          <bugzilla id="1423071" href="https://bugzilla.redhat.com/1423071">CVE-2017-6074 kernel: use after free in dccp protocol</bugzilla>
+          <bugzilla id="1424751" href="https://bugzilla.redhat.com/1424751">CVE-2017-2634 kernel: dccp: crash while sending ipv6 reset packet</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:5</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Red Hat Enterprise Linux 5 is installed" test_ref="oval:com.redhat.rhsa:tst:20170061001" />
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323006" />
+            <criterion comment="kernel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323007" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-PAE is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323024" />
+            <criterion comment="kernel-PAE is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323025" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-PAE-devel is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323022" />
+            <criterion comment="kernel-PAE-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323023" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323012" />
+            <criterion comment="kernel-debug is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323013" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug-devel is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323010" />
+            <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323011" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-devel is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323014" />
+            <criterion comment="kernel-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323015" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-doc is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323002" />
+            <criterion comment="kernel-doc is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323003" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-headers is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323016" />
+            <criterion comment="kernel-headers is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323017" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323020" />
+            <criterion comment="kernel-kdump is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323021" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump-devel is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323018" />
+            <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323019" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-xen is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323008" />
+            <criterion comment="kernel-xen is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323009" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-xen-devel is earlier than 0:2.6.18-419.el5" test_ref="oval:com.redhat.rhsa:tst:20170323004" />
+            <criterion comment="kernel-xen-devel is signed with Red Hat redhatrelease key" test_ref="oval:com.redhat.rhsa:tst:20170323005" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -5148,6 +5236,102 @@ All qemu-kvm users are advised to upgrade to these updated packages, which conta
       <object object_ref="oval:com.redhat.rhsa:obj:20170083006" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170309003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323002" check="at least one" comment="kernel-doc is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323003" check="at least one" comment="kernel-doc is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323004" check="at least one" comment="kernel-xen-devel is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170323003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323005" check="at least one" comment="kernel-xen-devel is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170323003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323006" check="at least one" comment="kernel is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323007" check="at least one" comment="kernel is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323008" check="at least one" comment="kernel-xen is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170323005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323009" check="at least one" comment="kernel-xen is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170323005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323010" check="at least one" comment="kernel-debug-devel is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323011" check="at least one" comment="kernel-debug-devel is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323012" check="at least one" comment="kernel-debug is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323013" check="at least one" comment="kernel-debug is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323014" check="at least one" comment="kernel-devel is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323015" check="at least one" comment="kernel-devel is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323016" check="at least one" comment="kernel-headers is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323017" check="at least one" comment="kernel-headers is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323018" check="at least one" comment="kernel-kdump-devel is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323019" check="at least one" comment="kernel-kdump-devel is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323020" check="at least one" comment="kernel-kdump is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323021" check="at least one" comment="kernel-kdump is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323022" check="at least one" comment="kernel-PAE-devel is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170323012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323023" check="at least one" comment="kernel-PAE-devel is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170323012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323024" check="at least one" comment="kernel-PAE is earlier than 0:2.6.18-419.el5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170323013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170323003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170323025" check="at least one" comment="kernel-PAE is signed with Red Hat redhatrelease key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170323013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170061002" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -5630,6 +5814,18 @@ All qemu-kvm users are advised to upgrade to these updated packages, which conta
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170309005" version="601">
       <name>qemu-guest-agent</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170323003" version="601">
+      <name>kernel-xen-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170323005" version="601">
+      <name>kernel-xen</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170323012" version="601">
+      <name>kernel-PAE-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170323013" version="601">
+      <name>kernel-PAE</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -5793,6 +5989,9 @@ All qemu-kvm users are advised to upgrade to these updated packages, which conta
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170309003" version="601">
       <evr datatype="evr_string" operation="less than">2:0.12.1.2-2.491.el6_8.6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170323003" version="601">
+      <evr datatype="evr_string" operation="less than">0:2.6.18-419.el5</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
