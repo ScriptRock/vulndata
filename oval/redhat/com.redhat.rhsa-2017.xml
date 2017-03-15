@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1489471599</content_version>
+    <content_version>1489583075</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -4156,6 +4156,85 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170527" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0527: tomcat6 security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0527-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0527.html" source="RHSA" />
+        <reference ref_id="CVE-2016-6816" ref_url="https://access.redhat.com/security/cve/CVE-2016-6816" source="CVE" />
+        <reference ref_id="CVE-2016-8745" ref_url="https://access.redhat.com/security/cve/CVE-2016-8745" source="CVE" />
+        <description>Apache Tomcat is a servlet container for the Java Servlet and JavaServer Pages (JSP) technologies.
+
+Security Fix(es):
+
+* It was discovered that the code that parsed the HTTP request line permitted invalid characters. This could be exploited, in conjunction with a proxy that also permitted the invalid characters but with a different interpretation, to inject data into the HTTP response. By manipulating the HTTP response the attacker could poison a web-cache, perform an XSS attack, or obtain sensitive information from requests other then their own. (CVE-2016-6816)
+
+Note: This fix causes Tomcat to respond with an HTTP 400 Bad Request error when request contains characters that are not permitted by the HTTP specification to appear not encoded, even though they were previously accepted. The newly introduced system property tomcat.util.http.parser.HttpParser.requestTargetAllow can be used to configure Tomcat to accept curly braces ({ and }) and the pipe symbol (|) in not encoded form, as these are often used in URLs without being properly encoded. 
+
+* A bug was discovered in the error handling of the send file code for the NIO HTTP connector. This led to the current Processor object being added to the Processor cache multiple times allowing information leakage between requests including, and not limited to, session ID and the response body. (CVE-2016-8745)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-03-15" />
+          <updated date="2017-03-15" />
+          <cve cvss2="5.8/AV:N/AC:M/Au:N/C:P/I:P/A:N" cvss3="6.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N" cwe="CWE-444" href="https://access.redhat.com/security/cve/CVE-2016-6816" public="20161122">CVE-2016-6816</cve>
+          <cve cvss2="4.3/AV:N/AC:M/Au:N/C:P/I:N/A:N" cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N" href="https://access.redhat.com/security/cve/CVE-2016-8745" public="20161212">CVE-2016-8745</cve>
+          <bugzilla id="1397484" href="https://bugzilla.redhat.com/1397484">CVE-2016-6816 tomcat: HTTP Request smuggling vulnerability due to permitting invalid character in HTTP requests</bugzilla>
+          <bugzilla id="1403824" href="https://bugzilla.redhat.com/1403824">CVE-2016-8745 tomcat: information disclosure due to incorrect Processor sharing</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="tomcat6 is earlier than 0:6.0.24-105.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170527005" />
+            <criterion comment="tomcat6 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170527006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="tomcat6-admin-webapps is earlier than 0:6.0.24-105.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170527021" />
+            <criterion comment="tomcat6-admin-webapps is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170527022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="tomcat6-docs-webapp is earlier than 0:6.0.24-105.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170527019" />
+            <criterion comment="tomcat6-docs-webapp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170527020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="tomcat6-el-2.1-api is earlier than 0:6.0.24-105.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170527017" />
+            <criterion comment="tomcat6-el-2.1-api is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170527018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="tomcat6-javadoc is earlier than 0:6.0.24-105.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170527011" />
+            <criterion comment="tomcat6-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170527012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="tomcat6-jsp-2.1-api is earlier than 0:6.0.24-105.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170527007" />
+            <criterion comment="tomcat6-jsp-2.1-api is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170527008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="tomcat6-lib is earlier than 0:6.0.24-105.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170527013" />
+            <criterion comment="tomcat6-lib is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170527014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="tomcat6-servlet-2.5-api is earlier than 0:6.0.24-105.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170527009" />
+            <criterion comment="tomcat6-servlet-2.5-api is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170527010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="tomcat6-webapps is earlier than 0:6.0.24-105.el6_8" test_ref="oval:com.redhat.rhsa:tst:20170527015" />
+            <criterion comment="tomcat6-webapps is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170527016" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -6490,6 +6569,78 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
       <object object_ref="oval:com.redhat.rhsa:obj:20170238002" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170498008" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527005" check="at least one" comment="tomcat6 is earlier than 0:6.0.24-105.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170527003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527006" check="at least one" comment="tomcat6 is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527007" check="at least one" comment="tomcat6-jsp-2.1-api is earlier than 0:6.0.24-105.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170527003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527008" check="at least one" comment="tomcat6-jsp-2.1-api is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527009" check="at least one" comment="tomcat6-servlet-2.5-api is earlier than 0:6.0.24-105.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170527003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527010" check="at least one" comment="tomcat6-servlet-2.5-api is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527011" check="at least one" comment="tomcat6-javadoc is earlier than 0:6.0.24-105.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170527003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527012" check="at least one" comment="tomcat6-javadoc is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527013" check="at least one" comment="tomcat6-lib is earlier than 0:6.0.24-105.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170527003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527014" check="at least one" comment="tomcat6-lib is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527015" check="at least one" comment="tomcat6-webapps is earlier than 0:6.0.24-105.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170527003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527016" check="at least one" comment="tomcat6-webapps is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527017" check="at least one" comment="tomcat6-el-2.1-api is earlier than 0:6.0.24-105.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170527003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527018" check="at least one" comment="tomcat6-el-2.1-api is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527019" check="at least one" comment="tomcat6-docs-webapp is earlier than 0:6.0.24-105.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170527003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527020" check="at least one" comment="tomcat6-docs-webapp is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527021" check="at least one" comment="tomcat6-admin-webapps is earlier than 0:6.0.24-105.el6_8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170527003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170527022" check="at least one" comment="tomcat6-admin-webapps is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170527013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -7002,6 +7153,33 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170454006" version="602">
       <name>kmod-kvm</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170527005" version="601">
+      <name>tomcat6</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170527006" version="601">
+      <name>tomcat6-jsp-2.1-api</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170527007" version="601">
+      <name>tomcat6-servlet-2.5-api</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170527008" version="601">
+      <name>tomcat6-javadoc</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170527009" version="601">
+      <name>tomcat6-lib</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170527010" version="601">
+      <name>tomcat6-webapps</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170527011" version="601">
+      <name>tomcat6-el-2.1-api</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170527012" version="601">
+      <name>tomcat6-docs-webapp</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170527013" version="601">
+      <name>tomcat6-admin-webapps</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -7213,6 +7391,9 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170498008" version="601">
       <evr datatype="evr_string" operation="less than">0:45.8.0-1.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170527003" version="601">
+      <evr datatype="evr_string" operation="less than">0:6.0.24-105.el6_8</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
