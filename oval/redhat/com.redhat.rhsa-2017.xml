@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1490414914</content_version>
+    <content_version>1490769325</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -5724,6 +5724,56 @@ Red Hat would like to thank Liu Bingchang (IIE) for reporting CVE-2016-9573. The
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170847" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0847: curl security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0847-00" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0847.html" source="RHSA" />
+        <reference ref_id="CVE-2017-2628" ref_url="https://access.redhat.com/security/cve/CVE-2017-2628" source="CVE" />
+        <description>The curl packages provide the libcurl library and the curl utility for downloading files from servers using various protocols, including HTTP, FTP, and LDAP.
+
+Security Fix(es):
+
+* It was found that the fix for CVE-2015-3148 in curl was incomplete. An application using libcurl with HTTP Negotiate authentication could incorrectly re-use credentials for subsequent requests to the same server. (CVE-2017-2628)
+
+This issue was discovered by Paulo Andrade (Red Hat).</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-03-29" />
+          <updated date="2017-03-29" />
+          <cve cvss3="4.8/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N" cwe="CWE-287" href="https://access.redhat.com/security/cve/CVE-2017-2628" public="20170329">CVE-2017-2628</cve>
+          <bugzilla id="1422464" href="https://bugzilla.redhat.com/1422464">CVE-2017-2628 curl: negotiate not treated as connection-oriented (incomplete fix for CVE-2015-3148)</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="curl is earlier than 0:7.19.7-53.el6_9" test_ref="oval:com.redhat.rhsa:tst:20170847009" />
+            <criterion comment="curl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170847010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libcurl is earlier than 0:7.19.7-53.el6_9" test_ref="oval:com.redhat.rhsa:tst:20170847007" />
+            <criterion comment="libcurl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170847008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libcurl-devel is earlier than 0:7.19.7-53.el6_9" test_ref="oval:com.redhat.rhsa:tst:20170847005" />
+            <criterion comment="libcurl-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170847006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -8950,6 +9000,30 @@ Red Hat would like to thank Liu Bingchang (IIE) for reporting CVE-2016-9573. The
       <object object_ref="oval:com.redhat.rhsa:obj:20170559006" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170838003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170847005" check="at least one" comment="libcurl-devel is earlier than 0:7.19.7-53.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170847005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170847003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170847006" check="at least one" comment="libcurl-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170847005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170847007" check="at least one" comment="libcurl is earlier than 0:7.19.7-53.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170847006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170847003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170847008" check="at least one" comment="libcurl is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170847006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170847009" check="at least one" comment="curl is earlier than 0:7.19.7-53.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170847007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170847003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170847010" check="at least one" comment="curl is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170847007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -9765,6 +9839,15 @@ Red Hat would like to thank Liu Bingchang (IIE) for reporting CVE-2016-9573. The
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170837005" version="602">
       <name>icoutils</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170847005" version="601">
+      <name>libcurl-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170847006" version="601">
+      <name>libcurl</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170847007" version="601">
+      <name>curl</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -10045,6 +10128,9 @@ Red Hat would like to thank Liu Bingchang (IIE) for reporting CVE-2016-9573. The
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170838003" version="602">
       <evr datatype="evr_string" operation="less than">0:1.5.1-16.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170847003" version="601">
+      <evr datatype="evr_string" operation="less than">0:7.19.7-53.el6_9</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
