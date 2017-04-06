@@ -24271,6 +24271,74 @@ when dropping privileges.
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.debian:def:20177443" class="vulnerability" version="1">
+      <metadata>
+        <title>CVE-2017-7443</title>
+        <affected family="unix">
+          <platform>Debian GNU/Linux 7.0</platform>
+          <platform>Debian GNU/Linux 8.2</platform>
+          <platform>Debian GNU/Linux 9.0</platform>
+          <product>apt-cacher</product>
+        </affected>
+        <reference ref_id="CVE-2017-7443" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7443" source="CVE" />
+        <description />
+        <debian>
+          <moreinfo />
+        </debian>
+      </metadata>
+      <criteria comment="Platform section" operator="OR">
+        <criteria comment="Release section" operator="AND">
+          <criterion comment="Debian 7.0 is installed" test_ref="oval:org.debian.oval:tst:1" />
+          <criteria comment="Architecture section" operator="OR">
+            <criteria comment="Architecture independent section" operator="AND">
+              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+              <criterion comment="apt-cacher DPKG is earlier than 1.7.6+deb7u1" test_ref="oval:org.debian.oval:tst:1512" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Release section" operator="AND">
+          <criterion comment="Debian 8.2 is installed" test_ref="oval:org.debian.oval:tst:4" />
+          <criteria comment="Architecture section" operator="OR">
+            <criteria comment="Architecture independent section" operator="AND">
+              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+              <criterion comment="apt-cacher DPKG is earlier than 0" test_ref="oval:org.debian.oval:tst:1513" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Release section" operator="AND">
+          <criterion comment="Debian 9.0 is installed" test_ref="oval:org.debian.oval:tst:6" />
+          <criteria comment="Architecture section" operator="OR">
+            <criteria comment="Architecture independent section" operator="AND">
+              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+              <criterion comment="apt-cacher DPKG is earlier than 1.7.15" test_ref="oval:org.debian.oval:tst:1514" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.debian:def:20177448" class="vulnerability" version="1">
+      <metadata>
+        <title>CVE-2017-7448</title>
+        <affected family="unix">
+          <platform>Debian GNU/Linux 9.0</platform>
+          <product>lepton</product>
+        </affected>
+        <reference ref_id="CVE-2017-7448" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7448" source="CVE" />
+        <description />
+        <debian>
+          <moreinfo />
+        </debian>
+      </metadata>
+      <criteria comment="Release section" operator="AND">
+        <criterion comment="Debian 9.0 is installed" test_ref="oval:org.debian.oval:tst:6" />
+        <criteria comment="Architecture section" operator="OR">
+          <criteria comment="Architecture independent section" operator="AND">
+            <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+            <criterion comment="lepton DPKG is earlier than 0" test_ref="oval:org.debian.oval:tst:1515" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <textfilecontent_test id="oval:org.debian.oval:tst:1" check="all" check_existence="at_least_one_exists" comment="Debian GNU/Linux 7.0 is installed" version="1">
@@ -30316,6 +30384,22 @@ when dropping privileges.
       <object object_ref="oval:org.debian.oval:obj:162" />
       <state state_ref="oval:org.debian.oval:ste:954" />
     </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:1512" check="all" check_existence="at_least_one_exists" comment="apt-cacher is earlier than 1.7.6+deb7u1" version="1">
+      <object object_ref="oval:org.debian.oval:obj:163" />
+      <state state_ref="oval:org.debian.oval:ste:955" />
+    </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:1513" check="all" check_existence="at_least_one_exists" comment="apt-cacher is earlier than 0" version="1">
+      <object object_ref="oval:org.debian.oval:obj:163" />
+      <state state_ref="oval:org.debian.oval:ste:956" />
+    </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:1514" check="all" check_existence="at_least_one_exists" comment="apt-cacher is earlier than 1.7.15" version="1">
+      <object object_ref="oval:org.debian.oval:obj:163" />
+      <state state_ref="oval:org.debian.oval:ste:957" />
+    </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:1515" check="all" check_existence="at_least_one_exists" comment="lepton is earlier than 0" version="1">
+      <object object_ref="oval:org.debian.oval:obj:164" />
+      <state state_ref="oval:org.debian.oval:ste:958" />
+    </dpkginfo_test>
   </tests>
   <objects>
     <textfilecontent_object id="oval:org.debian.oval:obj:1" version="1">
@@ -30803,6 +30887,12 @@ when dropping privileges.
     </dpkginfo_object>
     <dpkginfo_object id="oval:org.debian.oval:obj:162" version="1">
       <name>proftpd-dfsg</name>
+    </dpkginfo_object>
+    <dpkginfo_object id="oval:org.debian.oval:obj:163" version="1">
+      <name>apt-cacher</name>
+    </dpkginfo_object>
+    <dpkginfo_object id="oval:org.debian.oval:obj:164" version="1">
+      <name>lepton</name>
     </dpkginfo_object>
   </objects>
   <states>
@@ -33666,6 +33756,18 @@ when dropping privileges.
       <evr datatype="evr_string" operation="less than">0:7.26.0-1+wheezy19</evr>
     </dpkginfo_state>
     <dpkginfo_state id="oval:org.debian.oval:ste:954" version="1">
+      <evr datatype="evr_string" operation="less than">0:0</evr>
+    </dpkginfo_state>
+    <dpkginfo_state id="oval:org.debian.oval:ste:955" version="1">
+      <evr datatype="evr_string" operation="less than">0:1.7.6+deb7u1</evr>
+    </dpkginfo_state>
+    <dpkginfo_state id="oval:org.debian.oval:ste:956" version="1">
+      <evr datatype="evr_string" operation="less than">0:0</evr>
+    </dpkginfo_state>
+    <dpkginfo_state id="oval:org.debian.oval:ste:957" version="1">
+      <evr datatype="evr_string" operation="less than">0:1.7.15</evr>
+    </dpkginfo_state>
+    <dpkginfo_state id="oval:org.debian.oval:ste:958" version="1">
       <evr datatype="evr_string" operation="less than">0:0</evr>
     </dpkginfo_state>
   </states>
