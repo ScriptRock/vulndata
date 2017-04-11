@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1491883714</content_version>
+    <content_version>1491912103</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -5818,6 +5818,162 @@ https://access.redhat.com/support/policy/updates/errata/</description>
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170892" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0892: kernel security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0892-00" ref_url="https://access.redhat.com/errata/RHSA-2017:0892" source="RHSA" />
+        <reference ref_id="CVE-2016-7910" ref_url="https://access.redhat.com/security/cve/CVE-2016-7910" source="CVE" />
+        <reference ref_id="CVE-2017-2636" ref_url="https://access.redhat.com/security/cve/CVE-2017-2636" source="CVE" />
+        <description>The kernel packages contain the Linux kernel, the core of any Linux operating system.
+
+Security Fix(es):
+
+* A race condition flaw was found in the N_HLDC Linux kernel driver when accessing n_hdlc.tbuf list that can lead to double free. A local, unprivileged user able to set the HDLC line discipline on the tty device could use this flaw to increase their privileges on the system. (CVE-2017-2636, Important)
+
+* A flaw was found in the Linux kernel's implementation of seq_file where a local attacker could manipulate memory in the put() function pointer. This could lead to memory corruption and possible privileged escalation. (CVE-2016-7910, Moderate)
+
+Red Hat would like to thank Alexander Popov for reporting CVE-2017-2636.
+
+Bug Fix(es):
+
+* Previously, Chelsio firmware included an incorrectly-formatted firmware bin file. As a consequence, the firmware could not be flashed. This update provides a firmware bin file that is formatted correctly. As a result, Chelsio firmware can now be flashed successfully. (BZ#1433865)
+
+* When multiple simultaneous processes attempted to read from the /proc/stat file, spinlock overhead was generated on Non-Uniform Memory Access (NUMA) systems. Consequently, a large amount of CPU was consumed. With this update, the underlying source code has been fixed to avoid taking spinlock when the interrupt line does not exist. As a result, the spinlock overhead is now generated less often, and multiple simultaneous processes can now read /proc/stat without consuming a large amount of CPU. (BZ#1428106)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-04-11" />
+          <updated date="2017-04-11" />
+          <cve cvss2="6.2/AV:L/AC:H/Au:N/C:C/I:C/A:C" cvss3="7.0/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-416" href="https://access.redhat.com/security/cve/CVE-2016-7910" impact="moderate" public="20160804">CVE-2016-7910</cve>
+          <cve cvss3="7.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-362" href="https://access.redhat.com/security/cve/CVE-2017-2636" public="20170307">CVE-2017-2636</cve>
+          <bugzilla id="1399727" href="https://bugzilla.redhat.com/1399727">CVE-2016-7910 kernel: Use after free in seq file</bugzilla>
+          <bugzilla id="1428319" href="https://bugzilla.redhat.com/1428319">CVE-2017-2636 kernel: Race condition access to n_hdlc.tbuf causes double free in n_hdlc_release()</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892027" />
+            <criterion comment="kernel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-abi-whitelists is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892005" />
+            <criterion comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-bootwrapper is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892029" />
+            <criterion comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892023" />
+            <criterion comment="kernel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug-devel is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892019" />
+            <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-devel is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892021" />
+            <criterion comment="kernel-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-doc is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892007" />
+            <criterion comment="kernel-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-firmware is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892009" />
+            <criterion comment="kernel-firmware is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-headers is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892015" />
+            <criterion comment="kernel-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892017" />
+            <criterion comment="kernel-kdump is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump-devel is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892025" />
+            <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="perf is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892011" />
+            <criterion comment="perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-perf is earlier than 0:2.6.32-696.1.1.el6" test_ref="oval:com.redhat.rhsa:tst:20170892013" />
+            <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036028" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20170893" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:0893: 389-ds-base security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:0893-00" ref_url="https://access.redhat.com/errata/RHSA-2017:0893" source="RHSA" />
+        <reference ref_id="CVE-2017-2668" ref_url="https://access.redhat.com/security/cve/CVE-2017-2668" source="CVE" />
+        <description>389 Directory Server is an LDAP version 3 (LDAPv3) compliant server. The base packages include the Lightweight Directory Access Protocol (LDAP) server and command-line utilities for server administration.
+
+Security Fix(es):
+
+* An invalid pointer dereference flaw was found in the way 389-ds-base handled LDAP bind requests. A remote unauthenticated attacker could use this flaw to make ns-slapd crash via a specially crafted LDAP bind request, resulting in denial of service. (CVE-2017-2668)
+
+Red Hat would like to thank Joachim Jabs (F24) for reporting this issue.
+
+Bug Fix(es):
+
+* Previously, the "deref" plug-in failed to dereference attributes that use distinguished name (DN) syntax, such as "uniqueMember". With this patch, the "deref" plug-in can dereference such attributes and additionally "Name and Optional UID" syntax. As a result, the "deref" plug-in now supports any syntax. (BZ#1435365)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-04-11" />
+          <updated date="2017-04-11" />
+          <cve cvss3="6.5/CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-119" href="https://access.redhat.com/security/cve/CVE-2017-2668" public="20170410">CVE-2017-2668</cve>
+          <bugzilla id="1435365" href="https://bugzilla.redhat.com/1435365">Unable to dereference unqiemember attribute because it is dn [#UID] not dn syntax</bugzilla>
+          <bugzilla id="1436575" href="https://bugzilla.redhat.com/1436575">CVE-2017-2668 389-ds-base: Remote crash via crafted LDAP messages</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="389-ds-base is earlier than 0:1.2.11.15-91.el6_9" test_ref="oval:com.redhat.rhsa:tst:20170893009" />
+            <criterion comment="389-ds-base is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170893010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="389-ds-base-devel is earlier than 0:1.2.11.15-91.el6_9" test_ref="oval:com.redhat.rhsa:tst:20170893005" />
+            <criterion comment="389-ds-base-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170893006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="389-ds-base-libs is earlier than 0:1.2.11.15-91.el6_9" test_ref="oval:com.redhat.rhsa:tst:20170893007" />
+            <criterion comment="389-ds-base-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170893008" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -9076,6 +9232,82 @@ https://access.redhat.com/support/policy/updates/errata/</description>
       <object object_ref="oval:com.redhat.rhsa:obj:20170061001" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170862004" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892005" check="at least one" comment="kernel-abi-whitelists is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892007" check="at least one" comment="kernel-doc is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892009" check="at least one" comment="kernel-firmware is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892011" check="at least one" comment="perf is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892013" check="at least one" comment="python-perf is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892015" check="at least one" comment="kernel-headers is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892017" check="at least one" comment="kernel-kdump is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892019" check="at least one" comment="kernel-debug-devel is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892021" check="at least one" comment="kernel-devel is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892023" check="at least one" comment="kernel-debug is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892025" check="at least one" comment="kernel-kdump-devel is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892027" check="at least one" comment="kernel is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170892029" check="at least one" comment="kernel-bootwrapper is earlier than 0:2.6.32-696.1.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170892003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170893005" check="at least one" comment="389-ds-base-devel is earlier than 0:1.2.11.15-91.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170893005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170893003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170893006" check="at least one" comment="389-ds-base-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170893005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170893007" check="at least one" comment="389-ds-base-libs is earlier than 0:1.2.11.15-91.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170893006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170893003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170893008" check="at least one" comment="389-ds-base-libs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170893006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170893009" check="at least one" comment="389-ds-base is earlier than 0:1.2.11.15-91.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170893007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170893003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20170893010" check="at least one" comment="389-ds-base is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170893007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -9900,6 +10132,15 @@ https://access.redhat.com/support/policy/updates/errata/</description>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170847007" version="602">
       <name>curl</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170893005" version="601">
+      <name>389-ds-base-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170893006" version="601">
+      <name>389-ds-base-libs</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20170893007" version="601">
+      <name>389-ds-base</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -10189,6 +10430,12 @@ https://access.redhat.com/support/policy/updates/errata/</description>
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170862004" version="602">
       <evr datatype="evr_string" operation="less than">0:5Client-5.11.0.9</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170892003" version="601">
+      <evr datatype="evr_string" operation="less than">0:2.6.32-696.1.1.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20170893003" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.2.11.15-91.el6_9</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
