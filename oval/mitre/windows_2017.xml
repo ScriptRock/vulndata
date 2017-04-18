@@ -19347,6 +19347,567 @@
         <criterion comment="Check that wsssetup.dll version is less than 15.0.4911.1000" test_ref="oval:org.cisecurity:tst:2880" />
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:2126" class="vulnerability" version="1">
+      <metadata>
+        <title>Windows DNS Query Information Disclosure Vulnerability – CVE-2017-0057 (MS17-012)</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-0057" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0057" source="CVE" />
+        <description>DNS client in Microsoft Windows 8.1; Windows Server 2012 R2, Windows RT 8.1; Windows 10 Gold, 1511, and 1607; and Windows Server 2016 fails to properly process DNS queries, which allows remote attackers to obtain sensitive information via (1) convincing a workstation user to visit an untrusted webpage or (2) tricking a server into sending a DNS query to a malicious DNS server, aka "Windows DNS Query Information Disclosure Vulnerability."</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-11T12:08:46+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          </criteria>
+          <criterion comment="Check if Dnsapi.dll version is less than 6.3.9600.18592" test_ref="oval:org.cisecurity:tst:2893" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+            <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          </criteria>
+          <criterion comment="Check if Dnsapi.dll version is less than 10.0.10240.17319" test_ref="oval:org.cisecurity:tst:2903" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 Version 1511 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          </criteria>
+          <criterion comment="Check if Dnsapi.dll version is less than 10.0.10586.839" test_ref="oval:org.cisecurity:tst:2901" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 Version 1607/Windows Server 2016 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 Version 1607/Windows Server 2016 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="Check if Dnsapi.dll version is less than 10.0.14393.953" test_ref="oval:org.cisecurity:tst:2896" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2127" class="vulnerability" version="1">
+      <metadata>
+        <title>SMBv2/SMBv3 Null Dereference Denial of Service Vulnerability – CVE-2017-0016 (MS17-012)</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-0016" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0016" source="CVE" />
+        <description>Microsoft Windows 10 Gold, 1511, and 1607; Windows 8.1; Windows RT 8.1; Windows Server 2012 R2, and Windows Server 2016 do not properly handle certain requests in SMBv2 and SMBv3 packets, which allows remote attackers to execute arbitrary code via a crafted SMBv2 or SMBv3 packet to the Server service, aka "SMBv2/SMBv3 Null Dereference Denial of Service Vulnerability."</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-11T12:08:46+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          </criteria>
+          <criterion comment="Check if Srv.sys version is less than 6.3.9600.18604" test_ref="oval:org.cisecurity:tst:2905" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+            <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          </criteria>
+          <criterion comment="Check if Srv.sys version is less than 10.0.10240.17319" test_ref="oval:org.cisecurity:tst:2907" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 Version 1511 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          </criteria>
+          <criterion comment="Check if Srv.sys version is less than 10.0.10586.839" test_ref="oval:org.cisecurity:tst:2891" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 Version 1607/Windows Server 2016 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 Version 1607/Windows Server 2016 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="Check if Srv.sys version is less than 10.0.14393.953" test_ref="oval:org.cisecurity:tst:2890" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2128" class="vulnerability" version="1">
+      <metadata>
+        <title>Windows DLL Loading Remote Code Execution Vulnerability – CVE-2017-0039 (MS17-012)</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+        </affected>
+        <reference ref_id="CVE-2017-0039" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0039" source="CVE" />
+        <description>Microsoft Windows Vista SP2 and Server 2008 SP2 mishandle dynamic link library (DLL) loading, which allows local users to gain privileges via a crafted application, aka "Library Loading Input Validation Remote Code Execution Vulnerability."</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-11T12:08:46+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Windows Vista/Server 2008 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows Vista/Server 2008 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+            <extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+            <extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+            <extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+            <extend_definition comment="Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6150" />
+          </criteria>
+          <criteria comment="Check for file version" operator="OR">
+            <criterion comment="Check if Imjppdmg.exe version is less than 10.0.6002.19729" test_ref="oval:org.cisecurity:tst:2910" />
+            <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+              <criterion comment="Check if Imjppdmg.exe version is greater than or equal to 10.0.6002.24000" test_ref="oval:org.cisecurity:tst:2909" />
+              <criterion comment="Check if Imjppdmg.exe version is less than 10.0.6002.24052" test_ref="oval:org.cisecurity:tst:2894" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft Windows 7/Server 2008 R2 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+          </criteria>
+          <criterion comment="Check if Imjppdmg.exe version is less than 10.1.7601.23656" test_ref="oval:org.cisecurity:tst:2900" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2129" class="vulnerability" version="1">
+      <metadata>
+        <title>Device Guard Security Feature Bypass Vulnerability – CVE-2017-0007 (MS17-012)</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-0007" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0007" source="CVE" />
+        <description>Device Guard in Microsoft Windows 10 Gold, 1511, 1607, and Windows Server 2016 allows remote attackers to modify PowerShell script without invalidating associated signatures, aka "PowerShell Security Feature Bypass Vulnerability."</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-11T12:08:46+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+            <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          </criteria>
+          <criterion comment="Check if Wintrust.dll version is less than 10.0.10240.17319" test_ref="oval:org.cisecurity:tst:2892" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 Version 1511 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          </criteria>
+          <criterion comment="Check if Wintrust.dll version is less than 10.0.10586.839" test_ref="oval:org.cisecurity:tst:2908" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 Version 1607/Windows Server 2016 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 Version 1607/Windows Server 2016 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="Check if Wintrust.dll version is less than 10.0.14393.953" test_ref="oval:org.cisecurity:tst:2902" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2130" class="vulnerability" version="1">
+      <metadata>
+        <title>Windows HelpPane Elevation of Privilege Vulnerability  – CVE-2017-0100 (MS17-012)</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-0100" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0100" source="CVE" />
+        <description>A DCOM object in Helppane.exe in Microsoft Windows 7 SP1; Windows Server 2008 R2; Windows 8.1; Windows Server 2012 Gold and R2; Windows RT 8.1; Windows 10 Gold, 1511, and 1607; and Windows Server 2016 allows local users to gain privileges via a crafted application, aka "Windows HelpPane Elevation of Privilege Vulnerability."</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-11T12:08:46+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Windows 7/Server 2008 R2 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+          </criteria>
+          <criterion comment="Check if Helppane.exe version is less than 6.1.7601.23674" test_ref="oval:org.cisecurity:tst:2899" />
+        </criteria>
+        <criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          </criteria>
+          <criterion comment="Check if Helppane.exe version is less than 6.3.9600.18589" test_ref="oval:org.cisecurity:tst:2895" />
+        </criteria>
+        <criteria comment="Microsoft Windows Server 2012 is installed + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+          <criterion comment="Check if Helppane.exe version is less than 6.2.9200.22082" test_ref="oval:org.cisecurity:tst:2904" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+            <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          </criteria>
+          <criterion comment="Check if Helppane.exe version is less than 10.0.10240.17319" test_ref="oval:org.cisecurity:tst:2897" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 Version 1511 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          </criteria>
+          <criterion comment="Check if Helppane.exe version is less than 10.0.10586.839" test_ref="oval:org.cisecurity:tst:2906" />
+        </criteria>
+        <criteria comment="Microsoft Windows 10 Version 1607/Windows Server 2016 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows 10 Version 1607/Windows Server 2016 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="Check if Helppane.exe version is less than 10.0.14393.953" test_ref="oval:org.cisecurity:tst:2898" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2131" class="vulnerability" version="1">
+      <metadata>
+        <title>iSNS Server Memory Corruption Vulnerability – CVE-2017-0104 (MS17-012)</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-0104" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0104" source="CVE" />
+        <description>The iSNS Server service in Microsoft Windows Server 2008 SP2 and R2, Windows Server 2012 Gold and R2, and Windows Server 2016 allows remote attackers to issue malicious requests via an integer overflow, aka "iSNS Server Memory Corruption Vulnerability."</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-12T06:46:53+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows OS + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Windows Server 2008 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows Server 2008 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+            <extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+          </criteria>
+          <criteria comment="Check for file version" operator="OR">
+            <criterion comment="Check if Isnssrv.dll version is less than 6.0.6002.19741" test_ref="oval:org.cisecurity:tst:2912" />
+            <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+              <criterion comment="Check if Isnssrv.dll version is greater than or equal to 6.0.6002.24000" test_ref="oval:org.cisecurity:tst:2916" />
+              <criterion comment="Check if Isnssrv.dll version is less than 6.0.6002.24065" test_ref="oval:org.cisecurity:tst:2914" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft Windows Server 2008 R2 is installed + file version" operator="AND">
+          <criteria comment="Microsoft Windows Server 2008 R2 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+          </criteria>
+          <criterion comment="Check if Isnssrv.dll version is less than 6.1.7601.23692" test_ref="oval:org.cisecurity:tst:2913" />
+        </criteria>
+        <criteria comment="Microsoft Windows Server 2012 R2 is installed + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          <criterion comment="Check if Isnssrv.dll version is less than 6.3.9600.18592" test_ref="oval:org.cisecurity:tst:2915" />
+        </criteria>
+        <criteria comment="Microsoft Windows Server 2012 is installed + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+          <criterion comment="Check if Isnssrv.dll version is less than 6.2.9200.22086" test_ref="oval:org.cisecurity:tst:2917" />
+        </criteria>
+        <criteria comment="Microsoft Windows Windows Server 2016 is installed + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          <criterion comment="Check if Isnssrv.dll version is less than 10.0.14393.953" test_ref="oval:org.cisecurity:tst:2911" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2132" class="vulnerability" version="1">
+      <metadata>
+        <title>Adobe Flash Player versions 24.0.0.221 and earlier have an exploitable memory corruption vulnerability - CVE-2017-2999</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2017-2999" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-2999" source="CVE" />
+        <description>Adobe Flash Player versions 24.0.0.221 and earlier have an exploitable memory corruption vulnerability in the Primetime TVSDK functionality related to hosting playback surface. Successful exploitation could lead to arbitrary code execution.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-12T09:25:21+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Adobe Flash Player + vulnerable file version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than 25.0.0.127" test_ref="oval:org.cisecurity:tst:2801" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than 25.0.0.127" test_ref="oval:org.cisecurity:tst:2799" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than 25.0.0.127" test_ref="oval:org.cisecurity:tst:2800" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2133" class="vulnerability" version="1">
+      <metadata>
+        <title>Adobe Flash Player versions 24.0.0.221 and earlier have an exploitable buffer overflow / underflow vulnerability - CVE-2017-2997</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2017-2997" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-2997" source="CVE" />
+        <description>Adobe Flash Player versions 24.0.0.221 and earlier have an exploitable buffer overflow / underflow vulnerability in the Primetime TVSDK that supports customizing ad information. Successful exploitation could lead to arbitrary code execution.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-12T09:25:21+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Adobe Flash Player + vulnerable file version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than 25.0.0.127" test_ref="oval:org.cisecurity:tst:2801" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than 25.0.0.127" test_ref="oval:org.cisecurity:tst:2799" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than 25.0.0.127" test_ref="oval:org.cisecurity:tst:2800" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2134" class="vulnerability" version="1">
+      <metadata>
+        <title>Adobe Flash Player versions 24.0.0.221 and earlier have an exploitable memory corruption vulnerability - CVE-2017-2998</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2017-2998" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-2998" source="CVE" />
+        <description>Adobe Flash Player versions 24.0.0.221 and earlier have an exploitable memory corruption vulnerability in the Primetime TVSDK API functionality related to timeline interactions. Successful exploitation could lead to arbitrary code execution.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-12T09:25:21+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Adobe Flash Player + vulnerable file version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than 25.0.0.127" test_ref="oval:org.cisecurity:tst:2801" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than 25.0.0.127" test_ref="oval:org.cisecurity:tst:2799" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than 25.0.0.127" test_ref="oval:org.cisecurity:tst:2800" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2135" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Exchange Server Elevation of Privilege Vulnerability -CVE-2017-0110 (MS17-015)</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Exchange Server 2013</product>
+          <product>Microsoft Exchange Server 2016</product>
+        </affected>
+        <reference ref_id="CVE-2017-0110" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0110" source="CVE" />
+        <description>Cross-site scripting (XSS) vulnerability in Microsoft Exchange Outlook Web Access (OWA) allows remote attackers to inject arbitrary web script or HTML via a crafted email or chat client, aka "Microsoft Exchange Server Elevation of Privilege Vulnerability."</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-18T00:00:00+08:00">
+              <contributor organization="DTCC">Jeff Albert</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="MS Exchange + Vulnerable version" operator="OR">
+        <criteria comment="Microsoft Exchange Server 2013 CU14 + vulnerable file version" operator="AND">
+          <criteria comment="Microsoft Exchange Server 2013" operator="OR">
+            <extend_definition comment="Microsoft Exchange Server 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:28981" />
+            <extend_definition comment="Microsoft Exchange Server 2013 Cumulative Update 14 is installed" definition_ref="oval:org.cisecurity:def:2136" />
+          </criteria>
+          <criterion comment="Check if the version of Exsetup.exe is less than 15.0.1236.6" test_ref="oval:org.cisecurity:tst:2921" />
+        </criteria>
+        <criteria comment="Microsoft Exchange Server 2016 CU3 + vulnerable file version" operator="AND">
+          <extend_definition comment="Microsoft Exchange Server 2016 Cumulative Update 3 is installed" definition_ref="oval:org.cisecurity:def:2137" />
+          <criterion comment="Check if the version of Exsetup.exe is less than 15.1.544.30" test_ref="oval:org.cisecurity:tst:2918" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2136" class="inventory" version="1">
+      <metadata>
+        <title>Microsoft Exchange Server 2013 Cumulative Update 14 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Exchange Server 2013</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:exchange_server:2013:cumulative_update_14" source="CPE" />
+        <description>Microsoft Exchange Server 2013 Cumulative Update 14 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-18T00:00:00+08:00">
+              <contributor organization="DTCC">Jeff Albert</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Check if Exchange Server 2013 Cumulative Update 14 is installed" test_ref="oval:org.cisecurity:tst:2920" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2137" class="inventory" version="1">
+      <metadata>
+        <title>Microsoft Exchange Server 2016 Cumulative Update 3 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <product>Microsoft Exchange Server 2016</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:exchange_server:2016:cumulative_update_3" source="CPE" />
+        <description>Microsoft Exchange Server 2016 Cumulative Update 3 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-18T00:00:00+08:00">
+              <contributor organization="DTCC">Jeff Albert</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Check if Microsoft Exchange Server 2016 Cumulative Update 3 is installed" test_ref="oval:org.cisecurity:tst:2919" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:737" class="inventory" version="30">
       <metadata>
         <title>Microsoft Word Viewer is installed</title>
@@ -22477,6 +23038,35 @@
         <criterion comment="Check if Microsoft Internet Explorer 11 is installed" test_ref="oval:org.mitre.oval:tst:87142" />
       </criteria>
     </definition>
+    <definition id="oval:org.mitre.oval:def:18626" class="inventory" version="11">
+      <metadata>
+        <title>Microsoft Exchange Server 2013 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <product>Microsoft Exchange Server 2013</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:exchange_server:2013" source="CPE" />
+        <description>Microsoft Exchange Server 2013 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2013-09-03T10:20:20">
+              <contributor organization="SecPod Technologies">SecPod Team</contributor>
+            </submitted>
+            <status_change date="2013-09-04T14:49:15.323-04:00">DRAFT</status_change>
+            <status_change date="2013-09-23T04:05:38.765-04:00">INTERIM</status_change>
+            <status_change date="2013-10-14T04:00:17.937-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Check if Exchange Server 2013 is installed" test_ref="oval:org.mitre.oval:tst:86283" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:18663" class="inventory" version="17">
       <metadata>
         <title>Microsoft Word Viewer 2003 SP3 is installed</title>
@@ -23449,6 +24039,38 @@
       <criteria>
         <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99" />
         <criterion comment="Windows 10 is installed" test_ref="oval:org.mitre.oval:tst:141330" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:28981" class="inventory" version="6">
+      <metadata>
+        <title>Microsoft Exchange Server 2013 SP1 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Microsoft Exchange Server 2013</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:exchange_server:2013:sp1" source="CPE" />
+        <description>Microsoft Exchange Server 2013 SP1 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2015-06-05T08:31:03">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </submitted>
+            <status_change date="2015-06-10T14:07:22.893-04:00">DRAFT</status_change>
+            <status_change date="2015-06-29T04:00:07.877-04:00">INTERIM</status_change>
+            <status_change date="2015-07-20T04:00:11.683-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Check if Exchange Server 2013 SP1 is installed" test_ref="oval:org.mitre.oval:tst:138811" />
+        <extend_definition comment="Microsoft Exchange Server 2013 is installed" definition_ref="oval:org.mitre.oval:def:18626" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:29117" class="inventory" version="30">
@@ -25111,6 +25733,134 @@
       <object object_ref="oval:org.mitre.oval:obj:30360" />
       <state state_ref="oval:org.cisecurity:ste:2201" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:2890" check="all" check_existence="at_least_one_exists" comment="Check if Srv.sys version is less than 10.0.14393.953" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:384" />
+      <state state_ref="oval:org.cisecurity:ste:2124" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2891" check="all" check_existence="at_least_one_exists" comment="Check if Srv.sys version is less than 10.0.10586.839" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:384" />
+      <state state_ref="oval:org.cisecurity:ste:2123" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2892" check="all" check_existence="at_least_one_exists" comment="Check if Wintrust.dll version is less than 10.0.10240.17319" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:999" />
+      <state state_ref="oval:org.cisecurity:ste:2125" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2893" check="all" check_existence="at_least_one_exists" comment="Check if Dnsapi.dll version is less than 6.3.9600.18592" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:139" />
+      <state state_ref="oval:org.cisecurity:ste:2211" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2894" check="all" check_existence="at_least_one_exists" comment="Check if Imjppdmg.exe version is less than 10.0.6002.24052" version="1">
+      <object object_ref="oval:org.cisecurity:obj:624" />
+      <state state_ref="oval:org.cisecurity:ste:2204" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2895" check="all" check_existence="at_least_one_exists" comment="Check if Helppane.exe version is less than 6.3.9600.18589" version="1">
+      <object object_ref="oval:org.cisecurity:obj:625" />
+      <state state_ref="oval:org.cisecurity:ste:2207" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2896" check="all" check_existence="at_least_one_exists" comment="Check if Dnsapi.dll version is less than 10.0.14393.953" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:139" />
+      <state state_ref="oval:org.cisecurity:ste:2124" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2897" check="all" check_existence="at_least_one_exists" comment="Check if Helppane.exe version is less than 10.0.10240.17319" version="1">
+      <object object_ref="oval:org.cisecurity:obj:625" />
+      <state state_ref="oval:org.cisecurity:ste:2125" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2898" check="all" check_existence="at_least_one_exists" comment="Check if Helppane.exe version is less than 10.0.14393.953" version="1">
+      <object object_ref="oval:org.cisecurity:obj:625" />
+      <state state_ref="oval:org.cisecurity:ste:2124" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2899" check="all" check_existence="at_least_one_exists" comment="Check if Helppane.exe version is less than 6.1.7601.23674" version="1">
+      <object object_ref="oval:org.cisecurity:obj:625" />
+      <state state_ref="oval:org.cisecurity:ste:2206" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2900" check="all" check_existence="at_least_one_exists" comment="Check if Imjppdmg.exe version is less than 10.1.7601.23656" version="1">
+      <object object_ref="oval:org.cisecurity:obj:624" />
+      <state state_ref="oval:org.cisecurity:ste:2210" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2901" check="all" check_existence="at_least_one_exists" comment="Check if Dnsapi.dll version is less than 10.0.10586.839" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:139" />
+      <state state_ref="oval:org.cisecurity:ste:2123" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2902" check="all" check_existence="at_least_one_exists" comment="Check if Wintrust.dll version is less than 10.0.14393.953" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:999" />
+      <state state_ref="oval:org.cisecurity:ste:2124" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2903" check="all" check_existence="at_least_one_exists" comment="Check if Dnsapi.dll version is less than 10.0.10240.17319" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:139" />
+      <state state_ref="oval:org.cisecurity:ste:2125" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2904" check="all" check_existence="at_least_one_exists" comment="Check if Helppane.exe version is less than 6.2.9200.22082" version="1">
+      <object object_ref="oval:org.cisecurity:obj:625" />
+      <state state_ref="oval:org.cisecurity:ste:2205" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2905" check="all" check_existence="at_least_one_exists" comment="Check if Srv.sys version is less than 6.3.9600.18604" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:384" />
+      <state state_ref="oval:org.cisecurity:ste:2209" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2906" check="all" check_existence="at_least_one_exists" comment="Check if Helppane.exe version is less than 10.0.10586.839" version="1">
+      <object object_ref="oval:org.cisecurity:obj:625" />
+      <state state_ref="oval:org.cisecurity:ste:2123" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2907" check="all" check_existence="at_least_one_exists" comment="Check if Srv.sys version is less than 10.0.10240.17319" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:384" />
+      <state state_ref="oval:org.cisecurity:ste:2125" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2908" check="all" check_existence="at_least_one_exists" comment="Check if Wintrust.dll version is less than 10.0.10586.839" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:999" />
+      <state state_ref="oval:org.cisecurity:ste:2123" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2909" check="all" check_existence="at_least_one_exists" comment="Check if Imjppdmg.exe version is greater than or equal to 10.0.6002.24000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:624" />
+      <state state_ref="oval:org.cisecurity:ste:2208" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2910" check="all" check_existence="at_least_one_exists" comment="Check if Imjppdmg.exe version is less than 10.0.6002.19729" version="1">
+      <object object_ref="oval:org.cisecurity:obj:624" />
+      <state state_ref="oval:org.cisecurity:ste:2212" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2911" check="all" check_existence="at_least_one_exists" comment="Check if Isnssrv.dll version is less than 10.0.14393.953" version="1">
+      <object object_ref="oval:org.cisecurity:obj:626" />
+      <state state_ref="oval:org.cisecurity:ste:2124" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2912" check="all" check_existence="at_least_one_exists" comment="Check if Isnssrv.dll version is less than 6.0.6002.19741" version="1">
+      <object object_ref="oval:org.cisecurity:obj:626" />
+      <state state_ref="oval:org.cisecurity:ste:2122" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2913" check="all" check_existence="at_least_one_exists" comment="Check if Isnssrv.dll version is less than 6.1.7601.23692" version="1">
+      <object object_ref="oval:org.cisecurity:obj:626" />
+      <state state_ref="oval:org.cisecurity:ste:2213" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2914" check="all" check_existence="at_least_one_exists" comment="Check if Isnssrv.dll version is less than 6.0.6002.24065" version="1">
+      <object object_ref="oval:org.cisecurity:obj:626" />
+      <state state_ref="oval:org.cisecurity:ste:2129" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2915" check="all" check_existence="at_least_one_exists" comment="Check if Isnssrv.dll version is less than 6.3.9600.18592" version="1">
+      <object object_ref="oval:org.cisecurity:obj:626" />
+      <state state_ref="oval:org.cisecurity:ste:2084" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2916" check="all" check_existence="at_least_one_exists" comment="Check if Isnssrv.dll version is greater than or equal to 6.0.6002.24000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:626" />
+      <state state_ref="oval:org.cisecurity:ste:1703" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2917" check="all" check_existence="at_least_one_exists" comment="Check if Isnssrv.dll version is less than 6.2.9200.22086" version="1">
+      <object object_ref="oval:org.cisecurity:obj:626" />
+      <state state_ref="oval:org.cisecurity:ste:2146" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:2918" check="all" check_existence="at_least_one_exists" comment="Check if the version of Exsetup.exe is less than 15.1.544.30" version="1">
+      <object object_ref="oval:org.cisecurity:obj:366" />
+      <state state_ref="oval:org.cisecurity:ste:2216" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:2919" check="all" check_existence="at_least_one_exists" comment="Check if Microsoft Exchange Server 2016 Cumulative Update 3 is installed" version="1">
+      <object object_ref="oval:org.cisecurity:obj:364" />
+      <state state_ref="oval:org.cisecurity:ste:2215" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:2920" check="all" check_existence="at_least_one_exists" comment="Check if Exchange Server 2013 Cumulative Update 14 is installed" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:26779" />
+      <state state_ref="oval:org.cisecurity:ste:2217" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:2921" check="all" check_existence="at_least_one_exists" comment="Check if the version of Exsetup.exe is less than 15.0.1236.6" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:26548" />
+      <state state_ref="oval:org.cisecurity:ste:2214" />
+    </file_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="3">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
     </file_test>
@@ -25335,6 +26085,10 @@
       <object object_ref="oval:org.mitre.oval:obj:15322" />
       <state state_ref="oval:org.mitre.oval:ste:21301" />
     </file_test>
+    <registry_test id="oval:org.mitre.oval:tst:86283" check="all" check_existence="at_least_one_exists" comment="Check if Exchange Server 2013 is installed" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:26779" />
+      <state state_ref="oval:org.mitre.oval:ste:23477" />
+    </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:86346" check="at least one" check_existence="at_least_one_exists" comment="JRockit R28 is installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:26862" />
     </registry_test>
@@ -25457,6 +26211,11 @@
     <file_test id="oval:org.mitre.oval:tst:125474" check="all" check_existence="at_least_one_exists" comment="The file flash.*.ocx exists" version="34">
       <object object_ref="oval:org.mitre.oval:obj:41861" />
     </file_test>
+    <registry_test id="oval:org.mitre.oval:tst:138811" check="all" check_existence="at_least_one_exists" comment="Check if Exchange Server 2013 SP1 is installed" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:44201" />
+      <state state_ref="oval:org.mitre.oval:ste:38839" />
+      <state state_ref="oval:org.mitre.oval:ste:38897" />
+    </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:141330" check="at least one" check_existence="at_least_one_exists" comment="Windows 10 is installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:5590" />
       <state state_ref="oval:org.mitre.oval:ste:38974" />
@@ -25724,6 +26483,21 @@
     <file_object id="oval:org.cisecurity:obj:342" comment="Object holds the path for glcndfilter.dll" version="31">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
       <filename>glcndfilter.dll</filename>
+    </file_object>
+    <registry_object id="oval:org.cisecurity:obj:364" comment="Object holds if Exchange Server 2016 is installed" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">^SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Microsoft Exchange.*$</key>
+      <name>DisplayName</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:365" comment="Object holds the install path for Microsoft Exchange Server!MsiInstallPath" version="1">
+      <behaviors recurse_direction="down" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\ExchangeServer\</key>
+      <name>MsiInstallPath</name>
+    </registry_object>
+    <file_object id="oval:org.cisecurity:obj:366" comment="Object holds the details of ExSetup.exe (2016)" version="3">
+      <path var_ref="oval:org.cisecurity:var:40" />
+      <filename>ExSetup.exe</filename>
     </file_object>
     <registry_object id="oval:org.cisecurity:obj:396" comment="Google Chrome (admin install for all users)" version="4">
       <set>
@@ -26082,11 +26856,27 @@
       <path operation="pattern match" var_check="all" var_ref="oval:org.cisecurity:var:62" />
       <filename>Custerr.dll</filename>
     </file_object>
+    <file_object id="oval:org.cisecurity:obj:624" comment="Object holds the path for Imjppdmg.exe" version="1">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:1531" />
+      <filename>Imjppdmg.exe</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:625" comment="Object holds the path for Helppane.exe" version="1">
+      <path var_check="all" var_ref="oval:org.cisecurity:var:63" />
+      <filename>Helppane.exe</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:626" comment="Object holds the path for Isnssrv.dll" version="1">
+      <path operation="pattern match" var_check="all" var_ref="oval:org.cisecurity:var:64" />
+      <filename>Isnssrv.dll</filename>
+    </file_object>
     <file_object id="oval:org.mitre.oval:obj:3" version="46">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
       <filename>Msxml3.dll</filename>
     </file_object>
     <family_object id="oval:org.mitre.oval:obj:99" comment="This is the default family object. Only one family object should exist." version="1" />
+    <file_object id="oval:org.mitre.oval:obj:139" version="47">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
+      <filename>dnsapi.dll</filename>
+    </file_object>
     <registry_object id="oval:org.mitre.oval:obj:219" comment="This registry key identifies the system root." version="3">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
@@ -26147,6 +26937,10 @@
         <object_reference>oval:org.mitre.oval:obj:41329</object_reference>
       </set>
     </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:999" version="47">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
+      <filename>wintrust.dll</filename>
+    </file_object>
     <file_object id="oval:org.mitre.oval:obj:1517" comment="Object holds, if file wordview.exe is present" version="4">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:1946" />
       <filename>wordview.exe</filename>
@@ -26900,6 +27694,10 @@
       <key operation="pattern match">^SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Office14.*$</key>
       <name>DisplayVersion</name>
     </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:26548" comment="Object holds the details of ExSetup.exe (2013)" version="1">
+      <path var_ref="oval:org.mitre.oval:var:1738" />
+      <filename>ExSetup.exe</filename>
+    </file_object>
     <file_object id="oval:org.mitre.oval:obj:26571" comment="Object holds the file xlsrv.dll in SharePoint Server 2010" version="1">
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1138" />
       <filename>xlsrv.dll</filename>
@@ -26937,10 +27735,20 @@
       <key operation="pattern match">^SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Office14.*$</key>
       <name>DisplayVersion</name>
     </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:26763" comment="Object holds the install path for Microsoft Exchange Server 2013" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\ExchangeServer\v15\Setup</key>
+      <name>MsiInstallPath</name>
+    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:26773" comment="Object holds the details of xlsrv.dll in Microsoft Office 2013 Excel Services" version="3">
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1682" />
       <filename>xlsrv.dll</filename>
     </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:26779" comment="Object holds if Exchange Server 2013 is installed" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Exchange v15</key>
+      <name>DisplayName</name>
+    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:26860" comment="Object holds the path to the Hvax64.exe" version="47">
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:200" />
       <filename>Hvax64.exe</filename>
@@ -27259,6 +28067,11 @@
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1921" />
       <filename>sword.dll</filename>
     </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:44201" comment="Object holds if Exchange Server 2013 is installed" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Exchange v15</key>
+      <name>DisplayVersion</name>
+    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:44207" comment="Object holds the details of Ogl.dll (Live Meeting 2007)" version="2">
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1936" />
       <filename>ogl.dll</filename>
@@ -27992,6 +28805,48 @@
     <file_state id="oval:org.cisecurity:ste:2203" comment="State matches a version less than 14.0.7179.5000" version="1">
       <version datatype="version" operation="less than">14.0.7179.5000</version>
     </file_state>
+    <file_state id="oval:org.cisecurity:ste:2204" comment="State matches version less than 10.0.6002.24052" version="1">
+      <version datatype="version" operation="less than">10.0.6002.24052</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2205" comment="State matches version less than 6.2.9200.22082" version="1">
+      <version datatype="version" operation="less than">6.2.9200.22082</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2206" comment="State matches version less than 6.1.7601.23674" version="1">
+      <version datatype="version" operation="less than">6.1.7601.23674</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2207" comment="State matches version less than 6.3.9600.18589" version="1">
+      <version datatype="version" operation="less than">6.3.9600.18589</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2208" comment="State matches version greater than or equal 10.0.6002.24000" version="1">
+      <version datatype="version" operation="greater than or equal">10.0.6002.24000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2209" comment="State matches version less than 6.3.9600.18604" version="1">
+      <version datatype="version" operation="less than">6.3.9600.18604</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2210" comment="State matches version less than 10.1.7601.23656" version="1">
+      <version datatype="version" operation="less than">10.1.7601.23656</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2211" comment="State matches version less than 6.3.9600.18592" version="1">
+      <version datatype="version" operation="less than">6.3.9600.18592</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2212" comment="State matches version less than 10.0.6002.19729" version="1">
+      <version datatype="version" operation="less than">10.0.6002.19729</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2213" comment="State matches version less than 6.1.7601.23692" version="1">
+      <version datatype="version" operation="less than">6.1.7601.23692</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2214" comment="State holds if the version is less than 15.0.1236.6" version="1">
+      <version datatype="version" operation="less than">15.0.1236.6</version>
+    </file_state>
+    <registry_state id="oval:org.cisecurity:ste:2215" comment="State holds the value Microsoft Exchange Server 2016 Cumulative Update 3" version="1">
+      <value>Microsoft Exchange Server 2016 Cumulative Update 3</value>
+    </registry_state>
+    <file_state id="oval:org.cisecurity:ste:2216" comment="State holds if the version is less than 15.1.544.30" version="1">
+      <version datatype="version" operation="less than">15.1.544.30</version>
+    </file_state>
+    <registry_state id="oval:org.cisecurity:ste:2217" comment="State holds the value Microsoft Exchange Server 2013 Cumulative Update 14" version="1">
+      <value>Microsoft Exchange Server 2013 Cumulative Update 14</value>
+    </registry_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="2">
       <family operation="case insensitive equals">windows</family>
     </family_state>
@@ -28109,6 +28964,9 @@
     <registry_state id="oval:org.mitre.oval:ste:23428" comment="State holds if the version is greater than or equal to 14.0.7015.1000" version="2">
       <value datatype="version" operation="greater than or equal">14.0.7015.1000</value>
     </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:23477" comment="State holds the value Microsoft Exchange Server 2013" version="1">
+      <value operation="pattern match">^Microsoft Exchange Server 2013.*$</value>
+    </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:23979" comment="State matches if the version is equal to 14.0.7015.1000" version="2">
       <value datatype="version">14.0.7015.1000</value>
     </registry_state>
@@ -28156,6 +29014,12 @@
     </file_state>
     <registry_state id="oval:org.mitre.oval:ste:33569" comment="MySQL 5.6 check" version="1">
       <value>MySQL Server 5.6</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:38839" comment="Version of Microsoft Exchange Server 2013 is greater than or equal 15.0.847.32" version="1">
+      <value datatype="version" operation="greater than or equal">15.0.847.32</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:38897" comment="Version of Microsoft Exchange Server 2013 is less than 15.0.913.22" version="1">
+      <value datatype="version" operation="less than">15.0.913.22</value>
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:38974" comment="The registry key matches with Windows 10" version="1">
       <value operation="pattern match">^[a-zA-Z0-9\(\)\s]*[Ww][Ii][Nn][Dd][Oo][Ww][Ss] 10[a-zA-Z0-9\(\)\s]*$</value>
@@ -28234,6 +29098,12 @@
         <literal_component>\jre\bin\java.exe</literal_component>
       </concat>
     </local_variable>
+    <local_variable id="oval:org.cisecurity:var:40" comment="Var holds the path to Exchange Server\V15\Bin directory" datatype="string" version="3">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.cisecurity:obj:365" />
+        <literal_component>\Bin</literal_component>
+      </concat>
+    </local_variable>
     <constant_variable id="oval:org.cisecurity:var:43" comment="white list of companies for recursive java.exe" datatype="string" version="3">
       <value>N/A</value>
       <value>Oracle Corporation</value>
@@ -28294,6 +29164,18 @@
           <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
         </escape_regex>
         <literal_component>\\winsxs\\(wow64|amd64)_microsoft\.windows\.iis-httperrorsbinaries_31bf3856ad364e35_.+$</literal_component>
+      </concat>
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:63" comment="Common pattern for Helppane.exe directory" datatype="string" version="1">
+      <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:64" comment="Common pattern for Isnssrv.dll directory" datatype="string" version="1">
+      <concat>
+        <literal_component>^</literal_component>
+        <escape_regex>
+          <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
+        </escape_regex>
+        <literal_component>\\winsxs\\(x86|amd64)_microsoft\.windows\.isns_service_31bf3856ad364e35_.+$</literal_component>
       </concat>
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:11" comment="Microsoft Office Servers\12.0\Bin" datatype="string" version="1">
@@ -28434,6 +29316,12 @@
         <literal_component>\bin\java.exe</literal_component>
       </concat>
     </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:1531" comment="IMEJP10 subdirectory found in system32 directory" datatype="string" version="16">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
+        <literal_component>\System32\IME\IMEJP10</literal_component>
+      </concat>
+    </local_variable>
     <local_variable id="oval:org.mitre.oval:var:1556" comment="Variable holds the path to Program Files" datatype="string" version="2">
       <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:26628" />
     </local_variable>
@@ -28458,6 +29346,12 @@
       <concat>
         <literal_component>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\</literal_component>
         <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:24159" />
+      </concat>
+    </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:1738" comment="Var holds the path to Exchange Server\V15\Bin directory" datatype="string" version="1">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:26763" />
+        <literal_component>\Bin</literal_component>
       </concat>
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:1779" comment="Var holds file location for Ogl.dll (Lync 2010 Attendee for user)" datatype="string" version="5">
