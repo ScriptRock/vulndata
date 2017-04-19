@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1492518982</content_version>
+    <content_version>1492583493</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -4279,7 +4279,7 @@ Red Hat would like to thank the Mozilla project for reporting this issue. Upstre
         <affected family="unix">
           <platform>Red Hat Enterprise Linux 6</platform>
         </affected>
-        <reference ref_id="RHSA-2017:0559-01" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0559.html" source="RHSA" />
+        <reference ref_id="RHSA-2017:0559-01" ref_url="https://access.redhat.com/errata/RHSA-2017:0559" source="RHSA" />
         <reference ref_id="CVE-2016-5139" ref_url="https://access.redhat.com/security/cve/CVE-2016-5139" source="CVE" />
         <reference ref_id="CVE-2016-5158" ref_url="https://access.redhat.com/security/cve/CVE-2016-5158" source="CVE" />
         <reference ref_id="CVE-2016-5159" ref_url="https://access.redhat.com/security/cve/CVE-2016-5159" source="CVE" />
@@ -7654,6 +7654,105 @@ Security Fix(es):
           <criteria operator="AND">
             <criterion comment="qemu-kvm-tools is earlier than 10:1.5.3-126.el7_3.6" test_ref="oval:com.redhat.rhsa:tst:20170987007" />
             <criterion comment="qemu-kvm-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171095" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1095: bind security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1095-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1095" source="RHSA" />
+        <reference ref_id="CVE-2017-3136" ref_url="https://access.redhat.com/security/cve/CVE-2017-3136" source="CVE" />
+        <reference ref_id="CVE-2017-3137" ref_url="https://access.redhat.com/security/cve/CVE-2017-3137" source="CVE" />
+        <description>The Berkeley Internet Name Domain (BIND) is an implementation of the Domain Name System (DNS) protocols. BIND includes a DNS server (named); a resolver library (routines for applications to use when interfacing with DNS); and tools for verifying that the DNS server is operating correctly.
+
+Security Fix(es):
+
+* A denial of service flaw was found in the way BIND handled a query response containing CNAME or DNAME resource records in an unusual order. A remote attacker could use this flaw to make named exit unexpectedly with an assertion failure via a specially crafted DNS response. (CVE-2017-3137)
+
+* A denial of service flaw was found in the way BIND handled query requests when using DNS64 with "break-dnssec yes" option. A remote attacker could use this flaw to make named exit unexpectedly with an assertion failure via a specially crafted DNS request. (CVE-2017-3136)
+
+Red Hat would like to thank ISC for reporting these issues. Upstream acknowledges Oleg Gorokhov (Yandex) as the original reporter of CVE-2017-3136.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-04-19" />
+          <updated date="2017-04-19" />
+          <cve cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-617" href="https://access.redhat.com/security/cve/CVE-2017-3136" impact="moderate" public="20170412">CVE-2017-3136</cve>
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-617" href="https://access.redhat.com/security/cve/CVE-2017-3137" public="20170412">CVE-2017-3137</cve>
+          <bugzilla id="1441125" href="https://bugzilla.redhat.com/1441125">CVE-2017-3136 bind: Incorrect error handling causes assertion failure when using DNS64 with "break-dnssec yes;"</bugzilla>
+          <bugzilla id="1441133" href="https://bugzilla.redhat.com/1441133">CVE-2017-3137 bind: Processing a response containing CNAME or DNAME with unusual order can crash resolver</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="bind is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095007" />
+            <criterion comment="bind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-chroot is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095019" />
+            <criterion comment="bind-chroot is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-devel is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095015" />
+            <criterion comment="bind-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-libs is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095017" />
+            <criterion comment="bind-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-libs-lite is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095013" />
+            <criterion comment="bind-libs-lite is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-license is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095031" />
+            <criterion comment="bind-license is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062032" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-lite-devel is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095021" />
+            <criterion comment="bind-lite-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-pkcs11 is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095005" />
+            <criterion comment="bind-pkcs11 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-pkcs11-devel is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095025" />
+            <criterion comment="bind-pkcs11-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-pkcs11-libs is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095011" />
+            <criterion comment="bind-pkcs11-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-pkcs11-utils is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095023" />
+            <criterion comment="bind-pkcs11-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-sdb is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095009" />
+            <criterion comment="bind-sdb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-sdb-chroot is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095029" />
+            <criterion comment="bind-sdb-chroot is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="bind-utils is earlier than 32:9.9.4-38.el7_3.3" test_ref="oval:com.redhat.rhsa:tst:20171095027" />
+            <criterion comment="bind-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170062006" />
           </criteria>
         </criteria>
       </criteria>
@@ -12892,6 +12991,62 @@ Security Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20170083005" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170987003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095005" check="at least one" comment="bind-pkcs11 is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095007" check="at least one" comment="bind is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095009" check="at least one" comment="bind-sdb is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095011" check="at least one" comment="bind-pkcs11-libs is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095013" check="at least one" comment="bind-libs-lite is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095015" check="at least one" comment="bind-devel is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095017" check="at least one" comment="bind-libs is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095019" check="at least one" comment="bind-chroot is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095021" check="at least one" comment="bind-lite-devel is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095023" check="at least one" comment="bind-pkcs11-utils is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095025" check="at least one" comment="bind-pkcs11-devel is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095027" check="at least one" comment="bind-utils is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095029" check="at least one" comment="bind-sdb-chroot is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171095031" check="at least one" comment="bind-license is earlier than 32:9.9.4-38.el7_3.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170062018" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171095003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -14530,6 +14685,9 @@ Security Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170987003" version="601">
       <evr datatype="evr_string" operation="less than">10:1.5.3-126.el7_3.6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171095003" version="601">
+      <evr datatype="evr_string" operation="less than">32:9.9.4-38.el7_3.3</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
