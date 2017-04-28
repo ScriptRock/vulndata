@@ -27,6 +27,43 @@
         <criterion comment="Check for the presence of edgehtml.dll" test_ref="oval:org.cisecurity:tst:2" />
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:4" class="inventory" version="8">
+      <metadata>
+        <title>Microsoft .NET Framework 4.6 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Microsoft .NET Framework 4.6</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:.net_framework:4.6" source="CPE" />
+        <description>Microsoft .NET Framework 4.6 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2015-09-01T13:12:45">
+              <contributor organization="ALTX-SOFT">Sergey Artykhov</contributor>
+            </submitted>
+            <status_change date="2015-12-08T11:00:00.000-05:00">DRAFT</status_change>
+            <status_change date="2015-12-22T11:00:00.000-05:00">INTERIM</status_change>
+            <status_change date="2016-02-08T10:00:00.000-05:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criterion comment="Check if the release of .Net framework 4.6 (full) is equal to 393295" test_ref="oval:org.cisecurity:tst:5" />
+        <criterion comment="Check if the release of .Net framework 4.6 (client) is equal to 393295" test_ref="oval:org.cisecurity:tst:7" />
+        <criterion comment="Check if the release of .Net framework 4.6 (full) is equal to 393297" test_ref="oval:org.cisecurity:tst:4" />
+        <criterion comment="Check if the release of .Net framework 4.6 (client) is equal to 393297" test_ref="oval:org.cisecurity:tst:6" />
+      </criteria>
+    </definition>
     <definition id="oval:org.cisecurity:def:377" class="inventory" version="41">
       <metadata>
         <title>Microsoft Windows 10 (64-bit) is installed</title>
@@ -137,6 +174,61 @@
         <criterion comment="Windows 10 is installed" test_ref="oval:org.cisecurity:tst:565" />
         <criterion comment="Windows 10 build 10240 is installed" test_ref="oval:org.cisecurity:tst:562" />
         <criterion comment="a version of Windows for the x86 architecture is installed" test_ref="oval:org.mitre.oval:tst:3823" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:478" class="inventory" version="14">
+      <metadata>
+        <title>Microsoft .NET Framework 4.6.1 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Microsoft .NET Framework 4.6.1</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:.net_framework:4.6.1" source="CPE" />
+        <description>Microsoft .NET Framework 4.6.1 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2016-04-25T17:00:00+08:00">
+              <contributor organization="The Depository Trust and Clearing Corporation">Jeff Albert</contributor>
+            </submitted>
+            <status_change date="2016-04-29T12:00:00.000-05:00">DRAFT</status_change>
+            <status_change date="2016-05-14T15:00:00.000-04:00">INTERIM</status_change>
+            <status_change date="2016-05-27T15:00:00.000-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Windows 10 + registry release of .NET v4" operator="AND">
+          <extend_definition comment="Microsoft Windows 10 is installed" definition_ref="oval:org.mitre.oval:def:28545" />
+          <criteria comment="registry release of .NET v4" operator="OR">
+            <criterion comment="Check if the release of .Net framework 4.6.1 (full) is equal to 394254" test_ref="oval:org.cisecurity:tst:817" />
+            <criterion comment="Check if the release of .Net framework 4.6.1 (client) is equal to 394254" test_ref="oval:org.cisecurity:tst:819" />
+          </criteria>
+        </criteria>
+        <criteria comment="Windows OS + registry release of .NET v4" operator="AND">
+          <criteria comment="Win7/R2/Win8/Win8.1/2012/2012 R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+            <extend_definition comment="Microsoft Windows 8 (x86) is installed" definition_ref="oval:org.mitre.oval:def:14914" />
+            <extend_definition comment="Microsoft Windows 8 (x64) is installed" definition_ref="oval:org.mitre.oval:def:15571" />
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          </criteria>
+          <criteria comment="registry release of .NET v4" operator="OR">
+            <criterion comment="Check if the release of .Net framework 4.6.1 (full) is equal to 394271" test_ref="oval:org.cisecurity:tst:818" />
+            <criterion comment="Check if the release of .Net framework 4.6.1 (client) is equal to 394271" test_ref="oval:org.cisecurity:tst:838" />
+          </criteria>
+        </criteria>
       </criteria>
     </definition>
     <definition id="oval:org.cisecurity:def:488" class="inventory" version="15">
@@ -602,6 +694,67 @@
           <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
         </criteria>
         <extend_definition comment="Microsoft Excel 2013 is installed" definition_ref="oval:org.mitre.oval:def:15563" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:1654" class="inventory" version="8">
+      <metadata>
+        <title>Microsoft .NET Framework 4.6.2 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft .NET Framework 4.6.2</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:.net_framework:4.6.2" source="CPE" />
+        <description>Microsoft .NET Framework 4.6.2 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2016-12-30T00:00:00+08:00">
+              <contributor organization="DTCC">Jeff Albert</contributor>
+            </submitted>
+            <status_change date="2016-12-30T12:00:00.000-05:00">DRAFT</status_change>
+            <status_change date="2017-01-13T14:00:00.000-05:00">INTERIM</status_change>
+            <status_change date="2017-01-27T14:00:00.000-05:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Windows 10 + registry release of .NET v4" operator="AND">
+          <criteria comment="1607/2016" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criteria comment="registry release of .NET v4" operator="OR">
+            <criterion comment="Check if the release of .Net framework 4.6.2 (full) is equal to 394802" test_ref="oval:org.cisecurity:tst:2348" />
+            <criterion comment="Check if the release of .Net framework 4.6.2 (client) is equal to 394802" test_ref="oval:org.cisecurity:tst:2363" />
+          </criteria>
+        </criteria>
+        <criteria comment="Windows OS + registry release of .NET v4" operator="AND">
+          <criteria comment="Win7/R2/Win8/Win8.1/2012/2012 R2/Win10/1511" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows Server 2012 is installed" definition_ref="oval:org.mitre.oval:def:16359" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+            <extend_definition comment="Microsoft Windows 10 (x86) is installed" definition_ref="oval:org.mitre.oval:def:29471" />
+            <extend_definition comment="Microsoft Windows 10 (x64) is installed" definition_ref="oval:org.mitre.oval:def:29117" />
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          </criteria>
+          <criteria comment="registry release of .NET v4" operator="OR">
+            <criterion comment="Check if the release of .Net framework 4.6.2 (full) is equal to 394806" test_ref="oval:org.cisecurity:tst:2360" />
+            <criterion comment="Check if the release of .Net framework 4.6.2 (client) is equal to 394806" test_ref="oval:org.cisecurity:tst:2359" />
+          </criteria>
+        </criteria>
       </criteria>
     </definition>
     <definition id="oval:org.cisecurity:def:1684" class="vulnerability" version="7">
@@ -22555,6 +22708,1073 @@
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:2203" class="inventory" version="1">
+      <metadata>
+        <title>Microsoft .NET Framework 4.7 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft .NET Framework 4.7</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:.net_framework:4.7" source="CPE" />
+        <description>Microsoft .NET Framework 4.7 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-24T15:30:27+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Microsoft .NET Framework 4.7 is installed" operator="OR">
+        <criterion comment="Check if the release of .Net framework 4.7 (full) is equal to 460798" test_ref="oval:org.cisecurity:tst:3012" />
+        <criterion comment="Check if the release of .Net framework 4.7 (client) is equal to 460798" test_ref="oval:org.cisecurity:tst:3017" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2204" class="vulnerability" version="1">
+      <metadata>
+        <title>ATMFD.dll Information Disclosure Vulnerability – CVE-2017-0192</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-0192" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0192" source="CVE" />
+        <description>The Adobe Type Manager Font Driver (ATMFD.dll) in Microsoft Windows Vista SP2; Windows Server 2008 SP2 and R2 SP1; Windows 7 SP1; Windows 8.1; Windows Server 2012 Gold and R2; Windows RT 8.1; and Windows 10 Gold , 1511, 1607, and 1703 allows an attacker to gain sensitive information via a specially crafted document or an untrusted website, aka "ATMFD.dll Information Disclosure Vulnerability."</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-26T17:14:19+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Microsoft Windows Vista/Server 2008/7/Server 2008 R2/8.1/Server 2012 R2/Server 2012/10/Server 2016 is installed + file version" operator="AND">
+        <criteria comment="Microsoft Windows Vista/Server 2008/7/Server 2008 R2/8.1/Server 2012 R2/Server 2012/10/Server 2016 is installed" operator="OR">
+          <extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+          <extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+          <extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+          <extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+          <extend_definition comment="Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6150" />
+          <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+          <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+          <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+          <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+          <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+          <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+          <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+          <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+          <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+          <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+          <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+          <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+          <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+        </criteria>
+        <criterion comment="Check if ATMFD.dll version is less than 5.1.2.251" test_ref="oval:org.cisecurity:tst:3016" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2205" class="vulnerability" version="1">
+      <metadata>
+        <title>.NET Remote Code Execution Vulnerability – CVE-2017-0160</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft .NET Framework 2.0</product>
+          <product>Microsoft .NET Framework 3.5</product>
+          <product>Microsoft .NET Framework 3.5.1</product>
+          <product>Microsoft .NET Framework 4.5.2</product>
+          <product>Microsoft .NET Framework 4.6</product>
+          <product>Microsoft .NET Framework 4.6.1</product>
+          <product>Microsoft .NET Framework 4.6.2</product>
+          <product>Microsoft .NET Framework 4.7</product>
+        </affected>
+        <reference ref_id="CVE-2017-0160" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0160" source="CVE" />
+        <description>Microsoft .NET Framework 2.0, 3.5, 4.5.2, 4.6, 4.6.1, 4.6.2 and 4.7 allows an attacker with access to the local system to execute malicious code, aka ".NET Remote Code Execution Vulnerability."</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-24T15:30:27+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable .NET Framework + Windows OS + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft .NET Framework 2.0 is installed + Windows OS + file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 2.0 Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6158" />
+          <criteria comment="Microsoft Windows Vista/Server 2008 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+            <extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+            <extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+            <extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+            <extend_definition comment="Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6150" />
+          </criteria>
+          <criterion comment="Check if System.management.dll version is less than 2.0.50727.8758" test_ref="oval:org.cisecurity:tst:3018" />
+        </criteria>
+        <criteria comment="Microsoft .NET Framework 3.5 is installed + Windows OS + file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 3.5 Original Release is installed" definition_ref="oval:org.mitre.oval:def:6689" />
+          <criteria comment="Microsoft Windows OS + file version" operator="OR">
+            <criteria comment="Microsoft Windows 8.1/Server 2012 R2/2012/10/10 Version 1511/10 Version 1607/Server 2016 is installed + file version" operator="AND">
+              <criteria comment="Microsoft Windows 8.1/Server 2012 R2/2012/10/10 Version 1511/10 Version 1607/Server 2016 is installed" operator="OR">
+                <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+                <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+                <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+                <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+                <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+                <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+                <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+                <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+                <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+                <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+                <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+              </criteria>
+              <criterion comment="Check if System.management.dll version is less than 2.0.50727.8758" test_ref="oval:org.cisecurity:tst:3018" />
+            </criteria>
+            <criteria comment="Microsoft Windows 10 Version 1703 is installed + file version" operator="AND">
+              <criteria comment="Microsoft Windows 10 Version 1703 is installed" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+                <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+              </criteria>
+              <criterion comment="Check if System.management.dll version is less than 2.0.50727.8792" test_ref="oval:org.cisecurity:tst:3009" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft .NET Framework 3.5.1 is installed + Windows OS + file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 3.5 SP1 is installed" definition_ref="oval:org.mitre.oval:def:12542" />
+          <criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+          </criteria>
+          <criterion comment="Check if System.management.dll version is less than 2.0.50727.8758" test_ref="oval:org.cisecurity:tst:3018" />
+        </criteria>
+        <criteria comment="Microsoft .NET Framework 4.5.2 is installed + Windows OS + file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.5.2 is installed" definition_ref="oval:org.mitre.oval:def:26546" />
+          <criteria comment="Microsoft Windows OS + file version" operator="OR">
+            <criteria comment="Microsoft Windows Vista/Server 2008/7/Server 2008 R2 is installed + file version" operator="AND">
+              <criteria comment="Microsoft Windows Vista/Server 2008/7/Server 2008 R2 is installed" operator="OR">
+                <extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+                <extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+                <extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+                <extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+                <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+                <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+                <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+              </criteria>
+              <criterion comment="Check if System.management.dll version is less than 4.0.30319.36387" test_ref="oval:org.cisecurity:tst:3015" />
+            </criteria>
+            <criteria comment="Microsoft Windows 8.1/Server 2012 R2/Server 2012 is installed + file version" operator="AND">
+              <criteria comment="Microsoft Windows 8.1/Server 2012 R2/Server 2012 is installed" operator="OR">
+                <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+                <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+                <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+                <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+              </criteria>
+              <criterion comment="Check if System.management.dll version is less than 4.0.30319.36386" test_ref="oval:org.cisecurity:tst:3014" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft .NET Framework 4.6 is installed + Windows OS + file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.6 is installed" definition_ref="oval:org.cisecurity:def:4" />
+          <criteria comment="Microsoft Windows Vista/Server 2008/10 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+            <extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+            <extend_definition comment="Microsoft Windows Server 2008 (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5653" />
+            <extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+            <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+            <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          </criteria>
+          <criterion comment="Check if System.management.dll version is less than 4.6.1098.0" test_ref="oval:org.cisecurity:tst:3011" />
+        </criteria>
+        <criteria comment="Microsoft .NET Framework 4.6.1 is installed + Windows OS + file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.6.1 is installed" definition_ref="oval:org.cisecurity:def:478" />
+          <criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          </criteria>
+          <criterion comment="Check if System.management.dll version is less than 4.6.1098.0" test_ref="oval:org.cisecurity:tst:3011" />
+        </criteria>
+        <criteria comment="Microsoft .NET Framework 4.6.2 is installed + Windows OS + file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.6.2 is installed" definition_ref="oval:org.cisecurity:def:1654" />
+          <criteria comment="Microsoft Windows 7/Server 2008 R2/8.1/Server 2012 R2/Server 2012/10 Version 1607/Server 2016 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+            <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="Check if System.management.dll version is less than 4.6.1646.0" test_ref="oval:org.cisecurity:tst:3013" />
+        </criteria>
+        <criteria comment="Microsoft .NET Framework 4.6/4.6.1 is installed + Windows OS + file version" operator="AND">
+          <criteria comment="Microsoft .NET Framework 4.6/4.6.1 is installed" operator="OR">
+            <extend_definition comment="Microsoft .NET Framework 4.6 is installed" definition_ref="oval:org.cisecurity:def:4" />
+            <extend_definition comment="Microsoft .NET Framework 4.6.1 is installed" definition_ref="oval:org.cisecurity:def:478" />
+          </criteria>
+          <criteria comment="Microsoft Windows 7/Server 2008 R2/8.1/Server 2012 R2/Server 2012 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+            <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+          </criteria>
+          <criterion comment="Check if System.management.dll version is less than 4.6.1098.0" test_ref="oval:org.cisecurity:tst:3011" />
+        </criteria>
+        <criteria comment="Microsoft .NET Framework 4.7 is installed + Windows OS + file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.7 is installed" definition_ref="oval:org.cisecurity:def:2203" />
+          <criteria comment="Microsoft Windows 10 Version 1703 is installed" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+          </criteria>
+          <criterion comment="Check if System.management.dll version is less than 4.7.2092.0" test_ref="oval:org.cisecurity:tst:3010" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2206" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in Java SE: 7u131 and 8u121; Java SE Embedded: 8u121; JRockit: R28.3.13 of Oracle Java SE (subcomponent: JCE) - CVE-2017-3511</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Java Development Kit 1.7</product>
+          <product>Java Development Kit 1.8</product>
+          <product>Java Runtime Environment 1.7</product>
+          <product>Java Runtime Environment 1.8</product>
+          <product>JRockit</product>
+        </affected>
+        <reference ref_id="CVE-2017-3511" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3511" source="CVE" />
+        <description>Vulnerability in the Java SE, Java SE Embedded, JRockit component of Oracle Java SE (subcomponent: JCE). Supported versions that are affected are Java SE: 7u131 and 8u121; Java SE Embedded: 8u121; JRockit: R28.3.13. Difficult to exploit vulnerability allows unauthenticated attacker with logon to the infrastructure where Java SE, Java SE Embedded, JRockit executes to compromise Java SE, Java SE Embedded, JRockit.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-27T17:41:38+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Check for installation of Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="OR">
+          <criteria comment="Java SE Development Kit 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 7 is installed" definition_ref="oval:org.mitre.oval:def:16278" />
+            <criterion comment="Check if Java SE Development Kit 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3020" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 8 is installed" definition_ref="oval:org.mitre.oval:def:23825" />
+            <criterion comment="Check if Java SE Development Kit 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3021" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 7 is installed" definition_ref="oval:org.mitre.oval:def:16050" />
+            <criterion comment="Check if Java SE Runtime Environment 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3025" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 8 is installed" definition_ref="oval:org.mitre.oval:def:24174" />
+            <criterion comment="Check if Java SE Runtime Environment 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3024" />
+          </criteria>
+        </criteria>
+        <criteria comment="Check for embedded Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="AND">
+          <criterion comment="Check if Java Runtime Environment version is greater than or equal 8.0 and less than 8.0.1220 (recursive)" test_ref="oval:org.cisecurity:tst:3023" />
+        </criteria>
+        <criteria comment="JRockit is installed + version" operator="AND">
+          <criterion comment="Check if JRockit version is less than R28.3.14" test_ref="oval:org.cisecurity:tst:3019" />
+          <criterion comment="JRockit R28 is installed" test_ref="oval:org.mitre.oval:tst:86346" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2207" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in Java SE: 6u141, 7u131 and 8u121; Java SE Embedded: 8u121 of Oracle Java SE (subcomponent: Networking) - CVE-2017-3509</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Java Development Kit 1.6</product>
+          <product>Java Development Kit 1.7</product>
+          <product>Java Development Kit 1.8</product>
+          <product>Java Runtime Environment 1.6</product>
+          <product>Java Runtime Environment 1.7</product>
+          <product>Java Runtime Environment 1.8</product>
+        </affected>
+        <reference ref_id="CVE-2017-3509" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3509" source="CVE" />
+        <description>Vulnerability in the Java SE, Java SE Embedded component of Oracle Java SE (subcomponent: Networking). Supported versions that are affected are Java SE: 6u141, 7u131 and 8u121; Java SE Embedded: 8u121. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE, Java SE Embedded.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-27T17:41:38+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Check for installation of Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="OR">
+          <criteria comment="Java SE Development Kit 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 6 is installed" definition_ref="oval:org.mitre.oval:def:15831" />
+            <criterion comment="Check if Java SE Development Kit 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3022" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 7 is installed" definition_ref="oval:org.mitre.oval:def:16278" />
+            <criterion comment="Check if Java SE Development Kit 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3020" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 8 is installed" definition_ref="oval:org.mitre.oval:def:23825" />
+            <criterion comment="Check if Java SE Development Kit 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3021" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 6 is installed" definition_ref="oval:org.mitre.oval:def:16362" />
+            <criterion comment="Check if Java SE Runtime Environment 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3026" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 7 is installed" definition_ref="oval:org.mitre.oval:def:16050" />
+            <criterion comment="Check if Java SE Runtime Environment 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3025" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 8 is installed" definition_ref="oval:org.mitre.oval:def:24174" />
+            <criterion comment="Check if Java SE Runtime Environment 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3024" />
+          </criteria>
+        </criteria>
+        <criteria comment="Check for embedded Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="AND">
+          <criterion comment="Check if Java Runtime Environment version is greater than or equal 8.0 and less than 8.0.1220 (recursive)" test_ref="oval:org.cisecurity:tst:3023" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2208" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in Java SE: 6u141, 7u131 and 8u121; Java SE Embedded: 8u121 of Oracle Java SE (subcomponent: Security) - CVE-2017-3539</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Java Development Kit 1.6</product>
+          <product>Java Development Kit 1.7</product>
+          <product>Java Development Kit 1.8</product>
+          <product>Java Runtime Environment 1.6</product>
+          <product>Java Runtime Environment 1.7</product>
+          <product>Java Runtime Environment 1.8</product>
+        </affected>
+        <reference ref_id="CVE-2017-3539" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3539" source="CVE" />
+        <description>Vulnerability in the Java SE, Java SE Embedded component of Oracle Java SE (subcomponent: Security). Supported versions that are affected are Java SE: 6u141, 7u131 and 8u121; Java SE Embedded: 8u121. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE, Java SE Embedded.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-27T17:41:38+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Check for installation of Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="OR">
+          <criteria comment="Java SE Development Kit 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 6 is installed" definition_ref="oval:org.mitre.oval:def:15831" />
+            <criterion comment="Check if Java SE Development Kit 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3022" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 7 is installed" definition_ref="oval:org.mitre.oval:def:16278" />
+            <criterion comment="Check if Java SE Development Kit 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3020" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 8 is installed" definition_ref="oval:org.mitre.oval:def:23825" />
+            <criterion comment="Check if Java SE Development Kit 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3021" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 6 is installed" definition_ref="oval:org.mitre.oval:def:16362" />
+            <criterion comment="Check if Java SE Runtime Environment 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3026" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 7 is installed" definition_ref="oval:org.mitre.oval:def:16050" />
+            <criterion comment="Check if Java SE Runtime Environment 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3025" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 8 is installed" definition_ref="oval:org.mitre.oval:def:24174" />
+            <criterion comment="Check if Java SE Runtime Environment 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3024" />
+          </criteria>
+        </criteria>
+        <criteria comment="Check for emebedded Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="AND">
+          <criterion comment="Check if Java Runtime Environment version is greater than or equal 8.0 and less than 8.0.1220 (recursive)" test_ref="oval:org.cisecurity:tst:3023" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2209" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Pluggable Auth) – CVE-2017-3599</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>MySQL Server 5.6</product>
+          <product>MySQL Server 5.7</product>
+        </affected>
+        <reference ref_id="CVE-2017-3599" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3599" source="CVE" />
+        <description>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Pluggable Auth). Supported versions that are affected are 5.6.35 and earlier and 5.7.17 and earlier.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-26T21:09:11+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of MySQL Server + vulnerable version" operator="OR">
+        <criteria comment="Check for installation of MySQL Server 5.6 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.6 is installed" definition_ref="oval:org.mitre.oval:def:26414" />
+          <criterion comment="Check if MySQL Server 5.6 version is less than or equal 5.6.35" test_ref="oval:org.cisecurity:tst:3002" />
+        </criteria>
+        <criteria comment="Check for installaion of MySQL Server 5.7 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.7 is installed" definition_ref="oval:org.cisecurity:def:726" />
+          <criterion comment="Check if MySQL Server 5.7 version is less than or equal 5.7.17" test_ref="oval:org.cisecurity:tst:3001" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2210" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: C API) – CVE-2017-3467</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>MySQL Server 5.7</product>
+        </affected>
+        <reference ref_id="CVE-2017-3467" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3467" source="CVE" />
+        <description>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: C API). Supported versions that are affected are 5.7.17 and earlier.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-26T21:09:11+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installaion of MySQL Server 5.7 + vulnerable version" operator="AND">
+        <extend_definition comment="MySQL 5.7 is installed" definition_ref="oval:org.cisecurity:def:726" />
+        <criterion comment="Check if MySQL Server 5.7 version is less than or equal 5.7.17" test_ref="oval:org.cisecurity:tst:3001" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2211" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Encryption) – CVE-2017-3468</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>MySQL Server 5.7</product>
+        </affected>
+        <reference ref_id="CVE-2017-3468" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3468" source="CVE" />
+        <description>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Encryption). Supported versions that are affected are 5.7.17 and earlier.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-26T21:09:11+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installaion of MySQL Server 5.7 + vulnerable version" operator="AND">
+        <extend_definition comment="MySQL 5.7 is installed" definition_ref="oval:org.cisecurity:def:726" />
+        <criterion comment="Check if MySQL Server 5.7 version is less than or equal 5.7.17" test_ref="oval:org.cisecurity:tst:3001" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2212" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: DDL) – CVE-2017-3464</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>MySQL Server 5.5</product>
+          <product>MySQL Server 5.6</product>
+          <product>MySQL Server 5.7</product>
+        </affected>
+        <reference ref_id="CVE-2017-3464" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3464" source="CVE" />
+        <description>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: DDL). Supported versions that are affected are 5.5.54 and earlier, 5.6.35 and earlier and 5.7.17 and earlier.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-26T21:09:11+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of MySQL Server + vulnerable version" operator="OR">
+        <criteria comment="Check for installation of MySQL Server 5.5 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.5 is installed" definition_ref="oval:org.mitre.oval:def:8419" />
+          <criterion comment="Check if MySQL Server 5.5 version is less than or equal 5.5.54" test_ref="oval:org.cisecurity:tst:2997" />
+        </criteria>
+        <criteria comment="Check for installation of MySQL Server 5.6 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.6 is installed" definition_ref="oval:org.mitre.oval:def:26414" />
+          <criterion comment="Check if MySQL Server 5.6 version is less than or equal 5.6.35" test_ref="oval:org.cisecurity:tst:3002" />
+        </criteria>
+        <criteria comment="Check for installaion of MySQL Server 5.7 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.7 is installed" definition_ref="oval:org.cisecurity:def:726" />
+          <criterion comment="Check if MySQL Server 5.7 version is less than or equal 5.7.17" test_ref="oval:org.cisecurity:tst:3001" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2213" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in Java SE: 6u141, 7u131 and 8u121 of Oracle Java SE (subcomponent: AWT) - CVE-2017-3514</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Java Development Kit 1.6</product>
+          <product>Java Development Kit 1.7</product>
+          <product>Java Development Kit 1.8</product>
+          <product>Java Runtime Environment 1.6</product>
+          <product>Java Runtime Environment 1.7</product>
+          <product>Java Runtime Environment 1.8</product>
+        </affected>
+        <reference ref_id="CVE-2017-3514" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3514" source="CVE" />
+        <description>Vulnerability in the Java SE component of Oracle Java SE (subcomponent: AWT). Supported versions that are affected are Java SE: 6u141, 7u131 and 8u121. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-27T17:41:38+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Check for installation of Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="OR">
+          <criteria comment="Java SE Development Kit 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 6 is installed" definition_ref="oval:org.mitre.oval:def:15831" />
+            <criterion comment="Check if Java SE Development Kit 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3022" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 7 is installed" definition_ref="oval:org.mitre.oval:def:16278" />
+            <criterion comment="Check if Java SE Development Kit 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3020" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 8 is installed" definition_ref="oval:org.mitre.oval:def:23825" />
+            <criterion comment="Check if Java SE Development Kit 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3021" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 6 is installed" definition_ref="oval:org.mitre.oval:def:16362" />
+            <criterion comment="Check if Java SE Runtime Environment 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3026" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 7 is installed" definition_ref="oval:org.mitre.oval:def:16050" />
+            <criterion comment="Check if Java SE Runtime Environment 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3025" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 8 is installed" definition_ref="oval:org.mitre.oval:def:24174" />
+            <criterion comment="Check if Java SE Runtime Environment 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3024" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2214" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in Java SE: 6u141, 7u131 and 8u121; Java SE Embedded: 8u121; JRockit: R28.3.13 of Oracle Java SE (subcomponent: Networking) - CVE-2017-3544</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Java Development Kit 1.6</product>
+          <product>Java Development Kit 1.7</product>
+          <product>Java Development Kit 1.8</product>
+          <product>Java Runtime Environment 1.6</product>
+          <product>Java Runtime Environment 1.7</product>
+          <product>Java Runtime Environment 1.8</product>
+          <product>JRockit</product>
+        </affected>
+        <reference ref_id="CVE-2017-3544" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3544" source="CVE" />
+        <description>Vulnerability in the Java SE, Java SE Embedded, JRockit component of Oracle Java SE (subcomponent: Networking). Supported versions that are affected are Java SE: 6u141, 7u131 and 8u121; Java SE Embedded: 8u121; JRockit: R28.3.13. Difficult to exploit vulnerability allows unauthenticated attacker with network access via SMTP to compromise Java SE, Java SE Embedded, JRockit.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-27T17:41:38+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Check for installation of Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="OR">
+          <criteria comment="Java SE Development Kit 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 6 is installed" definition_ref="oval:org.mitre.oval:def:15831" />
+            <criterion comment="Check if Java SE Development Kit 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3022" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 7 is installed" definition_ref="oval:org.mitre.oval:def:16278" />
+            <criterion comment="Check if Java SE Development Kit 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3020" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 8 is installed" definition_ref="oval:org.mitre.oval:def:23825" />
+            <criterion comment="Check if Java SE Development Kit 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3021" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 6 is installed" definition_ref="oval:org.mitre.oval:def:16362" />
+            <criterion comment="Check if Java SE Runtime Environment 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3026" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 7 is installed" definition_ref="oval:org.mitre.oval:def:16050" />
+            <criterion comment="Check if Java SE Runtime Environment 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3025" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 8 is installed" definition_ref="oval:org.mitre.oval:def:24174" />
+            <criterion comment="Check if Java SE Runtime Environment 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3024" />
+          </criteria>
+        </criteria>
+        <criteria comment="Check for emebedded Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="AND">
+          <criterion comment="Check if Java Runtime Environment version is greater than or equal 8.0 and less than 8.0.1220 (recursive)" test_ref="oval:org.cisecurity:tst:3023" />
+        </criteria>
+        <criteria comment="JRockit is installed + version" operator="AND">
+          <criterion comment="Check if JRockit version is less than R28.3.14" test_ref="oval:org.cisecurity:tst:3019" />
+          <criterion comment="JRockit R28 is installed" test_ref="oval:org.mitre.oval:tst:86346" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2215" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Privileges) – CVE-2017-3462</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>MySQL Server 5.5</product>
+          <product>MySQL Server 5.6</product>
+          <product>MySQL Server 5.7</product>
+        </affected>
+        <reference ref_id="CVE-2017-3462" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3462" source="CVE" />
+        <description>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Privileges). Supported versions that are affected are 5.5.54 and earlier, 5.6.35 and earlier and 5.7.17 and earlier.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-26T21:09:11+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of MySQL Server + vulnerable version" operator="OR">
+        <criteria comment="Check for installation of MySQL Server 5.5 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.5 is installed" definition_ref="oval:org.mitre.oval:def:8419" />
+          <criterion comment="Check if MySQL Server 5.5 version is less than or equal 5.5.54" test_ref="oval:org.cisecurity:tst:2997" />
+        </criteria>
+        <criteria comment="Check for installation of MySQL Server 5.6 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.6 is installed" definition_ref="oval:org.mitre.oval:def:26414" />
+          <criterion comment="Check if MySQL Server 5.6 version is less than or equal 5.6.35" test_ref="oval:org.cisecurity:tst:3002" />
+        </criteria>
+        <criteria comment="Check for installaion of MySQL Server 5.7 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.7 is installed" definition_ref="oval:org.cisecurity:def:726" />
+          <criterion comment="Check if MySQL Server 5.7 version is less than or equal 5.7.17" test_ref="oval:org.cisecurity:tst:3001" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2216" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Privileges) – CVE-2017-3463</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>MySQL Server 5.5</product>
+          <product>MySQL Server 5.6</product>
+          <product>MySQL Server 5.7</product>
+        </affected>
+        <reference ref_id="CVE-2017-3463" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3463" source="CVE" />
+        <description>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Privileges). Supported versions that are affected are 5.5.54 and earlier, 5.6.35 and earlier and 5.7.17 and earlier.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-26T21:09:11+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of MySQL Server + vulnerable version" operator="OR">
+        <criteria comment="Check for installation of MySQL Server 5.5 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.5 is installed" definition_ref="oval:org.mitre.oval:def:8419" />
+          <criterion comment="Check if MySQL Server 5.5 version is less than or equal 5.5.54" test_ref="oval:org.cisecurity:tst:2997" />
+        </criteria>
+        <criteria comment="Check for installation of MySQL Server 5.6 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.6 is installed" definition_ref="oval:org.mitre.oval:def:26414" />
+          <criterion comment="Check if MySQL Server 5.6 version is less than or equal 5.6.35" test_ref="oval:org.cisecurity:tst:3002" />
+        </criteria>
+        <criteria comment="Check for installaion of MySQL Server 5.7 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.7 is installed" definition_ref="oval:org.cisecurity:def:726" />
+          <criterion comment="Check if MySQL Server 5.7 version is less than or equal 5.7.17" test_ref="oval:org.cisecurity:tst:3001" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2217" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Privileges) – CVE-2017-3465</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>MySQL Server 5.7</product>
+        </affected>
+        <reference ref_id="CVE-2017-3465" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3465" source="CVE" />
+        <description>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Server: Security: Privileges). Supported versions that are affected are 5.7.17 and earlier.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-26T21:09:11+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installaion of MySQL Server 5.7 + vulnerable version" operator="AND">
+        <extend_definition comment="MySQL 5.7 is installed" definition_ref="oval:org.cisecurity:def:726" />
+        <criterion comment="Check if MySQL Server 5.7 version is less than or equal 5.7.17" test_ref="oval:org.cisecurity:tst:3001" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2218" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Client mysqldump) – CVE-2017-3600</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>MySQL Server 5.5</product>
+          <product>MySQL Server 5.6</product>
+          <product>MySQL Server 5.7</product>
+        </affected>
+        <reference ref_id="CVE-2017-3600" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3600" source="CVE" />
+        <description>Vulnerability in the MySQL Server component of Oracle MySQL (subcomponent: Client mysqldump). Supported versions that are affected are 5.5.54 and earlier, 5.6.35 and earlier and 5.7.17 and earlier.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-26T21:09:11+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of MySQL Server + vulnerable version" operator="OR">
+        <criteria comment="Check for installation of MySQL Server 5.5 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.5 is installed" definition_ref="oval:org.mitre.oval:def:8419" />
+          <criterion comment="Check if MySQL Server 5.5 version is less than or equal 5.5.54" test_ref="oval:org.cisecurity:tst:2997" />
+        </criteria>
+        <criteria comment="Check for installation of MySQL Server 5.6 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.6 is installed" definition_ref="oval:org.mitre.oval:def:26414" />
+          <criterion comment="Check if MySQL Server 5.6 version is less than or equal 5.6.35" test_ref="oval:org.cisecurity:tst:3002" />
+        </criteria>
+        <criteria comment="Check for installaion of MySQL Server 5.7 + vulnerable version" operator="AND">
+          <extend_definition comment="MySQL 5.7 is installed" definition_ref="oval:org.cisecurity:def:726" />
+          <criterion comment="Check if MySQL Server 5.7 version is less than or equal 5.7.17" test_ref="oval:org.cisecurity:tst:3001" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2219" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in Java SE: 6u141, 7u131 and 8u121; Java SE Embedded: 8u121; JRockit: R28.3.13 of Oracle Java SE (subcomponent: JAXP) - CVE-2017-3526</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Java Development Kit 1.6</product>
+          <product>Java Development Kit 1.7</product>
+          <product>Java Development Kit 1.8</product>
+          <product>Java Runtime Environment 1.6</product>
+          <product>Java Runtime Environment 1.7</product>
+          <product>Java Runtime Environment 1.8</product>
+          <product>JRockit</product>
+        </affected>
+        <reference ref_id="CVE-2017-3526" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3526" source="CVE" />
+        <description>Vulnerability in the Java SE, Java SE Embedded, JRockit component of Oracle Java SE (subcomponent: JAXP). Supported versions that are affected are Java SE: 6u141, 7u131 and 8u121; Java SE Embedded: 8u121; JRockit: R28.3.13. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE, Java SE Embedded, JRockit.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-27T17:41:38+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Check for installation of Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="OR">
+          <criteria comment="Java SE Development Kit 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 6 is installed" definition_ref="oval:org.mitre.oval:def:15831" />
+            <criterion comment="Check if Java SE Development Kit 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3022" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 7 is installed" definition_ref="oval:org.mitre.oval:def:16278" />
+            <criterion comment="Check if Java SE Development Kit 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3020" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 8 is installed" definition_ref="oval:org.mitre.oval:def:23825" />
+            <criterion comment="Check if Java SE Development Kit 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3021" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 6 is installed" definition_ref="oval:org.mitre.oval:def:16362" />
+            <criterion comment="Check if Java SE Runtime Environment 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3026" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 7 is installed" definition_ref="oval:org.mitre.oval:def:16050" />
+            <criterion comment="Check if Java SE Runtime Environment 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3025" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 8 is installed" definition_ref="oval:org.mitre.oval:def:24174" />
+            <criterion comment="Check if Java SE Runtime Environment 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3024" />
+          </criteria>
+        </criteria>
+        <criteria comment="Check for emebedded Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="AND">
+          <criterion comment="Check if Java Runtime Environment version is greater than or equal 8.0 and less than 8.0.1220 (recursive)" test_ref="oval:org.cisecurity:tst:3023" />
+        </criteria>
+        <criteria comment="JRockit is installed + version" operator="AND">
+          <criterion comment="Check if JRockit version is less than R28.3.14" test_ref="oval:org.cisecurity:tst:3019" />
+          <criterion comment="JRockit R28 is installed" test_ref="oval:org.mitre.oval:tst:86346" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2220" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in Java SE: 6u141, 7u131 and 8u121; Java SE Embedded: 8u121; JRockit: R28.3.13 of Oracle Java SE (subcomponent: Networking) - CVE-2017-3533</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Java Development Kit 1.6</product>
+          <product>Java Development Kit 1.7</product>
+          <product>Java Development Kit 1.8</product>
+          <product>Java Runtime Environment 1.6</product>
+          <product>Java Runtime Environment 1.7</product>
+          <product>Java Runtime Environment 1.8</product>
+          <product>JRockit</product>
+        </affected>
+        <reference ref_id="CVE-2017-3533" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3533" source="CVE" />
+        <description>Vulnerability in the Java SE, Java SE Embedded, JRockit component of Oracle Java SE (subcomponent: Networking). Supported versions that are affected are Java SE: 6u141, 7u131 and 8u121; Java SE Embedded: 8u121; JRockit: R28.3.13. Difficult to exploit vulnerability allows unauthenticated attacker with network access via FTP to compromise Java SE, Java SE Embedded, JRockit.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-27T17:41:38+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Check for installation of Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="OR">
+          <criteria comment="Java SE Development Kit 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 6 is installed" definition_ref="oval:org.mitre.oval:def:15831" />
+            <criterion comment="Check if Java SE Development Kit 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3022" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 7 is installed" definition_ref="oval:org.mitre.oval:def:16278" />
+            <criterion comment="Check if Java SE Development Kit 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3020" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 8 is installed" definition_ref="oval:org.mitre.oval:def:23825" />
+            <criterion comment="Check if Java SE Development Kit 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3021" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.6 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 6 is installed" definition_ref="oval:org.mitre.oval:def:16362" />
+            <criterion comment="Check if Java SE Runtime Environment 1.6 version is less than 6.0.1420" test_ref="oval:org.cisecurity:tst:3026" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 7 is installed" definition_ref="oval:org.mitre.oval:def:16050" />
+            <criterion comment="Check if Java SE Runtime Environment 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3025" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 8 is installed" definition_ref="oval:org.mitre.oval:def:24174" />
+            <criterion comment="Check if Java SE Runtime Environment 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3024" />
+          </criteria>
+        </criteria>
+        <criteria comment="Check for emebedded Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="AND">
+          <criterion comment="Check if Java Runtime Environment version is greater than or equal 8.0 and less than 8.0.1220 (recursive)" test_ref="oval:org.cisecurity:tst:3023" />
+        </criteria>
+        <criteria comment="JRockit is installed + version" operator="AND">
+          <criterion comment="Check if JRockit version is less than R28.3.14" test_ref="oval:org.cisecurity:tst:3019" />
+          <criterion comment="JRockit R28 is installed" test_ref="oval:org.mitre.oval:tst:86346" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2221" class="vulnerability" version="1">
+      <metadata>
+        <title>Vulnerability in Java SE: 7u131 and 8u121 of Oracle Java SE (subcomponent: AWT) - CVE-2017-3512</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Java Development Kit 1.7</product>
+          <product>Java Development Kit 1.8</product>
+          <product>Java Runtime Environment 1.7</product>
+          <product>Java Runtime Environment 1.8</product>
+        </affected>
+        <reference ref_id="CVE-2017-3512" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3512" source="CVE" />
+        <description>Vulnerability in the Java SE component of Oracle Java SE (subcomponent: AWT). Supported versions that are affected are Java SE: 7u131 and 8u121. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-27T17:41:38+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Check for installation of Java SE Development Kit/Java SE Runtime Environment + vulnerable file version" operator="OR">
+          <criteria comment="Java SE Development Kit 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 7 is installed" definition_ref="oval:org.mitre.oval:def:16278" />
+            <criterion comment="Check if Java SE Development Kit 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3020" />
+          </criteria>
+          <criteria comment="Java SE Development Kit 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Development Kit 8 is installed" definition_ref="oval:org.mitre.oval:def:23825" />
+            <criterion comment="Check if Java SE Development Kit 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3021" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.7 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 7 is installed" definition_ref="oval:org.mitre.oval:def:16050" />
+            <criterion comment="Check if Java SE Runtime Environment 1.7 version is less than 7.0.1320" test_ref="oval:org.cisecurity:tst:3025" />
+          </criteria>
+          <criteria comment="Java SE Runtime Environment 1.8 is installed + version" operator="AND">
+            <extend_definition comment="Java SE Runtime Environment 8 is installed" definition_ref="oval:org.mitre.oval:def:24174" />
+            <criterion comment="Check if Java SE Runtime Environment 1.8 version is less than 8.0.1220" test_ref="oval:org.cisecurity:tst:3024" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:128" class="inventory" version="16">
       <metadata>
         <title>Microsoft Windows Server 2003 is installed</title>
@@ -23728,6 +24948,58 @@
         <criterion comment="Win2K/XP/2003/Vista/2008 service pack 2 is installed" test_ref="oval:org.mitre.oval:tst:3019" />
       </criteria>
     </definition>
+    <definition id="oval:org.mitre.oval:def:6158" class="inventory" version="27">
+      <metadata>
+        <title>Microsoft .NET Framework 2.0 Service Pack 2 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows XP</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft .NET Framework 2.0</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:.net_framework:2.0:sp2" source="CPE" />
+        <description>Microsoft .NET Framework 2.0 Service Pack 2 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2009-10-13T13:00:00">
+              <contributor organization="Gideon Technologies, Inc.">Dragos Prisaca</contributor>
+            </submitted>
+            <status_change date="2009-10-22T17:36:54.998-04:00">DRAFT</status_change>
+            <status_change date="2009-11-09T04:00:38.208-05:00">INTERIM</status_change>
+            <status_change date="2009-11-30T04:00:23.181-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:tst:10028 - Created OVAL vulnerability definition for MS10-070" date="2011-02-28T09:25:00.601-05:00">
+              <contributor organization="Symantec Corporation">Josh Turpin</contributor>
+            </modified>
+            <status_change date="2011-02-28T09:32:44.470-05:00">INTERIM</status_change>
+            <status_change date="2011-03-21T04:00:14.972-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:tst:10028 - New Definitions for April 2011 Patch Tuesday" date="2011-04-18T00:17:00.032-04:00">
+              <contributor organization="Symantec Corporation">Josh Turpin</contributor>
+            </modified>
+            <status_change date="2011-04-18T00:18:31.230-04:00">INTERIM</status_change>
+            <status_change date="2011-05-09T04:01:38.435-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:6158 - .NET Framework inventories with modified products." date="2014-03-18T14:31:00.962-04:00">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </modified>
+            <status_change date="2014-03-18T14:33:24.166-04:00">INTERIM</status_change>
+            <status_change date="2014-04-07T04:06:55.839-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="The version of Mscorlib.dll is greater than or equal to 2.0.50727.3053" test_ref="oval:org.mitre.oval:tst:10028" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:6165" class="inventory" version="33">
       <metadata>
         <title>Microsoft Windows 7 (32-bit) is installed</title>
@@ -23891,6 +25163,46 @@
         <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99" />
         <criterion comment="Windows Server 2008 R2 is installed" test_ref="oval:org.mitre.oval:tst:10317" />
         <criterion comment="a version of Windows for the x64 architecture is installed" test_ref="oval:org.mitre.oval:tst:3653" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:6689" class="inventory" version="10">
+      <metadata>
+        <title>Microsoft .NET Framework 3.5 Original Release is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 2000</platform>
+          <platform>Microsoft Windows XP</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <product>Microsoft .NET Framework 3.5</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:.net_framework:3.5:-" source="CPE" />
+        <description>Microsoft .NET Framework 3.5 Original Release is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2010-06-08T13:00:00">
+              <contributor organization="Symantec Corporation">Dragos Prisaca</contributor>
+            </submitted>
+            <status_change date="2010-06-14T11:33:21.235-04:00">DRAFT</status_change>
+            <status_change date="2010-06-29T11:48:45.767-04:00">INTERIM</status_change>
+            <status_change date="2010-07-19T04:00:07.908-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:6689 - Updated to check registry keys instead of version of DLL." date="2011-01-13T14:14:00.592-05:00">
+              <contributor organization="The MITRE Corporation">Nate Przybyszewski</contributor>
+            </modified>
+            <status_change date="2011-01-13T14:16:15.895-05:00">INTERIM</status_change>
+            <status_change date="2011-01-31T04:00:15.652-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:6689 - .NET Framework inventories with modified products." date="2014-03-18T14:31:00.962-04:00">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </modified>
+            <status_change date="2014-03-18T14:33:24.594-04:00">INTERIM</status_change>
+            <status_change date="2014-04-07T04:06:56.217-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Is the Microsoft .NET Framework 3.5 installed" test_ref="oval:org.mitre.oval:tst:42024" />
+        <criterion comment="Is the Microsoft .NET Framework 3.5 the Original Release" test_ref="oval:org.mitre.oval:tst:42129" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:6700" class="inventory" version="65">
@@ -24417,6 +25729,54 @@
       </metadata>
       <criteria operator="AND">
         <criterion comment="Check if ImageMagick is installed" test_ref="oval:org.mitre.oval:tst:42296" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:12542" class="inventory" version="13">
+      <metadata>
+        <title>Microsoft .NET Framework 3.5 SP1 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows XP</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft .NET Framework 3.5</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:.net_framework:3.5:sp1" source="CPE" />
+        <description>Microsoft .NET Framework 3.5 SP1 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2010-06-08T13:00:00">
+              <contributor organization="Symantec Corporation">Josh Turpin</contributor>
+            </submitted>
+            <status_change date="2011-02-28T09:32:39.073-05:00">DRAFT</status_change>
+            <status_change date="2011-03-21T04:00:12.747-04:00">INTERIM</status_change>
+            <status_change date="2011-04-11T04:00:11.237-04:00">ACCEPTED</status_change>
+            <status_change date="2012-03-05T14:24:09.634-05:00">INTERIM</status_change>
+            <modified comment="Added Windows Server 2008 R2 platform" date="2012-03-05T14:24:09.634-05:00">
+              <contributor organization="Symantec Corporation">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2012-03-26T04:02:05.159-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:12542 - .NET Framework inventories with modified products." date="2014-03-18T14:31:00.962-04:00">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </modified>
+            <status_change date="2014-03-18T14:33:24.958-04:00">INTERIM</status_change>
+            <status_change date="2014-04-07T04:00:12.852-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Is the Microsoft .NET Framework 3.5 installed" test_ref="oval:org.mitre.oval:tst:42024" />
+        <criterion comment="Microsoft .NET Framework 3.5 SP1 is installed" test_ref="oval:org.mitre.oval:tst:42405" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:12567" class="inventory" version="50">
@@ -27123,6 +28483,49 @@
         <criterion comment="mysqld.exe or mysqld-nt.exe exists" test_ref="oval:org.mitre.oval:tst:21031" />
       </criteria>
     </definition>
+    <definition id="oval:org.mitre.oval:def:26546" class="inventory" version="10">
+      <metadata>
+        <title>Microsoft .NET Framework 4.5.2 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft .NET Framework 4.5.2</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:.net_framework:4.5:sp2" source="CPE" />
+        <description>Microsoft .NET Framework 4.5.2 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2014-09-12T11:54:36">
+              <contributor organization="SecPod Technologies">SecPod Team</contributor>
+            </submitted>
+            <status_change date="2014-10-15T15:56:34.014-04:00">DRAFT</status_change>
+            <status_change date="2014-11-03T04:00:12.370-05:00">INTERIM</status_change>
+            <status_change date="2014-11-24T04:00:30.753-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:26546 - Changed product names to represent versions consistently." date="2015-08-17T14:52:00.686-04:00">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </modified>
+            <status_change date="2015-08-17T14:55:18.096-04:00">INTERIM</status_change>
+            <status_change date="2015-12-22T12:30:00.000-05:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Either release version" operator="OR">
+          <criterion comment="Check if the release version of .Net framework 4.5 (client) is equal 379893" test_ref="oval:org.mitre.oval:tst:125079" />
+          <criterion comment="Check if the release version of .Net framework 4.5 (full) is equal to 379893" test_ref="oval:org.mitre.oval:tst:124744" />
+        </criteria>
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:26707" class="inventory" version="78">
       <metadata>
         <title>ActiveX Control is installed</title>
@@ -27348,6 +28751,22 @@
     <file_test id="oval:org.cisecurity:tst:2" check="all" check_existence="at_least_one_exists" comment="Check for the presence of edgehtml.dll" version="47">
       <object object_ref="oval:org.cisecurity:obj:1" />
     </file_test>
+    <registry_test id="oval:org.cisecurity:tst:4" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6 (full) is equal to 393297" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:30444" />
+      <state state_ref="oval:org.cisecurity:ste:4" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:5" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6 (full) is equal to 393295" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:30444" />
+      <state state_ref="oval:org.cisecurity:ste:3" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:6" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6 (client) is equal to 393297" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:30419" />
+      <state state_ref="oval:org.cisecurity:ste:4" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:7" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6 (client) is equal to 393295" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:30419" />
+      <state state_ref="oval:org.cisecurity:ste:3" />
+    </registry_test>
     <file_test id="oval:org.cisecurity:tst:459" check="all" check_existence="at_least_one_exists" comment="Check if mshtml.dll version is greater than or equal to 9.0.8112.20000" version="47">
       <object object_ref="oval:org.mitre.oval:obj:222" />
       <state state_ref="oval:org.cisecurity:ste:418" />
@@ -27404,6 +28823,22 @@
       <object object_ref="oval:org.mitre.oval:obj:41861" />
       <state state_ref="oval:org.cisecurity:ste:630" />
     </file_test>
+    <registry_test id="oval:org.cisecurity:tst:817" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6.1 (full) is equal to 394254" version="2">
+      <object object_ref="oval:org.cisecurity:obj:509" />
+      <state state_ref="oval:org.cisecurity:ste:687" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:818" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6.1 (full) is equal to 394271" version="2">
+      <object object_ref="oval:org.cisecurity:obj:509" />
+      <state state_ref="oval:org.cisecurity:ste:685" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:819" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6.1 (client) is equal to 394254" version="2">
+      <object object_ref="oval:org.cisecurity:obj:502" />
+      <state state_ref="oval:org.cisecurity:ste:687" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:838" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6.1 (client) is equal to 394271" version="2">
+      <object object_ref="oval:org.cisecurity:obj:502" />
+      <state state_ref="oval:org.cisecurity:ste:685" />
+    </registry_test>
     <registry_test id="oval:org.cisecurity:tst:862" check="at least one" check_existence="at_least_one_exists" comment="Skype for Business 2016 is installed" version="4">
       <object object_ref="oval:org.cisecurity:obj:201" />
     </registry_test>
@@ -27566,6 +29001,22 @@
       <object object_ref="oval:org.mitre.oval:obj:279" />
       <state state_ref="oval:org.cisecurity:ste:1703" />
     </file_test>
+    <registry_test id="oval:org.cisecurity:tst:2348" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6.2 (full) is equal to 394802" version="1">
+      <object object_ref="oval:org.cisecurity:obj:509" />
+      <state state_ref="oval:org.cisecurity:ste:1868" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:2359" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6.1 (client) is equal to 394806" version="1">
+      <object object_ref="oval:org.cisecurity:obj:502" />
+      <state state_ref="oval:org.cisecurity:ste:1870" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:2360" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6.1 (full) is equal to 394806" version="1">
+      <object object_ref="oval:org.cisecurity:obj:509" />
+      <state state_ref="oval:org.cisecurity:ste:1870" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:2363" check="all" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.6.2 (client) is equal to 394802" version="1">
+      <object object_ref="oval:org.cisecurity:obj:502" />
+      <state state_ref="oval:org.cisecurity:ste:1868" />
+    </registry_test>
     <file_test id="oval:org.cisecurity:tst:2402" check="at least one" check_existence="at_least_one_exists" comment="Check if Mso.dll version is less than 16.0.4471.1000" version="2">
       <object object_ref="oval:org.cisecurity:obj:525" />
       <state state_ref="oval:org.cisecurity:ste:1853" />
@@ -29372,6 +30823,79 @@
       <object object_ref="oval:org.cisecurity:obj:176" />
       <state state_ref="oval:org.cisecurity:ste:2274" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:3009" check="at least one" check_existence="at_least_one_exists" comment="Check if System.management.dll version is less than 2.0.50727.8792" version="1">
+      <object object_ref="oval:org.cisecurity:obj:644" />
+      <state state_ref="oval:org.cisecurity:ste:2284" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3010" check="at least one" check_existence="at_least_one_exists" comment="Check if System.management.dll version is less than 4.7.2092.0" version="1">
+      <object object_ref="oval:org.cisecurity:obj:643" />
+      <state state_ref="oval:org.cisecurity:ste:2283" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3011" check="at least one" check_existence="at_least_one_exists" comment="Check if System.management.dll version is less than 4.6.1098.0" version="1">
+      <object object_ref="oval:org.cisecurity:obj:643" />
+      <state state_ref="oval:org.cisecurity:ste:2277" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:3012" check="at least one" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.7 (full) is equal to 460798" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:30444" />
+      <state state_ref="oval:org.cisecurity:ste:2278" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:3013" check="at least one" check_existence="at_least_one_exists" comment="Check if System.management.dll version is less than 4.6.1646.0" version="1">
+      <object object_ref="oval:org.cisecurity:obj:643" />
+      <state state_ref="oval:org.cisecurity:ste:2276" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3014" check="at least one" check_existence="at_least_one_exists" comment="Check if System.management.dll version is less than 4.0.30319.36386" version="1">
+      <object object_ref="oval:org.cisecurity:obj:643" />
+      <state state_ref="oval:org.cisecurity:ste:2282" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3015" check="at least one" check_existence="at_least_one_exists" comment="Check if System.management.dll version is less than 4.0.30319.36387" version="1">
+      <object object_ref="oval:org.cisecurity:obj:643" />
+      <state state_ref="oval:org.cisecurity:ste:2279" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3016" check="all" check_existence="at_least_one_exists" comment="Check if ATMFD.dll version is less than 5.1.2.251" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12044" />
+      <state state_ref="oval:org.cisecurity:ste:2281" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:3017" check="at least one" check_existence="at_least_one_exists" comment="Check if the release of .Net framework 4.7 (client) is equal to 460798" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:30419" />
+      <state state_ref="oval:org.cisecurity:ste:2278" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:3018" check="at least one" check_existence="at_least_one_exists" comment="Check if System.management.dll version is less than 2.0.50727.8758" version="1">
+      <object object_ref="oval:org.cisecurity:obj:644" />
+      <state state_ref="oval:org.cisecurity:ste:2280" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3019" check="at least one" check_existence="at_least_one_exists" comment="Check if JRockit version is less than R28.3.14" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:26889" />
+      <state state_ref="oval:org.cisecurity:ste:2286" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3020" check="at least one" check_existence="at_least_one_exists" comment="Check if Java SE Development Kit 1.7 version is less than 7.0.1320" version="1">
+      <object object_ref="oval:org.cisecurity:obj:302" />
+      <state state_ref="oval:org.cisecurity:ste:2285" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3021" check="at least one" check_existence="at_least_one_exists" comment="Check if Java SE Development Kit 1.8 version is less than 8.0.1220" version="1">
+      <object object_ref="oval:org.cisecurity:obj:297" />
+      <state state_ref="oval:org.cisecurity:ste:2288" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3022" check="at least one" check_existence="at_least_one_exists" comment="Check if Java SE Development Kit 1.6 version is less than 6.0.1420" version="1">
+      <object object_ref="oval:org.cisecurity:obj:308" />
+      <state state_ref="oval:org.cisecurity:ste:2287" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3023" check="at least one" check_existence="at_least_one_exists" comment="Check if Java Runtime Environment version is greater than or equal 8.0 and less than 8.0.1220 (recursive)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:305" />
+      <state state_ref="oval:org.cisecurity:ste:1444" />
+      <state state_ref="oval:org.cisecurity:ste:2288" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3024" check="at least one" check_existence="at_least_one_exists" comment="Check if Java SE Runtime Environment 1.8 version is less than 8.0.1220" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38399" />
+      <state state_ref="oval:org.cisecurity:ste:2288" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3025" check="at least one" check_existence="at_least_one_exists" comment="Check if Java SE Runtime Environment 1.7 version is less than 7.0.1320" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:24174" />
+      <state state_ref="oval:org.cisecurity:ste:2285" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3026" check="at least one" check_existence="at_least_one_exists" comment="Check if Java SE Runtime Environment 1.6 version is less than 6.0.1420" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:24226" />
+      <state state_ref="oval:org.cisecurity:ste:2287" />
+    </file_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="3">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
     </file_test>
@@ -29455,6 +30979,10 @@
     <file_test id="oval:org.mitre.oval:tst:9743" check="all" check_existence="at_least_one_exists" comment="Excel Viewer 2007 is installed." version="2">
       <object object_ref="oval:org.mitre.oval:obj:6918" />
     </file_test>
+    <file_test id="oval:org.mitre.oval:tst:10028" check="all" check_existence="at_least_one_exists" comment="The version of Mscorlib.dll is greater than or equal to 2.0.50727.3053" version="18">
+      <object object_ref="oval:org.mitre.oval:obj:2009" />
+      <state state_ref="oval:org.mitre.oval:ste:5121" />
+    </file_test>
     <registry_test id="oval:org.mitre.oval:tst:10317" check="at least one" check_existence="at_least_one_exists" comment="Windows Server 2008 R2 is installed" version="4">
       <object object_ref="oval:org.mitre.oval:obj:5590" />
       <state state_ref="oval:org.mitre.oval:ste:5506" />
@@ -29496,6 +31024,14 @@
       <object object_ref="oval:org.mitre.oval:obj:15324" />
       <state state_ref="oval:org.mitre.oval:ste:11783" />
     </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:42024" check="all" check_existence="at_least_one_exists" comment="Is the Microsoft .NET Framework 3.5 installed" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:15698" />
+      <state state_ref="oval:org.mitre.oval:ste:11982" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:42129" check="all" check_existence="at_least_one_exists" comment="Is the Microsoft .NET Framework 3.5 the Original Release" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:15818" />
+      <state state_ref="oval:org.mitre.oval:ste:12106" />
+    </registry_test>
     <file_test id="oval:org.mitre.oval:tst:42150" check="at least one" check_existence="at_least_one_exists" comment="the version of Vbscript.dll is greater than or equal to 5.8.7601.21000" version="47">
       <object object_ref="oval:org.mitre.oval:obj:7742" />
       <state state_ref="oval:org.mitre.oval:ste:12566" />
@@ -29507,6 +31043,10 @@
     <registry_test id="oval:org.mitre.oval:tst:42359" check="at least one" check_existence="at_least_one_exists" comment="Internet Explorer 9 is installed" version="3">
       <object object_ref="oval:org.mitre.oval:obj:247" />
       <state state_ref="oval:org.mitre.oval:ste:12091" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:42405" check="all" check_existence="at_least_one_exists" comment="Microsoft .NET Framework 3.5 SP1 is installed" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:15818" />
+      <state state_ref="oval:org.mitre.oval:ste:11982" />
     </registry_test>
     <file_test id="oval:org.mitre.oval:tst:42662" check="at least one" check_existence="at_least_one_exists" comment="the version of Jscript.dll is greater than or equal to 5.8.7601.21000" version="47">
       <object object_ref="oval:org.mitre.oval:obj:564" />
@@ -29779,6 +31319,14 @@
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:122666" check="all" check_existence="at_least_one_exists" comment="MariaDB is installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:41984" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:124744" check="all" check_existence="at_least_one_exists" comment="Check if the release version of .Net framework 4.5 (full) is equal to 379893" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:30444" />
+      <state state_ref="oval:org.mitre.oval:ste:34579" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:125079" check="all" check_existence="at_least_one_exists" comment="Check if the release version of .Net framework 4.5 (client) is equal 379893" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:30419" />
+      <state state_ref="oval:org.mitre.oval:ste:34647" />
     </registry_test>
     <file_test id="oval:org.mitre.oval:tst:125474" check="all" check_existence="at_least_one_exists" comment="The file flash.*.ocx exists" version="35">
       <object object_ref="oval:org.mitre.oval:obj:41861" />
@@ -30189,6 +31737,30 @@
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:200" />
       <filename>Win32kfull.sys</filename>
     </file_object>
+    <registry_object id="oval:org.cisecurity:obj:502" comment="Object holds the 32- and 64-bit registry path of .NET Framework v4 (Client)" version="1">
+      <set>
+        <object_reference>oval:org.mitre.oval:obj:30419</object_reference>
+        <object_reference>oval:org.cisecurity:obj:504</object_reference>
+      </set>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:504" comment="The registry holds the release version of .NET Framework v4 (Client) 32bit" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client</key>
+      <name>Release</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:509" comment="Object holds the 32- and 64-bit registry path of .NET Framework v4 (Full)" version="1">
+      <set>
+        <object_reference>oval:org.mitre.oval:obj:30444</object_reference>
+        <object_reference>oval:org.cisecurity:obj:511</object_reference>
+      </set>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:511" comment="The registry holds the release version of .NET Framework v4 (Full) 32bit" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full</key>
+      <name>Release</name>
+    </registry_object>
     <file_object id="oval:org.cisecurity:obj:521" comment="Object holds Mso.dll for MS Office 2016 64bit - ClickToRun installed" version="1">
       <path var_check="at least one" var_ref="oval:org.cisecurity:var:53" />
       <filename>Mso.dll</filename>
@@ -30499,6 +32071,14 @@
       <path var_check="all" var_ref="oval:org.cisecurity:var:6" />
       <filename>onenotesyncpc.dll</filename>
     </file_object>
+    <file_object id="oval:org.cisecurity:obj:643" comment="Object holds the path for System.management.dll for v4.0.30319" version="1">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:961" />
+      <filename>System.management.dll</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:644" comment="Object holds the path for System.management.dll for v2.0.50727" version="1">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:1061" />
+      <filename>System.management.dll</filename>
+    </file_object>
     <file_object id="oval:org.mitre.oval:obj:3" version="46">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
       <filename>Msxml3.dll</filename>
@@ -30610,6 +32190,10 @@
       <key>SOFTWARE\Microsoft\Office\12.0\Word\InstallRoot</key>
       <name nil="true" />
     </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:2009" version="16">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:1061" />
+      <filename>Mscorlib.dll</filename>
+    </file_object>
     <registry_object id="oval:org.mitre.oval:obj:2156" version="2">
       <behaviors windows_view="32_bit" />
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -30723,6 +32307,10 @@
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1355" />
       <filename operation="pattern match">^mysqld(|-nt)\.exe$</filename>
     </file_object>
+    <file_object id="oval:org.mitre.oval:obj:12044" comment="Object holds Atmfd.dll file" version="47">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
+      <filename>Atmfd.dll</filename>
+    </file_object>
     <registry_object id="oval:org.mitre.oval:obj:12068" comment="The registry key that holds the location of the program files x86 directory." version="1">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Windows\CurrentVersion</key>
@@ -30766,10 +32354,20 @@
       <key operation="pattern match">^SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\ImageMagick .*$</key>
       <name>DisplayName</name>
     </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:15698" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5</key>
+      <name>Install</name>
+    </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:15714" comment="Office 2010 Common\InstallRoot\Path (Native path)" version="4">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Office\14.0\Common\InstallRoot</key>
       <name>Path</name>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:15818" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5</key>
+      <name>SP</name>
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:15822" comment="The registry key to check if Google Chrome is installed (admin install for all users) 32bit" version="6">
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -31606,6 +33204,16 @@
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1064" />
       <filename>Msoserver.Dll</filename>
     </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:30419" comment="The registry holds the release version of .NET Framework v4 (Client)" version="3">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client</key>
+      <name>Release</name>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:30444" comment="The registry holds the release version of .NET Framework v4 (Full)" version="3">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full</key>
+      <name>Release</name>
+    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:38235" comment="Object holds the path to Wsssetup.dll (foundation 2013)" version="1">
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1886" />
       <filename>Wsssetup.dll</filename>
@@ -31829,6 +33437,12 @@
     </file_object>
   </objects>
   <states>
+    <registry_state id="oval:org.cisecurity:ste:3" comment="State matches if the value is equal to 393295" version="1">
+      <value>393295</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:4" comment="State matches if the value is equal to 393297" version="1">
+      <value>393297</value>
+    </registry_state>
     <file_state id="oval:org.cisecurity:ste:416" comment="State holds if the version is less than 9.0.8112.20832" version="1">
       <version datatype="version" operation="less than">9.0.8112.20832</version>
     </file_state>
@@ -31870,6 +33484,12 @@
     </file_state>
     <registry_state id="oval:org.cisecurity:ste:631" comment="State matches version greater than or equal to 14.0.0.0" version="1">
       <value datatype="version" operation="greater than or equal">14.0.0.0</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:685" comment="State matches if the value is equal to 394271" version="1">
+      <value>394271</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:687" comment="State matches if the value is equal to 394254" version="1">
+      <value>394254</value>
     </registry_state>
     <registry_state id="oval:org.cisecurity:ste:887" comment="State matches the version 15.x" version="1">
       <value operation="pattern match">^15\..*$</value>
@@ -31952,6 +33572,12 @@
     <file_state id="oval:org.cisecurity:ste:1863" comment="State holds if the version is greater than or equal to 1.626.6002.24000" version="1">
       <version datatype="version" operation="greater than or equal">1.626.6002.24000</version>
     </file_state>
+    <registry_state id="oval:org.cisecurity:ste:1868" comment="State matches if the value is equal to 394802" version="1">
+      <value>394802</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:1870" comment="State matches if the value is equal to 394806" version="1">
+      <value>394806</value>
+    </registry_state>
     <registry_state id="oval:org.cisecurity:ste:1907" comment="State matches version less than 20.0.0.228" version="1">
       <value datatype="version" operation="less than">20.0.0.228</value>
     </registry_state>
@@ -32739,6 +34365,45 @@
     <registry_state id="oval:org.cisecurity:ste:2275" comment="State matches version less than 25.0.0.148" version="1">
       <value datatype="version" operation="less than">25.0.0.148</value>
     </registry_state>
+    <file_state id="oval:org.cisecurity:ste:2276" comment="State matches version less than 4.6.1646.0" version="1">
+      <version datatype="version" operation="less than">4.6.1646.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2277" comment="State matches version less than 4.6.1098.0" version="1">
+      <version datatype="version" operation="less than">4.6.1098.0</version>
+    </file_state>
+    <registry_state id="oval:org.cisecurity:ste:2278" comment="State matches value equals to 460798" version="1">
+      <value>460798</value>
+    </registry_state>
+    <file_state id="oval:org.cisecurity:ste:2279" comment="State matches version less than 4.0.30319.36387" version="1">
+      <version datatype="version" operation="less than">4.0.30319.36387</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2280" comment="State matches version less than 2.0.50727.8758" version="1">
+      <version datatype="version" operation="less than">2.0.50727.8758</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2281" comment="State matches version less than 5.1.2.251" version="1">
+      <version datatype="version" operation="less than">5.1.2.251</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2282" comment="State matches version less than 4.0.30319.36386" version="1">
+      <version datatype="version" operation="less than">4.0.30319.36386</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2283" comment="State matches version less than 4.7.2092.0" version="1">
+      <version datatype="version" operation="less than">4.7.2092.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2284" comment="State matches version less than 2.0.50727.8792" version="1">
+      <version datatype="version" operation="less than">2.0.50727.8792</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2285" comment="State matches version less than 7.0.1320" version="1">
+      <version datatype="version" operation="less than">7.0.1320</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2286" comment="State matches version less than 28.3.14" version="1">
+      <version datatype="version" operation="less than">28.3.14</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2287" comment="State matches version less than 6.0.1420" version="1">
+      <version datatype="version" operation="less than">6.0.1420</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2288" comment="State matches version less than 8.0.1220" version="1">
+      <version datatype="version" operation="less than">8.0.1220</version>
+    </file_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="2">
       <family operation="case insensitive equals">windows</family>
     </family_state>
@@ -32784,6 +34449,9 @@
     <registry_state id="oval:org.mitre.oval:ste:5027" comment="The registry key matches with Windows 7" version="5">
       <value operation="pattern match">^[A-Za-z0-9\(\)\s]*[Ww][Ii][Nn][Dd][Oo][Ww][Ss] 7[A-Za-z0-9\(\)\s]*$</value>
     </registry_state>
+    <file_state id="oval:org.mitre.oval:ste:5121" version="1">
+      <version datatype="version" operation="greater than or equal">2.0.50727.3053</version>
+    </file_state>
     <file_state id="oval:org.mitre.oval:ste:5166" comment="State holds if the version is greater than or equal 5.8.0.0" version="2">
       <version datatype="version" operation="greater than or equal">5.8.0.0</version>
     </file_state>
@@ -32802,11 +34470,17 @@
     <registry_state id="oval:org.mitre.oval:ste:11937" comment="The registry key matches with any version of Google Chrome" version="3">
       <value operation="pattern match">^Google Chrome.*$</value>
     </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:11982" version="1">
+      <value datatype="int">1</value>
+    </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:12087" comment="Value matches ^\d+\.win7sp1.*$" version="3">
       <value operation="pattern match">^\d+\.win7sp1.*$</value>
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:12091" comment="The registry key has a value that matches 9.*" version="2">
       <value operation="pattern match">^9\.0\..*$</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:12106" version="1">
+      <value datatype="int">0</value>
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:12300" comment="State matches if ImageMagick is installed" version="1">
       <value operation="pattern match">^ImageMagick .*$</value>
@@ -32944,6 +34618,12 @@
     </file_state>
     <registry_state id="oval:org.mitre.oval:ste:33569" comment="MySQL 5.6 check" version="1">
       <value>MySQL Server 5.6</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:34579" comment="State matches the if the release version is equals to 379893" version="1">
+      <value>379893</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:34647" comment="State matches if the release version is equal to 379893" version="1">
+      <value>379893</value>
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:38839" comment="Version of Microsoft Exchange Server 2013 is greater than or equal 15.0.847.32" version="1">
       <value datatype="version" operation="greater than or equal">15.0.847.32</value>
@@ -33202,6 +34882,12 @@
         <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:24007" />
       </regex_capture>
     </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:961" comment=".NET 4.0 Framework directory" datatype="string" version="16">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
+        <literal_component>\Microsoft.NET\Framework\v4.0.30319</literal_component>
+      </concat>
+    </local_variable>
     <local_variable id="oval:org.mitre.oval:var:984" comment="Variable holds the path to OpenSSL install directory (x86)" datatype="string" version="2">
       <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:38779" />
     </local_variable>
@@ -33209,6 +34895,12 @@
       <concat>
         <object_component item_field="value" object_ref="oval:org.cisecurity:obj:322" />
         <literal_component>\Microsoft Shared\OFFICE14</literal_component>
+      </concat>
+    </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:1061" comment=".NET 2.0 Framework directory" datatype="string" version="16">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
+        <literal_component>\Microsoft.NET\Framework\v2.0.50727</literal_component>
       </concat>
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:1064" comment="Variable holds the path to Msoserver.Dll" datatype="string" version="1">
