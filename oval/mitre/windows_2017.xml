@@ -20147,6 +20147,159 @@
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:2222" class="vulnerability" version="1">
+      <metadata>
+        <title>libjpeg Information Disclosure Vulnerability – CVE-2013-6629</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2013-6629" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-6629" source="CVE" />
+        <description>An information disclosure vulnerability exists within the open-source libjpeg image-processing library where it fails to properly handle objects in memory, allowing an attacker to retrieve information that could lead to an Address Space Layout Randomization (ASLR) bypass.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-04-26T22:09:23+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Silverlight/Windows OS + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Silverlight 5 is installed + file version" operator="AND">
+          <extend_definition comment="Microsoft Silverlight 5 is installed" definition_ref="oval:org.mitre.oval:def:15148" />
+          <criterion comment="Check if Silverlight version is less than 5.1.50906.0" test_ref="oval:org.cisecurity:tst:3033" />
+        </criteria>
+        <criteria comment="Microsoft Windows OS + file version" operator="OR">
+          <criteria comment="Microsoft Windows Vista/Server 2008 + file version" operator="AND">
+            <criteria comment="Microsoft Windows Vista/Server 2008 is installed" operator="OR">
+              <extend_definition comment="Microsoft Windows Vista (32-bit) Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6124" />
+              <extend_definition comment="Microsoft Windows Vista x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:5594" />
+              <extend_definition comment="Microsoft Windows Server 2008 x64 Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6216" />
+              <extend_definition comment="Microsoft Windows Server 2008 Itanium-Based Edition Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6150" />
+            </criteria>
+            <criteria comment="Check for file version" operator="OR">
+              <criteria comment="Check for Asycfilt.dll file version" operator="OR">
+                <criterion comment="Check if Asycfilt.dll version is less than 6.0.6002.19755" test_ref="oval:org.cisecurity:tst:3053" />
+                <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+                  <criterion comment="Check if Asycfilt.dll version is greater than or equal to 6.0.6002.24000" test_ref="oval:org.cisecurity:tst:2124" />
+                  <criterion comment="Check if Asycfilt.dll version is less than 6.0.6002.24078" test_ref="oval:org.cisecurity:tst:3051" />
+                </criteria>
+              </criteria>
+              <criteria comment="Check for Gdiplus.dll file version" operator="OR">
+                <criteria comment="Check for file version" operator="OR">
+                  <criterion comment="Check if Gdiplus.dll version is less than 5.2.6002.19749" test_ref="oval:org.cisecurity:tst:3027" />
+                  <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+                    <criterion comment="Check if Gdiplus.dll version is greater than or equal to 5.2.6002.24000" test_ref="oval:org.cisecurity:tst:3049" />
+                    <criterion comment="Check if Gdiplus.dll version is less than 5.2.6002.24072" test_ref="oval:org.cisecurity:tst:3037" />
+                  </criteria>
+                </criteria>
+                <criteria comment="Check for file version" operator="OR">
+                  <criterion comment="Check if Gdiplus.dll version is less than 6.0.6002.19749" test_ref="oval:org.cisecurity:tst:3047" />
+                  <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+                    <criterion comment="Check if Gdiplus.dll version is greater than or equal to 6.0.6002.24000" test_ref="oval:org.cisecurity:tst:3054" />
+                    <criterion comment="Check if Gdiplus.dll version is less than 6.0.6002.24072" test_ref="oval:org.cisecurity:tst:3036" />
+                  </criteria>
+                </criteria>
+              </criteria>
+              <criteria comment="Check for Quartz.dll file version" operator="OR">
+                <criterion comment="Check if Quartz.dll version is less than 6.6.6002.19747" test_ref="oval:org.cisecurity:tst:3038" />
+                <criteria comment="Check for Limited Distribution Release (LDR) file version" operator="AND">
+                  <criterion comment="Check if Quartz.dll version is greater than or equal to 6.6.6002.24000" test_ref="oval:org.cisecurity:tst:2794" />
+                  <criterion comment="Check if Quartz.dll version is less than 6.6.6002.24070" test_ref="oval:org.cisecurity:tst:3030" />
+                </criteria>
+              </criteria>
+            </criteria>
+          </criteria>
+          <criteria comment="Microsoft Windows 7/Server 2008 R2 + file version" operator="AND">
+            <criteria comment="Microsoft Windows 7/Server 2008 R2 is installed" operator="OR">
+              <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+              <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+              <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+              <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12583" />
+            </criteria>
+            <criteria comment="Check for file version" operator="OR">
+              <criterion comment="Check if Asycfilt.dll version is less than 6.1.7601.23713" test_ref="oval:org.cisecurity:tst:3052" />
+              <criteria comment="Check for Gdiplus.dll file version" operator="OR">
+                <criterion comment="Check if Gdiplus.dll version is less than 5.2.7601.23721" test_ref="oval:org.cisecurity:tst:3041" />
+                <criterion comment="Check if Gdiplus.dll version is less than 6.1.7601.23721" test_ref="oval:org.cisecurity:tst:3056" />
+              </criteria>
+              <criterion comment="Check if Quartz.dll version is less than 6.6.7601.23709" test_ref="oval:org.cisecurity:tst:3032" />
+            </criteria>
+          </criteria>
+          <criteria comment="Microsoft Windows 8.1/Server 2012 R2 + file version" operator="AND">
+            <criteria comment="Microsoft Windows 8.1/Server 2012 R2 is installed" operator="OR">
+              <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+              <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+              <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+            </criteria>
+            <criteria comment="Check for file version" operator="OR">
+              <criterion comment="Check if Asycfilt.dll version is less than 6.3.9600.18619" test_ref="oval:org.cisecurity:tst:3055" />
+              <criterion comment="Check if Quartz.dll version is less than 6.6.9600.18617" test_ref="oval:org.cisecurity:tst:3039" />
+            </criteria>
+          </criteria>
+          <criteria comment="Microsoft Windows Server 2012 + file version" operator="AND">
+            <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+            <criteria comment="Check for file version" operator="OR">
+              <criterion comment="Check if Asycfilt.dll version is less than 6.2.9200.22104" test_ref="oval:org.cisecurity:tst:3044" />
+              <criterion comment="Check if Quartz.dll version is less than 6.6.9200.22108" test_ref="oval:org.cisecurity:tst:3042" />
+            </criteria>
+          </criteria>
+          <criteria comment="Microsoft Windows 10 + file version" operator="AND">
+            <criteria comment="Microsoft Windows 10 is installed" operator="OR">
+              <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+              <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+            </criteria>
+            <criteria comment="Check for file version" operator="OR">
+              <criterion comment="Check if Asycfilt.dll version is less than 10.0.10240.17354" test_ref="oval:org.cisecurity:tst:3031" />
+              <criterion comment="Check if Gdiplus.dll version is less than 10.0.10240.17319" test_ref="oval:org.cisecurity:tst:3035" />
+              <criterion comment="Check if Quartz.dll version is less than 10.0.10240.17354" test_ref="oval:org.cisecurity:tst:3048" />
+            </criteria>
+          </criteria>
+          <criteria comment="Microsoft Windows 10 Version 1511 + file version" operator="AND">
+            <criteria comment="Microsoft Windows 10 Version 1511 is installed" operator="OR">
+              <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+              <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+            </criteria>
+            <criteria comment="Check for file version" operator="OR">
+              <criterion comment="Check if Asycfilt.dll version is less than 10.0.10586.873" test_ref="oval:org.cisecurity:tst:3029" />
+              <criterion comment="Check if Gdiplus.dll version is less than 10.0.10586.839" test_ref="oval:org.cisecurity:tst:3028" />
+              <criterion comment="Check if Quartz.dll version is less than 10.0.10586.873" test_ref="oval:org.cisecurity:tst:3043" />
+            </criteria>
+          </criteria>
+          <criteria comment="Microsoft Windows 10 Version 1607 + file version" operator="AND">
+            <criteria comment="Microsoft Windows 10 Version 1607 is installed" operator="OR">
+              <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+              <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+              <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+            </criteria>
+            <criteria comment="Check for file version" operator="OR">
+              <criterion comment="Check if Asycfilt.dll version is less than 10.0.14393.1066" test_ref="oval:org.cisecurity:tst:3046" />
+              <criterion comment="Check if Gdiplus.dll version is less than 10.0.14393.953" test_ref="oval:org.cisecurity:tst:3040" />
+              <criterion comment="Check if Quartz.dll version is less than 10.0.14393.1066" test_ref="oval:org.cisecurity:tst:3050" />
+            </criteria>
+          </criteria>
+          <criteria comment="Microsoft Windows 10 Version 1703 + file version" operator="AND">
+            <criteria comment="Microsoft Windows 10 Version 1703 is installed" operator="OR">
+              <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+              <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+            </criteria>
+            <criteria comment="Check for file version" operator="OR">
+              <criterion comment="Check if Asycfilt.dll version is less than 10.0.15063.138" test_ref="oval:org.cisecurity:tst:3034" />
+              <criterion comment="Check if Quartz.dll version is less than 10.0.15063.138" test_ref="oval:org.cisecurity:tst:3045" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:128" class="inventory" version="17">
       <metadata>
         <title>Microsoft Windows Server 2003 is installed</title>
@@ -22150,6 +22303,50 @@
       <criteria>
         <criterion comment="Check if the version of Office 2007 products is greater than or equal to 12.0.6612.1000" test_ref="oval:org.mitre.oval:tst:80319" />
         <extend_definition comment="Microsoft Excel 2007 is installed" definition_ref="oval:org.mitre.oval:def:1745" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:15148" class="inventory" version="16">
+      <metadata>
+        <title>Microsoft Silverlight 5 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Silverlight 5</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:silverlight:5" source="CPE" />
+        <description>Microsoft Silverlight 5 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2012-05-08T13:00:00">
+              <contributor organization="Symantec Corporation">Dragos Prisaca</contributor>
+            </submitted>
+            <status_change date="2012-05-18T16:55:23.870-04:00">DRAFT</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:23560 - New Microsoft Patch Tuesday May 2012 definitions." date="2012-05-18T16:19:00.793-04:00">
+              <contributor organization="Symantec Corporation">Josh Turpin</contributor>
+            </modified>
+            <status_change date="2012-06-04T04:00:54.925-04:00">INTERIM</status_change>
+            <status_change date="2012-06-25T04:00:08.966-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:15148 - Microsoft Bulletin: MS13-022 win (March 2013)" date="2013-03-18T17:07:00.957-04:00">
+              <contributor organization="SecPod Technologies">Pradeep R B</contributor>
+            </modified>
+            <status_change date="2013-03-18T17:12:45.825-04:00">INTERIM</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:23560 - An updated file with the latest version of def:15148 attached, supersedes previous submission." date="2013-04-04T21:50:00.665-04:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </modified>
+            <status_change date="2013-04-22T04:00:10.543-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criterion comment="Microsoft Silverlight 5 is installed" test_ref="oval:org.mitre.oval:tst:79845" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:15381" class="inventory" version="30">
@@ -24296,6 +24493,10 @@
       <object object_ref="oval:org.mitre.oval:obj:570" />
       <state state_ref="oval:org.cisecurity:ste:1629" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:2124" check="at least one" check_existence="at_least_one_exists" comment="Check if Asycfilt.dll version is greater than or equal to 6.0.6002.24000" version="20">
+      <object object_ref="oval:org.mitre.oval:obj:11823" />
+      <state state_ref="oval:org.cisecurity:ste:1703" />
+    </file_test>
     <file_test id="oval:org.cisecurity:tst:2235" check="at least one" check_existence="at_least_one_exists" comment="Check if Ntoskrnl.exe version is greater than or equal to 6.0.6002.24000" version="19">
       <object object_ref="oval:org.mitre.oval:obj:335" />
       <state state_ref="oval:org.cisecurity:ste:1703" />
@@ -25324,6 +25525,10 @@
       <object object_ref="oval:org.mitre.oval:obj:570" />
       <state state_ref="oval:org.cisecurity:ste:2126" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:2794" check="at least one" check_existence="at_least_one_exists" comment="Check if Quartz.dll version is greater than or equal to 6.6.6002.24000" version="3">
+      <object object_ref="oval:org.cisecurity:obj:597" />
+      <state state_ref="oval:org.cisecurity:ste:2155" />
+    </file_test>
     <registry_test id="oval:org.cisecurity:tst:2797" check="at least one" check_existence="at_least_one_exists" comment="Check if HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion!CurrentBuild is equals 15063" version="1">
       <object object_ref="oval:org.cisecurity:obj:598" />
       <state state_ref="oval:org.cisecurity:ste:2163" />
@@ -25836,6 +26041,126 @@
       <object object_ref="oval:org.mitre.oval:obj:24226" />
       <state state_ref="oval:org.cisecurity:ste:2287" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:3027" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is less than 5.2.6002.19749" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2299" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3028" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is less than 10.0.10586.839" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2078" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3029" check="at least one" check_existence="at_least_one_exists" comment="Check if Asycfilt.dll version is less than 10.0.10586.873" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:11823" />
+      <state state_ref="oval:org.cisecurity:ste:2257" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3030" check="at least one" check_existence="at_least_one_exists" comment="Check if Quartz.dll version is less than 6.6.6002.24070" version="1">
+      <object object_ref="oval:org.cisecurity:obj:597" />
+      <state state_ref="oval:org.cisecurity:ste:2292" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3031" check="at least one" check_existence="at_least_one_exists" comment="Check if Asycfilt.dll version is less than 10.0.10240.17354" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:11823" />
+      <state state_ref="oval:org.cisecurity:ste:2251" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3032" check="at least one" check_existence="at_least_one_exists" comment="Check if Quartz.dll version is less than 6.6.7601.23709" version="1">
+      <object object_ref="oval:org.cisecurity:obj:597" />
+      <state state_ref="oval:org.cisecurity:ste:2294" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:3033" check="at least one" check_existence="at_least_one_exists" comment="Check if Silverlight version is less than 5.1.50906.0" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23560" />
+      <state state_ref="oval:org.cisecurity:ste:2295" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:3034" check="at least one" check_existence="at_least_one_exists" comment="Check if Asycfilt.dll version is less than 10.0.15063.138" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:11823" />
+      <state state_ref="oval:org.cisecurity:ste:2256" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3035" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is less than 10.0.10240.17319" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2082" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3036" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is less than 6.0.6002.24072" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2246" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3037" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is less than 5.2.6002.24072" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2302" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3038" check="at least one" check_existence="at_least_one_exists" comment="Check if Quartz.dll version is less than 6.6.6002.19747" version="1">
+      <object object_ref="oval:org.cisecurity:obj:597" />
+      <state state_ref="oval:org.cisecurity:ste:2300" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3039" check="at least one" check_existence="at_least_one_exists" comment="Check if Quartz.dll version is less than 6.6.9600.18617" version="1">
+      <object object_ref="oval:org.cisecurity:obj:597" />
+      <state state_ref="oval:org.cisecurity:ste:2296" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3040" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is less than 10.0.14393.953" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2124" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3041" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is less than 5.2.7601.23721" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2297" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3042" check="at least one" check_existence="at_least_one_exists" comment="Check if Quartz.dll version is less than 6.6.9200.22108" version="1">
+      <object object_ref="oval:org.cisecurity:obj:597" />
+      <state state_ref="oval:org.cisecurity:ste:2293" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3043" check="at least one" check_existence="at_least_one_exists" comment="Check if Quartz.dll version is less than 10.0.10586.873" version="1">
+      <object object_ref="oval:org.cisecurity:obj:597" />
+      <state state_ref="oval:org.cisecurity:ste:2257" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3044" check="at least one" check_existence="at_least_one_exists" comment="Check if Asycfilt.dll version is less than 6.2.9200.22104" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:11823" />
+      <state state_ref="oval:org.cisecurity:ste:2249" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3045" check="at least one" check_existence="at_least_one_exists" comment="Check if Quartz.dll version is less than 10.0.15063.138" version="1">
+      <object object_ref="oval:org.cisecurity:obj:597" />
+      <state state_ref="oval:org.cisecurity:ste:2256" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3046" check="at least one" check_existence="at_least_one_exists" comment="Check if Asycfilt.dll version is less than 10.0.14393.1066" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:11823" />
+      <state state_ref="oval:org.cisecurity:ste:2258" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3047" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is less than 6.0.6002.19749" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2247" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3048" check="at least one" check_existence="at_least_one_exists" comment="Check if Quartz.dll version is less than 10.0.10240.17354" version="1">
+      <object object_ref="oval:org.cisecurity:obj:597" />
+      <state state_ref="oval:org.cisecurity:ste:2251" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3049" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is greater than or equal to 5.2.6002.24000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2301" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3050" check="at least one" check_existence="at_least_one_exists" comment="Check if Quartz.dll version is less than 10.0.14393.1066" version="1">
+      <object object_ref="oval:org.cisecurity:obj:597" />
+      <state state_ref="oval:org.cisecurity:ste:2258" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3051" check="at least one" check_existence="at_least_one_exists" comment="Check if Asycfilt.dll version is less than 6.0.6002.24078" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:11823" />
+      <state state_ref="oval:org.cisecurity:ste:2241" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3052" check="at least one" check_existence="at_least_one_exists" comment="Check if Asycfilt.dll version is less than 6.1.7601.23713" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:11823" />
+      <state state_ref="oval:org.cisecurity:ste:2291" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3053" check="at least one" check_existence="at_least_one_exists" comment="Check if Asycfilt.dll version is less than 6.0.6002.19755" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:11823" />
+      <state state_ref="oval:org.cisecurity:ste:2240" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3054" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is greater than or equal to 6.0.6002.24000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2148" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3055" check="at least one" check_existence="at_least_one_exists" comment="Check if Asycfilt.dll version is less than 6.3.9600.18619" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:11823" />
+      <state state_ref="oval:org.cisecurity:ste:2259" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3056" check="all" check_existence="at_least_one_exists" comment="Check if Gdiplus.dll version is less than 6.1.7601.23721" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6109" />
+      <state state_ref="oval:org.cisecurity:ste:2298" />
+    </file_test>
     <family_test id="oval:org.mitre.oval:tst:99" check="only one" check_existence="at_least_one_exists" comment="the installed operating system is part of the Microsoft Windows family" version="8">
       <object object_ref="oval:org.mitre.oval:obj:99" />
       <state state_ref="oval:org.mitre.oval:ste:99" />
@@ -25982,6 +26307,10 @@
     <registry_test id="oval:org.mitre.oval:tst:79723" check="all" check_existence="at_least_one_exists" comment="Check if ProductVersion of Microsoft Office Compatibility Pack is less than 12.0.6612.1000" version="1">
       <object object_ref="oval:org.mitre.oval:obj:24028" />
       <state state_ref="oval:org.mitre.oval:ste:19145" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:79845" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Silverlight 5 is installed" version="3">
+      <object object_ref="oval:org.mitre.oval:obj:23560" />
+      <state state_ref="oval:org.mitre.oval:ste:19561" />
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:80017" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Outlook 2013 is installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:23956" />
@@ -26693,6 +27022,10 @@
       <key operation="pattern match">^SOFTWARE\\MySQL AB\\MySQL Cluster [0-9]\.[0-9]$</key>
       <name>Location</name>
     </registry_object>
+    <file_object id="oval:org.cisecurity:obj:597" comment="Object holds the path for Quartz.dll" version="3">
+      <path var_check="at least one" var_ref="oval:org.mitre.oval:var:200" />
+      <filename>Quartz.dll</filename>
+    </file_object>
     <registry_object id="oval:org.cisecurity:obj:598" comment="HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion!CurrentBuild" version="1">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
@@ -26899,6 +27232,10 @@
       <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
       <name>ProductName</name>
     </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:6109" comment="Path to Gdiplus.dll" version="24">
+      <path operation="pattern match" var_check="all" var_ref="oval:org.mitre.oval:var:1887" />
+      <filename>Gdiplus.dll</filename>
+    </file_object>
     <registry_object id="oval:org.mitre.oval:obj:6292" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\12.0\Common\InstallRoot!Path (32 bit)" version="1">
       <behaviors windows_view="32_bit" />
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -26950,6 +27287,10 @@
     <file_object id="oval:org.mitre.oval:obj:11786" comment="Full path to MySQL executable" version="5">
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1355" />
       <filename operation="pattern match">^mysqld(|-nt)\.exe$</filename>
+    </file_object>
+    <file_object id="oval:org.mitre.oval:obj:11823" comment="Object holds the file Asycfilt.dll" version="47">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
+      <filename>Asycfilt.dll</filename>
     </file_object>
     <file_object id="oval:org.mitre.oval:obj:12044" comment="Object holds Atmfd.dll file" version="47">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
@@ -27042,6 +27383,17 @@
       <key operation="pattern match">^SOFTWARE\\JavaSoft\\Java Runtime Environment\\1\.6\.\d(_\d+)?$</key>
       <name>JavaHome</name>
     </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:23285" comment="Registry that holds the Version of the Microsoft Silverlight (Native)" version="3">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Silverlight</key>
+      <name>Version</name>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:23316" comment="Registry that holds the Version of the Microsoft Silverlight (32bit)" version="3">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Silverlight</key>
+      <name>Version</name>
+    </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:23331" comment="Immediate child keys of HKEY_USERS" version="4">
       <behaviors max_depth="1" recurse_direction="down" />
       <hive>HKEY_USERS</hive>
@@ -27097,6 +27449,12 @@
       <set>
         <object_reference>oval:org.mitre.oval:obj:23940</object_reference>
         <object_reference>oval:org.mitre.oval:obj:24249</object_reference>
+      </set>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:23560" comment="Registry that holds the Version of the Microsoft Silverlight" version="3">
+      <set>
+        <object_reference>oval:org.mitre.oval:obj:23285</object_reference>
+        <object_reference>oval:org.mitre.oval:obj:23316</object_reference>
       </set>
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:23580" comment="HKEY_LOCAL_MACHINE\Software\JavaSoft\Java Runtime Environment\1.6 (windows_view='64_bit' - default)" version="1">
@@ -28407,6 +28765,12 @@
     <file_state id="oval:org.cisecurity:ste:2146" comment="State matches version less than 6.2.9200.22086" version="1">
       <version datatype="version" operation="less than">6.2.9200.22086</version>
     </file_state>
+    <file_state id="oval:org.cisecurity:ste:2148" comment="State matches version greater than or equal to 6.0.6002.24000" version="1">
+      <version datatype="version" operation="greater than or equal">6.0.6002.24000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2155" comment="State matches version greater than or equal 6.6.6002.24000" version="1">
+      <version datatype="version" operation="greater than or equal">6.6.6002.24000</version>
+    </file_state>
     <registry_state id="oval:org.cisecurity:ste:2163" comment="is equals 15063" version="1">
       <value datatype="int">15063</value>
     </registry_state>
@@ -28647,6 +29011,42 @@
     <file_state id="oval:org.cisecurity:ste:2290" comment="State matches version less than 12.0.6766.5000" version="1">
       <version datatype="version" operation="less than">12.0.6766.5000</version>
     </file_state>
+    <file_state id="oval:org.cisecurity:ste:2291" comment="State matches version less than 6.1.7601.23713" version="1">
+      <version datatype="version" operation="less than">6.1.7601.23713</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2292" comment="State matches version less than 6.6.6002.24070" version="1">
+      <version datatype="version" operation="less than">6.6.6002.24070</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2293" comment="State matches version less than 6.6.9200.22108" version="1">
+      <version datatype="version" operation="less than">6.6.9200.22108</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2294" comment="State matches version less than 6.6.7601.23709" version="1">
+      <version datatype="version" operation="less than">6.6.7601.23709</version>
+    </file_state>
+    <registry_state id="oval:org.cisecurity:ste:2295" comment="State matches version less than 5.1.50906.0" version="1">
+      <value datatype="version" operation="less than">5.1.50906.0</value>
+    </registry_state>
+    <file_state id="oval:org.cisecurity:ste:2296" comment="State matches version less than 6.6.9600.18617" version="1">
+      <version datatype="version" operation="less than">6.6.9600.18617</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2297" comment="State matches version less than 5.2.7601.23721" version="1">
+      <version datatype="version" operation="less than">5.2.7601.23721</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2298" comment="State matches version less than 6.1.7601.23721" version="1">
+      <version datatype="version" operation="less than">6.1.7601.23721</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2299" comment="State matches version less than 5.2.6002.19749" version="1">
+      <version datatype="version" operation="less than">5.2.6002.19749</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2300" comment="State matches version less than 6.6.6002.19747" version="1">
+      <version datatype="version" operation="less than">6.6.6002.19747</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2301" comment="State matches version greater than or equals 5.2.6002.24000" version="1">
+      <version datatype="version" operation="greater than or equal">5.2.6002.24000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2302" comment="State matches version less than 5.2.6002.24072" version="1">
+      <version datatype="version" operation="less than">5.2.6002.24072</version>
+    </file_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="2">
       <family operation="case insensitive equals">windows</family>
     </family_state>
@@ -28745,6 +29145,9 @@
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:19516" comment="State matches if version is greater than or equal to 12.0.6425.1000" version="1">
       <value datatype="version" operation="greater than or equal">12.0.6425.1000</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:19561" version="1">
+      <value operation="pattern match">^5\..*$</value>
     </registry_state>
     <wmi57_state id="oval:org.mitre.oval:ste:19713" comment="The field OtherTypeDescription in the WMI request is not empty" version="1">
       <result datatype="record" entity_check="at least one">
@@ -29186,6 +29589,15 @@
       <regex_capture pattern="^(.*)\\defaults.*$">
         <object_component item_field="path" object_ref="oval:org.mitre.oval:obj:29644" />
       </regex_capture>
+    </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:1887" comment="Common pattern for GDI+ directory" datatype="string" version="20">
+      <concat>
+        <literal_component>^</literal_component>
+        <escape_regex>
+          <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
+        </escape_regex>
+        <literal_component>\\winsxs\\(x86|amd64)_microsoft\.windows\.gdiplus_6595b64144ccf1df_.+$</literal_component>
+      </concat>
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:1897" comment="Full path to Java Runtime Environment 7's %JavaHome%\bin\java.exe" datatype="string" version="1">
       <concat>
