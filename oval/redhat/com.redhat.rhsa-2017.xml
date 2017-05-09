@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1494229174</content_version>
+    <content_version>1494333147</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -8861,6 +8861,202 @@ Note: This issue affected only the BIND versions as shipped with Red Hat Enterpr
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171204" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1204: java-1.7.0-openjdk security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1204-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1204" source="RHSA" />
+        <reference ref_id="CVE-2017-3509" ref_url="https://access.redhat.com/security/cve/CVE-2017-3509" source="CVE" />
+        <reference ref_id="CVE-2017-3511" ref_url="https://access.redhat.com/security/cve/CVE-2017-3511" source="CVE" />
+        <reference ref_id="CVE-2017-3526" ref_url="https://access.redhat.com/security/cve/CVE-2017-3526" source="CVE" />
+        <reference ref_id="CVE-2017-3533" ref_url="https://access.redhat.com/security/cve/CVE-2017-3533" source="CVE" />
+        <reference ref_id="CVE-2017-3539" ref_url="https://access.redhat.com/security/cve/CVE-2017-3539" source="CVE" />
+        <reference ref_id="CVE-2017-3544" ref_url="https://access.redhat.com/security/cve/CVE-2017-3544" source="CVE" />
+        <description>The java-1.7.0-openjdk packages provide the OpenJDK 7 Java Runtime Environment and the OpenJDK 7 Java Software Development Kit.
+
+Security Fix(es):
+
+* An untrusted library search path flaw was found in the JCE component of OpenJDK. A local attacker could possibly use this flaw to cause a Java application using JCE to load an attacker-controlled library and hence escalate their privileges. (CVE-2017-3511)
+
+* It was found that the JAXP component of OpenJDK failed to correctly enforce parse tree size limits when parsing XML document. An attacker able to make a Java application parse a specially crafted XML document could use this flaw to make it consume an excessive amount of CPU and memory. (CVE-2017-3526)
+
+* It was discovered that the HTTP client implementation in the Networking component of OpenJDK could cache and re-use an NTLM authenticated connection in a different security context. A remote attacker could possibly use this flaw to make a Java application perform HTTP requests authenticated with credentials of a different user. (CVE-2017-3509)
+
+Note: This update adds support for the "jdk.ntlm.cache" system property which, when set to false, prevents caching of NTLM connections and authentications and hence prevents this issue. However, caching remains enabled by default.
+
+* It was discovered that the Security component of OpenJDK did not allow users to restrict the set of algorithms allowed for Jar integrity verification. This flaw could allow an attacker to modify content of the Jar file that used weak signing key or hash algorithm. (CVE-2017-3539)
+
+Note: This updates extends the fix for CVE-2016-5542 released as part of the RHSA-2016:2658 erratum to no longer allow the MD5 hash algorithm during the Jar integrity verification by adding it to the jdk.jar.disabledAlgorithms security property.
+
+* Newline injection flaws were discovered in FTP and SMTP client implementations in the Networking component in OpenJDK. A remote attacker could possibly use these flaws to manipulate FTP or SMTP connections established by a Java application. (CVE-2017-3533, CVE-2017-3544)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-05-09" />
+          <updated date="2017-05-09" />
+          <cve cvss3="4.2/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N" cwe="CWE-287" href="https://access.redhat.com/security/cve/CVE-2017-3509" public="20170418">CVE-2017-3509</cve>
+          <cve cvss3="7.0/CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" cwe="CWE-426" href="https://access.redhat.com/security/cve/CVE-2017-3511" public="20170418">CVE-2017-3511</cve>
+          <cve cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-770" href="https://access.redhat.com/security/cve/CVE-2017-3526" public="20170418">CVE-2017-3526</cve>
+          <cve cvss3="3.7/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2017-3533" impact="low" public="20170218">CVE-2017-3533</cve>
+          <cve cvss3="3.1/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N" cwe="CWE-327" href="https://access.redhat.com/security/cve/CVE-2017-3539" public="20170418">CVE-2017-3539</cve>
+          <cve cvss3="3.7/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2017-3544" impact="low" public="20170418">CVE-2017-3544</cve>
+          <bugzilla id="1443007" href="https://bugzilla.redhat.com/1443007">CVE-2017-3511 OpenJDK: untrusted extension directories search path in Launcher (JCE, 8163528)</bugzilla>
+          <bugzilla id="1443052" href="https://bugzilla.redhat.com/1443052">CVE-2017-3509 OpenJDK: improper re-use of NTLM authenticated connections (Networking, 8163520)</bugzilla>
+          <bugzilla id="1443068" href="https://bugzilla.redhat.com/1443068">CVE-2017-3544 OpenJDK: newline injection in the SMTP client (Networking, 8171533)</bugzilla>
+          <bugzilla id="1443083" href="https://bugzilla.redhat.com/1443083">CVE-2017-3533 OpenJDK: newline injection in the FTP client (Networking, 8170222)</bugzilla>
+          <bugzilla id="1443097" href="https://bugzilla.redhat.com/1443097">CVE-2017-3539 OpenJDK: MD5 allowed for jar verification (Security, 8171121)</bugzilla>
+          <bugzilla id="1443252" href="https://bugzilla.redhat.com/1443252">CVE-2017-3526 OpenJDK: incomplete XML parse tree size enforcement (JAXP, 8169011)</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="OR">
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+            <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+            <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+            <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk is earlier than 1:1.7.0.141-2.6.10.1.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171204011" />
+              <criterion comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269019" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-accessibility is earlier than 1:1.7.0.141-2.6.10.1.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171204007" />
+              <criterion comment="java-1.7.0-openjdk-accessibility is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269034" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.141-2.6.10.1.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171204015" />
+              <criterion comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269021" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.141-2.6.10.1.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171204009" />
+              <criterion comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269017" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-headless is earlier than 1:1.7.0.141-2.6.10.1.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171204005" />
+              <criterion comment="java-1.7.0-openjdk-headless is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269032" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.141-2.6.10.1.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171204017" />
+              <criterion comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269025" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.141-2.6.10.1.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171204013" />
+              <criterion comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269023" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+            <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+            <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+            <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk is earlier than 1:1.7.0.141-2.6.10.1.el6_9" test_ref="oval:com.redhat.rhsa:tst:20171204025" />
+              <criterion comment="java-1.7.0-openjdk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269019" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.141-2.6.10.1.el6_9" test_ref="oval:com.redhat.rhsa:tst:20171204023" />
+              <criterion comment="java-1.7.0-openjdk-demo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269021" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.141-2.6.10.1.el6_9" test_ref="oval:com.redhat.rhsa:tst:20171204026" />
+              <criterion comment="java-1.7.0-openjdk-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269017" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.141-2.6.10.1.el6_9" test_ref="oval:com.redhat.rhsa:tst:20171204027" />
+              <criterion comment="java-1.7.0-openjdk-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269025" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.141-2.6.10.1.el6_9" test_ref="oval:com.redhat.rhsa:tst:20171204024" />
+              <criterion comment="java-1.7.0-openjdk-src is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170269023" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171206" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1206: qemu-kvm security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1206-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1206" source="RHSA" />
+        <reference ref_id="CVE-2016-9603" ref_url="https://access.redhat.com/security/cve/CVE-2016-9603" source="CVE" />
+        <reference ref_id="CVE-2017-2633" ref_url="https://access.redhat.com/security/cve/CVE-2017-2633" source="CVE" />
+        <reference ref_id="CVE-2017-7718" ref_url="https://access.redhat.com/security/cve/CVE-2017-7718" source="CVE" />
+        <reference ref_id="CVE-2017-7980" ref_url="https://access.redhat.com/security/cve/CVE-2017-7980" source="CVE" />
+        <description>Kernel-based Virtual Machine (KVM) is a full virtualization solution for Linux on a variety of architectures. The qemu-kvm package provides the user-space component for running virtual machines that use KVM.
+
+Security Fix(es):
+
+* A heap buffer overflow flaw was found in QEMU's Cirrus CLGD 54xx VGA emulator's VNC display driver support; the issue could occur when a VNC client attempted to update its display after a VGA operation is performed by a guest. A privileged user/process inside a guest could use this flaw to crash the QEMU process or, potentially, execute arbitrary code on the host with privileges of the QEMU process. (CVE-2016-9603)
+
+* An out-of-bounds r/w access issue was found in QEMU's Cirrus CLGD 54xx VGA Emulator support. The vulnerability could occur while copying VGA data via various bitblt functions. A privileged user inside a guest could use this flaw to crash the QEMU process or, potentially, execute arbitrary code on the host with privileges of the QEMU process. (CVE-2017-7980)
+
+* An out-of-bounds memory access issue was found in QEMU's VNC display driver support. The vulnerability could occur while refreshing the VNC display surface area in the 'vnc_refresh_server_surface'. A user/process inside a guest could use this flaw to crash the QEMU process, resulting in a denial of service. (CVE-2017-2633)
+
+* An out-of-bounds access issue was found in QEMU's Cirrus CLGD 54xx VGA Emulator support. The vulnerability could occur while copying VGA data using bitblt functions (for example, cirrus_bitblt_rop_fwd_transp_). A privileged user inside a guest could use this flaw to crash the QEMU process, resulting in denial of service. (CVE-2017-7718)
+
+Red Hat would like to thank Jiangxin (PSIRT Huawei Inc.) and Li Qiang (Qihoo 360 Gear Team) for reporting CVE-2017-7980 and Jiangxin (PSIRT Huawei Inc.) for reporting CVE-2017-7718.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-05-09" />
+          <updated date="2017-05-09" />
+          <cve cvss2="4.9/AV:A/AC:M/Au:S/C:P/I:P/A:P" cvss3="5.5/CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:L" cwe="CWE-122" href="https://access.redhat.com/security/cve/CVE-2016-9603" public="20170314">CVE-2016-9603</cve>
+          <cve cvss2="3.8/AV:A/AC:M/Au:S/C:N/I:P/A:P" cvss3="5.4/CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:C/C:N/I:L/A:L" cwe="CWE-120" href="https://access.redhat.com/security/cve/CVE-2017-2633" impact="moderate" public="20161201">CVE-2017-2633</cve>
+          <cve cvss2="2.9/AV:A/AC:H/Au:S/C:P/I:N/A:P" cvss3="4.0/CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:L" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-7718" impact="moderate" public="20170314">CVE-2017-7718</cve>
+          <cve cvss2="4.9/AV:A/AC:M/Au:S/C:P/I:P/A:P" cvss3="5.5/CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:L" cwe="CWE-787" href="https://access.redhat.com/security/cve/CVE-2017-7980" public="20170315">CVE-2017-7980</cve>
+          <bugzilla id="1400438" href="https://bugzilla.redhat.com/1400438">CVE-2017-2633 qemu-kvm coredump in vnc_refresh_server_surface [rhel-6.9.z]</bugzilla>
+          <bugzilla id="1425939" href="https://bugzilla.redhat.com/1425939">CVE-2017-2633 Qemu: VNC: memory corruption due to unchecked resolution limit</bugzilla>
+          <bugzilla id="1430056" href="https://bugzilla.redhat.com/1430056">CVE-2016-9603 Qemu: cirrus: heap buffer overflow via vnc connection</bugzilla>
+          <bugzilla id="1437060" href="https://bugzilla.redhat.com/1437060">Fails to build in brew</bugzilla>
+          <bugzilla id="1443441" href="https://bugzilla.redhat.com/1443441">CVE-2017-7718 Qemu: display: cirrus: OOB read access issue</bugzilla>
+          <bugzilla id="1444371" href="https://bugzilla.redhat.com/1444371">CVE-2017-7980 Qemu: display: cirrus: OOB r/w access issues in bitblt routines</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="qemu-guest-agent is earlier than 2:0.12.1.2-2.503.el6_9.3" test_ref="oval:com.redhat.rhsa:tst:20171206005" />
+            <criterion comment="qemu-guest-agent is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170309006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-img is earlier than 2:0.12.1.2-2.503.el6_9.3" test_ref="oval:com.redhat.rhsa:tst:20171206007" />
+            <criterion comment="qemu-img is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm is earlier than 2:0.12.1.2-2.503.el6_9.3" test_ref="oval:com.redhat.rhsa:tst:20171206011" />
+            <criterion comment="qemu-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.503.el6_9.3" test_ref="oval:com.redhat.rhsa:tst:20171206009" />
+            <criterion comment="qemu-kvm-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -14483,6 +14679,70 @@ Note: This issue affected only the BIND versions as shipped with Red Hat Enterpr
       <object object_ref="oval:com.redhat.rhsa:obj:20170062005" />
       <state state_ref="oval:com.redhat.rhsa:ste:20171202003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204005" check="at least one" comment="java-1.7.0-openjdk-headless is earlier than 1:1.7.0.141-2.6.10.1.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204007" check="at least one" comment="java-1.7.0-openjdk-accessibility is earlier than 1:1.7.0.141-2.6.10.1.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204009" check="at least one" comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.141-2.6.10.1.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269004" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204011" check="at least one" comment="java-1.7.0-openjdk is earlier than 1:1.7.0.141-2.6.10.1.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204013" check="at least one" comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.141-2.6.10.1.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269002" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204015" check="at least one" comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.141-2.6.10.1.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204017" check="at least one" comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.141-2.6.10.1.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204023" check="at least one" comment="java-1.7.0-openjdk-demo is earlier than 1:1.7.0.141-2.6.10.1.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269003" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204024" check="at least one" comment="java-1.7.0-openjdk-src is earlier than 1:1.7.0.141-2.6.10.1.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269002" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204025" check="at least one" comment="java-1.7.0-openjdk is earlier than 1:1.7.0.141-2.6.10.1.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204026" check="at least one" comment="java-1.7.0-openjdk-devel is earlier than 1:1.7.0.141-2.6.10.1.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269004" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171204027" check="at least one" comment="java-1.7.0-openjdk-javadoc is earlier than 1:1.7.0.141-2.6.10.1.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170269006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171204005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171206005" check="at least one" comment="qemu-guest-agent is earlier than 2:0.12.1.2-2.503.el6_9.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170309005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171206003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171206007" check="at least one" comment="qemu-img is earlier than 2:0.12.1.2-2.503.el6_9.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170083005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171206003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171206009" check="at least one" comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.503.el6_9.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170083007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171206003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171206011" check="at least one" comment="qemu-kvm is earlier than 2:0.12.1.2-2.503.el6_9.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170083006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171206003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -16184,6 +16444,15 @@ Note: This issue affected only the BIND versions as shipped with Red Hat Enterpr
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20171202003" version="601">
       <evr datatype="evr_string" operation="less than">32:9.8.2-0.62.rc1.el6_9.2</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171204003" version="601">
+      <evr datatype="evr_string" operation="less than">1:1.7.0.141-2.6.10.1.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171204005" version="601">
+      <evr datatype="evr_string" operation="less than">1:1.7.0.141-2.6.10.1.el6_9</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171206003" version="601">
+      <evr datatype="evr_string" operation="less than">2:0.12.1.2-2.503.el6_9.3</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
