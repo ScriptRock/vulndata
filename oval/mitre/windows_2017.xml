@@ -28105,7 +28105,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:2332" class="vulnerability" version="1">
+    <definition id="oval:org.cisecurity:def:2332" class="vulnerability" version="2">
       <metadata>
         <title>Microsoft Office Remote Code Execution Vulnerability – CVE-2017-0262</title>
         <affected family="windows">
@@ -28164,7 +28164,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:2333" class="vulnerability" version="1">
+    <definition id="oval:org.cisecurity:def:2333" class="vulnerability" version="2">
       <metadata>
         <title>Microsoft Office Remote Code Execution Vulnerability – CVE-2017-0261</title>
         <affected family="windows">
@@ -29509,6 +29509,46 @@
             <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
           </criteria>
           <criterion comment="Check if Srv.sys version is less than 10.0.15063.296" test_ref="oval:org.cisecurity:tst:3138" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2349" class="vulnerability" version="1">
+      <metadata>
+        <title>Intel Active Management Technology, Intel Small Business Technology, and Intel Standard Manageability Escalation of Privilege - CVE-2017-5689</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Intel Active Management Technology</product>
+        </affected>
+        <reference ref_id="CVE-2017-5689" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5689" source="CVE" />
+        <description>An unprivileged network attacker could gain system privileges to provisioned Intel manageability SKUs: Intel Active Management Technology (AMT) and Intel Standard Manageability (ISM). An unprivileged local attacker could provision manageability features gaining unprivileged network or local system privileges on Intel manageability SKUs: Intel Active Management Technology (AMT), Intel Standard Manageability (ISM), and Intel Small Business Technology (SBT).</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-05-19T00:00:00+08:00">
+              <contributor organization="DTCC">Jeff Albert</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="AMTSKU + vulnerable firmware version" operator="AND">
+        <criterion comment="Check if the Intel AMTSKU exists on the registry" test_ref="oval:org.cisecurity:tst:3147" />
+        <criteria comment="vulnerable AMT firmware version" operator="OR">
+          <criterion comment="Check if the firmware version is greater than or equal to 6.0.0.0 and less than 6.2.61.3535" test_ref="oval:org.cisecurity:tst:3151" />
+          <criterion comment="Check if the firmware version is greater than or equal to 7.0.0.0 and less than 7.1.91.3272" test_ref="oval:org.cisecurity:tst:3148" />
+          <criterion comment="Check if the firmware version is greater than or equal to 8.0.0.0 and less than 8.1.71.3608" test_ref="oval:org.cisecurity:tst:3144" />
+          <criterion comment="Check if the firmware version is greater than or equal to 9.0.0.0 and less than 9.1.41.3024" test_ref="oval:org.cisecurity:tst:3150" />
+          <criterion comment="Check if the firmware version is greater than or equal to 9.5.0.0 and less than 9.5.61.3012" test_ref="oval:org.cisecurity:tst:3145" />
+          <criterion comment="Check if the firmware version is greater than or equal to 10.0.0.0 and less than 10.0.55.3000" test_ref="oval:org.cisecurity:tst:3152" />
+          <criterion comment="Check if the firmware version is greater than or equal to 11.0.0.0 and less than 11.0.25.3001" test_ref="oval:org.cisecurity:tst:3146" />
+          <criterion comment="Check if the firmware version is greater than or equal to 11.5.0.0 and less than 11.6.27.3264" test_ref="oval:org.cisecurity:tst:3149" />
         </criteria>
       </criteria>
     </definition>
@@ -34617,15 +34657,15 @@
     <registry_test id="oval:org.cisecurity:tst:1206" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Office 2016 is installed on the system" version="3">
       <object object_ref="oval:org.cisecurity:obj:313" />
     </registry_test>
-    <file_test id="oval:org.cisecurity:tst:1251" check="at least one" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is greater than or equal to 2012.1600.0000.0000" version="4">
-      <object object_ref="oval:org.cisecurity:obj:334" />
+    <file_test id="oval:org.cisecurity:tst:1251" check="at least one" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is greater than or equal to 2012.1600.0000.0000" version="5">
+      <object object_ref="oval:org.cisecurity:obj:672" />
       <state state_ref="oval:org.cisecurity:ste:997" />
     </file_test>
-    <file_test id="oval:org.cisecurity:tst:1256" check="at least one" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is greater than or equal to 2010.1400.0000.0000" version="2">
+    <file_test id="oval:org.cisecurity:tst:1256" check="at least one" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is greater than or equal to 2010.1400.0000.0000" version="3">
       <object object_ref="oval:org.cisecurity:obj:333" />
       <state state_ref="oval:org.cisecurity:ste:993" />
     </file_test>
-    <file_test id="oval:org.cisecurity:tst:1257" check="at least one" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is greater than or equal to 2012.1500.0000.0000" version="2">
+    <file_test id="oval:org.cisecurity:tst:1257" check="at least one" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is greater than or equal to 2012.1500.0000.0000" version="3">
       <object object_ref="oval:org.cisecurity:obj:333" />
       <state state_ref="oval:org.cisecurity:ste:994" />
     </file_test>
@@ -36901,15 +36941,15 @@
       <object object_ref="oval:org.mitre.oval:obj:24167" />
       <state state_ref="oval:org.cisecurity:ste:2312" />
     </registry_test>
-    <file_test id="oval:org.cisecurity:tst:3130" check="all" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is less than 2012.1500.4927.1002" version="1">
+    <file_test id="oval:org.cisecurity:tst:3130" check="at least one" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is less than 2012.1500.4927.1002" version="2">
       <object object_ref="oval:org.cisecurity:obj:333" />
       <state state_ref="oval:org.cisecurity:ste:2341" />
     </file_test>
-    <file_test id="oval:org.cisecurity:tst:3131" check="all" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is less than 2012.1600.4534.1002" version="1">
+    <file_test id="oval:org.cisecurity:tst:3131" check="at least one" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is less than 2012.1600.4534.1002" version="2">
       <object object_ref="oval:org.cisecurity:obj:672" />
       <state state_ref="oval:org.cisecurity:ste:2340" />
     </file_test>
-    <file_test id="oval:org.cisecurity:tst:3132" check="all" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is less than 2010.1400.7181.5002" version="1">
+    <file_test id="oval:org.cisecurity:tst:3132" check="at least one" check_existence="at_least_one_exists" comment="Check if epsimp32.flt version is less than 2010.1400.7181.5002" version="2">
       <object object_ref="oval:org.cisecurity:obj:333" />
       <state state_ref="oval:org.cisecurity:ste:2339" />
     </file_test>
@@ -36949,6 +36989,49 @@
       <object object_ref="oval:org.mitre.oval:obj:384" />
       <state state_ref="oval:org.cisecurity:ste:2349" />
     </file_test>
+    <registry_test id="oval:org.cisecurity:tst:3144" check="at least one" check_existence="at_least_one_exists" comment="Check if the firmware version is greater than or equal to 8.0.0.0 and less than 8.1.71.3608" version="1">
+      <object object_ref="oval:org.cisecurity:obj:678" />
+      <state state_ref="oval:org.cisecurity:ste:2361" />
+      <state state_ref="oval:org.cisecurity:ste:2359" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:3145" check="at least one" check_existence="at_least_one_exists" comment="Check if the firmware version is greater than or equal to 9.5.0.0 and less than 9.5.61.3012" version="1">
+      <object object_ref="oval:org.cisecurity:obj:678" />
+      <state state_ref="oval:org.cisecurity:ste:2356" />
+      <state state_ref="oval:org.cisecurity:ste:2353" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:3146" check="at least one" check_existence="at_least_one_exists" comment="Check if the firmware version is greater than or equal to 11.0.0.0 and less than 11.0.25.3001" version="1">
+      <object object_ref="oval:org.cisecurity:obj:678" />
+      <state state_ref="oval:org.cisecurity:ste:2362" />
+      <state state_ref="oval:org.cisecurity:ste:2364" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:3147" check="at least one" check_existence="at_least_one_exists" comment="Check if the Intel AMTSKU exists on the registry" version="1">
+      <object object_ref="oval:org.cisecurity:obj:676" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:3148" check="at least one" check_existence="at_least_one_exists" comment="Check if the firmware version is greater than or equal to 7.0.0.0 and less than 7.1.91.3272" version="1">
+      <object object_ref="oval:org.cisecurity:obj:678" />
+      <state state_ref="oval:org.cisecurity:ste:2366" />
+      <state state_ref="oval:org.cisecurity:ste:2363" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:3149" check="at least one" check_existence="at_least_one_exists" comment="Check if the firmware version is greater than or equal to 11.5.0.0 and less than 11.6.27.3264" version="1">
+      <object object_ref="oval:org.cisecurity:obj:678" />
+      <state state_ref="oval:org.cisecurity:ste:2355" />
+      <state state_ref="oval:org.cisecurity:ste:2352" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:3150" check="at least one" check_existence="at_least_one_exists" comment="Check if the firmware version is greater than or equal to 9.0.0.0 and less than 9.1.41.3024" version="1">
+      <object object_ref="oval:org.cisecurity:obj:678" />
+      <state state_ref="oval:org.cisecurity:ste:2354" />
+      <state state_ref="oval:org.cisecurity:ste:2360" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:3151" check="at least one" check_existence="at_least_one_exists" comment="Check if the firmware version is greater than or equal to 6.0.0.0 and less than 6.2.61.3535" version="1">
+      <object object_ref="oval:org.cisecurity:obj:678" />
+      <state state_ref="oval:org.cisecurity:ste:2357" />
+      <state state_ref="oval:org.cisecurity:ste:2351" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:3152" check="at least one" check_existence="at_least_one_exists" comment="Check if the firmware version is greater than or equal to 10.0.0.0 and less than 10.0.55.3000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:678" />
+      <state state_ref="oval:org.cisecurity:ste:2365" />
+      <state state_ref="oval:org.cisecurity:ste:2358" />
+    </registry_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="3">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
     </file_test>
@@ -37675,15 +37758,15 @@
       <key>SOFTWARE\Microsoft\Windows\CurrentVersion</key>
       <name>CommonFilesDir</name>
     </registry_object>
-    <file_object id="oval:org.cisecurity:obj:331" comment="Object holds the path for epsimp32.flt (x86) on x64 platform" version="2">
-      <path var_check="all" var_ref="oval:org.cisecurity:var:34" />
+    <file_object id="oval:org.cisecurity:obj:331" comment="Object holds the path for epsimp32.flt (x86) on x64 platform" version="3">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:34" />
       <filename>epsimp32.flt</filename>
     </file_object>
-    <file_object id="oval:org.cisecurity:obj:332" comment="Object holds the path for epsimp32.flt" version="1">
-      <path var_check="all" var_ref="oval:org.mitre.oval:var:619" />
+    <file_object id="oval:org.cisecurity:obj:332" comment="Object holds the path for epsimp32.flt" version="2">
+      <path var_check="at least one" var_ref="oval:org.mitre.oval:var:619" />
       <filename>epsimp32.flt</filename>
     </file_object>
-    <file_object id="oval:org.cisecurity:obj:333" comment="Object holds the path for epsimp32.flt" version="2">
+    <file_object id="oval:org.cisecurity:obj:333" comment="Object holds the path for epsimp32.flt" version="3">
       <set>
         <object_reference>oval:org.cisecurity:obj:332</object_reference>
         <object_reference>oval:org.cisecurity:obj:331</object_reference>
@@ -38178,26 +38261,50 @@
       <path var_check="at least one" var_ref="oval:org.cisecurity:var:68" />
       <filename>Vmswitch.sys</filename>
     </file_object>
-    <file_object id="oval:org.cisecurity:obj:669" comment="Object holds epsimp32.flt for MS Office 2016 - MSI installed" version="1">
-      <path var_check="all" var_ref="oval:org.cisecurity:var:70" />
+    <file_object id="oval:org.cisecurity:obj:669" comment="Object holds epsimp32.flt for MS Office 2016 - MSI installed" version="2">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:70" />
       <filename>epsimp32.flt</filename>
     </file_object>
-    <file_object id="oval:org.cisecurity:obj:670" comment="Object holds epsimp32.flt for MS Office 2016 - ClickToRun installed" version="1">
-      <set>
-        <object_reference>oval:org.cisecurity:obj:334</object_reference>
-        <object_reference>oval:org.cisecurity:obj:671</object_reference>
-      </set>
-    </file_object>
-    <file_object id="oval:org.cisecurity:obj:671" comment="Object holds epsimp32.flt for MS Office 2016 32bit - ClickToRun installed" version="1">
-      <path var_check="all" var_ref="oval:org.cisecurity:var:69" />
-      <filename>epsimp32.flt</filename>
-    </file_object>
-    <file_object id="oval:org.cisecurity:obj:672" comment="Object holds epsimp32.flt for MS Office 2016 for MSI and ClickToRun installed" version="1">
+    <file_object id="oval:org.cisecurity:obj:672" comment="Object holds epsimp32.flt for MS Office 2016 for MSI and ClickToRun installed" version="2">
       <set>
         <object_reference>oval:org.cisecurity:obj:669</object_reference>
-        <object_reference>oval:org.cisecurity:obj:670</object_reference>
+        <object_reference>oval:org.cisecurity:obj:334</object_reference>
       </set>
     </file_object>
+    <registry_object id="oval:org.cisecurity:obj:675" comment="Object holds the Intel AMT Manageability firmware version (32-bit)" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Intel\Setup and Configuration Software\SystemDiscovery\ManageabilityInfo</key>
+      <name>FWVersion</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:676" comment="Object holds the path to AMTSKU for the Intel Setup and Configuration Software." version="1">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:679</object_reference>
+        <object_reference>oval:org.cisecurity:obj:680</object_reference>
+      </set>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:677" comment="Object holds the Intel AMT Manageability firmware version" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Intel\Setup and Configuration Software\SystemDiscovery\ManageabilityInfo</key>
+      <name>FWVersion</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:678" comment="Object holds the path to AMTSKU for the Intel Setup and Configuration Software." version="1">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:677</object_reference>
+        <object_reference>oval:org.cisecurity:obj:675</object_reference>
+      </set>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:679" comment="Object holds the AMTSKU of Intel Setup and Configuration Software" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Intel\Setup and Configuration Software\SystemDiscovery\ManageabilityInfo</key>
+      <name>AMTSKU</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:680" comment="Object holds the AMTSKU of Intel Setup and Configuration Software (32-bit)" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Intel\Setup and Configuration Software\SystemDiscovery\ManageabilityInfo</key>
+      <name>AMTSKU</name>
+    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:3" version="47">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
       <filename>Msxml3.dll</filename>
@@ -40662,6 +40769,54 @@
     <file_state id="oval:org.cisecurity:ste:2350" comment="State matches version less than 10.0.15063.296" version="1">
       <version datatype="version" operation="less than">10.0.15063.296</version>
     </file_state>
+    <registry_state id="oval:org.cisecurity:ste:2351" comment="State matches version greater than or equal to 6.0.0.0" version="1">
+      <value datatype="version" operation="greater than or equal">6.0.0.0</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2352" comment="State matches version greater than or equal to 11.0.0.0" version="1">
+      <value datatype="version" operation="greater than or equal">11.5.0.0</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2353" comment="State matches version greater than or equal to 9.5.0.0" version="1">
+      <value datatype="version" operation="greater than or equal">9.5.0.0</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2354" comment="State matches version less than 9.1.41.3024" version="1">
+      <value datatype="version" operation="less than">9.1.41.3024</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2355" comment="State matches version less than 11.6.27.3264" version="1">
+      <value datatype="version" operation="less than">11.6.27.3264</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2356" comment="State matches version less than 9.5.61.3012" version="1">
+      <value datatype="version" operation="less than">9.5.61.3012</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2357" comment="State matches version less than 6.2.61.3535" version="1">
+      <value datatype="version" operation="less than">6.2.61.3535</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2358" comment="State matches version greater than or equal to 10.0.0.0" version="1">
+      <value datatype="version" operation="greater than or equal">10.0.0.0</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2359" comment="State matches version greater than or equal to 8.0.0.0" version="1">
+      <value datatype="version" operation="greater than or equal">8.0.0.0</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2360" comment="State matches version greater than or equal to 9.0.0.0" version="1">
+      <value datatype="version" operation="greater than or equal">9.0.0.0</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2361" comment="State matches version less than 8.1.71.3608" version="1">
+      <value datatype="version" operation="less than">8.1.71.3608</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2362" comment="State matches version less than 11.0.25.3001" version="1">
+      <value datatype="version" operation="less than">11.0.25.3001</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2363" comment="State matches version greater than or equal to 7.0.0.0" version="1">
+      <value datatype="version" operation="greater than or equal">7.0.0.0</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2364" comment="State matches version greater than or equal to 11.0.0.0" version="1">
+      <value datatype="version" operation="greater than or equal">11.0.0.0</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2365" comment="State matches version less than 10.0.55.3000" version="1">
+      <value datatype="version" operation="less than">10.0.55.3000</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2366" comment="State matches version less than 7.1.91.3272" version="1">
+      <value datatype="version" operation="less than">7.1.91.3272</value>
+    </registry_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="2">
       <family operation="case insensitive equals">windows</family>
     </family_state>
@@ -41092,12 +41247,6 @@
       <concat>
         <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
         <literal_component>\System32\DriverStore\FileRepository\</literal_component>
-      </concat>
-    </local_variable>
-    <local_variable id="oval:org.cisecurity:var:69" comment="Variable holds shared MS Office 2016 directory  - ClickToRun installed" datatype="string" version="1">
-      <concat>
-        <object_component item_field="value" object_ref="oval:org.cisecurity:obj:324" />
-        <literal_component>\root\VFS\ProgramFilesCommonx64\Microsoft Shared\GRPHFLT</literal_component>
       </concat>
     </local_variable>
     <local_variable id="oval:org.cisecurity:var:70" comment="Variable holds shared MS Office 2016 directory  - MSI installed" datatype="string" version="1">
