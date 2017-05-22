@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1495421728</content_version>
+    <content_version>1495442611</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -2699,7 +2699,7 @@ Red Hat would like to thank ISC for reporting this issue. Upstream acknowledges 
           <platform>Red Hat Enterprise Linux 6</platform>
           <platform>Red Hat Enterprise Linux 7</platform>
         </affected>
-        <reference ref_id="RHSA-2017:0286-01" ref_url="https://rhn.redhat.com/errata/RHSA-2017-0286.html" source="RHSA" />
+        <reference ref_id="RHSA-2017:0286-01" ref_url="https://access.redhat.com/errata/RHSA-2017:0286" source="RHSA" />
         <reference ref_id="CVE-2016-8610" ref_url="https://access.redhat.com/security/cve/CVE-2016-8610" source="CVE" />
         <reference ref_id="CVE-2017-3731" ref_url="https://access.redhat.com/security/cve/CVE-2017-3731" source="CVE" />
         <description>OpenSSL is a toolkit that implements the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) protocols, as well as a full-strength general-purpose cryptography library.
@@ -9347,6 +9347,108 @@ Security Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171263" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1263: libtirpc security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1263-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1263" source="RHSA" />
+        <reference ref_id="CVE-2017-8779" ref_url="https://access.redhat.com/security/cve/CVE-2017-8779" source="CVE" />
+        <description>The libtirpc packages contain SunLib's implementation of transport-independent remote procedure call (TI-RPC) documentation, which includes a library required by programs in the nfs-utils and rpcbind packages.
+
+Security Fix(es):
+
+* It was found that due to the way rpcbind uses libtirpc (libntirpc), a memory leak can occur when parsing specially crafted XDR messages. An attacker sending thousands of messages to rpcbind could cause its memory usage to grow without bound, eventually causing it to be terminated by the OOM killer. (CVE-2017-8779)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-05-22" />
+          <updated date="2017-05-22" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-400" href="https://access.redhat.com/security/cve/CVE-2017-8779" public="20170503">CVE-2017-8779</cve>
+          <bugzilla id="1448124" href="https://bugzilla.redhat.com/1448124">CVE-2017-8779 rpcbind, libtirpc, libntirpc: Memory leak when failing to parse XDR strings or bytearrays</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="libtirpc is earlier than 0:0.2.4-0.8.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171263007" />
+            <criterion comment="libtirpc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171263008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libtirpc-devel is earlier than 0:0.2.4-0.8.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171263005" />
+            <criterion comment="libtirpc-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171263006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171264" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1264: kdelibs security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1264-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1264" source="RHSA" />
+        <reference ref_id="CVE-2017-8422" ref_url="https://access.redhat.com/security/cve/CVE-2017-8422" source="CVE" />
+        <description>The K Desktop Environment (KDE) is a graphical desktop environment for the X Window System. The kdelibs packages include core libraries for the K Desktop Environment.
+
+Security Fix(es):
+
+* A privilege escalation flaw was found in the way kdelibs handled D-Bus messages. A local user could potentially use this flaw to gain root privileges by spoofing a callerID and leveraging a privileged helper application. (CVE-2017-8422)
+
+Red Hat would like to thank Sebastian Krahmer (SUSE) for reporting this issue.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-05-22" />
+          <updated date="2017-05-22" />
+          <cve cvss3="7.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-290" href="https://access.redhat.com/security/cve/CVE-2017-8422" public="20170510">CVE-2017-8422</cve>
+          <bugzilla id="1449647" href="https://bugzilla.redhat.com/1449647">CVE-2017-8422 kauth: service invoking dbus is not properly checked and allows local privilege escalation</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kdelibs is earlier than 6:4.14.8-6.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171264011" />
+            <criterion comment="kdelibs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171264012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kdelibs-apidocs is earlier than 6:4.14.8-6.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171264013" />
+            <criterion comment="kdelibs-apidocs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171264014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kdelibs-common is earlier than 6:4.14.8-6.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171264009" />
+            <criterion comment="kdelibs-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171264010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kdelibs-devel is earlier than 6:4.14.8-6.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171264007" />
+            <criterion comment="kdelibs-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171264008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kdelibs-ktexteditor is earlier than 6:4.14.8-6.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171264005" />
+            <criterion comment="kdelibs-ktexteditor is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171264006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -15125,6 +15227,62 @@ Security Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20171262005" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171263005" check="at least one" comment="libtirpc-devel is earlier than 0:0.2.4-0.8.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171263005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171263003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171263006" check="at least one" comment="libtirpc-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171263005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171263007" check="at least one" comment="libtirpc is earlier than 0:0.2.4-0.8.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171263006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171263003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171263008" check="at least one" comment="libtirpc is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171263006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171264005" check="at least one" comment="kdelibs-ktexteditor is earlier than 6:4.14.8-6.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171264005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171264003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171264006" check="at least one" comment="kdelibs-ktexteditor is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171264005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171264007" check="at least one" comment="kdelibs-devel is earlier than 6:4.14.8-6.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171264006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171264003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171264008" check="at least one" comment="kdelibs-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171264006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171264009" check="at least one" comment="kdelibs-common is earlier than 6:4.14.8-6.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171264007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171264003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171264010" check="at least one" comment="kdelibs-common is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171264007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171264011" check="at least one" comment="kdelibs is earlier than 6:4.14.8-6.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171264008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171264003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171264012" check="at least one" comment="kdelibs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171264008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171264013" check="at least one" comment="kdelibs-apidocs is earlier than 6:4.14.8-6.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171264009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171264003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171264014" check="at least one" comment="kdelibs-apidocs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171264009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -16474,6 +16632,27 @@ Security Fix(es):
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20171262005" version="601">
       <name>rpcbind</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20171263005" version="601">
+      <name>libtirpc-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20171263006" version="601">
+      <name>libtirpc</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20171264005" version="601">
+      <name>kdelibs-ktexteditor</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20171264006" version="601">
+      <name>kdelibs-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20171264007" version="601">
+      <name>kdelibs-common</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20171264008" version="601">
+      <name>kdelibs</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20171264009" version="601">
+      <name>kdelibs-apidocs</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -16865,6 +17044,12 @@ Security Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20171262003" version="601">
       <evr datatype="evr_string" operation="less than">0:0.2.0-38.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171263003" version="601">
+      <evr datatype="evr_string" operation="less than">0:0.2.4-0.8.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171264003" version="601">
+      <evr datatype="evr_string" operation="less than">6:4.14.8-6.el7_3</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
