@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1495448914</content_version>
+    <content_version>1495528892</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -9601,6 +9601,86 @@ Red Hat would like to thank the Samba project for reporting CVE-2017-2619. Upstr
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171267" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1267: rpcbind security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1267-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1267" source="RHSA" />
+        <reference ref_id="CVE-2017-8779" ref_url="https://access.redhat.com/security/cve/CVE-2017-8779" source="CVE" />
+        <description>The rpcbind utility is a server that converts Remote Procedure Call (RPC) program numbers into universal addresses. It must be running on the host to be able to make RPC calls on a server on that machine.
+
+Security Fix(es):
+
+* It was found that due to the way rpcbind uses libtirpc (libntirpc), a memory leak can occur when parsing specially crafted XDR messages. An attacker sending thousands of messages to rpcbind could cause its memory usage to grow without bound, eventually causing it to be terminated by the OOM killer. (CVE-2017-8779)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-05-23" />
+          <updated date="2017-05-23" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-400" href="https://access.redhat.com/security/cve/CVE-2017-8779" public="20170503">CVE-2017-8779</cve>
+          <bugzilla id="1448124" href="https://bugzilla.redhat.com/1448124">CVE-2017-8779 rpcbind, libtirpc, libntirpc: Memory leak when failing to parse XDR strings or bytearrays</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="rpcbind is earlier than 0:0.2.0-13.el6_9" test_ref="oval:com.redhat.rhsa:tst:20171267005" />
+        <criterion comment="rpcbind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171262006" />
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171268" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1268: libtirpc security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1268-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1268" source="RHSA" />
+        <reference ref_id="CVE-2017-8779" ref_url="https://access.redhat.com/security/cve/CVE-2017-8779" source="CVE" />
+        <description>The libtirpc packages contain SunLib's implementation of transport-independent remote procedure call (TI-RPC) documentation, which includes a library required by programs in the nfs-utils and rpcbind packages.
+
+Security Fix(es):
+
+* It was found that due to the way rpcbind uses libtirpc (libntirpc), a memory leak can occur when parsing specially crafted XDR messages. An attacker sending thousands of messages to rpcbind could cause its memory usage to grow without bound, eventually causing it to be terminated by the OOM killer. (CVE-2017-8779)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-05-23" />
+          <updated date="2017-05-23" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-400" href="https://access.redhat.com/security/cve/CVE-2017-8779" public="20170503">CVE-2017-8779</cve>
+          <bugzilla id="1448124" href="https://bugzilla.redhat.com/1448124">CVE-2017-8779 rpcbind, libtirpc, libntirpc: Memory leak when failing to parse XDR strings or bytearrays</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="libtirpc is earlier than 0:0.2.1-13.el6_9" test_ref="oval:com.redhat.rhsa:tst:20171268007" />
+            <criterion comment="libtirpc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171263008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libtirpc-devel is earlier than 0:0.2.1-13.el6_9" test_ref="oval:com.redhat.rhsa:tst:20171268005" />
+            <criterion comment="libtirpc-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171263006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -15611,6 +15691,18 @@ Red Hat would like to thank the Samba project for reporting CVE-2017-2619. Upstr
       <object object_ref="oval:com.redhat.rhsa:obj:20171265030" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171267005" check="at least one" comment="rpcbind is earlier than 0:0.2.0-13.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171262005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171267003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171268005" check="at least one" comment="libtirpc-devel is earlier than 0:0.2.1-13.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171263005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171268003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171268007" check="at least one" comment="libtirpc is earlier than 0:0.2.1-13.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171263006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171268003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -17435,6 +17527,12 @@ Red Hat would like to thank the Samba project for reporting CVE-2017-2619. Upstr
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20171265003" version="601">
       <evr datatype="evr_string" operation="less than">0:4.4.4-13.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171267003" version="601">
+      <evr datatype="evr_string" operation="less than">0:0.2.0-13.el6_9</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171268003" version="601">
+      <evr datatype="evr_string" operation="less than">0:0.2.1-13.el6_9</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
