@@ -1859,24 +1859,42 @@ contents.
       <metadata>
         <title>CVE-2017-2295</title>
         <affected family="unix">
+          <platform>Debian GNU/Linux 7</platform>
           <platform>Debian GNU/Linux 9</platform>
           <platform>Debian GNU/Linux 8</platform>
-          <platform>Debian GNU/Linux 7</platform>
           <product>puppet</product>
         </affected>
         <reference ref_id="CVE-2017-2295" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-2295" source="CVE" />
         <description />
         <debian>
-          <moreinfo />
+          <moreinfo>
+DSA-3862
+It was discovered that unrestricted YAML deserialisation of data sent
+from agents to the server in the Puppet configuration management system
+could result in the execution of arbitrary code.
+Note that this fix breaks backward compability with Puppet agents older
+than 3.2.2 and there is no safe way to restore it. This affects puppet
+agents running on Debian wheezy; we recommend to update to the
+puppet version shipped in wheezy-backports.
+</moreinfo>
         </debian>
       </metadata>
       <criteria comment="Platform section" operator="OR">
+        <criteria comment="Release section" operator="AND">
+          <criterion comment="Debian 7 is installed" test_ref="oval:org.debian.oval:tst:6" />
+          <criteria comment="Architecture section" operator="OR">
+            <criteria comment="Architecture independent section" operator="AND">
+              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+              <criterion comment="puppet DPKG is earlier than shipped" test_ref="oval:org.debian.oval:tst:122" />
+            </criteria>
+          </criteria>
+        </criteria>
         <criteria comment="Release section" operator="AND">
           <criterion comment="Debian 9 is installed" test_ref="oval:org.debian.oval:tst:1" />
           <criteria comment="Architecture section" operator="OR">
             <criteria comment="Architecture independent section" operator="AND">
               <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
-              <criterion comment="puppet DPKG is earlier than 4.8.2-5" test_ref="oval:org.debian.oval:tst:122" />
+              <criterion comment="puppet DPKG is earlier than 4.8.2-5" test_ref="oval:org.debian.oval:tst:123" />
             </criteria>
           </criteria>
         </criteria>
@@ -1885,16 +1903,7 @@ contents.
           <criteria comment="Architecture section" operator="OR">
             <criteria comment="Architecture independent section" operator="AND">
               <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
-              <criterion comment="puppet DPKG is earlier than 3.7.2-4+deb8u1" test_ref="oval:org.debian.oval:tst:123" />
-            </criteria>
-          </criteria>
-        </criteria>
-        <criteria comment="Release section" operator="AND">
-          <criterion comment="Debian 7 is installed" test_ref="oval:org.debian.oval:tst:6" />
-          <criteria comment="Architecture section" operator="OR">
-            <criteria comment="Architecture independent section" operator="AND">
-              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
-              <criterion comment="puppet DPKG is earlier than 0" test_ref="oval:org.debian.oval:tst:124" />
+              <criterion comment="puppet DPKG is earlier than 3.7.2-4+deb8u1" test_ref="oval:org.debian.oval:tst:124" />
             </criteria>
           </criteria>
         </criteria>
@@ -32645,7 +32654,14 @@ a shared library and then cause the server to load and execute it.
         <reference ref_id="CVE-2017-7606" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7606" source="CVE" />
         <description>coders/rle.c in ImageMagick 7.0.5-4 has an "outside the range of representable values of type unsigned char" undefined behavior issue, which might allow remote attackers to cause a denial of service (application crash) or possibly have unspecified other impact via a crafted image.</description>
         <debian>
-          <moreinfo />
+          <moreinfo>
+DSA-3863
+This update fixes several vulnerabilities in imagemagick: Various memory
+handling problems and cases of missing or incomplete input sanitising
+may result in denial of service, memory disclosure or the execution of
+arbitrary code if malformed RLE, ART, JNG, DDS, BMP, ICO, EPT, SUN, MTV,
+PICT, XWD, PCD, SFW, MAT, EXR, DCM, MNG, PCX or SVG files are processed.
+</moreinfo>
         </debian>
       </metadata>
       <criteria comment="Platform section" operator="OR">
@@ -32654,7 +32670,7 @@ a shared library and then cause the server to load and execute it.
           <criteria comment="Architecture section" operator="OR">
             <criteria comment="Architecture independent section" operator="AND">
               <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
-              <criterion comment="imagemagick DPKG is earlier than 8:6.9.7.4+dfsg-4" test_ref="oval:org.debian.oval:tst:2005" />
+              <criterion comment="imagemagick DPKG is earlier than 8:6.9.7.4+dfsg-8" test_ref="oval:org.debian.oval:tst:2005" />
             </criteria>
           </criteria>
         </criteria>
@@ -44965,6 +44981,51 @@ Jann Horn discovered a local information leak in parsing the
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.debian:def:20179239" class="vulnerability" version="1">
+      <metadata>
+        <title>CVE-2017-9239</title>
+        <affected family="unix">
+          <platform>Debian GNU/Linux 9</platform>
+          <platform>Debian GNU/Linux 8</platform>
+          <platform>Debian GNU/Linux 7</platform>
+          <product>exiv2</product>
+        </affected>
+        <reference ref_id="CVE-2017-9239" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-9239" source="CVE" />
+        <description />
+        <debian>
+          <moreinfo />
+        </debian>
+      </metadata>
+      <criteria comment="Platform section" operator="OR">
+        <criteria comment="Release section" operator="AND">
+          <criterion comment="Debian 9 is installed" test_ref="oval:org.debian.oval:tst:1" />
+          <criteria comment="Architecture section" operator="OR">
+            <criteria comment="Architecture independent section" operator="AND">
+              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+              <criterion comment="exiv2 DPKG is earlier than 0" test_ref="oval:org.debian.oval:tst:2779" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Release section" operator="AND">
+          <criterion comment="Debian 8 is installed" test_ref="oval:org.debian.oval:tst:4" />
+          <criteria comment="Architecture section" operator="OR">
+            <criteria comment="Architecture independent section" operator="AND">
+              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+              <criterion comment="exiv2 DPKG is earlier than 0" test_ref="oval:org.debian.oval:tst:2780" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Release section" operator="AND">
+          <criterion comment="Debian 7 is installed" test_ref="oval:org.debian.oval:tst:6" />
+          <criteria comment="Architecture section" operator="OR">
+            <criteria comment="Architecture independent section" operator="AND">
+              <criterion comment="all architecture" test_ref="oval:org.debian.oval:tst:2" />
+              <criterion comment="exiv2 DPKG is earlier than 0" test_ref="oval:org.debian.oval:tst:2781" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <textfilecontent_test id="oval:org.debian.oval:tst:1" check="all" check_existence="at_least_one_exists" comment="Debian GNU/Linux 9 is installed" version="1">
@@ -45450,15 +45511,15 @@ Jann Horn discovered a local information leak in parsing the
       <object object_ref="oval:org.debian.oval:obj:18" />
       <state state_ref="oval:org.debian.oval:ste:71" />
     </dpkginfo_test>
-    <dpkginfo_test id="oval:org.debian.oval:tst:122" check="all" check_existence="at_least_one_exists" comment="puppet is earlier than 4.8.2-5" version="1">
+    <dpkginfo_test id="oval:org.debian.oval:tst:122" check="all" check_existence="at_least_one_exists" comment="puppet is earlier than shipped" version="1">
       <object object_ref="oval:org.debian.oval:obj:19" />
       <state state_ref="oval:org.debian.oval:ste:72" />
     </dpkginfo_test>
-    <dpkginfo_test id="oval:org.debian.oval:tst:123" check="all" check_existence="at_least_one_exists" comment="puppet is earlier than 3.7.2-4+deb8u1" version="1">
+    <dpkginfo_test id="oval:org.debian.oval:tst:123" check="all" check_existence="at_least_one_exists" comment="puppet is earlier than 4.8.2-5" version="1">
       <object object_ref="oval:org.debian.oval:obj:19" />
       <state state_ref="oval:org.debian.oval:ste:73" />
     </dpkginfo_test>
-    <dpkginfo_test id="oval:org.debian.oval:tst:124" check="all" check_existence="at_least_one_exists" comment="puppet is earlier than 0" version="1">
+    <dpkginfo_test id="oval:org.debian.oval:tst:124" check="all" check_existence="at_least_one_exists" comment="puppet is earlier than 3.7.2-4+deb8u1" version="1">
       <object object_ref="oval:org.debian.oval:obj:19" />
       <state state_ref="oval:org.debian.oval:ste:74" />
     </dpkginfo_test>
@@ -52982,7 +53043,7 @@ Jann Horn discovered a local information leak in parsing the
       <object object_ref="oval:org.debian.oval:obj:70" />
       <state state_ref="oval:org.debian.oval:ste:1363" />
     </dpkginfo_test>
-    <dpkginfo_test id="oval:org.debian.oval:tst:2005" check="all" check_existence="at_least_one_exists" comment="imagemagick is earlier than 8:6.9.7.4+dfsg-4" version="1">
+    <dpkginfo_test id="oval:org.debian.oval:tst:2005" check="all" check_existence="at_least_one_exists" comment="imagemagick is earlier than 8:6.9.7.4+dfsg-8" version="1">
       <object object_ref="oval:org.debian.oval:obj:84" />
       <state state_ref="oval:org.debian.oval:ste:1364" />
     </dpkginfo_test>
@@ -56078,6 +56139,18 @@ Jann Horn discovered a local information leak in parsing the
       <object object_ref="oval:org.debian.oval:obj:250" />
       <state state_ref="oval:org.debian.oval:ste:1668" />
     </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:2779" check="all" check_existence="at_least_one_exists" comment="exiv2 is earlier than 0" version="1">
+      <object object_ref="oval:org.debian.oval:obj:251" />
+      <state state_ref="oval:org.debian.oval:ste:1668" />
+    </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:2780" check="all" check_existence="at_least_one_exists" comment="exiv2 is earlier than 0" version="1">
+      <object object_ref="oval:org.debian.oval:obj:251" />
+      <state state_ref="oval:org.debian.oval:ste:1668" />
+    </dpkginfo_test>
+    <dpkginfo_test id="oval:org.debian.oval:tst:2781" check="all" check_existence="at_least_one_exists" comment="exiv2 is earlier than 0" version="1">
+      <object object_ref="oval:org.debian.oval:obj:251" />
+      <state state_ref="oval:org.debian.oval:ste:1668" />
+    </dpkginfo_test>
   </tests>
   <objects>
     <textfilecontent_object id="oval:org.debian.oval:obj:1" version="1">
@@ -56830,6 +56903,9 @@ Jann Horn discovered a local information leak in parsing the
     <dpkginfo_object id="oval:org.debian.oval:obj:250" version="1">
       <name>libonig</name>
     </dpkginfo_object>
+    <dpkginfo_object id="oval:org.debian.oval:obj:251" version="1">
+      <name>exiv2</name>
+    </dpkginfo_object>
   </objects>
   <states>
     <textfilecontent_state id="oval:org.debian.oval:ste:1" version="1">
@@ -57046,13 +57122,13 @@ Jann Horn discovered a local information leak in parsing the
       <evr datatype="evr_string" operation="less than">0:0</evr>
     </dpkginfo_state>
     <dpkginfo_state id="oval:org.debian.oval:ste:72" version="1">
-      <evr datatype="evr_string" operation="less than">0:4.8.2-5</evr>
+      <evr datatype="evr_string" operation="less than">0:shipped</evr>
     </dpkginfo_state>
     <dpkginfo_state id="oval:org.debian.oval:ste:73" version="1">
-      <evr datatype="evr_string" operation="less than">0:3.7.2-4+deb8u1</evr>
+      <evr datatype="evr_string" operation="less than">0:4.8.2-5</evr>
     </dpkginfo_state>
     <dpkginfo_state id="oval:org.debian.oval:ste:74" version="1">
-      <evr datatype="evr_string" operation="less than">0:0</evr>
+      <evr datatype="evr_string" operation="less than">0:3.7.2-4+deb8u1</evr>
     </dpkginfo_state>
     <dpkginfo_state id="oval:org.debian.oval:ste:75" version="1">
       <evr datatype="evr_string" operation="less than">0:2.14.4-1</evr>
@@ -60922,7 +60998,7 @@ Jann Horn discovered a local information leak in parsing the
       <evr datatype="evr_string" operation="less than">0:4.0.2-6+deb7u12</evr>
     </dpkginfo_state>
     <dpkginfo_state id="oval:org.debian.oval:ste:1364" version="1">
-      <evr datatype="evr_string" operation="less than">0:8:6.9.7.4+dfsg-4</evr>
+      <evr datatype="evr_string" operation="less than">0:8:6.9.7.4+dfsg-8</evr>
     </dpkginfo_state>
     <dpkginfo_state id="oval:org.debian.oval:ste:1365" version="1">
       <evr datatype="evr_string" operation="less than">0:8:6.8.9.9-5+deb8u9</evr>
