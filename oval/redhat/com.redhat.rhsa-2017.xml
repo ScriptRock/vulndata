@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1495858116</content_version>
+    <content_version>1496131691</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -10199,6 +10199,66 @@ This update also fixes several bugs and adds various enhancements. Documentation
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171365" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1365: nss security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1365-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1365" source="RHSA" />
+        <reference ref_id="CVE-2017-7502" ref_url="https://access.redhat.com/security/cve/CVE-2017-7502" source="CVE" />
+        <description>Network Security Services (NSS) is a set of libraries designed to support the cross-platform development of security-enabled client and server applications.
+
+Security Fix(es):
+
+* A null pointer dereference flaw was found in the way NSS handled empty SSLv2 messages. An attacker could use this flaw to crash a server application compiled against the NSS library. (CVE-2017-7502)
+
+Bug Fix(es):
+
+* The Network Security Services (NSS) code and Certificate Authority (CA) list have been updated to meet the recommendations as published with the latest Mozilla Firefox Extended Support Release (ESR). The updated CA list improves compatibility with the certificates that are used in the Internet Public Key Infrastructure (PKI). To avoid certificate validation refusals, Red Hat recommends installing the updated CA list on June 12, 2017. (BZ#1451421)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-05-30" />
+          <updated date="2017-05-30" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-476" href="https://access.redhat.com/security/cve/CVE-2017-7502">CVE-2017-7502</cve>
+          <bugzilla id="1446631" href="https://bugzilla.redhat.com/1446631">CVE-2017-7502 nss: Null pointer dereference when handling empty SSLv2 messages</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="nss is earlier than 0:3.28.4-1.2.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171365007" />
+            <criterion comment="nss is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171100010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="nss-devel is earlier than 0:3.28.4-1.2.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171365009" />
+            <criterion comment="nss-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171100012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="nss-pkcs11-devel is earlier than 0:3.28.4-1.2.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171365011" />
+            <criterion comment="nss-pkcs11-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171100014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="nss-sysinit is earlier than 0:3.28.4-1.2.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171365005" />
+            <criterion comment="nss-sysinit is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171100016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="nss-tools is earlier than 0:3.28.4-1.2.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171365013" />
+            <criterion comment="nss-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171100018" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -16529,6 +16589,26 @@ This update also fixes several bugs and adds various enhancements. Documentation
       <object object_ref="oval:com.redhat.rhsa:obj:20170086017" />
       <state state_ref="oval:com.redhat.rhsa:ste:20171308003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171365005" check="at least one" comment="nss-sysinit is earlier than 0:3.28.4-1.2.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171100010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171365003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171365007" check="at least one" comment="nss is earlier than 0:3.28.4-1.2.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171100007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171365003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171365009" check="at least one" comment="nss-devel is earlier than 0:3.28.4-1.2.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171100008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171365003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171365011" check="at least one" comment="nss-pkcs11-devel is earlier than 0:3.28.4-1.2.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171100009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171365003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171365013" check="at least one" comment="nss-tools is earlier than 0:3.28.4-1.2.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171100011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171365003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -18374,6 +18454,9 @@ This update also fixes several bugs and adds various enhancements. Documentation
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20171308003" version="602">
       <evr datatype="evr_string" operation="less than">0:3.10.0-514.21.1.el7</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171365003" version="601">
+      <evr datatype="evr_string" operation="less than">0:3.28.4-1.2.el7_3</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
