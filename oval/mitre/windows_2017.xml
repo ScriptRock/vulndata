@@ -32996,7 +32996,7 @@
         <criterion comment="Check if Citrix Receiver is installed" test_ref="oval:org.cisecurity:tst:3273" />
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:2401" class="vulnerability" version="2">
+    <definition id="oval:org.cisecurity:def:2401" class="vulnerability" version="3">
       <metadata>
         <title>Microsoft Malware Protection Engine Denial of Service Vulnerability – CVE-2017-8542</title>
         <affected family="windows">
@@ -33031,13 +33031,9 @@
           <extend_definition comment="Microsoft Security Essentials is installed" definition_ref="oval:org.mitre.oval:def:29377" />
           <criterion comment="Check if Security Essentials EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3275" />
         </criteria>
-        <criteria comment="Microsoft Forefront Security for SharePoint is installed" operator="AND">
-          <extend_definition comment="Microsoft Forefront Security for SharePoint is installed" definition_ref="oval:org.mitre.oval:def:14529" />
-          <criterion comment="Check if Forefront Security for SharePoint EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3276" />
-        </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:2402" class="vulnerability" version="2">
+    <definition id="oval:org.cisecurity:def:2402" class="vulnerability" version="3">
       <metadata>
         <title>Microsoft Malware Protection Engine Denial of Service Vulnerability – CVE-2017-8539</title>
         <affected family="windows">
@@ -33071,10 +33067,6 @@
         <criteria comment="Microsoft Security Essentials is installed" operator="AND">
           <extend_definition comment="Microsoft Security Essentials is installed" definition_ref="oval:org.mitre.oval:def:29377" />
           <criterion comment="Check if Security Essentials EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3275" />
-        </criteria>
-        <criteria comment="Microsoft Forefront Security for SharePoint is installed" operator="AND">
-          <extend_definition comment="Microsoft Forefront Security for SharePoint is installed" definition_ref="oval:org.mitre.oval:def:14529" />
-          <criterion comment="Check if Forefront Security for SharePoint EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3276" />
         </criteria>
       </criteria>
     </definition>
@@ -33472,6 +33464,625 @@
       <criteria comment="Google Chrome + vulnerable version" operator="AND">
         <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
         <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2415" class="vulnerability" version="1">
+      <metadata>
+        <title>Adobe Flash Player before 13.0.0.302 and 14.x through 18.x before 18.0.0.203 on Windows - CVE-2015-3133</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+          <product>Adobe AIR</product>
+        </affected>
+        <reference ref_id="CVE-2015-3133" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3133" source="CVE" />
+        <description>Adobe Flash Player before 13.0.0.302 and 14.x through 18.x before 18.0.0.203 on Windows and OS X and before 11.2.202.481 on Linux, Adobe AIR before 18.0.0.180, Adobe AIR SDK before 18.0.0.180, and Adobe AIR SDK and Compiler before 18.0.0.180 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2015-3117, CVE-2015-3123, CVE-2015-3130, CVE-2015-3134, and CVE-2015-4431</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-02T13:54:17+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Adobe Flash Player/Adobe AIR + vulnerable file version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version (ESR)" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player (ESR) version is less than 13.0.0.302" test_ref="oval:org.cisecurity:tst:3283" />
+        </criteria>
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criteria comment="Check for Adobe Flash Player version" operator="AND">
+            <criterion comment="Check if Adobe Flash Player version is less than 18.0.0.203" test_ref="oval:org.cisecurity:tst:3281" />
+            <criterion comment="Check if Adobe Flash Player version is greater than or equal 14.0.0.0" test_ref="oval:org.cisecurity:tst:3280" />
+          </criteria>
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than 18.0.0.203" test_ref="oval:org.cisecurity:tst:3279" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criteria comment="Check for Flash*.ocx file version" operator="OR">
+            <criterion comment="Check if Flash*.ocx (ESR) version is less than 13.0.0.302" test_ref="oval:org.cisecurity:tst:3282" />
+            <criteria comment="Check for file version" operator="AND">
+              <criterion comment="Check if Flash*.ocx version is less than 18.0.0.203" test_ref="oval:org.cisecurity:tst:3278" />
+              <criterion comment="Check if Flash*.ocx version is greater than or equal 14.0.0.0" test_ref="oval:org.cisecurity:tst:3284" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Adobe AIR is installed + version" operator="AND">
+          <extend_definition comment="Adobe AIR is installed" definition_ref="oval:org.mitre.oval:def:7479" />
+          <criterion comment="Check if Adobe Air version is less than 18.0.0.180" test_ref="oval:org.cisecurity:tst:3285" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2416" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Malware Protection Engine Denial of Service Vulnerability – CVE-2017-8536</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-8536" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8536" source="CVE" />
+        <description>The Microsoft Malware Protection Engine running on Microsoft Forefront and Microsoft Defender on Microsoft Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, Windows 10 Gold, 1511, 1607, and 1703, and Windows Server 2016, Microsoft Exchange Server 2013 and 2016, does not properly scan a specially crafted file leading to denial of service. aka "Microsoft Malware Protection Engine Denial of Service Vulnerability", a different vulnerability than CVE-2017-8535, CVE-2017-8537, CVE-2017-8539, and CVE-2017-8542.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T12:19:06+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows Defender/Security Essentials" operator="OR">
+        <criteria comment="Microsoft Windows Defender is installed" operator="AND">
+          <extend_definition comment="Microsoft Windows Defender is installed" definition_ref="oval:org.mitre.oval:def:14263" />
+          <criterion comment="Check if Windows Defender EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3274" />
+        </criteria>
+        <criteria comment="Microsoft Security Essentials is installed" operator="AND">
+          <extend_definition comment="Microsoft Security Essentials is installed" definition_ref="oval:org.mitre.oval:def:29377" />
+          <criterion comment="Check if Security Essentials EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3275" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2417" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Malware Protection Engine Remote Code Execution Vulnerability – CVE-2017-8538</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-8538" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8538" source="CVE" />
+        <description>The Microsoft Malware Protection Engine running on Microsoft Forefront and Microsoft Defender on Microsoft Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, Windows 10 Gold, 1511, 1607, and 1703, and Windows Server 2016, Microsoft Exchange Server 2013 and 2016, does not properly scan a specially crafted file leading to memory corruption. aka "Microsoft Malware Protection Engine Remote Code Execution Vulnerability", a different vulnerability than CVE-2017-8540 and CVE-2017-8541.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T12:19:06+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows Defender/Security Essentials" operator="OR">
+        <criteria comment="Microsoft Windows Defender is installed" operator="AND">
+          <extend_definition comment="Microsoft Windows Defender is installed" definition_ref="oval:org.mitre.oval:def:14263" />
+          <criterion comment="Check if Windows Defender EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3274" />
+        </criteria>
+        <criteria comment="Microsoft Security Essentials is installed" operator="AND">
+          <extend_definition comment="Microsoft Security Essentials is installed" definition_ref="oval:org.mitre.oval:def:29377" />
+          <criterion comment="Check if Security Essentials EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3275" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2418" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Malware Protection Engine Denial of Service Vulnerability – CVE-2017-8537</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-8537" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8537" source="CVE" />
+        <description>The Microsoft Malware Protection Engine running on Microsoft Forefront and Microsoft Defender on Microsoft Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, Windows 10 Gold, 1511, 1607, and 1703, and Windows Server 2016, Microsoft Exchange Server 2013 and 2016, does not properly scan a specially crafted file leading to denial of service. aka "Microsoft Malware Protection Engine Denial of Service Vulnerability", a different vulnerability than CVE-2017-8535, CVE-2017-8536, CVE-2017-8539, and CVE-2017-8542.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T12:19:06+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows Defender/Security Essentials" operator="OR">
+        <criteria comment="Microsoft Windows Defender is installed" operator="AND">
+          <extend_definition comment="Microsoft Windows Defender is installed" definition_ref="oval:org.mitre.oval:def:14263" />
+          <criterion comment="Check if Windows Defender EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3274" />
+        </criteria>
+        <criteria comment="Microsoft Security Essentials is installed" operator="AND">
+          <extend_definition comment="Microsoft Security Essentials is installed" definition_ref="oval:org.mitre.oval:def:29377" />
+          <criterion comment="Check if Security Essentials EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3275" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2419" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Malware Protection Engine Denial of Service Vulnerability – CVE-2017-8535</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-8535" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8535" source="CVE" />
+        <description>The Microsoft Malware Protection Engine running on Microsoft Forefront and Microsoft Defender on Microsoft Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, Windows 10 Gold, 1511, 1607, and 1703, and Windows Server 2016, Microsoft Exchange Server 2013 and 2016, does not properly scan a specially crafted file leading to denial of service. aka "Microsoft Malware Protection Engine Denial of Service Vulnerability", a different vulnerability than CVE-2017-8536, CVE-2017-8537, CVE-2017-8539, and CVE-2017-8542.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T12:19:06+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows Defender/Security Essentials" operator="OR">
+        <criteria comment="Microsoft Windows Defender is installed" operator="AND">
+          <extend_definition comment="Microsoft Windows Defender is installed" definition_ref="oval:org.mitre.oval:def:14263" />
+          <criterion comment="Check if Windows Defender EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3274" />
+        </criteria>
+        <criteria comment="Microsoft Security Essentials is installed" operator="AND">
+          <extend_definition comment="Microsoft Security Essentials is installed" definition_ref="oval:org.mitre.oval:def:29377" />
+          <criterion comment="Check if Security Essentials EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3275" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2420" class="vulnerability" version="1">
+      <metadata>
+        <title>An integer overflow in FFmpeg in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux - CVE-2017-5047</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5047" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5047" source="CVE" />
+        <description>An integer overflow in FFmpeg in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux and 57.0.2987.108 for Android allowed a remote attacker to perform an out of bounds memory write via a crafted video file, related to ChunkDemuxer.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2421" class="vulnerability" version="1">
+      <metadata>
+        <title>An integer overflow in FFmpeg in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux - CVE-2017-5051</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5051" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5051" source="CVE" />
+        <description>An integer overflow in FFmpeg in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux and 57.0.2987.108 for Android allowed a remote attacker to perform an out of bounds memory write via a crafted video file, related to ChunkDemuxer.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2422" class="vulnerability" version="1">
+      <metadata>
+        <title>An integer overflow in FFmpeg in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux - CVE-2017-5048</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5048" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5048" source="CVE" />
+        <description>An integer overflow in FFmpeg in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux and 57.0.2987.108 for Android allowed a remote attacker to perform an out of bounds memory write via a crafted video file, related to ChunkDemuxer.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2423" class="vulnerability" version="1">
+      <metadata>
+        <title>Chrome Apps in Google Chrome prior to 57.0.2987.98 for Linux, Windows, and Mac had a use after free bug in GuestView - CVE-2017-5043</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5043" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5043" source="CVE" />
+        <description>Chrome Apps in Google Chrome prior to 57.0.2987.98 for Linux, Windows, and Mac had a use after free bug in GuestView, which allowed a remote attacker to perform an out of bounds memory read via a crafted Chrome extension.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2424" class="vulnerability" version="1">
+      <metadata>
+        <title>Heap buffer overflow in filter processing in Skia in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux - CVE-2017-5044</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5044" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5044" source="CVE" />
+        <description>Heap buffer overflow in filter processing in Skia in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux and 57.0.2987.108 for Android allowed a remote attacker to perform an out of bounds memory read via a crafted HTML page.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2425" class="vulnerability" version="1">
+      <metadata>
+        <title>XSS Auditor in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux - CVE-2017-5045</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5045" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5045" source="CVE" />
+        <description>XSS Auditor in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux and 57.0.2987.108 for Android allowed detection of a blocked iframe load, which allowed a remote attacker to brute force JavaScript variables via a crafted HTML page.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2426" class="vulnerability" version="1">
+      <metadata>
+        <title>An integer overflow in FFmpeg in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux - CVE-2017-5050</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5050" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5050" source="CVE" />
+        <description>An integer overflow in FFmpeg in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux and 57.0.2987.108 for Android allowed a remote attacker to perform an out of bounds memory write via a crafted video file, related to ChunkDemuxer.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2427" class="vulnerability" version="1">
+      <metadata>
+        <title>Google Chrome prior to 57.0.2987.100 incorrectly handled back-forward navigation - CVE-2017-5041</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5041" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5041" source="CVE" />
+        <description>Google Chrome prior to 57.0.2987.100 incorrectly handled back-forward navigation, which allowed a remote attacker to display incorrect information for a site via a crafted HTML page.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2428" class="vulnerability" version="1">
+      <metadata>
+        <title>Cast in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux - CVE-2017-5042</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5042" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5042" source="CVE" />
+        <description>Cast in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux and 57.0.2987.108 for Android sent cookies to sites discovered via SSDP, which allowed an attacker on the local network segment to initiate connections to arbitrary URLs and observe any plaintext cookies sent.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2429" class="vulnerability" version="1">
+      <metadata>
+        <title>V8 in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux - CVE-2017-5046</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5046" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5046" source="CVE" />
+        <description>V8 in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux and 57.0.2987.108 for Android had insufficient policy enforcement, which allowed a remote attacker to spoof the location object via a crafted HTML page, related to Blink information disclosure.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2430" class="vulnerability" version="1">
+      <metadata>
+        <title>An integer overflow in FFmpeg in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux - CVE-2017-5049</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-5049" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5049" source="CVE" />
+        <description>An integer overflow in FFmpeg in Google Chrome prior to 57.0.2987.98 for Mac, Windows, and Linux and 57.0.2987.108 for Android allowed a remote attacker to perform an out of bounds memory write via a crafted video file, related to ChunkDemuxer.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-01T14:41:56+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 57.0.2987.98" test_ref="oval:org.cisecurity:tst:3277" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2431" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Malware Protection Engine Remote Code Execution Vulnerability – CVE-2017-8541</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-8541" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8541" source="CVE" />
+        <description>The Microsoft Malware Protection Engine running on Microsoft Forefront and Microsoft Defender on Microsoft Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, Windows 10 Gold, 1511, 1607, and 1703, and Windows Server 2016, Microsoft Exchange Server 2013 and 2016, does not properly scan a specially crafted file leading to memory corruption. aka "Microsoft Malware Protection Engine Remote Code Execution Vulnerability", a different vulnerability than CVE-2017-8538 and CVE-2017-8540.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-06T00:00:00+08:00">
+              <contributor organization="DTCC">Jeff Albert</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows Defender/Security Essentials" operator="OR">
+        <criteria comment="Microsoft Windows Defender is installed" operator="AND">
+          <extend_definition comment="Microsoft Windows Defender is installed" definition_ref="oval:org.mitre.oval:def:14263" />
+          <criterion comment="Check if Windows Defender EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3274" />
+        </criteria>
+        <criteria comment="Microsoft Security Essentials is installed" operator="AND">
+          <extend_definition comment="Microsoft Security Essentials is installed" definition_ref="oval:org.mitre.oval:def:29377" />
+          <criterion comment="Check if Security Essentials EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3275" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:2432" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Malware Protection Engine Remote Code Execution Vulnerability – CVE-2017-8540</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2017-8540" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8540" source="CVE" />
+        <description>The Microsoft Malware Protection Engine running on Microsoft Forefront and Microsoft Defender on Microsoft Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, Windows 10 Gold, 1511, 1607, and 1703, and Windows Server 2016, Microsoft Exchange Server 2013 and 2016, does not properly scan a specially crafted file leading to memory corruption. aka "Microsoft Malware Protection Engine Remote Code Execution Vulnerability", a different vulnerability than CVE-2017-8538 and CVE-2017-8541.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-06-06T00:00:00+08:00">
+              <contributor organization="DTCC">Jeff Albert</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Windows Defender/Security Essentials" operator="OR">
+        <criteria comment="Microsoft Windows Defender is installed" operator="AND">
+          <extend_definition comment="Microsoft Windows Defender is installed" definition_ref="oval:org.mitre.oval:def:14263" />
+          <criterion comment="Check if Windows Defender EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3274" />
+        </criteria>
+        <criteria comment="Microsoft Security Essentials is installed" operator="AND">
+          <extend_definition comment="Microsoft Security Essentials is installed" definition_ref="oval:org.mitre.oval:def:29377" />
+          <criterion comment="Check if Security Essentials EngineVersion version is less than 1.1.13804.0" test_ref="oval:org.cisecurity:tst:3275" />
+        </criteria>
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:128" class="inventory" version="20">
@@ -41838,13 +42449,41 @@
       <object object_ref="oval:org.cisecurity:obj:682" />
       <state state_ref="oval:org.cisecurity:ste:2433" />
     </registry_test>
-    <registry_test id="oval:org.cisecurity:tst:3276" check="at least one" check_existence="at_least_one_exists" comment="Check if Forefront Security for SharePoint EngineVersion version is less than 1.1.13804.0" version="1">
-      <object object_ref="oval:org.mitre.oval:obj:23297" />
-      <state state_ref="oval:org.cisecurity:ste:2433" />
-    </registry_test>
     <registry_test id="oval:org.cisecurity:tst:3277" check="at least one" check_existence="at_least_one_exists" comment="Check if Google Chrome version less than 57.0.2987.98" version="1">
       <object object_ref="oval:org.mitre.oval:obj:15888" />
       <state state_ref="oval:org.cisecurity:ste:2434" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:3278" check="all" check_existence="at_least_one_exists" comment="Check if Flash*.ocx version is less than 18.0.0.203" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:41861" />
+      <state state_ref="oval:org.cisecurity:ste:2436" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:3279" check="all" check_existence="at_least_one_exists" comment="Check if Pepper Flash for Google Chrome version is less than 18.0.0.203" version="1">
+      <object object_ref="oval:org.cisecurity:obj:176" />
+      <state state_ref="oval:org.cisecurity:ste:2436" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:3280" check="at least one" check_existence="at_least_one_exists" comment="Check if Adobe Flash Player version is greater than or equal 14.0.0.0" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:7290" />
+      <state state_ref="oval:org.mitre.oval:ste:39503" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:3281" check="at least one" check_existence="at_least_one_exists" comment="Check if Adobe Flash Player version is less than 18.0.0.203" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:7290" />
+      <state state_ref="oval:org.cisecurity:ste:2439" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:3282" check="all" check_existence="at_least_one_exists" comment="Check if Flash*.ocx (ESR) version is less than 13.0.0.302" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:41861" />
+      <state state_ref="oval:org.cisecurity:ste:2435" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:3283" check="at least one" check_existence="at_least_one_exists" comment="Check if Adobe Flash Player (ESR) version is less than 13.0.0.302" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:7290" />
+      <state state_ref="oval:org.cisecurity:ste:2437" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:3284" check="all" check_existence="at_least_one_exists" comment="Check if Flash*.ocx version is greater than or equal 14.0.0.0" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:41861" />
+      <state state_ref="oval:org.mitre.oval:ste:39577" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:3285" check="at least one" check_existence="at_least_one_exists" comment="Check if Adobe Air version is less than 18.0.0.180" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:7160" />
+      <state state_ref="oval:org.cisecurity:ste:2438" />
     </registry_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="3">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
@@ -46101,6 +46740,21 @@
     <registry_state id="oval:org.cisecurity:ste:2434" comment="State matches version less than 57.0.2987.98" version="1">
       <value datatype="version" operation="less than">57.0.2987.98</value>
     </registry_state>
+    <file_state id="oval:org.cisecurity:ste:2435" comment="State matches version less than 13.0.0.302" version="1">
+      <version datatype="version" operation="less than">13.0.0.302</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2436" comment="State matches version less than 18.0.0.203" version="1">
+      <version datatype="version" operation="less than">18.0.0.203</version>
+    </file_state>
+    <registry_state id="oval:org.cisecurity:ste:2437" comment="State matches version less than 13.0.0.302" version="1">
+      <value datatype="version" operation="less than">13.0.0.302</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2438" comment="State matches version less than 18.0.0.180" version="1">
+      <value datatype="version" operation="less than">18.0.0.180</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:2439" comment="State matches version less than 18.0.0.203" version="1">
+      <value datatype="version" operation="less than">18.0.0.203</value>
+    </registry_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="2">
       <family operation="case insensitive equals">windows</family>
     </family_state>
@@ -46352,6 +47006,12 @@
     <registry_state id="oval:org.mitre.oval:ste:38974" comment="The registry key matches with Windows 10" version="1">
       <value operation="pattern match">^[a-zA-Z0-9\(\)\s]*[Ww][Ii][Nn][Dd][Oo][Ww][Ss] 10[a-zA-Z0-9\(\)\s]*$</value>
     </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:39503" comment="Version is greater than or equal 14.0.0.0" version="1">
+      <value datatype="version" operation="greater than or equal">14.0.0.0</value>
+    </registry_state>
+    <file_state id="oval:org.mitre.oval:ste:39577" comment="Version is greater than or equal 14.0.0.0" version="1">
+      <version datatype="version" operation="greater than or equal">14.0.0.0</version>
+    </file_state>
     <file_state id="oval:org.mitre.oval:ste:39591" comment="State matches if the version is less than 6.0.6002.19378" version="1">
       <version datatype="version" operation="less than">6.0.6002.19378</version>
     </file_state>
