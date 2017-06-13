@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1496808532</content_version>
+    <content_version>1497338992</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -10488,6 +10488,70 @@ Red Hat would like to thank Qualys Security for reporting this issue.</descripti
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171430" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1430: qemu-kvm security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1430-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1430" source="RHSA" />
+        <reference ref_id="CVE-2017-7718" ref_url="https://access.redhat.com/security/cve/CVE-2017-7718" source="CVE" />
+        <reference ref_id="CVE-2017-7980" ref_url="https://access.redhat.com/security/cve/CVE-2017-7980" source="CVE" />
+        <description>Kernel-based Virtual Machine (KVM) is a full virtualization solution for Linux on a variety of architectures. The qemu-kvm package provides the user-space component for running virtual machines that use KVM.
+
+Security Fix(es):
+
+* An out-of-bounds r/w access issue was found in QEMU's Cirrus CLGD 54xx VGA Emulator support. The vulnerability could occur while copying VGA data via various bitblt functions. A privileged user inside a guest could use this flaw to crash the QEMU process or, potentially, execute arbitrary code on the host with privileges of the QEMU process. (CVE-2017-7980)
+
+* An out-of-bounds access issue was found in QEMU's Cirrus CLGD 54xx VGA Emulator support. The vulnerability could occur while copying VGA data using bitblt functions (for example, cirrus_bitblt_rop_fwd_transp_). A privileged user inside a guest could use this flaw to crash the QEMU process, resulting in denial of service. (CVE-2017-7718)
+
+Red Hat would like to thank Jiangxin (PSIRT Huawei Inc) and Li Qiang (Qihoo 360 Gear Team) for reporting CVE-2017-7980 and Jiangxin (PSIRT Huawei Inc) for reporting CVE-2017-7718.
+
+Bug Fix(es):
+
+* Previously, guest virtual machines in some cases became unresponsive when the "pty" back end of a serial device performed an irregular I/O communication. This update improves the handling of serial I/O on guests, which prevents the described problem from occurring. (BZ#1452332)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-06-13" />
+          <updated date="2017-06-13" />
+          <cve cvss2="2.9/AV:A/AC:H/Au:S/C:P/I:N/A:P" cvss3="4.0/CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:L" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-7718" impact="moderate" public="20170314">CVE-2017-7718</cve>
+          <cve cvss2="4.9/AV:A/AC:M/Au:S/C:P/I:P/A:P" cvss3="5.5/CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:L" cwe="CWE-787" href="https://access.redhat.com/security/cve/CVE-2017-7980" public="20170315">CVE-2017-7980</cve>
+          <bugzilla id="1443441" href="https://bugzilla.redhat.com/1443441">CVE-2017-7718 Qemu: display: cirrus: OOB read access issue</bugzilla>
+          <bugzilla id="1444371" href="https://bugzilla.redhat.com/1444371">CVE-2017-7980 Qemu: display: cirrus: OOB r/w access issues in bitblt routines</bugzilla>
+          <bugzilla id="1452332" href="https://bugzilla.redhat.com/1452332">RHEL 7.2 based VM (Virtual Machine) hung for several hours apparently waiting for lock held by main_loop</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="qemu-img is earlier than 10:1.5.3-126.el7_3.9" test_ref="oval:com.redhat.rhsa:tst:20171430011" />
+            <criterion comment="qemu-img is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm is earlier than 10:1.5.3-126.el7_3.9" test_ref="oval:com.redhat.rhsa:tst:20171430009" />
+            <criterion comment="qemu-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm-common is earlier than 10:1.5.3-126.el7_3.9" test_ref="oval:com.redhat.rhsa:tst:20171430007" />
+            <criterion comment="qemu-kvm-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm-tools is earlier than 10:1.5.3-126.el7_3.9" test_ref="oval:com.redhat.rhsa:tst:20171430005" />
+            <criterion comment="qemu-kvm-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170083010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -16934,6 +16998,22 @@ Red Hat would like to thank Qualys Security for reporting this issue.</descripti
       <object object_ref="oval:com.redhat.rhsa:obj:20171382005" />
       <state state_ref="oval:com.redhat.rhsa:ste:20171382005" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171430005" check="at least one" comment="qemu-kvm-tools is earlier than 10:1.5.3-126.el7_3.9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170083007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171430003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171430007" check="at least one" comment="qemu-kvm-common is earlier than 10:1.5.3-126.el7_3.9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170083008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171430003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171430009" check="at least one" comment="qemu-kvm is earlier than 10:1.5.3-126.el7_3.9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170083006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171430003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171430011" check="at least one" comment="qemu-img is earlier than 10:1.5.3-126.el7_3.9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170083005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171430003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -18800,6 +18880,9 @@ Red Hat would like to thank Qualys Security for reporting this issue.</descripti
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20171382005" version="602">
       <evr datatype="evr_string" operation="less than">0:1.8.6p3-28.el6_9</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171430003" version="601">
+      <evr datatype="evr_string" operation="less than">10:1.5.3-126.el7_3.9</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
