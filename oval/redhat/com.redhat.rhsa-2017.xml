@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1498104754</content_version>
+    <content_version>1498160691</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -11074,6 +11074,73 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171574" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1574: sudo security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1574-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1574" source="RHSA" />
+        <reference ref_id="CVE-2017-1000368" ref_url="https://access.redhat.com/security/cve/CVE-2017-1000368" source="CVE" />
+        <description>The sudo packages contain the sudo utility which allows system administrators to provide certain users with the permission to execute privileged commands, which are used for system management purposes, without having to log in as root.
+
+Security Fix(es):
+
+* It was found that the original fix for CVE-2017-1000367 was incomplete. A flaw was found in the way sudo parsed tty information from the process status file in the proc filesystem. A local user with privileges to execute commands via sudo could use this flaw to escalate their privileges to root. (CVE-2017-1000368)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-06-22" />
+          <updated date="2017-06-22" />
+          <cve cvss3="7.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2017-1000368" public="20170602">CVE-2017-1000368</cve>
+          <bugzilla id="1459152" href="https://bugzilla.redhat.com/1459152">CVE-2017-1000368 sudo: Privilege escalation via improper get_process_ttyname() parsing (insufficient fix for CVE-2017-1000367)</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:rhel_els:5</cpe>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="OR">
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+            <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+            <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+            <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="sudo is earlier than 0:1.8.6p7-23.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171574005" />
+              <criterion comment="sudo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171382008" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="sudo-devel is earlier than 0:1.8.6p7-23.el7_3" test_ref="oval:com.redhat.rhsa:tst:20171574007" />
+              <criterion comment="sudo-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171382006" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+            <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+            <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+            <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="sudo is earlier than 0:1.8.6p3-29.el6_9" test_ref="oval:com.redhat.rhsa:tst:20171574014" />
+              <criterion comment="sudo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171382008" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="sudo-devel is earlier than 0:1.8.6p3-29.el6_9" test_ref="oval:com.redhat.rhsa:tst:20171574013" />
+              <criterion comment="sudo-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171382006" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -17720,6 +17787,22 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
       <object object_ref="oval:com.redhat.rhsa:obj:20170238002" />
       <state state_ref="oval:com.redhat.rhsa:ste:20171440005" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171574005" check="at least one" comment="sudo is earlier than 0:1.8.6p7-23.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171382006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171574004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171574007" check="at least one" comment="sudo-devel is earlier than 0:1.8.6p7-23.el7_3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171382005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171574004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171574013" check="at least one" comment="sudo-devel is earlier than 0:1.8.6p3-29.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171382005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171574006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171574014" check="at least one" comment="sudo is earlier than 0:1.8.6p3-29.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171382006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171574006" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -19607,6 +19690,12 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20171486003" version="602">
       <evr datatype="evr_string" operation="less than">0:2.6.32-696.3.2.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171574004" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.8.6p7-23.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171574006" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.8.6p3-29.el6_9</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
