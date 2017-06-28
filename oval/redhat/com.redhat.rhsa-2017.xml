@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1498626697</content_version>
+    <content_version>1498669832</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -11307,6 +11307,251 @@ Security Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171615" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1615: kernel security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1615-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1615" source="RHSA" />
+        <reference ref_id="CVE-2017-2583" ref_url="https://access.redhat.com/security/cve/CVE-2017-2583" source="CVE" />
+        <reference ref_id="CVE-2017-6214" ref_url="https://access.redhat.com/security/cve/CVE-2017-6214" source="CVE" />
+        <reference ref_id="CVE-2017-7477" ref_url="https://access.redhat.com/security/cve/CVE-2017-7477" source="CVE" />
+        <reference ref_id="CVE-2017-7645" ref_url="https://access.redhat.com/security/cve/CVE-2017-7645" source="CVE" />
+        <reference ref_id="CVE-2017-7895" ref_url="https://access.redhat.com/security/cve/CVE-2017-7895" source="CVE" />
+        <description>The kernel packages contain the Linux kernel, the core of any Linux operating system.
+
+Security Fix(es):
+
+* A flaw was found in the way Linux kernel allocates heap memory to build the scattergather list from a fragment list(skb_shinfo(skb)-&gt;frag_list) in
+the socket buffer(skb_buff). The heap overflow occurred if 'MAX_SKB_FRAGS + 1' parameter and 'NETIF_F_FRAGLIST' feature were used together. A
+remote user or process could use this flaw to potentially escalate their privilege on a system. (CVE-2017-7477, Important)
+
+* The NFS2/3 RPC client could send long arguments to the NFS server. These encoded arguments are stored in an array of memory pages, and accessed using pointer variables. Arbitrarily long arguments could make these pointers point outside the array and cause an out-of-bounds memory access. A remote user or program could use this flaw to crash the kernel (denial of service). (CVE-2017-7645, Important)
+
+* The NFSv2 and NFSv3 server implementations in the Linux kernel through 4.10.13 lacked certain checks for the end of a buffer. A remote attacker could trigger a pointer-arithmetic error or possibly cause other unspecified impacts using crafted requests related to fs/nfsd/nfs3xdr.c and fs/nfsd/nfsxdr.c. (CVE-2017-7895, Important)
+
+* The Linux kernel built with the Kernel-based Virtual Machine (CONFIG_KVM) support was vulnerable to an incorrect segment selector(SS) value error. The error could occur while loading values into the SS register in long mode. A user or process inside a guest could use this flaw to crash the guest, resulting in DoS or potentially escalate their privileges inside the guest. (CVE-2017-2583, Moderate)
+
+* A flaw was found in the Linux kernel's handling of packets with the URG flag. Applications using the splice() and tcp_splice_read() functionality could allow a remote attacker to force the kernel to enter a condition in which it could loop indefinitely. (CVE-2017-6214, Moderate)
+
+Red Hat would like to thank Ari Kauppi for reporting CVE-2017-7895 and Xiaohan Zhang (Huawei Inc.) for reporting CVE-2017-2583.
+
+Bug Fix(es):
+
+* Previously, the reserved-pages counter (HugePages_Rsvd) was bigger than the total-pages counter (HugePages_Total) in the /proc/meminfo file, and HugePages_Rsvd underflowed. With this update, the HugeTLB feature of the Linux kernel has been fixed, and HugePages_Rsvd underflow no longer occurs. (BZ#1445184)
+
+* If a directory on a NFS client was modified while being listed, the NFS client could restart the directory listing multiple times. Consequently, the performance of listing the directory was sub-optimal. With this update, the restarting of the directory listing happens less frequently. As a result, the performance of listing the directory while it is being modified has improved. (BZ#1450851)
+
+* The Fibre Channel over Ethernet (FCoE) adapter in some cases failed to reboot. This update fixes the qla2xxx driver, and FCoE adapter now reboots as expected. (BZ#1446246)
+
+* When a VM with Virtual Function I/O (VFIO) device was rebooted, the QEMU process occasionally terminated unexpectedly due to a failed VFIO Direct Memory Access (DMA) map request. This update fixes the vfio driver and QEMU no longer crashes in the described situation. (BZ#1450855)
+
+* When the operating system was booted with the in-box lpfc driver, a kernel panic occurred on the little-endian variant of IBM Power Systems. This update fixes lpfc, and the kernel no longer panics in the described situation. (BZ#1452044)
+
+* When creating or destroying a VM with Virtual Function I/O (VFIO) devices with "Hugepages" feature enabled, errors in Direct Memory Access (DMA) page table entry (PTE) mappings occurred, and QEMU memory usage behaved unpredictably. This update fixes range computation when making room for large pages in Input/Output Memory Management Unit (IOMMU). As a result, errors in DMA PTE mappings no longer occur, and QEMU has a predictable memory usage in the described situation. (BZ#1450856)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-06-28" />
+          <updated date="2017-06-28" />
+          <cve cvss2="4.9/AV:A/AC:M/Au:S/C:P/I:P/A:P" cvss3="6.4/CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-250" href="https://access.redhat.com/security/cve/CVE-2017-2583" impact="moderate" public="20170112">CVE-2017-2583</cve>
+          <cve cvss3="6.5/CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-835" href="https://access.redhat.com/security/cve/CVE-2017-6214" impact="moderate" public="20170207">CVE-2017-6214</cve>
+          <cve cvss3="8.1/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-122" href="https://access.redhat.com/security/cve/CVE-2017-7477" public="20170424">CVE-2017-7477</cve>
+          <cve cvss2="7.1/AV:N/AC:M/Au:N/C:N/I:N/A:C" cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-130" href="https://access.redhat.com/security/cve/CVE-2017-7645" public="20170414">CVE-2017-7645</cve>
+          <cve cvss3="6.5/CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-7895" public="20170428">CVE-2017-7895</cve>
+          <bugzilla id="1414735" href="https://bugzilla.redhat.com/1414735">CVE-2017-2583 Kernel: Kvm: vmx/svm potential privilege escalation inside guest</bugzilla>
+          <bugzilla id="1426542" href="https://bugzilla.redhat.com/1426542">CVE-2017-6214 kernel: ipv4/tcp: Infinite loop in tcp_splice_read()</bugzilla>
+          <bugzilla id="1443615" href="https://bugzilla.redhat.com/1443615">CVE-2017-7645 kernel: nfsd: Incorrect handling of long RPC replies</bugzilla>
+          <bugzilla id="1445207" href="https://bugzilla.redhat.com/1445207">CVE-2017-7477 kernel: net: Heap overflow in skb_to_sgvec in macsec.c</bugzilla>
+          <bugzilla id="1446103" href="https://bugzilla.redhat.com/1446103">CVE-2017-7895 kernel: NFSv3 server does not properly handle payload bounds checking of WRITE requests</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615015" />
+            <criterion comment="kernel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-abi-whitelists is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615007" />
+            <criterion comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-bootwrapper is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615029" />
+            <criterion comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615013" />
+            <criterion comment="kernel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug-devel is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615011" />
+            <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-devel is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615021" />
+            <criterion comment="kernel-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-doc is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615005" />
+            <criterion comment="kernel-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-headers is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615019" />
+            <criterion comment="kernel-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615009" />
+            <criterion comment="kernel-kdump is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump-devel is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615025" />
+            <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-tools is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615027" />
+            <criterion comment="kernel-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170086034" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-tools-libs is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615033" />
+            <criterion comment="kernel-tools-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170086032" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-tools-libs-devel is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615031" />
+            <criterion comment="kernel-tools-libs-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170086030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="perf is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615023" />
+            <criterion comment="perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-perf is earlier than 0:3.10.0-514.26.1.el7" test_ref="oval:com.redhat.rhsa:tst:20171615017" />
+            <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170036028" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20171616" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:1616: kernel-rt security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:1616-00" ref_url="https://access.redhat.com/errata/RHSA-2017:1616" source="RHSA" />
+        <reference ref_id="CVE-2017-1000364" ref_url="https://access.redhat.com/security/cve/CVE-2017-1000364" source="CVE" />
+        <reference ref_id="CVE-2017-2583" ref_url="https://access.redhat.com/security/cve/CVE-2017-2583" source="CVE" />
+        <reference ref_id="CVE-2017-6214" ref_url="https://access.redhat.com/security/cve/CVE-2017-6214" source="CVE" />
+        <reference ref_id="CVE-2017-7477" ref_url="https://access.redhat.com/security/cve/CVE-2017-7477" source="CVE" />
+        <reference ref_id="CVE-2017-7645" ref_url="https://access.redhat.com/security/cve/CVE-2017-7645" source="CVE" />
+        <reference ref_id="CVE-2017-7895" ref_url="https://access.redhat.com/security/cve/CVE-2017-7895" source="CVE" />
+        <description>The kernel-rt packages provide the Real Time Linux Kernel, which enables fine-tuning for systems with extremely high determinism requirements.
+
+Security Fix(es):
+
+* A flaw was found in the way memory was being allocated on the stack for user space binaries. If heap (or different memory region) and stack memory regions were adjacent to each other, an attacker could use this flaw to jump over the stack guard gap, cause controlled memory corruption on process stack or the adjacent memory region, and thus increase their privileges on the system. This is a kernel-side mitigation which increases the stack guard gap size from one page to 1 MiB to make successful exploitation of this issue more difficult. (CVE-2017-1000364, Important)
+
+* A flaw was found in the way Linux kernel allocates heap memory to build the scattergather list from a fragment list(skb_shinfo(skb)-&gt;frag_list) in the socket buffer(skb_buff). The heap overflow occurred if 'MAX_SKB_FRAGS + 1' parameter and 'NETIF_F_FRAGLIST' feature are both used together. A remote user or process could use this flaw to potentially escalate their privilege on a system. (CVE-2017-7477, Important)
+
+* The NFS2/3 RPC client could send long arguments to the NFS server. These encoded arguments are stored in an array of memory pages, and accessed using pointer variables. Arbitrarily long arguments could make these pointers point outside the array and cause an out-of-bounds memory access. A remote user or program could use this flaw to crash the kernel, resulting in denial of service. (CVE-2017-7645, Important)
+
+* The NFSv2 and NFSv3 server implementations in the Linux kernel through 4.10.13 lacked certain checks for the end of a buffer. A remote attacker could trigger a pointer-arithmetic error or possibly cause other unspecified impacts using crafted requests related to fs/nfsd/nfs3xdr.c and fs/nfsd/nfsxdr.c. (CVE-2017-7895, Important)
+
+* Linux kernel built with the Kernel-based Virtual Machine (CONFIG_KVM) support was vulnerable to an incorrect segment selector(SS) value error. The error could occur while loading values into the SS register in long mode. A user or process inside a guest could use this flaw to crash the guest, resulting in DoS or potentially escalate their privileges inside the guest. (CVE-2017-2583, Moderate)
+
+* A flaw was found in the Linux kernel's handling of packets with the URG flag. Applications using the splice() and tcp_splice_read() functionality could allow a remote attacker to force the kernel to enter a condition in which it could loop indefinitely. (CVE-2017-6214, Moderate)
+
+Red Hat would like to thank Qualys Research Labs for reporting CVE-2017-1000364; Ari Kauppi for reporting CVE-2017-7895; and Xiaohan Zhang (Huawei Inc.) for reporting CVE-2017-2583.
+
+Bug Fix(es):
+
+* The kernel-rt packages have been upgraded to the 3.10.0-514.25.2 source tree, which provides a number of bug fixes over the previous version. (BZ#1452742)
+
+* Previously, a local lock acquisition around the ip_send_unicast_reply() function was incorrectly terminated. Consequently, a list corruption occurred that led to a kernel panic. This update adds locking functions around calls to ip_send_unicast_reply(). As a result, neither list corruption nor kernel panic occur under the described circumstances. (BZ#1455239)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-06-28" />
+          <updated date="2017-06-28" />
+          <cve cvss2="6.2/AV:L/AC:H/Au:N/C:C/I:C/A:C" cvss3="7.4/CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H" href="https://access.redhat.com/security/cve/CVE-2017-1000364" public="20170619">CVE-2017-1000364</cve>
+          <cve cvss2="4.9/AV:A/AC:M/Au:S/C:P/I:P/A:P" cvss3="6.4/CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-250" href="https://access.redhat.com/security/cve/CVE-2017-2583" impact="moderate" public="20170112">CVE-2017-2583</cve>
+          <cve cvss3="6.5/CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-835" href="https://access.redhat.com/security/cve/CVE-2017-6214" impact="moderate" public="20170207">CVE-2017-6214</cve>
+          <cve cvss3="8.1/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-122" href="https://access.redhat.com/security/cve/CVE-2017-7477" public="20170424">CVE-2017-7477</cve>
+          <cve cvss2="7.1/AV:N/AC:M/Au:N/C:N/I:N/A:C" cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-130" href="https://access.redhat.com/security/cve/CVE-2017-7645" public="20170414">CVE-2017-7645</cve>
+          <cve cvss3="6.5/CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-7895" public="20170428">CVE-2017-7895</cve>
+          <bugzilla id="1414735" href="https://bugzilla.redhat.com/1414735">CVE-2017-2583 Kernel: Kvm: vmx/svm potential privilege escalation inside guest</bugzilla>
+          <bugzilla id="1426542" href="https://bugzilla.redhat.com/1426542">CVE-2017-6214 kernel: ipv4/tcp: Infinite loop in tcp_splice_read()</bugzilla>
+          <bugzilla id="1443615" href="https://bugzilla.redhat.com/1443615">CVE-2017-7645 kernel: nfsd: Incorrect handling of long RPC replies</bugzilla>
+          <bugzilla id="1445207" href="https://bugzilla.redhat.com/1445207">CVE-2017-7477 kernel: net: Heap overflow in skb_to_sgvec in macsec.c</bugzilla>
+          <bugzilla id="1446103" href="https://bugzilla.redhat.com/1446103">CVE-2017-7895 kernel: NFSv3 server does not properly handle payload bounds checking of WRITE requests</bugzilla>
+          <bugzilla id="1452742" href="https://bugzilla.redhat.com/1452742">kernel-rt: update to the RHEL7.3.z batch#6 source tree</bugzilla>
+          <bugzilla id="1455239" href="https://bugzilla.redhat.com/1455239">net: add back the missing serialization in  ip_send_unicast_reply() [RT 7.3.z]</bugzilla>
+          <bugzilla id="1461333" href="https://bugzilla.redhat.com/1461333">CVE-2017-1000364 kernel: heap/stack gap jumping via unbounded stack allocations</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/a:redhat:rhel_extras_rt:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel-rt is earlier than 0:3.10.0-514.26.1.rt56.442.el7" test_ref="oval:com.redhat.rhsa:tst:20171616013" />
+            <criterion comment="kernel-rt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug is earlier than 0:3.10.0-514.26.1.rt56.442.el7" test_ref="oval:com.redhat.rhsa:tst:20171616015" />
+            <criterion comment="kernel-rt-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug-devel is earlier than 0:3.10.0-514.26.1.rt56.442.el7" test_ref="oval:com.redhat.rhsa:tst:20171616007" />
+            <criterion comment="kernel-rt-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-514.26.1.rt56.442.el7" test_ref="oval:com.redhat.rhsa:tst:20171616023" />
+            <criterion comment="kernel-rt-debug-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-devel is earlier than 0:3.10.0-514.26.1.rt56.442.el7" test_ref="oval:com.redhat.rhsa:tst:20171616021" />
+            <criterion comment="kernel-rt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-doc is earlier than 0:3.10.0-514.26.1.rt56.442.el7" test_ref="oval:com.redhat.rhsa:tst:20171616005" />
+            <criterion comment="kernel-rt-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-kvm is earlier than 0:3.10.0-514.26.1.rt56.442.el7" test_ref="oval:com.redhat.rhsa:tst:20171616019" />
+            <criterion comment="kernel-rt-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace is earlier than 0:3.10.0-514.26.1.rt56.442.el7" test_ref="oval:com.redhat.rhsa:tst:20171616009" />
+            <criterion comment="kernel-rt-trace is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace-devel is earlier than 0:3.10.0-514.26.1.rt56.442.el7" test_ref="oval:com.redhat.rhsa:tst:20171616011" />
+            <criterion comment="kernel-rt-trace-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-514.26.1.rt56.442.el7" test_ref="oval:com.redhat.rhsa:tst:20171616017" />
+            <criterion comment="kernel-rt-trace-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -18113,6 +18358,106 @@ Security Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20171581016" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615005" check="at least one" comment="kernel-doc is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615007" check="at least one" comment="kernel-abi-whitelists is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615009" check="at least one" comment="kernel-kdump is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615011" check="at least one" comment="kernel-debug-devel is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615013" check="at least one" comment="kernel-debug is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615015" check="at least one" comment="kernel is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615017" check="at least one" comment="python-perf is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615019" check="at least one" comment="kernel-headers is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615021" check="at least one" comment="kernel-devel is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615023" check="at least one" comment="perf is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615025" check="at least one" comment="kernel-kdump-devel is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615027" check="at least one" comment="kernel-tools is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170086019" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615029" check="at least one" comment="kernel-bootwrapper is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170036017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615031" check="at least one" comment="kernel-tools-libs-devel is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170086017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171615033" check="at least one" comment="kernel-tools-libs is earlier than 0:3.10.0-514.26.1.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170086018" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171615003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171616005" check="at least one" comment="kernel-rt-doc is earlier than 0:3.10.0-514.26.1.rt56.442.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171616003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171616007" check="at least one" comment="kernel-rt-debug-devel is earlier than 0:3.10.0-514.26.1.rt56.442.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171616003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171616009" check="at least one" comment="kernel-rt-trace is earlier than 0:3.10.0-514.26.1.rt56.442.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171616003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171616011" check="at least one" comment="kernel-rt-trace-devel is earlier than 0:3.10.0-514.26.1.rt56.442.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171616003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171616013" check="at least one" comment="kernel-rt is earlier than 0:3.10.0-514.26.1.rt56.442.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171616003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171616015" check="at least one" comment="kernel-rt-debug is earlier than 0:3.10.0-514.26.1.rt56.442.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171616003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171616017" check="at least one" comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-514.26.1.rt56.442.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171616003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171616019" check="at least one" comment="kernel-rt-kvm is earlier than 0:3.10.0-514.26.1.rt56.442.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171616003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171616021" check="at least one" comment="kernel-rt-devel is earlier than 0:3.10.0-514.26.1.rt56.442.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171616003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20171616023" check="at least one" comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-514.26.1.rt56.442.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20171616003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -20063,6 +20408,12 @@ Security Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20171581003" version="601">
       <evr datatype="evr_string" operation="less than">0:3.0.4-8.el7_3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171615003" version="601">
+      <evr datatype="evr_string" operation="less than">0:3.10.0-514.26.1.el7</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20171616003" version="601">
+      <evr datatype="evr_string" operation="less than">0:3.10.0-514.26.1.rt56.442.el7</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
