@@ -12989,6 +12989,49 @@
         <criterion comment="php5 is earlier than 0:5.6.28+dfsg-0+deb8u1" test_ref="oval:org.cisecurity:tst:2379" />
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:2753" class="patch" version="1">
+      <metadata>
+        <title>RHSA-2016:2098 -- kernel security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+          <platform>CentOS Linux 7</platform>
+          <product>kernel</product>
+        </affected>
+        <reference ref_id="RHSA-2016:2098" ref_url="https://rhn.redhat.com/errata/RHSA-2016-2098.html" source="VENDOR" />
+        <reference ref_id="CESA-2016:2098" ref_url="http://lists.centos.org/pipermail/centos-announce/2016-October/022133.html" source="CESA-2016:2098" />
+        <reference ref_id="CVE-2016-5195" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5195" source="CVE" />
+        <description>A race condition was found in the way the Linux kernel's memory subsystem handled the copy-on-write (COW) breakage of private read-only memory mappings. An unprivileged, local user could use this flaw to gain write access to otherwise read-only memory mappings and thus increase their privileges on the system.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2017-07-18T16:20:26">
+              <contributor organization="ALTX-SOFT">Sergey Artykhov</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criteria comment="Operation system section" operator="OR">
+          <extend_definition comment="The operating system installed on the system is Red Hat Enterprise Linux 7" definition_ref="oval:org.mitre.oval:def:24953" />
+          <extend_definition comment="The operating system installed on the system is CentOS Linux 7.x" definition_ref="oval:org.mitre.oval:def:24773" />
+        </criteria>
+        <criteria comment="Packages match section" operator="OR">
+          <criterion comment="kernel is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3706" />
+          <criterion comment="kernel-abi-whitelists is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3699" />
+          <criterion comment="kernel-debug is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3708" />
+          <criterion comment="kernel-debug-devel is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3707" />
+          <criterion comment="kernel-devel is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3709" />
+          <criterion comment="kernel-doc is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3704" />
+          <criterion comment="kernel-headers is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3702" />
+          <criterion comment="kernel-tools is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3701" />
+          <criterion comment="kernel-tools-libs is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3703" />
+          <criterion comment="kernel-tools-libs-devel is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3710" />
+          <criterion comment="perf is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3700" />
+          <criterion comment="python-perf is earlier than 0:3.10.0-327.36.3.el7" test_ref="oval:org.cisecurity:tst:3705" />
+        </criteria>
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:1440" class="inventory" version="8">
       <metadata>
         <title>Solaris 10 (SPARC) is installed</title>
@@ -13197,6 +13240,32 @@
         <criterion comment="Debian GNU/kFreeBSD is installed" test_ref="oval:org.mitre.oval:tst:114447" />
       </criteria>
     </definition>
+    <definition id="oval:org.mitre.oval:def:24773" class="inventory" version="11">
+      <metadata>
+        <title>The operating system installed on the system is CentOS Linux 7.x</title>
+        <affected family="unix">
+          <platform>CentOS Linux 7</platform>
+        </affected>
+        <reference ref_id="cpe:/o:centos:centos:7" source="CPE" />
+        <description>The operating system installed on the system is CentOS Linux 7.x</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2014-07-08T08:31:03">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </submitted>
+            <status_change date="2014-07-09T11:48:47.285-04:00">DRAFT</status_change>
+            <status_change date="2014-07-28T04:00:27.738-04:00">INTERIM</status_change>
+            <status_change date="2014-08-18T04:02:46.796-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.3</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="the installed operating system is part of the Unix family" test_ref="oval:org.mitre.oval:tst:4424" />
+        <criterion comment="CentOS Linux 7.x is installed" test_ref="oval:org.mitre.oval:tst:115369" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:24894" class="inventory" version="24">
       <metadata>
         <title>Debian GNU/Linux is installed</title>
@@ -13220,6 +13289,32 @@
       </metadata>
       <criteria>
         <criterion comment="Debian GNU/Linux is installed" test_ref="oval:org.mitre.oval:tst:114518" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:24953" class="inventory" version="3">
+      <metadata>
+        <title>The operating system installed on the system is Red Hat Enterprise Linux 7</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="cpe:/o:redhat:enterprise_linux:7" source="CPE" />
+        <description>The operating system installed on the system is Red Hat Enterprise Linux 7.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2014-07-02T08:31:03">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </submitted>
+            <status_change date="2014-07-07T16:13:29.153-04:00">DRAFT</status_change>
+            <status_change date="2014-07-28T04:00:42.013-04:00">INTERIM</status_change>
+            <status_change date="2014-08-18T04:02:58.393-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.3</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Red Hat Enterprise 7 is installed" test_ref="oval:org.mitre.oval:tst:115398" />
+        <criterion comment="Oracle Linux 7.x is installed" negate="true" test_ref="oval:org.mitre.oval:tst:115342" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:28919" class="inventory" version="59">
@@ -14971,6 +15066,54 @@
       <object object_ref="oval:org.mitre.oval:obj:15407" />
       <state state_ref="oval:org.cisecurity:ste:1891" />
     </dpkginfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3699" check="all" check_existence="at_least_one_exists" comment="kernel-abi-whitelists is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:29639" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3700" check="all" check_existence="at_least_one_exists" comment="perf is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:29062" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3701" check="all" check_existence="at_least_one_exists" comment="kernel-tools is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:39295" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3702" check="all" check_existence="at_least_one_exists" comment="kernel-headers is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:14830" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3703" check="all" check_existence="at_least_one_exists" comment="kernel-tools-libs is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38896" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3704" check="all" check_existence="at_least_one_exists" comment="kernel-doc is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:13422" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3705" check="all" check_existence="at_least_one_exists" comment="python-perf is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:28972" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3706" check="all" check_existence="at_least_one_exists" comment="kernel is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:14285" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3707" check="all" check_existence="at_least_one_exists" comment="kernel-debug-devel is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:15023" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3708" check="all" check_existence="at_least_one_exists" comment="kernel-debug is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:14957" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3709" check="all" check_existence="at_least_one_exists" comment="kernel-devel is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:13732" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.cisecurity:tst:3710" check="all" check_existence="at_least_one_exists" comment="kernel-tools-libs-devel is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38758" />
+      <state state_ref="oval:org.cisecurity:ste:2758" />
+    </rpminfo_test>
     <uname_test id="oval:org.mitre.oval:tst:3237" check="at least one" check_existence="at_least_one_exists" comment="sparc architecture" version="4">
       <object object_ref="oval:org.mitre.oval:obj:2759" />
       <state state_ref="oval:org.mitre.oval:ste:3478" />
@@ -14987,6 +15130,10 @@
       <object object_ref="oval:org.mitre.oval:obj:2759" />
       <state state_ref="oval:org.mitre.oval:ste:3443" />
     </uname_test>
+    <family_test id="oval:org.mitre.oval:tst:4424" check="only one" check_existence="at_least_one_exists" comment="the installed operating system is part of the Unix family" version="9">
+      <object object_ref="oval:org.mitre.oval:obj:99" />
+      <state state_ref="oval:org.mitre.oval:ste:3907" />
+    </family_test>
     <oslevel_test id="oval:org.mitre.oval:tst:7699" check="at least one" check_existence="at_least_one_exists" comment="IBM AIX version is greater than or equal 6100-00" version="2">
       <object object_ref="oval:org.mitre.oval:obj:5715" />
       <state state_ref="oval:org.mitre.oval:ste:3903" />
@@ -15075,6 +15222,18 @@
       <object object_ref="oval:org.mitre.oval:obj:5613" />
       <state state_ref="oval:org.mitre.oval:ste:30799" />
     </fileset_test>
+    <rpminfo_test id="oval:org.mitre.oval:tst:115342" check="at least one" check_existence="at_least_one_exists" comment="Oracle Linux 7.x is installed" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23691" />
+      <state state_ref="oval:org.mitre.oval:ste:31675" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.mitre.oval:tst:115369" check="at least one" check_existence="at_least_one_exists" comment="CentOS Linux 7.x is installed" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:24078" />
+      <state state_ref="oval:org.mitre.oval:ste:31728" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:org.mitre.oval:tst:115398" check="at least one" check_existence="at_least_one_exists" comment="Red Hat Enterprise 7 is installed" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:28686" />
+      <state state_ref="oval:org.mitre.oval:ste:31757" />
+    </rpminfo_test>
     <textfilecontent54_test id="oval:org.mitre.oval:tst:138403" check="all" check_existence="at_least_one_exists" comment="Debian 8 is installed" version="3">
       <object object_ref="oval:org.mitre.oval:obj:26771" />
       <state state_ref="oval:org.mitre.oval:ste:38227" />
@@ -15474,6 +15633,7 @@
     <dpkginfo_object id="oval:org.cisecurity:obj:514" comment="dcmtk package information" version="1">
       <name>dcmtk</name>
     </dpkginfo_object>
+    <family_object id="oval:org.mitre.oval:obj:99" comment="This is the default family object. Only one family object should exist." version="1" />
     <uname_object id="oval:org.mitre.oval:obj:2759" comment="The single uname object." version="1" />
     <rpminfo_object id="oval:org.mitre.oval:obj:2777" version="1">
       <name>akonadi</name>
@@ -15599,9 +15759,27 @@
     <dpkginfo_object id="oval:org.mitre.oval:obj:11821" comment="ghostscript package information" version="1">
       <name>ghostscript</name>
     </dpkginfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:13422" comment="kernel-doc package information" version="2">
+      <name>kernel-doc</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:13732" comment="kernel-devel package information" version="2">
+      <name>kernel-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:14285" comment="kernel package information" version="2">
+      <name>kernel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:14830" comment="kernel-headers package information" version="2">
+      <name>kernel-headers</name>
+    </rpminfo_object>
     <swlist_object id="oval:org.mitre.oval:obj:14850" version="2">
       <swlist>Sendmail.SENDMAIL-RUN</swlist>
     </swlist_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:14957" comment="kernel-debug package information" version="2">
+      <name>kernel-debug</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:15023" comment="kernel-debug-devel package information" version="2">
+      <name>kernel-debug-devel</name>
+    </rpminfo_object>
     <dpkginfo_object id="oval:org.mitre.oval:obj:15066" comment="sudo package information" version="1">
       <name>sudo</name>
     </dpkginfo_object>
@@ -15686,6 +15864,12 @@
     <dpkginfo_object id="oval:org.mitre.oval:obj:23662" comment="tryton-server package information" version="1">
       <name>tryton-server</name>
     </dpkginfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:23691" version="2">
+      <name>oraclelinux-release</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:24078" version="1">
+      <name>centos-release</name>
+    </rpminfo_object>
     <dpkginfo_object id="oval:org.mitre.oval:obj:24294" comment="tar package information" version="1">
       <name>tar</name>
     </dpkginfo_object>
@@ -15758,12 +15942,21 @@
     <dpkginfo_object id="oval:org.mitre.oval:obj:28503" comment="libupnp package information" version="1">
       <name>libupnp</name>
     </dpkginfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:28686" comment="the rpm package redhat-release-.*" version="2">
+      <name operation="pattern match">^redhat-release-.*$</name>
+    </rpminfo_object>
     <dpkginfo_object id="oval:org.mitre.oval:obj:28844" comment="spice package information" version="1">
       <name>spice</name>
     </dpkginfo_object>
     <dpkginfo_object id="oval:org.mitre.oval:obj:28955" comment="nspr package information" version="1">
       <name>nspr</name>
     </dpkginfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:28972" comment="python-perf package information" version="2">
+      <name>python-perf</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:29062" comment="perf package information" version="2">
+      <name>perf</name>
+    </rpminfo_object>
     <dpkginfo_object id="oval:org.mitre.oval:obj:29213" comment="pixman package information" version="1">
       <name>pixman</name>
     </dpkginfo_object>
@@ -15773,18 +15966,27 @@
     <dpkginfo_object id="oval:org.mitre.oval:obj:29362" comment="srtp package information" version="1">
       <name>srtp</name>
     </dpkginfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:29639" comment="kernel-abi-whitelists package information" version="2">
+      <name>kernel-abi-whitelists</name>
+    </rpminfo_object>
     <dpkginfo_object id="oval:org.mitre.oval:obj:38610" comment="cups-filters package information" version="1">
       <name>cups-filters</name>
     </dpkginfo_object>
     <dpkginfo_object id="oval:org.mitre.oval:obj:38695" comment="virtualbox package information" version="1">
       <name>virtualbox</name>
     </dpkginfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:38758" version="1">
+      <name>kernel-tools-libs-devel</name>
+    </rpminfo_object>
     <dpkginfo_object id="oval:org.mitre.oval:obj:38782" comment="prosody package information" version="1">
       <name>prosody</name>
     </dpkginfo_object>
     <dpkginfo_object id="oval:org.mitre.oval:obj:38870" comment="tomcat7 package information" version="2">
       <name>tomcat7</name>
     </dpkginfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:38896" version="1">
+      <name>kernel-tools-libs</name>
+    </rpminfo_object>
     <textfilecontent54_object id="oval:org.mitre.oval:obj:39017" comment="Object holds Debian kernel" version="1">
       <behaviors multiline="true" />
       <path>/etc</path>
@@ -15798,6 +16000,9 @@
     <dpkginfo_object id="oval:org.mitre.oval:obj:39177" comment="libstruts1.2-java package information" version="1">
       <name>libstruts1.2-java</name>
     </dpkginfo_object>
+    <rpminfo_object id="oval:org.mitre.oval:obj:39295" version="1">
+      <name>kernel-tools</name>
+    </rpminfo_object>
     <swlist_object id="oval:org.mitre.oval:obj:41549" version="2">
       <swlist>CIFS-Server.CIFS-ADMIN</swlist>
     </swlist_object>
@@ -17027,6 +17232,9 @@
     <dpkginfo_state id="oval:org.cisecurity:ste:1891" comment="version is earlier than 0:55.0.2883.75-1~deb8u1" version="1">
       <evr datatype="evr_string" operation="less than">0:55.0.2883.75-1~deb8u1</evr>
     </dpkginfo_state>
+    <rpminfo_state id="oval:org.cisecurity:ste:2758" comment="version is earlier than 0:3.10.0-327.36.3.el7" version="1">
+      <evr datatype="evr_string" operation="less than">0:3.10.0-327.36.3.el7</evr>
+    </rpminfo_state>
     <uname_state id="oval:org.mitre.oval:ste:3284" version="2">
       <os_release>B.11.31</os_release>
     </uname_state>
@@ -17048,6 +17256,9 @@
     <oslevel_state id="oval:org.mitre.oval:ste:3903" version="2">
       <maintenance_level datatype="version" operation="greater than or equal">6100-00</maintenance_level>
     </oslevel_state>
+    <family_state id="oval:org.mitre.oval:ste:3907" comment="Unix family" version="1">
+      <family>unix</family>
+    </family_state>
     <textfilecontent54_state id="oval:org.mitre.oval:ste:13042" version="2">
       <subexpression>6.0</subexpression>
     </textfilecontent54_state>
@@ -17084,9 +17295,18 @@
     <fileset_state id="oval:org.mitre.oval:ste:31542" version="3">
       <level datatype="version" operation="greater than or equal">6.1.9.0</level>
     </fileset_state>
+    <rpminfo_state id="oval:org.mitre.oval:ste:31675" comment="version matches regex ^7.*$" version="1">
+      <version operation="pattern match">^7.*$</version>
+    </rpminfo_state>
     <fileset_state id="oval:org.mitre.oval:ste:31711" version="2">
       <level datatype="version" operation="greater than or equal">4.0.0.5200</level>
     </fileset_state>
+    <rpminfo_state id="oval:org.mitre.oval:ste:31728" comment="version matches regex ^7.*$" version="1">
+      <version operation="pattern match">^7.*$</version>
+    </rpminfo_state>
+    <rpminfo_state id="oval:org.mitre.oval:ste:31757" comment="version matches ^7.*$" version="1">
+      <version operation="pattern match">^7.*$</version>
+    </rpminfo_state>
     <textfilecontent54_state id="oval:org.mitre.oval:ste:38227" comment="State matches version 8" version="3">
       <subexpression>8</subexpression>
     </textfilecontent54_state>
