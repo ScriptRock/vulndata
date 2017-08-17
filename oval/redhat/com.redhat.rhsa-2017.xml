@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1502942931</content_version>
+    <content_version>1502968179</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -18077,6 +18077,65 @@ Security Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172489" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2489: mercurial security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2489-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2489" source="RHSA" />
+        <reference ref_id="CVE-2017-1000115" ref_url="https://access.redhat.com/security/cve/CVE-2017-1000115" source="CVE" />
+        <reference ref_id="CVE-2017-1000116" ref_url="https://access.redhat.com/security/cve/CVE-2017-1000116" source="CVE" />
+        <description>Mercurial is a fast, lightweight source control management system designed for efficient handling of very large distributed projects.
+
+Security Fix(es):
+
+* A vulnerability was found in the way Mercurial handles path auditing and caches the results. An attacker could abuse a repository with a series of commits mixing symlinks and regular files/directories to trick Mercurial into writing outside of a given repository. (CVE-2017-1000115)
+
+* A shell command injection flaw related to the handling of "ssh" URLs has been discovered in Mercurial. This can be exploited to execute shell commands with the privileges of the user running the Mercurial client, for example, when performing a "checkout" or "update" action on a sub-repository within a malicious repository or a legitimate repository containing a malicious commit. (CVE-2017-1000116)
+
+Red Hat would like to thank the Mercurial Security Team for reporting CVE-2017-1000115 and the Subversion Team for reporting CVE-2017-1000116.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-08-17" />
+          <updated date="2017-08-17" />
+          <cve cvss3="5.4/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L" cwe="CWE-22" href="https://access.redhat.com/security/cve/CVE-2017-1000115" public="20170810">CVE-2017-1000115</cve>
+          <cve cvss3="6.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2017-1000116" public="20170810">CVE-2017-1000116</cve>
+          <bugzilla id="1479915" href="https://bugzilla.redhat.com/1479915">CVE-2017-1000116 mercurial: command injection on clients through malicious ssh URLs</bugzilla>
+          <bugzilla id="1480330" href="https://bugzilla.redhat.com/1480330">CVE-2017-1000115 Mercurial: pathaudit: path traversal via symlink</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="emacs-mercurial is earlier than 0:2.6.2-8.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172489011" />
+            <criterion comment="emacs-mercurial is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171576006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="emacs-mercurial-el is earlier than 0:2.6.2-8.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172489007" />
+            <criterion comment="emacs-mercurial-el is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171576008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="mercurial is earlier than 0:2.6.2-8.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172489005" />
+            <criterion comment="mercurial is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171576010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="mercurial-hgk is earlier than 0:2.6.2-8.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172489009" />
+            <criterion comment="mercurial-hgk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171576012" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -28799,6 +28858,22 @@ Security Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20172486006" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172489005" check="at least one" comment="mercurial is earlier than 0:2.6.2-8.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171576007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172489003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172489007" check="at least one" comment="emacs-mercurial-el is earlier than 0:2.6.2-8.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171576006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172489003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172489009" check="at least one" comment="mercurial-hgk is earlier than 0:2.6.2-8.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171576008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172489003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172489011" check="at least one" comment="emacs-mercurial is earlier than 0:2.6.2-8.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171576005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172489003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -31862,6 +31937,9 @@ Security Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20172486003" version="601">
       <evr datatype="evr_string" operation="less than">0:1.8.9-8.el7_4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172489003" version="601">
+      <evr datatype="evr_string" operation="less than">0:2.6.2-8.el7_4</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
