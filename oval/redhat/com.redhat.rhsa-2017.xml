@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1504325329</content_version>
+    <content_version>1504611255</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -18526,6 +18526,160 @@ Security Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172569" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2569: 389-ds-base security and bug fix update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2569-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2569" source="RHSA" />
+        <reference ref_id="CVE-2017-7551" ref_url="https://access.redhat.com/security/cve/CVE-2017-7551" source="CVE" />
+        <description>389 Directory Server is an LDAP version 3 (LDAPv3) compliant server. The base packages include the Lightweight Directory Access Protocol (LDAP) server and command-line utilities for server administration.
+
+Security Fix(es):
+
+* A flaw was found in the way 389-ds-base handled authentication attempts against locked accounts. A remote attacker could potentially use this flaw to continue password brute-forcing attacks against LDAP accounts, thereby bypassing the protection offered by the directory server's password lockout policy. (CVE-2017-7551)
+
+Bug Fix(es):
+
+* In a multi-replication environments, if operations in one back end triggered updates in another back end, the Replica Update Vector (RUV) of the back end was incorrect and replication failed. This fix enables Directory Server to handle Change Sequence Number (CSN) pending lists across multiple back ends. As a result, replication works correctly. (BZ#1476161)
+
+* Due to a low default entry cache size value, the Directory Server database had to resolve many deadlocks during resource-intensive tasks. In certain situations, this could result in a "DB PANIC" error and the server no longer responded to requests. After the server was restarted, Directory Server started with a delay to recover the database. However, this recovery could fail, and the database could corrupt. This patch increases the default entry cache size in the nsslapd-cachememsize parameter to 200 MB. As a result, out-of-lock situations or "DB PANIC" errors no longer occur in the mentioned scenario. (BZ#1476162)
+
+* Previously, if replication was enabled and a changelog file existed, performing a backup on this master server failed. This update sets the internal options for correctly copying a file. As a result, creating a backup now succeeds in the mentioned scenario. (BZ#1479755)
+
+* In certain situations, if the server was previously abruptly shut down, the /etc/dirsrv/&lt;instance_name&gt;/dse.ldif configuration file became corrupted. As a consequence, Directory Server failed to start. With this patch, the server now calls the fsync() function before shutting down to force the file system to write any changes to the disk. As a result, the configuration no longer becomes corrupted, regardless how the server gets stopped. (BZ#1479757)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-09-05" />
+          <updated date="2017-09-05" />
+          <cve cvss3="5.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N" cwe="CWE-209" href="https://access.redhat.com/security/cve/CVE-2017-7551" public="20170731">CVE-2017-7551</cve>
+          <bugzilla id="1476161" href="https://bugzilla.redhat.com/1476161">1.3.5.10-20 replication halt - pending list first CSN not committed, pending list increasing [rhel-7.4.z]</bugzilla>
+          <bugzilla id="1476162" href="https://bugzilla.redhat.com/1476162">Change the retrochangelog default cache size. And also if possible, the default caches. [rhel-7.4.z]</bugzilla>
+          <bugzilla id="1477669" href="https://bugzilla.redhat.com/1477669">CVE-2017-7551 389-ds-base: Password brute-force possible for locked account due to different return codes</bugzilla>
+          <bugzilla id="1479755" href="https://bugzilla.redhat.com/1479755">backup fails if changelog is enabled [rhel-7.4.z]</bugzilla>
+          <bugzilla id="1479757" href="https://bugzilla.redhat.com/1479757">Segmentation fault in valueset_array_to_sorted_quick [rhel-7.4.z]</bugzilla>
+          <bugzilla id="1483865" href="https://bugzilla.redhat.com/1483865">Crash while binding to a server during replication online init [rhel-7.4.z]</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="389-ds-base is earlier than 0:1.3.6.1-19.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172569009" />
+            <criterion comment="389-ds-base is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170893010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="389-ds-base-devel is earlier than 0:1.3.6.1-19.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172569007" />
+            <criterion comment="389-ds-base-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170893006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="389-ds-base-libs is earlier than 0:1.3.6.1-19.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172569005" />
+            <criterion comment="389-ds-base-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170893008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="389-ds-base-snmp is earlier than 0:1.3.6.1-19.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172569011" />
+            <criterion comment="389-ds-base-snmp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170920008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="389-ds-base-tests is earlier than 0:1.3.6.1-19.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172569013" />
+            <criterion comment="389-ds-base-tests is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170920014" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172585" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2585: kernel-rt security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2585-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2585" source="RHSA" />
+        <reference ref_id="CVE-2017-7533" ref_url="https://access.redhat.com/security/cve/CVE-2017-7533" source="CVE" />
+        <description>The kernel-rt packages provide the Real Time Linux Kernel, which enables fine-tuning for systems with extremely high determinism requirements.
+
+Security Fix(es):
+
+* A race condition was found in the Linux kernel, present since v3.14-rc1 through v4.12. The race happens between threads of inotify_handle_event() and vfs_rename() while running the rename operation against the same file. As a result of the race the next slab data or the slab's free list pointer can be corrupted with attacker-controlled data, which may lead to the privilege escalation. (CVE-2017-7533, Important)
+
+Red Hat would like to thank Leilei Lin (Alibaba Group), Fan Wu (The University of Hong Kong), and Shixiong Zhao (The University of Hong Kong) for reporting this issue.
+
+Bug Fix(es):
+
+* The kernel-rt packages have been upgraded to the 3.10.0-693.2.1 source tree, which provides a number of bug fixes over the previous version. (BZ#1473393) (BZ#1473393)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-09-05" />
+          <updated date="2017-09-05" />
+          <cve cvss3="7.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-362 CWE-642" href="https://access.redhat.com/security/cve/CVE-2017-7533" public="20170803">CVE-2017-7533</cve>
+          <bugzilla id="1468283" href="https://bugzilla.redhat.com/1468283">CVE-2017-7533 kernel: a race between inotify_handle_event() and sys_rename()</bugzilla>
+          <bugzilla id="1473393" href="https://bugzilla.redhat.com/1473393">kernel-rt: update to the RHEL7.4.z batch#1 source tree</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/a:redhat:rhel_extras_rt:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel-rt is earlier than 0:3.10.0-693.2.1.rt56.620.el7" test_ref="oval:com.redhat.rhsa:tst:20172585007" />
+            <criterion comment="kernel-rt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug is earlier than 0:3.10.0-693.2.1.rt56.620.el7" test_ref="oval:com.redhat.rhsa:tst:20172585009" />
+            <criterion comment="kernel-rt-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug-devel is earlier than 0:3.10.0-693.2.1.rt56.620.el7" test_ref="oval:com.redhat.rhsa:tst:20172585013" />
+            <criterion comment="kernel-rt-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-693.2.1.rt56.620.el7" test_ref="oval:com.redhat.rhsa:tst:20172585017" />
+            <criterion comment="kernel-rt-debug-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-devel is earlier than 0:3.10.0-693.2.1.rt56.620.el7" test_ref="oval:com.redhat.rhsa:tst:20172585021" />
+            <criterion comment="kernel-rt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-doc is earlier than 0:3.10.0-693.2.1.rt56.620.el7" test_ref="oval:com.redhat.rhsa:tst:20172585005" />
+            <criterion comment="kernel-rt-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-kvm is earlier than 0:3.10.0-693.2.1.rt56.620.el7" test_ref="oval:com.redhat.rhsa:tst:20172585023" />
+            <criterion comment="kernel-rt-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace is earlier than 0:3.10.0-693.2.1.rt56.620.el7" test_ref="oval:com.redhat.rhsa:tst:20172585019" />
+            <criterion comment="kernel-rt-trace is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace-devel is earlier than 0:3.10.0-693.2.1.rt56.620.el7" test_ref="oval:com.redhat.rhsa:tst:20172585011" />
+            <criterion comment="kernel-rt-trace-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-693.2.1.rt56.620.el7" test_ref="oval:com.redhat.rhsa:tst:20172585015" />
+            <criterion comment="kernel-rt-trace-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -29500,6 +29654,66 @@ Security Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20170641008" />
       <state state_ref="oval:com.redhat.rhsa:ste:20172563003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172569005" check="at least one" comment="389-ds-base-libs is earlier than 0:1.3.6.1-19.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170893006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172569003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172569007" check="at least one" comment="389-ds-base-devel is earlier than 0:1.3.6.1-19.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170893005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172569003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172569009" check="at least one" comment="389-ds-base is earlier than 0:1.3.6.1-19.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170893007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172569003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172569011" check="at least one" comment="389-ds-base-snmp is earlier than 0:1.3.6.1-19.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170920006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172569003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172569013" check="at least one" comment="389-ds-base-tests is earlier than 0:1.3.6.1-19.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170920009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172569003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172585005" check="at least one" comment="kernel-rt-doc is earlier than 0:3.10.0-693.2.1.rt56.620.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172585003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172585007" check="at least one" comment="kernel-rt is earlier than 0:3.10.0-693.2.1.rt56.620.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172585003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172585009" check="at least one" comment="kernel-rt-debug is earlier than 0:3.10.0-693.2.1.rt56.620.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172585003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172585011" check="at least one" comment="kernel-rt-trace-devel is earlier than 0:3.10.0-693.2.1.rt56.620.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172585003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172585013" check="at least one" comment="kernel-rt-debug-devel is earlier than 0:3.10.0-693.2.1.rt56.620.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172585003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172585015" check="at least one" comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-693.2.1.rt56.620.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172585003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172585017" check="at least one" comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-693.2.1.rt56.620.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172585003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172585019" check="at least one" comment="kernel-rt-trace is earlier than 0:3.10.0-693.2.1.rt56.620.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172585003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172585021" check="at least one" comment="kernel-rt-devel is earlier than 0:3.10.0-693.2.1.rt56.620.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172585003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172585023" check="at least one" comment="kernel-rt-kvm is earlier than 0:3.10.0-693.2.1.rt56.620.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172585003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -32653,6 +32867,12 @@ Security Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20172563004" version="602">
       <evr datatype="evr_string" operation="less than">0:0.9.3-123.el6_9</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172569003" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.3.6.1-19.el7_4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172585003" version="601">
+      <evr datatype="evr_string" operation="less than">0:3.10.0-693.2.1.rt56.620.el7</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
