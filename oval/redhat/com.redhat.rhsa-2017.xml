@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1505275735</content_version>
+    <content_version>1505310356</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -18968,6 +18968,84 @@ Red Hat would like to thank Armis Labs for reporting this issue.</description>
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172704" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2704: kernel-rt security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2704-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2704" source="RHSA" />
+        <reference ref_id="CVE-2017-1000251" ref_url="https://access.redhat.com/security/cve/CVE-2017-1000251" source="CVE" />
+        <description>The kernel-rt packages provide the Real Time Linux Kernel, which enables fine-tuning for systems with extremely high determinism requirements.
+
+Security Fix(es):
+
+* A stack buffer overflow flaw was found in the way the Bluetooth subsystem of the Linux kernel processed pending L2CAP configuration responses from a client. On systems with the stack protection feature enabled in the kernel (CONFIG_CC_STACKPROTECTOR=y, which is enabled on all architectures other than s390x and ppc64[le]), an unauthenticated attacker able to initiate a connection to a system via Bluetooth could use this flaw to crash the system. Due to the nature of the stack protection feature, code execution cannot be fully ruled out, although we believe it is unlikely. On systems without the stack protection feature (ppc64[le]; the Bluetooth modules are not built on s390x), an unauthenticated attacker able to initiate a connection to a system via Bluetooth could use this flaw to remotely execute arbitrary code on the system with ring 0 (kernel) privileges. (CVE-2017-1000251, Important)
+
+Red Hat would like to thank Armis Labs for reporting this issue.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-09-13" />
+          <updated date="2017-09-13" />
+          <cve cvss2="6.8/AV:A/AC:H/Au:N/C:C/I:C/A:C" cvss3="7.5/CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-121" href="https://access.redhat.com/security/cve/CVE-2017-1000251" public="20170912">CVE-2017-1000251</cve>
+          <bugzilla id="1489716" href="https://bugzilla.redhat.com/1489716">CVE-2017-1000251 kernel: stack buffer overflow in the native Bluetooth stack</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/a:redhat:rhel_extras_rt:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel-rt is earlier than 0:3.10.0-693.2.2.rt56.623.el7" test_ref="oval:com.redhat.rhsa:tst:20172704021" />
+            <criterion comment="kernel-rt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug is earlier than 0:3.10.0-693.2.2.rt56.623.el7" test_ref="oval:com.redhat.rhsa:tst:20172704017" />
+            <criterion comment="kernel-rt-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug-devel is earlier than 0:3.10.0-693.2.2.rt56.623.el7" test_ref="oval:com.redhat.rhsa:tst:20172704019" />
+            <criterion comment="kernel-rt-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-693.2.2.rt56.623.el7" test_ref="oval:com.redhat.rhsa:tst:20172704013" />
+            <criterion comment="kernel-rt-debug-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-devel is earlier than 0:3.10.0-693.2.2.rt56.623.el7" test_ref="oval:com.redhat.rhsa:tst:20172704015" />
+            <criterion comment="kernel-rt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-doc is earlier than 0:3.10.0-693.2.2.rt56.623.el7" test_ref="oval:com.redhat.rhsa:tst:20172704005" />
+            <criterion comment="kernel-rt-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-kvm is earlier than 0:3.10.0-693.2.2.rt56.623.el7" test_ref="oval:com.redhat.rhsa:tst:20172704007" />
+            <criterion comment="kernel-rt-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace is earlier than 0:3.10.0-693.2.2.rt56.623.el7" test_ref="oval:com.redhat.rhsa:tst:20172704009" />
+            <criterion comment="kernel-rt-trace is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace-devel is earlier than 0:3.10.0-693.2.2.rt56.623.el7" test_ref="oval:com.redhat.rhsa:tst:20172704023" />
+            <criterion comment="kernel-rt-trace-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-693.2.2.rt56.623.el7" test_ref="oval:com.redhat.rhsa:tst:20172704011" />
+            <criterion comment="kernel-rt-trace-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170091010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -30194,6 +30272,46 @@ Red Hat would like to thank Armis Labs for reporting this issue.</description>
       <object object_ref="oval:com.redhat.rhsa:obj:20172685009" />
       <state state_ref="oval:com.redhat.rhsa:ste:20172685005" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172704005" check="at least one" comment="kernel-rt-doc is earlier than 0:3.10.0-693.2.2.rt56.623.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172704003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172704007" check="at least one" comment="kernel-rt-kvm is earlier than 0:3.10.0-693.2.2.rt56.623.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172704003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172704009" check="at least one" comment="kernel-rt-trace is earlier than 0:3.10.0-693.2.2.rt56.623.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172704003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172704011" check="at least one" comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-693.2.2.rt56.623.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172704003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172704013" check="at least one" comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-693.2.2.rt56.623.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172704003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172704015" check="at least one" comment="kernel-rt-devel is earlier than 0:3.10.0-693.2.2.rt56.623.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172704003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172704017" check="at least one" comment="kernel-rt-debug is earlier than 0:3.10.0-693.2.2.rt56.623.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172704003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172704019" check="at least one" comment="kernel-rt-debug-devel is earlier than 0:3.10.0-693.2.2.rt56.623.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172704003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172704021" check="at least one" comment="kernel-rt is earlier than 0:3.10.0-693.2.2.rt56.623.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172704003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172704023" check="at least one" comment="kernel-rt-trace-devel is earlier than 0:3.10.0-693.2.2.rt56.623.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170091011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172704003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -33389,6 +33507,9 @@ Red Hat would like to thank Armis Labs for reporting this issue.</description>
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20172685005" version="601">
       <evr datatype="evr_string" operation="less than">0:5.44-4.el7_4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172704003" version="601">
+      <evr datatype="evr_string" operation="less than">0:3.10.0-693.2.2.rt56.623.el7</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
