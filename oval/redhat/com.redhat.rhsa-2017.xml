@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1505966938</content_version>
+    <content_version>1506003787</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -19199,6 +19199,403 @@ Security Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172788" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2788: augeas security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2788-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2788" source="RHSA" />
+        <reference ref_id="CVE-2017-7555" ref_url="https://access.redhat.com/security/cve/CVE-2017-7555" source="CVE" />
+        <description>Augeas is a configuration editing tool. It parses configuration files in their native formats and transforms them into a tree. Configuration changes are made by manipulating this tree and saving it back into native config files.
+
+Security Fix(es):
+
+* A vulnerability was discovered in augeas affecting the handling of escaped strings. An attacker could send crafted strings that would cause the application using augeas to copy past the end of a buffer, leading to a crash or possible code execution. (CVE-2017-7555)
+
+This issue was discovered by Han Han (Red Hat).</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-09-21" />
+          <updated date="2017-09-21" />
+          <cve cvss3="7.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-20 CWE-122" href="https://access.redhat.com/security/cve/CVE-2017-7555" public="20170817">CVE-2017-7555</cve>
+          <bugzilla id="1478373" href="https://bugzilla.redhat.com/1478373">CVE-2017-7555 augeas: Improper handling of escaped strings leading to memory corruption</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="augeas is earlier than 0:1.4.0-2.el7_4.1" test_ref="oval:com.redhat.rhsa:tst:20172788005" />
+            <criterion comment="augeas is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20172788006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="augeas-devel is earlier than 0:1.4.0-2.el7_4.1" test_ref="oval:com.redhat.rhsa:tst:20172788009" />
+            <criterion comment="augeas-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20172788010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="augeas-libs is earlier than 0:1.4.0-2.el7_4.1" test_ref="oval:com.redhat.rhsa:tst:20172788007" />
+            <criterion comment="augeas-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20172788008" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172789" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2789: samba security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2789-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2789" source="RHSA" />
+        <reference ref_id="CVE-2017-12150" ref_url="https://access.redhat.com/security/cve/CVE-2017-12150" source="CVE" />
+        <reference ref_id="CVE-2017-12163" ref_url="https://access.redhat.com/security/cve/CVE-2017-12163" source="CVE" />
+        <reference ref_id="CVE-2017-2619" ref_url="https://access.redhat.com/security/cve/CVE-2017-2619" source="CVE" />
+        <description>Samba is an open-source implementation of the Server Message Block (SMB) protocol and the related Common Internet File System (CIFS) protocol, which allow PC-compatible machines to share files, printers, and various information.
+
+Security Fix(es):
+
+* A race condition was found in samba server. A malicious samba client could use this flaw to access files and directories in areas of the server file system not exported under the share definitions. (CVE-2017-2619)
+
+* It was found that samba did not enforce "SMB signing" when certain configuration options were enabled. A remote attacker could launch a man-in-the-middle attack and retrieve information in plain-text. (CVE-2017-12150)
+
+* An information leak flaw was found in the way SMB1 protocol was implemented by Samba. A malicious client could use this flaw to dump server memory contents to a file on the samba share or to a shared printer, though the exact area of server memory cannot be controlled by the attacker. (CVE-2017-12163)
+
+Red Hat would like to thank the Samba project for reporting CVE-2017-2619 and CVE-2017-12150 and Yihan Lian and Zhibin Hu (Qihoo 360 GearTeam), Stefan Metzmacher (SerNet), and Jeremy Allison (Google) for reporting CVE-2017-12163. Upstream acknowledges Jann Horn (Google) as the original reporter of CVE-2017-2619; and Stefan Metzmacher (SerNet) as the original reporter of CVE-2017-12150.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-09-21" />
+          <updated date="2017-09-21" />
+          <cve cvss3="8.1/CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N" cwe="CWE-300" href="https://access.redhat.com/security/cve/CVE-2017-12150" public="20170920">CVE-2017-12150</cve>
+          <cve cvss3="4.1/CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2017-12163" public="20170920">CVE-2017-12163</cve>
+          <cve cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:L/UI:R/S:U/C:H/I:L/A:L" href="https://access.redhat.com/security/cve/CVE-2017-2619" public="20170323">CVE-2017-2619</cve>
+          <bugzilla id="1429472" href="https://bugzilla.redhat.com/1429472">CVE-2017-2619 samba: symlink race permits opening files outside share directory</bugzilla>
+          <bugzilla id="1488400" href="https://bugzilla.redhat.com/1488400">CVE-2017-12150 samba: Some code path don't enforce smb signing, when they should</bugzilla>
+          <bugzilla id="1491206" href="https://bugzilla.redhat.com/1491206">CVE-2017-12163 Samba: Server memory information leak over SMB1</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="libsmbclient is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789015" />
+            <criterion comment="libsmbclient is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsmbclient-devel is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789009" />
+            <criterion comment="libsmbclient-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789017" />
+            <criterion comment="samba is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-client is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789021" />
+            <criterion comment="samba-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-common is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789011" />
+            <criterion comment="samba-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-doc is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789025" />
+            <criterion comment="samba-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-domainjoin-gui is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789007" />
+            <criterion comment="samba-domainjoin-gui is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-glusterfs is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789029" />
+            <criterion comment="samba-glusterfs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-swat is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789023" />
+            <criterion comment="samba-swat is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789027" />
+            <criterion comment="samba-winbind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind-clients is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789019" />
+            <criterion comment="samba-winbind-clients is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind-devel is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789005" />
+            <criterion comment="samba-winbind-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind-krb5-locator is earlier than 0:3.6.23-45.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172789013" />
+            <criterion comment="samba-winbind-krb5-locator is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662014" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172790" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2790: samba security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2790-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2790" source="RHSA" />
+        <reference ref_id="CVE-2017-12150" ref_url="https://access.redhat.com/security/cve/CVE-2017-12150" source="CVE" />
+        <reference ref_id="CVE-2017-12151" ref_url="https://access.redhat.com/security/cve/CVE-2017-12151" source="CVE" />
+        <reference ref_id="CVE-2017-12163" ref_url="https://access.redhat.com/security/cve/CVE-2017-12163" source="CVE" />
+        <description>Samba is an open-source implementation of the Server Message Block (SMB) protocol and the related Common Internet File System (CIFS) protocol, which allow PC-compatible machines to share files, printers, and various information.
+
+Security Fix(es):
+
+* It was found that samba did not enforce "SMB signing" when certain configuration options were enabled. A remote attacker could launch a man-in-the-middle attack and retrieve information in plain-text. (CVE-2017-12150)
+
+* A flaw was found in the way samba client used encryption with the max protocol set as SMB3. The connection could lose the requirement for signing and encrypting to any DFS redirects, allowing an attacker to read or alter the contents of the connection via a man-in-the-middle attack. (CVE-2017-12151)
+
+* An information leak flaw was found in the way SMB1 protocol was implemented by Samba. A malicious client could use this flaw to dump server memory contents to a file on the samba share or to a shared printer, though the exact area of server memory cannot be controlled by the attacker. (CVE-2017-12163)
+
+Red Hat would like to thank the Samba project for reporting CVE-2017-12150 and CVE-2017-12151 and Yihan Lian and Zhibin Hu (Qihoo 360 GearTeam), Stefan Metzmacher (SerNet), and Jeremy Allison (Google) for reporting CVE-2017-12163. Upstream acknowledges Stefan Metzmacher (SerNet) as the original reporter of CVE-2017-12150 and CVE-2017-12151.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-09-21" />
+          <updated date="2017-09-21" />
+          <cve cvss3="8.1/CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N" cwe="CWE-300" href="https://access.redhat.com/security/cve/CVE-2017-12150" public="20170920">CVE-2017-12150</cve>
+          <cve cvss3="7.4/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N" cwe="CWE-300" href="https://access.redhat.com/security/cve/CVE-2017-12151" public="20170920">CVE-2017-12151</cve>
+          <cve cvss3="4.1/CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2017-12163" public="20170920">CVE-2017-12163</cve>
+          <bugzilla id="1488197" href="https://bugzilla.redhat.com/1488197">CVE-2017-12151 samba: SMB2 connections don't keep encryption across DFS redirects</bugzilla>
+          <bugzilla id="1488400" href="https://bugzilla.redhat.com/1488400">CVE-2017-12150 samba: Some code path don't enforce smb signing, when they should</bugzilla>
+          <bugzilla id="1491206" href="https://bugzilla.redhat.com/1491206">CVE-2017-12163 Samba: Server memory information leak over SMB1</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="ctdb is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790047" />
+            <criterion comment="ctdb is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265052" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="ctdb-tests is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790035" />
+            <criterion comment="ctdb-tests is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsmbclient is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790023" />
+            <criterion comment="libsmbclient is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsmbclient-devel is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790031" />
+            <criterion comment="libsmbclient-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libwbclient is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790045" />
+            <criterion comment="libwbclient is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265046" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libwbclient-devel is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790037" />
+            <criterion comment="libwbclient-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790027" />
+            <criterion comment="samba is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-client is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790011" />
+            <criterion comment="samba-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-client-libs is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790017" />
+            <criterion comment="samba-client-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265036" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-common is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790055" />
+            <criterion comment="samba-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-common-libs is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790015" />
+            <criterion comment="samba-common-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265048" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-common-tools is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790019" />
+            <criterion comment="samba-common-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-dc is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790039" />
+            <criterion comment="samba-dc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265044" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-dc-libs is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790021" />
+            <criterion comment="samba-dc-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-devel is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790029" />
+            <criterion comment="samba-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265042" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-krb5-printing is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790025" />
+            <criterion comment="samba-krb5-printing is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-libs is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790013" />
+            <criterion comment="samba-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265032" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-pidl is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790053" />
+            <criterion comment="samba-pidl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265056" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-python is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790051" />
+            <criterion comment="samba-python is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-test is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790009" />
+            <criterion comment="samba-test is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265040" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-test-libs is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790043" />
+            <criterion comment="samba-test-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265034" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-vfs-glusterfs is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790033" />
+            <criterion comment="samba-vfs-glusterfs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265038" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790049" />
+            <criterion comment="samba-winbind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind-clients is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790041" />
+            <criterion comment="samba-winbind-clients is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind-krb5-locator is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790005" />
+            <criterion comment="samba-winbind-krb5-locator is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170662014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind-modules is earlier than 0:4.6.2-11.el7_4" test_ref="oval:com.redhat.rhsa:tst:20172790007" />
+            <criterion comment="samba-winbind-modules is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171265016" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172791" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2791: samba4 security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2791-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2791" source="RHSA" />
+        <reference ref_id="CVE-2017-12150" ref_url="https://access.redhat.com/security/cve/CVE-2017-12150" source="CVE" />
+        <reference ref_id="CVE-2017-12163" ref_url="https://access.redhat.com/security/cve/CVE-2017-12163" source="CVE" />
+        <description>Samba is an open-source implementation of the Server Message Block (SMB) or Common Internet File System (CIFS) protocol, which allows PC-compatible machines to share files, printers, and other information.
+
+Security Fix(es):
+
+* It was found that samba did not enforce "SMB signing" when certain configuration options were enabled. A remote attacker could launch a man-in-the-middle attack and retrieve information in plain-text. (CVE-2017-12150)
+
+* An information leak flaw was found in the way SMB1 protocol was implemented by Samba. A malicious client could use this flaw to dump server memory contents to a file on the samba share or to a shared printer, though the exact area of server memory cannot be controlled by the attacker. (CVE-2017-12163)
+
+Red Hat would like to thank the Samba project for reporting CVE-2017-12150 and Yihan Lian and Zhibin Hu (Qihoo 360 GearTeam), Stefan Metzmacher (SerNet), and Jeremy Allison (Google) for reporting CVE-2017-12163. Upstream acknowledges Stefan Metzmacher (SerNet) as the original reporter of CVE-2017-12150.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-09-21" />
+          <updated date="2017-09-21" />
+          <cve cvss3="8.1/CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N" cwe="CWE-300" href="https://access.redhat.com/security/cve/CVE-2017-12150" public="20170920">CVE-2017-12150</cve>
+          <cve cvss3="4.1/CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2017-12163" public="20170920">CVE-2017-12163</cve>
+          <bugzilla id="1488400" href="https://bugzilla.redhat.com/1488400">CVE-2017-12150 samba: Some code path don't enforce smb signing, when they should</bugzilla>
+          <bugzilla id="1491206" href="https://bugzilla.redhat.com/1491206">CVE-2017-12163 Samba: Server memory information leak over SMB1</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="samba4 is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791025" />
+            <criterion comment="samba4 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-client is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791015" />
+            <criterion comment="samba4-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-common is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791021" />
+            <criterion comment="samba4-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-dc is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791017" />
+            <criterion comment="samba4-dc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-dc-libs is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791019" />
+            <criterion comment="samba4-dc-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-devel is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791009" />
+            <criterion comment="samba4-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-libs is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791013" />
+            <criterion comment="samba4-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-pidl is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791005" />
+            <criterion comment="samba4-pidl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-python is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791029" />
+            <criterion comment="samba4-python is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-test is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791023" />
+            <criterion comment="samba4-test is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-winbind is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791027" />
+            <criterion comment="samba4-winbind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-winbind-clients is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791011" />
+            <criterion comment="samba4-winbind-clients is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-winbind-krb5-locator is earlier than 0:4.2.10-11.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172791007" />
+            <criterion comment="samba4-winbind-krb5-locator is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170744018" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -30561,6 +30958,238 @@ Security Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20172771010" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172788005" check="at least one" comment="augeas is earlier than 0:1.4.0-2.el7_4.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172788005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172788003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172788006" check="at least one" comment="augeas is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172788005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172788007" check="at least one" comment="augeas-libs is earlier than 0:1.4.0-2.el7_4.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172788006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172788003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172788008" check="at least one" comment="augeas-libs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172788006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172788009" check="at least one" comment="augeas-devel is earlier than 0:1.4.0-2.el7_4.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172788007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172788003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172788010" check="at least one" comment="augeas-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172788007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789005" check="at least one" comment="samba-winbind-devel is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789007" check="at least one" comment="samba-domainjoin-gui is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789009" check="at least one" comment="libsmbclient-devel is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789011" check="at least one" comment="samba-common is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789013" check="at least one" comment="samba-winbind-krb5-locator is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789015" check="at least one" comment="libsmbclient is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789017" check="at least one" comment="samba is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789019" check="at least one" comment="samba-winbind-clients is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789021" check="at least one" comment="samba-client is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789023" check="at least one" comment="samba-swat is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789025" check="at least one" comment="samba-doc is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789027" check="at least one" comment="samba-winbind is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172789029" check="at least one" comment="samba-glusterfs is earlier than 0:3.6.23-45.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172789003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790005" check="at least one" comment="samba-winbind-krb5-locator is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790007" check="at least one" comment="samba-winbind-modules is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790009" check="at least one" comment="samba-test is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265022" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790011" check="at least one" comment="samba-client is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790013" check="at least one" comment="samba-libs is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265018" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790015" check="at least one" comment="samba-common-libs is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265026" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790017" check="at least one" comment="samba-client-libs is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265020" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790019" check="at least one" comment="samba-common-tools is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790021" check="at least one" comment="samba-dc-libs is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790023" check="at least one" comment="libsmbclient is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790025" check="at least one" comment="samba-krb5-printing is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790027" check="at least one" comment="samba is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790029" check="at least one" comment="samba-devel is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265023" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790031" check="at least one" comment="libsmbclient-devel is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790033" check="at least one" comment="samba-vfs-glusterfs is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265021" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790035" check="at least one" comment="ctdb-tests is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790037" check="at least one" comment="libwbclient-devel is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790039" check="at least one" comment="samba-dc is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265024" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790041" check="at least one" comment="samba-winbind-clients is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790043" check="at least one" comment="samba-test-libs is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265019" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790045" check="at least one" comment="libwbclient is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265025" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790047" check="at least one" comment="ctdb is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265028" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790049" check="at least one" comment="samba-winbind is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790051" check="at least one" comment="samba-python is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790053" check="at least one" comment="samba-pidl is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171265030" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172790055" check="at least one" comment="samba-common is earlier than 0:4.6.2-11.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170662012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172790003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791005" check="at least one" comment="samba4-pidl is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791007" check="at least one" comment="samba4-winbind-krb5-locator is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791009" check="at least one" comment="samba4-devel is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791011" check="at least one" comment="samba4-winbind-clients is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791013" check="at least one" comment="samba4-libs is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791015" check="at least one" comment="samba4-client is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791017" check="at least one" comment="samba4-dc is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791019" check="at least one" comment="samba4-dc-libs is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791021" check="at least one" comment="samba4-common is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791023" check="at least one" comment="samba4-test is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791025" check="at least one" comment="samba4 is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791027" check="at least one" comment="samba4-winbind is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172791029" check="at least one" comment="samba4-python is earlier than 0:4.2.10-11.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170744017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172791003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -32936,6 +33565,15 @@ Security Fix(es):
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20172771010" version="602">
       <name>emacs-filesystem</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20172788005" version="601">
+      <name>augeas</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20172788006" version="601">
+      <name>augeas-libs</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20172788007" version="601">
+      <name>augeas-devel</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -33783,6 +34421,18 @@ Security Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20172771003" version="602">
       <evr datatype="evr_string" operation="less than">1:24.3-20.el7_4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172788003" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.4.0-2.el7_4.1</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172789003" version="601">
+      <evr datatype="evr_string" operation="less than">0:3.6.23-45.el6_9</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172790003" version="601">
+      <evr datatype="evr_string" operation="less than">0:4.6.2-11.el7_4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172791003" version="601">
+      <evr datatype="evr_string" operation="less than">0:4.2.10-11.el6_9</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
