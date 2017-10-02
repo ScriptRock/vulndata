@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1506744532</content_version>
+    <content_version>1506969976</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -19852,6 +19852,123 @@ Red Hat would like to thank the Mozilla project for reporting this issue. Upstre
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172836" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2836: dnsmasq security update (Critical)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2836-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2836" source="RHSA" />
+        <reference ref_id="CVE-2017-14491" ref_url="https://access.redhat.com/security/cve/CVE-2017-14491" source="CVE" />
+        <reference ref_id="CVE-2017-14492" ref_url="https://access.redhat.com/security/cve/CVE-2017-14492" source="CVE" />
+        <reference ref_id="CVE-2017-14493" ref_url="https://access.redhat.com/security/cve/CVE-2017-14493" source="CVE" />
+        <reference ref_id="CVE-2017-14494" ref_url="https://access.redhat.com/security/cve/CVE-2017-14494" source="CVE" />
+        <reference ref_id="CVE-2017-14495" ref_url="https://access.redhat.com/security/cve/CVE-2017-14495" source="CVE" />
+        <reference ref_id="CVE-2017-14496" ref_url="https://access.redhat.com/security/cve/CVE-2017-14496" source="CVE" />
+        <description>The dnsmasq packages contain Dnsmasq, a lightweight DNS (Domain Name Server) forwarder and DHCP (Dynamic Host Configuration Protocol) server.
+
+Security Fix(es):
+
+* A heap buffer overflow was found in dnsmasq in the code responsible for building DNS replies. An attacker could send crafted DNS packets to dnsmasq which would cause it to crash or, potentially, execute arbitrary code. (CVE-2017-14491)
+
+* A heap buffer overflow was discovered in dnsmasq in the IPv6 router advertisement (RA) handling code. An attacker on the local network segment could send crafted RAs to dnsmasq which would cause it to crash or, potentially, execute arbitrary code. This issue only affected configurations using one of these options: enable-ra, ra-only, slaac, ra-names, ra-advrouter, or ra-stateless. (CVE-2017-14492)
+
+* A stack buffer overflow was found in dnsmasq in the DHCPv6 code. An attacker on the local network could send a crafted DHCPv6 request to dnsmasq which would cause it to a crash or, potentially, execute arbitrary code. (CVE-2017-14493)
+
+* An information leak was found in dnsmasq in the DHCPv6 relay code. An attacker on the local network could send crafted DHCPv6 packets to dnsmasq causing it to forward the contents of process memory, potentially leaking sensitive data. (CVE-2017-14494)
+
+* A memory exhaustion flaw was found in dnsmasq in the EDNS0 code. An attacker could send crafted DNS packets which would trigger memory allocations which would never be freed, leading to unbounded memory consumption and eventually a crash. This issue only affected configurations using one of the options: add-mac, add-cpe-id, or add-subnet. (CVE-2017-14495)
+
+* An integer underflow flaw leading to a buffer over-read was found in dnsmasq in the EDNS0 code. An attacker could send crafted DNS packets to dnsmasq which would cause it to crash. This issue only affected configurations using one of the options: add-mac, add-cpe-id, or add-subnet. (CVE-2017-14496)
+
+Red Hat would like to thank Felix Wilhelm (Google Security Team), Fermin J. Serna (Google Security Team), Gabriel Campana (Google Security Team), Kevin Hamacher (Google Security Team), and Ron Bowes (Google Security Team) for reporting these issues.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Critical</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-10-02" />
+          <updated date="2017-10-02" />
+          <cve href="https://access.redhat.com/security/cve/CVE-2017-14491">CVE-2017-14491</cve>
+          <cve href="https://access.redhat.com/security/cve/CVE-2017-14492">CVE-2017-14492</cve>
+          <cve href="https://access.redhat.com/security/cve/CVE-2017-14493">CVE-2017-14493</cve>
+          <cve href="https://access.redhat.com/security/cve/CVE-2017-14494">CVE-2017-14494</cve>
+          <cve href="https://access.redhat.com/security/cve/CVE-2017-14495">CVE-2017-14495</cve>
+          <cve href="https://access.redhat.com/security/cve/CVE-2017-14496">CVE-2017-14496</cve>
+          <bugzilla id="1495409" href="https://bugzilla.redhat.com/1495409">CVE-2017-14491 dnsmasq: heap overflow in the code responsible for building DNS replies</bugzilla>
+          <bugzilla id="1495410" href="https://bugzilla.redhat.com/1495410">CVE-2017-14492 dnsmasq: heap overflow in the IPv6 router advertisement code</bugzilla>
+          <bugzilla id="1495411" href="https://bugzilla.redhat.com/1495411">CVE-2017-14493 dnsmasq: stack buffer overflow in the DHCPv6 code</bugzilla>
+          <bugzilla id="1495412" href="https://bugzilla.redhat.com/1495412">CVE-2017-14494 dnsmasq: information leak in the DHCPv6 relay code</bugzilla>
+          <bugzilla id="1495415" href="https://bugzilla.redhat.com/1495415">CVE-2017-14495 dnsmasq: memory exhaustion vulnerability in the EDNS0 code</bugzilla>
+          <bugzilla id="1495416" href="https://bugzilla.redhat.com/1495416">CVE-2017-14496 dnsmasq: integer underflow leading to buffer over-read in the EDNS0 code</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="dnsmasq is earlier than 0:2.76-2.el7_4.2" test_ref="oval:com.redhat.rhsa:tst:20172836007" />
+            <criterion comment="dnsmasq is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20172836008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="dnsmasq-utils is earlier than 0:2.76-2.el7_4.2" test_ref="oval:com.redhat.rhsa:tst:20172836005" />
+            <criterion comment="dnsmasq-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20172836006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172838" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2838: dnsmasq security update (Critical)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2838-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2838" source="RHSA" />
+        <reference ref_id="CVE-2017-14491" ref_url="https://access.redhat.com/security/cve/CVE-2017-14491" source="CVE" />
+        <description>The dnsmasq packages contain Dnsmasq, a lightweight DNS (Domain Name Server) forwarder and DHCP (Dynamic Host Configuration Protocol) server.
+
+Security Fix(es):
+
+* A heap buffer overflow was found in dnsmasq in the code responsible for building DNS replies. An attacker could send crafted DNS packets to dnsmasq which would cause it to crash or, potentially, execute arbitrary code. (CVE-2017-14491)
+
+Red Hat would like to thank Felix Wilhelm (Google Security Team), Fermin J. Serna (Google Security Team), Gabriel Campana (Google Security Team), Kevin Hamacher (Google Security Team), and Ron Bowes (Google Security Team) for reporting this issue.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Critical</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-10-02" />
+          <updated date="2017-10-02" />
+          <cve cvss2="10/AV:N/AC:L/Au:N/C:C/I:C/A:C" cvss3="9.8/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-122" href="https://access.redhat.com/security/cve/CVE-2017-14491" public="20171002">CVE-2017-14491</cve>
+          <bugzilla id="1495409" href="https://bugzilla.redhat.com/1495409">CVE-2017-14491 dnsmasq: heap overflow in the code responsible for building DNS replies</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="dnsmasq is earlier than 0:2.48-18.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172838007" />
+            <criterion comment="dnsmasq is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20172836008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="dnsmasq-utils is earlier than 0:2.48-18.el6_9" test_ref="oval:com.redhat.rhsa:tst:20172838005" />
+            <criterion comment="dnsmasq-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20172836006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -31546,6 +31663,30 @@ Red Hat would like to thank the Mozilla project for reporting this issue. Upstre
       <object object_ref="oval:com.redhat.rhsa:obj:20171100010" />
       <state state_ref="oval:com.redhat.rhsa:ste:20172832005" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172836005" check="at least one" comment="dnsmasq-utils is earlier than 0:2.76-2.el7_4.2" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172836005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172836003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172836006" check="at least one" comment="dnsmasq-utils is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172836005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172836007" check="at least one" comment="dnsmasq is earlier than 0:2.76-2.el7_4.2" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172836006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172836003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172836008" check="at least one" comment="dnsmasq is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172836006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172838005" check="at least one" comment="dnsmasq-utils is earlier than 0:2.48-18.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172836005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172838003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172838007" check="at least one" comment="dnsmasq is earlier than 0:2.48-18.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172836006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172838003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -33930,6 +34071,12 @@ Red Hat would like to thank the Mozilla project for reporting this issue. Upstre
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20172788007" version="602">
       <name>augeas-devel</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20172836005" version="601">
+      <name>dnsmasq-utils</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20172836006" version="601">
+      <name>dnsmasq</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -34804,6 +34951,12 @@ Red Hat would like to thank the Mozilla project for reporting this issue. Upstre
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20172832005" version="602">
       <evr datatype="evr_string" operation="less than">0:3.28.4-12.el7_4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172836003" version="601">
+      <evr datatype="evr_string" operation="less than">0:2.76-2.el7_4.2</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172838003" version="601">
+      <evr datatype="evr_string" operation="less than">0:2.48-18.el6_9</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
