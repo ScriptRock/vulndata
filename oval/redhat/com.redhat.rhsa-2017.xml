@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1507644527</content_version>
+    <content_version>1507737706</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -20145,6 +20145,76 @@ Bug Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172882" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2882: httpd security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2882-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2882" source="RHSA" />
+        <reference ref_id="CVE-2017-9798" ref_url="https://access.redhat.com/security/cve/CVE-2017-9798" source="CVE" />
+        <description>The httpd packages provide the Apache HTTP Server, a powerful, efficient, and extensible web server.
+
+Security Fix(es):
+
+* A use-after-free flaw was found in the way httpd handled invalid and previously unregistered HTTP methods specified in the Limit directive used in an .htaccess file. A remote attacker could possibly use this flaw to disclose portions of the server memory, or cause httpd child process to crash. (CVE-2017-9798)
+
+Red Hat would like to thank Hanno Böck for reporting this issue.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-10-11" />
+          <updated date="2017-10-11" />
+          <cve cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N" cwe="CWE-416" href="https://access.redhat.com/security/cve/CVE-2017-9798" public="20170918">CVE-2017-9798</cve>
+          <bugzilla id="1490344" href="https://bugzilla.redhat.com/1490344">CVE-2017-9798 httpd: Use-after-free by limiting unregistered HTTP method (Optionsbleed)</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="httpd is earlier than 0:2.4.6-67.el7_4.5" test_ref="oval:com.redhat.rhsa:tst:20172882009" />
+            <criterion comment="httpd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170906008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="httpd-devel is earlier than 0:2.4.6-67.el7_4.5" test_ref="oval:com.redhat.rhsa:tst:20172882007" />
+            <criterion comment="httpd-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170906006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="httpd-manual is earlier than 0:2.4.6-67.el7_4.5" test_ref="oval:com.redhat.rhsa:tst:20172882019" />
+            <criterion comment="httpd-manual is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170906020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="httpd-tools is earlier than 0:2.4.6-67.el7_4.5" test_ref="oval:com.redhat.rhsa:tst:20172882015" />
+            <criterion comment="httpd-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170906016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="mod_ldap is earlier than 0:2.4.6-67.el7_4.5" test_ref="oval:com.redhat.rhsa:tst:20172882017" />
+            <criterion comment="mod_ldap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170906014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="mod_proxy_html is earlier than 1:2.4.6-67.el7_4.5" test_ref="oval:com.redhat.rhsa:tst:20172882005" />
+            <criterion comment="mod_proxy_html is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170906012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="mod_session is earlier than 0:2.4.6-67.el7_4.5" test_ref="oval:com.redhat.rhsa:tst:20172882011" />
+            <criterion comment="mod_session is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170906018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="mod_ssl is earlier than 1:2.4.6-67.el7_4.5" test_ref="oval:com.redhat.rhsa:tst:20172882013" />
+            <criterion comment="mod_ssl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170906010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -31955,6 +32025,38 @@ Bug Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20170036017" />
       <state state_ref="oval:com.redhat.rhsa:ste:20172863003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172882005" check="at least one" comment="mod_proxy_html is earlier than 1:2.4.6-67.el7_4.5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170906008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172882003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172882007" check="at least one" comment="httpd-devel is earlier than 0:2.4.6-67.el7_4.5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170906005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172882004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172882009" check="at least one" comment="httpd is earlier than 0:2.4.6-67.el7_4.5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170906006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172882004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172882011" check="at least one" comment="mod_session is earlier than 0:2.4.6-67.el7_4.5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170906011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172882004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172882013" check="at least one" comment="mod_ssl is earlier than 1:2.4.6-67.el7_4.5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170906007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172882003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172882015" check="at least one" comment="httpd-tools is earlier than 0:2.4.6-67.el7_4.5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170906010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172882004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172882017" check="at least one" comment="mod_ldap is earlier than 0:2.4.6-67.el7_4.5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170906009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172882004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172882019" check="at least one" comment="httpd-manual is earlier than 0:2.4.6-67.el7_4.5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170906012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172882004" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -35231,6 +35333,12 @@ Bug Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20172863003" version="602">
       <evr datatype="evr_string" operation="less than">0:2.6.32-696.13.2.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172882003" version="601">
+      <evr datatype="evr_string" operation="less than">1:2.4.6-67.el7_4.5</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172882004" version="601">
+      <evr datatype="evr_string" operation="less than">0:2.4.6-67.el7_4.5</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
