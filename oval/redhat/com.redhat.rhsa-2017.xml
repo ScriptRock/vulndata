@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1508276568</content_version>
+    <content_version>1508343365</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -20343,6 +20343,52 @@ Red Hat would like to thank CERT for reporting these issues. Upstream acknowledg
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20172911" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:2911: wpa_supplicant security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:2911-00" ref_url="https://access.redhat.com/errata/RHSA-2017:2911" source="RHSA" />
+        <reference ref_id="CVE-2017-13077" ref_url="https://access.redhat.com/security/cve/CVE-2017-13077" source="CVE" />
+        <reference ref_id="CVE-2017-13078" ref_url="https://access.redhat.com/security/cve/CVE-2017-13078" source="CVE" />
+        <reference ref_id="CVE-2017-13080" ref_url="https://access.redhat.com/security/cve/CVE-2017-13080" source="CVE" />
+        <reference ref_id="CVE-2017-13087" ref_url="https://access.redhat.com/security/cve/CVE-2017-13087" source="CVE" />
+        <description>The wpa_supplicant packages contain an 802.1X Supplicant with support for WEP, WPA, WPA2 (IEEE 802.11i / RSN), and various EAP authentication methods. They implement key negotiation with a WPA Authenticator for client stations and controls the roaming and IEEE 802.11 authentication and association of the WLAN driver.
+
+Security Fix(es):
+* A new exploitation technique called key reinstallation attacks (KRACK) affecting WPA2 has been discovered. A remote attacker within Wi-Fi range could exploit these attacks to decrypt Wi-Fi traffic or possibly inject forged Wi-Fi packets by manipulating cryptographic handshakes used by the WPA2 protocol. (CVE-2017-13077, CVE-2017-13078, CVE-2017-13080, CVE-2017-13087)
+
+Red Hat would like to thank CERT for reporting these issues. Upstream acknowledges Mathy Vanhoef (University of Leuven) as the original reporter of these issues.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-10-18" />
+          <updated date="2017-10-18" />
+          <cve cvss3="8.1/CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N" cwe="CWE-323" href="https://access.redhat.com/security/cve/CVE-2017-13077" public="20171016">CVE-2017-13077</cve>
+          <cve cvss3="8.1/CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N" cwe="CWE-323" href="https://access.redhat.com/security/cve/CVE-2017-13078" public="20171016">CVE-2017-13078</cve>
+          <cve cvss3="8.1/CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N" cwe="CWE-323" href="https://access.redhat.com/security/cve/CVE-2017-13080" public="20171016">CVE-2017-13080</cve>
+          <cve cvss3="8.1/CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N" cwe="CWE-323" href="https://access.redhat.com/security/cve/CVE-2017-13087" public="20171016">CVE-2017-13087</cve>
+          <bugzilla id="1491692" href="https://bugzilla.redhat.com/1491692">CVE-2017-13077 wpa_supplicant: Reinstallation of the pairwise key in the 4-way handshake</bugzilla>
+          <bugzilla id="1491693" href="https://bugzilla.redhat.com/1491693">CVE-2017-13078 wpa_supplicant: Reinstallation of the group key in the 4-way handshake</bugzilla>
+          <bugzilla id="1491696" href="https://bugzilla.redhat.com/1491696">CVE-2017-13080 wpa_supplicant: Reinstallation of the group key in the group key handshake</bugzilla>
+          <bugzilla id="1500303" href="https://bugzilla.redhat.com/1500303">CVE-2017-13087 wpa_supplicant: reinstallation of the group key (GTK) when processing a Wireless Network Management (WNM) Sleep Mode Response frame</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="wpa_supplicant is earlier than 1:0.7.3-9.el6_9.2" test_ref="oval:com.redhat.rhsa:tst:20172911005" />
+        <criterion comment="wpa_supplicant is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20172907006" />
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -32201,6 +32247,10 @@ Red Hat would like to thank CERT for reporting these issues. Upstream acknowledg
       <object object_ref="oval:com.redhat.rhsa:obj:20172907005" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20172911005" check="at least one" comment="wpa_supplicant is earlier than 1:0.7.3-9.el6_9.2" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20172907005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20172911003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -35495,6 +35545,9 @@ Red Hat would like to thank CERT for reporting these issues. Upstream acknowledg
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20172907003" version="601">
       <evr datatype="evr_string" operation="less than">1:2.6-5.el7_4.1</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20172911003" version="601">
+      <evr datatype="evr_string" operation="less than">1:0.7.3-9.el6_9.2</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
