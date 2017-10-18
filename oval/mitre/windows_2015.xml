@@ -550,13 +550,13 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:128" class="inventory" version="26">
+    <definition id="oval:org.mitre.oval:def:128" class="inventory" version="27">
       <metadata>
         <title>Microsoft Windows Server 2003 is installed</title>
         <affected family="windows">
           <platform>Microsoft Windows Server 2003</platform>
         </affected>
-        <reference ref_id="cpe:/o:microsoft:windows_2003_server" source="CPE" />
+        <reference ref_id="cpe:/o:microsoft:windows_server_2003" source="CPE" />
         <description>The operating system installed on the system is Microsoft Windows Server 2003.</description>
         <oval_repository>
           <dates>
@@ -2715,7 +2715,7 @@
         <criterion comment="Check if Microsoft PowerPoint 2010 is installed" test_ref="oval:org.mitre.oval:tst:81532" />
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:12454" class="inventory" version="21">
+    <definition id="oval:org.mitre.oval:def:12454" class="inventory" version="22">
       <metadata>
         <title>Microsoft SQL Server 2008 is installed</title>
         <affected family="windows">
@@ -2782,15 +2782,8 @@
           <min_schema_version>5.10</min_schema_version>
         </oval_repository>
       </metadata>
-      <criteria operator="OR">
-        <criteria comment="SQL Server Integration Services version between 10.0.0.0 and 10.50.1600.1">
-          <criterion comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\100\DTS\Setup\\Version is greater than 10.0.0.0" test_ref="oval:org.mitre.oval:tst:42925" />
-          <criterion comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\100\DTS\Setup\\Version is less than 10.50.1600.1" test_ref="oval:org.mitre.oval:tst:42511" />
-        </criteria>
-        <criteria comment="SQL Server instance with version between 10.0.0.0 and 10.50.1600.1">
-          <criterion comment="SQL Server instances with version greater than 10.0.0.0 exist" test_ref="oval:org.mitre.oval:tst:43015" />
-          <criterion comment="SQL Server instances with version less than 10.50.1600.1 exist" test_ref="oval:org.mitre.oval:tst:79285" />
-        </criteria>
+      <criteria>
+        <criterion comment="Check if SQL Server instances with version greater than 2007.100.0.0 and less than 2009.100.1600.1 exist" test_ref="oval:org.cisecurity:tst:4607" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:12520" class="inventory" version="27">
@@ -2894,7 +2887,7 @@
         <criterion comment="Microsoft .NET Framework 3.5 SP1 is installed" test_ref="oval:org.mitre.oval:tst:42405" />
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:12596" class="inventory" version="12">
+    <definition id="oval:org.mitre.oval:def:12596" class="inventory" version="13">
       <metadata>
         <title>Microsoft SQL Server 2008 R2 is installed</title>
         <affected family="windows">
@@ -2941,12 +2934,8 @@
           <min_schema_version>5.10</min_schema_version>
         </oval_repository>
       </metadata>
-      <criteria operator="OR">
-        <criterion comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\100\DTS\Setup\\Version is greater than or equal to 10.50.1600.1" test_ref="oval:org.mitre.oval:tst:42810" />
-        <criteria comment="SQL Server instance with version between 10.50.1600.1 and 11.0.0.0">
-          <criterion comment="SQL Server instances with version greater than or equal to 10.50.1600.1 exist" test_ref="oval:org.mitre.oval:tst:43039" />
-          <criterion comment="SQL Server instances with version less than 11.0.0.0 exist" test_ref="oval:org.mitre.oval:tst:79307" />
-        </criteria>
+      <criteria>
+        <criterion comment="Check if SQL Server instances with version greater than or equal 2009.100.1600.1 and less than 2011.110.0.0 exist" test_ref="oval:org.cisecurity:tst:4580" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:12658" class="inventory" version="40">
@@ -3060,7 +3049,7 @@
         <criterion comment="a version of Windows for the x86 architecture is installed" test_ref="oval:org.mitre.oval:tst:3823" />
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:15044" class="inventory" version="27">
+    <definition id="oval:org.mitre.oval:def:15044" class="inventory" version="28">
       <metadata>
         <title>Microsoft SQL Server 2012 is installed</title>
         <affected family="windows">
@@ -3116,7 +3105,7 @@
         </oval_repository>
       </metadata>
       <criteria>
-        <criterion comment="SQL Server instances with version greater than 11.0.0.0 and less than 12.0.0.0 exist" test_ref="oval:org.mitre.oval:tst:79659" />
+        <criterion comment="Check if SQL Server instances with version greater than 2011.110.0.0 and less than 2014.120.0.0 exist" test_ref="oval:org.cisecurity:tst:4608" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:15099" class="inventory" version="31">
@@ -3333,7 +3322,7 @@
         <criterion comment="Microsoft Office 2013 is installed" test_ref="oval:org.mitre.oval:tst:80103" />
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:15497" class="inventory" version="20">
+    <definition id="oval:org.mitre.oval:def:15497" class="inventory" version="21">
       <metadata>
         <title>Microsoft SQL Server 2008 SP3 is installed</title>
         <affected family="windows">
@@ -3398,9 +3387,9 @@
           <min_schema_version>5.10</min_schema_version>
         </oval_repository>
       </metadata>
-      <criteria operator="AND">
+      <criteria>
         <extend_definition comment="Microsoft SQL Server 2008 is installed" definition_ref="oval:org.mitre.oval:def:12454" />
-        <criterion comment="Check if SQL Server 2008 SP3 is installed" test_ref="oval:org.mitre.oval:tst:79224" />
+        <criterion comment="Check if SQL Server instances with version greater than or equal 2007.100.5500.0 and less than 2007.100.6000.0 exist" test_ref="oval:org.cisecurity:tst:4606" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:15556" class="inventory" version="30">
@@ -3723,7 +3712,7 @@
         <criterion comment="Check if Microsoft Web Apps is installed" test_ref="oval:org.mitre.oval:tst:80134" />
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:15803" class="inventory" version="10">
+    <definition id="oval:org.mitre.oval:def:15803" class="inventory" version="11">
       <metadata>
         <title>Microsoft SQL Server 2008 R2 SP2 is installed</title>
         <affected family="windows">
@@ -3765,9 +3754,9 @@
           <min_schema_version>5.10</min_schema_version>
         </oval_repository>
       </metadata>
-      <criteria operator="AND">
+      <criteria>
         <extend_definition comment="Microsoft SQL Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12596" />
-        <criterion comment="Check if SQL Server instances with version greater than or equal to 10.50.4000.0 and less than 10.50.6000.34" test_ref="oval:org.mitre.oval:tst:80137" />
+        <criterion comment="Check if SQL Server instances with version greater than or equal 2009.100.4000.0 and less than 2009.100.6000.0" test_ref="oval:org.cisecurity:tst:4614" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:15925" class="inventory" version="5">
@@ -4182,7 +4171,7 @@
         <criterion comment="a version of Windows for the x64 architecture is installed" test_ref="oval:org.mitre.oval:tst:3653" />
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:21029" class="inventory" version="15">
+    <definition id="oval:org.mitre.oval:def:21029" class="inventory" version="16">
       <metadata>
         <title>Microsoft SQL Server 2012 SP1 is installed</title>
         <affected family="windows">
@@ -4236,7 +4225,7 @@
       </metadata>
       <criteria>
         <extend_definition comment="Microsoft SQL Server 2012 is installed" definition_ref="oval:org.mitre.oval:def:15044" />
-        <criterion comment="Check if SQL Server 2012 SP1 is installed" test_ref="oval:org.mitre.oval:tst:89900" />
+        <criterion comment="Check if SQL Server instances with version greater than or equal 2011.110.3000.0 and less than 2011.110.5058.0 exist" test_ref="oval:org.cisecurity:tst:4586" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:22093" class="inventory" version="19">
@@ -4600,7 +4589,7 @@
         <criterion comment="Adobe Flash Player 14.x is installed on the system" test_ref="oval:org.mitre.oval:tst:114200" />
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:26140" class="inventory" version="23">
+    <definition id="oval:org.mitre.oval:def:26140" class="inventory" version="24">
       <metadata>
         <title>Microsoft SQL Server 2014 is installed</title>
         <affected family="windows">
@@ -4640,7 +4629,7 @@
         </oval_repository>
       </metadata>
       <criteria>
-        <criterion comment="Check if SQL Server instances with version greater than 12.0.0.0 and less than 13.0.0.0 exist" test_ref="oval:org.mitre.oval:tst:122249" />
+        <criterion comment="Check if SQL Server instances with version greater than 2014.120.0.0 and less than 2015.130.0.0 exist" test_ref="oval:org.cisecurity:tst:4588" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:26546" class="inventory" version="23">
@@ -18129,7 +18118,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:28713" class="inventory" version="4">
+    <definition id="oval:org.mitre.oval:def:28713" class="inventory" version="5">
       <metadata>
         <title>Microsoft SQL Server 2008 R2 SP3 is installed</title>
         <affected family="windows">
@@ -18160,9 +18149,9 @@
           <min_schema_version>5.10</min_schema_version>
         </oval_repository>
       </metadata>
-      <criteria operator="AND">
-        <extend_definition comment="Microsoft SQL Server 2008 R2 SP2 is installed" definition_ref="oval:org.mitre.oval:def:15803" />
-        <criterion comment="Check if SQL Server 2008 R2 SP3 is installed" test_ref="oval:org.mitre.oval:tst:140257" />
+      <criteria>
+        <extend_definition comment="Microsoft SQL Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12596" />
+        <criterion comment="Check if SQL Server instances with version greater than or equal 2009.100.6000.0 exist" test_ref="oval:org.cisecurity:tst:4600" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:28714" class="vulnerability" version="60">
@@ -26097,7 +26086,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:28999" class="inventory" version="5">
+    <definition id="oval:org.mitre.oval:def:28999" class="inventory" version="6">
       <metadata>
         <title>Microsoft SQL Server 2008 Service Pack 4 is installed</title>
         <affected family="windows">
@@ -26124,9 +26113,9 @@
           <min_schema_version>5.10</min_schema_version>
         </oval_repository>
       </metadata>
-      <criteria operator="AND">
+      <criteria>
         <extend_definition comment="Microsoft SQL Server 2008 is installed" definition_ref="oval:org.mitre.oval:def:12454" />
-        <criterion comment="Check if SQL Server 2008 SP4 is installed" test_ref="oval:org.mitre.oval:tst:141117" />
+        <criterion comment="Check if SQL Server instances with version greater than or equal 2007.100.6000.0 and less than 2009.100.1600.1 exist" test_ref="oval:org.cisecurity:tst:4587" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:29000" class="vulnerability" version="59">
@@ -32527,7 +32516,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:29429" class="inventory" version="10">
+    <definition id="oval:org.mitre.oval:def:29429" class="inventory" version="11">
       <metadata>
         <title>Microsoft SQL Server 2012 SP2 is installed</title>
         <affected family="windows">
@@ -32556,9 +32545,9 @@
           <min_schema_version>5.10</min_schema_version>
         </oval_repository>
       </metadata>
-      <criteria operator="AND">
+      <criteria>
         <extend_definition comment="Microsoft SQL Server 2012 is installed" definition_ref="oval:org.mitre.oval:def:15044" />
-        <criterion comment="Check if SQL Server 2012 SP2 is installed" test_ref="oval:org.mitre.oval:tst:140967" />
+        <criterion comment="Check if SQL Server instances with version greater than or equal 2011.110.5058.0 and less than 2011.110.6020.0 exist" test_ref="oval:org.cisecurity:tst:4599" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:29431" class="vulnerability" version="58">
@@ -33787,6 +33776,55 @@
       <object object_ref="oval:org.mitre.oval:obj:222" />
       <state state_ref="oval:org.cisecurity:ste:425" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:4580" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than or equal 2009.100.1600.1 and less than 2011.110.0.0 exist" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12081" />
+      <state state_ref="oval:org.cisecurity:ste:3343" />
+      <state state_ref="oval:org.cisecurity:ste:3360" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4586" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than or equal 2011.110.3000.0 and less than 2011.110.5058.0 exist" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12081" />
+      <state state_ref="oval:org.cisecurity:ste:3344" />
+      <state state_ref="oval:org.cisecurity:ste:3345" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4587" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than or equal 2007.100.6000.0 and less than 2009.100.1600.1 exist" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12081" />
+      <state state_ref="oval:org.cisecurity:ste:3369" />
+      <state state_ref="oval:org.cisecurity:ste:3355" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4588" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than 2014.120.0.0 and less than 2015.130.0.0 exist" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12081" />
+      <state state_ref="oval:org.cisecurity:ste:3342" />
+      <state state_ref="oval:org.cisecurity:ste:3356" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4599" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than or equal 2011.110.5058.0 and less than 2011.110.6020.0 exist" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12081" />
+      <state state_ref="oval:org.cisecurity:ste:3340" />
+      <state state_ref="oval:org.cisecurity:ste:3359" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4600" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than or equal 2009.100.6000.0 exist" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12081" />
+      <state state_ref="oval:org.cisecurity:ste:3351" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4606" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than or equal 2007.100.5500.0 and less than 2007.100.6000.0 exist" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12081" />
+      <state state_ref="oval:org.cisecurity:ste:3364" />
+      <state state_ref="oval:org.cisecurity:ste:3371" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4607" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than 2007.100.0.0 and less than 2009.100.1600.1 exist" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12081" />
+      <state state_ref="oval:org.cisecurity:ste:3372" />
+      <state state_ref="oval:org.cisecurity:ste:3355" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4608" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than 2011.110.0.0 and less than 2014.120.0.0 exist" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12081" />
+      <state state_ref="oval:org.cisecurity:ste:3349" />
+      <state state_ref="oval:org.cisecurity:ste:3341" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4614" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than or equal 2009.100.4000.0 and less than 2009.100.6000.0" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:12081" />
+      <state state_ref="oval:org.cisecurity:ste:3357" />
+      <state state_ref="oval:org.cisecurity:ste:3354" />
+    </file_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="4">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
     </file_test>
@@ -33998,28 +34036,8 @@
       <object object_ref="oval:org.mitre.oval:obj:16025" />
       <state state_ref="oval:org.mitre.oval:ste:12221" />
     </file_test>
-    <registry_test id="oval:org.mitre.oval:tst:42511" check="at least one" check_existence="at_least_one_exists" comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\100\DTS\Setup\\Version is less than 10.50.1600.1" version="2">
-      <object object_ref="oval:org.mitre.oval:obj:15992" />
-      <state state_ref="oval:org.mitre.oval:ste:18616" />
-    </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:42615" check="at least one" check_existence="at_least_one_exists" comment="NTDS Service is installed" version="4">
       <object object_ref="oval:org.mitre.oval:obj:15869" />
-    </registry_test>
-    <registry_test id="oval:org.mitre.oval:tst:42810" check="at least one" check_existence="at_least_one_exists" comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\100\DTS\Setup\\Version is greater than or equal to 10.50.1600.1" version="1">
-      <object object_ref="oval:org.mitre.oval:obj:15992" />
-      <state state_ref="oval:org.mitre.oval:ste:11829" />
-    </registry_test>
-    <registry_test id="oval:org.mitre.oval:tst:42925" check="at least one" check_existence="at_least_one_exists" comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\100\DTS\Setup\\Version is greater than 10.0.0.0" version="1">
-      <object object_ref="oval:org.mitre.oval:obj:15992" />
-      <state state_ref="oval:org.mitre.oval:ste:12698" />
-    </registry_test>
-    <registry_test id="oval:org.mitre.oval:tst:43015" check="at least one" check_existence="at_least_one_exists" comment="SQL Server instances with version greater than 10.0.0.0 exist" version="9">
-      <object object_ref="oval:org.mitre.oval:obj:11792" />
-      <state state_ref="oval:org.mitre.oval:ste:12698" />
-    </registry_test>
-    <registry_test id="oval:org.mitre.oval:tst:43039" check="at least one" check_existence="at_least_one_exists" comment="SQL Server instances with version greater than or equal to 10.50.1600.1 exist" version="5">
-      <object object_ref="oval:org.mitre.oval:obj:28979" />
-      <state state_ref="oval:org.mitre.oval:ste:11991" />
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:43555" check="at least one" check_existence="at_least_one_exists" comment="SharePoint Server 2010 is installed." version="2">
       <object object_ref="oval:org.mitre.oval:obj:16204" />
@@ -34037,23 +34055,10 @@
       <object object_ref="oval:org.mitre.oval:obj:23910" />
       <state state_ref="oval:org.mitre.oval:ste:19217" />
     </registry_test>
-    <registry_test id="oval:org.mitre.oval:tst:79224" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server 2008 SP3 is installed" version="9">
-      <object object_ref="oval:org.mitre.oval:obj:11792" />
-      <state state_ref="oval:org.mitre.oval:ste:19043" />
-      <state state_ref="oval:org.mitre.oval:ste:34911" />
-    </registry_test>
-    <registry_test id="oval:org.mitre.oval:tst:79285" check="at least one" check_existence="at_least_one_exists" comment="SQL Server instances with version less than 10.50.1600.1 exist" version="7">
-      <object object_ref="oval:org.mitre.oval:obj:11792" />
-      <state state_ref="oval:org.mitre.oval:ste:18616" />
-    </registry_test>
     <file_test id="oval:org.mitre.oval:tst:79301" check="all" check_existence="at_least_one_exists" comment="Check if the version of mshtml.dll is greater than or equal to 8.0.6001.23000" version="55">
       <object object_ref="oval:org.mitre.oval:obj:222" />
       <state state_ref="oval:org.mitre.oval:ste:19878" />
     </file_test>
-    <registry_test id="oval:org.mitre.oval:tst:79307" check="at least one" check_existence="at_least_one_exists" comment="SQL Server instances with version less than 11.0.0.0 exist" version="3">
-      <object object_ref="oval:org.mitre.oval:obj:28979" />
-      <state state_ref="oval:org.mitre.oval:ste:19385" />
-    </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:79497" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Excel 2013 is installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:23953" />
     </registry_test>
@@ -34072,11 +34077,6 @@
     <registry_test id="oval:org.mitre.oval:tst:79642" check="all" check_existence="at_least_one_exists" comment="Check if Microsoft Lync 2010 is installed" version="3">
       <object object_ref="oval:org.cisecurity:obj:462" />
       <state state_ref="oval:org.mitre.oval:ste:19769" />
-    </registry_test>
-    <registry_test id="oval:org.mitre.oval:tst:79659" check="at least one" check_existence="at_least_one_exists" comment="SQL Server instances with version greater than 11.0.0.0 and less than 12.0.0.0 exist" version="7">
-      <object object_ref="oval:org.mitre.oval:obj:11792" />
-      <state state_ref="oval:org.mitre.oval:ste:19503" />
-      <state state_ref="oval:org.mitre.oval:ste:19160" />
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:79733" check="all" check_existence="at_least_one_exists" comment="Is the Microsoft .NET Framework 3.0 installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:23720" />
@@ -34107,11 +34107,6 @@
     <registry_test id="oval:org.mitre.oval:tst:80134" check="all" check_existence="at_least_one_exists" comment="Check if Microsoft Web Apps is installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:23425" />
       <state state_ref="oval:org.mitre.oval:ste:19893" />
-    </registry_test>
-    <registry_test id="oval:org.mitre.oval:tst:80137" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than or equal to 10.50.4000.0 and less than 10.50.6000.34" version="4">
-      <object object_ref="oval:org.mitre.oval:obj:28979" />
-      <state state_ref="oval:org.mitre.oval:ste:19795" />
-      <state state_ref="oval:org.mitre.oval:ste:34842" />
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:80307" check="at least one" check_existence="at_least_one_exists" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\wordview.exe!Path exists" version="3">
       <object object_ref="oval:org.mitre.oval:obj:15263" />
@@ -34290,11 +34285,6 @@
       <object object_ref="oval:org.mitre.oval:obj:28242" />
       <state state_ref="oval:org.mitre.oval:ste:30432" />
     </registry_test>
-    <registry_test id="oval:org.mitre.oval:tst:89900" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server 2012 SP1 is installed" version="7">
-      <object object_ref="oval:org.mitre.oval:obj:11792" />
-      <state state_ref="oval:org.mitre.oval:ste:25238" />
-      <state state_ref="oval:org.mitre.oval:ste:39188" />
-    </registry_test>
     <file_test id="oval:org.mitre.oval:tst:92535" check="at least one" check_existence="at_least_one_exists" comment="Mozilla Seamonkey is installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:29583" />
     </file_test>
@@ -34435,11 +34425,6 @@
       <object object_ref="oval:org.mitre.oval:obj:41803" />
       <state state_ref="oval:org.mitre.oval:ste:33475" />
     </file_test>
-    <registry_test id="oval:org.mitre.oval:tst:122249" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server instances with version greater than 12.0.0.0 and less than 13.0.0.0 exist" version="6">
-      <object object_ref="oval:org.mitre.oval:obj:11792" />
-      <state state_ref="oval:org.mitre.oval:ste:24370" />
-      <state state_ref="oval:org.cisecurity:ste:1312" />
-    </registry_test>
     <file_test id="oval:org.mitre.oval:tst:122271" check="all" check_existence="at_least_one_exists" comment="Check if the version of Microsoft.sqlserver.chainer.infrastructure.dll is greater than or equal to 12.0.2300" version="2">
       <object object_ref="oval:org.mitre.oval:obj:42477" />
       <state state_ref="oval:org.mitre.oval:ste:33673" />
@@ -37292,10 +37277,6 @@
       <object object_ref="oval:org.mitre.oval:obj:42477" />
       <state state_ref="oval:org.mitre.oval:ste:39580" />
     </file_test>
-    <registry_test id="oval:org.mitre.oval:tst:140257" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server 2008 R2 SP3 is installed" version="2">
-      <object object_ref="oval:org.mitre.oval:obj:11792" />
-      <state state_ref="oval:org.mitre.oval:ste:39418" />
-    </registry_test>
     <file_test id="oval:org.mitre.oval:tst:140270" check="all" check_existence="at_least_one_exists" comment="Check if the version of Microsoft.sqlserver.chainer.infrastructure.dll is greater than or equal to 10.50.6500.0" version="1">
       <object object_ref="oval:org.mitre.oval:obj:42477" />
       <state state_ref="oval:org.mitre.oval:ste:39602" />
@@ -37516,11 +37497,6 @@
       <object object_ref="oval:org.mitre.oval:obj:279" />
       <state state_ref="oval:org.mitre.oval:ste:39165" />
     </file_test>
-    <registry_test id="oval:org.mitre.oval:tst:140967" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server 2012 SP2 is installed" version="3">
-      <object object_ref="oval:org.mitre.oval:obj:11792" />
-      <state state_ref="oval:org.mitre.oval:ste:39372" />
-      <state state_ref="oval:org.cisecurity:ste:1773" />
-    </registry_test>
     <file_test id="oval:org.mitre.oval:tst:140969" check="all" check_existence="at_least_one_exists" comment="Check if the version of Ole32.dll is greater than or equal to 6.2.9200.21000" version="56">
       <object object_ref="oval:org.mitre.oval:obj:44044" />
       <state state_ref="oval:org.mitre.oval:ste:30959" />
@@ -37668,11 +37644,6 @@
       <object object_ref="oval:org.mitre.oval:obj:279" />
       <state state_ref="oval:org.mitre.oval:ste:39467" />
     </file_test>
-    <registry_test id="oval:org.mitre.oval:tst:141117" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server 2008 SP4 is installed" version="3">
-      <object object_ref="oval:org.mitre.oval:obj:11792" />
-      <state state_ref="oval:org.mitre.oval:ste:39053" />
-      <state state_ref="oval:org.mitre.oval:ste:18616" />
-    </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:141118" check="at least one" check_existence="at_least_one_exists" comment="Determine if the version of Adobe Flash Player is less than or equal 16.0.0.296" version="3">
       <object object_ref="oval:org.mitre.oval:obj:7290" />
       <state state_ref="oval:org.mitre.oval:ste:39575" />
@@ -38149,6 +38120,17 @@
       <key operation="pattern match">^SOFTWARE\\Microsoft\\Office\\12\.0\\Registration\\\{90120000-110D-0000-[01]000-0000000FF1CE\}$</key>
       <name>ProductName</name>
     </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:863" comment="the SQLPath of Microsoft SQL Server instances" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">^SOFTWARE\\Microsoft\\Microsoft SQL Server\\.*\\Setup$</key>
+      <name>SQLPath</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:864" comment="the SQLPath of 32 bit Microsoft SQL Server instances" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">^SOFTWARE\\Microsoft\\Microsoft SQL Server\\.*\\Setup$</key>
+      <name>SQLPath</name>
+    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:3" version="54">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
       <filename>Msxml3.dll</filename>
@@ -38463,13 +38445,6 @@
       <path var_check="all" var_ref="oval:org.mitre.oval:var:11" />
       <filename>xlsrv.dll</filename>
     </file_object>
-    <registry_object id="oval:org.mitre.oval:obj:11792" comment="the versions of Microsoft SQL Server instances" version="8">
-      <set>
-        <object_reference>oval:org.mitre.oval:obj:26674</object_reference>
-        <object_reference>oval:org.mitre.oval:obj:26798</object_reference>
-        <filter action="exclude">oval:org.cisecurity:ste:2136</filter>
-      </set>
-    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:11944" version="5">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:692" />
       <filename>moviemk.exe</filename>
@@ -38482,10 +38457,21 @@
       <path var_check="all" var_ref="oval:org.mitre.oval:var:1061" />
       <filename>System.Security.dll</filename>
     </file_object>
+    <file_object id="oval:org.mitre.oval:obj:12081" version="6">
+      <path var_check="at least one" var_ref="oval:org.mitre.oval:var:678" />
+      <filename>sqlservr.exe</filename>
+    </file_object>
     <file_object id="oval:org.mitre.oval:obj:12099" version="5">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:70" />
       <filename>Wmenceng.dll</filename>
     </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:12103" comment="the SQLPath of Microsoft SQL Server instances (set)" version="3">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:863</object_reference>
+        <object_reference>oval:org.cisecurity:obj:864</object_reference>
+        <filter action="exclude">oval:org.cisecurity:ste:2136</filter>
+      </set>
+    </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:12125" version="1">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{90120000-10F5-0000-1000-0000000FF1CE}</key>
@@ -38576,11 +38562,6 @@
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1688" />
       <filename>Oart.dll</filename>
     </file_object>
-    <registry_object id="oval:org.mitre.oval:obj:15992" version="1">
-      <hive>HKEY_LOCAL_MACHINE</hive>
-      <key>SOFTWARE\Microsoft\Microsoft SQL Server\100\DTS\Setup</key>
-      <name>Version</name>
-    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:16004" comment="Object holds the details of ppcore.dll file (Powerpoint 2010)" version="5">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:1119" />
       <filename>ppcore.dll</filename>
@@ -39029,11 +39010,6 @@
       <key>SOFTWARE\Microsoft\Windows\CurrentVersion</key>
       <name>ProgramFilesDir</name>
     </registry_object>
-    <registry_object id="oval:org.mitre.oval:obj:26674" comment="the versions of Microsoft SQL Server instances" version="5">
-      <hive>HKEY_LOCAL_MACHINE</hive>
-      <key operation="pattern match">^SOFTWARE\\Microsoft\\Microsoft SQL Server\\MSSQL.*\..*\\MSSQLServer\\CurrentVersion$</key>
-      <name>CurrentVersion</name>
-    </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:26711" comment="Office 2007 InstalledPackages" version="2">
       <behaviors windows_view="32_bit" />
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -39058,12 +39034,6 @@
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1686" />
       <filename>Microsoft.IdentityServer.dll</filename>
     </file_object>
-    <registry_object id="oval:org.mitre.oval:obj:26798" comment="the versions of 32 bit Microsoft SQL Server instances" version="5">
-      <behaviors windows_view="32_bit" />
-      <hive>HKEY_LOCAL_MACHINE</hive>
-      <key operation="pattern match">^SOFTWARE\\Microsoft\\Microsoft SQL Server\\MSSQL.*\..*\\MSSQLServer\\CurrentVersion$</key>
-      <name>CurrentVersion</name>
-    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:26874" comment="Object that holds the information of Wpft532.cnv" version="4">
       <path operation="case insensitive equals" var_check="at least one" var_ref="oval:org.mitre.oval:var:915" />
       <filename operation="case insensitive equals">Wpft532.cnv</filename>
@@ -39129,18 +39099,6 @@
         <filter action="include">oval:org.mitre.oval:ste:21066</filter>
       </set>
     </file_object>
-    <registry_object id="oval:org.mitre.oval:obj:28960" comment="the versions of 32 bit Microsoft SQL Server 2008 R2 instances" version="1">
-      <behaviors windows_view="32_bit" />
-      <hive>HKEY_LOCAL_MACHINE</hive>
-      <key operation="pattern match">^SOFTWARE\\Microsoft\\Microsoft SQL Server\\MSSQL10_50.*\\MSSQLServer\\CurrentVersion$</key>
-      <name>CurrentVersion</name>
-    </registry_object>
-    <registry_object id="oval:org.mitre.oval:obj:28979" comment="the versions of Microsoft SQL Server 2008 R2 instances" version="1">
-      <set>
-        <object_reference>oval:org.mitre.oval:obj:29156</object_reference>
-        <object_reference>oval:org.mitre.oval:obj:28960</object_reference>
-      </set>
-    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:29038" comment="Object holds the details of ascalc.dll in Microsoft Office 2013" version="3">
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1682" />
       <filename>ascalc.dll</filename>
@@ -39157,11 +39115,6 @@
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1326" />
       <filename>msores.dll</filename>
     </file_object>
-    <registry_object id="oval:org.mitre.oval:obj:29156" comment="the versions of Microsoft SQL Server 2008 R2 instances" version="1">
-      <hive>HKEY_LOCAL_MACHINE</hive>
-      <key operation="pattern match">^SOFTWARE\\Microsoft\\Microsoft SQL Server\\MSSQL10_50.*\\MSSQLServer\\CurrentVersion$</key>
-      <name>CurrentVersion</name>
-    </registry_object>
     <textfilecontent54_object id="oval:org.mitre.oval:obj:29411" comment="Object holds info about channel-prefs.js (ESR version)" version="16">
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1307" />
       <filename>channel-prefs.js</filename>
@@ -39711,15 +39664,63 @@
     <registry_state id="oval:org.cisecurity:ste:545" comment="The version is less than 4.5" version="1">
       <value datatype="version" operation="less than">4.5</value>
     </registry_state>
-    <registry_state id="oval:org.cisecurity:ste:1312" comment="State matches if version is less than 13.0.0.0" version="1">
-      <value datatype="version" operation="less than">13.0.0.0</value>
-    </registry_state>
-    <registry_state id="oval:org.cisecurity:ste:1773" comment="State holds if the version is less than 11.0.6020.0" version="1">
-      <value datatype="version" operation="less than">11.0.6020.0</value>
-    </registry_state>
     <registry_state id="oval:org.cisecurity:ste:2136" comment="State matches if Microsoft SQL Server LOCALDB instances" version="1">
       <key operation="pattern match">^.*\.LOCALDB\\.*$</key>
     </registry_state>
+    <file_state id="oval:org.cisecurity:ste:3340" comment="State matches if the version is greater than or equal 2011.110.5058.0" version="1">
+      <version datatype="version" operation="greater than or equal">2011.110.5058.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3341" comment="State matches if the version is less than 2014.120.0.0" version="1">
+      <version datatype="version" operation="less than">2014.120.0.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3342" comment="State matches if the version is greater thanor equal 2014.120.0.0" version="1">
+      <version datatype="version" operation="greater than or equal">2014.120.0.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3343" comment="State matches if the version is greater than or equal 2009.100.1600.1" version="1">
+      <version datatype="version" operation="greater than or equal">2009.100.1600.1</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3344" comment="State matches if the version is greater than or equal 2011.110.3000.0" version="1">
+      <version datatype="version" operation="greater than or equal">2011.110.3000.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3345" comment="State matches if the version is less than 2011.110.5058.0" version="1">
+      <version datatype="version" operation="less than">2011.110.5058.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3349" comment="State matches if the version is greater than 2011.110.0.0" version="1">
+      <version datatype="version" operation="greater than">2011.110.0.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3351" comment="State matches if the version is greater than or equal 2009.100.6000.0" version="1">
+      <version datatype="version" operation="greater than or equal">2009.100.6000.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3354" comment="State matches if the version is less than 2009.100.6000.0" version="1">
+      <version datatype="version" operation="less than">2009.100.6000.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3355" comment="State matches if the version is less than 2009.100.1600.1" version="1">
+      <version datatype="version" operation="less than">2009.100.1600.1</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3356" comment="State matches if the version is less than 2015.130.0.0" version="1">
+      <version datatype="version" operation="less than">2015.130.0.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3357" comment="State matches if the version is greater than or equal 2009.100.4000.0" version="1">
+      <version datatype="version" operation="greater than or equal">2009.100.4000.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3359" comment="State matches if the version is less than 2011.110.6020.0" version="1">
+      <version datatype="version" operation="less than">2011.110.6020.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3360" comment="State matches if the version is less than 2011.110.0.0" version="1">
+      <version datatype="version" operation="less than">2011.110.0.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3364" comment="State matches if the version is greater than or equal 2007.100.5500.0" version="1">
+      <version datatype="version" operation="greater than or equal">2007.100.5500.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3369" comment="State matches if the version is greater than or equal 2007.100.6000.0" version="1">
+      <version datatype="version" operation="greater than or equal">2007.100.6000.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3371" comment="State matches if the version is less than 2007.100.6000.0" version="1">
+      <version datatype="version" operation="less than">2007.100.6000.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3372" comment="State matches if the version is greater than 2007.100.0.0" version="1">
+      <version datatype="version" operation="greater than">2007.100.0.0</version>
+    </file_state>
     <file_state id="oval:org.mitre.oval:ste:78" version="1">
       <version datatype="version" operation="greater than">9.0.0.0</version>
     </file_state>
@@ -39825,14 +39826,8 @@
     <file_state id="oval:org.mitre.oval:ste:11575" comment="State holds if the version is greater than or equal 5.8.7601.20000" version="2">
       <version datatype="version" operation="greater than or equal">5.8.7601.20000</version>
     </file_state>
-    <registry_state id="oval:org.mitre.oval:ste:11829" version="1">
-      <value datatype="version" operation="greater than or equal">10.50.1600.1</value>
-    </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:11982" version="1">
       <value datatype="int">1</value>
-    </registry_state>
-    <registry_state id="oval:org.mitre.oval:ste:11991" version="1">
-      <value datatype="version" operation="greater than or equal">10.50.1600.1</value>
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:12091" comment="The registry key has a value that matches 9.*" version="2">
       <value operation="pattern match">^9\.0\..*$</value>
@@ -39846,23 +39841,11 @@
     <registry_state id="oval:org.mitre.oval:ste:12328" version="1">
       <value operation="pattern match">^Microsoft Visual C\+\+ 2010.*Redistributable.*$</value>
     </registry_state>
-    <registry_state id="oval:org.mitre.oval:ste:12698" version="1">
-      <value datatype="version" operation="greater than">10.0.0.0</value>
-    </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:12950" comment="The registry key has a value of Microsoft SharePoint Foundation 2010" version="1">
       <value>Microsoft SharePoint Foundation 2010</value>
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:12994" comment="The registry key has a value of Microsoft SharePoint Server 2010" version="1">
       <value>Microsoft SharePoint Server 2010</value>
-    </registry_state>
-    <registry_state id="oval:org.mitre.oval:ste:18616" comment="Version is less than 10.50.1600.1" version="1">
-      <value datatype="version" operation="less than">10.50.1600.1</value>
-    </registry_state>
-    <registry_state id="oval:org.mitre.oval:ste:19043" comment="State holds if the version is greater than or equal to 10.0.5500.0" version="2">
-      <value datatype="version" operation="greater than or equal">10.0.5500.0</value>
-    </registry_state>
-    <registry_state id="oval:org.mitre.oval:ste:19160" comment="Version is less than 12.0.0.0" version="1">
-      <value datatype="version" operation="less than">12.0.0.0</value>
     </registry_state>
     <file_state id="oval:org.mitre.oval:ste:19211" comment="State holds if the version is greater than or equal to 9.0.8112.20000" version="2">
       <version datatype="version" operation="greater than or equal">9.0.8112.20000</version>
@@ -39872,12 +39855,6 @@
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:19313" version="1">
       <value datatype="int">1</value>
-    </registry_state>
-    <registry_state id="oval:org.mitre.oval:ste:19385" comment="Version is less than 11.0.0.0" version="1">
-      <value datatype="version" operation="less than">11.0.0.0</value>
-    </registry_state>
-    <registry_state id="oval:org.mitre.oval:ste:19503" comment="Version is greater than 11.0.0.0" version="1">
-      <value datatype="version" operation="greater than">11.0.0.0</value>
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:19561" version="2">
       <value operation="pattern match">^5\..*$</value>
@@ -39890,9 +39867,6 @@
     </file_state>
     <registry_state id="oval:org.mitre.oval:ste:19769" comment="State holds the string Microsoft Lync 2010" version="2">
       <value>Microsoft Lync 2010</value>
-    </registry_state>
-    <registry_state id="oval:org.mitre.oval:ste:19795" comment="State holds if the version is greater than or equal to 10.50.4000.0" version="1">
-      <value datatype="version" operation="greater than or equal">10.50.4000.0</value>
     </registry_state>
     <file_state id="oval:org.mitre.oval:ste:19878" comment="State checks for version greater than or equal to 8.0.6001.23000" version="1">
       <version datatype="version" entity_check="all" operation="greater than or equal">8.0.6001.23000</version>
@@ -40014,18 +39988,12 @@
     <file_state id="oval:org.mitre.oval:ste:24353" comment="State matches if the version is greater than or equal to 2012.1500.0000.0000" version="1">
       <version datatype="version" operation="greater than or equal">2012.1500.0000.0000</version>
     </file_state>
-    <registry_state id="oval:org.mitre.oval:ste:24370" comment="State matches if version is greater than or equals to 12.0" version="2">
-      <value datatype="version" operation="greater than or equal">12.0</value>
-    </registry_state>
     <file_state id="oval:org.mitre.oval:ste:24690" comment="State matches if Sun VM VirtualBox version is greater than or equals to 4.1.0" version="1">
       <version datatype="version" operation="greater than or equal">4.1.0</version>
     </file_state>
     <file_state id="oval:org.mitre.oval:ste:24702" comment="State matches if Oracle VM VirtualBox version is greater than or equals to 3.2.0" version="1">
       <version datatype="version" operation="greater than or equal">3.2.0</version>
     </file_state>
-    <registry_state id="oval:org.mitre.oval:ste:25238" comment="Version is greater than or equal to 11.0.3000.0" version="1">
-      <value datatype="version" operation="greater than or equal">11.0.3000.0</value>
-    </registry_state>
     <file_state id="oval:org.mitre.oval:ste:25707" comment="State holds if the version is greater than or equal to 5.7.6002.23000" version="1">
       <version datatype="version" operation="greater than or equal">5.7.6002.23000</version>
     </file_state>
@@ -40106,12 +40074,6 @@
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:34647" comment="State matches if the release version is equal to 379893" version="1">
       <value>379893</value>
-    </registry_state>
-    <registry_state id="oval:org.mitre.oval:ste:34842" comment="State holds if the version is less than 10.50.6000.34" version="1">
-      <value datatype="version" operation="less than">10.50.6000.34</value>
-    </registry_state>
-    <registry_state id="oval:org.mitre.oval:ste:34911" comment="State holds if the version is less than 10.0.6000.29" version="1">
-      <value datatype="version" operation="less than">10.0.6000.29</value>
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:37039" comment="The registry key matches with Windows Server" version="1">
       <value operation="case insensitive equals">Server</value>
@@ -41754,9 +41716,6 @@
     <file_state id="oval:org.mitre.oval:ste:39050" comment="State holds if the version is less than 7.0.6002.23690" version="1">
       <version datatype="version" operation="less than">7.0.6002.23690</version>
     </file_state>
-    <registry_state id="oval:org.mitre.oval:ste:39053" comment="State matches if the version is greater than or equal to 10.0.6000.29" version="1">
-      <value datatype="version" operation="greater than or equal">10.0.6000.29</value>
-    </registry_state>
     <file_state id="oval:org.mitre.oval:ste:39056" comment="State holds if the version is less than 6.10.6002.19373" version="1">
       <version datatype="version" operation="less than">6.10.6002.19373</version>
     </file_state>
@@ -41805,9 +41764,6 @@
     <file_state id="oval:org.mitre.oval:ste:39174" comment="State matches if the version is less than 5.8.9600.17910" version="1">
       <version datatype="version" operation="less than">5.8.9600.17910</version>
     </file_state>
-    <registry_state id="oval:org.mitre.oval:ste:39188" comment="State matches if the version is less than 11.0.5058.0" version="1">
-      <value datatype="version" operation="less than">11.0.5058.0</value>
-    </registry_state>
     <file_state id="oval:org.mitre.oval:ste:39200" comment="State holds if the version is less than 5.7.6002.19405" version="1">
       <version datatype="version" operation="less than">5.7.6002.19405</version>
     </file_state>
@@ -41868,9 +41824,6 @@
     <file_state id="oval:org.mitre.oval:ste:39368" comment="State holds if the version is less than 6.3.9600.17901" version="1">
       <version datatype="version" operation="less than">6.3.9600.17901</version>
     </file_state>
-    <registry_state id="oval:org.mitre.oval:ste:39372" comment="State matches if the version is greater than or equal to 11.0.5058.0" version="1">
-      <value datatype="version" operation="greater than or equal">11.0.5058.0</value>
-    </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:39383" comment="State matching version greater than or equal 16.0.0.0" version="1">
       <value datatype="version" operation="greater than or equal">16.0.0.0</value>
     </registry_state>
@@ -41901,9 +41854,6 @@
     <file_state id="oval:org.mitre.oval:ste:39415" comment="State holds if the version is less than 8.0.6001.23707" version="1">
       <version datatype="version" operation="less than">8.0.6001.23707</version>
     </file_state>
-    <registry_state id="oval:org.mitre.oval:ste:39418" comment="State matches if the version is greater than or equal to 10.50.6000.34" version="1">
-      <value datatype="version" operation="greater than or equal">10.50.6000.34</value>
-    </registry_state>
     <file_state id="oval:org.mitre.oval:ste:39419" comment="Version is less than 17.0.0.134" version="1">
       <version datatype="version" operation="less than">17.0.0.134</version>
     </file_state>
@@ -42321,6 +42271,12 @@
       <concat>
         <object_component item_field="value" object_ref="oval:org.cisecurity:obj:322" />
         <literal_component>\Microsoft Shared\OFFICE12</literal_component>
+      </concat>
+    </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:678" comment="MS SQL Server instance directories" datatype="string" version="5">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:12103" />
+        <literal_component>\Binn</literal_component>
       </concat>
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:692" comment="Movie Maker directory" datatype="string" version="5">
