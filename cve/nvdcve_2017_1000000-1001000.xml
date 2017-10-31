@@ -6605,6 +6605,16 @@
     </vuln:references>
     <vuln:summary>libcurl may read outside of a heap allocated buffer when doing FTP. When libcurl connects to an FTP server and successfully logs in (anonymous or not), it asks the server for the current directory with the `PWD` command. The server then responds with a 257 response containing the path, inside double quotes. The returned path name is then kept by libcurl for subsequent uses. Due to a flaw in the string parser for this directory name, a directory name passed like this but without a closing double quote would lead to libcurl not adding a trailing NUL byte to the buffer holding the name. When libcurl would then later access the string, it could read beyond the allocated heap buffer and crash or wrongly access data beyond the buffer, thinking it was part of the path. A malicious server could abuse this fact and effectively prevent libcurl-based clients to work with it - the PWD command is always issued on new FTP connections and the mistake has a high chance of causing a segfault. The simple fact that this has issue remained undiscovered for this long could suggest that malformed PWD responses are rare in benign servers. We are not aware of any exploit of this flaw. This bug was introduced in commit [415d2e7cb7](https://github.com/curl/curl/commit/415d2e7cb7), March 2005. In libcurl version 7.56.0, the parser always zero terminates the string but also rejects it if not terminated properly with a final double quote.</vuln:summary>
   </entry>
+  <entry id="CVE-2017-1000255">
+    <vuln:cve-id>CVE-2017-1000255</vuln:cve-id>
+    <vuln:published-datetime>2017-10-30T16:29:00.230-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-10-30T16:29:00.247-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://access.redhat.com/security/cve/CVE-2017-1000255" xml:lang="en">https://access.redhat.com/security/cve/CVE-2017-1000255</vuln:reference>
+    </vuln:references>
+    <vuln:summary>On Linux running on PowerPC hardware (Power8 or later) a user process can craft a signal frame and then do a sigreturn so that the kernel will take an exception (interrupt), and use the r1 value *from the signal frame* as the kernel stack pointer. As part of the exception entry the content of the signal frame is written to the kernel stack, allowing an attacker to overwrite arbitrary locations with arbitrary values. The exception handling does produce an oops, and a panic if panic_on_oops=1, but only after kernel memory has been over written. This flaw was introduced in commit: "5d176f751ee3 (powerpc: tm: Enable transactional memory (TM) lazily for userspace)" which was merged upstream into v4.9-rc1. Please note that kernels built with CONFIG_PPC_TRANSACTIONAL_MEM=n are not vulnerable.</vuln:summary>
+  </entry>
   <entry id="CVE-2017-1000357">
     <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
       <cpe-lang:logical-test operator="OR" negate="false">
