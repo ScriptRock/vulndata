@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1511757767</content_version>
+    <content_version>1511794484</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -22216,6 +22216,56 @@ Red Hat would like to thank the Samba project for reporting these issues. Upstre
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20173263" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:3263: curl security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:3263-00" ref_url="https://access.redhat.com/errata/RHSA-2017:3263" source="RHSA" />
+        <reference ref_id="CVE-2017-1000257" ref_url="https://access.redhat.com/security/cve/CVE-2017-1000257" source="CVE" />
+        <description>The curl packages provide the libcurl library and the curl utility for downloading files from servers using various protocols, including HTTP, FTP, and LDAP.
+
+Security Fix(es):
+
+* A buffer overrun flaw was found in the IMAP handler of libcurl. By tricking an unsuspecting user into connecting to a malicious IMAP server, an attacker could exploit this flaw to potentially cause information disclosure or crash the application. (CVE-2017-1000257)
+
+Red Hat would like to thank the Curl project for reporting this issue. Upstream acknowledges Brian Carpenter and the OSS-Fuzz project as the original reporters.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-11-27" />
+          <updated date="2017-11-27" />
+          <cve cvss3="4.8/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:L" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-1000257" public="20171023">CVE-2017-1000257</cve>
+          <bugzilla id="1503705" href="https://bugzilla.redhat.com/1503705">CVE-2017-1000257 curl: IMAP FETCH response out of bounds read</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="curl is earlier than 0:7.29.0-42.el7_4.1" test_ref="oval:com.redhat.rhsa:tst:20173263007" />
+            <criterion comment="curl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170847010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libcurl is earlier than 0:7.29.0-42.el7_4.1" test_ref="oval:com.redhat.rhsa:tst:20173263009" />
+            <criterion comment="libcurl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170847008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libcurl-devel is earlier than 0:7.29.0-42.el7_4.1" test_ref="oval:com.redhat.rhsa:tst:20173263005" />
+            <criterion comment="libcurl-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20170847006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -34958,6 +35008,18 @@ Red Hat would like to thank the Samba project for reporting these issues. Upstre
       <object object_ref="oval:com.redhat.rhsa:obj:20170662012" />
       <state state_ref="oval:com.redhat.rhsa:ste:20173260003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173263005" check="at least one" comment="libcurl-devel is earlier than 0:7.29.0-42.el7_4.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170847005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173263003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173263007" check="at least one" comment="curl is earlier than 0:7.29.0-42.el7_4.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170847007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173263003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173263009" check="at least one" comment="libcurl is earlier than 0:7.29.0-42.el7_4.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20170847006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173263003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -38414,6 +38476,9 @@ Red Hat would like to thank the Samba project for reporting these issues. Upstre
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20173260003" version="601">
       <evr datatype="evr_string" operation="less than">0:4.6.2-12.el7_4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20173263003" version="601">
+      <evr datatype="evr_string" operation="less than">0:7.29.0-42.el7_4.1</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
