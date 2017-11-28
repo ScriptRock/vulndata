@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1511794484</content_version>
+    <content_version>1511906751</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -22266,6 +22266,42 @@ Red Hat would like to thank the Curl project for reporting this issue. Upstream 
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20173269" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:3269: procmail security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:3269-00" ref_url="https://access.redhat.com/errata/RHSA-2017:3269" source="RHSA" />
+        <reference ref_id="CVE-2017-16844" ref_url="https://access.redhat.com/security/cve/CVE-2017-16844" source="CVE" />
+        <description>The procmail packages contain a mail processing tool that can be used to create mail servers, mailing lists, sort incoming mail into separate folders or files, preprocess mail, start any program upon mail arrival, or automatically forward selected incoming mail.
+
+Security Fix(es):
+
+* A heap-based buffer overflow flaw was found in procmail's formail utility. A remote attacker could send a specially crafted email that, when processed by formail, could cause formail to crash or, possibly, execute arbitrary code as the user running formail. (CVE-2017-16844)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-11-28" />
+          <updated date="2017-11-28" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" cwe="CWE-122" href="https://access.redhat.com/security/cve/CVE-2017-16844" public="20170922">CVE-2017-16844</cve>
+          <bugzilla id="1500070" href="https://bugzilla.redhat.com/1500070">CVE-2017-16844 procmail: Heap-based buffer overflow in loadbuf function in formisc.c</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="procmail is earlier than 0:3.22-36.el7_4.1" test_ref="oval:com.redhat.rhsa:tst:20173269005" />
+        <criterion comment="procmail is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173269006" />
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -35020,6 +35056,14 @@ Red Hat would like to thank the Curl project for reporting this issue. Upstream 
       <object object_ref="oval:com.redhat.rhsa:obj:20170847006" />
       <state state_ref="oval:com.redhat.rhsa:ste:20173263003" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173269005" check="at least one" comment="procmail is earlier than 0:3.22-36.el7_4.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173269005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173269003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173269006" check="at least one" comment="procmail is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173269005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -37506,6 +37550,9 @@ Red Hat would like to thank the Curl project for reporting this issue. Upstream 
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20173221029" version="604">
       <name>php-xml</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173269005" version="601">
+      <name>procmail</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -38479,6 +38526,9 @@ Red Hat would like to thank the Curl project for reporting this issue. Upstream 
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20173263003" version="601">
       <evr datatype="evr_string" operation="less than">0:7.29.0-42.el7_4.1</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20173269003" version="601">
+      <evr datatype="evr_string" operation="less than">0:3.22-36.el7_4.1</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
