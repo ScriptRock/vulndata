@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1511906751</content_version>
+    <content_version>1511909169</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -22302,6 +22302,72 @@ Security Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20173270" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:3270: apr security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:3270-00" ref_url="https://access.redhat.com/errata/RHSA-2017:3270" source="RHSA" />
+        <reference ref_id="CVE-2017-12613" ref_url="https://access.redhat.com/security/cve/CVE-2017-12613" source="CVE" />
+        <description>The Apache Portable Runtime (APR) is a portability library used by the Apache HTTP Server and other projects. It provides a free library of C data structures and routines.
+
+Security Fix(es):
+
+* An out-of-bounds array dereference was found in apr_time_exp_get(). An attacker could abuse an unvalidated usage of this function to cause a denial of service or potentially lead to data leak. (CVE-2017-12613)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-11-28" />
+          <updated date="2017-11-28" />
+          <cve cvss3="7.4/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:H" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-12613" public="20171023">CVE-2017-12613</cve>
+          <bugzilla id="1506523" href="https://bugzilla.redhat.com/1506523">CVE-2017-12613 apr: Out-of-bounds array deref in apr_time_exp*() functions</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="OR">
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170014001" />
+            <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170014002" />
+            <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170014003" />
+            <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170014004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="apr is earlier than 0:1.3.9-5.el6_9.1" test_ref="oval:com.redhat.rhsa:tst:20173270005" />
+              <criterion comment="apr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173270006" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="apr-devel is earlier than 0:1.3.9-5.el6_9.1" test_ref="oval:com.redhat.rhsa:tst:20173270007" />
+              <criterion comment="apr-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173270008" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria operator="AND">
+          <criteria operator="OR">
+            <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+            <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+            <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+            <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria operator="AND">
+              <criterion comment="apr is earlier than 0:1.4.8-3.el7_4.1" test_ref="oval:com.redhat.rhsa:tst:20173270014" />
+              <criterion comment="apr is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173270006" />
+            </criteria>
+            <criteria operator="AND">
+              <criterion comment="apr-devel is earlier than 0:1.4.8-3.el7_4.1" test_ref="oval:com.redhat.rhsa:tst:20173270013" />
+              <criterion comment="apr-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173270008" />
+            </criteria>
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -35064,6 +35130,30 @@ Security Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20173269005" />
       <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173270005" check="at least one" comment="apr is earlier than 0:1.3.9-5.el6_9.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173270005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173270003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173270006" check="at least one" comment="apr is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173270005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173270007" check="at least one" comment="apr-devel is earlier than 0:1.3.9-5.el6_9.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173270006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173270003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173270008" check="at least one" comment="apr-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173270006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173270013" check="at least one" comment="apr-devel is earlier than 0:1.4.8-3.el7_4.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173270006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173270005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173270014" check="at least one" comment="apr is earlier than 0:1.4.8-3.el7_4.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173270005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173270005" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -37553,6 +37643,12 @@ Security Fix(es):
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20173269005" version="601">
       <name>procmail</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173270005" version="601">
+      <name>apr</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173270006" version="601">
+      <name>apr-devel</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -38529,6 +38625,12 @@ Security Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20173269003" version="601">
       <evr datatype="evr_string" operation="less than">0:3.22-36.el7_4.1</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20173270003" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.3.9-5.el6_9.1</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20173270005" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.4.8-3.el7_4.1</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
