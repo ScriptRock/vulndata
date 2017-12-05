@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1512346492</content_version>
+    <content_version>1512436490</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -22779,6 +22779,191 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20173379" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:3379: sssd security and bug fix update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:3379-00" ref_url="https://access.redhat.com/errata/RHSA-2017:3379" source="RHSA" />
+        <reference ref_id="CVE-2017-12173" ref_url="https://access.redhat.com/security/cve/CVE-2017-12173" source="CVE" />
+        <description>The System Security Services Daemon (SSSD) service provides a set of daemons to manage access to remote directories and authentication mechanisms. It also provides the Name Service Switch (NSS) and the Pluggable Authentication Modules (PAM) interfaces toward the system, and a pluggable back-end system to connect to multiple different account sources.
+
+Security Fix(es):
+
+* It was found that sssd's sysdb_search_user_by_upn_res() function did not sanitize requests when querying its local cache and was vulnerable to injection. In a centralized login environment, if a password hash was locally cached for a given user, an authenticated attacker could use this flaw to retrieve it. (CVE-2017-12173)
+
+This issue was discovered by Sumit Bose (Red Hat).
+
+Bug Fix(es):
+
+* Previously, SSSD's krb5 provider did not respect changed UIDs in ID views overriding the default view. Consequently, Kerberos credential caches were created with the incorrect, original UID, and processes of the user were not able to find the changed UID. With this update, SSSD's krb5 provider is made aware of the proper ID view name and respects the ID override data. As a result, the Kerberos credential cache is now created with the expected UID, and the processes can find it. (BZ#1508972)
+
+* Previously, the list of cache request domains was sometimes freed in the middle of a cache request operation due to the refresh domains request, as they both were using the same list. As a consequence, a segmentation fault sometimes occurred in SSSD. With this update, SSSD uses a copy of the cache request domains' list for each cache request. As a result, SSSD no longer crashes in this case. (BZ#1509177)
+
+* Previously, the calls provided by SSSD to send data to the Privilege Attribute Certificate (PAC) responder did not use a mutex or any other means to serialize access to the PAC responder from a single process. When multithreaded applications overran the PAC responder with multiple parallel requests, some threads did not receive a proper reply. Consequently, such threads only resumed work after waiting 5 minutes for a response. This update configures mutex to serialize access to the PAC responder socket for multithreaded applications. As a result, all threads now get a proper and timely reply. (BZ#1506682)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-12-04" />
+          <updated date="2017-12-04" />
+          <cve cvss3="4.3/CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2017-12173" public="20171003">CVE-2017-12173</cve>
+          <bugzilla id="1498173" href="https://bugzilla.redhat.com/1498173">CVE-2017-12173 sssd: unsanitized input when searching in local cache database</bugzilla>
+          <bugzilla id="1506142" href="https://bugzilla.redhat.com/1506142">SSSD can crash due to ABI changes in libldb &gt;= 1.2.0 (1.1.30) [rhel-7.4.z]</bugzilla>
+          <bugzilla id="1506682" href="https://bugzilla.redhat.com/1506682">sssd_client: add mutex protected call to the PAC responder [rhel-7.4.z]</bugzilla>
+          <bugzilla id="1509177" href="https://bugzilla.redhat.com/1509177">Race condition between refreshing the cr_domain list and a request that is using the list can cause a segfault is sssd_nss [rhel-7.4.z]</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="libipa_hbac is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379029" />
+            <criterion comment="libipa_hbac is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libipa_hbac-devel is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379055" />
+            <criterion comment="libipa_hbac-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379056" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_autofs is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379061" />
+            <criterion comment="libsss_autofs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379062" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_certmap is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379025" />
+            <criterion comment="libsss_certmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_certmap-devel is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379069" />
+            <criterion comment="libsss_certmap-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379070" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_idmap is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379019" />
+            <criterion comment="libsss_idmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_idmap-devel is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379051" />
+            <criterion comment="libsss_idmap-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379052" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_nss_idmap is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379035" />
+            <criterion comment="libsss_nss_idmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379036" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_nss_idmap-devel is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379009" />
+            <criterion comment="libsss_nss_idmap-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_simpleifp is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379059" />
+            <criterion comment="libsss_simpleifp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379060" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_simpleifp-devel is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379031" />
+            <criterion comment="libsss_simpleifp-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379032" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_sudo is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379021" />
+            <criterion comment="libsss_sudo is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-libipa_hbac is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379011" />
+            <criterion comment="python-libipa_hbac is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-libsss_nss_idmap is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379005" />
+            <criterion comment="python-libsss_nss_idmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-sss is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379039" />
+            <criterion comment="python-sss is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379040" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-sss-murmur is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379047" />
+            <criterion comment="python-sss-murmur is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379048" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-sssdconfig is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379071" />
+            <criterion comment="python-sssdconfig is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379072" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379063" />
+            <criterion comment="sssd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379064" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-ad is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379065" />
+            <criterion comment="sssd-ad is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379066" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-client is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379007" />
+            <criterion comment="sssd-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-common is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379045" />
+            <criterion comment="sssd-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379046" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-common-pac is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379037" />
+            <criterion comment="sssd-common-pac is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379038" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-dbus is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379023" />
+            <criterion comment="sssd-dbus is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-ipa is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379017" />
+            <criterion comment="sssd-ipa is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-kcm is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379043" />
+            <criterion comment="sssd-kcm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379044" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-krb5 is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379041" />
+            <criterion comment="sssd-krb5 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379042" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-krb5-common is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379067" />
+            <criterion comment="sssd-krb5-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379068" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-ldap is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379013" />
+            <criterion comment="sssd-ldap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-libwbclient is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379015" />
+            <criterion comment="sssd-libwbclient is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-libwbclient-devel is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379027" />
+            <criterion comment="sssd-libwbclient-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-polkit-rules is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379053" />
+            <criterion comment="sssd-polkit-rules is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379054" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-proxy is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379057" />
+            <criterion comment="sssd-proxy is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379058" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-tools is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379033" />
+            <criterion comment="sssd-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379034" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-winbind-idmap is earlier than 0:1.15.2-50.el7_4.8" test_ref="oval:com.redhat.rhsa:tst:20173379049" />
+            <criterion comment="sssd-winbind-idmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20173379050" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -35741,6 +35926,278 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
       <object object_ref="oval:com.redhat.rhsa:obj:20170238002" />
       <state state_ref="oval:com.redhat.rhsa:ste:20173247005" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379005" check="at least one" comment="python-libsss_nss_idmap is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379006" check="at least one" comment="python-libsss_nss_idmap is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379007" check="at least one" comment="sssd-client is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379008" check="at least one" comment="sssd-client is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379009" check="at least one" comment="libsss_nss_idmap-devel is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379010" check="at least one" comment="libsss_nss_idmap-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379011" check="at least one" comment="python-libipa_hbac is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379012" check="at least one" comment="python-libipa_hbac is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379013" check="at least one" comment="sssd-ldap is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379014" check="at least one" comment="sssd-ldap is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379015" check="at least one" comment="sssd-libwbclient is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379016" check="at least one" comment="sssd-libwbclient is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379017" check="at least one" comment="sssd-ipa is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379018" check="at least one" comment="sssd-ipa is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379019" check="at least one" comment="libsss_idmap is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379020" check="at least one" comment="libsss_idmap is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379021" check="at least one" comment="libsss_sudo is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379022" check="at least one" comment="libsss_sudo is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379023" check="at least one" comment="sssd-dbus is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379024" check="at least one" comment="sssd-dbus is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379025" check="at least one" comment="libsss_certmap is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379026" check="at least one" comment="libsss_certmap is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379027" check="at least one" comment="sssd-libwbclient-devel is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379028" check="at least one" comment="sssd-libwbclient-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379029" check="at least one" comment="libipa_hbac is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379030" check="at least one" comment="libipa_hbac is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379031" check="at least one" comment="libsss_simpleifp-devel is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379018" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379032" check="at least one" comment="libsss_simpleifp-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379018" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379033" check="at least one" comment="sssd-tools is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379019" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379034" check="at least one" comment="sssd-tools is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379019" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379035" check="at least one" comment="libsss_nss_idmap is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379020" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379036" check="at least one" comment="libsss_nss_idmap is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379020" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379037" check="at least one" comment="sssd-common-pac is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379021" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379038" check="at least one" comment="sssd-common-pac is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379021" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379039" check="at least one" comment="python-sss is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379022" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379040" check="at least one" comment="python-sss is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379022" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379041" check="at least one" comment="sssd-krb5 is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379023" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379042" check="at least one" comment="sssd-krb5 is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379023" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379043" check="at least one" comment="sssd-kcm is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379024" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379044" check="at least one" comment="sssd-kcm is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379024" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379045" check="at least one" comment="sssd-common is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379025" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379046" check="at least one" comment="sssd-common is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379025" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379047" check="at least one" comment="python-sss-murmur is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379026" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379048" check="at least one" comment="python-sss-murmur is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379026" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379049" check="at least one" comment="sssd-winbind-idmap is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379027" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379050" check="at least one" comment="sssd-winbind-idmap is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379027" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379051" check="at least one" comment="libsss_idmap-devel is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379028" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379052" check="at least one" comment="libsss_idmap-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379028" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379053" check="at least one" comment="sssd-polkit-rules is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379029" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379054" check="at least one" comment="sssd-polkit-rules is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379029" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379055" check="at least one" comment="libipa_hbac-devel is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379030" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379056" check="at least one" comment="libipa_hbac-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379030" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379057" check="at least one" comment="sssd-proxy is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379031" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379058" check="at least one" comment="sssd-proxy is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379031" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379059" check="at least one" comment="libsss_simpleifp is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379032" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379060" check="at least one" comment="libsss_simpleifp is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379032" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379061" check="at least one" comment="libsss_autofs is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379033" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379062" check="at least one" comment="libsss_autofs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379033" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379063" check="at least one" comment="sssd is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379034" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379064" check="at least one" comment="sssd is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379034" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379065" check="at least one" comment="sssd-ad is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379035" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379066" check="at least one" comment="sssd-ad is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379035" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379067" check="at least one" comment="sssd-krb5-common is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379036" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379068" check="at least one" comment="sssd-krb5-common is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379036" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379069" check="at least one" comment="libsss_certmap-devel is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379037" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379070" check="at least one" comment="libsss_certmap-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379037" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379071" check="at least one" comment="python-sssdconfig is earlier than 0:1.15.2-50.el7_4.8" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379038" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173379003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173379072" check="at least one" comment="python-sssdconfig is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20173379038" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20170001001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -38236,6 +38693,108 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20173270006" version="602">
       <name>apr-devel</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379005" version="601">
+      <name>python-libsss_nss_idmap</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379006" version="601">
+      <name>sssd-client</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379007" version="601">
+      <name>libsss_nss_idmap-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379008" version="601">
+      <name>python-libipa_hbac</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379009" version="601">
+      <name>sssd-ldap</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379010" version="601">
+      <name>sssd-libwbclient</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379011" version="601">
+      <name>sssd-ipa</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379012" version="601">
+      <name>libsss_idmap</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379013" version="601">
+      <name>libsss_sudo</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379014" version="601">
+      <name>sssd-dbus</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379015" version="601">
+      <name>libsss_certmap</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379016" version="601">
+      <name>sssd-libwbclient-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379017" version="601">
+      <name>libipa_hbac</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379018" version="601">
+      <name>libsss_simpleifp-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379019" version="601">
+      <name>sssd-tools</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379020" version="601">
+      <name>libsss_nss_idmap</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379021" version="601">
+      <name>sssd-common-pac</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379022" version="601">
+      <name>python-sss</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379023" version="601">
+      <name>sssd-krb5</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379024" version="601">
+      <name>sssd-kcm</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379025" version="601">
+      <name>sssd-common</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379026" version="601">
+      <name>python-sss-murmur</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379027" version="601">
+      <name>sssd-winbind-idmap</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379028" version="601">
+      <name>libsss_idmap-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379029" version="601">
+      <name>sssd-polkit-rules</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379030" version="601">
+      <name>libipa_hbac-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379031" version="601">
+      <name>sssd-proxy</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379032" version="601">
+      <name>libsss_simpleifp</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379033" version="601">
+      <name>libsss_autofs</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379034" version="601">
+      <name>sssd</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379035" version="601">
+      <name>sssd-ad</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379036" version="601">
+      <name>sssd-krb5-common</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379037" version="601">
+      <name>libsss_certmap-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20173379038" version="601">
+      <name>python-sssdconfig</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20170001001" version="602">
@@ -39230,6 +39789,9 @@ Red Hat would like to thank the Mozilla project for reporting these issues. Upst
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20173368003" version="602">
       <evr datatype="evr_string" operation="less than">10:1.5.3-141.el7_4.4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20173379003" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.15.2-50.el7_4.8</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
