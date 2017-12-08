@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1512623338</content_version>
+    <content_version>1512701034</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20170001" class="patch" version="602">
@@ -23237,6 +23237,97 @@ Bug Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20173402" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2017:3402: postgresql security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2017:3402-00" ref_url="https://access.redhat.com/errata/RHSA-2017:3402" source="RHSA" />
+        <reference ref_id="CVE-2017-12172" ref_url="https://access.redhat.com/security/cve/CVE-2017-12172" source="CVE" />
+        <reference ref_id="CVE-2017-15097" ref_url="https://access.redhat.com/security/cve/CVE-2017-15097" source="CVE" />
+        <description>PostgreSQL is an advanced object-relational database management system (DBMS).
+
+Security Fix(es):
+
+* Privilege escalation flaws were found in the initialization scripts of PostgreSQL. An attacker with access to the postgres user account could use these flaws to obtain root access on the server machine. (CVE-2017-12172, CVE-2017-15097)
+
+Note: This patch drops the script privileges from root to the postgres user. Therefore, this update works properly only if the postgres user has write access to the postgres' home directory, such as the one in the default configuration (/var/lib/pgsql).
+
+Red Hat would like to thank the PostgreSQL project for reporting CVE-2017-12172. The CVE-2017-15097 issue was discovered by Pedro Barbosa (Red Hat) and the PostgreSQL project. Upstream acknowledges Antoine Scemama (Brainloop) as the original reporter of these issues.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2017 Red Hat, Inc.</rights>
+          <issued date="2017-12-08" />
+          <updated date="2017-12-08" />
+          <cve cvss3="6.5/CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:U/C:H/I:H/A:H" cwe="CWE-59" href="https://access.redhat.com/security/cve/CVE-2017-12172" public="20171109">CVE-2017-12172</cve>
+          <cve cvss3="6.5/CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:U/C:H/I:H/A:H" cwe="CWE-59" href="https://access.redhat.com/security/cve/CVE-2017-15097" public="20171207">CVE-2017-15097</cve>
+          <bugzilla id="1498394" href="https://bugzilla.redhat.com/1498394">CVE-2017-12172 postgresql: Start scripts permit database administrator to modify root-owned files</bugzilla>
+          <bugzilla id="1508985" href="https://bugzilla.redhat.com/1508985">CVE-2017-15097 postgresql: Start scripts permit database administrator to modify root-owned files</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20170001001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20170001002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20170001003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20170001004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="postgresql is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402015" />
+            <criterion comment="postgresql is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-contrib is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402007" />
+            <criterion comment="postgresql-contrib is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-devel is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402017" />
+            <criterion comment="postgresql-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-docs is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402009" />
+            <criterion comment="postgresql-docs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-libs is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402005" />
+            <criterion comment="postgresql-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-plperl is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402027" />
+            <criterion comment="postgresql-plperl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-plpython is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402013" />
+            <criterion comment="postgresql-plpython is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-pltcl is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402011" />
+            <criterion comment="postgresql-pltcl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-server is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402019" />
+            <criterion comment="postgresql-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-static is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402023" />
+            <criterion comment="postgresql-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-test is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402025" />
+            <criterion comment="postgresql-test is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="postgresql-upgrade is earlier than 0:9.2.23-3.el7_4" test_ref="oval:com.redhat.rhsa:tst:20173402021" />
+            <criterion comment="postgresql-upgrade is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20171983022" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20170001001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -36547,6 +36638,54 @@ Bug Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20170269006" />
       <state state_ref="oval:com.redhat.rhsa:ste:20173392005" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402005" check="at least one" comment="postgresql-libs is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402007" check="at least one" comment="postgresql-contrib is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402009" check="at least one" comment="postgresql-docs is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402011" check="at least one" comment="postgresql-pltcl is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402013" check="at least one" comment="postgresql-plpython is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402015" check="at least one" comment="postgresql is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402017" check="at least one" comment="postgresql-devel is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402019" check="at least one" comment="postgresql-server is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402021" check="at least one" comment="postgresql-upgrade is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402023" check="at least one" comment="postgresql-static is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402025" check="at least one" comment="postgresql-test is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20173402027" check="at least one" comment="postgresql-plperl is earlier than 0:9.2.23-3.el7_4" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20171983016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20173402003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20170001001" version="602">
@@ -40156,6 +40295,9 @@ Bug Fix(es):
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20173392005" version="601">
       <evr datatype="evr_string" operation="less than">1:1.7.0.161-2.6.12.0.el7_4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20173402003" version="601">
+      <evr datatype="evr_string" operation="less than">0:9.2.23-3.el7_4</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
