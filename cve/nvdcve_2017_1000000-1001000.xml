@@ -20919,4 +20919,34 @@
     </vuln:references>
     <vuln:summary>The Linux kernel version 3.3-rc1 and later is affected by a vulnerability lies in the processing of incoming L2CAP commands - ConfigRequest, and ConfigResponse messages. This info leak is a result of uninitialized stack variables that may be returned to an attacker in their uninitialized state. By manipulating the code flows that precede the handling of these configuration messages, an attacker can also gain some control over which data will be held in the uninitialized stack variables. This can allow him to bypass KASLR, and stack canaries protection - as both pointers and stack canaries may be leaked in this manner. Combining this vulnerability (for example) with the previously disclosed RCE vulnerability in L2CAP configuration parsing (CVE-2017-1000251) may allow an attacker to exploit the RCE against kernels which were built with the above mitigations. These are the specifics of this vulnerability: In the function l2cap_parse_conf_rsp and in the function l2cap_parse_conf_req the following variable is declared without initialization: struct l2cap_conf_efs efs; In addition, when parsing input configuration parameters in both of these functions, the switch case for handling EFS elements may skip the memcpy call that will write to the efs variable: ... case L2CAP_CONF_EFS: if (olen == sizeof(efs)) memcpy(&amp;efs, (void *)val, olen); ... The olen in the above if is attacker controlled, and regardless of that if, in both of these functions the efs variable would eventually be added to the outgoing configuration request that is being built: l2cap_add_conf_opt(&amp;ptr, L2CAP_CONF_EFS, sizeof(efs), (unsigned long) &amp;efs); So by sending a configuration request, or response, that contains an L2CAP_CONF_EFS element, but with an element length that is not sizeof(efs) - the memcpy to the uninitialized efs variable can be avoided, and the uninitialized variable would be returned to the attacker (16 bytes).</vuln:summary>
   </entry>
+  <entry id="CVE-2017-1000435">
+    <vuln:cve-id>CVE-2017-1000435</vuln:cve-id>
+    <vuln:published-datetime>2017-12-30T02:29:00.210-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-12-30T02:29:00.210-05:00</vuln:last-modified-datetime>
+    <vuln:summary>** REJECT **  DO NOT USE THIS CANDIDATE NUMBER.  ConsultIDs: CVE-2017-16227. Reason: This candidate is a reservation duplicate of CVE-2017-16227. Notes: All CVE users should reference CVE-2017-16227 instead of this candidate.  All references and descriptions in this candidate have been removed to prevent accidental usage.</vuln:summary>
+  </entry>
+  <entry id="CVE-2017-1000436">
+    <vuln:cve-id>CVE-2017-1000436</vuln:cve-id>
+    <vuln:published-datetime>2017-12-30T02:29:00.240-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-12-30T02:29:00.240-05:00</vuln:last-modified-datetime>
+    <vuln:summary>** REJECT **  DO NOT USE THIS CANDIDATE NUMBER.  ConsultIDs: CVE-2017-14975. Reason: This candidate is a reservation duplicate of CVE-2017-14975. Notes: All CVE users should reference CVE-2017-14975 instead of this candidate.  All references and descriptions in this candidate have been removed to prevent accidental usage.</vuln:summary>
+  </entry>
+  <entry id="CVE-2017-1000440">
+    <vuln:cve-id>CVE-2017-1000440</vuln:cve-id>
+    <vuln:published-datetime>2017-12-30T02:29:00.273-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-12-30T02:29:00.287-05:00</vuln:last-modified-datetime>
+    <vuln:summary>** REJECT **  DO NOT USE THIS CANDIDATE NUMBER.  ConsultIDs: CVE-2017-14976. Reason: This candidate is a reservation duplicate of CVE-2017-14976. Notes: All CVE users should reference CVE-2017-14976 instead of this candidate.  All references and descriptions in this candidate have been removed to prevent accidental usage.</vuln:summary>
+  </entry>
+  <entry id="CVE-2017-1000446">
+    <vuln:cve-id>CVE-2017-1000446</vuln:cve-id>
+    <vuln:published-datetime>2017-12-30T02:29:00.320-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-12-30T02:29:00.320-05:00</vuln:last-modified-datetime>
+    <vuln:summary>** REJECT **  DO NOT USE THIS CANDIDATE NUMBER.  ConsultIDs: CVE-2017-15954. Reason: This candidate is a reservation duplicate of CVE-2017-15954. Notes: All CVE users should reference CVE-2017-15954 instead of this candidate.  All references and descriptions in this candidate have been removed to prevent accidental usage.</vuln:summary>
+  </entry>
+  <entry id="CVE-2017-1000447">
+    <vuln:cve-id>CVE-2017-1000447</vuln:cve-id>
+    <vuln:published-datetime>2017-12-30T02:29:00.350-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2017-12-30T02:29:00.350-05:00</vuln:last-modified-datetime>
+    <vuln:summary>** REJECT **  DO NOT USE THIS CANDIDATE NUMBER.  ConsultIDs: CVE-2017-15955. Reason: This candidate is a reservation duplicate of CVE-2017-15955. Notes: All CVE users should reference CVE-2017-15955 instead of this candidate.  All references and descriptions in this candidate have been removed to prevent accidental usage.</vuln:summary>
+  </entry>
 </nvd>
