@@ -139,6 +139,38 @@
         <criterion comment="a version of Windows for the x86 architecture is installed" test_ref="oval:org.mitre.oval:tst:3823" />
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:517" class="inventory" version="37">
+      <metadata>
+        <title>Microsoft Excel 2016 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <product>Microsoft Excel 2016</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:excel:2016" source="CPE" />
+        <description>Microsoft Excel 2016 is installed.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2016-04-29T06:33:00+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+            <status_change date="2016-05-14T15:00:00.000-04:00">DRAFT</status_change>
+            <status_change date="2016-05-27T12:00:00.000-05:00">INTERIM</status_change>
+            <status_change date="2016-06-13T14:00:00.000-05:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Microsoft Excel 2016 is installed" test_ref="oval:org.cisecurity:tst:917" />
+      </criteria>
+    </definition>
     <definition id="oval:org.cisecurity:def:746" class="inventory" version="52">
       <metadata>
         <title>Microsoft Office 2016 is installed</title>
@@ -283,6 +315,43 @@
         <criterion comment="Windows 10 is installed" test_ref="oval:org.cisecurity:tst:565" />
         <criterion comment="Windows 10 release 1607 is installed" test_ref="oval:org.cisecurity:tst:1987" />
         <criterion comment="a version of Windows for the x64 architecture is installed" test_ref="oval:org.mitre.oval:tst:3653" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:1424" class="inventory" version="30">
+      <metadata>
+        <title>Microsoft Excel 2013 SP1 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Excel 2013</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:excel:2013:sp1" source="CPE" />
+        <description>Microsoft Excel 2013 SP1 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2016-11-16T22:00:00+08:00">
+              <contributor organization="DTCC">Jeff Albert</contributor>
+            </submitted>
+            <status_change date="2016-11-18T12:00:00.000-05:00">DRAFT</status_change>
+            <status_change date="2016-12-02T14:00:00.000-05:00">INTERIM</status_change>
+            <status_change date="2016-12-23T14:00:00.000-05:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Microsoft Excel 2013 SP1 is installed" operator="AND">
+        <criteria comment="Microsoft Excel 2013 SP1 (32-bit) is installed" operator="OR">
+          <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+          <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+        </criteria>
+        <extend_definition comment="Microsoft Excel 2013 is installed" definition_ref="oval:org.mitre.oval:def:15563" />
       </criteria>
     </definition>
     <definition id="oval:org.cisecurity:def:1708" class="inventory" version="33">
@@ -802,7 +871,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:3852" class="vulnerability" version="3">
+    <definition id="oval:org.cisecurity:def:3852" class="vulnerability" version="4">
       <metadata>
         <title>Microsoft Outlook Remote Code Execution Vulnerability – CVE-2018-0791</title>
         <affected family="windows">
@@ -850,7 +919,7 @@
           <extend_definition comment="Microsoft Outlook 2016 is installed" definition_ref="oval:org.cisecurity:def:2166" />
           <criterion comment="Check if Outlook.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5122" />
         </criteria>
-        <criteria comment="Microsoft Outlook 2016 + file version" operator="AND">
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
           <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
           <criteria comment="file version" operator="OR">
             <criterion comment="Check if Outlook.exe version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5116" />
@@ -2400,7 +2469,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:3887" class="vulnerability" version="2">
+    <definition id="oval:org.cisecurity:def:3887" class="vulnerability" version="3">
       <metadata>
         <title>Microsoft Word Remote Code Execution Vulnerability – CVE-2018-0794</title>
         <affected family="windows">
@@ -2438,7 +2507,7 @@
           <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
           <criterion comment="Check if wwlibcxm.dll version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5121" />
         </criteria>
-        <criteria comment="Microsoft Outlook 2016 + file version" operator="AND">
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
           <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
           <criteria comment="file version" operator="OR">
             <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5176" />
@@ -2468,7 +2537,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:3888" class="vulnerability" version="2">
+    <definition id="oval:org.cisecurity:def:3888" class="vulnerability" version="3">
       <metadata>
         <title>Microsoft Word Remote Code Execution Vulnerability – CVE-2018-0792</title>
         <affected family="windows">
@@ -2499,7 +2568,7 @@
         </oval_repository>
       </metadata>
       <criteria comment="Check for installation vulnerable Microsoft Office + vulnerable file version" operator="OR">
-        <criteria comment="Microsoft Outlook 2016 + file version" operator="AND">
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
           <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
           <criteria comment="file version" operator="OR">
             <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5176" />
@@ -2514,6 +2583,808 @@
         <criteria comment="Microsoft Word 2016 + file version" operator="AND">
           <extend_definition comment="Microsoft Word 2016 is installed" definition_ref="oval:org.cisecurity:def:770" />
           <criterion comment="Check if winword.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5120" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3889" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Office Remote Code Execution Vulnerability – CVE-2018-0801</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2007</product>
+          <product>Microsoft Office 2010</product>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+          <product>Microsoft Office Compatibility Pack</product>
+          <product>Microsoft Word 2007</product>
+          <product>Microsoft Word 2010</product>
+          <product>Microsoft Word 2013</product>
+          <product>Microsoft Word 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-0801" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0801" source="CVE" />
+        <description>Equation Editor in Microsoft Office 2007, Microsoft Office 2010, Microsoft Office 2013, and Microsoft Office 2016 allows a remote code execution vulnerability due to the way objects are handled in memory, aka "Microsoft Office Remote Code Execution Vulnerability".</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-15T21:47:24+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Microsoft Office + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Office 2007/2010/2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2007/2010/2013" operator="OR">
+            <extend_definition comment="Microsoft Office 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15704" />
+            <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5182" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if oart.dll version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5180" />
+            <criterion comment="Check if oart.dll version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" test_ref="oval:org.cisecurity:tst:5179" />
+            <criterion comment="Check if oart.dll version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" test_ref="oval:org.cisecurity:tst:5181" />
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft Office Compatibility Pack + file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if wordcnv.dll version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5117" />
+        </criteria>
+        <criteria comment="Microsoft Word 2007 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15946" />
+          <criterion comment="Check if winword.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5118" />
+        </criteria>
+        <criteria comment="Microsoft Word 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17454" />
+          <criterion comment="Check if winword.exe version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5124" />
+        </criteria>
+        <criteria comment="Microsoft Word 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:24680" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Word 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2016 is installed" definition_ref="oval:org.cisecurity:def:770" />
+          <criterion comment="Check if winword.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5120" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3890" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Word Remote Code Execution Vulnerability – CVE-2018-0806</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2007</product>
+          <product>Microsoft Office 2010</product>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+          <product>Microsoft Office Compatibility Pack</product>
+          <product>Microsoft Word 2007</product>
+          <product>Microsoft Word 2010</product>
+          <product>Microsoft Word 2013</product>
+          <product>Microsoft Word 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-0806" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0806" source="CVE" />
+        <description>Equation Editor in Microsoft Office 2003, Microsoft Office 2007, Microsoft Office 2010, Microsoft Office 2013, and Microsoft Office 2016 allows a remote code execution vulnerability due to the way objects are handled in memory, aka "Microsoft Word Remote Code Execution Vulnerability". This CVE is unique from CVE-2018-0804, CVE-2018-0805, and CVE-2018-0807.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-15T21:47:24+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Microsoft Office + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Office 2007/2010 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2007/2010" operator="OR">
+            <extend_definition comment="Microsoft Office 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15704" />
+            <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
+          </criteria>
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Office 2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2013" operator="OR">
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if winword.exe.exe version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5126" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5182" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5176" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" test_ref="oval:org.cisecurity:tst:5175" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" test_ref="oval:org.cisecurity:tst:5177" />
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft Office Compatibility Pack + file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if wordcnv.dll version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5117" />
+        </criteria>
+        <criteria comment="Microsoft Word 2007 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15946" />
+          <criterion comment="Check if winword.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5118" />
+        </criteria>
+        <criteria comment="Microsoft Word 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17454" />
+          <criterion comment="Check if winword.exe version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5124" />
+        </criteria>
+        <criteria comment="Microsoft Word 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:24680" />
+          <criterion comment="Check if winword.exe.exe version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5126" />
+        </criteria>
+        <criteria comment="Microsoft Word 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2016 is installed" definition_ref="oval:org.cisecurity:def:770" />
+          <criterion comment="Check if winword.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5120" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3891" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Word Remote Code Execution Vulnerability – CVE-2018-0805</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2007</product>
+          <product>Microsoft Office 2010</product>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+          <product>Microsoft Office Compatibility Pack</product>
+          <product>Microsoft Word 2007</product>
+          <product>Microsoft Word 2010</product>
+          <product>Microsoft Word 2013</product>
+          <product>Microsoft Word 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-0805" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0805" source="CVE" />
+        <description>Equation Editor in Microsoft Office 2003, Microsoft Office 2007, Microsoft Office 2010, Microsoft Office 2013, and Microsoft Office 2016 allows a remote code execution vulnerability due to the way objects are handled in memory, aka "Microsoft Word Remote Code Execution Vulnerability". This CVE is unique from CVE-2018-0804, CVE-2018-0806, and CVE-2018-0807.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-15T21:47:24+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Microsoft Office + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Office 2007/2010 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2007/2010" operator="OR">
+            <extend_definition comment="Microsoft Office 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15704" />
+            <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
+          </criteria>
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Office 2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2013" operator="OR">
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if winword.exe.exe version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5126" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5182" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5176" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" test_ref="oval:org.cisecurity:tst:5175" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" test_ref="oval:org.cisecurity:tst:5177" />
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft Office Compatibility Pack + file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if wordcnv.dll version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5117" />
+        </criteria>
+        <criteria comment="Microsoft Word 2007 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15946" />
+          <criterion comment="Check if winword.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5118" />
+        </criteria>
+        <criteria comment="Microsoft Word 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17454" />
+          <criterion comment="Check if winword.exe version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5124" />
+        </criteria>
+        <criteria comment="Microsoft Word 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:24680" />
+          <criterion comment="Check if winword.exe.exe version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5126" />
+        </criteria>
+        <criteria comment="Microsoft Word 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2016 is installed" definition_ref="oval:org.cisecurity:def:770" />
+          <criterion comment="Check if winword.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5120" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3892" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Word Remote Code Execution Vulnerability – CVE-2018-0807</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2007</product>
+          <product>Microsoft Office 2010</product>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+          <product>Microsoft Office Compatibility Pack</product>
+          <product>Microsoft Word 2007</product>
+          <product>Microsoft Word 2010</product>
+          <product>Microsoft Word 2013</product>
+          <product>Microsoft Word 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-0807" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0807" source="CVE" />
+        <description>Equation Editor in Microsoft Office 2003, Microsoft Office 2007, Microsoft Office 2010, Microsoft Office 2013, and Microsoft Office 2016 allows a remote code execution vulnerability due to the way objects are handled in memory, aka "Microsoft Word Remote Code Execution Vulnerability". This CVE is unique from CVE-2018-0804, CVE-2018-0805, and CVE-2018-0806.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-15T21:47:24+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Microsoft Office + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Office 2007/2010 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2007/2010" operator="OR">
+            <extend_definition comment="Microsoft Office 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15704" />
+            <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
+          </criteria>
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Office 2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2013" operator="OR">
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if winword.exe.exe version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5126" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5182" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5176" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" test_ref="oval:org.cisecurity:tst:5175" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" test_ref="oval:org.cisecurity:tst:5177" />
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft Office Compatibility Pack + file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if wordcnv.dll version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5117" />
+        </criteria>
+        <criteria comment="Microsoft Word 2007 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15946" />
+          <criterion comment="Check if winword.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5118" />
+        </criteria>
+        <criteria comment="Microsoft Word 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17454" />
+          <criterion comment="Check if winword.exe version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5124" />
+        </criteria>
+        <criteria comment="Microsoft Word 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:24680" />
+          <criterion comment="Check if winword.exe.exe version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5126" />
+        </criteria>
+        <criteria comment="Microsoft Word 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2016 is installed" definition_ref="oval:org.cisecurity:def:770" />
+          <criterion comment="Check if winword.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5120" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3893" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Word Memory Corruption Vulnerability – CVE-2018-0812</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2007</product>
+          <product>Microsoft Office 2010</product>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+          <product>Microsoft Office Compatibility Pack</product>
+          <product>Microsoft Word 2007</product>
+          <product>Microsoft Word 2010</product>
+          <product>Microsoft Word 2013</product>
+          <product>Microsoft Word 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-0812" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0812" source="CVE" />
+        <description>Equation Editor in Microsoft Office 2003, Microsoft Office 2007, Microsoft Office 2010, Microsoft Office 2013, and Microsoft Office 2016 allows a remote code execution vulnerability due to the way objects are handled in memory, aka "Microsoft Word Memory Corruption Vulnerability".</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-15T21:47:24+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Microsoft Office + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Office 2007/2010/2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2007/2010/2013" operator="OR">
+            <extend_definition comment="Microsoft Office 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15704" />
+            <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5182" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5176" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" test_ref="oval:org.cisecurity:tst:5175" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" test_ref="oval:org.cisecurity:tst:5177" />
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft Office Compatibility Pack + file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if wordcnv.dll version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5117" />
+        </criteria>
+        <criteria comment="Microsoft Word 2007 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15946" />
+          <criterion comment="Check if winword.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5118" />
+        </criteria>
+        <criteria comment="Microsoft Word 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17454" />
+          <criterion comment="Check if winword.exe version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5124" />
+        </criteria>
+        <criteria comment="Microsoft Word 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:24680" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Word 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2016 is installed" definition_ref="oval:org.cisecurity:def:770" />
+          <criterion comment="Check if winword.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5120" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3894" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Office Memory Corruption Vulnerability – CVE-2018-0802</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2007</product>
+          <product>Microsoft Office 2010</product>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+          <product>Microsoft Office Compatibility Pack</product>
+          <product>Microsoft Word 2007</product>
+          <product>Microsoft Word 2010</product>
+          <product>Microsoft Word 2013</product>
+          <product>Microsoft Word 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-0802" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0802" source="CVE" />
+        <description>Equation Editor in Microsoft Office 2007, Microsoft Office 2010, Microsoft Office 2013, and Microsoft Office 2016 allow a remote code execution vulnerability due to the way objects are handled in memory, aka "Microsoft Office Memory Corruption Vulnerability". This CVE is unique from CVE-2018-0797 and CVE-2018-0812.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-15T21:47:24+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Microsoft Office + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Office 2007/2010/2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2007/2010/2013" operator="OR">
+            <extend_definition comment="Microsoft Office 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15704" />
+            <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5182" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if oart.dll version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5180" />
+            <criterion comment="Check if oart.dll version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" test_ref="oval:org.cisecurity:tst:5179" />
+            <criterion comment="Check if oart.dll version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" test_ref="oval:org.cisecurity:tst:5181" />
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft Office Compatibility Pack + file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if wordcnv.dll version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5117" />
+        </criteria>
+        <criteria comment="Microsoft Word 2007 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15946" />
+          <criterion comment="Check if winword.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5118" />
+        </criteria>
+        <criteria comment="Microsoft Word 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17454" />
+          <criterion comment="Check if winword.exe version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5124" />
+        </criteria>
+        <criteria comment="Microsoft Word 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:24680" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Word 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2016 is installed" definition_ref="oval:org.cisecurity:def:770" />
+          <criterion comment="Check if winword.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5120" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3895" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Office Memory Corruption Vulnerability – CVE-2018-0798</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2007</product>
+          <product>Microsoft Office 2010</product>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+          <product>Microsoft Office Compatibility Pack</product>
+          <product>Microsoft Word 2007</product>
+          <product>Microsoft Word 2010</product>
+          <product>Microsoft Word 2013</product>
+          <product>Microsoft Word 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-0798" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0798" source="CVE" />
+        <description>Equation Editor in Microsoft Office 2007, Microsoft Office 2010, Microsoft Office 2013, and Microsoft Office 2016 allows a remote code execution vulnerability due to the way objects are handled in memory, aka "Microsoft Office Memory Corruption Vulnerability".</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-15T21:47:24+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Microsoft Office + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Office 2007/2010/2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2007/2010/2013" operator="OR">
+            <extend_definition comment="Microsoft Office 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15704" />
+            <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5182" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if oart.dll version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5180" />
+            <criterion comment="Check if oart.dll version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" test_ref="oval:org.cisecurity:tst:5179" />
+            <criterion comment="Check if oart.dll version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" test_ref="oval:org.cisecurity:tst:5181" />
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft Office Compatibility Pack + file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if wordcnv.dll version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5117" />
+        </criteria>
+        <criteria comment="Microsoft Word 2007 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15946" />
+          <criterion comment="Check if winword.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5118" />
+        </criteria>
+        <criteria comment="Microsoft Word 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17454" />
+          <criterion comment="Check if winword.exe version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5124" />
+        </criteria>
+        <criteria comment="Microsoft Word 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:24680" />
+          <criterion comment="Check if winword.exe.exe version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5126" />
+        </criteria>
+        <criteria comment="Microsoft Word 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2016 is installed" definition_ref="oval:org.cisecurity:def:770" />
+          <criterion comment="Check if winword.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5120" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3896" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Word Remote Code Execution Vulnerability – CVE-2018-0804</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2007</product>
+          <product>Microsoft Office 2010</product>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+          <product>Microsoft Office Compatibility Pack</product>
+          <product>Microsoft Word 2007</product>
+          <product>Microsoft Word 2010</product>
+          <product>Microsoft Word 2013</product>
+          <product>Microsoft Word 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-0804" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0804" source="CVE" />
+        <description>Equation Editor in Microsoft Office 2003, Microsoft Office 2007, Microsoft Office 2010, Microsoft Office 2013, and Microsoft Office 2016 allows a remote code execution vulnerability due to the way objects are handled in memory, aka "Microsoft Word Remote Code Execution Vulnerability". This CVE is unique from CVE-2018-0805, CVE-2018-0806, and CVE-2018-0807.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-15T21:47:24+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Microsoft Office + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Office 2007/2010 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2007/2010" operator="OR">
+            <extend_definition comment="Microsoft Office 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15704" />
+            <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
+          </criteria>
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5178" />
+        </criteria>
+        <criteria comment="Microsoft Office 2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2013" operator="OR">
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if winword.exe.exe version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5126" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if eqnedt32.exe exists" test_ref="oval:org.cisecurity:tst:5182" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5176" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" test_ref="oval:org.cisecurity:tst:5175" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" test_ref="oval:org.cisecurity:tst:5177" />
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft Office Compatibility Pack + file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if wordcnv.dll version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5117" />
+        </criteria>
+        <criteria comment="Microsoft Word 2007 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15946" />
+          <criterion comment="Check if winword.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5118" />
+        </criteria>
+        <criteria comment="Microsoft Word 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17454" />
+          <criterion comment="Check if winword.exe version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5124" />
+        </criteria>
+        <criteria comment="Microsoft Word 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:24680" />
+          <criterion comment="Check if winword.exe.exe version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5126" />
+        </criteria>
+        <criteria comment="Microsoft Word 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2016 is installed" definition_ref="oval:org.cisecurity:def:770" />
+          <criterion comment="Check if winword.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5120" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3897" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Access Tampering Vulnerability – CVE-2018-0799</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft SharePoint Server 2016</product>
+          <product>Microsoft SharePoint Server 2013</product>
+        </affected>
+        <reference ref_id="CVE-2018-0799" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0799" source="CVE" />
+        <description>Microsoft Access in Microsoft SharePoint Enterprise Server 2013 and Microsoft SharePoint Enterprise Server 2016 allows a cross-site-scripting (XSS) vulnerability due to the way image field values are handled, aka "Microsoft Access Tampering Vulnerability".</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-16T22:07:46+00:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Sharepoint Server + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Sharepoint Server 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft SharePoint Server 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:24462" />
+          <criterion comment="Check if msoserver.dll version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5184" />
+        </criteria>
+        <criteria comment="Microsoft Sharepoint Server 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft SharePoint Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1708" />
+          <criterion comment="Check if Sword.dll version is less than 16.0.4639.1002" test_ref="oval:org.cisecurity:tst:5114" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3898" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Office Remote Code Execution Vulnerability – CVE-2018-0795</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2010</product>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-0795" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0795" source="CVE" />
+        <description>Microsoft Office 2010, Microsoft Office 2013, and Microsoft Office 2016 allow a remote code execution vulnerability due to the way objects are handled in memory, aka "Microsoft Office Remote Code Execution Vulnerability".</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-16T20:21:32+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Microsoft Office + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Office 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
+          <criterion comment="Check if Mso.dll version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5194" />
+        </criteria>
+        <criteria comment="Microsoft Office 2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2013" operator="OR">
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if Mso.dll version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5192" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if Mso.dll version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5196" />
+        </criteria>
+        <criteria comment="Microsoft Office 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if Mso.dll version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5198" />
+            <criterion comment="Check if Mso.dll version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" test_ref="oval:org.cisecurity:tst:5195" />
+            <criterion comment="Check if Mso.dll version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" test_ref="oval:org.cisecurity:tst:5185" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:3899" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Excel Remote Code Execution Vulnerability – CVE-2018-0796</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <product>Microsoft Excel 2007</product>
+          <product>Microsoft Excel 2010</product>
+          <product>Microsoft Excel 2013</product>
+          <product>Microsoft Excel 2016</product>
+          <product>Microsoft Excel Viewer</product>
+          <product>Microsoft Office Compatibility Pack</product>
+        </affected>
+        <reference ref_id="CVE-2018-0796" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0796" source="CVE" />
+        <description>Microsoft Excel in Microsoft Office 2007, Microsoft Office 2010, Microsoft Office 2013, and Microsoft Office 2016 allows a remote code execution vulnerability due to the way objects are handled in memory, aka "Microsoft Excel Remote Code Execution Vulnerability".</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-16T22:34:02+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation vulnerable Microsoft Office + vulnerable file version" operator="OR">
+        <criteria comment="Microsoft Excel 2007 + file version" operator="AND">
+          <extend_definition comment="Microsoft Excel 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15126" />
+          <criterion comment="Check if excel.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5187" />
+        </criteria>
+        <criteria comment="Microsoft Excel 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Excel 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17219" />
+          <criterion comment="Check if excel.exe version is less than 14.0.7192.5000" test_ref="oval:org.cisecurity:tst:5183" />
+        </criteria>
+        <criteria comment="Microsoft Excel 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft Excel 2013 SP1 is installed" definition_ref="oval:org.cisecurity:def:1424" />
+          <criterion comment="Check if excel.exe version is less than 15.0.4997.1000" test_ref="oval:org.cisecurity:tst:5188" />
+        </criteria>
+        <criteria comment="Microsoft Excel 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Excel 2016 is installed" definition_ref="oval:org.cisecurity:def:517" />
+          <criterion comment="Check if excel.exe version is less than 16.0.4639.1000" test_ref="oval:org.cisecurity:tst:5197" />
+        </criteria>
+        <criteria comment="Microsoft Excel Viewer + file version" operator="AND">
+          <extend_definition comment="Microsoft Excel Viewer 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:18681" />
+          <criterion comment="Check if xlview.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5191" />
+        </criteria>
+        <criteria comment="Microsoft Office Compatibility Pack + file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if excelcnv.exe version is less than 12.0.6784.5000" test_ref="oval:org.cisecurity:tst:5190" />
+        </criteria>
+        <criteria comment="Microsoft Excel 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Excel 2016 is installed" definition_ref="oval:org.cisecurity:def:517" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if excel.exe version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" test_ref="oval:org.cisecurity:tst:5193" />
+            <criterion comment="Check if excel.exe version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" test_ref="oval:org.cisecurity:tst:5186" />
+            <criterion comment="Check if excel.exe version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" test_ref="oval:org.cisecurity:tst:5189" />
+          </criteria>
         </criteria>
       </criteria>
     </definition>
@@ -2562,6 +3433,136 @@
       </metadata>
       <criteria>
         <criterion comment="Internet Explorer 7 is installed" test_ref="oval:org.mitre.oval:tst:178" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:1211" class="inventory" version="57">
+      <metadata>
+        <title>Microsoft Office 2007 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows XP</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2007</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:office:2007" source="CPE" />
+        <description>The application Microsoft Office 2007 is installed.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2007-03-05T09:15:44.461-04:00">
+              <contributor organization="The MITRE Corporation">Jonathan Baker</contributor>
+            </submitted>
+            <status_change date="2007-03-05T09:15:44.461-04:00">DRAFT</status_change>
+            <status_change date="2007-03-21T16:16:45.739-04:00">INTERIM</status_change>
+            <status_change date="2007-04-10T13:44:19.356-04:00">ACCEPTED</status_change>
+            <modified comment="Changed tst:3839 to check a different registry key to determine if Office 2007 is installed." date="2007-05-09T21:24:00.183-04:00">
+              <contributor organization="ThreatGuard, Inc.">Robert L. Hollis</contributor>
+            </modified>
+            <status_change date="2007-05-09T21:25:56.329-04:00">INTERIM</status_change>
+            <modified comment="Corrected cpe name in reference." date="2007-05-23T15:38:00.055-04:00">
+              <contributor organization="The MITRE Corporation">Jonathan Baker</contributor>
+            </modified>
+            <status_change date="2007-06-08T21:36:34.361-04:00">ACCEPTED</status_change>
+            <status_change date="2012-03-05T14:23:58.853-05:00">INTERIM</status_change>
+            <modified comment="Added Windows Server 2008 R2 platform" date="2012-03-05T14:23:58.853-05:00">
+              <contributor organization="Symantec Corporation">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2012-03-26T04:00:54.443-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:1826 - Updating pre-Microsoft Office 2010 content to use windows_view behaviors." date="2012-05-10T14:55:00.075-04:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </modified>
+            <status_change date="2012-05-10T14:57:37.440-04:00">INTERIM</status_change>
+            <status_change date="2012-05-28T04:00:13.658-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:1826 - Fixed a mistake in MS Office 2007 inventory" date="2013-06-11T12:14:00.357-04:00">
+              <contributor organization="ALTX-SOFT">Maria Kedovskaya</contributor>
+            </modified>
+            <status_change date="2013-06-11T12:15:29.915-04:00">INTERIM</status_change>
+            <status_change date="2013-07-01T04:00:12.974-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:1211 - fixed test to check for Excel viewer installed" date="2013-09-24T10:09:00.839-04:00">
+              <contributor organization="ALTX-SOFT">Maria Kedovskaya</contributor>
+            </modified>
+            <status_change date="2013-09-24T10:11:42.946-04:00">INTERIM</status_change>
+            <status_change date="2013-10-14T04:00:05.648-04:00">ACCEPTED</status_change>
+            <modified comment="PR179" date="2015-12-14T08:00:00.000-04:00">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </modified>
+            <status_change date="2015-12-14T08:00:00.000-04:00">INTERIM</status_change>
+            <status_change date="2016-05-27T15:00:00.000-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Check if SOFTWARE\Microsoft\Office\12.0\Common\InstallRoot exists" test_ref="oval:org.mitre.oval:tst:80914" />
+        <criterion comment="Office 2007 InstalledPackages exists" test_ref="oval:org.mitre.oval:tst:86676" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:1745" class="inventory" version="51">
+      <metadata>
+        <title>Microsoft Excel 2007 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows XP</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Excel 2007</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:excel:2007" source="CPE" />
+        <description>The application Microsoft Excel 2007 is installed.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2007-05-09T10:04:48">
+              <contributor organization="ThreatGuard, Inc.">Robert L. Hollis</contributor>
+            </submitted>
+            <status_change date="2007-05-09T12:53:06-04:00">DRAFT</status_change>
+            <status_change date="2007-05-31T15:26:35.593-04:00">INTERIM</status_change>
+            <status_change date="2007-06-15T11:07:35.740-04:00">ACCEPTED</status_change>
+            <modified comment="The update includes multiple tests to check for version of Office component if is greater or equal than 12.0.0.0 and less than 13.0.0.0." date="2008-10-27T09:22:00.848-04:00">
+              <contributor organization="Secure Elements, Inc.">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2008-10-27T09:34:53.875-04:00">INTERIM</status_change>
+            <status_change date="2008-11-17T04:00:17.018-05:00">ACCEPTED</status_change>
+            <modified comment="Added Microsoft Excel 2007 product information. Removed Microsoft reference" date="2009-06-01T16:05:28.035-04:00">
+              <contributor organization="The MITRE Corporation">Brendan Miles</contributor>
+            </modified>
+            <status_change date="2009-06-08T04:00:36.467-04:00">INTERIM</status_change>
+            <status_change date="2009-06-29T04:00:21.245-04:00">ACCEPTED</status_change>
+            <status_change date="2012-03-05T14:23:58.837-05:00">INTERIM</status_change>
+            <modified comment="Added Windows Server 2008 R2 platform" date="2012-03-05T14:23:58.837-05:00">
+              <contributor organization="Symantec Corporation">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2012-03-26T04:02:58.425-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:6362 - Updating Microsoft Excel content to utilize the windows_view behavior." date="2012-05-10T14:07:00.113-04:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </modified>
+            <status_change date="2012-05-10T14:24:10.692-04:00">INTERIM</status_change>
+            <status_change date="2012-05-28T04:01:22.388-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Excel 2007 is installed" test_ref="oval:org.mitre.oval:tst:3836" />
+        <criterion comment="the version of excel.exe is greater than or equal 12.0.0.0" test_ref="oval:org.mitre.oval:tst:9204" />
+        <criterion comment="the version of excel.exe is less than 13.0.0.0" test_ref="oval:org.mitre.oval:tst:9272" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:1853" class="inventory" version="62">
@@ -2983,6 +3984,60 @@
         <criterion comment="Windows Server 2008 is installed" test_ref="oval:org.mitre.oval:tst:7697" />
         <criterion comment="a version of Windows for the ia64 architecture is installed" test_ref="oval:org.mitre.oval:tst:2747" />
         <criterion comment="Windows Server 2008 R2 is installed" negate="true" test_ref="oval:org.mitre.oval:tst:10317" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:6006" class="inventory" version="39">
+      <metadata>
+        <title>Microsoft Excel Viewer 2007 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows XP</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Microsoft Excel Viewer 2007</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:excel_viewer:2007" source="CPE" />
+        <description>The application Microsoft Excel Viewer 2007 is installed.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2009-04-14T16:00:00">
+              <contributor organization="Gideon Technologies, Inc.">Kyle Key</contributor>
+            </submitted>
+            <status_change date="2009-04-17T16:45:11.996-04:00">DRAFT</status_change>
+            <status_change date="2009-05-04T04:00:26.292-04:00">INTERIM</status_change>
+            <status_change date="2009-05-25T04:01:52.911-04:00">ACCEPTED</status_change>
+            <modified comment="Added Microsoft Excel Viwer 2007 product information" date="2009-06-01T16:05:28.035-04:00">
+              <contributor organization="The MITRE Corporation">Brendan Miles</contributor>
+            </modified>
+            <status_change date="2009-06-08T04:00:52.729-04:00">INTERIM</status_change>
+            <modified comment="Added CPE" date="2009-06-19T04:44:54">
+              <contributor organization="The MITRE Corporation">Brendan Miles</contributor>
+            </modified>
+            <status_change date="2009-07-06T04:00:32.283-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:6006 - Updated: oval:org.mitre.oval:def:737 (added new criterion, product and platform); oval:org.mitre.oval:obj:15263 (added behaviors windows_view=&quot;32_bit&quot;); oval:org.mitre.oval:def:6006 (added new criterion and platform); oval:org.mitre.oval:obj:6918 (added comment); oval:org.mitre.oval:obj:6292 (added comment and behaviors windows_view=&quot;32_bit&quot;); New: oval:ru.altx-soft.viewer:tst:1 (check existing registry key); oval:ru.altx-soft.viewer:tst:2 (check existing registry key);" date="2013-01-31T08:56:00.477-05:00">
+              <contributor organization="ALTX-SOFT">Sergey Artykhov</contributor>
+            </modified>
+            <status_change date="2013-01-31T08:57:44.435-05:00">INTERIM</status_change>
+            <status_change date="2013-02-04T04:01:13.162-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:6918 - check the version of the file Xlview.exe when Excel Viewer 2007 is installed." date="2013-09-11T10:00:00.318-04:00">
+              <contributor organization="ALTX-SOFT">Maria Kedovskaya</contributor>
+            </modified>
+            <status_change date="2013-09-11T10:13:42.215-04:00">INTERIM</status_change>
+            <status_change date="2013-09-30T04:01:27.120-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Excel Viewer 2007 is installed." test_ref="oval:org.mitre.oval:tst:9743" />
+        <criterion comment="Check if SOFTWARE\Microsoft\Office\12.0\Common\InstallRoot exists" test_ref="oval:org.mitre.oval:tst:80914" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:6124" class="inventory" version="58">
@@ -3545,6 +4600,53 @@
         <criterion comment="Service Pack 1 is installed" test_ref="oval:org.mitre.oval:tst:41933" />
       </criteria>
     </definition>
+    <definition id="oval:org.mitre.oval:def:12658" class="inventory" version="46">
+      <metadata>
+        <title>Microsoft Excel 2010 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows XP</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Excel 2010</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:excel:2010" source="CPE" />
+        <description>The application Microsoft Excel 2010 is installed.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2011-04-12T13:00:00">
+              <contributor organization="Symantec Corporation">Dragos Prisaca</contributor>
+            </submitted>
+            <status_change date="2011-04-18T00:36:08.063-04:00">DRAFT</status_change>
+            <status_change date="2011-05-09T04:01:07.167-04:00">INTERIM</status_change>
+            <status_change date="2011-05-30T04:00:50.117-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:12658 - Updating Microsoft Office 2010 content to use windows_view behaviors." date="2012-05-10T14:51:00.071-04:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </modified>
+            <status_change date="2012-05-10T14:54:36.473-04:00">INTERIM</status_change>
+            <status_change date="2012-05-28T04:00:26.664-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:12658 - New defs for Office 2010 SP2 and multiple platform updates" date="2013-08-14T09:59:00.133-04:00">
+              <contributor organization="G2, Inc.">Dragos Prisaca</contributor>
+            </modified>
+            <status_change date="2013-08-14T10:05:00.596-04:00">INTERIM</status_change>
+            <status_change date="2013-09-02T04:00:09.328-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Excel 2010 is installed" test_ref="oval:org.mitre.oval:tst:79614" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:12824" class="inventory" version="49">
       <metadata>
         <title>Microsoft Windows Server 2008 is installed</title>
@@ -3673,6 +4775,47 @@
         <criterion comment="Check if ProductVersion of Microsoft Office Compatibility Pack is greater than or equal to 12.0.6612.1000" test_ref="oval:org.mitre.oval:tst:79337" />
       </criteria>
     </definition>
+    <definition id="oval:org.mitre.oval:def:15126" class="inventory" version="48">
+      <metadata>
+        <title>Microsoft Excel 2007 SP3 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows XP</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Microsoft Excel 2007</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:excel:2007:sp3" source="CPE" />
+        <description>Microsoft Excel 2007 SP3 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2012-05-11T17:43:59">
+              <contributor organization="SecPod Technologies">SecPod Team</contributor>
+            </submitted>
+            <status_change date="2012-11-19T16:09:22.457-05:00">DRAFT</status_change>
+            <status_change date="2012-12-10T04:00:06.513-05:00">INTERIM</status_change>
+            <status_change date="2012-12-31T04:01:10.551-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:23201 - office 2007 more changed vulnerabilities" date="2014-05-30T10:22:00.303-04:00">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </modified>
+            <status_change date="2014-05-30T10:26:29.768-04:00">INTERIM</status_change>
+            <status_change date="2014-06-16T04:00:07.872-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Check if the version of Office 2007 products is greater than or equal to 12.0.6612.1000" test_ref="oval:org.mitre.oval:tst:80319" />
+        <extend_definition comment="Microsoft Excel 2007 is installed" definition_ref="oval:org.mitre.oval:def:1745" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:15381" class="inventory" version="65">
       <metadata>
         <title>Microsoft Office 2013 is installed</title>
@@ -3759,6 +4902,46 @@
         <criterion comment="Microsoft Word 2013 is installed" test_ref="oval:org.mitre.oval:tst:79619" />
       </criteria>
     </definition>
+    <definition id="oval:org.mitre.oval:def:15563" class="inventory" version="39">
+      <metadata>
+        <title>Microsoft Excel 2013 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Excel 2013</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:excel:2013" source="CPE" />
+        <description>Microsoft Excel 2013 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2012-07-27T14:06:52.767-04:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </submitted>
+            <status_change date="2012-07-27T17:26:33.326-04:00">DRAFT</status_change>
+            <status_change date="2012-08-13T04:00:21.657-04:00">INTERIM</status_change>
+            <status_change date="2012-09-03T04:00:11.945-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:15563 - Submission on new and updated MS bulletin defs for the month of Sept'13." date="2013-09-17T10:01:00.517-04:00">
+              <contributor organization="SecPod Technologies">Sharath S</contributor>
+            </modified>
+            <status_change date="2013-09-17T10:04:22.270-04:00">INTERIM</status_change>
+            <status_change date="2013-10-07T04:07:43.374-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Microsoft Excel 2013 is installed" test_ref="oval:org.mitre.oval:tst:79497" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:15571" class="inventory" version="52">
       <metadata>
         <title>Microsoft Windows 8 (x64) is installed</title>
@@ -3820,6 +5003,52 @@
       <criteria>
         <extend_definition comment="Microsoft Windows Server 2012 is installed" definition_ref="oval:org.mitre.oval:def:16359" />
         <criterion comment="a version of Windows for the x64 architecture is installed" test_ref="oval:org.mitre.oval:tst:3653" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:15704" class="inventory" version="57">
+      <metadata>
+        <title>Microsoft Office 2007 SP3 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows XP</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <product>Microsoft Office 2007</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:office:2007:sp3" source="CPE" />
+        <description>Microsoft Office 2007 SP3 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2012-07-16T12:35:55">
+              <contributor organization="SecPod Technologies">SecPod Team</contributor>
+            </submitted>
+            <status_change date="2012-07-19T12:32:03.438-04:00">DRAFT</status_change>
+            <status_change date="2012-08-06T04:00:16.179-04:00">INTERIM</status_change>
+            <status_change date="2012-08-27T04:00:36.978-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:ste:19903 - corrected registry key checked for MS Office 2007" date="2013-06-24T14:08:00.623-04:00">
+              <contributor organization="ALTX-SOFT">Maria Kedovskaya</contributor>
+            </modified>
+            <status_change date="2013-06-24T14:17:35.776-04:00">INTERIM</status_change>
+            <status_change date="2013-07-15T04:00:07.803-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:23674 - In some &quot;pattern match&quot; strings added &quot;\&quot; before &quot;.&quot; to clarify if &quot;point&quot; or &quot;any symbol&quot; needed." date="2014-07-28T18:11:00.493-04:00">
+              <contributor organization="ALTX-SOFT">Evgeniy Pavlov</contributor>
+            </modified>
+            <status_change date="2014-07-28T18:14:47.455-04:00">INTERIM</status_change>
+            <status_change date="2014-08-18T04:01:22.953-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Check if Microsoft Office products 2007 SP3 is installed" test_ref="oval:org.mitre.oval:tst:79673" />
+        <extend_definition comment="Microsoft Office 2007 is installed" definition_ref="oval:org.mitre.oval:def:1211" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:15711" class="inventory" version="20">
@@ -4088,6 +5317,52 @@
         <criterion comment="Check if Office 2010 SP2 is installed" test_ref="oval:org.mitre.oval:tst:86552" />
       </criteria>
     </definition>
+    <definition id="oval:org.mitre.oval:def:17219" class="inventory" version="54">
+      <metadata>
+        <title>Microsoft Excel 2010 SP2 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows XP</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Excel 2010</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:excel:2010:sp2" source="CPE" />
+        <description>Microsoft Excel 2010 SP2 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2013-08-13T10:00:00.000-00:00">
+              <contributor organization="G2, Inc.">Dragos Prisaca</contributor>
+            </submitted>
+            <status_change date="2013-08-14T10:01:43.577-04:00">DRAFT</status_change>
+            <status_change date="2013-09-02T04:00:58.272-04:00">INTERIM</status_change>
+            <status_change date="2013-09-23T04:00:29.874-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:tst:82640 - check=&quot;all&quot; was replased with check=&quot;at least one&quot; because all objects have the set of objects." date="2014-03-21T11:52:00.342-04:00">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </modified>
+            <status_change date="2014-03-21T12:00:21.915-04:00">INTERIM</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:def:17219 - he attached file contains a little modified inventory with dependences displaced" date="2014-03-21T13:27:00.660-04:00">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </modified>
+            <status_change date="2014-04-07T04:02:03.072-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <extend_definition comment="Microsoft Excel 2010 is installed" definition_ref="oval:org.mitre.oval:def:12658" />
+        <criterion comment="Check if Microsoft Office 2010 SP2 is installed" test_ref="oval:org.mitre.oval:tst:82640" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:17454" class="inventory" version="47">
       <metadata>
         <title>Microsoft Word 2010 SP2 is installed</title>
@@ -4178,6 +5453,42 @@
       </metadata>
       <criteria>
         <criterion comment="Check if Microsoft Internet Explorer 11 is installed" test_ref="oval:org.mitre.oval:tst:87142" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:18681" class="inventory" version="30">
+      <metadata>
+        <title>Microsoft Excel Viewer 2007 SP3 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 2000</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows XP</platform>
+          <product>Microsoft Excel Viewer 2007</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:excel_viewer:2007:sp3" source="CPE" />
+        <description>Microsoft Excel Viewer 2007 SP3 is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2013-09-12T17:29:32">
+              <contributor organization="SecPod Technologies">SecPod Team</contributor>
+            </submitted>
+            <status_change date="2013-09-17T10:03:54.736-04:00">DRAFT</status_change>
+            <status_change date="2013-10-07T04:10:53.445-04:00">INTERIM</status_change>
+            <status_change date="2013-10-28T04:00:21.458-04:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:obj:23201 - office 2007 more changed vulnerabilities" date="2014-05-30T10:22:00.303-04:00">
+              <contributor organization="ALTX-SOFT">Maria Mikhno</contributor>
+            </modified>
+            <status_change date="2014-05-30T10:26:29.689-04:00">INTERIM</status_change>
+            <status_change date="2014-06-16T04:00:08.643-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <extend_definition comment="Microsoft Excel Viewer 2007 is installed" definition_ref="oval:org.mitre.oval:def:6006" />
+        <criterion comment="Check if the version of Office 2007 products is greater than or equal to 12.0.6612.1000" test_ref="oval:org.mitre.oval:tst:80319" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:18700" class="inventory" version="20">
@@ -4632,6 +5943,9 @@
       <object object_ref="oval:org.mitre.oval:obj:222" />
       <state state_ref="oval:org.cisecurity:ste:498" />
     </file_test>
+    <registry_test id="oval:org.cisecurity:tst:917" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Excel 2016 is installed" version="3">
+      <object object_ref="oval:org.cisecurity:obj:235" />
+    </registry_test>
     <registry_test id="oval:org.cisecurity:tst:1206" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Office 2016 is installed on the system" version="4">
       <object object_ref="oval:org.cisecurity:obj:313" />
     </registry_test>
@@ -4927,6 +6241,97 @@
       <state state_ref="oval:org.cisecurity:ste:3714" />
       <state state_ref="oval:org.cisecurity:ste:3712" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:5178" check="all" check_existence="at_least_one_exists" comment="Check if eqnedt32.exe exists" version="1">
+      <object object_ref="oval:org.cisecurity:obj:914" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5179" check="at least one" check_existence="at_least_one_exists" comment="Check if oart.dll version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:842" />
+      <state state_ref="oval:org.cisecurity:ste:3715" />
+      <state state_ref="oval:org.cisecurity:ste:3716" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5180" check="at least one" check_existence="at_least_one_exists" comment="Check if oart.dll version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:842" />
+      <state state_ref="oval:org.cisecurity:ste:3302" />
+      <state state_ref="oval:org.cisecurity:ste:3718" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5181" check="at least one" check_existence="at_least_one_exists" comment="Check if oart.dll version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:842" />
+      <state state_ref="oval:org.cisecurity:ste:3714" />
+      <state state_ref="oval:org.cisecurity:ste:3712" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5182" check="all" check_existence="at_least_one_exists" comment="Check if eqnedt32.exe exists" version="1">
+      <object object_ref="oval:org.cisecurity:obj:919" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5183" check="all" check_existence="at_least_one_exists" comment="Check if excel.exe version is less than 14.0.7192.5000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23971" />
+      <state state_ref="oval:org.cisecurity:ste:3710" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5184" check="at least one" check_existence="at_least_one_exists" comment="Check if msoserver.dll version is less than 15.0.4997.1000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:871" />
+      <state state_ref="oval:org.cisecurity:ste:3717" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5185" check="at least one" check_existence="at_least_one_exists" comment="Check if Mso.dll version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:522" />
+      <state state_ref="oval:org.cisecurity:ste:3714" />
+      <state state_ref="oval:org.cisecurity:ste:3712" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5186" check="at least one" check_existence="at_least_one_exists" comment="Check if excel.exe version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:236" />
+      <state state_ref="oval:org.cisecurity:ste:3715" />
+      <state state_ref="oval:org.cisecurity:ste:3716" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5187" check="all" check_existence="at_least_one_exists" comment="Check if excel.exe version is less than 12.0.6784.5000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6362" />
+      <state state_ref="oval:org.cisecurity:ste:3711" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5188" check="all" check_existence="at_least_one_exists" comment="Check if excel.exe version is less than 15.0.4997.1000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:233" />
+      <state state_ref="oval:org.cisecurity:ste:3717" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5189" check="at least one" check_existence="at_least_one_exists" comment="Check if excel.exe version is greater than or equal to 16.0.8730.0000 and less than 16.0.8730.2175 (MSO 2016 Version 1711)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:236" />
+      <state state_ref="oval:org.cisecurity:ste:3714" />
+      <state state_ref="oval:org.cisecurity:ste:3712" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5190" check="all" check_existence="at_least_one_exists" comment="Check if excelcnv.exe version is less than 12.0.6784.5000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:5316" />
+      <state state_ref="oval:org.cisecurity:ste:3711" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5191" check="all" check_existence="at_least_one_exists" comment="Check if xlview.exe version is less than 12.0.6784.5000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6918" />
+      <state state_ref="oval:org.cisecurity:ste:3711" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5192" check="at least one" check_existence="at_least_one_exists" comment="Check if Mso.dll version is less than 15.0.4997.1000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:323" />
+      <state state_ref="oval:org.cisecurity:ste:3717" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5193" check="at least one" check_existence="at_least_one_exists" comment="Check if excel.exe version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:236" />
+      <state state_ref="oval:org.cisecurity:ste:3302" />
+      <state state_ref="oval:org.cisecurity:ste:3718" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5194" check="at least one" check_existence="at_least_one_exists" comment="Check if Mso.dll version is less than 14.0.7192.5000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:15322" />
+      <state state_ref="oval:org.cisecurity:ste:3710" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5195" check="at least one" check_existence="at_least_one_exists" comment="Check if Mso.dll version is greater than or equal to 16.0.8431.0000 and less than 16.0.8431.2153 (MSO 2016 Version 1708)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:522" />
+      <state state_ref="oval:org.cisecurity:ste:3715" />
+      <state state_ref="oval:org.cisecurity:ste:3716" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5196" check="at least one" check_existence="at_least_one_exists" comment="Check if Mso.dll version is less than 16.0.4639.1000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:522" />
+      <state state_ref="oval:org.cisecurity:ste:3713" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5197" check="all" check_existence="at_least_one_exists" comment="Check if excel.exe version is less than 16.0.4639.1000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:236" />
+      <state state_ref="oval:org.cisecurity:ste:3713" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5198" check="at least one" check_existence="at_least_one_exists" comment="Check if Mso.dll version is greater than or equal to 16.0.8201.0000 and less than 16.0.8201.2217 (MSO 2016 Version 1705)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:522" />
+      <state state_ref="oval:org.cisecurity:ste:3302" />
+      <state state_ref="oval:org.cisecurity:ste:3718" />
+    </file_test>
     <family_test id="oval:org.mitre.oval:tst:99" check="only one" check_existence="at_least_one_exists" comment="the installed operating system is part of the Microsoft Windows family" version="11">
       <object object_ref="oval:org.mitre.oval:obj:99" />
       <state state_ref="oval:org.mitre.oval:ste:99" />
@@ -4954,6 +6359,9 @@
       <object object_ref="oval:org.mitre.oval:obj:1576" />
       <state state_ref="oval:org.mitre.oval:ste:3649" />
     </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:3836" check="at least one" check_existence="at_least_one_exists" comment="Excel 2007 is installed" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:2727" />
+    </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:4142" check="at least one" check_existence="at_least_one_exists" comment="Word 2007 is installed" version="2">
       <object object_ref="oval:org.mitre.oval:obj:1909" />
     </registry_test>
@@ -4977,6 +6385,10 @@
       <object object_ref="oval:org.mitre.oval:obj:247" />
       <state state_ref="oval:org.mitre.oval:ste:4421" />
     </registry_test>
+    <file_test id="oval:org.mitre.oval:tst:9204" check="at least one" check_existence="at_least_one_exists" comment="the version of excel.exe is greater than or equal 12.0.0.0" version="3">
+      <object object_ref="oval:org.mitre.oval:obj:6362" />
+      <state state_ref="oval:org.mitre.oval:ste:4449" />
+    </file_test>
     <file_test id="oval:org.mitre.oval:tst:9236" check="at least one" check_existence="at_least_one_exists" comment="the version of outlook.exe is less than 13.0.0.0" version="3">
       <object object_ref="oval:org.mitre.oval:obj:1070" />
       <state state_ref="oval:org.mitre.oval:ste:4287" />
@@ -4985,9 +6397,16 @@
       <object object_ref="oval:org.mitre.oval:obj:23914" />
       <state state_ref="oval:org.mitre.oval:ste:4449" />
     </file_test>
+    <file_test id="oval:org.mitre.oval:tst:9272" check="at least one" check_existence="at_least_one_exists" comment="the version of excel.exe is less than 13.0.0.0" version="3">
+      <object object_ref="oval:org.mitre.oval:obj:6362" />
+      <state state_ref="oval:org.mitre.oval:ste:4287" />
+    </file_test>
     <file_test id="oval:org.mitre.oval:tst:9341" check="at least one" check_existence="at_least_one_exists" comment="the version of outlook.exe is greater than or equal 12.0.0.0" version="3">
       <object object_ref="oval:org.mitre.oval:obj:1070" />
       <state state_ref="oval:org.mitre.oval:ste:4449" />
+    </file_test>
+    <file_test id="oval:org.mitre.oval:tst:9743" check="all" check_existence="at_least_one_exists" comment="Excel Viewer 2007 is installed." version="3">
+      <object object_ref="oval:org.mitre.oval:obj:6918" />
     </file_test>
     <registry_test id="oval:org.mitre.oval:tst:10317" check="at least one" check_existence="at_least_one_exists" comment="Windows Server 2008 R2 is installed" version="6">
       <object object_ref="oval:org.mitre.oval:obj:5590" />
@@ -5016,8 +6435,18 @@
       <object object_ref="oval:org.mitre.oval:obj:24028" />
       <state state_ref="oval:org.mitre.oval:ste:18982" />
     </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:79497" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Excel 2013 is installed" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23953" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:79614" check="at least one" check_existence="at_least_one_exists" comment="Excel 2010 is installed" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23954" />
+    </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:79619" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Word 2013 is installed" version="2">
       <object object_ref="oval:org.mitre.oval:obj:23844" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:79673" check="all" check_existence="at_least_one_exists" comment="Check if Microsoft Office products 2007 SP3 is installed" version="5">
+      <object object_ref="oval:org.mitre.oval:obj:23755" />
+      <state state_ref="oval:org.mitre.oval:ste:19903" />
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:80017" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Outlook 2013 is installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:23956" />
@@ -5032,6 +6461,10 @@
     <registry_test id="oval:org.mitre.oval:tst:80103" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Office 2013 is installed" version="5">
       <object object_ref="oval:org.mitre.oval:obj:23980" />
     </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:80319" check="all" check_existence="at_least_one_exists" comment="Check if the version of Office 2007 products is greater than or equal to 12.0.6612.1000" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:23201" />
+      <state state_ref="oval:org.mitre.oval:ste:18982" />
+    </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:80429" check="all" check_existence="at_least_one_exists" comment="Check if Microsoft Internet Explorer 10 is installed" version="6">
       <object object_ref="oval:org.mitre.oval:obj:23453" />
       <state state_ref="oval:org.mitre.oval:ste:19992" />
@@ -5043,6 +6476,9 @@
     <registry_test id="oval:org.mitre.oval:tst:80504" check="all" check_existence="at_least_one_exists" comment="Check if SharePoint Server 2013 is installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:23891" />
       <state state_ref="oval:org.mitre.oval:ste:20292" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:80914" check="all" check_existence="at_least_one_exists" comment="Check if SOFTWARE\Microsoft\Office\12.0\Common\InstallRoot exists" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:6292" />
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:81399" check="at least one" check_existence="at_least_one_exists" comment="The registry key that holds the location of Office 2010 Common\InstallRoot\Path exists" version="5">
       <object object_ref="oval:org.mitre.oval:obj:23452" />
@@ -5058,6 +6494,9 @@
     <registry_test id="oval:org.mitre.oval:tst:86608" check="all" check_existence="at_least_one_exists" comment="Check if Microsoft SharePoint 2010 SP2 is installed" version="2">
       <object object_ref="oval:org.mitre.oval:obj:24062" />
       <state state_ref="oval:org.mitre.oval:ste:23979" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:86676" check="at least one" check_existence="at_least_one_exists" comment="Office 2007 InstalledPackages exists" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:26711" />
     </registry_test>
     <file_test id="oval:org.mitre.oval:tst:86717" check="all" check_existence="at_least_one_exists" comment="Check if the version of Outlook.exe is greater than or equal to 12.0.6607.1000" version="2">
       <object object_ref="oval:org.mitre.oval:obj:1070" />
@@ -5128,6 +6567,31 @@
       <path var_check="at least one" var_ref="oval:org.cisecurity:var:6" />
       <filename>wwlibcxm.dll</filename>
     </file_object>
+    <registry_object id="oval:org.cisecurity:obj:232" comment="This registry key identifies the path for Microsoft Excel 2016" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\16.0\Excel\InstallRoot</key>
+      <name>Path</name>
+    </registry_object>
+    <file_object id="oval:org.cisecurity:obj:233" comment="Object holds the path for excel.exe" version="1">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:21" />
+      <filename>excel.exe</filename>
+    </file_object>
+    <registry_object id="oval:org.cisecurity:obj:234" comment="This registry key identifies the path for Microsoft Excel 2016 (x86) on x64 platform" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\16.0\Excel\InstallRoot</key>
+      <name>Path</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:235" comment="This registry key identifies the path for Microsoft Excel 2016" version="2">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:234</object_reference>
+        <object_reference>oval:org.cisecurity:obj:232</object_reference>
+      </set>
+    </registry_object>
+    <file_object id="oval:org.cisecurity:obj:236" comment="Excel 2016 Excel.exe" version="4">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:22" />
+      <filename>excel.exe</filename>
+    </file_object>
     <registry_object id="oval:org.cisecurity:obj:312" comment="Object holds the path to MS Office 2016 InstallRoot" version="2">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Office\16.0\Common\InstallRoot</key>
@@ -5151,6 +6615,10 @@
         <object_reference>oval:org.mitre.oval:obj:7442</object_reference>
       </set>
     </registry_object>
+    <file_object id="oval:org.cisecurity:obj:323" comment="MS Office 2013 Mso.dll" version="8">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:33" />
+      <filename>MSO.DLL</filename>
+    </file_object>
     <registry_object id="oval:org.cisecurity:obj:327" comment="Object holds the registry path to MS Word 2016 InstallRoot (32bit)" version="2">
       <behaviors windows_view="32_bit" />
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -5196,6 +6664,47 @@
     <file_object id="oval:org.cisecurity:obj:437" comment="Object holds the path for winword.exe" version="2">
       <path var_check="at least one" var_ref="oval:org.cisecurity:var:45" />
       <filename>winword.exe</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:521" comment="Object holds Mso.dll for MS Office 2016 64bit - ClickToRun installed" version="2">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:53" />
+      <filename>Mso.dll</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:522" comment="Object holds Mso.dll for MS Office 2016 for MSI and ClickToRun installed" version="3">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:527</object_reference>
+        <object_reference>oval:org.cisecurity:obj:525</object_reference>
+      </set>
+    </file_object>
+    <registry_object id="oval:org.cisecurity:obj:523" comment="Object holds MS Office 2016 InstallPath directory for 64bit - ClickToRun installed" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\ClickToRun</key>
+      <name>InstallPath</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:524" comment="Object holds MS Office 2016 InstallPath directory - ClickToRun installed" version="1">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:526</object_reference>
+        <object_reference>oval:org.cisecurity:obj:523</object_reference>
+      </set>
+    </registry_object>
+    <file_object id="oval:org.cisecurity:obj:525" comment="Object holds Mso.dll for MS Office 2016 - ClickToRun installed" version="2">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:528</object_reference>
+        <object_reference>oval:org.cisecurity:obj:521</object_reference>
+      </set>
+    </file_object>
+    <registry_object id="oval:org.cisecurity:obj:526" comment="Object holds MS Office 2016 InstallPath directory for 32bit - ClickToRun installed" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\ClickToRun</key>
+      <name>InstallPath</name>
+    </registry_object>
+    <file_object id="oval:org.cisecurity:obj:527" comment="Object holds Mso.dll for MS Office 2016 - MSI installed" version="3">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:55" />
+      <filename>Mso.dll</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:528" comment="Object holds Mso.dll for MS Office 2016 32bit - ClickToRun installed" version="2">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:54" />
+      <filename>Mso.dll</filename>
     </file_object>
     <registry_object id="oval:org.cisecurity:obj:544" comment="This registry key identifies the path for Microsoft SharePoint Server 2016" version="2">
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -5251,15 +6760,68 @@
         <object_reference>oval:org.mitre.oval:obj:30302</object_reference>
       </set>
     </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:719" comment="Native Office 2016 InstallRoot!Path" version="2">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">^SOFTWARE\\Microsoft\\Office\\16.0\\.+\\InstallRoot$</key>
+      <name>Path</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:721" comment="32 bit Office 2016 InstallRoot!Path" version="2">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">^SOFTWARE\\Microsoft\\Office\\16.0\\.+\\InstallRoot$</key>
+      <name>Path</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:722" comment="Office 2016 InstallRoot Path" version="2">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:721</object_reference>
+        <object_reference>oval:org.cisecurity:obj:719</object_reference>
+      </set>
+    </registry_object>
     <file_object id="oval:org.cisecurity:obj:770" comment="Object holds Lxcore.sys" version="1">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:201" />
       <filename>Lxcore.sys</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:842" comment="Object holds oart.dll for Microsoft Office 2016" version="1">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:85" />
+      <filename>Oart.dll</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:871" comment="Object holds Msoserver.dll (Sharepoint Server 2013)" version="1">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:36" />
+      <filename>Msoserver.dll</filename>
     </file_object>
     <registry_object id="oval:org.cisecurity:obj:873" comment="HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion!CurrentBuild" version="1">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
       <name>CurrentBuild</name>
     </registry_object>
+    <file_object id="oval:org.cisecurity:obj:912" comment="Object holds eqnedt32.exe for MS Office 2016 32bit - ClickToRun installed" version="1">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:96" />
+      <filename>eqnedt32.exe</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:913" comment="Object holds eqnedt32.exe for MS Office 2016 - MSI installed" version="1">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:93" />
+      <filename>eqnedt32.exe</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:914" comment="MS Office 2013 eqnedt32.exe-Mso.dll" version="1">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:97" />
+      <filename>eqnedt32.exe</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:916" comment="Object holds eqnedt32.exe for MS Office 2016 64bit - ClickToRun installed" version="1">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:95" />
+      <filename>eqnedt32.exe</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:918" comment="Object holds eqnedt32.exe for MS Office 2016 - ClickToRun installed" version="1">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:912</object_reference>
+        <object_reference>oval:org.cisecurity:obj:916</object_reference>
+      </set>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:919" comment="Object holds eqnedt32.exe for MS Office 2016 for MSI and ClickToRun installed" version="1">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:918</object_reference>
+        <object_reference>oval:org.cisecurity:obj:913</object_reference>
+      </set>
+    </file_object>
     <file_object id="oval:org.cisecurity:obj:940" comment="Object holds microsoft.sharepoint.portal.dll (Sharepoint Server 2010)" version="1">
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1390" />
       <filename>microsoft.sharepoint.portal.dll</filename>
@@ -5320,12 +6882,22 @@
       <key>SOFTWARE\Microsoft\Office\12.0\MOC</key>
       <name nil="true" />
     </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:2727" version="2">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\12.0\Excel\InstallRoot</key>
+      <name nil="true" />
+    </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:5169" version="2">
       <behaviors windows_view="32_bit" />
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Office\12.0\Outlook\InstallRoot</key>
       <name>Path</name>
     </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:5316" comment="Object holds excelcnv.exe file" version="15">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:929" />
+      <filename>excelcnv.exe</filename>
+    </file_object>
     <registry_object id="oval:org.mitre.oval:obj:5590" comment="This registry key identifies the Windows ProductName" version="2">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
@@ -5334,6 +6906,20 @@
     <file_object id="oval:org.mitre.oval:obj:5673" comment="Wordcnv.dll for MS Office Compatibility Pack " version="15">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:929" />
       <filename>Wordcnv.dll</filename>
+    </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:6292" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\12.0\Common\InstallRoot!Path (32 bit)" version="2">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\12.0\Common\InstallRoot</key>
+      <name>Path</name>
+    </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:6362" comment="Excel 2007 Excel.exe" version="3">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:1793" />
+      <filename>EXCEL.EXE</filename>
+    </file_object>
+    <file_object id="oval:org.mitre.oval:obj:6918" version="3">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:721" />
+      <filename>XLVIEW.EXE</filename>
     </file_object>
     <registry_object id="oval:org.mitre.oval:obj:7442" comment="The registry key that identifies the location of the common files directory (x86) on x64 platform." version="3">
       <behaviors windows_view="32_bit" />
@@ -5367,6 +6953,12 @@
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Office14.OSERVER</key>
       <name>DisplayName</name>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:23201" comment="Object holds the version of Office 2007 products installed" version="2">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\12.0\Common\ProductVersion</key>
+      <name>LastProduct</name>
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:23225" comment="Word 2010 InstallRoot" version="1">
       <set>
@@ -5402,6 +6994,17 @@
       <key>SOFTWARE\Microsoft\Office\14.0\Word\InstallRoot</key>
       <name>Path</name>
     </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:23647" comment="32 bit Excel 2010 InstallRoot!Path" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\14.0\Excel\InstallRoot</key>
+      <name>Path</name>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:23679" comment="Native Excel 2010 InstallRoot!Path" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\14.0\Excel\InstallRoot</key>
+      <name>Path</name>
+    </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:23692" comment="32 bit Office 2013 InstallRoot!Path" version="5">
       <behaviors windows_view="32_bit" />
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -5413,6 +7016,18 @@
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Office\14.0\Word\InstallRoot</key>
       <name>Path</name>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:23742" comment="Excel 2010 InstallRoot path" version="1">
+      <set>
+        <object_reference>oval:org.mitre.oval:obj:23647</object_reference>
+        <object_reference>oval:org.mitre.oval:obj:23679</object_reference>
+      </set>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:23755" comment="The registry holds if Office 2007 SP is installed" version="5">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">^SOFTWARE\\Microsoft\\Office\\12\.0\\Registration\\\{[0-9a-zA-Z]{2}12[0-9]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[01]000-0000000FF1CE\}$</key>
+      <name>SPLevel</name>
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:23833" comment="Native Outlook 2010 install path" version="1">
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -5446,18 +7061,48 @@
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1266" />
       <filename>WINWORD.EXE</filename>
     </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:23911" comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\12.0\Excel\InstallRoot!Path" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\12.0\Excel\InstallRoot</key>
+      <name>Path</name>
+    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:23914" comment="Word 2007 winword.exe" version="1">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:1310" />
       <filename>WINWORD.EXE</filename>
     </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:23917" comment="32 bit Excel 2010 InstallRoot" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\14.0\Excel\InstallRoot</key>
+      <name nil="true" />
+    </registry_object>
     <file_object id="oval:org.mitre.oval:obj:23922" comment="Path to Mso.dll (32-bit view)" version="7">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:1634" />
       <filename>Mso.dll</filename>
     </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:23932" comment="32 bit Excel 2013 install path" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\15.0\Excel\InstallRoot</key>
+      <name>Path</name>
+    </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:23952" comment="Native Office 2013 InstallRoot!Path" version="5">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key>SOFTWARE\Microsoft\Office\15.0\Common\InstallRoot</key>
       <name>Path</name>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:23953" comment="Excel 2013 install path" version="1">
+      <set>
+        <object_reference>oval:org.mitre.oval:obj:23932</object_reference>
+        <object_reference>oval:org.mitre.oval:obj:24019</object_reference>
+      </set>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:23954" comment="Excel 2010 InstallRoot" version="1">
+      <set>
+        <object_reference>oval:org.mitre.oval:obj:23917</object_reference>
+        <object_reference>oval:org.mitre.oval:obj:24018</object_reference>
+      </set>
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:23956" comment="Outlook 2013 install path" version="1">
       <set>
@@ -5465,6 +7110,10 @@
         <object_reference>oval:org.mitre.oval:obj:24058</object_reference>
       </set>
     </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:23971" comment="Excel 2010 Excel.exe" version="3">
+      <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1610" />
+      <filename>excel.exe</filename>
+    </file_object>
     <registry_object id="oval:org.mitre.oval:obj:23979" comment="32 bit Word 2013 install path" version="2">
       <behaviors windows_view="32_bit" />
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -5493,6 +7142,16 @@
         <object_reference>oval:org.mitre.oval:obj:23711</object_reference>
         <object_reference>oval:org.mitre.oval:obj:23498</object_reference>
       </set>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:24018" comment="Native Excel 2010 InstallRoot" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\14.0\Excel\InstallRoot</key>
+      <name nil="true" />
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:24019" comment="Native Excel 2013 install path" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\15.0\Excel\InstallRoot</key>
+      <name>Path</name>
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:24028" comment="Object holds registry path for Office Compatibility Pack SP2" version="1">
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -5527,6 +7186,11 @@
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:947" />
       <filename>outlook.exe</filename>
     </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:26495" comment="The registry holds the install location of sharepoint server 2013" version="2">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Office15.OSERVER</key>
+      <name>InstallLocation</name>
+    </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:26532" comment="The registry holds the version of Office 2010 (32 bit) installed" version="2">
       <behaviors windows_view="32_bit" />
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -5538,6 +7202,12 @@
         <object_reference>oval:org.mitre.oval:obj:26728</object_reference>
         <object_reference>oval:org.mitre.oval:obj:26532</object_reference>
       </set>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:26711" comment="Office 2007 InstalledPackages" version="2">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\12.0\Common\InstalledPackages</key>
+      <name nil="true" />
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:26728" comment="The registry holds the version of Office 2010 installed" version="2">
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -5813,6 +7483,9 @@
     <registry_state id="oval:org.mitre.oval:ste:18982" comment="State matches if version is greater than or equal to 12.0.6612.1000" version="1">
       <value datatype="version" operation="greater than or equal">12.0.6612.1000</value>
     </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:19903" comment="State holds the string 2007 Microsoft Office Suite Service Pack 3 (SP3)" version="3">
+      <value>SP3</value>
+    </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:19981" comment="The registry key matches with Windows 8" version="1">
       <value operation="pattern match">^[a-zA-Z0-9\(\)\s]*[Ww][Ii][Nn][Dd][Oo][Ww][Ss] 8[a-zA-Z0-9\(\)\s]*$</value>
     </registry_state>
@@ -5872,11 +7545,47 @@
     <local_variable id="oval:org.cisecurity:var:15" comment="Variable holds the path for Microsoft Word 2013" datatype="string" version="6">
       <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:23844" />
     </local_variable>
+    <local_variable id="oval:org.cisecurity:var:21" comment="Variable holds the path for Microsoft Excel 2013" datatype="string" version="1">
+      <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:23953" />
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:22" comment="Variable holds the path for Microsoft Excel 2016" datatype="string" version="3">
+      <object_component item_field="value" object_ref="oval:org.cisecurity:obj:235" />
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:33" comment="Variable holds Office15 in the MS Shared directory" datatype="string" version="7">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.cisecurity:obj:322" />
+        <literal_component>\microsoft shared\OFFICE15</literal_component>
+      </concat>
+    </local_variable>
     <local_variable id="oval:org.cisecurity:var:35" comment="Path to winword.exe for Word 2016" datatype="string" version="5">
       <object_component item_field="value" object_ref="oval:org.cisecurity:obj:329" />
     </local_variable>
+    <local_variable id="oval:org.cisecurity:var:36" comment="Variable holds the path to Word Server 2013" datatype="string" version="3">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:26495" />
+        <literal_component>\15.0\WebServices\WordServer\Core</literal_component>
+      </concat>
+    </local_variable>
     <local_variable id="oval:org.cisecurity:var:45" comment="Variable holds the path for Microsoft Word 2016" datatype="string" version="2">
       <object_component item_field="value" object_ref="oval:org.cisecurity:obj:434" />
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:53" comment="Variable holds MS Office 2016 install directory - ClickToRun installed" datatype="string" version="2">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.cisecurity:obj:524" />
+        <literal_component>\root\vfs\ProgramFilesCommonx64\Microsoft Shared\OFFICE16</literal_component>
+      </concat>
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:54" comment="Variable holds MS Office 2016 install directory - ClickToRun installed" datatype="string" version="2">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.cisecurity:obj:524" />
+        <literal_component>\root\vfs\ProgramFilesCommonx86\Microsoft Shared\OFFICE16</literal_component>
+      </concat>
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:55" comment="Variable holds shared MS Office 2016 directory  - MSI installed" datatype="string" version="3">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.cisecurity:obj:322" />
+        <literal_component>\Microsoft Shared\OFFICE16</literal_component>
+      </concat>
     </local_variable>
     <local_variable id="oval:org.cisecurity:var:57" comment="Variable holds the install path for Office16 Server" datatype="string" version="4">
       <concat>
@@ -5889,6 +7598,33 @@
     </local_variable>
     <local_variable id="oval:org.cisecurity:var:67" comment="Variable holds the path for Microsoft Outlook 2013" datatype="string" version="1">
       <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:23956" />
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:85" comment="Office 2016 install directory" datatype="string" version="1">
+      <object_component item_field="value" object_ref="oval:org.cisecurity:obj:722" />
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:93" comment="Variable holds shared MS Office 2016 directory  - MSI installed" datatype="string" version="1">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.cisecurity:obj:322" />
+        <literal_component>\Microsoft Shared\EQUATION</literal_component>
+      </concat>
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:95" comment="Variable holds MS Office 2016 install directory - ClickToRun installed" datatype="string" version="1">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.cisecurity:obj:524" />
+        <literal_component>\root\vfs\ProgramFilesCommonx64\Microsoft Shared\EQUATION</literal_component>
+      </concat>
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:96" comment="Variable holds MS Office 2016 install directory - ClickToRun installed" datatype="string" version="1">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.cisecurity:obj:524" />
+        <literal_component>\root\vfs\ProgramFilesCommonx86\Microsoft Shared\EQUATION</literal_component>
+      </concat>
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:97" comment="Variable holds Office15 in the MS Shared directory" datatype="string" version="1">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.cisecurity:obj:322" />
+        <literal_component>\microsoft shared\EQUATION</literal_component>
+      </concat>
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:200" comment="Windows System32 directory" datatype="string" version="24">
       <concat>
@@ -5906,6 +7642,9 @@
       <regex_capture pattern="^(.*[^\\])\\?$">
         <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:5169" />
       </regex_capture>
+    </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:721" comment="Office12 install folder" datatype="string" version="2">
+      <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:6292" />
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:929" comment="Office12 subdirectory of the ProgramFilesDir" datatype="string" version="14">
       <concat>
@@ -5946,11 +7685,21 @@
         <literal_component>\Microsoft Shared\web server extensions\15\BIN</literal_component>
       </concat>
     </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:1610" comment="Excel 2010 install directory" datatype="string" version="1">
+      <regex_capture pattern="^(.*[^\\])\\?$">
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:23742" />
+      </regex_capture>
+    </local_variable>
     <local_variable id="oval:org.mitre.oval:var:1634" comment="The shared Office 2010 directory (32-bit view)" datatype="string" version="7">
       <concat>
         <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:7442" />
         <literal_component>\Microsoft Shared\OFFICE14</literal_component>
       </concat>
+    </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:1793" comment="Excel 2007 install directory" datatype="string" version="1">
+      <regex_capture pattern="^(.*[^\\])\\?$">
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:23911" />
+      </regex_capture>
     </local_variable>
   </variables>
 </oval_definitions>
