@@ -21165,18 +21165,39 @@
     <vuln:summary>The Linux kernel version 3.3-rc1 and later is affected by a vulnerability lies in the processing of incoming L2CAP commands - ConfigRequest, and ConfigResponse messages. This info leak is a result of uninitialized stack variables that may be returned to an attacker in their uninitialized state. By manipulating the code flows that precede the handling of these configuration messages, an attacker can also gain some control over which data will be held in the uninitialized stack variables. This can allow him to bypass KASLR, and stack canaries protection - as both pointers and stack canaries may be leaked in this manner. Combining this vulnerability (for example) with the previously disclosed RCE vulnerability in L2CAP configuration parsing (CVE-2017-1000251) may allow an attacker to exploit the RCE against kernels which were built with the above mitigations. These are the specifics of this vulnerability: In the function l2cap_parse_conf_rsp and in the function l2cap_parse_conf_req the following variable is declared without initialization: struct l2cap_conf_efs efs; In addition, when parsing input configuration parameters in both of these functions, the switch case for handling EFS elements may skip the memcpy call that will write to the efs variable: ... case L2CAP_CONF_EFS: if (olen == sizeof(efs)) memcpy(&amp;efs, (void *)val, olen); ... The olen in the above if is attacker controlled, and regardless of that if, in both of these functions the efs variable would eventually be added to the outgoing configuration request that is being built: l2cap_add_conf_opt(&amp;ptr, L2CAP_CONF_EFS, sizeof(efs), (unsigned long) &amp;efs); So by sending a configuration request, or response, that contains an L2CAP_CONF_EFS element, but with an element length that is not sizeof(efs) - the memcpy to the uninitialized efs variable can be avoided, and the uninitialized variable would be returned to the attacker (16 bytes).</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000412">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:linaro:op-tee:2.4.0" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:linaro:op-tee:2.4.0</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000412</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T12:29:00.227-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T12:29:00.243-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T12:54:14.073-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-200" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/OP-TEE/optee_os/blob/2.5.0/CHANGELOG.md" xml:lang="en">https://github.com/OP-TEE/optee_os/blob/2.5.0/CHANGELOG.md</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/OP-TEE/optee_os/pull/1610" xml:lang="en">https://github.com/OP-TEE/optee_os/pull/1610</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://www.op-tee.org/security-advisories/" xml:lang="en">https://www.op-tee.org/security-advisories/</vuln:reference>
     </vuln:references>
@@ -21394,14 +21415,101 @@
     <vuln:summary>Gnome gdk-pixbuf 2.36.8 and older is vulnerable to several integer overflow in the gif_get_lzw function resulting in memory corruption and potential code execution</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000423">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.0" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.1" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.2" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.3" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.4" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.5" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.6" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.7" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.8" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.9" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.6.10" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.0:alpha" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.1:beta" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.2" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.3" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.4" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.5" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.6" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.7" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.8" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.9" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.10" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.7.11" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.0:beta" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.1" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.2" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.3" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.4" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.5" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.6" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.7" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.8" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.9" />
+        <cpe-lang:fact-ref name="cpe:/a:b2evolution:b2evolution:6.8.10" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.0</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.1</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.2</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.3</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.4</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.5</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.6</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.7</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.8</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.9</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.6.10</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.0:alpha</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.1:beta</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.2</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.3</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.4</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.5</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.6</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.7</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.8</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.9</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.10</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.7.11</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.0:beta</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.1</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.2</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.3</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.4</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.5</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.6</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.7</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.8</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.9</vuln:product>
+      <vuln:product>cpe:/a:b2evolution:b2evolution:6.8.10</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000423</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T15:29:00.237-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T15:29:00.250-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T13:12:18.483-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>7.5</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-20" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/b2evolution/b2evolution/commit/0096a3ebc85f6aadbda2c4427cd092a538b161d2" xml:lang="en">https://github.com/b2evolution/b2evolution/commit/0096a3ebc85f6aadbda2c4427cd092a538b161d2</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/b2evolution/b2evolution/commit/b899d654d931f3bf3cfbbdd71e0d1a0f3a16d04c" xml:lang="en">https://github.com/b2evolution/b2evolution/commit/b899d654d931f3bf3cfbbdd71e0d1a0f3a16d04c</vuln:reference>
     </vuln:references>
@@ -21473,10 +21581,31 @@
     <vuln:summary>Cross-site scripting (XSS) vulnerability in the /html/portal/flash.jsp page in Liferay Portal CE 7.0 GA4 and older allows remote attackers to inject arbitrary web script or HTML via a javascript: URI in the "movie" parameter.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000426">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:mapproxy:mapproxy:1.10.3" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:mapproxy:mapproxy:1.10.3</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000426</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T16:29:00.203-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T16:29:00.220-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T13:02:53.603-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>4.3</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-79" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/mapproxy/mapproxy/issues/322" xml:lang="en">https://github.com/mapproxy/mapproxy/issues/322</vuln:reference>
     </vuln:references>
@@ -21565,24 +21694,161 @@
     <vuln:summary>rust-base64 version &lt;= 0.5.1 is vulnerable to a buffer overflow when calculating the size of a buffer to use when encoding base64 using the 'encode_config_buf' and 'encode_config' functions</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000431">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false" />
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:ez:ez_publish:5.3.12" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:ez:ez_publish:5.3.12</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000431</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T15:29:00.360-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T15:29:00.360-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T13:13:18.737-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>4.3</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-79" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="http://share.ez.no/community-project/security-advisories/ezsa-2017-005-xss-issue-in-search" xml:lang="en">http://share.ez.no/community-project/security-advisories/ezsa-2017-005-xss-issue-in-search</vuln:reference>
     </vuln:references>
     <vuln:summary>eZ Systems eZ Publish version 5.4.0 to 5.4.9, and 5.3.12 and older, is vulnerable to an XSS issue in the search module, resulting in a risk of attackers injecting scripts which may e.g. steal authentication credentials.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000432">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.1" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.2" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.3" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.4" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.5" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.6" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.7" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.8" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.9" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.10" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.11" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.12" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.13" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.14" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.15" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.16" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.16.1" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17.1" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17.2" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17.3" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17.4" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17.5" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17.6" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17.7" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17.8" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17.9" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.17.10" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18.1" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18.3" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18.4" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18.5" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18.6" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18.7" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18.12" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18:a3" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18:b1" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18:b2" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18:b4" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18:rc1" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18:rc2" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.0.18:rc3" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.1:a26" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:2.1:a32" />
+        <cpe-lang:fact-ref name="cpe:/a:vanillaforums:vanilla_forums:-" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.1</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.2</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.3</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.4</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.5</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.6</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.7</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.8</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.9</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.10</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.11</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.12</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.13</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.14</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.15</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.16.1</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.16</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17.1</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17.2</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17.3</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17.4</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17.5</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17.6</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17.7</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17.8</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17.9</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17.10</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.17</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18.1</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18.3</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18.4</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18.5</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18.6</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18.7</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18.12</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18:a3</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18:b1</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18:b2</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18:b4</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18:rc1</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18:rc2</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18:rc3</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0.18</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.0</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.1:a26</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:2.1:a32</vuln:product>
+      <vuln:product>cpe:/a:vanillaforums:vanilla_forums:-</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000432</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T18:29:00.303-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-11T21:29:00.803-05:00</vuln:last-modified-datetime>
+    <vuln:last-modified-datetime>2018-01-17T13:04:35.220-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>6.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>SINGLE_INSTANCE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-352" />
     <vuln:references xml:lang="en" reference_type="UNKNOWN">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://open.vanillaforums.com/discussion/28337/vanilla-2-1-5-released-and-2-0-18-14" xml:lang="en">https://open.vanillaforums.com/discussion/28337/vanilla-2-1-5-released-and-2-0-18-14</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>EXPLOIT-DB</vuln:source>
       <vuln:reference href="https://www.exploit-db.com/exploits/43462/" xml:lang="en">43462</vuln:reference>
     </vuln:references>
@@ -21624,14 +21890,35 @@
     <vuln:summary>pysaml2 version 4.4.0 and older accept any password when run with python optimizations enabled. This allows attackers to log in as any user without knowing their password.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000434">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:furikake_project:furikake:0.1.0::~~~wordpress~~" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:furikake_project:furikake:0.1.0::~~~wordpress~~</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000434</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T18:29:00.383-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-09T21:29:31.957-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T13:23:04.427-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.8</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-601" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>MISC</vuln:source>
       <vuln:reference href="https://cjc.im/advisories/0008/" xml:lang="en">https://cjc.im/advisories/0008/</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>MISC</vuln:source>
       <vuln:reference href="https://wpvulndb.com/vulnerabilities/8992" xml:lang="en">https://wpvulndb.com/vulnerabilities/8992</vuln:reference>
     </vuln:references>
@@ -21681,10 +21968,31 @@
     <vuln:summary>Creolabs Gravity 1.0 contains a stack based buffer overflow in the operator_string_add function, resulting in remote code execution.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000438">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:openmicroscopy:omero:5.3.3" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:openmicroscopy:omero:5.3.3</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000438</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T18:29:00.460-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T18:29:00.460-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T12:53:03.947-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>6.5</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>SINGLE_INSTANCE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-21" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>MISC</vuln:source>
       <vuln:reference href="https://www.openmicroscopy.org/security/advisories/2017-SV5-filename-2/" xml:lang="en">https://www.openmicroscopy.org/security/advisories/2017-SV5-filename-2/</vuln:reference>
     </vuln:references>
@@ -21744,14 +22052,35 @@
     <vuln:summary>Passbolt API version 1.6.4 and older are vulnerable to a XSS in the url field on the password workspace</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000443">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:openhacker_project:openhacker:0.1.47" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:openhacker_project:openhacker:0.1.47</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000443</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T09:29:00.240-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T09:29:00.240-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T12:37:10.393-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>4.3</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-79" />
+    <vuln:references xml:lang="en" reference_type="PATCH">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/Eleix/openhacker/commit/9da5c237ba5e2311f01edc83389bc5aaf0a9885c" xml:lang="en">https://github.com/Eleix/openhacker/commit/9da5c237ba5e2311f01edc83389bc5aaf0a9885c</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/Eleix/openhacker/issues/5" xml:lang="en">https://github.com/Eleix/openhacker/issues/5</vuln:reference>
     </vuln:references>
@@ -21891,10 +22220,31 @@
     <vuln:summary>In opencv/modules/imgcodecs/src/utils.cpp, functions FillUniColor and FillUniGray do not check the input length, which can lead to integer overflow. If the image is from remote, may lead to remote code execution or denial of service. This affects Opencv 3.3 and earlier.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000451">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:fs-git_project:fs-git:1.0.1" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:fs-git_project:fs-git:1.0.1</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000451</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T12:29:00.557-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T21:29:09.100-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T12:53:39.667-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>4.6</cvss:score>
+        <cvss:access-vector>LOCAL</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-77" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>MISC</vuln:source>
       <vuln:reference href="https://nodesecurity.io/advisories/360" xml:lang="en">https://nodesecurity.io/advisories/360</vuln:reference>
     </vuln:references>
@@ -22587,10 +22937,31 @@
     <vuln:summary>freedesktop.org libpoppler 0.60.1 fails to validate boundaries in TextPool::addWord, leading to overflow in subsequent calculations.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000457">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:mojoportal:mojoportal:2.5.0.0" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:mojoportal:mojoportal:2.5.0.0</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000457</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T13:29:00.293-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T13:29:00.293-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T12:39:20.963-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>3.5</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>SINGLE_INSTANCE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-79" />
+    <vuln:references xml:lang="en" reference_type="PATCH">
       <vuln:source>MISC</vuln:source>
       <vuln:reference href="https://github.com/i7MEDIA/mojoportal/commit/5ea8129f74c80cbf1f68b9083c745cc8a685485d" xml:lang="en">https://github.com/i7MEDIA/mojoportal/commit/5ea8129f74c80cbf1f68b9083c745cc8a685485d</vuln:reference>
     </vuln:references>
@@ -22636,10 +23007,31 @@
     <vuln:summary>Bro before Bro v2.5.2 is vulnerable to an out of bounds write in the ContentLine analyzer allowing remote attackers to cause a denial of service (crash) and possibly other exploitation.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000459">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:leanote:leanote:2.5" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:leanote:leanote:2.5</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000459</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T19:29:00.217-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T19:29:00.217-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T12:47:04.547-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>4.3</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-79" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>MISC</vuln:source>
       <vuln:reference href="https://github.com/leanote/leanote/issues/676" xml:lang="en">https://github.com/leanote/leanote/issues/676</vuln:reference>
     </vuln:references>
@@ -22705,10 +23097,31 @@
     <vuln:summary>BookStack version 0.18.4 is vulnerable to stored cross-site scripting, within the page creation page, which can result in disruption of service and execution of javascript code.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000463">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:leafpub:leafpub:1.2.0:beta6" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:leafpub:leafpub:1.2.0:beta6</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000463</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T19:29:00.247-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T19:29:00.247-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T12:59:49.177-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>3.5</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>SINGLE_INSTANCE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-79" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>MISC</vuln:source>
       <vuln:reference href="https://github.com/Leafpub/leafpub/issues/125" xml:lang="en">https://github.com/Leafpub/leafpub/issues/125</vuln:reference>
     </vuln:references>
@@ -22947,14 +23360,35 @@
     <vuln:summary>ImageMagick 7.0.7-12 Q16, a CPU exhaustion vulnerability was found in the function ReadDDSInfo in coders/dds.c, which allows attackers to cause a denial of service.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000477">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:xmlbundle_project:xmlbundle:0.1.7" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:xmlbundle_project:xmlbundle:0.1.7</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000477</vuln:cve-id>
     <vuln:published-datetime>2018-01-03T13:29:00.243-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-03T13:29:00.243-05:00</vuln:last-modified-datetime>
+    <vuln:last-modified-datetime>2018-01-17T12:51:30.117-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-611" />
     <vuln:references xml:lang="en" reference_type="UNKNOWN">
       <vuln:source>MISC</vuln:source>
       <vuln:reference href="https://github.com/pravednik/xmlBundle" xml:lang="en">https://github.com/pravednik/xmlBundle</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>MISC</vuln:source>
       <vuln:reference href="https://github.com/pravednik/xmlBundle/issues/2" xml:lang="en">https://github.com/pravednik/xmlBundle/issues/2</vuln:reference>
     </vuln:references>
@@ -23105,10 +23539,31 @@
     <vuln:summary>By linking to a specific url in Plone 2.5-5.1rc1 with a parameter, an attacker could send you to his own website. On its own this is not so bad: the attacker could more easily link directly to his own website instead. But in combination with another attack, you could be sent to the Plone login form and login, then get redirected to the specific url, and then get a second redirect to the attacker website. (The specific url can be seen by inspecting the hotfix code, but we don't want to make it too easy for attackers by spelling it out here.)</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000485">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:nylas_mail_lives_project:nylas_mail:2.2.2" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:nylas_mail_lives_project:nylas_mail:2.2.2</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000485</vuln:cve-id>
     <vuln:published-datetime>2018-01-03T15:29:00.610-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-03T15:29:00.610-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T13:00:14.677-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>2.1</cvss:score>
+        <cvss:access-vector>LOCAL</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-275" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/nylas-mail-lives/nylas-mail/issues/181" xml:lang="en">https://github.com/nylas-mail-lives/nylas-mail/issues/181</vuln:reference>
     </vuln:references>
@@ -23506,14 +23961,35 @@
     <vuln:summary>Shiba markdown live preview app version 1.1.0 is vulnerable to XSS which leads to code execution due to enabled node integration.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000492">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:leanote:desktop:2.5" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:leanote:desktop:2.5</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000492</vuln:cve-id>
     <vuln:published-datetime>2018-01-02T20:29:00.313-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-02T20:29:00.313-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T12:58:13.707-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>4.3</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-79" />
+    <vuln:references xml:lang="en" reference_type="PATCH">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/leanote/desktop-app/commit/a2ed226637f8e66c9b089784b5e58eccf2e2fb30" xml:lang="en">https://github.com/leanote/desktop-app/commit/a2ed226637f8e66c9b089784b5e58eccf2e2fb30</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/leanote/leanote/issues/695" xml:lang="en">https://github.com/leanote/leanote/issues/695</vuln:reference>
     </vuln:references>
@@ -23627,20 +24103,62 @@
     <vuln:summary>Commsy version 9.0.0 is vulnerable to XXE attacks in the configuration import functionality resulting in denial of service and possibly remote execution of code.</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000497">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:pepperminty-wiki_project:pepperminty-wiki:0.15" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:pepperminty-wiki_project:pepperminty-wiki:0.15</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000497</vuln:cve-id>
     <vuln:published-datetime>2018-01-03T09:29:00.317-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-03T09:29:00.330-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T13:01:47.233-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>7.5</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-611" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/sbrl/Pepperminty-Wiki/issues/152" xml:lang="en">https://github.com/sbrl/Pepperminty-Wiki/issues/152</vuln:reference>
     </vuln:references>
     <vuln:summary>Pepperminty-Wiki version 0.15 is vulnerable to XXE attacks in the getsvgsize function resulting in denial of service and possibly remote code execution</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000498">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:androidsvg_project:androidsvg:1.2.2" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:androidsvg_project:androidsvg:1.2.2</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000498</vuln:cve-id>
     <vuln:published-datetime>2018-01-03T09:29:00.363-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-03T09:29:00.363-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-01-17T13:06:46.637-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>6.8</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-611" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://github.com/BigBadaboom/androidsvg/issues/122" xml:lang="en">https://github.com/BigBadaboom/androidsvg/issues/122</vuln:reference>
     </vuln:references>
