@@ -418,10 +418,31 @@
     <vuln:summary>Jenkins Translation Assistance Plugin 1.15 and earlier did not require form submissions to be submitted via POST, resulting in a CSRF vulnerability allowing attackers to override localized strings displayed to all users on the current Jenkins instance if the victim is a Jenkins administrator.</vuln:summary>
   </entry>
   <entry id="CVE-2018-1000015">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:jenkins:pipeline_nodes_and_processes:2.17::~~~jenkins~~" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:jenkins:pipeline_nodes_and_processes:2.17::~~~jenkins~~</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2018-1000015</vuln:cve-id>
     <vuln:published-datetime>2018-01-23T09:29:00.720-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-01-23T09:29:00.737-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-02-08T12:15:42.757-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>4.9</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>MEDIUM</cvss:access-complexity>
+        <cvss:authentication>SINGLE_INSTANCE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>PARTIAL</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-275" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://jenkins.io/security/advisory/2018-01-22/" xml:lang="en">https://jenkins.io/security/advisory/2018-01-22/</vuln:reference>
     </vuln:references>
@@ -452,5 +473,23 @@
       <vuln:reference href="https://gerrit.ovirt.org/#/c/86635/" xml:lang="en">https://gerrit.ovirt.org/#/c/86635/</vuln:reference>
     </vuln:references>
     <vuln:summary>An information disclosure in ovirt-hosted-engine-setup prior to 2.2.7 reveals the root user's password in the log file.</vuln:summary>
+  </entry>
+  <entry id="CVE-2018-1000030">
+    <vuln:cve-id>CVE-2018-1000030</vuln:cve-id>
+    <vuln:published-datetime>2018-02-08T12:29:00.177-05:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-02-08T12:29:00.190-05:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://bugs.python.org/issue31530" xml:lang="en">https://bugs.python.org/issue31530</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://drive.google.com/file/d/1oyR9DAZjZK_SCn3mor6NRAYLJS6ueXaY/view" xml:lang="en">https://drive.google.com/file/d/1oyR9DAZjZK_SCn3mor6NRAYLJS6ueXaY/view</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://www.dropbox.com/sh/sj3ee7xv55j36k7/AADwP-YfOYikBMuy32e0uvPFa?dl=0" xml:lang="en">https://www.dropbox.com/sh/sj3ee7xv55j36k7/AADwP-YfOYikBMuy32e0uvPFa?dl=0</vuln:reference>
+    </vuln:references>
+    <vuln:summary>Python 2.7.14 is vulnerable to a Heap-Buffer-Overflow as well as a Heap-Use-After-Free. Python versions prior to 2.7.14 may also be vulnerable and it appears that Python 2.7.17 and prior may also be vulnerable however this has not been confirmed. The vulnerability lies when multiply threads are handling large amounts of data. In both cases there is essentially a race condition that occurs. For the Heap-Buffer-Overflow, Thread 2 is creating the size for a buffer, but Thread1 is already writing to the buffer without knowing how much to write. So when a large amount of data is being processed, it is very easy to cause memory corruption using a Heap-Buffer-Overflow. As for the Use-After-Free, Thread3-&gt;Malloc-&gt;Thread1-&gt;Free's-&gt;Thread2-Re-uses-Free'd Memory. The PSRT has stated that this is not a security vulnerability due to the fact that the attacker must be able to run code, however in some situations, such as function as a service, this vulnerability can potentially be used by an attacker to violate a trust boundary, as such the DWF feels this issue deserves a CVE.</vuln:summary>
   </entry>
 </nvd>
