@@ -6307,7 +6307,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:3928" class="vulnerability" version="3">
+    <definition id="oval:org.cisecurity:def:3928" class="vulnerability" version="4">
       <metadata>
         <title>.NET Security Feature Bypass Vulnerability - CVE-2018-0786</title>
         <affected family="windows">
@@ -6323,7 +6323,7 @@
           <product>Microsoft .NET Framework 4.0</product>
           <product>Microsoft .NET Framework 4.5</product>
         </affected>
-        <reference ref_id="VE-2018-0786" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0786" source="CVE" />
+        <reference ref_id="CVE-2018-0786" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0786" source="CVE" />
         <description>Microsoft .NET Framework 1.1, 2.0, 3.0, 3.5, 3.5.1, 4, 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, and 4.7 and .NET Core 1.0 and 2.0 allow a security feature bypass vulnerability due to the way certificates are validated, aka ".NET Security Feature Bypass Vulnerability".</description>
         <oval_repository>
           <dates>
@@ -9569,6 +9569,1002 @@
         <criterion comment="Check if Google Chrome version less than 62.0.3202.74" test_ref="oval:org.cisecurity:tst:5372" />
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:4024" class="vulnerability" version="1">
+      <metadata>
+        <title>Unintended reset of the global settings preference file vulnerability in Adobe Flash Player 27.0.0.187 and earlier versions - CVE-2017-11305</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2017-11305" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-11305" source="CVE" />
+        <reference ref_id="APSB17-42" ref_url="https://helpx.adobe.com/security/products/flash-player/apsb17-42.html" source="APSB17-42" />
+        <description>Unintended reset of the global settings preference file vulnerability in Adobe Flash Player 27.0.0.187 and earlier versions.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-05T12:46:10+08:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable Adobe Flash Player + Vulnerable Version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than 27.0.0.187" test_ref="oval:org.cisecurity:tst:5374" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than 27.0.0.187" test_ref="oval:org.cisecurity:tst:5375" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than 27.0.0.187" test_ref="oval:org.cisecurity:tst:5373" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4025" class="vulnerability" version="1">
+      <metadata>
+        <title>OpenSSL Security Bypass Vulnerability - CVE-2017-3738</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>OpenSSL</product>
+        </affected>
+        <reference ref_id="CVE-2017-3738" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3738" source="CVE" />
+        <description>There is an overflow bug in the AVX2 Montgomery multiplication procedure used in exponentiation with 1024-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against RSA and DSA as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH1024 are considered just feasible, because most of the work necessary to deduce information about a private key may be performed offline. The amount of resources required for such an attack would be significant. However, for an attack on TLS to be meaningful, the server would have to share the DH1024 private key among multiple clients, which is no longer an option since CVE-2016-0701. This only affects processors that support the AVX2 but not ADX extensions like Intel Haswell (4th generation). Note: The impact from this issue is similar to CVE-2017-3736, CVE-2017-3732 and CVE-2015-3193. OpenSSL version 1.0.2-1.0.2m and 1.1.0-1.1.0g are affected. Fixed in OpenSSL 1.0.2n. Due to the low severity of this issue we are not issuing a new release of OpenSSL 1.1.0 at this time. The fix will be included in OpenSSL 1.1.0h when it becomes available. The fix is also available in commit e502cc86d in the OpenSSL git repository.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-05T12:46:10+08:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for vulnerable OpenSSL installation + vulnerable file version" operator="OR">
+        <criteria comment="OpenSSL is installed + file version" operator="AND">
+          <extend_definition comment="OpenSSL is installed" definition_ref="oval:org.mitre.oval:def:12331" />
+          <criteria comment="Check for file version" operator="OR">
+            <criterion comment="Check if OpenSSL 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n" test_ref="oval:org.cisecurity:tst:5381" />
+            <criterion comment="Check if OpenSSL 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1h" test_ref="oval:org.cisecurity:tst:5385" />
+          </criteria>
+        </criteria>
+        <criteria comment="OpenSSL (x86) is installed + file version" operator="AND">
+          <criterion comment="OpenSSL (32_bit) is installed" test_ref="oval:org.mitre.oval:tst:113875" />
+          <criteria comment="Check for file version" operator="OR">
+            <criterion comment="Check if OpenSSL 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n (x86)" test_ref="oval:org.cisecurity:tst:5383" />
+            <criterion comment="Check if OpenSSL 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1h (x86)" test_ref="oval:org.cisecurity:tst:5378" />
+          </criteria>
+        </criteria>
+        <criterion comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n on ProgramFilesDir" test_ref="oval:org.cisecurity:tst:5379" />
+        <criterion comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n on ProgramFilesDir (x86)" test_ref="oval:org.cisecurity:tst:5382" />
+        <criterion comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n on System32 and SysWOW64" test_ref="oval:org.cisecurity:tst:5377" />
+        <criterion comment="Check if ssleay32.dll 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1h on ProgramFilesDir" test_ref="oval:org.cisecurity:tst:5384" />
+        <criterion comment="Check if ssleay32.dll 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1h on ProgramFilesDir (x86)" test_ref="oval:org.cisecurity:tst:5376" />
+        <criterion comment="Check if ssleay32.dll 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1h on System32 and SysWOW64" test_ref="oval:org.cisecurity:tst:5380" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4026" class="vulnerability" version="1">
+      <metadata>
+        <title>OpenSSL Security Bypass Vulnerability - CVE-2017-3736</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>OpenSSL</product>
+        </affected>
+        <reference ref_id="CVE-2017-3736" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3736" source="CVE" />
+        <description>There is a carry propagating bug in the x86_64 Montgomery squaring procedure in OpenSSL before 1.0.2m and 1.1.0 before 1.1.0g. No EC algorithms are affected. Analysis suggests that attacks against RSA and DSA as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH are considered just feasible (although very difficult) because most of the work necessary to deduce information about a private key may be performed offline. The amount of resources required for such an attack would be very significant and likely only accessible to a limited number of attackers. An attacker would additionally need online access to an unpatched system using the target private key in a scenario with persistent DH parameters and a private key that is shared between multiple clients. This only affects processors that support the BMI1, BMI2 and ADX extensions like Intel Broadwell (5th generation) and later or AMD Ryzen.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-05T12:46:10+08:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for vulnerable OpenSSL installation + vulnerable file version" operator="OR">
+        <criteria comment="OpenSSL is installed + file version" operator="AND">
+          <extend_definition comment="OpenSSL is installed" definition_ref="oval:org.mitre.oval:def:12331" />
+          <criteria comment="Check for file version" operator="OR">
+            <criterion comment="Check if OpenSSL 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2m" test_ref="oval:org.cisecurity:tst:4488" />
+            <criterion comment="Check if OpenSSL 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1g" test_ref="oval:org.cisecurity:tst:4485" />
+          </criteria>
+        </criteria>
+        <criteria comment="OpenSSL (x86) is installed + file version" operator="AND">
+          <criterion comment="OpenSSL (32_bit) is installed" test_ref="oval:org.mitre.oval:tst:113875" />
+          <criteria comment="Check for file version" operator="OR">
+            <criterion comment="Check if OpenSSL 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2m (x86)" test_ref="oval:org.cisecurity:tst:4483" />
+            <criterion comment="Check if OpenSSL 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1g (x86)" test_ref="oval:org.cisecurity:tst:4482" />
+          </criteria>
+        </criteria>
+        <criterion comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2m on ProgramFilesDir" test_ref="oval:org.cisecurity:tst:4484" />
+        <criterion comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2m on ProgramFilesDir (x86)" test_ref="oval:org.cisecurity:tst:4481" />
+        <criterion comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2m on System32 and SysWOW64" test_ref="oval:org.cisecurity:tst:4490" />
+        <criterion comment="Check if ssleay32.dll 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1g on ProgramFilesDir" test_ref="oval:org.cisecurity:tst:4489" />
+        <criterion comment="Check if ssleay32.dll 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1g on ProgramFilesDir (x86)" test_ref="oval:org.cisecurity:tst:4487" />
+        <criterion comment="Check if ssleay32.dll 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1g on System32 and SysWOW64" test_ref="oval:org.cisecurity:tst:4486" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4027" class="vulnerability" version="1">
+      <metadata>
+        <title>OpenSSL Security Bypass Vulnerability - CVE-2017-3737</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>OpenSSL</product>
+        </affected>
+        <reference ref_id="CVE-2017-3737" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-3737" source="CVE" />
+        <description>OpenSSL 1.0.2 (starting from version 1.0.2b) introduced an "error state" mechanism. The intent was that if a fatal error occurred during a handshake then OpenSSL would move into the error state and would immediately fail if you attempted to continue the handshake. This works as designed for the explicit handshake functions (SSL_do_handshake(), SSL_accept() and SSL_connect()), however due to a bug it does not work correctly if SSL_read() or SSL_write() is called directly. In that scenario, if the handshake fails then a fatal error will be returned in the initial function call. If SSL_read()/SSL_write() is subsequently called by the application for the same SSL object then it will succeed and the data is passed without being decrypted/encrypted directly from the SSL/TLS record layer. In order to exploit this issue an application bug would have to be present that resulted in a call to SSL_read()/SSL_write() being issued after having already received a fatal error. OpenSSL version 1.0.2b-1.0.2m are affected. Fixed in OpenSSL 1.0.2n. OpenSSL 1.1.0 is not affected.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-05T12:46:10+08:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for vulnerable OpenSSL installation + vulnerable file version" operator="OR">
+        <criteria comment="OpenSSL is installed + file version" operator="AND">
+          <extend_definition comment="OpenSSL is installed" definition_ref="oval:org.mitre.oval:def:12331" />
+          <criterion comment="Check if OpenSSL 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n" test_ref="oval:org.cisecurity:tst:5381" />
+        </criteria>
+        <criteria comment="OpenSSL (x86) is installed + file version" operator="AND">
+          <criterion comment="OpenSSL (32_bit) is installed" test_ref="oval:org.mitre.oval:tst:113875" />
+          <criterion comment="Check if OpenSSL 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n (x86)" test_ref="oval:org.cisecurity:tst:5383" />
+        </criteria>
+        <criterion comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n on ProgramFilesDir" test_ref="oval:org.cisecurity:tst:5379" />
+        <criterion comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n on ProgramFilesDir (x86)" test_ref="oval:org.cisecurity:tst:5382" />
+        <criterion comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n on System32 and SysWOW64" test_ref="oval:org.cisecurity:tst:5377" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4040" class="vulnerability" version="1">
+      <metadata>
+        <title>Stack overflow in V8 - CVE-2017-15406</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Google Chrome</product>
+        </affected>
+        <reference ref_id="CVE-2017-15406" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-15406" source="CVE" />
+        <description>Stack overflow in V8.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-05T12:46:10+08:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Google Chrome is installed + version" operator="AND">
+        <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+        <criterion comment="Check if Google Chrome version less than 62.0.3202.75" test_ref="oval:org.cisecurity:tst:5407" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4041" class="vulnerability" version="1">
+      <metadata>
+        <title>.NET Security Feature Bypass Vulnerability - CVE-2018-0786</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <product>Microsoft .NET Framework 2.0</product>
+          <product>Microsoft .NET Framework 3.0</product>
+          <product>Microsoft .NET Framework 3.5</product>
+          <product>Microsoft .NET Framework 3.5.1</product>
+          <product>Microsoft .NET Framework 4.0</product>
+          <product>Microsoft .NET Framework 4.5</product>
+        </affected>
+        <reference ref_id="VE-2018-0786" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0786" source="CVE" />
+        <description>Microsoft .NET Framework 1.1, 2.0, 3.0, 3.5, 3.5.1, 4, 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, and 4.7 and .NET Core 1.0 and 2.0 allow a security feature bypass vulnerability due to the way certificates are validated, aka ".NET Security Feature Bypass Vulnerability".</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-01-10T18:08:35+08:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment=".Net Framework 2.0 SP2 and vulnerable file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 2.0 Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6158" />
+          <criteria comment="2k8 and vulnerable files version" operator="OR">
+            <criteria comment="2K8 and vulnerable files versions" operator="AND">
+              <criteria comment="2k8" operator="OR">
+                <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+                <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+              </criteria>
+              <criterion comment="Check if the version of system.xml.dll is less than 2.0.50727.8773" test_ref="oval:org.cisecurity:tst:5313" />
+            </criteria>
+            <criteria comment="2K8 and vulnerable files versions" operator="AND">
+              <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
+              <criterion comment="Check if the version of system.xml.dll is less than 2.0.50727.8781" test_ref="oval:org.cisecurity:tst:5314" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment=".Net Framework 3.0 SP2 and vulnerable file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 3.0 Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:15312" />
+          <criteria comment="2k8 and vulnerable files version" operator="OR">
+            <criteria comment="2K8 and vulnerable files versions" operator="AND">
+              <criteria comment="2k8" operator="OR">
+                <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+                <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+                <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 3.0.4506.8789" test_ref="oval:org.cisecurity:tst:5317" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment=".Net Framework 3.5 and vulnerable file version" operator="AND">
+          <criteria comment=".NET Framework 3.5/.1" operator="OR">
+            <extend_definition comment="Microsoft .NET Framework 3.5 Original Release is installed" definition_ref="oval:org.mitre.oval:def:6689" />
+            <extend_definition comment="Microsoft .NET Framework 3.5 SP1 is installed" definition_ref="oval:org.mitre.oval:def:12542" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria comment="Win7/2008 R2 and vulnerable files versions" operator="AND">
+              <criteria comment="Win7/R2" operator="OR">
+                <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+                <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+                <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
+                <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 3.0.4506.8789" test_ref="oval:org.cisecurity:tst:5317" />
+            </criteria>
+            <criteria comment="2012 and vulnerable file versions" operator="AND">
+              <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 3.0.4506.8789" test_ref="oval:org.cisecurity:tst:5317" />
+            </criteria>
+            <criteria comment="Win10 and vulnerable file version" operator="AND">
+              <criteria comment="Win10" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+                <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 3.0.4506.8789" test_ref="oval:org.cisecurity:tst:5317" />
+            </criteria>
+            <criteria comment="Win10 and vulnerable file version" operator="AND">
+              <criteria comment="Win10 1511" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+                <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 3.0.4506.8789" test_ref="oval:org.cisecurity:tst:5317" />
+            </criteria>
+            <criteria comment="Win10 and vulnerable file version" operator="AND">
+              <criteria comment="Win10 1607" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+                <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+                <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 3.0.4506.8789" test_ref="oval:org.cisecurity:tst:5317" />
+            </criteria>
+            <criteria comment="Win10 and vulnerable file version" operator="AND">
+              <criteria comment="Win10 1703" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+                <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 3.0.4506.8800" test_ref="oval:org.cisecurity:tst:5308" />
+            </criteria>
+            <criteria comment="Win10 1709 and vulnerable file version" operator="AND">
+              <criteria comment="Win10 1709" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 Version 1709 (x86) is installed" definition_ref="oval:org.cisecurity:def:3479" />
+                <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 3.0.4506.8834" test_ref="oval:org.cisecurity:tst:5408" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment=".Net Framework 4.5.2 and vulnerable file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.5.2 is installed" definition_ref="oval:org.mitre.oval:def:26546" />
+          <criteria operator="OR">
+            <criteria comment="Win7/2008 R2 and vulnerable files versions" operator="AND">
+              <criteria comment="Win7/R2" operator="OR">
+                <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+                <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+                <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+                <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
+                <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.0.30319.36430" test_ref="oval:org.cisecurity:tst:5311" />
+            </criteria>
+            <criteria comment="2012 and vulnerable file versions" operator="AND">
+              <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.0.30319.36427" test_ref="oval:org.cisecurity:tst:5319" />
+            </criteria>
+            <criteria comment="Win 8.1/2012 R2 and vulnerable file version" operator="AND">
+              <criteria comment="Win8.1/2012 R2" operator="OR">
+                <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+                <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.0.30319.36427" test_ref="oval:org.cisecurity:tst:5319" />
+            </criteria>
+            <criteria comment="Win 8.1 and vulnerable file version" operator="AND">
+              <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+              <criterion comment="Check if the version of system.xml.dll is less than 4.0.30319.36427" test_ref="oval:org.cisecurity:tst:5310" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft .NET Framework 4.6 is installed + Windows OS + file version" operator="AND">
+          <criteria comment=".NET Framework 4.6/.1" operator="OR">
+            <extend_definition comment="Microsoft .NET Framework 4.6 is installed" definition_ref="oval:org.cisecurity:def:4" />
+            <extend_definition comment="Microsoft .NET Framework 4.6.1 is installed" definition_ref="oval:org.cisecurity:def:478" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria comment="Win7/2008 R2 and vulnerable files versions" operator="AND">
+              <criteria comment="Win7/R2" operator="OR">
+                <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+                <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+                <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+                <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+                <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.7.2612.0" test_ref="oval:org.cisecurity:tst:5312" />
+            </criteria>
+            <criteria comment="2012 and vulnerable file versions" operator="AND">
+              <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.7.2612.0" test_ref="oval:org.cisecurity:tst:5312" />
+            </criteria>
+            <criteria comment="Win 8.1/2012 R2 and vulnerable file version" operator="AND">
+              <criteria comment="Win8.1/2012 R2" operator="OR">
+                <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+                <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+                <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.7.2612.0" test_ref="oval:org.cisecurity:tst:5312" />
+            </criteria>
+            <criteria comment="Win10 and vulnerable file version" operator="AND">
+              <criteria comment="Win10" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+                <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.6.1658.0" test_ref="oval:org.cisecurity:tst:5309" />
+            </criteria>
+            <criteria comment="Win10 and vulnerable file version" operator="AND">
+              <criteria comment="Win10 1511" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+                <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.6.1658.0" test_ref="oval:org.cisecurity:tst:5309" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment="Microsoft .NET Framework 4.6.2/4.7 is installed + Windows OS + file version" operator="AND">
+          <criteria comment=".NET Framework 4.6.2" operator="OR">
+            <extend_definition comment="Microsoft .NET Framework 4.6.2 is installed" definition_ref="oval:org.cisecurity:def:1654" />
+            <extend_definition comment="Microsoft .NET Framework 4.7 is installed" definition_ref="oval:org.cisecurity:def:2203" />
+          </criteria>
+          <criteria operator="OR">
+            <criteria comment="Win7/2008 R2 and vulnerable files versions" operator="AND">
+              <criteria comment="Win7/R2" operator="OR">
+                <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+                <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+                <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+                <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+                <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.7.2612.0" test_ref="oval:org.cisecurity:tst:5312" />
+            </criteria>
+            <criteria comment="2012 and vulnerable file versions" operator="AND">
+              <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.7.2612.0" test_ref="oval:org.cisecurity:tst:5312" />
+            </criteria>
+            <criteria comment="Win 8.1/2012 R2 and vulnerable file version" operator="AND">
+              <criteria comment="Win8.1/2012 R2" operator="OR">
+                <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+                <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+                <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.7.2612.0" test_ref="oval:org.cisecurity:tst:5312" />
+            </criteria>
+            <criteria comment="Win10 and vulnerable file version" operator="AND">
+              <criteria comment="Win10" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+                <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.6.1658.0" test_ref="oval:org.cisecurity:tst:5309" />
+            </criteria>
+            <criteria comment="Win10 and vulnerable file version" operator="AND">
+              <criteria comment="Win10 1511" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+                <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.6.1658.0" test_ref="oval:org.cisecurity:tst:5309" />
+            </criteria>
+            <criteria comment="1607/2016 + vulnerable file version" operator="AND">
+              <criteria comment="1607/2016" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+                <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+                <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.7.2612.0" test_ref="oval:org.cisecurity:tst:5312" />
+            </criteria>
+            <criteria comment="Win10 and vulnerable file version" operator="AND">
+              <criteria comment="Win10 1703" operator="OR">
+                <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+                <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+              </criteria>
+              <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.7.2612.0" test_ref="oval:org.cisecurity:tst:5312" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment=".Net Framework 4.7.1 and vulnerable file version" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.7.1 is installed" definition_ref="oval:org.cisecurity:def:3929" />
+          <criteria comment="1709 and vulnerable files versions" operator="AND">
+            <criteria comment="1709" operator="OR">
+              <extend_definition comment="Microsoft Windows 10 Version 1709 (x86) is installed" definition_ref="oval:org.cisecurity:def:3479" />
+              <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
+            </criteria>
+            <criterion comment="Check if the version of System.ServiceModel.dll is less than 4.7.2612.0" test_ref="oval:org.cisecurity:tst:5312" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4042" class="vulnerability" version="1">
+      <metadata>
+        <title>A use-after-free vulnerability in Adobe Flash Player 28.0.0.137 and earlier versions - CVE-2018-4878</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2018-4878" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4878" source="CVE" />
+        <reference ref_id="APSB18-03" ref_url="https://helpx.adobe.com/security/products/flash-player/apsb18-03.html" source="APSB18-03" />
+        <description>A use-after-free vulnerability was discovered in Adobe Flash Player before 28.0.0.161. This vulnerability occurs due to a dangling pointer in the Primetime SDK related to the handling of listener objects. A successful attack can lead to arbitrary code execution. This was exploited in the wild in January and February 2018.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T12:46:10+08:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable Adobe Flash Player + Vulnerable Version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than or equal 28.0.0.137" test_ref="oval:org.cisecurity:tst:5410" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than or equal 28.0.0.137" test_ref="oval:org.cisecurity:tst:5409" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than or equal 28.0.0.137" test_ref="oval:org.cisecurity:tst:5411" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4043" class="vulnerability" version="1">
+      <metadata>
+        <title>Manually entered blob URL can be accessed by subsequent private browsing tabs - CVE-2018-5108</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5108" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5108" source="CVE" />
+        <description>A Blob URL can violate origin attribute segregation, allowing it to be accessed from a private browsing tab and for data to be passed between the private browsing tab and a normal tab. This could allow for the leaking of private information specific to the private browsing context. This issue is mitigated by the requirement that the user enter the Blob URL manually in order for the access violation to occur.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4044" class="vulnerability" version="1">
+      <metadata>
+        <title>Use-after-free in Web Workers - CVE-2018-5092</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5092" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5092" source="CVE" />
+        <description>A use-after-free vulnerability can occur when the thread for a Web Worker is freed from memory prematurely instead of from memory in the main thread while cancelling fetch operations.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4045" class="vulnerability" version="1">
+      <metadata>
+        <title>Buffer overflow in WebAssembly with garbage collection on uninitialized memory - CVE-2018-5094</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5094" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5094" source="CVE" />
+        <description>A heap buffer overflow vulnerability may occur in WebAssembly when shrinkElements is called followed by garbage collection on memory that is now uninitialized. This results in a potentially exploitable crash.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4046" class="vulnerability" version="1">
+      <metadata>
+        <title>The old value of a cookie changed to HttpOnly remains accessible to scripts - CVE-2018-5114</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5114" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5114" source="CVE" />
+        <description>If an existing cookie is changed to be HttpOnly while a document is open, the original value remains accessible through script until that document is closed. Network requests correctly use the changed HttpOnly cookie.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4047" class="vulnerability" version="1">
+      <metadata>
+        <title>Background network requests can open HTTP authentication in unrelated foreground tabs - CVE-2018-5115</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5115" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5115" source="CVE" />
+        <description>If an HTTP authentication prompt is triggered by a background network request from a page or extension, it is displayed over the currently loaded foreground page. Although the prompt contains the real domain making the request, this can result in user confusion about the originating site of the authentication request and may cause users to mistakenly send private credential information to a third party site.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4048" class="vulnerability" version="1">
+      <metadata>
+        <title>Extension development tools panel can open a non-relative URL in the panel - CVE-2018-5112</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5112" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5112" source="CVE" />
+        <description>Development Tools panels of an extension are required to load URLs for the panels as relative URLs from the extension manifest file but this requirement was not enforced in all instances. This could allow the development tools panel for the extension to load a URL that it should not be able to access, including potentially privileged pages.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4049" class="vulnerability" version="1">
+      <metadata>
+        <title>Developer Tools can expose style editor information cross-origin through service worker - CVE-2018-5106</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5106" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5106" source="CVE" />
+        <description>Style editor traffic in the Developer Tools can be routed through a service worker hosted on a third party website if a user selects error links when these tools are open. This can allow style editor information used within Developer Tools to leak cross-origin.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4050" class="vulnerability" version="1">
+      <metadata>
+        <title>WebExtensions can save and execute files on local file system without user prompts - CVE-2018-5105</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5105" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5105" source="CVE" />
+        <description>WebExtensions can bypass user prompts to first save and then open an arbitrarily downloaded file. This can result in an executable file running with local user privileges without explicit user consent.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4051" class="vulnerability" version="1">
+      <metadata>
+        <title>Buffer overflow in WebAssembly during Memory/Table resizing - CVE-2018-5093</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5093" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5093" source="CVE" />
+        <description>A heap buffer overflow vulnerability may occur in WebAssembly during Memory/Table resizing, resulting in a potentially exploitable crash.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4052" class="vulnerability" version="1">
+      <metadata>
+        <title>Use-after-free when IsPotentiallyScrollable arguments are freed from memory - CVE-2018-5100</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5100" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5100" source="CVE" />
+        <description>A use-after-free vulnerability can occur when arguments passed to the IsPotentiallyScrollable function are freed while still in use by scripts. This results in a potentially exploitable crash.
+						</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4053" class="vulnerability" version="1">
+      <metadata>
+        <title>WebExtensions can load non-HTTPS pages with browser.identity.launchWebAuthFlow - CVE-2018-5113</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5113" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5113" source="CVE" />
+        <description>The browser.identity.launchWebAuthFlow function of WebExtensions is only allowed to load content over https: but this requirement was not properly enforced. This can potentially allow privileged pages to be loaded by the extension.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4054" class="vulnerability" version="1">
+      <metadata>
+        <title>URL spoofing in addressbar through drag and drop - CVE-2018-5111</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5111" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5111" source="CVE" />
+        <description>When the text of a specially formatted URL is dragged to the addressbar from page content, the displayed URL can 
+							be spoofed to show a different site than the one loaded. This allows for phishing attacks where a malicious page 
+							can spoof the identify of another site.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4055" class="vulnerability" version="1">
+      <metadata>
+        <title>Printing process will follow symlinks for local file access - CVE-2018-5107</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5107" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5107" source="CVE" />
+        <description>The printing process can bypass local access protections to read files available through symlinks, bypassing local file restrictions. The printing process requires files in a specific format so arbitrary data cannot be read but it is possible that some local file information could be exposed.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4056" class="vulnerability" version="1">
+      <metadata>
+        <title>Use-after-free with floating first-letter style elements - CVE-2018-5101</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5101" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5101" source="CVE" />
+        <description>A use-after-free vulnerability can occur when manipulating floating first-letter style elements, resulting in a potentially exploitable crash.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4057" class="vulnerability" version="1">
+      <metadata>
+        <title>Audio capture prompts and starts with incorrect origin attribution - CVE-2018-5109</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Mozilla Firefox</product>
+        </affected>
+        <reference ref_id="CVE-2018-5109" ref_url="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5109" source="CVE" />
+        <description>An audio capture session can started under an incorrect origin from the site making the capture request. Users are still prompted to allow the request but the prompt can display the wrong origin, leading to user confusion about which site is making the request to capture an audio stream.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T21:43:10+08:00">
+              <contributor organization="DTCC">Alexander Chua</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Mozilla Firefox Mainline release is installed + version" operator="AND">
+        <extend_definition comment="Mozilla Firefox Mainline release is installed" definition_ref="oval:org.mitre.oval:def:22259" />
+        <criterion comment="Check if Mozilla Firefox Mainline version less than 58.0.0" test_ref="oval:org.cisecurity:tst:5412" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:627" class="inventory" version="13">
       <metadata>
         <title>Microsoft Internet Explorer 7 is installed</title>
@@ -11194,6 +12190,42 @@
         <criterion comment="Windows 7 is installed" test_ref="oval:org.mitre.oval:tst:10792" />
         <criterion comment="a version of Windows for the x86 architecture is installed" test_ref="oval:org.mitre.oval:tst:3823" />
         <criterion comment="Service Pack 1 is installed" test_ref="oval:org.mitre.oval:tst:41933" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.mitre.oval:def:12331" class="inventory" version="28">
+      <metadata>
+        <title>OpenSSL is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 2000</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Vista</platform>
+          <platform>Microsoft Windows XP</platform>
+          <product>OpenSSL</product>
+        </affected>
+        <reference ref_id="cpe:/a:openssl:openssl" source="CPE" />
+        <description>OpenSSL is installed</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2010-12-21T12:18:17">
+              <contributor organization="SecPod Technologies">SecPod Team</contributor>
+            </submitted>
+            <status_change date="2010-12-21T11:27:06.517-05:00">DRAFT</status_change>
+            <status_change date="2011-01-10T04:00:15.844-05:00">INTERIM</status_change>
+            <status_change date="2011-01-31T04:00:08.283-05:00">ACCEPTED</status_change>
+            <modified comment="EDITED oval:org.mitre.oval:tst:42011 - Spelling mistakes fixed in def:12331 and associated comment updates." date="2011-05-02T19:02:00.099-04:00">
+              <contributor organization="G2, Inc.">Shane Shaffer</contributor>
+            </modified>
+            <status_change date="2011-05-02T19:04:56.229-04:00">INTERIM</status_change>
+            <status_change date="2011-05-23T04:00:10.168-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Check if OpenSSL is installed" test_ref="oval:org.mitre.oval:tst:42011" />
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:12454" class="inventory" version="25">
@@ -13829,6 +14861,56 @@
       <object object_ref="oval:org.mitre.oval:obj:30347" />
       <state state_ref="oval:org.cisecurity:ste:3267" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:4481" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2m on ProgramFilesDir (x86)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38707" />
+      <state state_ref="oval:org.cisecurity:ste:3270" />
+      <state state_ref="oval:org.cisecurity:ste:3268" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4482" check="at least one" check_existence="at_least_one_exists" comment="Check if OpenSSL 1.1.0 version is greater than or equal 1.1.0 and less than 1.1.0g (x86)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:39008" />
+      <state state_ref="oval:org.cisecurity:ste:3271" />
+      <state state_ref="oval:org.cisecurity:ste:3269" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4483" check="at least one" check_existence="at_least_one_exists" comment="Check if OpenSSL 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2m (x86)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:39008" />
+      <state state_ref="oval:org.cisecurity:ste:3270" />
+      <state state_ref="oval:org.cisecurity:ste:3268" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4484" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2m on ProgramFilesDir" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38542" />
+      <state state_ref="oval:org.cisecurity:ste:3270" />
+      <state state_ref="oval:org.cisecurity:ste:3268" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4485" check="at least one" check_existence="at_least_one_exists" comment="Check if OpenSSL 1.1.0 version is greater than or equal 1.1.0 and less than 1.1.0g" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38735" />
+      <state state_ref="oval:org.cisecurity:ste:3271" />
+      <state state_ref="oval:org.cisecurity:ste:3269" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4486" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.1.0 version is greater than or equal 1.1.0 and less than 1.1.0g on System32 and SysWOW64" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:39247" />
+      <state state_ref="oval:org.cisecurity:ste:3271" />
+      <state state_ref="oval:org.cisecurity:ste:3269" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4487" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.1.0 version is greater than or equal 1.1.0 and less than 1.1.0g on ProgramFilesDir (x86)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38707" />
+      <state state_ref="oval:org.cisecurity:ste:3271" />
+      <state state_ref="oval:org.cisecurity:ste:3269" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4488" check="at least one" check_existence="at_least_one_exists" comment="Check if OpenSSL 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2m" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38735" />
+      <state state_ref="oval:org.cisecurity:ste:3270" />
+      <state state_ref="oval:org.cisecurity:ste:3268" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4489" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.1.0 version is greater than or equal 1.1.0 and less than 1.1.0g on ProgramFilesDir" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38542" />
+      <state state_ref="oval:org.cisecurity:ste:3271" />
+      <state state_ref="oval:org.cisecurity:ste:3269" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:4490" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2m on System32 and SysWOW64" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:39247" />
+      <state state_ref="oval:org.cisecurity:ste:3270" />
+      <state state_ref="oval:org.cisecurity:ste:3268" />
+    </file_test>
     <file_test id="oval:org.cisecurity:tst:4577" check="at least one" check_existence="at_least_one_exists" comment="Check if SQL Server 64-bit instances with version greater than 2015.130.0.0 and less than 2016.140.0.0 exist" version="1">
       <object object_ref="oval:org.cisecurity:obj:869" />
       <state state_ref="oval:org.cisecurity:ste:3361" />
@@ -14836,6 +15918,92 @@
       <object object_ref="oval:org.mitre.oval:obj:15888" />
       <state state_ref="oval:org.cisecurity:ste:3898" />
     </registry_test>
+    <file_test id="oval:org.cisecurity:tst:5373" check="all" check_existence="at_least_one_exists" comment="Check if Flash*.ocx version is less than 27.0.0.187" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:41861" />
+      <state state_ref="oval:org.cisecurity:ste:3900" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:5374" check="at least one" check_existence="at_least_one_exists" comment="Check if Adobe Flash Player version is less than 27.0.0.187" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:7290" />
+      <state state_ref="oval:org.cisecurity:ste:3899" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:5375" check="at least one" check_existence="at_least_one_exists" comment="Check if Pepper Flash for Google Chrome version is less than 27.0.0.187" version="1">
+      <object object_ref="oval:org.cisecurity:obj:176" />
+      <state state_ref="oval:org.cisecurity:ste:3900" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5376" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1h on ProgramFilesDir (x86)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38707" />
+      <state state_ref="oval:org.cisecurity:ste:1040" />
+      <state state_ref="oval:org.mitre.oval:ste:31537" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5377" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n on System32 and SysWOW64" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:39247" />
+      <state state_ref="oval:org.cisecurity:ste:1042" />
+      <state state_ref="oval:org.cisecurity:ste:3901" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5378" check="at least one" check_existence="at_least_one_exists" comment="Check if OpenSSL 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1h (x86)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:39008" />
+      <state state_ref="oval:org.cisecurity:ste:1040" />
+      <state state_ref="oval:org.mitre.oval:ste:31537" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5379" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n on ProgramFilesDir" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38542" />
+      <state state_ref="oval:org.cisecurity:ste:1042" />
+      <state state_ref="oval:org.cisecurity:ste:3901" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5380" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1h on System32 and SysWOW64" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:39247" />
+      <state state_ref="oval:org.cisecurity:ste:1040" />
+      <state state_ref="oval:org.mitre.oval:ste:31537" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5381" check="at least one" check_existence="at_least_one_exists" comment="Check if OpenSSL 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38735" />
+      <state state_ref="oval:org.cisecurity:ste:1042" />
+      <state state_ref="oval:org.cisecurity:ste:3901" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5382" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n on ProgramFilesDir (x86)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38707" />
+      <state state_ref="oval:org.cisecurity:ste:1042" />
+      <state state_ref="oval:org.cisecurity:ste:3901" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5383" check="at least one" check_existence="at_least_one_exists" comment="Check if OpenSSL 1.0.2 version is greater than or equal 1.0.2 and less than 1.0.2n (x86)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:39008" />
+      <state state_ref="oval:org.cisecurity:ste:1042" />
+      <state state_ref="oval:org.cisecurity:ste:3901" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5384" check="at least one" check_existence="at_least_one_exists" comment="Check if ssleay32.dll 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1h on ProgramFilesDir" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38542" />
+      <state state_ref="oval:org.cisecurity:ste:1040" />
+      <state state_ref="oval:org.mitre.oval:ste:31537" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5385" check="at least one" check_existence="at_least_one_exists" comment="Check if OpenSSL 1.0.1 version is greater than or equal 1.0.1 and less than 1.0.1h" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:38735" />
+      <state state_ref="oval:org.cisecurity:ste:1040" />
+      <state state_ref="oval:org.mitre.oval:ste:31537" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:5407" check="at least one" check_existence="at_least_one_exists" comment="Check if Google Chrome version less than 62.0.3202.75" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:15888" />
+      <state state_ref="oval:org.cisecurity:ste:3923" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:5408" check="all" check_existence="at_least_one_exists" comment="Check if the version of System.ServiceModel.dll is less than 3.0.4506.8834" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23939" />
+      <state state_ref="oval:org.cisecurity:ste:3924" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5409" check="at least one" check_existence="at_least_one_exists" comment="Check if Pepper Flash for Google Chrome version is less than or equal 28.0.0.137" version="1">
+      <object object_ref="oval:org.cisecurity:obj:176" />
+      <state state_ref="oval:org.cisecurity:ste:3926" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:5410" check="at least one" check_existence="at_least_one_exists" comment="Check if Adobe Flash Player version is less than or equal 28.0.0.137" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:7290" />
+      <state state_ref="oval:org.cisecurity:ste:3925" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:5411" check="all" check_existence="at_least_one_exists" comment="Check if Flash*.ocx version is less than or equal 28.0.0.137" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:41861" />
+      <state state_ref="oval:org.cisecurity:ste:3926" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:5412" check="all" check_existence="at_least_one_exists" comment="Check if Mozilla Firefox Mainline version less than 58.0.0" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:30321" />
+      <state state_ref="oval:org.cisecurity:ste:3927" />
+    </file_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="4">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
     </file_test>
@@ -14947,6 +16115,10 @@
     <registry_test id="oval:org.mitre.oval:tst:41933" check="at least one" check_existence="at_least_one_exists" comment="Service Pack 1 is installed" version="4">
       <object object_ref="oval:org.mitre.oval:obj:15897" />
       <state state_ref="oval:org.mitre.oval:ste:12087" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:42011" check="all" check_existence="at_least_one_exists" comment="Check if OpenSSL is installed" version="3">
+      <object object_ref="oval:org.mitre.oval:obj:15324" />
+      <state state_ref="oval:org.mitre.oval:ste:11783" />
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:42024" check="all" check_existence="at_least_one_exists" comment="Is the Microsoft .NET Framework 3.5 installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:15698" />
@@ -15135,6 +16307,9 @@
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:112817" check="at least one" check_existence="at_least_one_exists" comment="Java SE Development Kit 8 is installed" version="1">
       <object object_ref="oval:org.mitre.oval:obj:38433" />
+    </registry_test>
+    <registry_test id="oval:org.mitre.oval:tst:113875" check="all" check_existence="at_least_one_exists" comment="OpenSSL (32_bit) is installed" version="2">
+      <object object_ref="oval:org.mitre.oval:obj:38779" />
     </registry_test>
     <registry_test id="oval:org.mitre.oval:tst:114158" check="all" check_existence="at_least_one_exists" comment="Check if Sharepoint server 2013 SP1 is installed" version="2">
       <object object_ref="oval:org.mitre.oval:obj:39142" />
@@ -15858,6 +17033,11 @@
         <filter action="include">oval:org.mitre.oval:ste:21066</filter>
       </set>
     </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:15324" comment="Object holds if OpenSSL is installed" version="3">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">^SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\OpenSSL .*$</key>
+      <name>DisplayName</name>
+    </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:15382" comment="The registry key to check if Google Chrome is installed (individual users install)" version="31">
       <hive>HKEY_USERS</hive>
       <key var_check="at least one" var_ref="oval:org.mitre.oval:var:1249" />
@@ -16562,11 +17742,31 @@
         <object_reference>oval:org.mitre.oval:obj:39396</object_reference>
       </set>
     </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:38542" comment="The directory of ssleay32.dll library" version="2">
+      <behaviors max_depth="-1" recurse_direction="down" />
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:1556" />
+      <filename>ssleay32.dll</filename>
+    </file_object>
     <registry_object id="oval:org.mitre.oval:obj:38575" comment="Object holds the full path to Java Runtime Environment 8's JavaHome" version="1">
       <set>
         <object_reference>oval:org.mitre.oval:obj:38845</object_reference>
         <object_reference>oval:org.mitre.oval:obj:38913</object_reference>
       </set>
+    </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:38707" comment="The directory of ssleay32.dll library (32_bit)" version="4">
+      <behaviors max_depth="-1" recurse_direction="down" />
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:1231" />
+      <filename>ssleay32.dll</filename>
+    </file_object>
+    <file_object id="oval:org.mitre.oval:obj:38735" comment="The directory of ssleay32.dll library as part of OpenSSL product" version="2">
+      <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1246" />
+      <filename>ssleay32.dll</filename>
+    </file_object>
+    <registry_object id="oval:org.mitre.oval:obj:38779" comment="This registry key identifies the OpenSSL InstallLocation (32_bit)" version="2">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">^SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\.*OpenSSL.*$</key>
+      <name>InstallLocation</name>
     </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:38845" comment="Object holds the full path to Java Runtime Environment 8's JavaHome (windows_view='32_bit')" version="1">
       <behaviors windows_view="32_bit" />
@@ -16574,11 +17774,28 @@
       <key operation="pattern match">^SOFTWARE\\JavaSoft\\Java Runtime Environment\\1\.8\.\d(_\d+)?$</key>
       <name>JavaHome</name>
     </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:38897" comment="This registry key identifies the OpenSSL InstallLocation" version="2">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">^SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\.*OpenSSL.*$</key>
+      <name>InstallLocation</name>
+    </registry_object>
     <registry_object id="oval:org.mitre.oval:obj:38913" comment="Object holds the full path to Java Runtime Environment 8's JavaHome (windows_view='64_bit' - default)" version="1">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key operation="pattern match">^SOFTWARE\\JavaSoft\\Java Runtime Environment\\1\.8\.\d(_\d+)?$</key>
       <name>JavaHome</name>
     </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:39008" comment="The directory of ssleay32.dll library as part of OpenSSL product (32_bit)" version="2">
+      <path var_check="at least one" var_ref="oval:org.mitre.oval:var:984" />
+      <filename>ssleay32.dll</filename>
+    </file_object>
+    <file_object id="oval:org.mitre.oval:obj:39019" comment="The directory of ssleay32.dll library (System32) as part of OpenSSL product" version="54">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
+      <filename>ssleay32.dll</filename>
+    </file_object>
+    <file_object id="oval:org.mitre.oval:obj:39047" comment="The directory of ssleay32.dll library (syswow64) as part of OpenSSL product" version="27">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:202" />
+      <filename>ssleay32.dll</filename>
+    </file_object>
     <registry_object id="oval:org.mitre.oval:obj:39142" comment="Registry holds if sharepoint server 2013 SP1 is installed" version="2">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key operation="pattern match">^SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\\{90150000-1014-0000-1000-0000000FF1CE}_Office15\.OSERVER\{[\w\-]+\}$</key>
@@ -16589,6 +17806,12 @@
       <key operation="pattern match">^SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\\{90150000-101F-0401-1000-0000000FF1CE\}_Office15\.WacServer\-\{[\w\-]+\}$</key>
       <name>DisplayName</name>
     </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:39247" comment="The directory of ssleay32.dll library as part of OpenSSL product" version="54">
+      <set>
+        <object_reference>oval:org.mitre.oval:obj:39019</object_reference>
+        <object_reference>oval:org.mitre.oval:obj:39047</object_reference>
+      </set>
+    </file_object>
     <registry_object id="oval:org.mitre.oval:obj:39396" comment="Object holds the full path to Java Development Kit 8's JavaHome (windows_view='32_bit')" version="1">
       <behaviors windows_view="32_bit" />
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -16697,6 +17920,12 @@
     <file_state id="oval:org.cisecurity:ste:909" comment="Version is greater than or equal 7.0" version="1">
       <version datatype="version" operation="greater than or equal">7.0</version>
     </file_state>
+    <file_state id="oval:org.cisecurity:ste:1040" comment="State matches version greater than or equal 1.0.1.0" version="1">
+      <version datatype="version" operation="greater than or equal">1.0.1.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:1042" comment="State matches version greater than or equal 1.0.2.0" version="2">
+      <version datatype="version" operation="greater than or equal">1.0.2.0</version>
+    </file_state>
     <file_state id="oval:org.cisecurity:ste:1444" comment="State matches if version greater than or equal 8.0" version="3">
       <version datatype="version" operation="greater than or equal">8.0</version>
     </file_state>
@@ -16756,6 +17985,18 @@
     </file_state>
     <file_state id="oval:org.cisecurity:ste:3267" comment="State matches version greater than or equal 52.0.0" version="1">
       <product_version datatype="version" operation="greater than or equal">52.0.0</product_version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3268" comment="State matches version less than 1.0.2m (1.0.2.13)" version="1">
+      <version datatype="version" operation="less than">1.0.2.13</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3269" comment="State matches version less than 1.1.0g (1.1.0.7)" version="1">
+      <version datatype="version" operation="less than">1.1.0.7</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3270" comment="State matches version greater than or equal 1.0.2.0" version="1">
+      <version datatype="version" operation="greater than or equal">1.0.2.0</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3271" comment="State matches version greater than or equal 1.1.0.0" version="1">
+      <version datatype="version" operation="greater than or equal">1.1.0.0</version>
     </file_state>
     <file_state id="oval:org.cisecurity:ste:3302" comment="State matches if version is greater than or equal 16.0.8201.0000" version="1">
       <version datatype="version" operation="greater than or equal">16.0.8201.0000</version>
@@ -17309,6 +18550,30 @@
     <registry_state id="oval:org.cisecurity:ste:3898" comment="Version is less than 62.0.3202.74" version="1">
       <value datatype="version" operation="less than">62.0.3202.74</value>
     </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:3899" comment="State holds if the version is less than 27.0.0.187" version="1">
+      <value datatype="version" operation="less than">27.0.0.187</value>
+    </registry_state>
+    <file_state id="oval:org.cisecurity:ste:3900" comment="State holds if the version is less than 27.0.0.187" version="1">
+      <version datatype="version" operation="less than">27.0.0.187</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3901" comment="State matches version less than 1.0.2n (1.0.2.14)" version="1">
+      <version datatype="version" operation="less than">1.0.2.14</version>
+    </file_state>
+    <registry_state id="oval:org.cisecurity:ste:3923" comment="Version is less than 62.0.3202.75" version="1">
+      <value datatype="version" operation="less than">62.0.3202.75</value>
+    </registry_state>
+    <file_state id="oval:org.cisecurity:ste:3924" comment="State matches version less than 3.0.4506.8834" version="1">
+      <version datatype="version" operation="less than">3.0.4506.8834</version>
+    </file_state>
+    <registry_state id="oval:org.cisecurity:ste:3925" comment="State holds if the version is less than or equal 28.0.0.137" version="1">
+      <value datatype="version" operation="less than or equal">28.0.0.137</value>
+    </registry_state>
+    <file_state id="oval:org.cisecurity:ste:3926" comment="State holds if the version is less than or equal 28.0.0.137" version="1">
+      <version datatype="version" operation="less than or equal">28.0.0.137</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:3927" comment="State matches version less than 58.0.0" version="1">
+      <product_version datatype="version" operation="less than">58.0.0</product_version>
+    </file_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="3">
       <family operation="case insensitive equals">windows</family>
     </family_state>
@@ -17356,6 +18621,9 @@
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:6737" comment="MySQL 5.5 check" version="1">
       <value>MySQL Server 5.5</value>
+    </registry_state>
+    <registry_state id="oval:org.mitre.oval:ste:11783" comment="State matches if OpenSSL is installed" version="3">
+      <value operation="pattern match">^OpenSSL .*$</value>
     </registry_state>
     <registry_state id="oval:org.mitre.oval:ste:11937" comment="The registry key matches with any version of Google Chrome" version="4">
       <value operation="pattern match">^Google Chrome.*$</value>
@@ -17450,6 +18718,9 @@
     <registry_state id="oval:org.mitre.oval:ste:31306" comment="State matches if Web Apps Server 2013 SP1 is installed" version="1">
       <value operation="pattern match">^Service Pack 1 for Microsoft Office Web Apps Server .*$</value>
     </registry_state>
+    <file_state id="oval:org.mitre.oval:ste:31537" comment="State matches if the version is less than 1.0.1h" version="1">
+      <version datatype="version" operation="less than">1.0.1.8</version>
+    </file_state>
     <registry_state id="oval:org.mitre.oval:ste:33569" comment="MySQL 5.6 check" version="1">
       <value>MySQL Server 5.6</value>
     </registry_state>
@@ -17656,6 +18927,9 @@
         <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:24007" />
       </regex_capture>
     </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:984" comment="Variable holds the path to OpenSSL install directory (x86)" datatype="string" version="2">
+      <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:38779" />
+    </local_variable>
     <local_variable id="oval:org.mitre.oval:var:995" comment="The shared Office 2010 directory for both 32bit and 64bit" datatype="string" version="7">
       <concat>
         <object_component item_field="value" object_ref="oval:org.cisecurity:obj:322" />
@@ -17687,6 +18961,9 @@
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:1231" comment="Variable holds the path to Program Files (x86)" datatype="string" version="4">
       <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:309" />
+    </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:1246" comment="Variable holds the path to OpenSSL install directory" datatype="string" version="2">
+      <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:38897" />
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:1249" comment="Full key path of Google Chrome uninstall registry key under HKEY_USERS" datatype="string" version="28">
       <concat>
