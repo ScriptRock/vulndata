@@ -22866,14 +22866,49 @@
     <vuln:summary>The Linux kernel version 3.3-rc1 and later is affected by a vulnerability lies in the processing of incoming L2CAP commands - ConfigRequest, and ConfigResponse messages. This info leak is a result of uninitialized stack variables that may be returned to an attacker in their uninitialized state. By manipulating the code flows that precede the handling of these configuration messages, an attacker can also gain some control over which data will be held in the uninitialized stack variables. This can allow him to bypass KASLR, and stack canaries protection - as both pointers and stack canaries may be leaked in this manner. Combining this vulnerability (for example) with the previously disclosed RCE vulnerability in L2CAP configuration parsing (CVE-2017-1000251) may allow an attacker to exploit the RCE against kernels which were built with the above mitigations. These are the specifics of this vulnerability: In the function l2cap_parse_conf_rsp and in the function l2cap_parse_conf_req the following variable is declared without initialization: struct l2cap_conf_efs efs; In addition, when parsing input configuration parameters in both of these functions, the switch case for handling EFS elements may skip the memcpy call that will write to the efs variable: ... case L2CAP_CONF_EFS: if (olen == sizeof(efs)) memcpy(&amp;efs, (void *)val, olen); ... The olen in the above if is attacker controlled, and regardless of that if, in both of these functions the efs variable would eventually be added to the outgoing configuration request that is being built: l2cap_add_conf_opt(&amp;ptr, L2CAP_CONF_EFS, sizeof(efs), (unsigned long) &amp;efs); So by sending a configuration request, or response, that contains an L2CAP_CONF_EFS element, but with an element length that is not sizeof(efs) - the memcpy to the uninitialized efs variable can be avoided, and the uninitialized variable would be returned to the attacker (16 bytes).</vuln:summary>
   </entry>
   <entry id="CVE-2017-1000411">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:opendaylight:opendaylight:boron" />
+        <cpe-lang:fact-ref name="cpe:/a:opendaylight:opendaylight:carbon" />
+        <cpe-lang:fact-ref name="cpe:/a:opendaylight:opendaylight:nitrogen" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:opendaylight:openflow:boron::~~~opendaylight~~" />
+        <cpe-lang:fact-ref name="cpe:/a:opendaylight:openflow:carbon::~~~opendaylight~~" />
+        <cpe-lang:fact-ref name="cpe:/a:opendaylight:openflow:nitrogen::~~~opendaylight~~" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:opendaylight:opendaylight:boron</vuln:product>
+      <vuln:product>cpe:/a:opendaylight:opendaylight:carbon</vuln:product>
+      <vuln:product>cpe:/a:opendaylight:opendaylight:nitrogen</vuln:product>
+      <vuln:product>cpe:/a:opendaylight:openflow:boron::~~~opendaylight~~</vuln:product>
+      <vuln:product>cpe:/a:opendaylight:openflow:carbon::~~~opendaylight~~</vuln:product>
+      <vuln:product>cpe:/a:opendaylight:openflow:nitrogen::~~~opendaylight~~</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2017-1000411</vuln:cve-id>
     <vuln:published-datetime>2018-01-31T09:29:00.420-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-02-01T21:29:00.497-05:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-02-28T12:23:45.200-05:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-399" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>BID</vuln:source>
       <vuln:reference href="http://www.securityfocus.com/bid/102736" xml:lang="en">102736</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>MLIST</vuln:source>
       <vuln:reference href="http://seclists.org/oss-sec/2018/q1/52" xml:lang="en">[oss-security] 20180116 opendaylight-advisory: Multiple "expired" flows consume the memory resource of CONFIG DS</vuln:reference>
     </vuln:references>
