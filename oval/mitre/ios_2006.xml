@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions>
+  <definitions>
+    <definition id="oval:org.cisecurity:def:4199" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS VTP VLAN Buffer Overflow Vulnerability</title>
+        <affected family="ios">
+          <platform>Cisco IOS</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20060913-cve-2006-4776" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20060913-CVE-2006-4776" source="Vendor Advisory" />
+        <reference ref_id="CVE-2006-4776" source="CVE" />
+        <description>Cisco IOS contains a vulnerability that could allow an authenticated, remote attacker to execute arbitrary code.  The vulnerability exists due to improper input validation by the VTP feature of Cisco IOS. An authenticated, remote attacker could exploit this vulnerability by submitting a malicious VTP summary advertisement to an affected system. This action could result in a buffer overflow, resetting the affected system or allowing the attacker to execute arbitrary code.  Cisco confirmed this vulnerability in a security response and released updated software.  To exploit this vulnerability, the attacker must be able to craft a VTP summary advertisement packet that specifies a domain that matches the domain of the target system. This knowledge may be difficult for an external attacker to determine. Additionally, the attacker must send the packet in such a way that it arrives at the target system on a trunk enabled port. To do this, the attacker must determine an appropriate destination address for a vulnerable target. Depending on local network configuration, reaching the target system on a trunk enabled port may limit the systems from which the attacker can stage an attack.  Because standard suggested practice is to set a VTP domain password, the attacker must also know or guess this password to exploit this  vulnerability.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:13:08">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="IOS version is affected" test_ref="oval:org.cisecurity:tst:5718" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4280" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco VLAN Trunking Protocol Denial of Service Vulnerability</title>
+        <affected family="ios">
+          <platform>Cisco IOS</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20060913-cve-2006-4774" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20060913-CVE-2006-4774" source="Vendor Advisory" />
+        <reference ref_id="CVE-2006-4774" source="CVE" />
+        <description>Cisco IOS contains a vulnerability in the VLAN Trunking Protocol (VTP) that could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition.  The vulnerability exists because the VTP feature in several versions of Cisco IOS software does not properly handle malformed packets sent from the local network. An attacker residing on the local network segment could exploit this vulnerability via a crafted summary packet to cause a DoS condition.  Cisco has confirmed this vulnerability in a security advisory and released updated software to correct it.  To exploit this vulnerability, an attacker must reside on the local network segment and send a crafted summary packet to a device supporting VTP. The device must be configured as either client or server for VTP. Additionally, the packets must be received on a trunk enabled port. Switches configured with a VTP domain password are still affected.  The switch receiving the packet generates syslog messages for either watchdog timeout or CPU hog for process VLAN Manager prior to the software reset. Exploitation causes a DoS condition only until the device reboots. Repeated attacks could cause an extended DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:13:08">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Affected IOS configuration" test_ref="oval:org.cisecurity:tst:6076" />
+        <criterion comment="IOS version is affected" test_ref="oval:org.cisecurity:tst:5843" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4533" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS VTP Integer Wrap Denial of Service Vulnerability</title>
+        <affected family="ios">
+          <platform>Cisco IOS</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20060913-cve-2006-4775" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20060913-CVE-2006-4775" source="Vendor Advisory" />
+        <reference ref_id="CVE-2006-4775" source="CVE" />
+        <description>Cisco IOS and Cisco Catalyst OS contain an integer overflow vulnerability that could allow an authenticated, remote attacker to cause affected devices to stop processing configuration changes, possibly resulting in a denial of service (DoS) condition.  This vulnerability exists due to an integer overflow error within the statistics counters. An authenticated, remote attacker could exploit this vulnerability by sending a spoofed VTP summary packet to the affected device, causing the VTP statistics parameter to wrap to a negative number. This condition could prevent the affected device from processing further configuration changes. Under some circumstances, this could prevent the device from responding to further requests, resulting in a DoS  condition.  Cisco has confirmed this vulnerability in a security response and released updated software to correct it.  To exploit this vulnerability, an attacker must have access to the local network to spoof the malicious request. Additionally, VTP configurations that use an authentication password within the VTP domain will require the attacker to know the domain password to successfully exploit the vulnerability. Only devices with valid VTP configurations are affected by this vulnerability.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:13:08">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Affected IOS configuration" test_ref="oval:org.cisecurity:tst:5993" />
+        <criterion comment="IOS version is affected" test_ref="oval:org.cisecurity:tst:6113" />
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <version55_test id="oval:org.cisecurity:tst:5718" check="at least one" comment="IOS version is affected" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6804" />
+      <state state_ref="oval:org.cisecurity:ste:4155" />
+    </version55_test>
+    <version55_test id="oval:org.cisecurity:tst:5843" check="at least one" comment="IOS version is affected" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6804" />
+      <state state_ref="oval:org.cisecurity:ste:4053" />
+    </version55_test>
+    <global_test id="oval:org.cisecurity:tst:5993" check="all" comment="Affected IOS configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1073" />
+    </global_test>
+    <global_test id="oval:org.cisecurity:tst:6076" check="all" comment="Affected IOS configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1115" />
+    </global_test>
+    <version55_test id="oval:org.cisecurity:tst:6113" check="at least one" comment="IOS version is affected" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6804" />
+      <state state_ref="oval:org.cisecurity:ste:4102" />
+    </version55_test>
+  </tests>
+  <objects>
+    <global_object id="oval:org.cisecurity:obj:1073" comment="Global command `^(set\s+)?vtp\s+(mode\s+)?(client|server|transparent)`" version="1">
+      <global_command operation="pattern match">^(set\s+)?vtp\s+(mode\s+)?(client|server|transparent)</global_command>
+    </global_object>
+    <global_object id="oval:org.cisecurity:obj:1115" comment="Global command `^(set\s+)?vtp\s+(mode\s+)?(client|server)`" version="1">
+      <global_command operation="pattern match">^(set\s+)?vtp\s+(mode\s+)?(client|server)</global_command>
+    </global_object>
+    <version55_object id="oval:org.mitre.oval:obj:6804" version="1" />
+  </objects>
+  <states>
+    <version55_state id="oval:org.cisecurity:ste:4053" comment="Affected IOS versions" version="1">
+      <version_string var_check="at least one" var_ref="oval:org.cisecurity:var:226" />
+    </version55_state>
+    <version55_state id="oval:org.cisecurity:ste:4102" comment="Affected IOS versions" version="1">
+      <version_string var_check="at least one" var_ref="oval:org.cisecurity:var:211" />
+    </version55_state>
+    <version55_state id="oval:org.cisecurity:ste:4155" comment="Affected IOS versions" version="1">
+      <version_string var_check="at least one" var_ref="oval:org.cisecurity:var:320" />
+    </version55_state>
+  </states>
+  <variables>
+    <constant_variable id="oval:org.cisecurity:var:211" comment="Affected IOS versions" datatype="string" version="1">
+      <value>12.1(13)AY</value>
+      <value>12.1(14)AX</value>
+      <value>12.1(14)AZ</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:226" comment="Affected IOS versions" datatype="string" version="1">
+      <value>12.1(1)E</value>
+      <value>12.1(1)EX</value>
+      <value>12.1(10)E</value>
+      <value>12.1(10)EC</value>
+      <value>12.1(10)EV</value>
+      <value>12.1(10)EX</value>
+      <value>12.1(10)EY</value>
+      <value>12.1(11b)E</value>
+      <value>12.1(11b)EC</value>
+      <value>12.1(11b)EW</value>
+      <value>12.1(11b)EX</value>
+      <value>12.1(12c)E</value>
+      <value>12.1(12c)EC</value>
+      <value>12.1(12c)EV</value>
+      <value>12.1(12c)EW</value>
+      <value>12.1(12c)EX</value>
+      <value>12.1(12c)EY</value>
+      <value>12.1(13)AY</value>
+      <value>12.1(13)E</value>
+      <value>12.1(13)EC</value>
+      <value>12.1(13)EW</value>
+      <value>12.1(13)EX</value>
+      <value>12.1(14)AX</value>
+      <value>12.1(14)AZ</value>
+      <value>12.1(14)E</value>
+      <value>12.1(14)EB</value>
+      <value>12.1(14)EO</value>
+      <value>12.1(19)E</value>
+      <value>12.1(19)EB</value>
+      <value>12.1(19)EC</value>
+      <value>12.1(19)EO</value>
+      <value>12.1(19)EW</value>
+      <value>12.1(2)E</value>
+      <value>12.1(2)EC</value>
+      <value>12.1(20)E</value>
+      <value>12.1(20)EB</value>
+      <value>12.1(20)EC</value>
+      <value>12.1(20)EO</value>
+      <value>12.1(20)EU</value>
+      <value>12.1(20)EW</value>
+      <value>12.1(22)E</value>
+      <value>12.1(22)EB</value>
+      <value>12.1(22)EC</value>
+      <value>12.1(23)E</value>
+      <value>12.1(23)EB</value>
+      <value>12.1(26)E</value>
+      <value>12.1(26)EB</value>
+      <value>12.1(27b)E</value>
+      <value>12.1(3a)E</value>
+      <value>12.1(3a)EC</value>
+      <value>12.1(4)CX</value>
+      <value>12.1(4)E</value>
+      <value>12.1(4)EC</value>
+      <value>12.1(5)EC</value>
+      <value>12.1(5)EY</value>
+      <value>12.1(5a)E</value>
+      <value>12.1(5c)EX</value>
+      <value>12.1(6)E</value>
+      <value>12.1(6)EC</value>
+      <value>12.1(6)EX</value>
+      <value>12.1(6)EY</value>
+      <value>12.1(6)EZ</value>
+      <value>12.1(7)CX</value>
+      <value>12.1(7)E</value>
+      <value>12.1(7)EC</value>
+      <value>12.1(7a)EY</value>
+      <value>12.1(8)EC</value>
+      <value>12.1(8a)E</value>
+      <value>12.1(8a)EW</value>
+      <value>12.1(8a)EX</value>
+      <value>12.1(9)E</value>
+      <value>12.1(9)EC</value>
+      <value>12.1(9)EX</value>
+      <value>12.2(14)SX</value>
+      <value>12.2(17a)SX</value>
+      <value>12.2(17b)SXA</value>
+      <value>12.2(17d)SXB</value>
+      <value>12.2(18)EW</value>
+      <value>12.2(18)IXA</value>
+      <value>12.2(18)IXB</value>
+      <value>12.2(18)SXD</value>
+      <value>12.2(18)SXE</value>
+      <value>12.2(18)SXF</value>
+      <value>12.2(18)ZU</value>
+      <value>12.2(20)EU</value>
+      <value>12.2(20)EW</value>
+      <value>12.2(20)EWA</value>
+      <value>12.2(25)FZ</value>
+      <value>12.2(25)SEE</value>
+      <value>12.2(25)SEG</value>
+      <value>12.2(25)SG</value>
+      <value>12.2(33)SRA</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:320" comment="Affected IOS versions" datatype="string" version="1">
+      <value>12.1(1)E</value>
+      <value>12.1(1)EX</value>
+      <value>12.1(10)E</value>
+      <value>12.1(10)EC</value>
+      <value>12.1(10)EV</value>
+      <value>12.1(10)EX</value>
+      <value>12.1(10)EY</value>
+      <value>12.1(11b)E</value>
+      <value>12.1(11b)EC</value>
+      <value>12.1(11b)EW</value>
+      <value>12.1(11b)EX</value>
+      <value>12.1(12c)E</value>
+      <value>12.1(12c)EC</value>
+      <value>12.1(12c)EV</value>
+      <value>12.1(12c)EW</value>
+      <value>12.1(12c)EX</value>
+      <value>12.1(12c)EY</value>
+      <value>12.1(13)E</value>
+      <value>12.1(13)E11</value>
+      <value>12.1(13)EB</value>
+      <value>12.1(13)EC</value>
+      <value>12.1(13)EW</value>
+      <value>12.1(13)EX</value>
+      <value>12.1(14)AX</value>
+      <value>12.1(14)AZ</value>
+      <value>12.1(14)E</value>
+      <value>12.1(14)EB</value>
+      <value>12.1(14)EO</value>
+      <value>12.1(19)EB</value>
+      <value>12.1(19)EC</value>
+      <value>12.1(19)EO</value>
+      <value>12.1(19)EW</value>
+      <value>12.1(2)E</value>
+      <value>12.1(20)E</value>
+      <value>12.1(20)EC</value>
+      <value>12.1(20)EU</value>
+      <value>12.1(22)E</value>
+      <value>12.1(22)EB</value>
+      <value>12.1(22)EC</value>
+      <value>12.1(23)E</value>
+      <value>12.1(26)E</value>
+      <value>12.1(26)EB</value>
+      <value>12.1(27b)E</value>
+      <value>12.1(3a)E</value>
+      <value>12.1(3a)EC</value>
+      <value>12.1(4)CX</value>
+      <value>12.1(4)E</value>
+      <value>12.1(4)EC</value>
+      <value>12.1(5)EC</value>
+      <value>12.1(5)EY</value>
+      <value>12.1(5a)E</value>
+      <value>12.1(5c)EX</value>
+      <value>12.1(6)E</value>
+      <value>12.1(6)EC</value>
+      <value>12.1(6)EX</value>
+      <value>12.1(6)EY</value>
+      <value>12.1(6)EZ</value>
+      <value>12.1(7)CX</value>
+      <value>12.1(7)E</value>
+      <value>12.1(7)EC</value>
+      <value>12.1(7a)EY</value>
+      <value>12.1(8)EC</value>
+      <value>12.1(8a)E</value>
+      <value>12.1(8a)EW</value>
+      <value>12.1(8a)EX</value>
+      <value>12.1(9)E</value>
+      <value>12.1(9)EC</value>
+      <value>12.1(9)EX</value>
+      <value>12.2(14)SX</value>
+      <value>12.2(17a)SX</value>
+      <value>12.2(17b)SXA</value>
+      <value>12.2(17d)SXB</value>
+      <value>12.2(18)EW</value>
+      <value>12.2(18)IXA</value>
+      <value>12.2(18)IXB</value>
+      <value>12.2(18)SXD</value>
+      <value>12.2(18)SXE</value>
+      <value>12.2(18)SXF</value>
+      <value>12.2(18)ZU</value>
+      <value>12.2(20)EU</value>
+      <value>12.2(20)EW</value>
+      <value>12.2(20)EWA</value>
+      <value>12.2(25)EWA</value>
+      <value>12.2(25)FZ</value>
+      <value>12.2(25)SEE</value>
+      <value>12.2(25)SEG</value>
+      <value>12.2(31)SG</value>
+      <value>12.2(33)SRA</value>
+    </constant_variable>
+  </variables>
+</oval_definitions>

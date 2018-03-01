@@ -1,0 +1,1551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions>
+  <definitions>
+    <definition id="oval:org.cisecurity:def:4198" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software IP Header Sanity Check Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131202-cve-2013-6706" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20131202-CVE-2013-6706" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-6706" source="CVE" />
+        <description>A vulnerability in the Cisco Express Forwarding processing module that checks the sanity of IP headers on Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause an affected device to reload, leading to a denial of service (DoS) condition.  The vulnerability is due to improper processing of Multiprotocol Label Switching (MPLS) packets. When certain additional features are configured, an attacker could exploit this vulnerability by sending MPLS packets to traverse and exit an affected device as IP packets. An exploit could allow the attacker to cause the device to reload, leading to a DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="CEF network accounting enabled" test_ref="oval:org.cisecurity:tst:5720" />
+          <criterion comment="MSS configured" test_ref="oval:org.cisecurity:tst:6323" />
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:6178" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4208" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software Malformed ICMP Packet Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131030-asr1000" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20131030-asr1000" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5543" source="CVE" />
+        <description>A vulnerability in the Zone-Based Firewall (ZBFW) TCP or UDP inspection feature of Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause an affected device to reload, resulting in a denial of service (DoS) condition.  The vulnerability is due to improper processing of malformed ICMP error packets traversing a vulnerable device that belong to a TCP or UDP connection that is inspected by a ZBFW. An attacker could exploit this vulnerability by sending a number of malformed ICMP error packets that belong to an inspected TCP or UDP session. An exploit could allow the attacker to cause a reload of the affected device, resulting in DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="ASR 1000 series router" test_ref="oval:org.cisecurity:tst:5943" />
+          <criteria comment="Affected IOSXE configuration" operator="OR">
+            <criteria comment="Zone-based firewall configured" operator="AND">
+              <criterion comment="Match TCP or UDP" test_ref="oval:org.cisecurity:tst:6071" />
+              <criterion comment="ZBFW inspection enabled" test_ref="oval:org.cisecurity:tst:5850" />
+            </criteria>
+            <criteria comment="NAT and PPTP ALG are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="PPTP ALG disabled" negate="true" test_ref="oval:org.cisecurity:tst:5668" />
+            </criteria>
+            <criteria comment="NAT and TCP reassembly are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="Affected processor" test_ref="oval:org.cisecurity:tst:5622" />
+            </criteria>
+            <criterion comment="EoGRE is enabled" test_ref="oval:org.cisecurity:tst:6003" />
+          </criteria>
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5904" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4213" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software SIP Traffic Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130410-asr1000" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130410-asr1000" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-1166" source="CVE" />
+        <description>Cisco IOS XE Software contains a vulnerability that could allow an unauthenticated, remote attacker to cause a DoS condition.  The vulnerability is due to improper handling of SIP packets by Cisco 1000 Series ASR when configured for VRF-aware NAT and SIP ALG. An attacker could exploit this vulnerability by sending a large number of SIP packets traversing a device configured for NAT; this vulnerability cannot be triggered by SIP traffic destined to a vulnerable device.  A successful exploit could allow the attacker to cause a system to reload, resulting in a DoS condition. Repeated exploitation could result in a sustained DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="ASR 1000 series router" test_ref="oval:org.cisecurity:tst:5943" />
+          <criteria comment="Affected IOSXE configuration" operator="OR">
+            <criteria comment="IPv6 is enabled on an affected processor" operator="AND">
+              <criterion comment="IPV6 configured" test_ref="oval:org.cisecurity:tst:5768" />
+              <criterion comment="IPV6 enabled" test_ref="oval:org.cisecurity:tst:5972" />
+              <criterion comment="Affected processor" test_ref="oval:org.cisecurity:tst:5870" />
+            </criteria>
+            <criterion comment="L2TP LNS termination is enabled" test_ref="oval:org.cisecurity:tst:5834" />
+            <criterion comment="xconnect is enabled" test_ref="oval:org.cisecurity:tst:5777" />
+            <criteria comment="BDI is configured" operator="AND">
+              <criterion comment="BDI is configured" test_ref="oval:org.cisecurity:tst:6282" />
+              <criterion comment="egress set to rewrite" test_ref="oval:org.cisecurity:tst:5877" />
+            </criteria>
+            <criteria comment="NAT and PPTP ALG are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="VRF-aware NAT configured" test_ref="oval:org.cisecurity:tst:5991" />
+              <criterion comment="ALG disabled" negate="true" test_ref="oval:org.cisecurity:tst:6289" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:6086" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4321" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software Malformed EoGRE Packet Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131030-asr1000" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20131030-asr1000" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5547" source="CVE" />
+        <description>A vulnerability in the EoGRE feature of Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause an affected device to reload, resulting in a denial of service (DoS) condition.  The vulnerability is due to improper processing of malformed EoGRE packets. An attacker could exploit this vulnerability by sending malformed IPv4 or IPv6 EoGRE packets to an affected device configured with an EoGRE interface; this vulnerability cannot be exploited by sending malformed EoGRE packets to traverse a vulnerable system. An exploit could allow the attacker to cause a reload of the affected device, resulting in a DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="ASR 1000 series router" test_ref="oval:org.cisecurity:tst:5943" />
+          <criteria comment="Affected IOSXE configuration" operator="OR">
+            <criteria comment="Zone-based firewall configured" operator="AND">
+              <criterion comment="Match TCP or UDP" test_ref="oval:org.cisecurity:tst:6071" />
+              <criterion comment="ZBFW inspection enabled" test_ref="oval:org.cisecurity:tst:5850" />
+            </criteria>
+            <criteria comment="NAT and PPTP ALG are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="PPTP ALG disabled" negate="true" test_ref="oval:org.cisecurity:tst:5668" />
+            </criteria>
+            <criteria comment="NAT and TCP reassembly are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="Affected processor" test_ref="oval:org.cisecurity:tst:5622" />
+            </criteria>
+            <criterion comment="EoGRE is enabled" test_ref="oval:org.cisecurity:tst:6003" />
+          </criteria>
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:6178" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4322" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Crafted MPLS IP Fragmentation Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131224-cve-2013-6981" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20131224-CVE-2013-6981" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-6981" source="CVE" />
+        <description>A vulnerability in the Multiprotocol Label Switching (MPLS) IP fragmentation function of Cisco IOS XE could allow an unauthenticated, remote attacker to cause the Cisco Packet Processor to crash.  The vulnerability is due to input validation processing of the crafted MPLS IP packets. An attacker could exploit this vulnerability by injecting specifically crafted MPLS IP packets that are subject to MPLS fragmentation. An exploit could allow the attacker to cause the Cisco Packet Processor process to crash in Cisco IOS XE software.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="MPLS enabled" test_ref="oval:org.cisecurity:tst:5619" />
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5781" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4397" class="vulnerability" version="1">
+      <metadata>
+        <title>OSPF LSA Manipulation Vulnerability in Multiple Cisco Products</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130801-lsaospf" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130801-lsaospf" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-0149" source="CVE" />
+        <description>Multiple Cisco products are affected by a vulnerability involving the Open Shortest Path First (OSPF) Routing Protocol Link State Advertisement (LSA) database. This vulnerability could allow an unauthenticated attacker to take full control of the OSPF Autonomous System (AS) domain routing table, blackhole traffic, and intercept traffic.  The attacker could trigger this vulnerability by injecting crafted OSPF packets. Successful exploitation could cause flushing of the routing table on a targeted router, as well as propagation of the crafted OSPF LSA type 1 update throughout the OSPF AS domain.  To exploit this vulnerability, an attacker must accurately determine certain parameters within the LSA database on the target router. This vulnerability can only be triggered by sending crafted unicast or multicast LSA type 1 packets. No other LSA type packets can trigger this vulnerability.  OSPFv3 is not affected by this vulnerability. Fabric Shortest Path First (FSPF) protocol is not affected by this vulnerability.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:6089" />
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5701" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4399" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software MVPNv6 Traffic Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130410-asr1000" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130410-asr1000" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-2779" source="CVE" />
+        <description>Cisco IOS XE Software contains a vulnerability that could allow an unauthenticated remote attacker to cause a DoS condition.  The vulnerability is due to improper handling of fragmented IPv6 MVPN traffic by Cisco 1000 Series ASR with ASR1000-ESP40 or ASR1000-ESP100. An attacker could exploit this vulnerability by sending fragmented IPv6 MVPN packets either traversing or destined to a vulnerable system.  A successful exploit could allow the attacker to cause a system to reload, resulting in a DoS condition. Repeated exploitation could result in a sustained DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="ASR 1000 series router" test_ref="oval:org.cisecurity:tst:5943" />
+          <criteria comment="Affected IOSXE configuration" operator="OR">
+            <criteria comment="IPv6 is enabled on an affected processor" operator="AND">
+              <criterion comment="IPV6 configured" test_ref="oval:org.cisecurity:tst:5768" />
+              <criterion comment="IPV6 enabled" test_ref="oval:org.cisecurity:tst:5972" />
+              <criterion comment="Affected processor" test_ref="oval:org.cisecurity:tst:5870" />
+            </criteria>
+            <criterion comment="L2TP LNS termination is enabled" test_ref="oval:org.cisecurity:tst:5834" />
+            <criterion comment="xconnect is enabled" test_ref="oval:org.cisecurity:tst:5777" />
+            <criteria comment="BDI is configured" operator="AND">
+              <criterion comment="BDI is configured" test_ref="oval:org.cisecurity:tst:6282" />
+              <criterion comment="egress set to rewrite" test_ref="oval:org.cisecurity:tst:5877" />
+            </criteria>
+            <criteria comment="NAT and PPTP ALG are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="VRF-aware NAT configured" test_ref="oval:org.cisecurity:tst:5991" />
+              <criterion comment="ALG disabled" negate="true" test_ref="oval:org.cisecurity:tst:6289" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5603" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4412" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software L2TP Traffic Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130410-asr1000" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130410-asr1000" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-1165" source="CVE" />
+        <description>Cisco IOS XE Software contains a vulnerability that could allow an unauthenticated remote attacker to cause a DoS condition.  The vulnerability is due to improper handling of specific L2TP packets by Cisco 1000 ASR. An attacker could exploit this vulnerability by sending a large number of specific L2TP packets to a vulnerable system; this vulnerability cannot be triggered by L2TP traffic transiting a vulnerable device.  A successful exploit could allow the attacker to cause a system to reload, resulting in a DoS condition. Repeated exploitation could result in a sustained DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="ASR 1000 series router" test_ref="oval:org.cisecurity:tst:5943" />
+          <criteria comment="Affected IOSXE configuration" operator="OR">
+            <criteria comment="IPv6 is enabled on an affected processor" operator="AND">
+              <criterion comment="IPV6 configured" test_ref="oval:org.cisecurity:tst:5768" />
+              <criterion comment="IPV6 enabled" test_ref="oval:org.cisecurity:tst:5972" />
+              <criterion comment="Affected processor" test_ref="oval:org.cisecurity:tst:5870" />
+            </criteria>
+            <criterion comment="L2TP LNS termination is enabled" test_ref="oval:org.cisecurity:tst:5834" />
+            <criterion comment="xconnect is enabled" test_ref="oval:org.cisecurity:tst:5777" />
+            <criteria comment="BDI is configured" operator="AND">
+              <criterion comment="BDI is configured" test_ref="oval:org.cisecurity:tst:6282" />
+              <criterion comment="egress set to rewrite" test_ref="oval:org.cisecurity:tst:5877" />
+            </criteria>
+            <criteria comment="NAT and PPTP ALG are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="VRF-aware NAT configured" test_ref="oval:org.cisecurity:tst:5991" />
+              <criterion comment="ALG disabled" negate="true" test_ref="oval:org.cisecurity:tst:6289" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5734" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4439" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software PPTP Traffic Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131030-asr1000" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20131030-asr1000" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5545" source="CVE" />
+        <description>A vulnerability in the PPTP ALG feature of Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause an affected device to reload, resulting in a denial of service (DoS) condition.  The vulnerability is due to the improper handling of PPTP packets that are being inspected as part of the NAT feature on Cisco IOS XE Software. An attacker could exploit this vulnerability by sending a large number of PPTP packets to traverse a vulnerable system that is configured for NAT.  A successful exploit could allow the attacker to cause a system to reload, resulting in a DoS condition. Repeated exploitation could result in a sustained DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="ASR 1000 series router" test_ref="oval:org.cisecurity:tst:5943" />
+          <criteria comment="Affected IOSXE configuration" operator="OR">
+            <criteria comment="Zone-based firewall configured" operator="AND">
+              <criterion comment="Match TCP or UDP" test_ref="oval:org.cisecurity:tst:6071" />
+              <criterion comment="ZBFW inspection enabled" test_ref="oval:org.cisecurity:tst:5850" />
+            </criteria>
+            <criteria comment="NAT and PPTP ALG are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="PPTP ALG disabled" negate="true" test_ref="oval:org.cisecurity:tst:5668" />
+            </criteria>
+            <criteria comment="NAT and TCP reassembly are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="Affected processor" test_ref="oval:org.cisecurity:tst:5622" />
+            </criteria>
+            <criterion comment="EoGRE is enabled" test_ref="oval:org.cisecurity:tst:6003" />
+          </criteria>
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:6178" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4442" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS Software RSVP Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130327-rsvp" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130327-rsvp" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-1143" source="CVE" />
+        <description>The Cisco IOS RSVP component contains a vulnerability that could allow an unauthenticated, remote attacker to cause a denial of service.  The vulnerability is due to improper parsing of certain RSVP packets. An attacker could exploit this vulnerability by sending certain RSVP packets to the vulnerable device. Repeated exploitation may result in a sustained denial of service condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:5884" />
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:6048" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4454" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS Software Multicast NTP Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130925-ntp" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130925-ntp" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5472" source="CVE" />
+        <description>A vulnerability in the implementation of the Network Time Protocol (NTP) feature in Cisco IOS Software could allow an unauthenticated, remote attacker to cause an affected device to reload, resulting in a denial of service (DoS) condition.  The vulnerability is due to the improper handling of multicast NTP packets that are sent to an affected device encapsulated in a Multicast Source Discovery Protocol (MSDP) Source-Active (SA) message from a configured MSDP peer. An attacker could exploit this vulnerability by sending multicast NTP packets to an affected device. Repeated exploitation could result in a sustained DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:5661" />
+          <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:6307" />
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5936" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4455" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS Software IP Service Level Agreement Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130327-ipsla" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130327-ipsla" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-1148" source="CVE" />
+        <description>A vulnerability exists in the implementation of the IP Service Level Agreement responder feature of Cisco IOS Software that could allow an unauthenticated, remote attacker to cause a reload of the vulnerable device.  The vulnerability is due to improper validation of IP SLA packets on UDP port 1167. An attacker could exploit this vulnerability by sending malformed IP SLA packets addressed to the affected device. An exploit could allow the attacker to cause an extended DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="IP SLA responder enabled" test_ref="oval:org.cisecurity:tst:5807" />
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5893" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4467" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software TCP Segment Reassembly Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131030-asr1000" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20131030-asr1000" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5546" source="CVE" />
+        <description>A vulnerability in TCP segment reassembly of Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause an affected device to reload, resulting in a denial of service (DoS) condition.  The vulnerability is due to improper processing of large TCP reassembled packets that are being processed by NAT and ALG features on the affected device. An attacker could exploit this vulnerability by sending a TCP packet that is large after the reassembly to traverse a vulnerable device. Only packets being handled by NAT and ALG features have a potential to cause an affected device to reload. An exploit could allow the attacker to cause a reload of the affected device, resulting in a DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="ASR 1000 series router" test_ref="oval:org.cisecurity:tst:5943" />
+          <criteria comment="Affected IOSXE configuration" operator="OR">
+            <criteria comment="Zone-based firewall configured" operator="AND">
+              <criterion comment="Match TCP or UDP" test_ref="oval:org.cisecurity:tst:6071" />
+              <criterion comment="ZBFW inspection enabled" test_ref="oval:org.cisecurity:tst:5850" />
+            </criteria>
+            <criteria comment="NAT and PPTP ALG are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="PPTP ALG disabled" negate="true" test_ref="oval:org.cisecurity:tst:5668" />
+            </criteria>
+            <criteria comment="NAT and TCP reassembly are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="Affected processor" test_ref="oval:org.cisecurity:tst:5622" />
+            </criteria>
+            <criterion comment="EoGRE is enabled" test_ref="oval:org.cisecurity:tst:6003" />
+          </criteria>
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:6202" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4471" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS Software OSPF Opaque LSA Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131010-cve-2013-5527" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20131010-CVE-2013-5527" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5527" source="CVE" />
+        <description>A vulnerability in the OSPF implementation of Cisco IOS Software and Cisco IOS XE Software could allow an unauthenticated, adjacent attacker to cause a reload of the affected device.  The vulnerability is due to improper parsing of certain options in OSPF link-state advertisement (LSA) type 11 packets. An attacker could exploit this vulnerability by sending LSA type 11 OSPF packets with unusual options set. An exploit could allow the attacker to cause a reload of the affected device.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:6173" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4491" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software IPv6 Multicast Traffic Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130410-asr1000" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130410-asr1000" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-1164" source="CVE" />
+        <description>Cisco IOS XE Software contains a vulnerability that could allow an unauthenticated remote attacker to cause a DoS condition.  The vulnerability is due to improper handling of fragmented IPv6 multicast traffic by Cisco 1000 Series ASR with ASR1000-ESP40 or ASR1000-ESP100. An attacker could exploit this vulnerability by sending fragmented IPv6 multicast packets either traversing or destined to a vulnerable system.  A successful exploit could allow the attacker to cause a system to reload, resulting in a DoS condition. Repeated exploitation could result in a sustained DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="ASR 1000 series router" test_ref="oval:org.cisecurity:tst:5943" />
+          <criteria comment="Affected IOSXE configuration" operator="OR">
+            <criteria comment="IPv6 is enabled on an affected processor" operator="AND">
+              <criterion comment="IPV6 configured" test_ref="oval:org.cisecurity:tst:5768" />
+              <criterion comment="IPV6 enabled" test_ref="oval:org.cisecurity:tst:5972" />
+              <criterion comment="Affected processor" test_ref="oval:org.cisecurity:tst:5870" />
+            </criteria>
+            <criterion comment="L2TP LNS termination is enabled" test_ref="oval:org.cisecurity:tst:5834" />
+            <criterion comment="xconnect is enabled" test_ref="oval:org.cisecurity:tst:5777" />
+            <criteria comment="BDI is configured" operator="AND">
+              <criterion comment="BDI is configured" test_ref="oval:org.cisecurity:tst:6282" />
+              <criterion comment="egress set to rewrite" test_ref="oval:org.cisecurity:tst:5877" />
+            </criteria>
+            <criteria comment="NAT and PPTP ALG are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="VRF-aware NAT configured" test_ref="oval:org.cisecurity:tst:5991" />
+              <criterion comment="ALG disabled" negate="true" test_ref="oval:org.cisecurity:tst:6289" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:6220" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4496" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software Bridge Domain Interface Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130410-asr1000" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130410-asr1000" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-1167" source="CVE" />
+        <description>Cisco IOS XE Software contains a vulnerability that could allow an unauthenticated remote attacker to cause a denial of service (DoS) condition.  The vulnerability is due to improper handling of packets by Cisco 1000 Series ASR configured for bridge domain interface (BDI). An attacker could exploit this vulnerability by sending packets that will traverse a vulnerable system. This vulnerability cannot be triggered by sending traffic to a vulnerable device.  A successful exploit could allow the attacker to cause a system to reload, resulting in a DoS condition. Repeated exploitation could result in a sustained DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="ASR 1000 series router" test_ref="oval:org.cisecurity:tst:5943" />
+          <criteria comment="Affected IOSXE configuration" operator="OR">
+            <criteria comment="IPv6 is enabled on an affected processor" operator="AND">
+              <criterion comment="IPV6 configured" test_ref="oval:org.cisecurity:tst:5768" />
+              <criterion comment="IPV6 enabled" test_ref="oval:org.cisecurity:tst:5972" />
+              <criterion comment="Affected processor" test_ref="oval:org.cisecurity:tst:5870" />
+            </criteria>
+            <criterion comment="L2TP LNS termination is enabled" test_ref="oval:org.cisecurity:tst:5834" />
+            <criterion comment="xconnect is enabled" test_ref="oval:org.cisecurity:tst:5777" />
+            <criteria comment="BDI is configured" operator="AND">
+              <criterion comment="BDI is configured" test_ref="oval:org.cisecurity:tst:6282" />
+              <criterion comment="egress set to rewrite" test_ref="oval:org.cisecurity:tst:5877" />
+            </criteria>
+            <criteria comment="NAT and PPTP ALG are enabled" operator="AND">
+              <criterion comment="NAT configured" test_ref="oval:org.cisecurity:tst:6020" />
+              <criterion comment="NAT enabled" test_ref="oval:org.cisecurity:tst:6146" />
+              <criterion comment="VRF-aware NAT configured" test_ref="oval:org.cisecurity:tst:5991" />
+              <criterion comment="ALG disabled" negate="true" test_ref="oval:org.cisecurity:tst:6289" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5840" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4504" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software TFTP Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131203-cve-2013-6704" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20131203-CVE-2013-6704" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-6704" source="CVE" />
+        <description>A vulnerability in the flow manager code of Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause flow manager to hold UDP sessions in its table.  The vulnerability is due to not releasing memory for flows generated by TFTP UDP traffic. An attacker could exploit this vulnerability by either starting a local TFTP transaction from the device, or by requesting a TFTP file operation when the device is configured as a TFTP server. An exploit could allow the attacker to have the Cisco IOS XE software hold the flow manager sessions in a table, decreasing memory and eventually resulting in system instability or a potential system crash.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5649" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4539" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS Software DHCP Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130925-dhcp" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130925-dhcp" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5475" source="CVE" />
+        <description>A vulnerability in the DHCP implementation of Cisco IOS Software and Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause a denial of service (DoS) condition.  The vulnerability occurs during the parsing of crafted DHCP packets. An attacker could exploit this vulnerability by sending crafted DHCP packets to an affected device that has the DHCP server or DHCP relay feature enabled. An exploit could allow the attacker to cause a reload of an affected device.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:5967" />
+          <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:5856" />
+          <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:5785" />
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5979" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4550" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS Software RSVP Interface Queue Wedge Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130925-rsvp" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130925-rsvp" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5478" source="CVE" />
+        <description>A vulnerability in the RSVP feature of Cisco IOS Software and Cisco IOS XE Software could allow an unauthenticated, remote attacker to trigger an interface queue wedge on the affected device.  The vulnerability is due to improper parsing of UDP RSVP packets. An attacker could exploit this vulnerability by sending UDP RSVP packets to the vulnerable device. An exploit could cause Cisco IOS Software and Cisco IOS XE Software to incorrectly process incoming packets, resulting in an interface queue wedge, which can lead to loss of connectivity, loss of routing protocol adjacency, and other DoS conditions.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:6045" />
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5909" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4552" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE AAA DHCP Denial of Service Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131121-cve-2013-6692" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20131121-CVE-2013-6692" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-6692" source="CVE" />
+        <description>A vulnerability in a DHCP function that assigns IP addresses to AAA clients on Cisco IOS XE Software could allow an authenticated, remote attacker to cause a reload of the affected device.  The vulnerability is due to improper processing of AAA packets that require IP address assignment from a DHCP pool. An attacker could exploit this vulnerability by sending AAA packets to a device configured to authenticate and assign an address from a DHCP pool. An exploit could allow the attacker to cause a reload of the affected device.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5827" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4572" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS XE Software Telnet Authentication Bypass Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131224-cve-2013-6979" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20131224-CVE-2013-6979" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-6979" source="CVE" />
+        <description>A vulnerability in the vty authentication of Cisco IOS XE Software (03.02.xxSE and 03.03.xxSE only) could allow an unauthenticated, remote attacker to access an affected device without authentication and perform actions on the device with the privileges configured for the vty line interface.  The vulnerability is due to incomplete validations of the Linux-IOS Internal Network interface. An unauthenticated, remote attacker could exploit this vulnerability only if their source address is in the 192.168.x.2 subnet and the attacker has IP communication to the Cisco IOS XE device. An exploit could allow the attacker to access the device with the privilege level of the vty line interface.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected IOSXE configuration" operator="AND">
+          <criterion comment="Transport protocols specified" test_ref="oval:org.cisecurity:tst:5753" />
+          <criterion comment="Telnet enabled" negate="true" test_ref="oval:org.cisecurity:tst:5790" />
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:5906" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4574" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco IOS Software Internet Key Exchange Memory Leak Vulnerability</title>
+        <affected family="iosxe">
+          <platform>Cisco IOS-XE</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20130925-ike" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130925-ike" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5473" source="CVE" />
+        <description>A vulnerability in the Internet Key Exchange (IKE) protocol of Cisco IOS Software and Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause a memory leak that could lead to a device reload.  The vulnerability is due to incorrect handling of malformed IKE packets by the affected software. An attacker could exploit this vulnerability by sending crafted IKE packets to a device configured with features that leverage IKE version 1 (IKEv1).  Although IKEv1 is automatically enabled on a Cisco IOS Software and Cisco IOS XE Software when IKEv1 or IKE version 2 (IKEv2) is configured, the vulnerability can be triggered only by sending a malformed IKEv1 packet.  In specific conditions, normal IKEv1 packets can also cause an affected release of Cisco IOS Software to leak memory.  Only IKEv1 is affected by this vulnerability.  An exploit could cause Cisco IOS Software not to release allocated memory, causing a memory leak. A sustained attack may result in a device reload.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:19">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:6065" />
+          <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:6181" />
+          <criterion comment="Affected IOSXE configuration" test_ref="oval:org.cisecurity:tst:5669" />
+        </criteria>
+        <criterion comment="IOSXE version is affected" test_ref="oval:org.cisecurity:tst:6094" />
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <version_test id="oval:org.cisecurity:tst:5603" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4670" />
+    </version_test>
+    <global_test id="oval:org.cisecurity:tst:5619" check="all" comment="MPLS enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1058" />
+    </global_test>
+    <line_test id="oval:org.cisecurity:tst:5622" check="all" comment="Affected processor" version="1">
+      <object object_ref="oval:org.cisecurity:obj:996" />
+      <state state_ref="oval:org.cisecurity:ste:4311" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5649" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4415" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:5661" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1004" />
+      <state state_ref="oval:org.cisecurity:ste:4098" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5668" check="all" comment="PPTP ALG disabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4069" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5669" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4272" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5701" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4485" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:5720" check="all" comment="CEF network accounting enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4209" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5734" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4489" />
+    </version_test>
+    <global_test id="oval:org.cisecurity:tst:5753" check="all" comment="Transport protocols specified" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1082" />
+    </global_test>
+    <line_test id="oval:org.cisecurity:tst:5768" check="all" comment="IPV6 configured" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4565" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5777" check="all" comment="xconnect is enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4198" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5781" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4216" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:5785" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4313" />
+    </line_test>
+    <global_test id="oval:org.cisecurity:tst:5790" check="all" comment="Telnet enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1077" />
+    </global_test>
+    <line_test id="oval:org.cisecurity:tst:5807" check="all" comment="IP SLA responder enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4245" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5827" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4304" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:5834" check="all" comment="L2TP LNS termination is enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4559" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5840" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4551" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:5850" check="all" comment="ZBFW inspection enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1117" />
+      <state state_ref="oval:org.cisecurity:ste:4195" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5856" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4506" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5870" check="all" comment="Affected processor" version="1">
+      <object object_ref="oval:org.cisecurity:obj:996" />
+      <state state_ref="oval:org.cisecurity:ste:4312" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5877" check="all" comment="egress set to rewrite" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4412" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5884" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4282" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5893" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4067" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:5904" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4575" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:5906" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4663" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:5909" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4128" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:5936" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4683" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:5943" check="all" comment="ASR 1000 series router" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1023" />
+      <state state_ref="oval:org.cisecurity:ste:4672" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5967" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1125" />
+      <state state_ref="oval:org.cisecurity:ste:4621" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5972" check="all" comment="IPV6 enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4473" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5979" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4443" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:5991" check="all" comment="VRF-aware NAT configured" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4592" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:6003" check="all" comment="EoGRE is enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4515" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:6020" check="all" comment="NAT configured" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4251" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:6045" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4577" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:6048" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4438" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:6065" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4550" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:6071" check="all" comment="Match TCP or UDP" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1117" />
+      <state state_ref="oval:org.cisecurity:ste:4263" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:6086" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4644" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:6089" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4475" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:6094" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4374" />
+    </version_test>
+    <global_test id="oval:org.cisecurity:tst:6146" check="all" comment="NAT enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1107" />
+    </global_test>
+    <version_test id="oval:org.cisecurity:tst:6173" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4365" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:6178" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4563" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:6181" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4568" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:6202" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4519" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:6220" check="at least one" comment="IOSXE version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1062" />
+      <state state_ref="oval:org.cisecurity:ste:4674" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:6282" check="all" comment="BDI is configured" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4421" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:6289" check="all" comment="ALG disabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4360" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:6307" check="all" comment="Affected IOSXE configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4624" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:6323" check="all" comment="MSS configured" version="1">
+      <object object_ref="oval:org.cisecurity:obj:991" />
+      <state state_ref="oval:org.cisecurity:ste:4501" />
+    </line_test>
+  </tests>
+  <objects>
+    <line_object id="oval:org.cisecurity:obj:991" comment="Output from `show running-config`" version="1">
+      <show_subcommand>show running-config</show_subcommand>
+    </line_object>
+    <line_object id="oval:org.cisecurity:obj:996" comment="Output from `show inventory`" version="1">
+      <show_subcommand>show inventory</show_subcommand>
+    </line_object>
+    <line_object id="oval:org.cisecurity:obj:1004" comment="Output from `show running-config | include ^interface|ntp multicast`" version="1">
+      <show_subcommand>show running-config | include ^interface|ntp multicast</show_subcommand>
+    </line_object>
+    <line_object id="oval:org.cisecurity:obj:1023" comment="Output from `show version`" version="1">
+      <show_subcommand>show version</show_subcommand>
+    </line_object>
+    <global_object id="oval:org.cisecurity:obj:1058" comment="Global command `^mpls ip`" version="1">
+      <global_command operation="pattern match">^mpls ip</global_command>
+    </global_object>
+    <global_object id="oval:org.cisecurity:obj:1077" comment="Global command `^transport (input|preferred).*telnet`" version="1">
+      <global_command operation="pattern match">^transport (input|preferred).*telnet</global_command>
+    </global_object>
+    <global_object id="oval:org.cisecurity:obj:1082" comment="Global command `^transport input`" version="1">
+      <global_command operation="pattern match">^transport input</global_command>
+    </global_object>
+    <global_object id="oval:org.cisecurity:obj:1107" comment="Global command `^ip nat`" version="1">
+      <global_command operation="pattern match">^ip nat</global_command>
+    </global_object>
+    <line_object id="oval:org.cisecurity:obj:1117" comment="Output from `show policy-map type inspect zone-pair`" version="1">
+      <show_subcommand>show policy-map type inspect zone-pair</show_subcommand>
+    </line_object>
+    <line_object id="oval:org.cisecurity:obj:1125" comment="Output from `show ip dhcp pool`" version="1">
+      <show_subcommand>show ip dhcp pool</show_subcommand>
+    </line_object>
+  </objects>
+  <states>
+    <version_state id="oval:org.cisecurity:ste:4067" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:409" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4069" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">no ip nat service pptp</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4098" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">^\s+ntp\s+multicast</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4128" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:147" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4195" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">Inspect</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4198" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">xconnect</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4209" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">ip cef accounting</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4216" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:144" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4245" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">ip sla responder</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4251" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">\s+ip nat (inside|outside)</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4263" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">Match: protocol (tcp|udp)</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4272" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">tunnel protection ipsec</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4282" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">mpls traffic-eng tunnels</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4304" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:344" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4311" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">(ASR1000-ESP100|ASR1002-X)</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4312" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">ASR1000-ESP(40|100)</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4313" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">ip dhcp pool</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4360" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">no ip nat service sip</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4365" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:168" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4374" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:267" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4412" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">rewrite egress</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4415" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:142" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4421" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">interface BDI</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4438" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:355" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4443" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:328" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4473" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">ipv6\s+enable</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4475" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">router\s+ospf</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4485" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:357" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4489" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:170" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4501" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">tcp adjust-mss</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4506" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">\ +ip helper-address</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4515" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">tunnel mode ethernet gre ipv(4|6)</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4519" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:425" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4550" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">crypto map</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4551" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:262" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4559" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">accept-dialin</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4563" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:420" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4565" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">ipv6\s+address</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4568" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">crypto gdoi enable</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4575" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:162" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4577" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">ip\s+rsvp\s+</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4592" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">\s+ip nat .* vrf </config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4621" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">[Aa]ddresses</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4624" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">^\s*ip msdp peer</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4644" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:316" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4663" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:125" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4670" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:164" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4672" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">cisco ASR1[0-9][0-9][0-9][^0-9]</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4674" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:152" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4683" comment="Affected IOSXE versions" version="1">
+      <version_string operation="pattern match" var_check="at least one" var_ref="oval:org.cisecurity:var:368" />
+    </version_state>
+  </states>
+  <variables>
+    <constant_variable id="oval:org.cisecurity:var:125" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*2\.0*0\.SE$</value>
+      <value>^0*3\.0*2\.0*1\.SE$</value>
+      <value>^0*3\.0*2\.0*2\.SE$</value>
+      <value>^0*3\.0*2\.0*3\.SE$</value>
+      <value>^0*3\.0*3\.0*0\.SE$</value>
+      <value>^0*3\.0*3\.0*1\.SE$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:142" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*2\.0*0\.XO$</value>
+      <value>^0*3\.0*2\.0*1\.SE$</value>
+      <value>^0*3\.0*2\.0*2\.SG$</value>
+      <value>^0*3\.0*2\.0*3\.SG$</value>
+      <value>^0*3\.0*2\.0*4\.SG$</value>
+      <value>^0*3\.0*2\.0*5\.SG$</value>
+      <value>^0*3\.0*3\.0*0\.XO$</value>
+      <value>^0*3\.0*3\.0*2\.SG$</value>
+      <value>^0*3\.0*4\.0*0\.SG$</value>
+      <value>^0*3\.0*4\.0*2\.SG$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:144" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*2\.0*5\.0*0$</value>
+      <value>^0*2\.0*6\.0*0$</value>
+      <value>^0*2\.0*6\.0*1$</value>
+      <value>^0*2\.0*6\.0*2$</value>
+      <value>^0*3\.0*1\.0*0\.S$</value>
+      <value>^0*3\.0*1\.0*1\.S$</value>
+      <value>^0*3\.0*1\.0*2\.S$</value>
+      <value>^0*3\.0*1\.0*3\.S$</value>
+      <value>^0*3\.0*2\.0*0\.S$</value>
+      <value>^0*3\.0*2\.0*1\.S$</value>
+      <value>^0*3\.0*2\.0*2\.S$</value>
+      <value>^0*3\.0*3\.0*0\.S$</value>
+      <value>^0*3\.0*3\.0*1\.S$</value>
+      <value>^0*3\.0*3\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+      <value>^0*3\.0*4\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*3\.S$</value>
+      <value>^0*3\.0*4\.0*4\.S$</value>
+      <value>^0*3\.0*4\.0*5\.S$</value>
+      <value>^0*3\.0*4\.0*6\.S$</value>
+      <value>^0*3\.0*5\.0*0\.S$</value>
+      <value>^0*3\.0*5\.0*1\.S$</value>
+      <value>^0*3\.0*5\.0*2\.S$</value>
+      <value>^0*3\.0*6\.0*0\.S$</value>
+      <value>^0*3\.0*6\.0*1\.S$</value>
+      <value>^0*3\.0*6\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*0\.S$</value>
+      <value>^0*3\.0*7\.0*1\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:147" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*2\.0*0\.S$</value>
+      <value>^0*3\.0*2\.0*1\.S$</value>
+      <value>^0*3\.0*2\.0*2\.S$</value>
+      <value>^0*3\.0*3\.0*0\.S$</value>
+      <value>^0*3\.0*3\.0*1\.S$</value>
+      <value>^0*3\.0*3\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*0\.aS$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+      <value>^0*3\.0*4\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*3\.S$</value>
+      <value>^0*3\.0*4\.0*4\.S$</value>
+      <value>^0*3\.0*4\.0*5\.S$</value>
+      <value>^0*3\.0*5\.0*0\.S$</value>
+      <value>^0*3\.0*5\.0*1\.S$</value>
+      <value>^0*3\.0*5\.0*2\.S$</value>
+      <value>^0*3\.0*6\.0*0\.S$</value>
+      <value>^0*3\.0*6\.0*1\.S$</value>
+      <value>^0*3\.0*6\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*0\.S$</value>
+      <value>^0*3\.0*7\.0*1\.S$</value>
+      <value>^0*3\.0*7\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*3\.S$</value>
+      <value>^0*3\.0*8\.0*0\.S$</value>
+      <value>^0*3\.0*8\.0*1\.S$</value>
+      <value>^0*3\.0*8\.0*2\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:152" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:162" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+      <value>^0*3\.0*5\.0*0\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:164" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+      <value>^0*3\.0*7\.0*0\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:168" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*3\.0*0\.S$</value>
+      <value>^0*3\.0*3\.0*1\.S$</value>
+      <value>^0*3\.0*3\.0*2\.S$</value>
+      <value>^0*3\.0*9\.0*0\.S$</value>
+      <value>^0*3\.0*9\.0*1\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:170" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*2\.0*1\.0*0$</value>
+      <value>^0*2\.0*1\.0*1$</value>
+      <value>^0*2\.0*1\.0*2$</value>
+      <value>^0*2\.0*2\.0*1$</value>
+      <value>^0*2\.0*2\.0*2$</value>
+      <value>^0*2\.0*2\.0*3$</value>
+      <value>^0*2\.0*3\.0*0$</value>
+      <value>^0*2\.0*3\.0*0\.t$</value>
+      <value>^0*2\.0*3\.0*1\.t$</value>
+      <value>^0*2\.0*3\.0*2$</value>
+      <value>^0*2\.0*4\.0*0$</value>
+      <value>^0*2\.0*4\.0*1$</value>
+      <value>^0*2\.0*5\.0*0$</value>
+      <value>^0*2\.0*6\.0*0$</value>
+      <value>^0*2\.0*6\.0*1$</value>
+      <value>^0*2\.0*6\.0*2$</value>
+      <value>^0*3\.0*1\.0*0\.S$</value>
+      <value>^0*3\.0*1\.0*1\.S$</value>
+      <value>^0*3\.0*1\.0*1\.SG$</value>
+      <value>^0*3\.0*1\.0*2\.S$</value>
+      <value>^0*3\.0*1\.0*3\.S$</value>
+      <value>^0*3\.0*2\.0*0\.S$</value>
+      <value>^0*3\.0*2\.0*0\.SG$</value>
+      <value>^0*3\.0*2\.0*0\.XO$</value>
+      <value>^0*3\.0*2\.0*1\.S$</value>
+      <value>^0*3\.0*2\.0*1\.SG$</value>
+      <value>^0*3\.0*2\.0*1\.XO$</value>
+      <value>^0*3\.0*2\.0*2\.S$</value>
+      <value>^0*3\.0*3\.0*0\.S$</value>
+      <value>^0*3\.0*3\.0*1\.S$</value>
+      <value>^0*3\.0*3\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+      <value>^0*3\.0*4\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*3\.S$</value>
+      <value>^0*3\.0*4\.0*4\.S$</value>
+      <value>^0*3\.0*5\.0*0\.S$</value>
+      <value>^0*3\.0*5\.0*1\.S$</value>
+      <value>^0*3\.0*5\.0*2\.S$</value>
+      <value>^0*3\.0*6\.0*0\.S$</value>
+      <value>^0*3\.0*6\.0*1\.S$</value>
+      <value>^0*3\.0*6\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*0\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:262" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*2\.0*0\.S$</value>
+      <value>^0*3\.0*2\.0*1\.S$</value>
+      <value>^0*3\.0*2\.0*2\.S$</value>
+      <value>^0*3\.0*3\.0*0\.S$</value>
+      <value>^0*3\.0*3\.0*1\.S$</value>
+      <value>^0*3\.0*3\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+      <value>^0*3\.0*5\.0*0\.S$</value>
+      <value>^0*3\.0*5\.0*1\.S$</value>
+      <value>^0*3\.0*5\.0*2\.S$</value>
+      <value>^0*3\.0*6\.0*0\.S$</value>
+      <value>^0*3\.0*6\.0*1\.S$</value>
+      <value>^0*3\.0*6\.0*2\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:267" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*4\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*3\.S$</value>
+      <value>^0*3\.0*4\.0*4\.S$</value>
+      <value>^0*3\.0*4\.0*5\.S$</value>
+      <value>^0*3\.0*6\.0*0\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:316" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*2\.0*0\.S$</value>
+      <value>^0*3\.0*2\.0*1\.S$</value>
+      <value>^0*3\.0*2\.0*2\.S$</value>
+      <value>^0*3\.0*3\.0*0\.S$</value>
+      <value>^0*3\.0*3\.0*1\.S$</value>
+      <value>^0*3\.0*3\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+      <value>^0*3\.0*4\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*3\.S$</value>
+      <value>^0*3\.0*4\.0*4\.S$</value>
+      <value>^0*3\.0*5\.0*0\.S$</value>
+      <value>^0*3\.0*5\.0*1\.S$</value>
+      <value>^0*3\.0*5\.0*2\.S$</value>
+      <value>^0*3\.0*6\.0*0\.S$</value>
+      <value>^0*3\.0*6\.0*1\.S$</value>
+      <value>^0*3\.0*6\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*0\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:328" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*2\.0*1\.0*0$</value>
+      <value>^0*2\.0*1\.0*1$</value>
+      <value>^0*2\.0*1\.0*2$</value>
+      <value>^0*2\.0*2\.0*1$</value>
+      <value>^0*2\.0*2\.0*2$</value>
+      <value>^0*2\.0*2\.0*3$</value>
+      <value>^0*2\.0*3\.0*0$</value>
+      <value>^0*2\.0*3\.0*0\.t$</value>
+      <value>^0*2\.0*3\.0*1$</value>
+      <value>^0*2\.0*3\.0*1\.t$</value>
+      <value>^0*2\.0*3\.0*2$</value>
+      <value>^0*2\.0*4\.0*0$</value>
+      <value>^0*2\.0*4\.0*1$</value>
+      <value>^0*2\.0*5\.0*0$</value>
+      <value>^0*2\.0*6\.0*0$</value>
+      <value>^0*2\.0*6\.0*1$</value>
+      <value>^0*2\.0*6\.0*2$</value>
+      <value>^0*3\.0*1\.0*0\.S$</value>
+      <value>^0*3\.0*1\.0*0\.SG$</value>
+      <value>^0*3\.0*1\.0*1\.S$</value>
+      <value>^0*3\.0*1\.0*1\.SG$</value>
+      <value>^0*3\.0*1\.0*2\.S$</value>
+      <value>^0*3\.0*1\.0*3\.S$</value>
+      <value>^0*3\.0*1\.0*3\.aS$</value>
+      <value>^0*3\.0*1\.0*4\.S$</value>
+      <value>^0*3\.0*1\.0*4\.aS$</value>
+      <value>^0*3\.0*2\.0*0\.JA$</value>
+      <value>^0*3\.0*2\.0*0\.S$</value>
+      <value>^0*3\.0*2\.0*0\.SE$</value>
+      <value>^0*3\.0*2\.0*0\.SG$</value>
+      <value>^0*3\.0*2\.0*0\.XO$</value>
+      <value>^0*3\.0*2\.0*1\.S$</value>
+      <value>^0*3\.0*2\.0*1\.SE$</value>
+      <value>^0*3\.0*2\.0*1\.SG$</value>
+      <value>^0*3\.0*2\.0*2\.S$</value>
+      <value>^0*3\.0*2\.0*2\.SE$</value>
+      <value>^0*3\.0*2\.0*2\.SG$</value>
+      <value>^0*3\.0*2\.0*3\.SG$</value>
+      <value>^0*3\.0*2\.0*4\.SG$</value>
+      <value>^0*3\.0*2\.0*5\.SG$</value>
+      <value>^0*3\.0*2\.0*6\.SG$</value>
+      <value>^0*3\.0*2\.0*7\.SG$</value>
+      <value>^0*3\.0*3\.0*0\.S$</value>
+      <value>^0*3\.0*3\.0*0\.SG$</value>
+      <value>^0*3\.0*3\.0*1\.S$</value>
+      <value>^0*3\.0*3\.0*1\.SG$</value>
+      <value>^0*3\.0*3\.0*2\.S$</value>
+      <value>^0*3\.0*3\.0*2\.SG$</value>
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*0\.SG$</value>
+      <value>^0*3\.0*4\.0*0\.aS$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+      <value>^0*3\.0*4\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*3\.S$</value>
+      <value>^0*3\.0*4\.0*4\.S$</value>
+      <value>^0*3\.0*4\.0*5\.S$</value>
+      <value>^0*3\.0*5\.0*0\.S$</value>
+      <value>^0*3\.0*5\.0*1\.S$</value>
+      <value>^0*3\.0*5\.0*2\.S$</value>
+      <value>^0*3\.0*6\.0*0\.S$</value>
+      <value>^0*3\.0*6\.0*1\.S$</value>
+      <value>^0*3\.0*6\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*0\.S$</value>
+      <value>^0*3\.0*7\.0*1\.S$</value>
+      <value>^0*3\.0*7\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*3\.S$</value>
+      <value>^0*3\.0*8\.0*0\.S$</value>
+      <value>^0*3\.0*8\.0*1\.S$</value>
+      <value>^0*3\.0*8\.0*2\.S$</value>
+      <value>^0*3\.0*9\.0*0\.S$</value>
+      <value>^0*3\.0*9\.0*1\.S$</value>
+      <value>^0*3\.0*9\.0*1\.aS$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:344" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*7\.0*0\.S$</value>
+      <value>^0*3\.0*7\.0*1\.S$</value>
+      <value>^0*3\.0*7\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*3\.S$</value>
+      <value>^0*3\.0*7\.0*4\.S$</value>
+      <value>^0*3\.0*8\.0*0\.S$</value>
+      <value>^0*3\.0*8\.0*1\.S$</value>
+      <value>^0*3\.0*8\.0*2\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:355" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*1\.0*0\.S$</value>
+      <value>^0*3\.0*1\.0*1\.S$</value>
+      <value>^0*3\.0*1\.0*2\.S$</value>
+      <value>^0*3\.0*1\.0*3\.S$</value>
+      <value>^0*3\.0*2\.0*0\.S$</value>
+      <value>^0*3\.0*2\.0*1\.S$</value>
+      <value>^0*3\.0*2\.0*2\.S$</value>
+      <value>^0*3\.0*3\.0*0\.S$</value>
+      <value>^0*3\.0*3\.0*1\.S$</value>
+      <value>^0*3\.0*3\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+      <value>^0*3\.0*4\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*3\.S$</value>
+      <value>^0*3\.0*4\.0*4\.S$</value>
+      <value>^0*3\.0*5\.0*0\.S$</value>
+      <value>^0*3\.0*5\.0*1\.S$</value>
+      <value>^0*3\.0*5\.0*2\.S$</value>
+      <value>^0*3\.0*6\.0*0\.S$</value>
+      <value>^0*3\.0*6\.0*1\.S$</value>
+      <value>^0*3\.0*6\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*0\.S$</value>
+      <value>^0*3\.0*7\.0*1\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:357" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*2\.0*1\.0*0$</value>
+      <value>^0*2\.0*1\.0*1$</value>
+      <value>^0*2\.0*1\.0*2$</value>
+      <value>^0*2\.0*2\.0*1$</value>
+      <value>^0*2\.0*2\.0*2$</value>
+      <value>^0*2\.0*2\.0*3$</value>
+      <value>^0*2\.0*3\.0*0$</value>
+      <value>^0*2\.0*3\.0*0\.t$</value>
+      <value>^0*2\.0*3\.0*1$</value>
+      <value>^0*2\.0*3\.0*1\.t$</value>
+      <value>^0*2\.0*3\.0*2$</value>
+      <value>^0*2\.0*4\.0*0$</value>
+      <value>^0*2\.0*4\.0*1$</value>
+      <value>^0*2\.0*5\.0*0$</value>
+      <value>^0*2\.0*6\.0*0$</value>
+      <value>^0*2\.0*6\.0*1$</value>
+      <value>^0*2\.0*6\.0*2$</value>
+      <value>^0*3\.0*1\.0*0\.S$</value>
+      <value>^0*3\.0*1\.0*0\.SG$</value>
+      <value>^0*3\.0*1\.0*1\.S$</value>
+      <value>^0*3\.0*1\.0*1\.SG$</value>
+      <value>^0*3\.0*1\.0*2\.S$</value>
+      <value>^0*3\.0*1\.0*3\.S$</value>
+      <value>^0*3\.0*1\.0*3\.aS$</value>
+      <value>^0*3\.0*1\.0*4\.S$</value>
+      <value>^0*3\.0*1\.0*4\.aS$</value>
+      <value>^0*3\.0*2\.0*0\.JA$</value>
+      <value>^0*3\.0*2\.0*0\.S$</value>
+      <value>^0*3\.0*2\.0*0\.SE$</value>
+      <value>^0*3\.0*2\.0*0\.SG$</value>
+      <value>^0*3\.0*2\.0*0\.XO$</value>
+      <value>^0*3\.0*2\.0*1\.S$</value>
+      <value>^0*3\.0*2\.0*1\.SE$</value>
+      <value>^0*3\.0*2\.0*1\.SG$</value>
+      <value>^0*3\.0*2\.0*2\.S$</value>
+      <value>^0*3\.0*2\.0*2\.SG$</value>
+      <value>^0*3\.0*2\.0*3\.SG$</value>
+      <value>^0*3\.0*2\.0*4\.SG$</value>
+      <value>^0*3\.0*2\.0*5\.SG$</value>
+      <value>^0*3\.0*2\.0*6\.SG$</value>
+      <value>^0*3\.0*3\.0*0\.S$</value>
+      <value>^0*3\.0*3\.0*0\.SG$</value>
+      <value>^0*3\.0*3\.0*1\.S$</value>
+      <value>^0*3\.0*3\.0*1\.SG$</value>
+      <value>^0*3\.0*3\.0*2\.S$</value>
+      <value>^0*3\.0*3\.0*2\.SG$</value>
+      <value>^0*3\.0*4\.0*0\.S$</value>
+      <value>^0*3\.0*4\.0*0\.SG$</value>
+      <value>^0*3\.0*4\.0*0\.aS$</value>
+      <value>^0*3\.0*4\.0*1\.S$</value>
+      <value>^0*3\.0*4\.0*2\.S$</value>
+      <value>^0*3\.0*4\.0*3\.S$</value>
+      <value>^0*3\.0*4\.0*4\.S$</value>
+      <value>^0*3\.0*4\.0*5\.S$</value>
+      <value>^0*3\.0*5\.0*0\.S$</value>
+      <value>^0*3\.0*5\.0*1\.S$</value>
+      <value>^0*3\.0*5\.0*2\.S$</value>
+      <value>^0*3\.0*6\.0*0\.S$</value>
+      <value>^0*3\.0*6\.0*1\.S$</value>
+      <value>^0*3\.0*6\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*0\.S$</value>
+      <value>^0*3\.0*7\.0*1\.S$</value>
+      <value>^0*3\.0*7\.0*2\.S$</value>
+      <value>^0*3\.0*7\.0*3\.S$</value>
+      <value>^0*3\.0*8\.0*0\.S$</value>
+      <value>^0*3\.0*8\.0*1\.S$</value>
+      <value>^0*3\.0*9\.0*0\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:368" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*2\.0*1\.0*0$</value>
+      <value>^0*2\.0*1\.0*1$</value>
+      <value>^0*2\.0*1\.0*2$</value>
+      <value>^0*2\.0*2\.0*1$</value>
+      <value>^0*2\.0*2\.0*2$</value>
+      <value>^0*2\.0*2\.0*3$</value>
+      <value>^0*2\.0*3\.0*0$</value>
+      <value>^0*2\.0*3\.0*0\.t$</value>
+      <value>^0*2\.0*3\.0*1$</value>
+      <value>^0*2\.0*3\.0*1\.t$</value>
+      <value>^0*2\.0*3\.0*2$</value>
+      <value>^0*2\.0*4\.0*0$</value>
+      <value>^0*2\.0*4\.0*1$</value>
+      <value>^0*2\.0*5\.0*0$</value>
+      <value>^0*2\.0*6\.0*0$</value>
+      <value>^0*2\.0*6\.0*1$</value>
+      <value>^0*2\.0*6\.0*2$</value>
+      <value>^0*3\.0*1\.0*0\.S$</value>
+      <value>^0*3\.0*1\.0*0\.SG$</value>
+      <value>^0*3\.0*1\.0*1\.S$</value>
+      <value>^0*3\.0*1\.0*1\.SG$</value>
+      <value>^0*3\.0*1\.0*2\.S$</value>
+      <value>^0*3\.0*1\.0*3\.S$</value>
+      <value>^0*3\.0*1\.0*3\.aS$</value>
+      <value>^0*3\.0*1\.0*4\.S$</value>
+      <value>^0*3\.0*1\.0*4\.aS$</value>
+      <value>^0*3\.0*2\.0*0\.S$</value>
+      <value>^0*3\.0*2\.0*0\.SG$</value>
+      <value>^0*3\.0*2\.0*0\.XO$</value>
+      <value>^0*3\.0*2\.0*1\.S$</value>
+      <value>^0*3\.0*2\.0*1\.SG$</value>
+      <value>^0*3\.0*2\.0*2\.S$</value>
+      <value>^0*3\.0*2\.0*2\.SG$</value>
+      <value>^0*3\.0*2\.0*3\.SG$</value>
+      <value>^0*3\.0*2\.0*4\.SG$</value>
+      <value>^0*3\.0*2\.0*5\.SG$</value>
+      <value>^0*3\.0*2\.0*6\.SG$</value>
+      <value>^0*3\.0*2\.0*7\.SG$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:409" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*1\.0*3\.S$</value>
+      <value>^0*3\.0*2\.0*0\.S$</value>
+      <value>^0*3\.0*7\.0*0\.S$</value>
+      <value>^0*3\.0*7\.0*1\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:420" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*9\.0*0\.S$</value>
+      <value>^0*3\.0*9\.0*1\.S$</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:425" comment="Affected IOSXE versions" datatype="string" version="1">
+      <value>^0*3\.0*7\.0*0\.S$</value>
+      <value>^0*3\.0*7\.0*1\.S$</value>
+      <value>^0*3\.0*7\.0*2\.S$</value>
+      <value>^0*3\.0*8\.0*0\.S$</value>
+      <value>^0*3\.0*8\.0*1\.S$</value>
+    </constant_variable>
+  </variables>
+</oval_definitions>

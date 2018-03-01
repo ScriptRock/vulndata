@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions>
+  <definitions>
+    <definition id="oval:org.cisecurity:def:4238" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco Adaptive Security Appliance (ASA) Software OSPFv2 Denial of Service Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20150707-cve-2015-4241" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20150707-CVE-2015-4241" source="Vendor Advisory" />
+        <reference ref_id="CVE-2015-4241" source="CVE" />
+        <description>A vulnerability in the Open Shortest Path First version 2 (OSPFv2) code of Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, adjacent attacker to cause the reload of the affected system.  The vulnerability is due to improper handling of OSPFv2 packets. An attacker could exploit this vulnerability by sending crafted packets to the affected system. A successful exploit could cause the system to crash, resulting in a denial of service (DoS) condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:54">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Affected ASA configuration" test_ref="oval:org.cisecurity:tst:5636" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:5873" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4456" class="vulnerability" version="1">
+      <metadata>
+        <title>Cisco ASA Unicast Reverse Path Forwarding (uRPF) Bypass Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20150812-cve-2015-4321" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20150812-CVE-2015-4321" source="Vendor Advisory" />
+        <reference ref_id="CVE-2015-4321" source="CVE" />
+        <description>A vulnerability in the Unicast Reverse Path Forwarding (uRPF) feature in the Cisco Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to bypass the uRPF validation checks.  The vulnerability is due to incorrect uRPF validation where IP packets from an outside interface, whose IP address is both in the ASA routing table and associated with an internal interface, are not dropped. An attacker could exploit this vulnerability by sending spoofed IP packets to the ASA in a subnet range that should be dropped. An exploit could allow the attacker to bypass uRPF validation on the ASA and the packet will be incorrectly forwarded on the internal network.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:54">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Affected ASA configuration" test_ref="oval:org.cisecurity:tst:5784" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:6214" />
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <line_test id="oval:org.cisecurity:tst:5636" check="all" comment="Affected ASA configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4081" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5784" check="all" comment="Affected ASA configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4509" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5873" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4562" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:6214" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4132" />
+    </version_test>
+  </tests>
+  <objects>
+    <line_object id="oval:org.cisecurity:obj:993" comment="Output from `show running-config`" version="1">
+      <show_subcommand>show running-config</show_subcommand>
+    </line_object>
+  </objects>
+  <states>
+    <line_state id="oval:org.cisecurity:ste:4081" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">^\s*(ipv6 )?router ospf</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4132" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:353" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4509" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">ip verify reverse-path interface</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4562" comment="Affected ASA version" version="1">
+      <asa_release>9.3(2)</asa_release>
+    </version_state>
+  </states>
+  <variables>
+    <constant_variable id="oval:org.cisecurity:var:353" comment="Affected ASA versions" datatype="string" version="1">
+      <value>9.3(1.50)</value>
+      <value>9.3(2.100)</value>
+      <value>9.3(3)</value>
+      <value>9.4(1)</value>
+    </constant_variable>
+  </variables>
+</oval_definitions>
