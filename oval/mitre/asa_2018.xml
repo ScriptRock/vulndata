@@ -1,0 +1,1703 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_definitions>
+  <definitions>
+    <definition id="oval:org.cisecurity:def:4204" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco ASA Software SharePoint RAMFS Integrity and Lua Injection Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20141006-cve-2014-3399" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20141006-CVE-2014-3399" source="Vendor Advisory" />
+        <reference ref_id="CVE-2014-3399" source="CVE" />
+        <description>A vulnerability in the SSL VPN code of Cisco ASA Software could allow an authenticated, remote attacker to overwrite arbitrary files present on the RAMFS file system or inject Lua scripts.  The vulnerability is due to insufficient validation of the code that handles session information for the SSL VPN when a SharePoint handler is created. A SharePoint handler is created when a valid SharePoint connection is initiated. An attacker could exploit this vulnerability by sending crafted HTTP requests to the affected system. The SSL VPN feature must be configured for the system to be vulnerable.  An exploit could allow the attacker to overwrite arbitrary files on the RAMFS cache or inject Lua scripts, causing a denial of service (DoS) condition for the Clientless SSL VPN portal or causing the system to reload.  This vulnerability was reported to Cisco by Alec Stuart-Muirk.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:53">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:6001" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4223" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco ASA Challenge-Response Tunnel Group Selection Bypass Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20150216-cve-2014-8023" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20150216-CVE-2014-8023" source="Vendor Advisory" />
+        <reference ref_id="CVE-2014-8023" source="CVE" />
+        <description>A vulnerability in the authentication code of Cisco ASA Software could allow an authenticated, remote attacker to access resources of a VPN tunnel group.  The vulnerability is due to improper implementation of the tunnel group selection when a user authenticates to the remote access VPN via the challenge-response mechanism. This vulnerability may affect Cisco ASA configured to authenticate remote access VPN users via LDAP, RADIUS, TACACS+, and RSA if a challenge-response is needed for authentication. Cisco ASA Software configured for Clientless or AnyConnect SSL VPN is affected by this vulnerability.  An attacker could exploit this vulnerability by crafting a response to the Cisco ASA with a different tunnel group parameter. A successful exploit could allow the attacker to bypass the tunnel group restriction and authenticate to a different tunnel group than the one selected during the authentication phase. This could result in accessing a different set of resources.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:53">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected ASA configuration" operator="AND">
+          <criterion comment="AAA protocol in use is SDI" test_ref="oval:org.cisecurity:tst:5921" />
+          <criterion comment="Tunnel group configured for non-default AAA server" test_ref="oval:org.cisecurity:tst:5990" />
+        </criteria>
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:5964" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4237" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco ASA Software and Cisco FTD Software TCP Normalizer Denial of Service Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20170419-asa-norm" ref_url="https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20170419-asa-norm" source="Vendor Advisory" />
+        <reference ref_id="CVE-2017-3793" source="CVE" />
+        <description>A vulnerability in the TCP normalizer of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an unauthenticated, remote attacker to cause Cisco ASA and FTD to drop any further incoming traffic on all interfaces, resulting in a denial of service (DoS) condition.  The vulnerability is due to improper limitation of the global out-of-order TCP queue for specific block sizes. An attacker could exploit this vulnerability by sending a large number of unique permitted TCP connections with out-of-order segments. An exploit could allow the attacker to exhaust available blocks in the global out-of-order TCP queue, causing the dropping of any further incoming traffic on all interfaces and resulting in a DoS condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:54">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Cisco Firepower Threat Defense (FTD) installed" test_ref="oval:org.cisecurity:tst:6092" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:5655" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4238" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco Adaptive Security Appliance (ASA) Software OSPFv2 Denial of Service Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20150707-cve-2015-4241" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20150707-CVE-2015-4241" source="Vendor Advisory" />
+        <reference ref_id="CVE-2015-4241" source="CVE" />
+        <description>A vulnerability in the Open Shortest Path First version 2 (OSPFv2) code of Cisco Adaptive Security Appliance (ASA) Software could allow an unauthenticated, adjacent attacker to cause the reload of the affected system.  The vulnerability is due to improper handling of OSPFv2 packets. An attacker could exploit this vulnerability by sending crafted packets to the affected system. A successful exploit could cause the system to crash, resulting in a denial of service (DoS) condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:54">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Affected ASA configuration" test_ref="oval:org.cisecurity:tst:5636" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:5873" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4253" class="vulnerability" version="2">
+      <metadata>
+        <title>SQL*Net Inspection Engine Denial of Service Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131009-fwsm" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20131009-fwsm" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5508" source="CVE" />
+        <description>A vulnerability in SQL*Net inspection engine code could allow an unauthenticated, remote attacker to cause a reload of the affected system.  The vulnerability is due to improper handling of segmented Transparent Network Substrate (TNS) packets. An attacker could exploit this vulnerability by sending a crafted sequence of segmented TNS packets through the affected system.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:53">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Affected ASA configuration" test_ref="oval:org.cisecurity:tst:5759" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:6158" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4326" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco Adaptive Security Appliance RADIUS Change of Authorization Message Replay Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20140108-cve-2014-0655" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20140108-CVE-2014-0655" source="Vendor Advisory" />
+        <reference ref_id="CVE-2014-0655" source="CVE" />
+        <description>A vulnerability in RADIUS Change of Authorization (CoA) messages of the Identity Firewall (IDFW) feature of the Cisco Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to modify the contents of the IDFW user cache.  The vulnerability is due to insufficient validation of received RADIUS CoA messages. An attacker could exploit this vulnerability by replaying crafted RAIDUS CoA messages. An exploit could allow the attacker to modify the IDFW user cache of the ASA.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:53">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="IDFW enabled" test_ref="oval:org.cisecurity:tst:5952" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:5813" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4356" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco ASA VPN Denial of Service Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20131022-cve-2013-5544" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20131022-CVE-2013-5544" source="Vendor Advisory" />
+        <reference ref_id="CVE-2013-5544" source="CVE" />
+        <description>A vulnerability in the VPN authentication code that handles parsing of the username from the certificate on the Cisco ASA firewall could allow an unauthenticated, remote attacker to cause a reload of the affected device.  The vulnerability is due to parallel processing of a large number of Internet Key Exchange (IKE) requests for which username-from-cert is configured. An attacker could exploit this vulnerability by sending a large number of IKE requests when the affected device is configured with the username-from-cert command. An exploit could allow the attacker to cause a reload of the affected device, leading to a denial of service (DoS) condition.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:53">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="username-from-certificate enabled" test_ref="oval:org.cisecurity:tst:5644" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:6098" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4360" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco ASA Identity Firewall Feature Buffer Overflow Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20161019-asa-idfw" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20161019-asa-idfw" source="Vendor Advisory" />
+        <reference ref_id="CVE-2016-6432" source="CVE" />
+        <description>A vulnerability in the Identity Firewall feature of Cisco ASA Software could allow an unauthenticated, remote attacker to cause a reload of the affected system or to remotely execute code.  The vulnerability is due to a buffer overflow in the affected code area. An attacker could exploit this vulnerability by sending a crafted NetBIOS packet in response to a NetBIOS probe sent by the ASA software. An exploit could allow the attacker to execute arbitrary code and obtain full control of the system or cause a reload of the affected system.  Note: Only traffic directed to the affected system can be used to exploit this vulnerability. This vulnerability affects systems configured in routed and transparent firewall mode and in single or multiple context mode. This vulnerability can be triggered by IPv4 traffic.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:54">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="NetBIOS probing enabled" test_ref="oval:org.cisecurity:tst:5719" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:5684" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4370" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco ASA Information Disclosure Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20140507-cve-2014-2181" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20140507-CVE-2014-2181" source="Vendor Advisory" />
+        <reference ref_id="CVE-2014-2181" source="CVE" />
+        <description>A vulnerability in the authorization code of Cisco ASA Software could allow an authenticated, remote attacker to access information stored on the file system of an affected system.  The vulnerability is due to improper implementation of authorization controls when an unprivileged user tries to access files stored on the file system. This vulnerability can be exploited after authentication and only if HTTP server is enabled. An attacker could exploit this vulnerability by sending a crafted URL to the affected system. If the Cisco ASA is configured in multiple context mode, only the user of the admin context will be able to exploit this vulnerability. An exploit could allow the attacker to access files stored on the device file system, which may include the running configuration.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:53">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="HTTP server enabled" test_ref="oval:org.cisecurity:tst:6033" />
+          <criterion comment="HTTP server disabled" negate="true" test_ref="oval:org.cisecurity:tst:6142" />
+        </criteria>
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:5897" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4398" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco Adaptive Security Appliance VPN Memory Block Exhaustion Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20160517-asa-vpn" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20160517-asa-vpn" source="Vendor Advisory" />
+        <reference ref_id="CVE-2016-1379" source="CVE" />
+        <description>A vulnerability in the IPsec code of Cisco Adaptive Security Appliance (ASA) Software could allow an authenticated, remote attacker to cause the depletion of a memory block, which may cause the system to stop forwarding traffic and result in a denial of service (DoS) condition.  The vulnerability is due to an error in the implementation of ICMP error handling for IPsec packets. An attacker could exploit this vulnerability by sending crafted packets through an established LAN-to-LAN or Remote Access VPN tunnel. A successful exploit could allow the attacker to deplete available memory and cause system instability or cause the system to stop forwarding traffic.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:54">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="validate-icmp-errors configured in crypto map" test_ref="oval:org.cisecurity:tst:6111" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:6041" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4456" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco ASA Unicast Reverse Path Forwarding (uRPF) Bypass Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20150812-cve-2015-4321" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20150812-CVE-2015-4321" source="Vendor Advisory" />
+        <reference ref_id="CVE-2015-4321" source="CVE" />
+        <description>A vulnerability in the Unicast Reverse Path Forwarding (uRPF) feature in the Cisco Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to bypass the uRPF validation checks.  The vulnerability is due to incorrect uRPF validation where IP packets from an outside interface, whose IP address is both in the ASA routing table and associated with an internal interface, are not dropped. An attacker could exploit this vulnerability by sending spoofed IP packets to the ASA in a subnet range that should be dropped. An exploit could allow the attacker to bypass uRPF validation on the ASA and the packet will be incorrectly forwarded on the internal network.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:54">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="Affected ASA configuration" test_ref="oval:org.cisecurity:tst:5784" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:6214" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4500" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco Adaptive Security Appliance Information Disclosure Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20160115-asa" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20160115-asa" source="Vendor Advisory" />
+        <reference ref_id="CVE-2016-1295" source="CVE" />
+        <description>A vulnerability in the Cisco Adaptive Security Appliance (ASA) could allow an unauthenticated, remote attacker to access sensitive data, including the ASA Software version that is currently running on the appliance.  The vulnerability occurs because the Cisco ASA does not sufficiently protect sensitive data during a Cisco AnyConnect client authentication attempt. An attacker could exploit the vulnerability by attempting to authenticate to the Cisco ASA with AnyConnect.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:54">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criteria comment="Affected ASA configuration" operator="AND">
+          <criterion comment="WevVPN enabled" test_ref="oval:org.cisecurity:tst:5997" />
+          <criterion comment="Anyconnect configured" test_ref="oval:org.cisecurity:tst:6116" />
+        </criteria>
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:6194" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4505" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco ASA Software DHCP Relay Denial of Service Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20161005-asa-dhcp" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20161005-asa-dhcp" source="Vendor Advisory" />
+        <reference ref_id="CVE-2016-6424" source="CVE" />
+        <description>A vulnerability in the DHCP Relay feature of Cisco ASA Software could allow an unauthenticated, adjacent attacker to cause a denial of service (DoS) condition by causing an interface wedge.  The vulnerability is due to improper handling of resources linked with the DHCP Relay feature. An attacker could exploit this vulnerability by sending DHCP packets at specific rates. An exploit could allow an attacker to cause an interface to become wedged, and stop processing incoming traffic. Once this state is reached, restoration of service can only be achieved by reloading the device.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:54">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="DHCP relay enabled" test_ref="oval:org.cisecurity:tst:6147" />
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:5858" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4531" class="vulnerability" version="2">
+      <metadata>
+        <title>Cisco ASA Local Path Inclusion Vulnerability</title>
+        <affected family="asa">
+          <platform>Cisco ASA</platform>
+        </affected>
+        <reference ref_id="cisco-sa-20141008-cve-2014-3391" ref_url="http://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/Cisco-SA-20141008-CVE-2014-3391" source="Vendor Advisory" />
+        <reference ref_id="CVE-2014-3391" source="CVE" />
+        <description>A vulnerability in the function that exports environment variables of Cisco ASA Software could allow an authenticated, local attacker to inject a malicious library and take complete control of the system.  The vulnerability is due to improper setting of the LD_LIBRARY_PATH environment. An attacker could exploit this vulnerability by copying a malicious library onto the affected system's external memory and triggering a reload of the system. An exploit could allow the attacker to force the affected system to load a malicious library and access the underlying Linux OS, which could lead to a full compromise of the system.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-26T21:14:53">
+              <contributor organization="JovalCM.com">David Ries</contributor>
+            </submitted>
+            <status_change date="2018-03-02T19:08:25.972-05:00">DRAFT</status_change>
+          </dates>
+          <status>DRAFT</status>
+          <min_schema_version>5.11</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="ASA version is affected" test_ref="oval:org.cisecurity:tst:5960" />
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <line_test id="oval:org.cisecurity:tst:5636" check="all" comment="Affected ASA configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4081" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5644" check="all" comment="username-from-certificate enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4262" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5655" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4127" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:5684" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4665" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:5719" check="all" comment="NetBIOS probing enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4177" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5759" check="all" comment="Affected ASA configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1114" />
+      <state state_ref="oval:org.cisecurity:ste:4366" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5784" check="all" comment="Affected ASA configuration" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4509" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5813" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4661" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:5858" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4623" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:5873" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4562" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:5897" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4260" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:5921" check="all" comment="AAA protocol in use is SDI" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1124" />
+      <state state_ref="oval:org.cisecurity:ste:4218" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5952" check="all" comment="IDFW enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4327" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:5960" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4110" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:5964" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4116" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:5990" check="all" comment="Tunnel group configured for non-default AAA server" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1116" />
+      <state state_ref="oval:org.cisecurity:ste:4685" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:5997" check="all" comment="WevVPN enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4075" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:6001" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4466" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:6033" check="all" comment="HTTP server enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4224" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:6041" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4492" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:6092" check="all" comment="Cisco Firepower Threat Defense (FTD) installed" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4170" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:6098" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4350" />
+    </version_test>
+    <line_test id="oval:org.cisecurity:tst:6111" check="all" comment="validate-icmp-errors configured in crypto map" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4227" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:6116" check="all" comment="Anyconnect configured" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4060" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:6142" check="all" comment="HTTP server disabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4149" />
+    </line_test>
+    <line_test id="oval:org.cisecurity:tst:6147" check="all" comment="DHCP relay enabled" version="1">
+      <object object_ref="oval:org.cisecurity:obj:993" />
+      <state state_ref="oval:org.cisecurity:ste:4299" />
+    </line_test>
+    <version_test id="oval:org.cisecurity:tst:6158" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4569" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:6194" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4059" />
+    </version_test>
+    <version_test id="oval:org.cisecurity:tst:6214" check="at least one" comment="ASA version is affected" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1021" />
+      <state state_ref="oval:org.cisecurity:ste:4132" />
+    </version_test>
+  </tests>
+  <objects>
+    <line_object id="oval:org.cisecurity:obj:993" comment="Output from `show running-config`" version="1">
+      <show_subcommand>show running-config</show_subcommand>
+    </line_object>
+    <line_object id="oval:org.cisecurity:obj:1114" comment="Output from `show  service-policy | include sqlnet`" version="1">
+      <show_subcommand>show  service-policy | include sqlnet</show_subcommand>
+    </line_object>
+    <line_object id="oval:org.cisecurity:obj:1116" comment="Output from `show running-config tunnel-group general-attributes`" version="1">
+      <show_subcommand>show running-config tunnel-group general-attributes</show_subcommand>
+    </line_object>
+    <line_object id="oval:org.cisecurity:obj:1124" comment="Output from `show aaa-server`" version="1">
+      <show_subcommand>show aaa-server</show_subcommand>
+    </line_object>
+  </objects>
+  <states>
+    <version_state id="oval:org.cisecurity:ste:4059" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:224" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4060" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">^\s*anyconnect</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4075" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">^\s*webvpn</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4081" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">^\s*(ipv6 )?router ospf</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4110" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:426" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4116" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:141" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4127" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:150" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4132" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:353" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4149" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">^\s*no http server enable</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4170" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">[Ff][Ii][Rr][Ee][Pp][Oo][Ww][Ee][Rr]</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4177" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">\s*user-identity logout-probe netbios</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4218" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">Server Protocol:\s*([Ss][Dd][Ii]|[Rr][Aa][Dd][Ii][Uu][Ss]|[Ll][Dd][Aa][Pp]|[Tt][Aa][Cc][Aa][Cc][Ss])</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4224" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">^\s*http server enable</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4227" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">set validate-icmp-errors</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4260" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:140" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4262" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">username-from-certificate</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4299" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">^\s*dhcprelay enable</config_line>
+    </line_state>
+    <line_state id="oval:org.cisecurity:ste:4327" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">^\s*user-identity enable</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4350" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:437" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4366" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">sqlnet</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4466" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:418" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4492" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:271" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4509" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">ip verify reverse-path interface</config_line>
+    </line_state>
+    <version_state id="oval:org.cisecurity:ste:4562" comment="Affected ASA version" version="1">
+      <asa_release>9.3(2)</asa_release>
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4569" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:195" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4623" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:159" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4661" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:400" />
+    </version_state>
+    <version_state id="oval:org.cisecurity:ste:4665" comment="Affected ASA versions" version="1">
+      <asa_release var_check="at least one" var_ref="oval:org.cisecurity:var:174" />
+    </version_state>
+    <line_state id="oval:org.cisecurity:ste:4685" comment="Affected configuration value" version="1">
+      <config_line operation="pattern match">authentication-server-group\s+(?!LOCAL)\w+</config_line>
+    </line_state>
+  </states>
+  <variables>
+    <constant_variable id="oval:org.cisecurity:var:140" comment="Affected ASA versions" datatype="string" version="1">
+      <value>8.0(4.16)</value>
+      <value>8.0(4.23)</value>
+      <value>8.0(4.25)</value>
+      <value>8.0(4.28)</value>
+      <value>8.0(4.31)</value>
+      <value>8.0(4.32)</value>
+      <value>8.0(4.33)</value>
+      <value>8.0(4.9)</value>
+      <value>8.0(5)</value>
+      <value>8.0(5.20)</value>
+      <value>8.0(5.23)</value>
+      <value>8.0(5.25)</value>
+      <value>8.0(5.27)</value>
+      <value>8.0(5.28)</value>
+      <value>8.0(5.31)</value>
+      <value>8.2(0.45)</value>
+      <value>8.2(1)</value>
+      <value>8.2(1.11)</value>
+      <value>8.2(2)</value>
+      <value>8.2(2.10)</value>
+      <value>8.2(2.12)</value>
+      <value>8.2(2.16)</value>
+      <value>8.2(2.17)</value>
+      <value>8.2(2.9)</value>
+      <value>8.2(3)</value>
+      <value>8.2(4)</value>
+      <value>8.2(4.1)</value>
+      <value>8.2(4.4)</value>
+      <value>8.2(5)</value>
+      <value>8.2(5.13)</value>
+      <value>8.2(5.22)</value>
+      <value>8.2(5.26)</value>
+      <value>8.2(5.33)</value>
+      <value>8.2(5.40)</value>
+      <value>8.2(5.41)</value>
+      <value>8.2(5.46)</value>
+      <value>8.2(5.48)</value>
+      <value>8.3(1)</value>
+      <value>8.3(1.1)</value>
+      <value>8.3(1.4)</value>
+      <value>8.3(1.6)</value>
+      <value>8.3(2)</value>
+      <value>8.3(2.13)</value>
+      <value>8.3(2.23)</value>
+      <value>8.3(2.25)</value>
+      <value>8.3(2.31)</value>
+      <value>8.3(2.33)</value>
+      <value>8.3(2.34)</value>
+      <value>8.3(2.37)</value>
+      <value>8.3(2.39)</value>
+      <value>8.3(2.4)</value>
+      <value>8.3(2.40)</value>
+      <value>8.4(1)</value>
+      <value>8.4(1.11)</value>
+      <value>8.4(1.3)</value>
+      <value>8.4(2)</value>
+      <value>8.4(2.1)</value>
+      <value>8.4(2.8)</value>
+      <value>8.4(3)</value>
+      <value>8.4(3.8)</value>
+      <value>8.4(3.9)</value>
+      <value>8.4(4)</value>
+      <value>8.4(4.1)</value>
+      <value>8.4(4.3)</value>
+      <value>8.4(4.5)</value>
+      <value>8.4(4.9)</value>
+      <value>8.4(5)</value>
+      <value>8.4(5.6)</value>
+      <value>8.4(6)</value>
+      <value>8.4(7)</value>
+      <value>8.4(7.15)</value>
+      <value>8.4(7.3)</value>
+      <value>8.5(1)</value>
+      <value>8.5(1.1)</value>
+      <value>8.5(1.14)</value>
+      <value>8.5(1.17)</value>
+      <value>8.5(1.18)</value>
+      <value>8.5(1.19)</value>
+      <value>8.5(1.6)</value>
+      <value>8.5(1.7)</value>
+      <value>8.6(1)</value>
+      <value>8.6(1.1)</value>
+      <value>8.6(1.10)</value>
+      <value>8.6(1.12)</value>
+      <value>8.6(1.13)</value>
+      <value>8.6(1.2)</value>
+      <value>8.6(1.5)</value>
+      <value>8.7(1)</value>
+      <value>8.7(1.1)</value>
+      <value>8.7(1.11)</value>
+      <value>8.7(1.3)</value>
+      <value>8.7(1.4)</value>
+      <value>8.7(1.7)</value>
+      <value>8.7(1.8)</value>
+      <value>9.0(1)</value>
+      <value>9.0(2)</value>
+      <value>9.0(2.10)</value>
+      <value>9.0(3)</value>
+      <value>9.0(3.6)</value>
+      <value>9.0(3.8)</value>
+      <value>9.0(4)</value>
+      <value>9.0(4.1)</value>
+      <value>9.0(4.5)</value>
+      <value>9.1(1)</value>
+      <value>9.1(1.4)</value>
+      <value>9.1(2)</value>
+      <value>9.1(2.8)</value>
+      <value>9.1(3)</value>
+      <value>9.1(3.2)</value>
+      <value>9.1(4)</value>
+      <value>9.1(4.5)</value>
+      <value>9.1(5)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:141" comment="Affected ASA versions" datatype="string" version="1">
+      <value>8.2(0.45)</value>
+      <value>8.2(1)</value>
+      <value>8.2(1.11)</value>
+      <value>8.2(2)</value>
+      <value>8.2(2.10)</value>
+      <value>8.2(2.12)</value>
+      <value>8.2(2.16)</value>
+      <value>8.2(2.17)</value>
+      <value>8.2(2.9)</value>
+      <value>8.2(3)</value>
+      <value>8.2(4)</value>
+      <value>8.2(4.1)</value>
+      <value>8.2(4.4)</value>
+      <value>8.2(5)</value>
+      <value>8.2(5.13)</value>
+      <value>8.2(5.22)</value>
+      <value>8.2(5.26)</value>
+      <value>8.2(5.33)</value>
+      <value>8.2(5.40)</value>
+      <value>8.2(5.41)</value>
+      <value>8.2(5.46)</value>
+      <value>8.2(5.48)</value>
+      <value>8.2(5.50)</value>
+      <value>8.3(1)</value>
+      <value>8.3(1.1)</value>
+      <value>8.3(1.4)</value>
+      <value>8.3(1.6)</value>
+      <value>8.3(2)</value>
+      <value>8.3(2.13)</value>
+      <value>8.3(2.23)</value>
+      <value>8.3(2.25)</value>
+      <value>8.3(2.31)</value>
+      <value>8.3(2.33)</value>
+      <value>8.3(2.34)</value>
+      <value>8.3(2.37)</value>
+      <value>8.3(2.39)</value>
+      <value>8.3(2.4)</value>
+      <value>8.3(2.40)</value>
+      <value>8.3(2.41)</value>
+      <value>8.4(1)</value>
+      <value>8.4(1.11)</value>
+      <value>8.4(1.3)</value>
+      <value>8.4(2)</value>
+      <value>8.4(2.1)</value>
+      <value>8.4(2.8)</value>
+      <value>8.4(3)</value>
+      <value>8.4(3.8)</value>
+      <value>8.4(3.9)</value>
+      <value>8.4(4)</value>
+      <value>8.4(4.1)</value>
+      <value>8.4(4.3)</value>
+      <value>8.4(4.5)</value>
+      <value>8.4(4.9)</value>
+      <value>8.4(5)</value>
+      <value>8.4(5.6)</value>
+      <value>8.4(6)</value>
+      <value>8.4(7)</value>
+      <value>8.4(7.15)</value>
+      <value>8.4(7.22)</value>
+      <value>8.4(7.23)</value>
+      <value>8.4(7.3)</value>
+      <value>8.6(1)</value>
+      <value>8.6(1.1)</value>
+      <value>8.6(1.10)</value>
+      <value>8.6(1.12)</value>
+      <value>8.6(1.13)</value>
+      <value>8.6(1.14)</value>
+      <value>8.6(1.2)</value>
+      <value>8.6(1.5)</value>
+      <value>9.0(1)</value>
+      <value>9.0(2)</value>
+      <value>9.0(2.10)</value>
+      <value>9.0(3)</value>
+      <value>9.0(3.6)</value>
+      <value>9.0(3.8)</value>
+      <value>9.0(4)</value>
+      <value>9.0(4.1)</value>
+      <value>9.0(4.17)</value>
+      <value>9.0(4.20)</value>
+      <value>9.0(4.24)</value>
+      <value>9.0(4.5)</value>
+      <value>9.0(4.7)</value>
+      <value>9.1(1)</value>
+      <value>9.1(1.4)</value>
+      <value>9.1(2)</value>
+      <value>9.1(2.8)</value>
+      <value>9.1(3)</value>
+      <value>9.1(3.2)</value>
+      <value>9.1(4)</value>
+      <value>9.1(4.5)</value>
+      <value>9.1(5)</value>
+      <value>9.1(5.10)</value>
+      <value>9.1(5.12)</value>
+      <value>9.1(5.15)</value>
+      <value>9.2(1)</value>
+      <value>9.2(2)</value>
+      <value>9.2(2.4)</value>
+      <value>9.2(2.7)</value>
+      <value>9.2(2.8)</value>
+      <value>9.2(3)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:150" comment="Affected ASA versions" datatype="string" version="1">
+      <value>8.0(1.2)</value>
+      <value>8.0(2)</value>
+      <value>8.0(2.11)</value>
+      <value>8.0(2.15)</value>
+      <value>8.0(3)</value>
+      <value>8.0(3.12)</value>
+      <value>8.0(3.19)</value>
+      <value>8.0(3.6)</value>
+      <value>8.0(4)</value>
+      <value>8.0(4.16)</value>
+      <value>8.0(4.23)</value>
+      <value>8.0(4.25)</value>
+      <value>8.0(4.28)</value>
+      <value>8.0(4.3)</value>
+      <value>8.0(4.31)</value>
+      <value>8.0(4.32)</value>
+      <value>8.0(4.33)</value>
+      <value>8.0(4.9)</value>
+      <value>8.0(5)</value>
+      <value>8.0(5.20)</value>
+      <value>8.0(5.23)</value>
+      <value>8.0(5.25)</value>
+      <value>8.0(5.27)</value>
+      <value>8.0(5.28)</value>
+      <value>8.0(5.31)</value>
+      <value>8.1(0.104)</value>
+      <value>8.1(1)</value>
+      <value>8.1(1.6)</value>
+      <value>8.1(2)</value>
+      <value>8.1(2.13)</value>
+      <value>8.1(2.15)</value>
+      <value>8.1(2.16)</value>
+      <value>8.1(2.19)</value>
+      <value>8.1(2.23)</value>
+      <value>8.1(2.24)</value>
+      <value>8.1(2.49)</value>
+      <value>8.1(2.50)</value>
+      <value>8.1(2.55)</value>
+      <value>8.1(2.56)</value>
+      <value>8.2(0.45)</value>
+      <value>8.2(1)</value>
+      <value>8.2(1.11)</value>
+      <value>8.2(2)</value>
+      <value>8.2(2.10)</value>
+      <value>8.2(2.12)</value>
+      <value>8.2(2.16)</value>
+      <value>8.2(2.17)</value>
+      <value>8.2(2.9)</value>
+      <value>8.2(3)</value>
+      <value>8.2(4)</value>
+      <value>8.2(4.1)</value>
+      <value>8.2(4.4)</value>
+      <value>8.2(5)</value>
+      <value>8.2(5.13)</value>
+      <value>8.2(5.22)</value>
+      <value>8.2(5.26)</value>
+      <value>8.2(5.33)</value>
+      <value>8.2(5.40)</value>
+      <value>8.2(5.41)</value>
+      <value>8.2(5.46)</value>
+      <value>8.2(5.48)</value>
+      <value>8.2(5.50)</value>
+      <value>8.2(5.52)</value>
+      <value>8.2(5.55)</value>
+      <value>8.2(5.57)</value>
+      <value>8.2(5.59)</value>
+      <value>8.3(1)</value>
+      <value>8.3(1.1)</value>
+      <value>8.3(1.4)</value>
+      <value>8.3(1.6)</value>
+      <value>8.3(2)</value>
+      <value>8.3(2.13)</value>
+      <value>8.3(2.23)</value>
+      <value>8.3(2.25)</value>
+      <value>8.3(2.31)</value>
+      <value>8.3(2.33)</value>
+      <value>8.3(2.34)</value>
+      <value>8.3(2.37)</value>
+      <value>8.3(2.39)</value>
+      <value>8.3(2.4)</value>
+      <value>8.3(2.40)</value>
+      <value>8.3(2.41)</value>
+      <value>8.3(2.44)</value>
+      <value>8.4(0)</value>
+      <value>8.4(1)</value>
+      <value>8.4(1.11)</value>
+      <value>8.4(1.3)</value>
+      <value>8.4(2)</value>
+      <value>8.4(2.1)</value>
+      <value>8.4(2.8)</value>
+      <value>8.4(3)</value>
+      <value>8.4(3.8)</value>
+      <value>8.4(3.9)</value>
+      <value>8.4(4)</value>
+      <value>8.4(4.1)</value>
+      <value>8.4(4.3)</value>
+      <value>8.4(4.5)</value>
+      <value>8.4(4.9)</value>
+      <value>8.4(5)</value>
+      <value>8.4(5.6)</value>
+      <value>8.4(6)</value>
+      <value>8.4(7)</value>
+      <value>8.4(7.15)</value>
+      <value>8.4(7.22)</value>
+      <value>8.4(7.23)</value>
+      <value>8.4(7.26)</value>
+      <value>8.4(7.28)</value>
+      <value>8.4(7.29)</value>
+      <value>8.4(7.3)</value>
+      <value>8.5(1)</value>
+      <value>8.5(1.1)</value>
+      <value>8.5(1.14)</value>
+      <value>8.5(1.17)</value>
+      <value>8.5(1.18)</value>
+      <value>8.5(1.19)</value>
+      <value>8.5(1.21)</value>
+      <value>8.5(1.24)</value>
+      <value>8.5(1.6)</value>
+      <value>8.5(1.7)</value>
+      <value>8.6(1)</value>
+      <value>8.6(1.1)</value>
+      <value>8.6(1.10)</value>
+      <value>8.6(1.12)</value>
+      <value>8.6(1.13)</value>
+      <value>8.6(1.14)</value>
+      <value>8.6(1.17)</value>
+      <value>8.6(1.2)</value>
+      <value>8.6(1.5)</value>
+      <value>8.7(1)</value>
+      <value>8.7(1.1)</value>
+      <value>8.7(1.11)</value>
+      <value>8.7(1.13)</value>
+      <value>8.7(1.16)</value>
+      <value>8.7(1.17)</value>
+      <value>8.7(1.3)</value>
+      <value>8.7(1.4)</value>
+      <value>8.7(1.7)</value>
+      <value>8.7(1.8)</value>
+      <value>9.0(1)</value>
+      <value>9.0(2)</value>
+      <value>9.0(2.10)</value>
+      <value>9.0(3)</value>
+      <value>9.0(3.6)</value>
+      <value>9.0(3.8)</value>
+      <value>9.0(4)</value>
+      <value>9.0(4.1)</value>
+      <value>9.0(4.17)</value>
+      <value>9.0(4.20)</value>
+      <value>9.0(4.24)</value>
+      <value>9.0(4.26)</value>
+      <value>9.0(4.29)</value>
+      <value>9.0(4.33)</value>
+      <value>9.0(4.35)</value>
+      <value>9.0(4.37)</value>
+      <value>9.0(4.40)</value>
+      <value>9.0(4.42)</value>
+      <value>9.0(4.5)</value>
+      <value>9.0(4.7)</value>
+      <value>9.1(1)</value>
+      <value>9.1(1.4)</value>
+      <value>9.1(2)</value>
+      <value>9.1(2.8)</value>
+      <value>9.1(3)</value>
+      <value>9.1(3.2)</value>
+      <value>9.1(4)</value>
+      <value>9.1(4.5)</value>
+      <value>9.1(5)</value>
+      <value>9.1(5.10)</value>
+      <value>9.1(5.12)</value>
+      <value>9.1(5.15)</value>
+      <value>9.1(5.21)</value>
+      <value>9.1(6)</value>
+      <value>9.1(6.1)</value>
+      <value>9.1(6.10)</value>
+      <value>9.1(6.4)</value>
+      <value>9.1(6.6)</value>
+      <value>9.1(6.8)</value>
+      <value>9.1(7.11)</value>
+      <value>9.1(7.12)</value>
+      <value>9.1(7.4)</value>
+      <value>9.1(7.6)</value>
+      <value>9.1(7.7)</value>
+      <value>9.1(7.9)</value>
+      <value>9.2(0.0)</value>
+      <value>9.2(0.104)</value>
+      <value>9.2(1)</value>
+      <value>9.2(2)</value>
+      <value>9.2(2.4)</value>
+      <value>9.2(2.7)</value>
+      <value>9.2(2.8)</value>
+      <value>9.2(3)</value>
+      <value>9.2(3.1)</value>
+      <value>9.2(3.3)</value>
+      <value>9.2(3.4)</value>
+      <value>9.2(4)</value>
+      <value>9.2(4.10)</value>
+      <value>9.2(4.13)</value>
+      <value>9.2(4.14)</value>
+      <value>9.2(4.16)</value>
+      <value>9.2(4.17)</value>
+      <value>9.2(4.2)</value>
+      <value>9.2(4.4)</value>
+      <value>9.2(4.8)</value>
+      <value>9.3(1)</value>
+      <value>9.3(1.1)</value>
+      <value>9.3(1.105)</value>
+      <value>9.3(1.50)</value>
+      <value>9.3(2)</value>
+      <value>9.3(2.100)</value>
+      <value>9.3(2.2)</value>
+      <value>9.3(2.243)</value>
+      <value>9.3(3)</value>
+      <value>9.3(3.1)</value>
+      <value>9.3(3.10)</value>
+      <value>9.3(3.11)</value>
+      <value>9.3(3.2)</value>
+      <value>9.3(3.5)</value>
+      <value>9.3(3.6)</value>
+      <value>9.3(3.9)</value>
+      <value>9.3(5)</value>
+      <value>9.4(0.115)</value>
+      <value>9.4(1)</value>
+      <value>9.4(1.1)</value>
+      <value>9.4(1.2)</value>
+      <value>9.4(1.3)</value>
+      <value>9.4(1.5)</value>
+      <value>9.4(2)</value>
+      <value>9.4(2.3)</value>
+      <value>9.4(3)</value>
+      <value>9.4(3.11)</value>
+      <value>9.4(3.12)</value>
+      <value>9.4(3.3)</value>
+      <value>9.4(3.4)</value>
+      <value>9.4(3.6)</value>
+      <value>9.4(3.8)</value>
+      <value>9.4(4)</value>
+      <value>9.5(1)</value>
+      <value>9.5(2)</value>
+      <value>9.5(2.10)</value>
+      <value>9.5(2.14)</value>
+      <value>9.5(2.6)</value>
+      <value>9.5(3)</value>
+      <value>9.5(3.2)</value>
+      <value>9.5(3.3)</value>
+      <value>9.6(0)</value>
+      <value>9.6(1)</value>
+      <value>9.6(1.10)</value>
+      <value>9.6(1.3)</value>
+      <value>9.6(1.5)</value>
+      <value>9.6(2)</value>
+      <value>9.6(2.1)</value>
+      <value>9.6(2.2)</value>
+      <value>9.6(2.3)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:159" comment="Affected ASA versions" datatype="string" version="1">
+      <value>8.4(7.29)</value>
+      <value>9.1(7.4)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:174" comment="Affected ASA versions" datatype="string" version="1">
+      <value>8.4(0)</value>
+      <value>8.4(2)</value>
+      <value>8.4(2.1)</value>
+      <value>8.4(2.8)</value>
+      <value>8.4(3)</value>
+      <value>8.4(3.8)</value>
+      <value>8.4(3.9)</value>
+      <value>8.4(4)</value>
+      <value>8.4(4.1)</value>
+      <value>8.4(4.3)</value>
+      <value>8.4(4.5)</value>
+      <value>8.4(4.9)</value>
+      <value>8.4(5)</value>
+      <value>8.4(5.6)</value>
+      <value>8.4(6)</value>
+      <value>8.4(7)</value>
+      <value>8.4(7.15)</value>
+      <value>8.4(7.22)</value>
+      <value>8.4(7.23)</value>
+      <value>8.4(7.26)</value>
+      <value>8.4(7.28)</value>
+      <value>8.4(7.29)</value>
+      <value>8.4(7.3)</value>
+      <value>8.5(1)</value>
+      <value>8.5(1.1)</value>
+      <value>8.5(1.14)</value>
+      <value>8.5(1.17)</value>
+      <value>8.5(1.18)</value>
+      <value>8.5(1.19)</value>
+      <value>8.5(1.21)</value>
+      <value>8.5(1.24)</value>
+      <value>8.5(1.6)</value>
+      <value>8.5(1.7)</value>
+      <value>8.6(1)</value>
+      <value>8.6(1.1)</value>
+      <value>8.6(1.10)</value>
+      <value>8.6(1.12)</value>
+      <value>8.6(1.13)</value>
+      <value>8.6(1.14)</value>
+      <value>8.6(1.17)</value>
+      <value>8.6(1.2)</value>
+      <value>8.6(1.5)</value>
+      <value>8.7(1)</value>
+      <value>8.7(1.1)</value>
+      <value>8.7(1.11)</value>
+      <value>8.7(1.13)</value>
+      <value>8.7(1.16)</value>
+      <value>8.7(1.17)</value>
+      <value>8.7(1.3)</value>
+      <value>8.7(1.4)</value>
+      <value>8.7(1.7)</value>
+      <value>8.7(1.8)</value>
+      <value>9.0(1)</value>
+      <value>9.0(2)</value>
+      <value>9.0(2.10)</value>
+      <value>9.0(3)</value>
+      <value>9.0(3.6)</value>
+      <value>9.0(3.8)</value>
+      <value>9.0(4)</value>
+      <value>9.0(4.1)</value>
+      <value>9.0(4.17)</value>
+      <value>9.0(4.20)</value>
+      <value>9.0(4.24)</value>
+      <value>9.0(4.26)</value>
+      <value>9.0(4.29)</value>
+      <value>9.0(4.33)</value>
+      <value>9.0(4.35)</value>
+      <value>9.0(4.37)</value>
+      <value>9.0(4.5)</value>
+      <value>9.0(4.7)</value>
+      <value>9.1(1)</value>
+      <value>9.1(1.4)</value>
+      <value>9.1(2)</value>
+      <value>9.1(2.8)</value>
+      <value>9.1(3)</value>
+      <value>9.1(3.2)</value>
+      <value>9.1(4)</value>
+      <value>9.1(4.5)</value>
+      <value>9.1(5)</value>
+      <value>9.1(5.10)</value>
+      <value>9.1(5.12)</value>
+      <value>9.1(5.15)</value>
+      <value>9.1(5.21)</value>
+      <value>9.1(6)</value>
+      <value>9.1(6.1)</value>
+      <value>9.1(6.10)</value>
+      <value>9.1(6.4)</value>
+      <value>9.1(6.6)</value>
+      <value>9.1(6.8)</value>
+      <value>9.1(7.4)</value>
+      <value>9.2(0.0)</value>
+      <value>9.2(0.104)</value>
+      <value>9.2(1)</value>
+      <value>9.2(2)</value>
+      <value>9.2(2.4)</value>
+      <value>9.2(2.7)</value>
+      <value>9.2(2.8)</value>
+      <value>9.2(3)</value>
+      <value>9.2(3.1)</value>
+      <value>9.2(3.3)</value>
+      <value>9.2(3.4)</value>
+      <value>9.2(4)</value>
+      <value>9.2(4.2)</value>
+      <value>9.2(4.4)</value>
+      <value>9.3(1)</value>
+      <value>9.3(1.1)</value>
+      <value>9.3(1.105)</value>
+      <value>9.3(1.50)</value>
+      <value>9.3(2)</value>
+      <value>9.3(2.100)</value>
+      <value>9.3(2.2)</value>
+      <value>9.3(2.243)</value>
+      <value>9.3(3)</value>
+      <value>9.3(3.1)</value>
+      <value>9.3(3.2)</value>
+      <value>9.3(3.5)</value>
+      <value>9.3(3.6)</value>
+      <value>9.3(5)</value>
+      <value>9.4(0.115)</value>
+      <value>9.4(1)</value>
+      <value>9.4(1.1)</value>
+      <value>9.4(1.2)</value>
+      <value>9.4(1.3)</value>
+      <value>9.4(1.5)</value>
+      <value>9.4(2)</value>
+      <value>9.4(2.3)</value>
+      <value>9.5(1)</value>
+      <value>9.5(2)</value>
+      <value>9.6(0)</value>
+      <value>9.6(1)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:195" comment="Affected ASA versions" datatype="string" version="1">
+      <value>7.0(1)</value>
+      <value>7.0(1.4)</value>
+      <value>7.0(2)</value>
+      <value>7.0(3)</value>
+      <value>7.0(4)</value>
+      <value>7.0(4.2)</value>
+      <value>7.0(5)</value>
+      <value>7.0(5.12)</value>
+      <value>7.0(6)</value>
+      <value>7.0(6.18)</value>
+      <value>7.0(6.22)</value>
+      <value>7.0(6.26)</value>
+      <value>7.0(6.29)</value>
+      <value>7.0(6.32)</value>
+      <value>7.0(6.4)</value>
+      <value>7.0(6.8)</value>
+      <value>7.0(7)</value>
+      <value>7.0(7.1)</value>
+      <value>7.0(7.12)</value>
+      <value>7.0(7.4)</value>
+      <value>7.0(7.9)</value>
+      <value>7.0(8)</value>
+      <value>7.0(8.12)</value>
+      <value>7.0(8.13)</value>
+      <value>7.0(8.2)</value>
+      <value>7.0(8.8)</value>
+      <value>7.1(2)</value>
+      <value>7.1(2.16)</value>
+      <value>7.1(2.20)</value>
+      <value>7.1(2.24)</value>
+      <value>7.1(2.28)</value>
+      <value>7.1(2.38)</value>
+      <value>7.1(2.42)</value>
+      <value>7.1(2.46)</value>
+      <value>7.1(2.49)</value>
+      <value>7.1(2.53)</value>
+      <value>7.1(2.61)</value>
+      <value>7.1(2.64)</value>
+      <value>7.1(2.72)</value>
+      <value>7.1(2.81)</value>
+      <value>7.2(1)</value>
+      <value>7.2(1.13)</value>
+      <value>7.2(1.19)</value>
+      <value>7.2(1.24)</value>
+      <value>7.2(1.9)</value>
+      <value>7.2(2)</value>
+      <value>7.2(2.10)</value>
+      <value>7.2(2.14)</value>
+      <value>7.2(2.18)</value>
+      <value>7.2(2.19)</value>
+      <value>7.2(2.22)</value>
+      <value>7.2(2.34)</value>
+      <value>7.2(2.6)</value>
+      <value>7.2(3)</value>
+      <value>7.2(3.1)</value>
+      <value>7.2(3.12)</value>
+      <value>7.2(3.16)</value>
+      <value>7.2(4)</value>
+      <value>7.2(4.18)</value>
+      <value>7.2(4.25)</value>
+      <value>7.2(4.27)</value>
+      <value>7.2(4.30)</value>
+      <value>7.2(4.33)</value>
+      <value>7.2(4.6)</value>
+      <value>7.2(4.9)</value>
+      <value>7.2(5)</value>
+      <value>7.2(5.10)</value>
+      <value>7.2(5.2)</value>
+      <value>7.2(5.4)</value>
+      <value>7.2(5.7)</value>
+      <value>7.2(5.8)</value>
+      <value>8.0(1.2)</value>
+      <value>8.0(2)</value>
+      <value>8.0(2.11)</value>
+      <value>8.0(2.15)</value>
+      <value>8.0(3)</value>
+      <value>8.0(3.12)</value>
+      <value>8.0(3.19)</value>
+      <value>8.0(3.6)</value>
+      <value>8.0(4)</value>
+      <value>8.0(4.16)</value>
+      <value>8.0(4.23)</value>
+      <value>8.0(4.25)</value>
+      <value>8.0(4.28)</value>
+      <value>8.0(4.3)</value>
+      <value>8.0(4.31)</value>
+      <value>8.0(4.32)</value>
+      <value>8.0(4.33)</value>
+      <value>8.0(4.9)</value>
+      <value>8.0(5)</value>
+      <value>8.0(5.20)</value>
+      <value>8.0(5.23)</value>
+      <value>8.0(5.25)</value>
+      <value>8.0(5.27)</value>
+      <value>8.0(5.28)</value>
+      <value>8.0(5.31)</value>
+      <value>8.1(1)</value>
+      <value>8.1(1.6)</value>
+      <value>8.1(2)</value>
+      <value>8.1(2.13)</value>
+      <value>8.1(2.15)</value>
+      <value>8.1(2.16)</value>
+      <value>8.1(2.19)</value>
+      <value>8.1(2.23)</value>
+      <value>8.1(2.24)</value>
+      <value>8.1(2.49)</value>
+      <value>8.1(2.50)</value>
+      <value>8.1(2.55)</value>
+      <value>8.1(2.56)</value>
+      <value>8.2(0.45)</value>
+      <value>8.2(1)</value>
+      <value>8.2(1.11)</value>
+      <value>8.2(2)</value>
+      <value>8.2(2.10)</value>
+      <value>8.2(2.12)</value>
+      <value>8.2(2.16)</value>
+      <value>8.2(2.17)</value>
+      <value>8.2(2.9)</value>
+      <value>8.2(3)</value>
+      <value>8.2(4)</value>
+      <value>8.2(4.1)</value>
+      <value>8.2(4.4)</value>
+      <value>8.2(5)</value>
+      <value>8.2(5.13)</value>
+      <value>8.2(5.22)</value>
+      <value>8.2(5.26)</value>
+      <value>8.2(5.33)</value>
+      <value>8.2(5.40)</value>
+      <value>8.2(5.41)</value>
+      <value>8.3(1)</value>
+      <value>8.3(1.1)</value>
+      <value>8.3(1.4)</value>
+      <value>8.3(1.6)</value>
+      <value>8.3(2)</value>
+      <value>8.3(2.13)</value>
+      <value>8.3(2.23)</value>
+      <value>8.3(2.25)</value>
+      <value>8.3(2.31)</value>
+      <value>8.3(2.33)</value>
+      <value>8.3(2.34)</value>
+      <value>8.3(2.37)</value>
+      <value>8.3(2.4)</value>
+      <value>8.4(1)</value>
+      <value>8.4(1.11)</value>
+      <value>8.4(1.3)</value>
+      <value>8.4(2)</value>
+      <value>8.4(2.1)</value>
+      <value>8.4(2.8)</value>
+      <value>8.4(3)</value>
+      <value>8.4(3.8)</value>
+      <value>8.4(3.9)</value>
+      <value>8.4(4)</value>
+      <value>8.4(4.1)</value>
+      <value>8.4(4.3)</value>
+      <value>8.4(4.5)</value>
+      <value>8.4(4.9)</value>
+      <value>8.4(5)</value>
+      <value>8.4(5.6)</value>
+      <value>8.5(1)</value>
+      <value>8.5(1.1)</value>
+      <value>8.5(1.14)</value>
+      <value>8.5(1.17)</value>
+      <value>8.5(1.6)</value>
+      <value>8.5(1.7)</value>
+      <value>8.6(1)</value>
+      <value>8.6(1.1)</value>
+      <value>8.6(1.10)</value>
+      <value>8.6(1.2)</value>
+      <value>8.6(1.5)</value>
+      <value>8.7(1)</value>
+      <value>8.7(1.1)</value>
+      <value>8.7(1.3)</value>
+      <value>8.7(1.4)</value>
+      <value>9.0(1)</value>
+      <value>9.0(2)</value>
+      <value>9.0(2.10)</value>
+      <value>9.0(3)</value>
+      <value>9.0(3.6)</value>
+      <value>9.1(1)</value>
+      <value>9.1(1.4)</value>
+      <value>9.1(2)</value>
+      <value>9.1(2.8)</value>
+      <value>9.1(3)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:224" comment="Affected ASA versions" datatype="string" version="1">
+      <value>8.4(0)</value>
+      <value>8.4(1)</value>
+      <value>8.4(1.11)</value>
+      <value>8.4(1.3)</value>
+      <value>8.4(2)</value>
+      <value>8.4(2.1)</value>
+      <value>8.4(2.8)</value>
+      <value>8.4(3)</value>
+      <value>8.4(3.8)</value>
+      <value>8.4(3.9)</value>
+      <value>8.4(4)</value>
+      <value>8.4(4.1)</value>
+      <value>8.4(4.3)</value>
+      <value>8.4(4.5)</value>
+      <value>8.4(4.9)</value>
+      <value>8.4(5)</value>
+      <value>8.4(5.6)</value>
+      <value>8.4(6)</value>
+      <value>8.4(7)</value>
+      <value>8.4(7.15)</value>
+      <value>8.4(7.22)</value>
+      <value>8.4(7.23)</value>
+      <value>8.4(7.26)</value>
+      <value>8.4(7.28)</value>
+      <value>8.4(7.29)</value>
+      <value>8.4(7.3)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:271" comment="Affected ASA versions" datatype="string" version="1">
+      <value>9.0(1)</value>
+      <value>9.0(2)</value>
+      <value>9.0(2.10)</value>
+      <value>9.0(3)</value>
+      <value>9.0(3.6)</value>
+      <value>9.0(3.8)</value>
+      <value>9.0(4)</value>
+      <value>9.0(4.1)</value>
+      <value>9.0(4.17)</value>
+      <value>9.0(4.20)</value>
+      <value>9.0(4.24)</value>
+      <value>9.0(4.26)</value>
+      <value>9.0(4.29)</value>
+      <value>9.0(4.33)</value>
+      <value>9.0(4.35)</value>
+      <value>9.0(4.37)</value>
+      <value>9.0(4.5)</value>
+      <value>9.0(4.7)</value>
+      <value>9.1(1)</value>
+      <value>9.1(1.4)</value>
+      <value>9.1(2)</value>
+      <value>9.1(2.8)</value>
+      <value>9.1(3)</value>
+      <value>9.1(3.2)</value>
+      <value>9.1(4)</value>
+      <value>9.1(4.5)</value>
+      <value>9.1(5)</value>
+      <value>9.1(5.10)</value>
+      <value>9.1(5.12)</value>
+      <value>9.1(5.15)</value>
+      <value>9.1(5.21)</value>
+      <value>9.1(6)</value>
+      <value>9.1(6.1)</value>
+      <value>9.1(6.4)</value>
+      <value>9.1(6.6)</value>
+      <value>9.1(6.8)</value>
+      <value>9.2(0.0)</value>
+      <value>9.2(0.104)</value>
+      <value>9.2(1)</value>
+      <value>9.2(2)</value>
+      <value>9.2(2.4)</value>
+      <value>9.2(2.7)</value>
+      <value>9.2(2.8)</value>
+      <value>9.2(3)</value>
+      <value>9.2(3.1)</value>
+      <value>9.2(3.3)</value>
+      <value>9.2(3.4)</value>
+      <value>9.2(4)</value>
+      <value>9.3(1)</value>
+      <value>9.3(1.1)</value>
+      <value>9.3(1.105)</value>
+      <value>9.3(1.50)</value>
+      <value>9.3(2)</value>
+      <value>9.3(2.100)</value>
+      <value>9.3(2.2)</value>
+      <value>9.3(2.243)</value>
+      <value>9.3(3)</value>
+      <value>9.3(3.1)</value>
+      <value>9.3(3.2)</value>
+      <value>9.3(3.5)</value>
+      <value>9.3(3.6)</value>
+      <value>9.4(0.115)</value>
+      <value>9.4(1)</value>
+      <value>9.4(1.1)</value>
+      <value>9.4(1.2)</value>
+      <value>9.4(1.3)</value>
+      <value>9.4(1.5)</value>
+      <value>9.5(1)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:353" comment="Affected ASA versions" datatype="string" version="1">
+      <value>9.3(1.50)</value>
+      <value>9.3(2.100)</value>
+      <value>9.3(3)</value>
+      <value>9.4(1)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:400" comment="Affected ASA versions" datatype="string" version="1">
+      <value>8.4(1)</value>
+      <value>8.4(1.11)</value>
+      <value>8.4(1.3)</value>
+      <value>8.4(2)</value>
+      <value>8.4(2.1)</value>
+      <value>8.4(2.8)</value>
+      <value>8.4(3)</value>
+      <value>8.4(3.8)</value>
+      <value>8.4(3.9)</value>
+      <value>8.4(4)</value>
+      <value>8.4(4.1)</value>
+      <value>8.4(4.3)</value>
+      <value>8.4(4.5)</value>
+      <value>8.4(4.9)</value>
+      <value>8.4(5)</value>
+      <value>8.4(5.6)</value>
+      <value>8.4(6)</value>
+      <value>8.4(7)</value>
+      <value>8.5(1)</value>
+      <value>8.5(1.1)</value>
+      <value>8.5(1.14)</value>
+      <value>8.5(1.17)</value>
+      <value>8.5(1.18)</value>
+      <value>8.5(1.6)</value>
+      <value>8.5(1.7)</value>
+      <value>8.6(1)</value>
+      <value>8.6(1.1)</value>
+      <value>8.6(1.10)</value>
+      <value>8.6(1.12)</value>
+      <value>8.6(1.2)</value>
+      <value>8.6(1.5)</value>
+      <value>8.7(1)</value>
+      <value>8.7(1.1)</value>
+      <value>8.7(1.3)</value>
+      <value>8.7(1.4)</value>
+      <value>8.7(1.7)</value>
+      <value>9.0(1)</value>
+      <value>9.0(2)</value>
+      <value>9.0(2.10)</value>
+      <value>9.0(3)</value>
+      <value>9.0(3.6)</value>
+      <value>9.1(1)</value>
+      <value>9.1(1.4)</value>
+      <value>9.1(2)</value>
+      <value>9.1(2.8)</value>
+      <value>9.1(3)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:418" comment="Affected ASA versions" datatype="string" version="1">
+      <value>8.2(0.45)</value>
+      <value>8.2(1)</value>
+      <value>8.2(1.11)</value>
+      <value>8.2(2)</value>
+      <value>8.2(2.10)</value>
+      <value>8.2(2.12)</value>
+      <value>8.2(2.16)</value>
+      <value>8.2(2.17)</value>
+      <value>8.2(2.9)</value>
+      <value>8.2(3)</value>
+      <value>8.2(4)</value>
+      <value>8.2(4.1)</value>
+      <value>8.2(4.4)</value>
+      <value>8.2(5)</value>
+      <value>8.2(5.13)</value>
+      <value>8.2(5.22)</value>
+      <value>8.2(5.26)</value>
+      <value>8.2(5.33)</value>
+      <value>8.2(5.40)</value>
+      <value>8.2(5.41)</value>
+      <value>8.2(5.46)</value>
+      <value>8.2(5.48)</value>
+      <value>8.2(5.50)</value>
+      <value>8.3(1)</value>
+      <value>8.3(1.1)</value>
+      <value>8.3(1.4)</value>
+      <value>8.3(1.6)</value>
+      <value>8.3(2)</value>
+      <value>8.3(2.13)</value>
+      <value>8.3(2.23)</value>
+      <value>8.3(2.25)</value>
+      <value>8.3(2.31)</value>
+      <value>8.3(2.33)</value>
+      <value>8.3(2.34)</value>
+      <value>8.3(2.37)</value>
+      <value>8.3(2.39)</value>
+      <value>8.3(2.4)</value>
+      <value>8.3(2.40)</value>
+      <value>8.3(2.41)</value>
+      <value>8.4(1)</value>
+      <value>8.4(1.11)</value>
+      <value>8.4(1.3)</value>
+      <value>8.4(2)</value>
+      <value>8.4(2.1)</value>
+      <value>8.4(2.8)</value>
+      <value>8.4(3)</value>
+      <value>8.4(3.8)</value>
+      <value>8.4(3.9)</value>
+      <value>8.4(4)</value>
+      <value>8.4(4.1)</value>
+      <value>8.4(4.3)</value>
+      <value>8.4(4.5)</value>
+      <value>8.4(4.9)</value>
+      <value>8.4(5)</value>
+      <value>8.4(5.6)</value>
+      <value>8.4(6)</value>
+      <value>8.4(7)</value>
+      <value>8.4(7.15)</value>
+      <value>8.4(7.22)</value>
+      <value>8.4(7.23)</value>
+      <value>8.4(7.3)</value>
+      <value>8.6(1)</value>
+      <value>8.6(1.1)</value>
+      <value>8.6(1.10)</value>
+      <value>8.6(1.12)</value>
+      <value>8.6(1.13)</value>
+      <value>8.6(1.14)</value>
+      <value>8.6(1.2)</value>
+      <value>8.6(1.5)</value>
+      <value>9.0(1)</value>
+      <value>9.0(2)</value>
+      <value>9.0(2.10)</value>
+      <value>9.0(3)</value>
+      <value>9.0(3.6)</value>
+      <value>9.0(3.8)</value>
+      <value>9.0(4)</value>
+      <value>9.0(4.1)</value>
+      <value>9.0(4.17)</value>
+      <value>9.0(4.20)</value>
+      <value>9.0(4.5)</value>
+      <value>9.0(4.7)</value>
+      <value>9.1(1)</value>
+      <value>9.1(1.4)</value>
+      <value>9.1(2)</value>
+      <value>9.1(2.8)</value>
+      <value>9.1(3)</value>
+      <value>9.1(3.2)</value>
+      <value>9.1(4)</value>
+      <value>9.1(4.5)</value>
+      <value>9.1(5)</value>
+      <value>9.1(5.10)</value>
+      <value>9.2(1)</value>
+      <value>9.2(2)</value>
+      <value>9.2(2.4)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:426" comment="Affected ASA versions" datatype="string" version="1">
+      <value>8.2(0.45)</value>
+      <value>8.2(1)</value>
+      <value>8.2(1.11)</value>
+      <value>8.2(2)</value>
+      <value>8.2(2.10)</value>
+      <value>8.2(2.12)</value>
+      <value>8.2(2.16)</value>
+      <value>8.2(2.17)</value>
+      <value>8.2(2.9)</value>
+      <value>8.2(3)</value>
+      <value>8.2(4)</value>
+      <value>8.2(4.1)</value>
+      <value>8.2(4.4)</value>
+      <value>8.2(5)</value>
+      <value>8.2(5.13)</value>
+      <value>8.2(5.22)</value>
+      <value>8.2(5.26)</value>
+      <value>8.2(5.33)</value>
+      <value>8.2(5.40)</value>
+      <value>8.2(5.41)</value>
+      <value>8.2(5.46)</value>
+      <value>8.2(5.48)</value>
+      <value>8.2(5.50)</value>
+      <value>8.3(1)</value>
+      <value>8.3(1.1)</value>
+      <value>8.3(1.4)</value>
+      <value>8.3(1.6)</value>
+      <value>8.3(2)</value>
+      <value>8.3(2.13)</value>
+      <value>8.3(2.23)</value>
+      <value>8.3(2.25)</value>
+      <value>8.3(2.31)</value>
+      <value>8.3(2.33)</value>
+      <value>8.3(2.34)</value>
+      <value>8.3(2.37)</value>
+      <value>8.3(2.39)</value>
+      <value>8.3(2.4)</value>
+      <value>8.3(2.40)</value>
+      <value>8.3(2.41)</value>
+      <value>8.4(1)</value>
+      <value>8.4(1.11)</value>
+      <value>8.4(1.3)</value>
+      <value>8.4(2)</value>
+      <value>8.4(2.8)</value>
+      <value>8.5(1)</value>
+      <value>8.5(1.1)</value>
+      <value>8.5(1.14)</value>
+      <value>8.5(1.17)</value>
+      <value>8.5(1.18)</value>
+      <value>8.5(1.19)</value>
+      <value>8.5(1.21)</value>
+      <value>8.5(1.6)</value>
+      <value>8.5(1.7)</value>
+      <value>8.7(1)</value>
+      <value>8.7(1.1)</value>
+      <value>8.7(1.11)</value>
+      <value>8.7(1.13)</value>
+      <value>8.7(1.3)</value>
+      <value>8.7(1.4)</value>
+      <value>8.7(1.7)</value>
+      <value>8.7(1.8)</value>
+    </constant_variable>
+    <constant_variable id="oval:org.cisecurity:var:437" comment="Affected ASA versions" datatype="string" version="1">
+      <value>8.4(1)</value>
+      <value>8.4(1.11)</value>
+      <value>8.4(1.3)</value>
+      <value>8.4(2)</value>
+      <value>8.4(2.1)</value>
+      <value>8.4(2.8)</value>
+      <value>8.4(3)</value>
+      <value>8.4(3.8)</value>
+      <value>8.4(3.9)</value>
+      <value>8.4(4)</value>
+      <value>8.4(4.1)</value>
+      <value>8.4(4.3)</value>
+      <value>8.4(4.5)</value>
+    </constant_variable>
+  </variables>
+</oval_definitions>
