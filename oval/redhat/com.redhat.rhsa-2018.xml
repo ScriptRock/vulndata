@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1520485751</content_version>
+    <content_version>1520590128</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20180007" class="patch" version="602">
@@ -4098,6 +4098,67 @@ For more details about the security issue(s), including the impact, a CVSS score
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20180469" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:0469: dhcp security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:0469-00" ref_url="https://access.redhat.com/errata/RHSA-2018:0469" source="RHSA" />
+        <reference ref_id="CVE-2018-5732" ref_url="https://access.redhat.com/security/cve/CVE-2018-5732" source="CVE" />
+        <reference ref_id="CVE-2018-5733" ref_url="https://access.redhat.com/security/cve/CVE-2018-5733" source="CVE" />
+        <description>The Dynamic Host Configuration Protocol (DHCP) is a protocol that allows individual devices on an IP network to get their own network configuration information, including an IP address, a subnet mask, and a broadcast address. The dhcp packages provide a relay agent and ISC DHCP service required to enable and administer DHCP on a network.
+
+Security Fix(es):
+
+* dhcp: Buffer overflow in dhclient possibly allowing code execution triggered by malicious server (CVE-2018-5732)
+
+* dhcp: Reference count overflow in dhcpd allows denial of service (CVE-2018-5733)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank ISC for reporting these issues. Upstream acknowledges Felix Wilhelm (Google) as the original reporter of these issues.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-03-09" />
+          <updated date="2018-03-09" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" cwe="CWE-119" href="https://access.redhat.com/security/cve/CVE-2018-5732" public="20180228">CVE-2018-5732</cve>
+          <cve cvss3="5.9/CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-190" href="https://access.redhat.com/security/cve/CVE-2018-5733" impact="moderate" public="20180228">CVE-2018-5733</cve>
+          <bugzilla id="1549960" href="https://bugzilla.redhat.com/1549960">CVE-2018-5732 dhcp: Buffer overflow in dhclient possibly allowing code execution triggered by malicious server</bugzilla>
+          <bugzilla id="1549961" href="https://bugzilla.redhat.com/1549961">CVE-2018-5733 dhcp: Reference count overflow in dhcpd allows denial of service</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="dhclient is earlier than 12:4.1.1-53.P1.el6_9.3" test_ref="oval:com.redhat.rhsa:tst:20180469007" />
+            <criterion comment="dhclient is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180158012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="dhcp is earlier than 12:4.1.1-53.P1.el6_9.3" test_ref="oval:com.redhat.rhsa:tst:20180469009" />
+            <criterion comment="dhcp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180158010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="dhcp-common is earlier than 12:4.1.1-53.P1.el6_9.3" test_ref="oval:com.redhat.rhsa:tst:20180469011" />
+            <criterion comment="dhcp-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180158008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="dhcp-devel is earlier than 12:4.1.1-53.P1.el6_9.3" test_ref="oval:com.redhat.rhsa:tst:20180469005" />
+            <criterion comment="dhcp-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180158006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20180007001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -7508,6 +7569,22 @@ For more details about the security issue(s), including the impact, a CVSS score
       <object object_ref="oval:com.redhat.rhsa:obj:20180418135" />
       <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20180469005" check="at least one" comment="dhcp-devel is earlier than 12:4.1.1-53.P1.el6_9.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180158005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180469003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20180469007" check="at least one" comment="dhclient is earlier than 12:4.1.1-53.P1.el6_9.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180158008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180469003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20180469009" check="at least one" comment="dhcp is earlier than 12:4.1.1-53.P1.el6_9.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180158007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180469003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20180469011" check="at least one" comment="dhcp-common is earlier than 12:4.1.1-53.P1.el6_9.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180158006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180469003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20180007001" version="602">
@@ -8994,6 +9071,10 @@ For more details about the security issue(s), including the impact, a CVSS score
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20180418004" version="602">
       <evr datatype="evr_string" operation="less than">1:5.0.6.2-15.el7_4</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20180469003" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">12:4.1.1-53.P1.el6_9.3</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>

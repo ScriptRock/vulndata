@@ -17687,6 +17687,226 @@
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:4623" class="vulnerability" version="1">
+      <metadata>
+        <title>A use-after-free vulnerability in Adobe Flash Player 28.0.0.137 and earlier versions - CVE-2018-4877</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2018-4877" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4877" source="CVE" />
+        <reference ref_id="APSB18-03" ref_url="https://helpx.adobe.com/security/products/flash-player/apsb18-03.html" source="APSB18-03" />
+        <description>A use-after-free vulnerability was discovered in Adobe Flash Player before 28.0.0.161. This vulnerability occurs due to a dangling pointer in the Primetime SDK related to media player's quality of service functionality. A successful attack can lead to arbitrary code execution. .</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-08T12:46:10+08:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable Adobe Flash Player + Vulnerable Version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than or equal 28.0.0.137" test_ref="oval:org.cisecurity:tst:5410" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than or equal 28.0.0.137" test_ref="oval:org.cisecurity:tst:5409" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than or equal 28.0.0.137" test_ref="oval:org.cisecurity:tst:5411" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4624" class="vulnerability" version="1">
+      <metadata>
+        <title>Out-of-bounds read vulnerability in Adobe Acrobat Reader 2018.009.20050 and earlier, 2017.011.30070 and earlier, 2015.006.30394 and earlier - CVE-2018-4909</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Adobe Acrobat 2017</product>
+          <product>Adobe Acrobat DC Classic</product>
+          <product>Adobe Acrobat DC Continuous</product>
+          <product>Adobe Reader DC Classic</product>
+          <product>Adobe Reader DC Continuous</product>
+          <product>Adobe Reader 2017</product>
+        </affected>
+        <reference ref_id="CVE-2018-4909" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4909" source="CVE" />
+        <description>An issue was discovered in Adobe Acrobat Reader 2018.009.20050 and earlier versions, 2017.011.30070 and earlier versions, 2015.006.30394 and earlier versions. This vulnerability occurs as a result of computation that reads data that is past the end of the target buffer; the computation is part of the image conversion module when processing metadata in JPEG images. A successful attack can lead to sensitive data exposure.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-28T07:22:10+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Adobe Acrobat and Reader + vulnerable file version" operator="OR">
+        <criteria comment="Adobe Reader DC Continuous is installed + version" operator="AND">
+          <extend_definition comment="Adobe Reader DC Continuous is installed" definition_ref="oval:org.cisecurity:def:684" />
+          <criterion comment="Check if Adobe Reader DC Continuous version is less than 18.011.20035" test_ref="oval:org.cisecurity:tst:5528" />
+        </criteria>
+        <criteria comment="Adobe Acrobat DC Continuous is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat DC Continuous is installed" definition_ref="oval:org.cisecurity:def:677" />
+          <criterion comment="Check if Adobe Acrobat DC Continuous version is less than 18.011.20035" test_ref="oval:org.cisecurity:tst:5529" />
+        </criteria>
+        <criteria comment="Adobe Acrobat 2017 is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat 2017 is installed" definition_ref="oval:org.cisecurity:def:3041" />
+          <criterion comment="Check if Adobe Acrobat 2017 version is less than 17.011.30078" test_ref="oval:org.cisecurity:tst:5526" />
+        </criteria>
+        <criteria comment="Adobe Acrobat Reader 2017 is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat Reader 2017 is installed" definition_ref="oval:org.cisecurity:def:3031" />
+          <criterion comment="Check if Adobe Acrobat Reader 2017 version is less than 17.011.30078" test_ref="oval:org.cisecurity:tst:5531" />
+        </criteria>
+        <criteria comment="Adobe Acrobat DC Classic is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat DC Classic is installed" definition_ref="oval:org.cisecurity:def:687" />
+          <criterion comment="Check if Adobe Acrobat DC Classic version is less than 15.006.30413" test_ref="oval:org.cisecurity:tst:5530" />
+        </criteria>
+        <criteria comment="Adobe Reader DC Classic is installed + version" operator="AND">
+          <extend_definition comment="Adobe Reader DC Classic is installed" definition_ref="oval:org.cisecurity:def:627" />
+          <criterion comment="Check if Adobe Reader DC Classic version is less than 15.006.30413" test_ref="oval:org.cisecurity:tst:5527" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4625" class="vulnerability" version="1">
+      <metadata>
+        <title>Out-of-bounds read vulnerability in Adobe Acrobat Reader 2018.009.20050 and earlier, 2017.011.30070 and earlier, 2015.006.30394 and earlier - CVE-2018-4912</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Adobe Acrobat 2017</product>
+          <product>Adobe Acrobat DC Classic</product>
+          <product>Adobe Acrobat DC Continuous</product>
+          <product>Adobe Reader DC Classic</product>
+          <product>Adobe Reader DC Continuous</product>
+          <product>Adobe Reader 2017</product>
+        </affected>
+        <reference ref_id="CVE-2018-4912" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4912" source="CVE" />
+        <description>An issue was discovered in Adobe Acrobat Reader 2018.009.20050 and earlier versions, 2017.011.30070 and earlier versions, 2015.006.30394 and earlier versions. This vulnerability occurs as a result of computation that reads data that is past the end of the target buffer; the computation is part of the image conversion module that handles JPEG 2000 data. A successful attack can lead to sensitive data exposure.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-28T07:22:10+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Adobe Acrobat and Reader + vulnerable file version" operator="OR">
+        <criteria comment="Adobe Reader DC Continuous is installed + version" operator="AND">
+          <extend_definition comment="Adobe Reader DC Continuous is installed" definition_ref="oval:org.cisecurity:def:684" />
+          <criterion comment="Check if Adobe Reader DC Continuous version is less than 18.011.20035" test_ref="oval:org.cisecurity:tst:5528" />
+        </criteria>
+        <criteria comment="Adobe Acrobat DC Continuous is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat DC Continuous is installed" definition_ref="oval:org.cisecurity:def:677" />
+          <criterion comment="Check if Adobe Acrobat DC Continuous version is less than 18.011.20035" test_ref="oval:org.cisecurity:tst:5529" />
+        </criteria>
+        <criteria comment="Adobe Acrobat 2017 is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat 2017 is installed" definition_ref="oval:org.cisecurity:def:3041" />
+          <criterion comment="Check if Adobe Acrobat 2017 version is less than 17.011.30078" test_ref="oval:org.cisecurity:tst:5526" />
+        </criteria>
+        <criteria comment="Adobe Acrobat Reader 2017 is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat Reader 2017 is installed" definition_ref="oval:org.cisecurity:def:3031" />
+          <criterion comment="Check if Adobe Acrobat Reader 2017 version is less than 17.011.30078" test_ref="oval:org.cisecurity:tst:5531" />
+        </criteria>
+        <criteria comment="Adobe Acrobat DC Classic is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat DC Classic is installed" definition_ref="oval:org.cisecurity:def:687" />
+          <criterion comment="Check if Adobe Acrobat DC Classic version is less than 15.006.30413" test_ref="oval:org.cisecurity:tst:5530" />
+        </criteria>
+        <criteria comment="Adobe Reader DC Classic is installed + version" operator="AND">
+          <extend_definition comment="Adobe Reader DC Classic is installed" definition_ref="oval:org.cisecurity:def:627" />
+          <criterion comment="Check if Adobe Reader DC Classic version is less than 15.006.30413" test_ref="oval:org.cisecurity:tst:5527" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4626" class="vulnerability" version="1">
+      <metadata>
+        <title>Out-of-bounds read vulnerability in Adobe Acrobat Reader 2018.009.20050 and earlier, 2017.011.30070 and earlier, 2015.006.30394 and earlier - CVE-2018-4914</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Adobe Acrobat 2017</product>
+          <product>Adobe Acrobat DC Classic</product>
+          <product>Adobe Acrobat DC Continuous</product>
+          <product>Adobe Reader DC Classic</product>
+          <product>Adobe Reader DC Continuous</product>
+          <product>Adobe Reader 2017</product>
+        </affected>
+        <reference ref_id="CVE-2018-4914" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4914" source="CVE" />
+        <description>An issue was discovered in Adobe Acrobat Reader 2018.009.20050 and earlier versions, 2017.011.30070 and earlier versions, 2015.006.30394 and earlier versions. This vulnerability occurs as a result of computation that reads data that is past the end of the target buffer; the computation is part of the TIFF processing in the XPS engine. A successful attack can lead to sensitive data exposure.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-02-28T07:22:10+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Check for installation of vulnerable Adobe Acrobat and Reader + vulnerable file version" operator="OR">
+        <criteria comment="Adobe Reader DC Continuous is installed + version" operator="AND">
+          <extend_definition comment="Adobe Reader DC Continuous is installed" definition_ref="oval:org.cisecurity:def:684" />
+          <criterion comment="Check if Adobe Reader DC Continuous version is less than 18.011.20035" test_ref="oval:org.cisecurity:tst:5528" />
+        </criteria>
+        <criteria comment="Adobe Acrobat DC Continuous is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat DC Continuous is installed" definition_ref="oval:org.cisecurity:def:677" />
+          <criterion comment="Check if Adobe Acrobat DC Continuous version is less than 18.011.20035" test_ref="oval:org.cisecurity:tst:5529" />
+        </criteria>
+        <criteria comment="Adobe Acrobat 2017 is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat 2017 is installed" definition_ref="oval:org.cisecurity:def:3041" />
+          <criterion comment="Check if Adobe Acrobat 2017 version is less than 17.011.30078" test_ref="oval:org.cisecurity:tst:5526" />
+        </criteria>
+        <criteria comment="Adobe Acrobat Reader 2017 is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat Reader 2017 is installed" definition_ref="oval:org.cisecurity:def:3031" />
+          <criterion comment="Check if Adobe Acrobat Reader 2017 version is less than 17.011.30078" test_ref="oval:org.cisecurity:tst:5531" />
+        </criteria>
+        <criteria comment="Adobe Acrobat DC Classic is installed + version" operator="AND">
+          <extend_definition comment="Adobe Acrobat DC Classic is installed" definition_ref="oval:org.cisecurity:def:687" />
+          <criterion comment="Check if Adobe Acrobat DC Classic version is less than 15.006.30413" test_ref="oval:org.cisecurity:tst:5530" />
+        </criteria>
+        <criteria comment="Adobe Reader DC Classic is installed + version" operator="AND">
+          <extend_definition comment="Adobe Reader DC Classic is installed" definition_ref="oval:org.cisecurity:def:627" />
+          <criterion comment="Check if Adobe Reader DC Classic version is less than 15.006.30413" test_ref="oval:org.cisecurity:tst:5527" />
+        </criteria>
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:627" class="inventory" version="13">
       <metadata>
         <title>Microsoft Internet Explorer 7 is installed</title>
