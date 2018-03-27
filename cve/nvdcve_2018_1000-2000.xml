@@ -709,26 +709,65 @@
     <vuln:summary>In postgresql 9.3.x before 9.3.21, 9.4.x before 9.4.16, 9.5.x before 9.5.11, 9.6.x before 9.6.7 and 10.x before 10.2, pg_upgrade creates file in current working directory containing the output of `pg_dumpall -g` under umask which was in effect when the user invoked pg_upgrade, and not under 0077 which is normally used for other temporary files. This can allow an authenticated attacker to read or modify the one file, which may contain encrypted or unencrypted database passwords. The attack is infeasible if a directory mode blocks the attacker searching the current working directory or if the prevailing umask blocks the attacker opening the file.</vuln:summary>
   </entry>
   <entry id="CVE-2018-1054">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:fedoraproject:389_directory_server:1.4.0.6" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/o:redhat:enterprise_linux_desktop:6.0" />
+        <cpe-lang:fact-ref name="cpe:/o:redhat:enterprise_linux_desktop:7.0" />
+        <cpe-lang:fact-ref name="cpe:/o:redhat:enterprise_linux_server:6.0" />
+        <cpe-lang:fact-ref name="cpe:/o:redhat:enterprise_linux_server:7.0" />
+        <cpe-lang:fact-ref name="cpe:/o:redhat:enterprise_linux_server:7.4" />
+        <cpe-lang:fact-ref name="cpe:/o:redhat:enterprise_linux_workstation:6.0" />
+        <cpe-lang:fact-ref name="cpe:/o:redhat:enterprise_linux_workstation:7.0" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:fedoraproject:389_directory_server:1.4.0.6</vuln:product>
+      <vuln:product>cpe:/o:redhat:enterprise_linux_desktop:6.0</vuln:product>
+      <vuln:product>cpe:/o:redhat:enterprise_linux_desktop:7.0</vuln:product>
+      <vuln:product>cpe:/o:redhat:enterprise_linux_server:6.0</vuln:product>
+      <vuln:product>cpe:/o:redhat:enterprise_linux_server:7.0</vuln:product>
+      <vuln:product>cpe:/o:redhat:enterprise_linux_server:7.4</vuln:product>
+      <vuln:product>cpe:/o:redhat:enterprise_linux_workstation:6.0</vuln:product>
+      <vuln:product>cpe:/o:redhat:enterprise_linux_workstation:7.0</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2018-1054</vuln:cve-id>
     <vuln:published-datetime>2018-03-07T08:29:00.257-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-03-14T21:29:02.590-04:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
-      <vuln:source>BID</vuln:source>
-      <vuln:reference href="http://www.securityfocus.com/bid/103228" xml:lang="en">103228</vuln:reference>
-    </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-03-27T13:40:51.993-04:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-125" />
+    <vuln:references xml:lang="en" reference_type="PATCH">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://bugzilla.redhat.com/show_bug.cgi?id=1537314" xml:lang="en">https://bugzilla.redhat.com/show_bug.cgi?id=1537314</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
+      <vuln:source>BID</vuln:source>
+      <vuln:reference href="http://www.securityfocus.com/bid/103228" xml:lang="en">103228</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://pagure.io/389-ds-base/issue/49545" xml:lang="en">https://pagure.io/389-ds-base/issue/49545</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>REDHAT</vuln:source>
       <vuln:reference href="https://access.redhat.com/errata/RHSA-2018:0414" xml:lang="en">RHSA-2018:0414</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>REDHAT</vuln:source>
       <vuln:reference href="https://access.redhat.com/errata/RHSA-2018:0515" xml:lang="en">RHSA-2018:0515</vuln:reference>
     </vuln:references>
@@ -1083,14 +1122,35 @@
     <vuln:summary>Red Hat OpenShift Enterprise version 3.7 is vulnerable to access control override for container network filesystems. An attacker could override the UserId and GroupId for GlusterFS and NFS to read and write any data on the network filesystem.</vuln:summary>
   </entry>
   <entry id="CVE-2018-1071">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:zsh:zsh:5.4.2" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:zsh:zsh:5.4.2</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2018-1071</vuln:cve-id>
     <vuln:published-datetime>2018-03-09T10:29:00.267-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-03-13T21:29:01.970-04:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-03-27T12:43:49.767-04:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>2.1</cvss:score>
+        <cvss:access-vector>LOCAL</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>NONE</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>PARTIAL</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-119" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>BID</vuln:source>
       <vuln:reference href="http://www.securityfocus.com/bid/103359" xml:lang="en">103359</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="https://bugzilla.redhat.com/show_bug.cgi?id=1553531" xml:lang="en">https://bugzilla.redhat.com/show_bug.cgi?id=1553531</vuln:reference>
     </vuln:references>
@@ -2069,6 +2129,36 @@
       <vuln:reference href="https://pivotal.io/security/cve-2018-1230" xml:lang="en">https://pivotal.io/security/cve-2018-1230</vuln:reference>
     </vuln:references>
     <vuln:summary>Pivotal Spring Batch Admin, all versions, does not contain cross site request forgery protection. A remote unauthenticated user could craft a malicious site that executes requests to Spring Batch Admin. This issue has not been patched because Spring Batch Admin has reached end of life.</vuln:summary>
+  </entry>
+  <entry id="CVE-2018-1231">
+    <vuln:cve-id>CVE-2018-1231</vuln:cve-id>
+    <vuln:published-datetime>2018-03-27T12:29:00.357-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-03-27T12:29:00.373-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://www.cloudfoundry.org/blog/cve-2018-1231/" xml:lang="en">https://www.cloudfoundry.org/blog/cve-2018-1231/</vuln:reference>
+    </vuln:references>
+    <vuln:summary>Cloud Foundry BOSH CLI, versions prior to v3.0.1, contains an improper access control vulnerability. A user with access to an instance using the BOSH CLI can access the BOSH CLI configuration file and use its contents to perform authenticated requests to BOSH.</vuln:summary>
+  </entry>
+  <entry id="CVE-2018-1266">
+    <vuln:cve-id>CVE-2018-1266</vuln:cve-id>
+    <vuln:published-datetime>2018-03-27T12:29:00.420-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-03-27T12:29:00.420-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://www.cloudfoundry.org/blog/cve-2018-1266/" xml:lang="en">https://www.cloudfoundry.org/blog/cve-2018-1266/</vuln:reference>
+    </vuln:references>
+    <vuln:summary>Cloud Foundry Cloud Controller, versions prior to 1.52.0, contains information disclosure and path traversal vulnerabilities. An authenticated malicious user can predict the location of application blobs and leverage path traversal to create a malicious application that has the ability to overwrite arbitrary files on the Cloud Controller instance.</vuln:summary>
+  </entry>
+  <entry id="CVE-2018-1267">
+    <vuln:cve-id>CVE-2018-1267</vuln:cve-id>
+    <vuln:published-datetime>2018-03-27T12:29:00.467-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-03-27T12:29:00.483-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://www.cloudfoundry.org/blog/cve-2018-1267/" xml:lang="en">https://www.cloudfoundry.org/blog/cve-2018-1267/</vuln:reference>
+    </vuln:references>
+    <vuln:summary>Cloud Foundry Silk CNI plugin, versions prior to 0.2.0, contains an improper access control vulnerability. If the platform is configured with an application security group (ASG) that overlaps with the Silk overlay network, any applications can reach any other application on the network regardless of the configured routing policies.</vuln:summary>
   </entry>
   <entry id="CVE-2018-1283">
     <vuln:cve-id>CVE-2018-1283</vuln:cve-id>
@@ -4102,18 +4192,47 @@
     <vuln:summary>IBM Tivoli Workload Automation for AIX (IBM Workload Scheduler 8.6, 9.1, 9.2, 9.3, and 9.4) contains directories with improper permissions that could allow a local user to with special access to gain root privileges. IBM X-Force ID: 138208.</vuln:summary>
   </entry>
   <entry id="CVE-2018-1387">
+    <vuln:vulnerable-configuration id="http://nvd.nist.gov/">
+      <cpe-lang:logical-test operator="OR" negate="false">
+        <cpe-lang:fact-ref name="cpe:/a:ibm:application_performance_management:8.1.4.0" />
+        <cpe-lang:fact-ref name="cpe:/a:ibm:cloud_apm_data_collector:7.3" />
+        <cpe-lang:fact-ref name="cpe:/a:ibm:cloud_apm_data_collector:7.4" />
+        <cpe-lang:fact-ref name="cpe:/a:ibm:monitoring:8.1.3.0" />
+        <cpe-lang:fact-ref name="cpe:/a:ibm:monitoring:8.1.4.0" />
+      </cpe-lang:logical-test>
+    </vuln:vulnerable-configuration>
+    <vuln:vulnerable-software-list>
+      <vuln:product>cpe:/a:ibm:application_performance_management:8.1.4.0</vuln:product>
+      <vuln:product>cpe:/a:ibm:cloud_apm_data_collector:7.3</vuln:product>
+      <vuln:product>cpe:/a:ibm:cloud_apm_data_collector:7.4</vuln:product>
+      <vuln:product>cpe:/a:ibm:monitoring:8.1.3.0</vuln:product>
+      <vuln:product>cpe:/a:ibm:monitoring:8.1.4.0</vuln:product>
+    </vuln:vulnerable-software-list>
     <vuln:cve-id>CVE-2018-1387</vuln:cve-id>
     <vuln:published-datetime>2018-03-08T11:29:00.313-05:00</vuln:published-datetime>
-    <vuln:last-modified-datetime>2018-03-15T21:29:17.580-04:00</vuln:last-modified-datetime>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:last-modified-datetime>2018-03-27T10:09:22.533-04:00</vuln:last-modified-datetime>
+    <vuln:cvss>
+      <cvss:base_metrics>
+        <cvss:score>5.0</cvss:score>
+        <cvss:access-vector>NETWORK</cvss:access-vector>
+        <cvss:access-complexity>LOW</cvss:access-complexity>
+        <cvss:authentication>NONE</cvss:authentication>
+        <cvss:confidentiality-impact>PARTIAL</cvss:confidentiality-impact>
+        <cvss:integrity-impact>NONE</cvss:integrity-impact>
+        <cvss:availability-impact>NONE</cvss:availability-impact>
+        <cvss:source>http://nvd.nist.gov</cvss:source>
+      </cvss:base_metrics>
+    </vuln:cvss>
+    <vuln:cwe id="CWE-200" />
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>BID</vuln:source>
       <vuln:reference href="http://www.securityfocus.com/bid/103403" xml:lang="en">103403</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>CONFIRM</vuln:source>
       <vuln:reference href="http://www.ibm.com/support/docview.wss?uid=swg22014035" xml:lang="en">http://www.ibm.com/support/docview.wss?uid=swg22014035</vuln:reference>
     </vuln:references>
-    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+    <vuln:references xml:lang="en" reference_type="VENDOR_ADVISORY">
       <vuln:source>XF</vuln:source>
       <vuln:reference href="https://exchange.xforce.ibmcloud.com/vulnerabilities/138210" xml:lang="en">ibm-apm-cve20181387-info-disc(138210)</vuln:reference>
     </vuln:references>
