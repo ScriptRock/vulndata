@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1523678936</content_version>
+    <content_version>1523980229</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20180007" class="patch" version="602">
@@ -7467,6 +7467,66 @@ For more details about the security issue(s), including the impact, a CVSS score
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181169" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1169: corosync security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1169-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1169" source="RHSA" />
+        <reference ref_id="CVE-2018-1084" ref_url="https://access.redhat.com/security/cve/CVE-2018-1084" source="CVE" />
+        <description>The corosync packages provide the Corosync Cluster Engine and C APIs for Red Hat Enterprise Linux cluster software.
+
+Security Fix(es):
+
+* corosync: Integer overflow in exec/totemcrypto.c:authenticate_nss_2_3() function (CVE-2018-1084)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank Citrix Security Response Team for reporting this issue.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-04-17" />
+          <updated date="2018-04-17" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-190 CWE-125" href="https://access.redhat.com/security/cve/CVE-2018-1084" public="20180412">CVE-2018-1084</cve>
+          <bugzilla id="1552830" href="https://bugzilla.redhat.com/1552830">CVE-2018-1084 corosync: Integer overflow in exec/totemcrypto.c:authenticate_nss_2_3() function</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180007001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180007002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180007003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180007004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="corosync is earlier than 0:2.4.3-2.el7_5.1" test_ref="oval:com.redhat.rhsa:tst:20181169013" />
+            <criterion comment="corosync is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181169014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="corosync-qdevice is earlier than 0:2.4.3-2.el7_5.1" test_ref="oval:com.redhat.rhsa:tst:20181169011" />
+            <criterion comment="corosync-qdevice is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181169012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="corosync-qnetd is earlier than 0:2.4.3-2.el7_5.1" test_ref="oval:com.redhat.rhsa:tst:20181169005" />
+            <criterion comment="corosync-qnetd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181169006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="corosynclib is earlier than 0:2.4.3-2.el7_5.1" test_ref="oval:com.redhat.rhsa:tst:20181169007" />
+            <criterion comment="corosynclib is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181169008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="corosynclib-devel is earlier than 0:2.4.3-2.el7_5.1" test_ref="oval:com.redhat.rhsa:tst:20181169009" />
+            <criterion comment="corosynclib-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181169010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20180007001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -12577,6 +12637,46 @@ For more details about the security issue(s), including the impact, a CVSS score
       <object object_ref="oval:com.redhat.rhsa:obj:20181124005" />
       <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181169005" check="at least one" comment="corosync-qnetd is earlier than 0:2.4.3-2.el7_5.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181169005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181169003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181169006" check="at least one" comment="corosync-qnetd is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181169005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181169007" check="at least one" comment="corosynclib is earlier than 0:2.4.3-2.el7_5.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181169006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181169003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181169008" check="at least one" comment="corosynclib is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181169006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181169009" check="at least one" comment="corosynclib-devel is earlier than 0:2.4.3-2.el7_5.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181169007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181169003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181169010" check="at least one" comment="corosynclib-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181169007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181169011" check="at least one" comment="corosync-qdevice is earlier than 0:2.4.3-2.el7_5.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181169008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181169003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181169012" check="at least one" comment="corosync-qdevice is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181169008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181169013" check="at least one" comment="corosync is earlier than 0:2.4.3-2.el7_5.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181169009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181169003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181169014" check="at least one" comment="corosync is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181169009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20180007001" version="602">
@@ -13908,6 +14008,21 @@ For more details about the security issue(s), including the impact, a CVSS score
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20181124005" version="602">
       <name>python-paramiko</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181169005" version="601">
+      <name>corosync-qnetd</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181169006" version="601">
+      <name>corosynclib</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181169007" version="601">
+      <name>corosynclib-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181169008" version="601">
+      <name>corosync-qdevice</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181169009" version="601">
+      <name>corosync</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20180007001" version="602">
@@ -14614,6 +14729,10 @@ For more details about the security issue(s), including the impact, a CVSS score
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20181124003" version="602">
       <evr datatype="evr_string" operation="less than">0:1.7.5-4.el6_9</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181169003" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64le|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:2.4.3-2.el7_5.1</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
