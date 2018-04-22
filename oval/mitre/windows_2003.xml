@@ -6936,7 +6936,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:585" class="vulnerability" version="2">
+    <definition id="oval:org.mitre.oval:def:585" class="vulnerability" version="3">
       <metadata>
         <title>MS Word 97 Macro Names Buffer Overflow</title>
         <affected family="windows">
@@ -6974,15 +6974,15 @@
             <status_change date="2016-02-19T10:00:00.000-04:00">ACCEPTED</status_change>
           </dates>
           <status>ACCEPTED</status>
-          <min_schema_version>5.11.1</min_schema_version>
+          <min_schema_version>5.10</min_schema_version>
         </oval_repository>
       </metadata>
       <criteria operator="AND">
-        <criterion comment="Word 97 is installed" test_ref="oval:org.mitre.oval:tst:2531" />
+        <criterion comment="Registry key for Word exists (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\8.0\Word\InstallRoot!Path)" test_ref="oval:org.cisecurity:tst:6605" />
         <criterion comment="the version of winword.exe is less than 8.0.0.9315" test_ref="oval:org.mitre.oval:tst:2530" />
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:586" class="vulnerability" version="2">
+    <definition id="oval:org.mitre.oval:def:586" class="vulnerability" version="3">
       <metadata>
         <title>MS Word 98 Macro Names Buffer Overflow</title>
         <affected family="windows">
@@ -7018,7 +7018,7 @@
         </oval_repository>
       </metadata>
       <criteria operator="AND">
-        <criterion comment="Word 98 is installed" test_ref="oval:org.mitre.oval:tst:2529" />
+        <criterion comment="Registry key for Word exists (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\8.0\Word\InstallRoot!Path)" test_ref="oval:org.cisecurity:tst:6605" />
         <criterion comment="the version of winword.exe is less than 8.0.0.9716" test_ref="oval:org.mitre.oval:tst:2528" />
       </criteria>
     </definition>
@@ -7363,7 +7363,7 @@
         <criterion comment="the version of winword.exe is less than 10.0.5815.0" negate="false" test_ref="oval:org.mitre.oval:tst:2449" />
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:675" class="vulnerability" version="2">
+    <definition id="oval:org.mitre.oval:def:675" class="vulnerability" version="3">
       <metadata>
         <title>MS Excel 97 Malicious Macro Security Bypass Vulnerability</title>
         <affected family="windows">
@@ -7402,7 +7402,7 @@
         </oval_repository>
       </metadata>
       <criteria operator="AND">
-        <criterion comment="Excel 97 is installed" test_ref="oval:org.mitre.oval:tst:2435" />
+        <criterion comment="Excel 97 registry key exists (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\8.0\Excel\InstallRoot!Path)" test_ref="oval:org.cisecurity:tst:6603" />
         <criterion comment="the version of excel.exe is less than 8.00.01.9904" test_ref="oval:org.mitre.oval:tst:2434" />
       </criteria>
     </definition>
@@ -7691,6 +7691,12 @@
     </definition>
   </definitions>
   <tests>
+    <registry_test id="oval:org.cisecurity:tst:6603" check="at least one" check_existence="at_least_one_exists" comment="Excel 97 registry key exists (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\8.0\Excel\InstallRoot!Path)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23838" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:6605" check="at least one" check_existence="at_least_one_exists" comment="Registry key for Word exists (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\8.0\Word\InstallRoot!Path)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23762" />
+    </registry_test>
     <family_test id="oval:org.mitre.oval:tst:99" check="only one" check_existence="at_least_one_exists" comment="the installed operating system is part of the Microsoft Windows family" version="11">
       <object object_ref="oval:org.mitre.oval:obj:99" />
       <state state_ref="oval:org.mitre.oval:ste:99" />
@@ -7717,7 +7723,6 @@
       <object object_ref="oval:org.mitre.oval:obj:23857" />
       <state state_ref="oval:org.mitre.oval:ste:2280" />
     </file_test>
-    <unknown_test id="oval:org.mitre.oval:tst:2435" check="all" check_existence="at_least_one_exists" comment="Excel 97 is installed" version="1" />
     <registry_test id="oval:org.mitre.oval:tst:2437" check="at least one" check_existence="at_least_one_exists" comment="Win2K/XP/2003 is patched" version="5">
       <object object_ref="oval:org.mitre.oval:obj:717" />
     </registry_test>
@@ -7740,16 +7745,10 @@
       <object object_ref="oval:org.mitre.oval:obj:23736" />
       <state state_ref="oval:org.mitre.oval:ste:2365" />
     </file_test>
-    <unknown_test id="oval:org.mitre.oval:tst:2529" check="all" check_existence="at_least_one_exists" comment="Word 98 is installed" version="1" />
     <file_test id="oval:org.mitre.oval:tst:2530" check="at least one" check_existence="at_least_one_exists" comment="the version of winword.exe is less than 8.0.0.9315" version="2">
       <object object_ref="oval:org.mitre.oval:obj:23736" />
       <state state_ref="oval:org.mitre.oval:ste:2366" />
     </file_test>
-    <unknown_test id="oval:org.mitre.oval:tst:2531" check="all" check_existence="at_least_one_exists" comment="Word 97 is installed" version="1">
-      <notes>
-        <note>Word 97 is installed.</note>
-      </notes>
-    </unknown_test>
     <registry_test id="oval:org.mitre.oval:tst:2540" check="at least one" check_existence="at_least_one_exists" comment="the patch q828748 is installed (Hotfix key)" version="1">
       <object object_ref="oval:org.mitre.oval:obj:1447" />
       <state state_ref="oval:org.mitre.oval:ste:2375" />

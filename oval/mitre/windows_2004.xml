@@ -1493,7 +1493,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.mitre.oval:def:188" class="vulnerability" version="4">
+    <definition id="oval:org.mitre.oval:def:188" class="vulnerability" version="5">
       <metadata>
         <title>MS Word Macro Security Bypass Vulnerability</title>
         <affected family="windows">
@@ -1537,7 +1537,7 @@
             <status_change date="2016-02-19T10:00:00.000-04:00">ACCEPTED</status_change>
           </dates>
           <status>ACCEPTED</status>
-          <min_schema_version>5.11.1</min_schema_version>
+          <min_schema_version>5.10</min_schema_version>
         </oval_repository>
       </metadata>
       <criteria operator="OR">
@@ -1550,7 +1550,7 @@
           <criterion comment="the version of Winword.exe is less than 10.0.5522.0" test_ref="oval:org.mitre.oval:tst:7679" />
         </criteria>
         <criteria operator="AND">
-          <criterion comment="Word 97 is installed" test_ref="oval:org.mitre.oval:tst:2531" />
+          <criterion comment="Registry key for Word exists (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\8.0\Word\InstallRoot!Path)" test_ref="oval:org.cisecurity:tst:6605" />
           <criterion comment="the version of winword.exe is less than 8.0.0.9125" test_ref="oval:org.mitre.oval:tst:7738" />
         </criteria>
       </criteria>
@@ -18135,6 +18135,9 @@
     </definition>
   </definitions>
   <tests>
+    <registry_test id="oval:org.cisecurity:tst:6605" check="at least one" check_existence="at_least_one_exists" comment="Registry key for Word exists (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\8.0\Word\InstallRoot!Path)" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23762" />
+    </registry_test>
     <family_test id="oval:org.mitre.oval:tst:99" check="only one" check_existence="at_least_one_exists" comment="the installed operating system is part of the Microsoft Windows family" version="11">
       <object object_ref="oval:org.mitre.oval:obj:99" />
       <state state_ref="oval:org.mitre.oval:ste:99" />
@@ -19732,11 +19735,6 @@
       <object object_ref="oval:org.mitre.oval:obj:732" />
       <state state_ref="oval:org.mitre.oval:ste:2333" />
     </registry_test>
-    <unknown_test id="oval:org.mitre.oval:tst:2531" check="all" check_existence="at_least_one_exists" comment="Word 97 is installed" version="1">
-      <notes>
-        <note>Word 97 is installed.</note>
-      </notes>
-    </unknown_test>
     <file_test id="oval:org.mitre.oval:tst:2536" check="at least one" check_existence="at_least_one_exists" comment="the version of msjava.dll is less than 5.0.3809.0" version="56">
       <object object_ref="oval:org.mitre.oval:obj:1446" />
       <state state_ref="oval:org.mitre.oval:ste:2371" />
