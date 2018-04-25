@@ -26628,6 +26628,464 @@
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:4905" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Graphics Component Denial of Service Vulnerability - CVE-2018-8116</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2018-8116" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-8116" source="CVE" />
+        <description>A denial of service vulnerability exists in the way that Windows handles objects in memory, aka "Microsoft Graphics Component Denial of Service Vulnerability." This affects Windows 7, Windows Server 2012 R2, Windows RT 8.1, Windows Server 2008, Windows Server 2012, Windows 8.1, Windows Server 2016, Windows Server 2008 R2, Windows 10, Windows 10 Servers.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-04-12T06:34:51+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Affected WinOS + vulnerable file version" operator="OR">
+        <criteria comment="2008 + file version" operator="AND">
+          <criteria comment="2008" operator="OR">
+            <extend_definition comment="Microsoft Windows Server 2008 is installed" definition_ref="oval:org.mitre.oval:def:12824" />
+            <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+            <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
+          </criteria>
+          <criterion comment="the version of win32k.sys is less than 6.0.6002.24344" test_ref="oval:org.cisecurity:tst:6657" />
+        </criteria>
+        <criteria comment="Win7/R2 + file version" operator="AND">
+          <criteria comment="Win7/R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed " definition_ref="oval:org.mitre.oval:def:12583" />
+          </criteria>
+          <criterion comment="the version of win32k.sys is less than 6.1.7601.24093" test_ref="oval:org.cisecurity:tst:6653" />
+        </criteria>
+        <criteria comment="2012 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+          <criterion comment="the version of win32k.sys is less than 6.2.9200.22413" test_ref="oval:org.cisecurity:tst:6652" />
+        </criteria>
+        <criteria comment="Win8.1/2012R2 + file version" operator="AND">
+          <criteria comment="Win8.1/2012R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          </criteria>
+          <criterion comment="the version of win32k.sys is less than 6.3.9600.18979" test_ref="oval:org.cisecurity:tst:6655" />
+        </criteria>
+        <criteria comment="Win10 + file version" operator="AND">
+          <criteria comment="Win10" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+            <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          </criteria>
+          <criterion comment="the version of Win32kfull.sys is less than 10.0.10240.17831" test_ref="oval:org.cisecurity:tst:6658" />
+        </criteria>
+        <criteria comment="1511 + file version" operator="AND">
+          <criteria comment="1511" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          </criteria>
+          <criterion comment="the version of Win32kfull.sys is less than 10.0.10586.1540" test_ref="oval:org.cisecurity:tst:6654" />
+        </criteria>
+        <criteria comment="1607/2016 + file version" operator="AND">
+          <criteria comment="1607/2016" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="the version of Win32kfull.sys is less than 10.0.14393.2189" test_ref="oval:org.cisecurity:tst:6660" />
+        </criteria>
+        <criteria comment="1703 + file version" operator="AND">
+          <criteria comment="1703" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+          </criteria>
+          <criterion comment="the version of Win32kfull.sys is less than 10.0.15063.1029" test_ref="oval:org.cisecurity:tst:6659" />
+        </criteria>
+        <criteria comment="1709 + file version" operator="AND">
+          <criteria comment="1709" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1709 (x86) is installed" definition_ref="oval:org.cisecurity:def:3479" />
+            <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
+          </criteria>
+          <criterion comment="the version of Win32kfull.sys is less than 10.0.16299.371" test_ref="oval:org.cisecurity:tst:6656" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4906" class="vulnerability" version="1">
+      <metadata>
+        <title>Hyper-V Information Disclosure Vulnerability - CVE-2018-0957</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2018-0957" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0957" source="CVE" />
+        <description>An information disclosure vulnerability exists when Windows Hyper-V on a host operating system fails to properly validate input from an authenticated user on a guest operating system, aka "Hyper-V Information Disclosure Vulnerability." This affects Windows Server 2012 R2, Windows RT 8.1, Windows Server 2016, Windows 8.1, Windows 10, Windows 10 Servers. This CVE ID is unique from CVE-2018-0964.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-04-12T06:34:51+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Affected WinOS + vulnerable file version" operator="OR">
+        <criteria comment="Win8.1/2012R2 + file version" operator="AND">
+          <criteria comment="Win8.1/2012R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          </criteria>
+          <criterion comment="Check if the version of Ntoskrnl.exe is less than 6.3.9600.18969" test_ref="oval:org.cisecurity:tst:6664" />
+        </criteria>
+        <criteria comment="Win10 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          <criterion comment="Check if the version of Vmswitch.sys is less than 10.0.10240.17797" test_ref="oval:org.cisecurity:tst:6661" />
+        </criteria>
+        <criteria comment="1511 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          <criterion comment="Check if the version of Vmswitch.sys is less than 10.0.10586.1478" test_ref="oval:org.cisecurity:tst:6662" />
+        </criteria>
+        <criteria comment="1607/2016 + file version" operator="AND">
+          <criteria comment="1607/2016" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="Check if the version of Vmswitch.sys is less than 10.0.14393.2155" test_ref="oval:org.cisecurity:tst:6665" />
+        </criteria>
+        <criteria comment="1703 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+          <criterion comment="Check if the version of Vmswitch.sys is less than 10.0.15063.138" test_ref="oval:org.cisecurity:tst:6663" />
+        </criteria>
+        <criteria comment="1709 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
+          <criterion comment="Check if the version of Vmswitch.sys is less than 10.0.16299.371" test_ref="oval:org.cisecurity:tst:6666" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4907" class="vulnerability" version="1">
+      <metadata>
+        <title>Hyper-V Information Disclosure Vulnerability - CVE-2018-0964</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2018-0964" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0964" source="CVE" />
+        <description>An information disclosure vulnerability exists when Windows Hyper-V on a host operating system fails to properly validate input from an authenticated user on a guest operating system, aka "Hyper-V Information Disclosure Vulnerability." This affects Windows 10, Windows 10 Servers. This CVE ID is unique from CVE-2018-0957.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-04-12T06:34:51+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Affected WinOS + vulnerable file version" operator="OR">
+        <criteria comment="Win8.1/2012R2 + file version" operator="AND">
+          <criteria comment="Win8.1/2012R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          </criteria>
+          <criterion comment="Check if the version of Ntoskrnl.exe is less than 6.3.9600.18969" test_ref="oval:org.cisecurity:tst:6664" />
+        </criteria>
+        <criteria comment="Win10 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          <criterion comment="Check if the version of Vmswitch.sys is less than 10.0.10240.17797" test_ref="oval:org.cisecurity:tst:6661" />
+        </criteria>
+        <criteria comment="1511 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          <criterion comment="Check if the version of Vmswitch.sys is less than 10.0.10586.1478" test_ref="oval:org.cisecurity:tst:6662" />
+        </criteria>
+        <criteria comment="1607/2016 + file version" operator="AND">
+          <criteria comment="1607/2016" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="Check if the version of Vmswitch.sys is less than 10.0.14393.2155" test_ref="oval:org.cisecurity:tst:6665" />
+        </criteria>
+        <criteria comment="1703 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+          <criterion comment="Check if the version of Vmswitch.sys is less than 10.0.15063.138" test_ref="oval:org.cisecurity:tst:6663" />
+        </criteria>
+        <criteria comment="1709 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
+          <criterion comment="Check if the version of Vmswitch.sys is less than 10.0.16299.371" test_ref="oval:org.cisecurity:tst:6666" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4908" class="vulnerability" version="1">
+      <metadata>
+        <title>Active Directory Security Feature Bypass Vulnerability - CVE-2018-0890</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2018-0890" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0890" source="CVE" />
+        <description>A security feature bypass vulnerability exists when Active Directory incorrectly applies Network Isolation settings, aka "Active Directory Security Feature Bypass Vulnerability." This affects Windows Server 2016, Windows 10, Windows 10 Servers.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-04-12T06:34:51+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Affected WinOS + vulnerable file version" operator="OR">
+        <criteria comment="1607/2016 + file version" operator="AND">
+          <criteria comment="1607/2016" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="Check if the version of Ntdsai.dll is less than 10.0.14393.2189" test_ref="oval:org.cisecurity:tst:6667" />
+        </criteria>
+        <criteria comment="1703 + file version" operator="AND">
+          <criteria comment="1703" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+          </criteria>
+          <criterion comment="Check if the version of Ntoskrnl.exe is less than 10.0.15063.1029" test_ref="oval:org.cisecurity:tst:6564" />
+        </criteria>
+        <criteria comment="1709 + file version" operator="AND">
+          <criteria comment="1709" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1709 (x86) is installed" definition_ref="oval:org.cisecurity:def:3479" />
+            <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
+          </criteria>
+          <criterion comment="Check if the version of Ntoskrnl.exe is less than 10.0.16299.371" test_ref="oval:org.cisecurity:tst:6569" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4909" class="vulnerability" version="1">
+      <metadata>
+        <title>Windows Remote Desktop Protocol (RDP) Denial of Service Vulnerability - CVE-2018-0976</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2018-0976" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0976" source="CVE" />
+        <description>A denial of service vulnerability exists in Remote Desktop Protocol (RDP) when an attacker connects to the target system using RDP and sends specially crafted requests, aka "Windows Remote Desktop Protocol (RDP) Denial of Service Vulnerability." This affects Windows 7, Windows Server 2012 R2, Windows RT 8.1, Windows Server 2008, Windows Server 2012, Windows 8.1, Windows Server 2016, Windows Server 2008 R2, Windows 10, Windows 10 Servers.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-04-12T06:34:51+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Affected WinOS + vulnerable file version" operator="OR">
+        <criteria comment="2008 + file version" operator="AND">
+          <criteria comment="2008" operator="OR">
+            <extend_definition comment="Microsoft Windows Server 2008 is installed" definition_ref="oval:org.mitre.oval:def:12824" />
+            <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+            <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
+          </criteria>
+          <criteria operator="OR">
+            <criterion comment="the 32-bit version of Scksp.dll is less than 6.0.6002.24329" test_ref="oval:org.cisecurity:tst:6678" />
+            <criterion comment="the 64-bit version of Scksp.dll is less than 6.0.6002.24329" test_ref="oval:org.cisecurity:tst:6685" />
+          </criteria>
+        </criteria>
+        <criteria comment="Win7/R2 + file version" operator="AND">
+          <criteria comment="Win7/R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed " definition_ref="oval:org.mitre.oval:def:12583" />
+          </criteria>
+          <criteria operator="OR">
+            <criterion comment="the 32-bit version of Scksp.dll is less than 6.1.7601.24080" test_ref="oval:org.cisecurity:tst:6682" />
+            <criterion comment="the 64-bit version of Scksp.dll is less than 6.1.7601.24080" test_ref="oval:org.cisecurity:tst:6674" />
+          </criteria>
+        </criteria>
+        <criteria comment="2012 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+          <criteria operator="OR">
+            <criterion comment="the 32-bit version of Scksp.dll is less than 6.2.9200.22398" test_ref="oval:org.cisecurity:tst:6675" />
+            <criterion comment="the 64-bit version of Scksp.dll is less than 6.2.9200.22398" test_ref="oval:org.cisecurity:tst:6677" />
+          </criteria>
+        </criteria>
+        <criteria comment="Win8.1/2012R2 + file version" operator="AND">
+          <criteria comment="Win8.1/2012R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          </criteria>
+          <criteria operator="OR">
+            <criterion comment="the 32-bit version of Scksp.dll is less than 6.3.9600.18792" test_ref="oval:org.cisecurity:tst:6671" />
+            <criterion comment="the 64-bit version of Scksp.dll is less than 6.3.9600.18792" test_ref="oval:org.cisecurity:tst:6679" />
+          </criteria>
+        </criteria>
+        <criteria comment="Win10 + file version" operator="AND">
+          <criteria comment="Win10" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+            <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          </criteria>
+          <criteria operator="OR">
+            <criterion comment="the 32-bit version of Scksp.dll is less than 10.0.10240.17831" test_ref="oval:org.cisecurity:tst:6668" />
+            <criterion comment="the 64-bit version of Scksp.dll is less than 10.0.10240.17831" test_ref="oval:org.cisecurity:tst:6672" />
+          </criteria>
+        </criteria>
+        <criteria comment="1511 + file version" operator="AND">
+          <criteria comment="1511" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          </criteria>
+          <criteria operator="OR">
+            <criterion comment="the 32-bit version of Scksp.dll is less than 10.0.10586.1540" test_ref="oval:org.cisecurity:tst:6683" />
+            <criterion comment="the 64-bit version of Scksp.dll is less than 10.0.10586.1540" test_ref="oval:org.cisecurity:tst:6681" />
+          </criteria>
+        </criteria>
+        <criteria comment="1607/2016 + file version" operator="AND">
+          <criteria comment="1607/2016" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criteria operator="OR">
+            <criterion comment="the 32-bit version of Scksp.dll is less than 10.0.14393.2189" test_ref="oval:org.cisecurity:tst:6670" />
+            <criterion comment="the 64-bit version of Scksp.dll is less than 10.0.14393.2189" test_ref="oval:org.cisecurity:tst:6676" />
+          </criteria>
+        </criteria>
+        <criteria comment="1703 + file version" operator="AND">
+          <criteria comment="1703" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+          </criteria>
+          <criteria operator="OR">
+            <criterion comment="the 32-bit version of Scksp.dll is less than 10.0.15063.1029" test_ref="oval:org.cisecurity:tst:6669" />
+            <criterion comment="the 64-bit version of Scksp.dll is less than 10.0.15063.1029" test_ref="oval:org.cisecurity:tst:6684" />
+          </criteria>
+        </criteria>
+        <criteria comment="1709 + file version" operator="AND">
+          <criteria comment="1709" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1709 (x86) is installed" definition_ref="oval:org.cisecurity:def:3479" />
+            <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
+          </criteria>
+          <criteria operator="OR">
+            <criterion comment="the 32-bit version of Scksp.dll is less than 10.0.16299.371" test_ref="oval:org.cisecurity:tst:6673" />
+            <criterion comment="the 64-bit version of Scksp.dll is less than 10.0.16299.371" test_ref="oval:org.cisecurity:tst:6680" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4910" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft JET Database Engine Remote Code Execution Vulnerability - CVE-2018-1003</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+        </affected>
+        <reference ref_id="CVE-2018-1003" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1003" source="CVE" />
+        <description>A buffer overflow vulnerability exists in the Microsoft JET Database Engine that could allow remote code execution on an affected system, aka "Microsoft JET Database Engine Remote Code Execution Vulnerability." This affects Windows 7, Windows Server 2012 R2, Windows RT 8.1, Windows Server 2008, Windows Server 2012, Windows 8.1, Windows Server 2016, Windows Server 2008 R2, Windows 10.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-04-12T06:34:51+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Affected WinOS + vulnerable file version" operator="OR">
+        <criteria comment="2008 + file version" operator="AND">
+          <criteria comment="2008" operator="OR">
+            <extend_definition comment="Microsoft Windows Server 2008 is installed" definition_ref="oval:org.mitre.oval:def:12824" />
+            <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+            <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
+          </criteria>
+          <criterion comment="The version of Msexcl40.dll is less than 4.0.9801.3" test_ref="oval:org.cisecurity:tst:6686" />
+        </criteria>
+        <criteria comment="Win7/R2 + file version" operator="AND">
+          <criteria comment="Win7/R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12292" />
+            <extend_definition comment="Microsoft Windows 7 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12627" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 x64 Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:12567" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition Service Pack 1 is installed " definition_ref="oval:org.mitre.oval:def:12583" />
+          </criteria>
+          <criterion comment="The version of Msexcl40.dll is less than 4.0.9801.3" test_ref="oval:org.cisecurity:tst:6686" />
+        </criteria>
+        <criteria comment="2012 + file version" operator="AND">
+          <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+          <criterion comment="The version of Msexcl40.dll is less than 4.0.9801.3" test_ref="oval:org.cisecurity:tst:6686" />
+        </criteria>
+        <criteria comment="Win8.1/2012R2 + file version" operator="AND">
+          <criteria comment="Win8.1/2012R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          </criteria>
+          <criterion comment="The version of Msexcl40.dll is less than 4.0.9801.3" test_ref="oval:org.cisecurity:tst:6686" />
+        </criteria>
+        <criteria comment="Win10 + file version" operator="AND">
+          <criteria comment="Win10" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+            <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          </criteria>
+          <criterion comment="The version of Msexcl40.dll is less than 4.0.9801.3" test_ref="oval:org.cisecurity:tst:6686" />
+        </criteria>
+        <criteria comment="1511 + file version" operator="AND">
+          <criteria comment="1511" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:379" />
+            <extend_definition comment="Microsoft Windows 10 Version 1511 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:378" />
+          </criteria>
+          <criterion comment="The version of Msexcl40.dll is less than 4.0.9801.3" test_ref="oval:org.cisecurity:tst:6686" />
+        </criteria>
+        <criteria comment="1607/2016 + file version" operator="AND">
+          <criteria comment="1607/2016" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="The version of Msexcl40.dll is less than 4.0.9801.3" test_ref="oval:org.cisecurity:tst:6686" />
+        </criteria>
+        <criteria comment="1703 + file version" operator="AND">
+          <criteria comment="1703" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+          </criteria>
+          <criterion comment="The version of Msexcl40.dll is less than 4.0.9801.3" test_ref="oval:org.cisecurity:tst:6686" />
+        </criteria>
+        <criteria comment="1709 + file version" operator="AND">
+          <criteria comment="1709" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1709 (x86) is installed" definition_ref="oval:org.cisecurity:def:3479" />
+            <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
+          </criteria>
+          <criterion comment="The version of Msexcl40.dll is less than 4.0.9801.3" test_ref="oval:org.cisecurity:tst:6686" />
+        </criteria>
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:627" class="inventory" version="13">
       <metadata>
         <title>Microsoft Internet Explorer 7 is installed</title>
@@ -33932,6 +34390,146 @@
       <object object_ref="oval:org.cisecurity:obj:1171" />
       <state state_ref="oval:org.cisecurity:ste:4928" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:6652" check="at least one" check_existence="at_least_one_exists" comment="the version of win32k.sys is less than 6.2.9200.22413" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:570" />
+      <state state_ref="oval:org.cisecurity:ste:4938" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6653" check="at least one" check_existence="at_least_one_exists" comment="the version of win32k.sys is less than 6.1.7601.24093" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:570" />
+      <state state_ref="oval:org.cisecurity:ste:4935" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6654" check="at least one" check_existence="at_least_one_exists" comment="the version of Win32kfull.sys is less than 10.0.10586.1540" version="1">
+      <object object_ref="oval:org.cisecurity:obj:499" />
+      <state state_ref="oval:org.cisecurity:ste:4933" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6655" check="at least one" check_existence="at_least_one_exists" comment="the version of win32k.sys is less than 6.3.9600.18979" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:570" />
+      <state state_ref="oval:org.cisecurity:ste:4936" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6656" check="at least one" check_existence="at_least_one_exists" comment="the version of Win32kfull.sys is less than 10.0.16299.371" version="1">
+      <object object_ref="oval:org.cisecurity:obj:499" />
+      <state state_ref="oval:org.cisecurity:ste:4930" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6657" check="at least one" check_existence="at_least_one_exists" comment="the version of win32k.sys is less than 6.0.6002.24344" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:570" />
+      <state state_ref="oval:org.cisecurity:ste:4937" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6658" check="at least one" check_existence="at_least_one_exists" comment="the version of Win32kfull.sys is less than 10.0.10240.17831" version="1">
+      <object object_ref="oval:org.cisecurity:obj:499" />
+      <state state_ref="oval:org.cisecurity:ste:4934" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6659" check="at least one" check_existence="at_least_one_exists" comment="the version of Win32kfull.sys is less than 10.0.15063.1029" version="1">
+      <object object_ref="oval:org.cisecurity:obj:499" />
+      <state state_ref="oval:org.cisecurity:ste:4932" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6660" check="at least one" check_existence="at_least_one_exists" comment="the version of Win32kfull.sys is less than 10.0.14393.2189" version="1">
+      <object object_ref="oval:org.cisecurity:obj:499" />
+      <state state_ref="oval:org.cisecurity:ste:4931" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6661" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of Vmswitch.sys is less than 10.0.10240.17797" version="1">
+      <object object_ref="oval:org.cisecurity:obj:651" />
+      <state state_ref="oval:org.cisecurity:ste:4941" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6662" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of Vmswitch.sys is less than 10.0.10586.1478" version="1">
+      <object object_ref="oval:org.cisecurity:obj:651" />
+      <state state_ref="oval:org.cisecurity:ste:4942" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6663" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of Vmswitch.sys is less than 10.0.15063.138" version="1">
+      <object object_ref="oval:org.cisecurity:obj:651" />
+      <state state_ref="oval:org.cisecurity:ste:4944" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6664" check="all" check_existence="at_least_one_exists" comment="Check if the version of Ntoskrnl.exe is less than 6.3.9600.18969" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:335" />
+      <state state_ref="oval:org.cisecurity:ste:4939" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6665" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of Vmswitch.sys is less than 10.0.14393.2155" version="1">
+      <object object_ref="oval:org.cisecurity:obj:651" />
+      <state state_ref="oval:org.cisecurity:ste:4943" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6666" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of Vmswitch.sys is less than 10.0.16299.371" version="1">
+      <object object_ref="oval:org.cisecurity:obj:651" />
+      <state state_ref="oval:org.cisecurity:ste:4940" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6667" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of Ntdsai.dll is less than 10.0.14393.2189" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:5687" />
+      <state state_ref="oval:org.cisecurity:ste:4945" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6668" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 10.0.10240.17831" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1172" />
+      <state state_ref="oval:org.cisecurity:ste:4949" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6669" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 10.0.15063.1029" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1172" />
+      <state state_ref="oval:org.cisecurity:ste:4952" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6670" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 10.0.14393.2189" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1172" />
+      <state state_ref="oval:org.cisecurity:ste:4946" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6671" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 6.3.9600.18792" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1172" />
+      <state state_ref="oval:org.cisecurity:ste:4954" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6672" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 10.0.10240.17831" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1173" />
+      <state state_ref="oval:org.cisecurity:ste:4949" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6673" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 10.0.16299.371" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1172" />
+      <state state_ref="oval:org.cisecurity:ste:4948" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6674" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 6.1.7601.24080" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1173" />
+      <state state_ref="oval:org.cisecurity:ste:4947" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6675" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 6.2.9200.22398" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1172" />
+      <state state_ref="oval:org.cisecurity:ste:4953" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6676" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 10.0.14393.2189" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1173" />
+      <state state_ref="oval:org.cisecurity:ste:4946" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6677" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 6.2.9200.22398" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1173" />
+      <state state_ref="oval:org.cisecurity:ste:4953" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6678" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 6.0.6002.24329" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1172" />
+      <state state_ref="oval:org.cisecurity:ste:4950" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6679" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 6.3.9600.18792" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1173" />
+      <state state_ref="oval:org.cisecurity:ste:4954" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6680" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 10.0.16299.371" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1173" />
+      <state state_ref="oval:org.cisecurity:ste:4948" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6681" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 10.0.10586.1540" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1173" />
+      <state state_ref="oval:org.cisecurity:ste:4951" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6682" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 6.1.7601.24080" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1172" />
+      <state state_ref="oval:org.cisecurity:ste:4947" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6683" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 10.0.10586.1540" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1172" />
+      <state state_ref="oval:org.cisecurity:ste:4951" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6684" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 10.0.15063.1029" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1173" />
+      <state state_ref="oval:org.cisecurity:ste:4952" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6685" check="all" check_existence="at_least_one_exists" comment="Check if the version of Scksp.dll is less than 6.0.6002.24329" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1173" />
+      <state state_ref="oval:org.cisecurity:ste:4950" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6686" check="all" check_existence="at_least_one_exists" comment="Check if the version of Msexcl40.dll is less than 4.0.9801.3" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1174" />
+      <state state_ref="oval:org.cisecurity:ste:4955" />
+    </file_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="4">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
     </file_test>
@@ -34765,6 +35363,11 @@
         <object_reference>oval:org.mitre.oval:obj:30302</object_reference>
       </set>
     </registry_object>
+    <file_object id="oval:org.cisecurity:obj:651" comment="Object holds the file Vmswitch.sys in the FileRepository" version="2">
+      <behaviors recurse_direction="down" />
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:68" />
+      <filename>Vmswitch.sys</filename>
+    </file_object>
     <registry_object id="oval:org.cisecurity:obj:719" comment="Native Office 2016 InstallRoot!Path" version="2">
       <hive>HKEY_LOCAL_MACHINE</hive>
       <key operation="pattern match">^SOFTWARE\\Microsoft\\Office\\16.0\\.+\\InstallRoot$</key>
@@ -35066,6 +35669,18 @@
       <path var_check="all" var_ref="oval:org.mitre.oval:var:202" />
       <filename>fontsub.dll</filename>
     </file_object>
+    <file_object id="oval:org.cisecurity:obj:1172" version="1">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
+      <filename>Scksp.dll</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:1173" version="1">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:202" />
+      <filename>Scksp.dll</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:1174" version="1">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:202" />
+      <filename>Msexcl40.dll</filename>
+    </file_object>
     <family_object id="oval:org.mitre.oval:obj:99" comment="This is the default family object. Only one family object should exist." version="1" />
     <registry_object id="oval:org.mitre.oval:obj:219" comment="This registry key identifies the system root." version="4">
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -35216,6 +35831,10 @@
     <file_object id="oval:org.mitre.oval:obj:5673" comment="Wordcnv.dll for MS Office Compatibility Pack " version="15">
       <path var_check="all" var_ref="oval:org.mitre.oval:var:929" />
       <filename>Wordcnv.dll</filename>
+    </file_object>
+    <file_object id="oval:org.mitre.oval:obj:5687" comment="Object holds the ntdsai.dll file in System 32 folder." version="57">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:200" />
+      <filename>ntdsai.dll</filename>
     </file_object>
     <registry_object id="oval:org.mitre.oval:obj:6292" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\12.0\Common\InstallRoot!Path (32 bit)" version="2">
       <behaviors windows_view="32_bit" />
@@ -37737,6 +38356,84 @@
     <file_state id="oval:org.cisecurity:ste:4929" comment="State matches if version is less than 6.0.6002.24331" version="1">
       <version datatype="version" operation="less than">6.0.6002.24331</version>
     </file_state>
+    <file_state id="oval:org.cisecurity:ste:4930" comment="State matches if version is less than 10.0.16299.371" version="1">
+      <version datatype="version" operation="less than">10.0.16299.371</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4931" comment="State matches if version is less than 10.0.14393.2189" version="1">
+      <version datatype="version" operation="less than">10.0.14393.2189</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4932" comment="State matches if version is less than 10.0.15063.1029" version="1">
+      <version datatype="version" operation="less than">10.0.15063.1029</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4933" comment="State matches if version is less than 10.0.10586.1540" version="1">
+      <version datatype="version" operation="less than">10.0.10586.1540</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4934" comment="State matches if version is less than 10.0.10240.17831" version="1">
+      <version datatype="version" operation="less than">10.0.10240.17831</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4935" comment="State matches if version is less than 6.1.7601.24093" version="1">
+      <version datatype="version" operation="less than">6.1.7601.24093</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4936" comment="State matches if version is less than 6.3.9600.18979" version="1">
+      <version datatype="version" operation="less than">6.3.9600.18979</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4937" comment="State matches if version is less than 6.0.6002.24344" version="1">
+      <version datatype="version" operation="less than">6.0.6002.24344</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4938" comment="State matches if version is less than 6.2.9200.22413" version="1">
+      <version datatype="version" operation="less than">6.2.9200.22413</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4939" comment="State matches if version is less than 6.3.9600.18969" version="1">
+      <version datatype="version" operation="less than">6.3.9600.18969</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4940" comment="State matches version less than 10.0.16299.371" version="1">
+      <version datatype="version" operation="less than">10.0.16299.371</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4941" comment="State matches version less than 10.0.10240.17797" version="1">
+      <version datatype="version" operation="less than">10.0.10240.17797</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4942" comment="State matches version less than 10.0.10586.1478" version="1">
+      <version datatype="version" operation="less than">10.0.10586.1478</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4943" comment="State matches version less than 10.0.14393.2155" version="1">
+      <version datatype="version" operation="less than">10.0.14393.2155</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4944" comment="State matches version less than 10.0.15063.138" version="1">
+      <version datatype="version" operation="less than">10.0.15063.138</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4945" comment="State matches if the version is less than 10.0.14393.2189" version="1">
+      <version datatype="version" operation="less than">10.0.14393.2189</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4946" comment="State matches if version is less than 10.0.14393.2189" version="1">
+      <version datatype="version" operation="less than">10.0.14393.2189</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4947" comment="State matches if version is less than 6.1.7601.24080" version="1">
+      <version datatype="version" operation="less than">6.1.7601.24080</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4948" comment="State matches if version is less than 10.0.16299.371" version="1">
+      <version datatype="version" operation="less than">10.0.16299.371</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4949" comment="State matches if version is less than 10.0.10240.17831" version="1">
+      <version datatype="version" operation="less than">10.0.10240.17831</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4950" comment="State matches if version is less than 6.0.6002.24329" version="1">
+      <version datatype="version" operation="less than">6.0.6002.24329</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4951" comment="State matches if version is less than 10.0.10586.1540" version="1">
+      <version datatype="version" operation="less than">10.0.10586.1540</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4952" comment="State matches if version is less than 10.0.15063.1029" version="1">
+      <version datatype="version" operation="less than">10.0.15063.1029</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4953" comment="State matches if version is less than 6.2.9200.22398" version="1">
+      <version datatype="version" operation="less than">6.2.9200.22398</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4954" comment="State matches if version is less than 6.3.9600.18792" version="1">
+      <version datatype="version" operation="less than">6.3.9600.18792</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:4955" comment="State matches if version is less than 4.0.9801.3" version="1">
+      <version datatype="version" operation="less than">4.0.9801.3</version>
+    </file_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="3">
       <family operation="case insensitive equals">windows</family>
     </family_state>
@@ -38052,6 +38749,12 @@
     </local_variable>
     <local_variable id="oval:org.cisecurity:var:67" comment="Variable holds the path for Microsoft Outlook 2013" datatype="string" version="1">
       <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:23956" />
+    </local_variable>
+    <local_variable id="oval:org.cisecurity:var:68" comment="Variable holds the path to \DriverStore\FileRepository" datatype="string" version="2">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
+        <literal_component>\System32\DriverStore\FileRepository\</literal_component>
+      </concat>
     </local_variable>
     <local_variable id="oval:org.cisecurity:var:76" comment="Variable holds the version of Adobe Acrobat 2017 installed" datatype="string" version="1">
       <concat>
