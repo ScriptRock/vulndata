@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1525818473</content_version>
+    <content_version>1525876254</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20180007" class="patch" version="602">
@@ -9529,6 +9529,58 @@ Bug Fix(es):
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181364" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1364: 389-ds-base security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1364-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1364" source="RHSA" />
+        <reference ref_id="CVE-2018-1089" ref_url="https://access.redhat.com/security/cve/CVE-2018-1089" source="CVE" />
+        <description>389 Directory Server is an LDAP version 3 (LDAPv3) compliant server. The base packages include the Lightweight Directory Access Protocol (LDAP) server and command-line utilities for server administration.
+
+Security Fix(es):
+
+* 389-ds-base: ns-slapd crash via large filter value in ldapsearch (CVE-2018-1089)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank Greg Kubok for reporting this issue.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-05-09" />
+          <updated date="2018-05-09" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-122" href="https://access.redhat.com/security/cve/CVE-2018-1089" public="20180507:1500">CVE-2018-1089</cve>
+          <bugzilla id="1559802" href="https://bugzilla.redhat.com/1559802">CVE-2018-1089 389-ds-base: ns-slapd crash via large filter value in ldapsearch</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="389-ds-base is earlier than 0:1.2.11.15-95.el6_9" test_ref="oval:com.redhat.rhsa:tst:20181364005" />
+            <criterion comment="389-ds-base is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180163010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="389-ds-base-devel is earlier than 0:1.2.11.15-95.el6_9" test_ref="oval:com.redhat.rhsa:tst:20181364009" />
+            <criterion comment="389-ds-base-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180163012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="389-ds-base-libs is earlier than 0:1.2.11.15-95.el6_9" test_ref="oval:com.redhat.rhsa:tst:20181364007" />
+            <criterion comment="389-ds-base-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180163006" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20180007001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -15351,6 +15403,18 @@ Bug Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20180016012" />
       <state state_ref="oval:com.redhat.rhsa:ste:20181355004" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181364005" check="at least one" comment="389-ds-base is earlier than 0:1.2.11.15-95.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180163007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181364003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181364007" check="at least one" comment="389-ds-base-libs is earlier than 0:1.2.11.15-95.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180163005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181364003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181364009" check="at least one" comment="389-ds-base-devel is earlier than 0:1.2.11.15-95.el6_9" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180163008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181364003" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20180007001" version="602">
@@ -17615,6 +17679,10 @@ Bug Fix(es):
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20181355004" version="601">
       <arch datatype="string" operation="equals">x86_64</arch>
       <evr datatype="evr_string" operation="less than">0:3.10.0-862.2.3.rt56.806.el7</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181364003" version="601">
+      <arch datatype="string" operation="pattern match">i686|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:1.2.11.15-95.el6_9</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>

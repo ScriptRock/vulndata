@@ -450,6 +450,38 @@
         <criterion comment="mysqld.exe or mysqld-nt.exe exists" test_ref="oval:org.mitre.oval:tst:21031" />
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:746" class="inventory" deprecated="true" version="54">
+      <metadata>
+        <title>Microsoft Office 2016 is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <product>Microsoft Office 2016</product>
+        </affected>
+        <reference ref_id="cpe:/a:microsoft:office:2016" source="CPE" />
+        <description>Microsoft Office 2016 is installed on the system</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2016-05-19T19:00:00+08:00">
+              <contributor organization="The Depository Trust and Clearing Corporation">Jeff Albert</contributor>
+            </submitted>
+            <status_change date="2016-05-27T12:00:00.000-05:00">DRAFT</status_change>
+            <status_change date="2016-06-13T14:00:00.000-05:00">INTERIM</status_change>
+            <status_change date="2016-07-01T12:00:00.000-05:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Microsoft Office 2016 is installed on the system" test_ref="oval:org.cisecurity:tst:1206" />
+      </criteria>
+    </definition>
     <definition id="oval:org.cisecurity:def:770" class="inventory" version="56">
       <metadata>
         <title>Microsoft Word 2016 is installed</title>
@@ -29585,6 +29617,99 @@
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:4992" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Office Information Disclosure Vulnerability - CVE-2018-1007</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-1007" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1007" source="CVE" />
+        <description>An information disclosure vulnerability exists when Microsoft Office improperly discloses the contents of its memory, aka "Microsoft Office Information Disclosure Vulnerability." This affects Microsoft Office. This CVE ID is unique from CVE-2018-0950.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-05-08T06:09:49+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="MSO 2016 + file version" operator="AND">
+        <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+        <criterion comment="Check if oart.dll version is less than 16.0.4672.1000" test_ref="oval:org.cisecurity:tst:6789" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4993" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Office Information Disclosure Vulnerability - CVE-2018-0950</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-0950" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0950" source="CVE" />
+        <description>An information disclosure vulnerability exists when Office renders Rich Text Format (RTF) email messages containing OLE objects when a message is opened or previewed, aka "Microsoft Office Information Disclosure Vulnerability." This affects Microsoft Word, Microsoft Office. This CVE ID is unique from CVE-2018-1007.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-05-08T06:09:49+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria operator="AND">
+          <extend_definition comment="Microsoft Word 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15946" />
+          <criterion comment="Check if the version of Winword.exe is less than 12.0.6787.5000" test_ref="oval:org.cisecurity:tst:6790" />
+        </criteria>
+        <criteria comment="word 2010/versions" operator="AND">
+          <extend_definition comment="Microsoft Word 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17454" />
+          <criterion comment="Check if the version of winword.exe is less than 14.0.7197.5000" test_ref="oval:org.cisecurity:tst:6794" />
+        </criteria>
+        <criteria comment="Word 2013 and vulnerable file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2013 SP1 is installed" definition_ref="oval:org.mitre.oval:def:24680" />
+          <criterion comment="Check if the version of winword.exe is less than 15.0.5023.1000" test_ref="oval:org.cisecurity:tst:6796" />
+        </criteria>
+        <criteria comment="Word 2016 and vulnerable file version" operator="AND">
+          <extend_definition comment="Microsoft Word 2016 is installed" definition_ref="oval:org.cisecurity:def:770" />
+          <criterion comment="Check if the version of winword.exe is less than 16.0.4678.1001" test_ref="oval:org.cisecurity:tst:6795" />
+        </criteria>
+        <criteria comment="Office Compatibility Pack and vulnerable file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if the version of wordcnv.dll is less than 12.0.6787.5000" test_ref="oval:org.cisecurity:tst:6792" />
+        </criteria>
+        <criteria comment="Office 2010 and vulnerable file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17121" />
+          <criterion comment="Check if the version of wwlibcxm.dll is less than 14.0.7197.5000" test_ref="oval:org.cisecurity:tst:6793" />
+        </criteria>
+        <criteria comment="MSO 2016 (C2R) + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:2618" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.9216.0000 and less than 16.0.9126.2152 (C2R Build 1803)" test_ref="oval:org.cisecurity:tst:6797" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.9226.0000 and less than 16.0.9226.2114 (C2R Build 1804)" test_ref="oval:org.cisecurity:tst:6791" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:627" class="inventory" version="13">
       <metadata>
         <title>Microsoft Internet Explorer 7 is installed</title>
@@ -34199,6 +34324,9 @@
       <object object_ref="oval:org.mitre.oval:obj:911" />
       <state state_ref="oval:org.cisecurity:ste:899" />
     </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:1206" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Office 2016 is installed on the system" version="4">
+      <object object_ref="oval:org.cisecurity:obj:313" />
+    </registry_test>
     <registry_test id="oval:org.cisecurity:tst:1241" check="at least one" check_existence="at_least_one_exists" comment="Microsoft Word 2016 is installed on the system" version="6">
       <object object_ref="oval:org.cisecurity:obj:329" />
     </registry_test>
@@ -37209,6 +37337,44 @@
       <object object_ref="oval:org.cisecurity:obj:546" />
       <state state_ref="oval:org.cisecurity:ste:5038" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:6789" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of oart.dll is less than 16.0.4672.1000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:842" />
+      <state state_ref="oval:org.cisecurity:ste:5041" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6790" check="all" check_existence="at_least_one_exists" comment="Check if the version of Winword.exe is less than 12.0.6787.5000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23914" />
+      <state state_ref="oval:org.cisecurity:ste:5045" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6791" check="at least one" check_existence="at_least_one_exists" comment="Check if winword.exe version is greater than or equal to 16.0.9226.0000 and less than 16.0.9226.2114 (C2R Build 1804)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:437" />
+      <state state_ref="oval:org.cisecurity:ste:5044" />
+      <state state_ref="oval:org.cisecurity:ste:5050" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6792" check="all" check_existence="at_least_one_exists" comment="Check if the version of wordcnv.dll is less than 12.0.6787.5000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:5673" />
+      <state state_ref="oval:org.cisecurity:ste:5047" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6793" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of wwlibcxm.dll is less than 14.0.7197.5000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:218" />
+      <state state_ref="oval:org.cisecurity:ste:5049" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6794" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of winword.exe is less than 14.0.7197.5000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:23900" />
+      <state state_ref="oval:org.cisecurity:ste:5045" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6795" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of winword.exe is less than 16.0.4678.1001" version="1">
+      <object object_ref="oval:org.cisecurity:obj:335" />
+      <state state_ref="oval:org.cisecurity:ste:5051" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6796" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of winword.exe is less than 15.0.5023.1000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:492" />
+      <state state_ref="oval:org.cisecurity:ste:5048" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6797" check="at least one" check_existence="at_least_one_exists" comment="Check if winword.exe version is greater than or equal to 16.0.9126.0000 and less than 16.0.9126.2152 (C2R Build 1803)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:437" />
+      <state state_ref="oval:org.cisecurity:ste:5043" />
+      <state state_ref="oval:org.cisecurity:ste:5042" />
+    </file_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="4">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
     </file_test>
@@ -37765,6 +37931,23 @@
     <file_object id="oval:org.cisecurity:obj:308" comment="Objects holds the full path to Java Development Kit 6's jvm.dll" version="5">
       <filepath var_check="at least one" var_ref="oval:org.cisecurity:var:29" />
     </file_object>
+    <registry_object id="oval:org.cisecurity:obj:312" comment="Object holds the path to MS Office 2016 InstallRoot" version="2">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\16.0\Common\InstallRoot</key>
+      <name nil="true" />
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:313" comment="MS Office 2016 InstallRoot Path" version="4">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:314</object_reference>
+        <object_reference>oval:org.cisecurity:obj:312</object_reference>
+      </set>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:314" comment="Object holds the path to MS Office 2016 InstallRoot (x86)" version="2">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Office\16.0\Common\InstallRoot</key>
+      <name nil="true" />
+    </registry_object>
     <registry_object id="oval:org.cisecurity:obj:322" comment="CommonFilesDir for both X86 and x64 view" version="5">
       <set>
         <object_reference>oval:org.mitre.oval:obj:281</object_reference>
@@ -41239,6 +41422,36 @@
     </file_state>
     <file_state id="oval:org.cisecurity:ste:5038" comment="State matches version less than 16.0.4678.1000" version="1">
       <version datatype="version" operation="less than">16.0.4678.1000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5041" comment="State matches if the version is less than 16.0.4672.1000" version="1">
+      <version datatype="version" operation="less than">16.0.4672.1000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5042" comment="State holds if the version is less than 16.0.9126.2152" version="1">
+      <version datatype="version" operation="less than">16.0.9126.2152</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5043" comment="State holds if version is greater than or equal 16.0.9126.0000" version="1">
+      <version datatype="version" operation="greater than or equal">16.0.9126.0000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5044" comment="State holds if version is greater than or equal 16.0.9226.0000" version="1">
+      <version datatype="version" operation="greater than or equal">16.0.9226.0000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5045" comment="State matches if the version is less than 12.0.6787.5000" version="1">
+      <version datatype="version" operation="less than">12.0.6787.5000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5047" comment="State matches if the version is less than 16.0.4678.1001" version="1">
+      <version datatype="version" operation="less than">16.0.4678.1001</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5048" comment="State matches if the version is less than 15.0.5023.1000" version="1">
+      <version datatype="version" operation="less than">15.0.5023.1000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5049" comment="State matches if the version is less than 14.0.7197.5000" version="1">
+      <version datatype="version" operation="less than">14.0.7197.5000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5050" comment="State holds if the version is less than 16.0.9226.2114" version="1">
+      <version datatype="version" operation="less than">16.0.9226.2114</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5051" comment="State matches if the version is less than 16.0.4678.1001" version="1">
+      <version datatype="version" operation="less than">16.0.4678.1001</version>
     </file_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="3">
       <family operation="case insensitive equals">windows</family>
