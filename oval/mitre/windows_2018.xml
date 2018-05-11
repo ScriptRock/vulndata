@@ -29710,6 +29710,160 @@
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:4994" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Office Remote Code Execution Vulnerability - CVE-2018-1030</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-1030" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1030" source="CVE" />
+        <description>A remote code execution vulnerability exists in Microsoft Office software when the software fails to properly handle objects in memory, aka "Microsoft Office Remote Code Execution Vulnerability." This affects Microsoft Office. This CVE ID is unique from CVE-2018-1026.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-05-08T06:09:49+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Microsoft Office 2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2013 is installed" operator="OR">
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if the version of oart.dll is less than 15.0.5023.1000" test_ref="oval:org.cisecurity:tst:6799" />
+        </criteria>
+        <criteria comment="MSO 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if the version of chart.dll is less than 16.0.4678.1000" test_ref="oval:org.cisecurity:tst:6798" />
+        </criteria>
+        <criteria comment="MSO 2016 (C2R) + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:2618" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.9216.0000 and less than 16.0.9126.2152 (C2R Build 1803)" test_ref="oval:org.cisecurity:tst:6801" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.9226.0000 and less than 16.0.9226.2114 (C2R Build 1804)" test_ref="oval:org.cisecurity:tst:6800" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4995" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Office Remote Code Execution Vulnerability - CVE-2018-1026</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-1026" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1026" source="CVE" />
+        <description>A remote code execution vulnerability exists in Microsoft Office software when the software fails to properly handle objects in memory, aka "Microsoft Office Remote Code Execution Vulnerability." This affects Microsoft Office. This CVE ID is unique from CVE-2018-1030.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-05-08T06:09:49+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Microsoft Office 2013 + file version" operator="AND">
+          <criteria comment="Microsoft Office 2013 is installed" operator="OR">
+            <extend_definition comment="Microsoft Office 2013 SP1 x86 is installed" definition_ref="oval:org.mitre.oval:def:22392" />
+            <extend_definition comment="Microsoft Office 2013 SP1 x64 is installed" definition_ref="oval:org.mitre.oval:def:21966" />
+          </criteria>
+          <criterion comment="Check if the version of oart.dll is less than 15.0.5023.1000" test_ref="oval:org.cisecurity:tst:6799" />
+        </criteria>
+        <criteria comment="MSO 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if the version of chart.dll is less than 16.0.4678.1000" test_ref="oval:org.cisecurity:tst:6798" />
+        </criteria>
+        <criteria comment="MSO 2016 (C2R) + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:2618" />
+          <criteria comment="file version" operator="OR">
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.9216.0000 and less than 16.0.9126.2152 (C2R Build 1803)" test_ref="oval:org.cisecurity:tst:6801" />
+            <criterion comment="Check if winword.exe version is greater than or equal to 16.0.9226.0000 and less than 16.0.9226.2114 (C2R Build 1804)" test_ref="oval:org.cisecurity:tst:6800" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:4996" class="vulnerability" version="1">
+      <metadata>
+        <title>Microsoft Excel Remote Code Execution Vulnerability - CVE-2018-1029</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-1029" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1029" source="CVE" />
+        <description>A remote code execution vulnerability exists in Microsoft Excel software when the software fails to properly handle objects in memory, aka "Microsoft Excel Remote Code Execution Vulnerability." This affects Microsoft Excel Viewer, Microsoft Office, Microsoft Excel. This CVE ID is unique from CVE-2018-0920, CVE-2018-1011, CVE-2018-1027.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-05-08T06:09:49+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria operator="OR">
+        <criteria comment="Microsoft Excel 2007 + file version" operator="AND">
+          <extend_definition comment="Microsoft Excel 2007 SP3 is installed" definition_ref="oval:org.mitre.oval:def:15126" />
+          <criterion comment="Check if excel.exe version is less than 12.0.6787.5000" test_ref="oval:org.cisecurity:tst:6768" />
+        </criteria>
+        <criteria comment="Microsoft Excel 2010 + file version" operator="AND">
+          <extend_definition comment="Microsoft Excel 2010 SP2 is installed" definition_ref="oval:org.mitre.oval:def:17219" />
+          <criterion comment="Check if excel.exe version is less than 14.0.7197.5000" test_ref="oval:org.cisecurity:tst:6766" />
+        </criteria>
+        <criteria comment="Microsoft Excel 2013 + file version" operator="AND">
+          <extend_definition comment="Microsoft Excel 2013 SP1 is installed" definition_ref="oval:org.cisecurity:def:1424" />
+          <criterion comment="Check if excel.exe version is less than 15.0.5023.1000" test_ref="oval:org.cisecurity:tst:6765" />
+        </criteria>
+        <criteria comment="Microsoft Office Compatibility Pack + file version" operator="AND">
+          <extend_definition comment="Microsoft Office Compatibility Pack SP3 is installed" definition_ref="oval:org.mitre.oval:def:15035" />
+          <criterion comment="Check if excelcnv.exe version is less than 12.0.6787.5000" test_ref="oval:org.cisecurity:tst:6767" />
+        </criteria>
+        <criteria comment="Microsoft Excel 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Excel 2016 is installed" definition_ref="oval:org.cisecurity:def:517" />
+          <criterion comment="Check if excel.exe version is less than 16.0.4678.1000" test_ref="oval:org.cisecurity:tst:6804" />
+        </criteria>
+        <criteria comment="Vulnerable Excel Viewer 2007" operator="AND">
+          <extend_definition comment="Microsoft Excel Viewer 2007 is installed" definition_ref="oval:org.mitre.oval:def:6006" />
+          <criterion comment="Xlview.exe version is less than 12.0.6787.5000" test_ref="oval:org.cisecurity:tst:6803" />
+        </criteria>
+        <criteria comment="MSO 2016 + file version" operator="AND">
+          <extend_definition comment="Microsoft Office 2016 is installed" definition_ref="oval:org.cisecurity:def:746" />
+          <criterion comment="Check if excel.exe version is greater than or equal to 16.0.9126.0000 and less than 16.0.9126.2152 (MSO 2016 Version 1803)" test_ref="oval:org.cisecurity:tst:6802" />
+        </criteria>
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:627" class="inventory" version="13">
       <metadata>
         <title>Microsoft Internet Explorer 7 is installed</title>
@@ -37375,6 +37529,37 @@
       <state state_ref="oval:org.cisecurity:ste:5043" />
       <state state_ref="oval:org.cisecurity:ste:5042" />
     </file_test>
+    <file_test id="oval:org.cisecurity:tst:6798" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of chart.dll is less than 16.0.4678.1000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:938" />
+      <state state_ref="oval:org.cisecurity:ste:5053" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6799" check="at least one" check_existence="at_least_one_exists" comment="Check if the version of oart.dll is less than 15.0.5023.1000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:26893" />
+      <state state_ref="oval:org.cisecurity:ste:5052" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6800" check="at least one" check_existence="at_least_one_exists" comment="Check if winword.exe version is greater than or equal to 16.0.9226.0000 and less than 16.0.9226.2114 (C2R Build 1804)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:437" />
+      <state state_ref="oval:org.cisecurity:ste:5054" />
+      <state state_ref="oval:org.cisecurity:ste:5057" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6801" check="at least one" check_existence="at_least_one_exists" comment="Check if winword.exe version is greater than or equal to 16.0.9126.0000 and less than 16.0.9126.2152 (C2R Build 1803)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:437" />
+      <state state_ref="oval:org.cisecurity:ste:5055" />
+      <state state_ref="oval:org.cisecurity:ste:5056" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6802" check="at least one" check_existence="at_least_one_exists" comment="Check if excel.exe version is greater than or equal to 16.0.9126.0000 and less than 16.0.9126.2152 (MSO 2016 Version 1803)" version="1">
+      <object object_ref="oval:org.cisecurity:obj:923" />
+      <state state_ref="oval:org.cisecurity:ste:5059" />
+      <state state_ref="oval:org.cisecurity:ste:5060" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6803" check="at least one" check_existence="at_least_one_exists" comment="Check if Xlview.exe version is less than 12.0.6787.5000" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:6918" />
+      <state state_ref="oval:org.cisecurity:ste:5061" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:6804" check="all" check_existence="at_least_one_exists" comment="Check if excel.exe version is less than 16.0.4678.1000" version="1">
+      <object object_ref="oval:org.cisecurity:obj:236" />
+      <state state_ref="oval:org.cisecurity:ste:5058" />
+    </file_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="4">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
     </file_test>
@@ -38466,6 +38651,14 @@
       <pattern operation="pattern match">^(\d\.\d).*$</pattern>
       <instance datatype="int">1</instance>
     </textfilecontent54_object>
+    <file_object id="oval:org.cisecurity:obj:923" comment="Object holds excel.exe for Microsoft Office 2016" version="1">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:85" />
+      <filename>excel.exe</filename>
+    </file_object>
+    <file_object id="oval:org.cisecurity:obj:938" comment="The path to the chart.dll file (Office 2016)" version="1">
+      <path var_check="at least one" var_ref="oval:org.cisecurity:var:66" />
+      <filename>chart.dll</filename>
+    </file_object>
     <file_object id="oval:org.cisecurity:obj:940" comment="Object holds microsoft.sharepoint.portal.dll (Sharepoint Server 2010)" version="1">
       <path var_check="at least one" var_ref="oval:org.mitre.oval:var:1390" />
       <filename>microsoft.sharepoint.portal.dll</filename>
@@ -39482,6 +39675,10 @@
     </registry_object>
     <file_object id="oval:org.mitre.oval:obj:26889" comment="JRockit" version="1">
       <filepath var_check="at least one" var_ref="oval:org.mitre.oval:var:1899" />
+    </file_object>
+    <file_object id="oval:org.mitre.oval:obj:26893" version="3">
+      <path var_check="at least one" var_ref="oval:org.mitre.oval:var:955" />
+      <filename>oart.dll</filename>
     </file_object>
     <registry_object id="oval:org.mitre.oval:obj:27174" comment="Registry that holds the version of Flash Player from HKLM\SOFTWARE\Macromedia\FlashPlayerPlugin!Version" version="2">
       <set>
@@ -41452,6 +41649,36 @@
     </file_state>
     <file_state id="oval:org.cisecurity:ste:5051" comment="State matches if the version is less than 16.0.4678.1001" version="1">
       <version datatype="version" operation="less than">16.0.4678.1001</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5052" comment="State matches if the version is less than 15.0.5023.1000" version="1">
+      <version datatype="version" operation="less than">15.0.5023.1000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5053" comment="State matches if the version is less than 16.0.4678.1000" version="1">
+      <version datatype="version" operation="less than">16.0.4678.1000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5054" comment="State holds if version is greater than or equal 16.0.9226.0000" version="1">
+      <version datatype="version" operation="greater than or equal">16.0.9226.0000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5055" comment="State holds if version is greater than or equal 16.0.9126.0000" version="1">
+      <version datatype="version" operation="greater than or equal">16.0.9126.0000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5056" comment="State holds if the version is less than 16.0.9126.2152" version="1">
+      <version datatype="version" operation="less than">16.0.9126.2152</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5057" comment="State holds if the version is less than 16.0.9226.2114" version="1">
+      <version datatype="version" operation="less than">16.0.9226.2114</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5058" comment="State matches version less than 16.0.4678.1000" version="1">
+      <version datatype="version" operation="less than">16.0.4678.1000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5059" comment="State holds if version is greater than or equal 16.0.9126.0000" version="1">
+      <version datatype="version" operation="greater than or equal">16.0.9126.0000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5060" comment="State holds if the version is less than 16.0.9126.2152" version="1">
+      <version datatype="version" operation="less than">16.0.9126.2152</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5061" comment="State matches version less than 12.0.6787.5000" version="1">
+      <version datatype="version" operation="less than">12.0.6787.5000</version>
     </file_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="3">
       <family operation="case insensitive equals">windows</family>
