@@ -33901,6 +33901,68 @@
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:org.cisecurity:def:5113" class="vulnerability" version="1">
+      <metadata>
+        <title>Git is installed</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+        </affected>
+        <description>Git is installed.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-06-05T11:02:21+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria>
+        <criterion comment="Check if Git is installed" test_ref="oval:org.cisecurity:tst:7363" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:5114" class="vulnerability" version="1">
+      <metadata>
+        <title>Git Arbitrary Code Execution Vulnerability - CVE-2018-11235</title>
+        <affected family="windows">
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>Microsoft Office 2013</product>
+          <product>Microsoft Office 2016</product>
+        </affected>
+        <reference ref_id="CVE-2018-11235" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-11235" source="CVE" />
+        <description>In Git before 2.13.7, 2.14.x before 2.14.4, 2.15.x before 2.15.2, 2.16.x before 2.16.4, and 2.17.x before 2.17.1, remote code execution can occur. With a crafted .gitmodules file, a malicious project can execute an arbitrary script on a machine that runs "git clone --recurse-submodules" because submodule "names" are obtained from this file, and then appended to $GIT_DIR/modules, leading to directory traversal with "../" in a name. Finally, post-checkout hooks from a submodule are executed, bypassing the intended design in which hooks are not obtained from a remote server.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-06-05T11:02:21+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable version of Git" operator="AND">
+        <extend_definition comment="Git is installed" definition_ref="oval:org.cisecurity:def:5113" />
+        <criterion comment="Git version is less than 2.17.1" test_ref="oval:org.cisecurity:tst:7362" />
+      </criteria>
+    </definition>
     <definition id="oval:org.mitre.oval:def:627" class="inventory" version="13">
       <metadata>
         <title>Microsoft Internet Explorer 7 is installed</title>
@@ -42029,6 +42091,14 @@
       <object object_ref="oval:org.cisecurity:obj:502" />
       <state state_ref="oval:org.cisecurity:ste:5487" />
     </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:7362" check="at least one" check_existence="at_least_one_exists" comment="Git version is less than 2.17.1" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1228" />
+      <state state_ref="oval:org.cisecurity:ste:5491" />
+    </registry_test>
+    <registry_test id="oval:org.cisecurity:tst:7363" check="at least one" check_existence="at_least_one_exists" comment="Check if Git is installed" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1224" />
+      <state state_ref="oval:org.cisecurity:ste:5490" />
+    </registry_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="4">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
     </file_test>
@@ -43246,6 +43316,40 @@
         <object_reference>oval:org.mitre.oval:obj:41329</object_reference>
         <filter action="include">oval:org.cisecurity:ste:5106</filter>
       </set>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:1224" comment="Registry that holds the DisplayName of Git installed" version="1">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:1226</object_reference>
+        <object_reference>oval:org.cisecurity:obj:1225</object_reference>
+      </set>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:1225" comment="Registry key holds Git DisplayName (32 bit)" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Git_is1</key>
+      <name>DisplayName</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:1226" comment="Registry key holds Git DisplayName" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Git_is1</key>
+      <name>DisplayName</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:1227" comment="Registry key holds Git DisplayVersion" version="1">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Git_is1</key>
+      <name>DisplayVersion</name>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:1228" comment="Registry that holds the DisplayVersion of the Git installed" version="1">
+      <set>
+        <object_reference>oval:org.cisecurity:obj:1227</object_reference>
+        <object_reference>oval:org.cisecurity:obj:1229</object_reference>
+      </set>
+    </registry_object>
+    <registry_object id="oval:org.cisecurity:obj:1229" comment="Registry key holds Git DisplayVersion (32 bit)" version="1">
+      <behaviors windows_view="32_bit" />
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Git_is1</key>
+      <name>DisplayVersion</name>
     </registry_object>
     <family_object id="oval:org.mitre.oval:obj:99" comment="This is the default family object. Only one family object should exist." version="1" />
     <registry_object id="oval:org.mitre.oval:obj:219" comment="This registry key identifies the system root." version="4">
@@ -46417,6 +46521,12 @@
     <file_state id="oval:org.cisecurity:ste:5489" comment="State matches if the version is less than 2.0.50727.8830" version="1">
       <version datatype="version" operation="less than">2.0.50727.8830</version>
     </file_state>
+    <registry_state id="oval:org.cisecurity:ste:5490" comment="The registry key matches with Git" version="1">
+      <value operation="pattern match">^Git version\s+\d.*$</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:5491" comment="State matches if the version is less tha 2.17.1" version="1">
+      <value datatype="version" operation="less than">2.17.1</value>
+    </registry_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="3">
       <family operation="case insensitive equals">windows</family>
     </family_state>
