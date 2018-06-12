@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1528776535</content_version>
+    <content_version>1528815095</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20180007" class="patch" version="602">
@@ -12163,6 +12163,54 @@ For more details about the security issue(s), including the impact, a CVSS score
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181836" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1836: plexus-archiver security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1836-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1836" source="RHSA" />
+        <reference ref_id="CVE-2018-1002200" ref_url="https://access.redhat.com/security/cve/CVE-2018-1002200" source="CVE" />
+        <description>The Plexus project provides a full software stack for creating and executing software projects. Based on the Plexus container, the applications can utilise component-oriented programming to build modular, reusable components that can easily be assembled and reused. The plexus-archiver component provides functions to create and extract archives.
+
+Security Fix(es):
+
+* plexus-archiver: arbitrary file write vulnerability / arbitrary code execution using a specially crafted zip file (CVE-2018-1002200)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank Danny Grander (Snyk) for reporting this issue.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-12" />
+          <updated date="2018-06-12" />
+          <cve cvss3="7.3/CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L" cwe="CWE-22" href="https://access.redhat.com/security/cve/CVE-2018-1002200" public="20180605">CVE-2018-1002200</cve>
+          <bugzilla id="1584392" href="https://bugzilla.redhat.com/1584392">CVE-2018-1002200 plexus-archiver: arbitrary file write vulnerability / arbitrary code execution using a specially crafted zip file</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180007001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180007002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180007003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180007004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="plexus-archiver is earlier than 0:2.4.2-5.el7_5" test_ref="oval:com.redhat.rhsa:tst:20181836005" />
+            <criterion comment="plexus-archiver is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181836006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="plexus-archiver-javadoc is earlier than 0:2.4.2-5.el7_5" test_ref="oval:com.redhat.rhsa:tst:20181836007" />
+            <criterion comment="plexus-archiver-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181836008" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20180007001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -19141,6 +19189,22 @@ For more details about the security issue(s), including the impact, a CVSS score
       <object object_ref="oval:com.redhat.rhsa:obj:20181780008" />
       <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181836005" check="at least one" comment="plexus-archiver is earlier than 0:2.4.2-5.el7_5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181836005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181836003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181836006" check="at least one" comment="plexus-archiver is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181836005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181836007" check="at least one" comment="plexus-archiver-javadoc is earlier than 0:2.4.2-5.el7_5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181836006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181836003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181836008" check="at least one" comment="plexus-archiver-javadoc is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181836006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20180007001" version="602">
@@ -20568,6 +20632,12 @@ For more details about the security issue(s), including the impact, a CVSS score
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20181780008" version="602">
       <name>xmlrpc-common</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181836005" version="601">
+      <name>plexus-archiver</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181836006" version="601">
+      <name>plexus-archiver-javadoc</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20180007001" version="602">
@@ -21767,6 +21837,9 @@ For more details about the security issue(s), including the impact, a CVSS score
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20181780003" version="602">
       <evr datatype="evr_string" operation="less than">1:3.1.3-9.el7_5</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181836003" version="601">
+      <evr datatype="evr_string" operation="less than">0:2.4.2-5.el7_5</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
