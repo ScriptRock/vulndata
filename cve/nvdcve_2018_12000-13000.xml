@@ -110,6 +110,50 @@
     </vuln:references>
     <vuln:summary>The transferFrom function of a smart contract implementation for FuturXE (FXE), an Ethereum ERC20 token, allows attackers to accomplish an unauthorized transfer of digital assets because of a logic error. The developer messed up with the boolean judgment - if the input value is smaller than or equal to allowed value, the transfer session would stop execution by returning false. This makes no sense, because the transferFrom() function should require the transferring value to not exceed the allowed value in the first place. Suppose this function asks for the allowed value to be smaller than the input. Then, the attacker could easily ignore the allowance: after this condition, the `allowed[from][msg.sender] -= value;` would cause an underflow because the allowed part is smaller than the value. The attacker could transfer any amount of FuturXe tokens of any accounts to an appointed account (the `_to` address) because the allowed value is initialized to 0, and the attacker could bypass this restriction even without the victim's private key.</vuln:summary>
   </entry>
+  <entry id="CVE-2018-12026">
+    <vuln:cve-id>CVE-2018-12026</vuln:cve-id>
+    <vuln:published-datetime>2018-06-17T16:29:00.353-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-06-17T16:29:00.383-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://blog.phusion.nl/passenger-5-3-2" xml:lang="en">https://blog.phusion.nl/passenger-5-3-2</vuln:reference>
+    </vuln:references>
+    <vuln:summary>During the spawning of a malicious Passenger-managed application, SpawningKit in Phusion Passenger 5.3.x before 5.3.2 allows such applications to replace key files or directories in the spawning communication directory with symlinks. This then could result in arbitrary reads and writes, which in turn can result in information disclosure and privilege escalation.</vuln:summary>
+  </entry>
+  <entry id="CVE-2018-12027">
+    <vuln:cve-id>CVE-2018-12027</vuln:cve-id>
+    <vuln:published-datetime>2018-06-17T16:29:00.417-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-06-17T16:29:00.417-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://blog.phusion.nl/passenger-5-3-2" xml:lang="en">https://blog.phusion.nl/passenger-5-3-2</vuln:reference>
+    </vuln:references>
+    <vuln:summary>An Insecure Permissions vulnerability in SpawningKit in Phusion Passenger 5.3.x before 5.3.2 causes information disclosure in the following situation: given a Passenger-spawned application process that reports that it listens on a certain Unix domain socket, if any of the parent directories of said socket are writable by a normal user that is not the application's user, then that non-application user can swap that directory with something else, resulting in traffic being redirected to a non-application user's process through an alternative Unix domain socket.</vuln:summary>
+  </entry>
+  <entry id="CVE-2018-12028">
+    <vuln:cve-id>CVE-2018-12028</vuln:cve-id>
+    <vuln:published-datetime>2018-06-17T16:29:00.463-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-06-17T16:29:00.463-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://blog.phusion.nl/passenger-5-3-2" xml:lang="en">https://blog.phusion.nl/passenger-5-3-2</vuln:reference>
+    </vuln:references>
+    <vuln:summary>An Incorrect Access Control vulnerability in SpawningKit in Phusion Passenger 5.3.x before 5.3.2 allows a Passenger-managed malicious application, upon spawning a child process, to report an arbitrary different PID back to Passenger's process manager. If the malicious application then generates an error, it would cause Passenger's process manager to kill said reported arbitrary PID.</vuln:summary>
+  </entry>
+  <entry id="CVE-2018-12029">
+    <vuln:cve-id>CVE-2018-12029</vuln:cve-id>
+    <vuln:published-datetime>2018-06-17T16:29:00.493-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-06-17T16:29:00.510-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://blog.phusion.nl/passenger-5-3-2" xml:lang="en">https://blog.phusion.nl/passenger-5-3-2</vuln:reference>
+    </vuln:references>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://pulsesecurity.co.nz/advisories/phusion-passenger-priv-esc" xml:lang="en">https://pulsesecurity.co.nz/advisories/phusion-passenger-priv-esc</vuln:reference>
+    </vuln:references>
+    <vuln:summary>A race condition in the nginx module in Phusion Passenger 3.x through 5.x before 5.3.2 allows local escalation of privileges when a non-standard passenger_instance_registry_dir with insufficiently strict permissions is configured. Replacing a file with a symlink after the file was created, but before it was chowned, leads to the target of the link being chowned via the path. Targeting sensitive files such as root's crontab file allows privilege escalation.</vuln:summary>
+  </entry>
   <entry id="CVE-2018-12030">
     <vuln:cve-id>CVE-2018-12030</vuln:cve-id>
     <vuln:published-datetime>2018-06-15T12:29:00.263-04:00</vuln:published-datetime>
@@ -412,6 +456,36 @@
     </vuln:references>
     <vuln:summary>BIRD Internet Routing Daemon before 1.6.4 allows local users to cause a denial of service (stack consumption and daemon crash) via BGP mask expressions in birdc.</vuln:summary>
   </entry>
+  <entry id="CVE-2018-12071">
+    <vuln:cve-id>CVE-2018-12071</vuln:cve-id>
+    <vuln:published-datetime>2018-06-17T16:29:00.540-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-06-17T16:29:00.557-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>CONFIRM</vuln:source>
+      <vuln:reference href="https://www.codeigniter.com/user_guide/changelog.html" xml:lang="en">https://www.codeigniter.com/user_guide/changelog.html</vuln:reference>
+    </vuln:references>
+    <vuln:summary>A Session Fixation issue exists in CodeIgniter before 3.1.9 because session.use_strict_mode in the Session Library was mishandled.</vuln:summary>
+  </entry>
+  <entry id="CVE-2018-12072">
+    <vuln:cve-id>CVE-2018-12072</vuln:cve-id>
+    <vuln:published-datetime>2018-06-17T16:29:00.587-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-06-17T16:29:00.603-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://gist.github.com/freetom/2a446a226d0e98807c8b0c1111ef2def" xml:lang="en">https://gist.github.com/freetom/2a446a226d0e98807c8b0c1111ef2def</vuln:reference>
+    </vuln:references>
+    <vuln:summary>An issue was discovered in Cloud Media Popcorn A-200 03-05-130708-21-POP-411-000 firmware. It is configured to provide TELNET remote access (without a password) that pops a shell as root. If an attacker can connect to port 23 on the device, he can completely compromise it.</vuln:summary>
+  </entry>
+  <entry id="CVE-2018-12073">
+    <vuln:cve-id>CVE-2018-12073</vuln:cve-id>
+    <vuln:published-datetime>2018-06-17T16:29:00.650-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-06-17T16:29:00.650-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://gist.github.com/freetom/2a446a226d0e98807c8b0c1111ef2def" xml:lang="en">https://gist.github.com/freetom/2a446a226d0e98807c8b0c1111ef2def</vuln:reference>
+    </vuln:references>
+    <vuln:summary>An issue was discovered on Eminent EM4544 9.10 devices. The device does not require the user's current password to set a new one within the web interface. Therefore, it is possible to exploit this issue (e.g., in combination with a successful XSS, or at an unattended workstation) to change the admin password to an attacker-chosen value without knowing the current password.</vuln:summary>
+  </entry>
   <entry id="CVE-2018-12085">
     <vuln:cve-id>CVE-2018-12085</vuln:cve-id>
     <vuln:published-datetime>2018-06-09T07:29:00.217-04:00</vuln:published-datetime>
@@ -545,6 +619,16 @@
       <vuln:reference href="https://github.com/mity/md4c/issues/41" xml:lang="en">https://github.com/mity/md4c/issues/41</vuln:reference>
     </vuln:references>
     <vuln:summary>md4c 0.2.6 has a NULL pointer dereference in the function md_process_line in md4c.c, related to ctx-&gt;current_block.</vuln:summary>
+  </entry>
+  <entry id="CVE-2018-12104">
+    <vuln:cve-id>CVE-2018-12104</vuln:cve-id>
+    <vuln:published-datetime>2018-06-17T16:29:00.697-04:00</vuln:published-datetime>
+    <vuln:last-modified-datetime>2018-06-17T16:29:00.697-04:00</vuln:last-modified-datetime>
+    <vuln:references xml:lang="en" reference_type="UNKNOWN">
+      <vuln:source>MISC</vuln:source>
+      <vuln:reference href="https://github.com/airbnb/knowledge-repo/issues/431" xml:lang="en">https://github.com/airbnb/knowledge-repo/issues/431</vuln:reference>
+    </vuln:references>
+    <vuln:summary>Cross-site scripting (XSS) vulnerability in Airbnb Knowledge Repo 0.7.4 allows remote attackers to inject arbitrary web scripts or HTML via the post comments functionality, as demonstrated by the post/posts/new_report.kp URI.</vuln:summary>
   </entry>
   <entry id="CVE-2018-12108">
     <vuln:cve-id>CVE-2018-12108</vuln:cve-id>
