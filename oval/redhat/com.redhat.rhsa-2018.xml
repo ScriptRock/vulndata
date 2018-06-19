@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1529122132</content_version>
+    <content_version>1529384503</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20180007" class="patch" version="602">
@@ -12311,6 +12311,844 @@ Red Hat would like to thank Julian Stecklina (Amazon.de), Thomas Prescher (cyber
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181854" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1854: kernel security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1854-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1854" source="RHSA" />
+        <reference ref_id="CVE-2012-6701" ref_url="https://access.redhat.com/security/cve/CVE-2012-6701" source="CVE" />
+        <reference ref_id="CVE-2015-8830" ref_url="https://access.redhat.com/security/cve/CVE-2015-8830" source="CVE" />
+        <reference ref_id="CVE-2016-8650" ref_url="https://access.redhat.com/security/cve/CVE-2016-8650" source="CVE" />
+        <reference ref_id="CVE-2017-2671" ref_url="https://access.redhat.com/security/cve/CVE-2017-2671" source="CVE" />
+        <reference ref_id="CVE-2017-6001" ref_url="https://access.redhat.com/security/cve/CVE-2017-6001" source="CVE" />
+        <reference ref_id="CVE-2017-7308" ref_url="https://access.redhat.com/security/cve/CVE-2017-7308" source="CVE" />
+        <reference ref_id="CVE-2017-7616" ref_url="https://access.redhat.com/security/cve/CVE-2017-7616" source="CVE" />
+        <reference ref_id="CVE-2017-7889" ref_url="https://access.redhat.com/security/cve/CVE-2017-7889" source="CVE" />
+        <reference ref_id="CVE-2017-8890" ref_url="https://access.redhat.com/security/cve/CVE-2017-8890" source="CVE" />
+        <reference ref_id="CVE-2017-9075" ref_url="https://access.redhat.com/security/cve/CVE-2017-9075" source="CVE" />
+        <reference ref_id="CVE-2017-9076" ref_url="https://access.redhat.com/security/cve/CVE-2017-9076" source="CVE" />
+        <reference ref_id="CVE-2017-9077" ref_url="https://access.redhat.com/security/cve/CVE-2017-9077" source="CVE" />
+        <reference ref_id="CVE-2017-12190" ref_url="https://access.redhat.com/security/cve/CVE-2017-12190" source="CVE" />
+        <reference ref_id="CVE-2017-15121" ref_url="https://access.redhat.com/security/cve/CVE-2017-15121" source="CVE" />
+        <reference ref_id="CVE-2017-18203" ref_url="https://access.redhat.com/security/cve/CVE-2017-18203" source="CVE" />
+        <reference ref_id="CVE-2018-1130" ref_url="https://access.redhat.com/security/cve/CVE-2018-1130" source="CVE" />
+        <reference ref_id="CVE-2018-3639" ref_url="https://access.redhat.com/security/cve/CVE-2018-3639" source="CVE" />
+        <reference ref_id="CVE-2018-5803" ref_url="https://access.redhat.com/security/cve/CVE-2018-5803" source="CVE" />
+        <description>The kernel packages contain the Linux kernel, the core of any Linux operating system.
+
+Security Fix(es):
+
+* An industry-wide issue was found in the way many modern microprocessor designs have implemented speculative execution of Load &amp; Store instructions (a commonly used performance optimization). It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory read from address to which a recent memory write has occurred may see an older value and subsequently cause an update into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to read privileged memory by conducting targeted cache side-channel attacks. (CVE-2018-3639, PowerPC)
+
+* kernel: net/packet: overflow in check for priv area size (CVE-2017-7308)
+
+* kernel: AIO interface didn't use rw_verify_area() for checking mandatory locking on files and size of access (CVE-2012-6701)
+
+* kernel: AIO write triggers integer overflow in some protocols (CVE-2015-8830)
+
+* kernel: Null pointer dereference via keyctl (CVE-2016-8650)
+
+* kernel: ping socket / AF_LLC connect() sin_family race (CVE-2017-2671)
+
+* kernel: Race condition between multiple sys_perf_event_open() calls (CVE-2017-6001)
+
+* kernel: Incorrect error handling in the set_mempolicy and mbind compat syscalls in mm/mempolicy.c (CVE-2017-7616)
+
+* kernel: mm subsystem does not properly enforce the CONFIG_STRICT_DEVMEM protection mechanism (CVE-2017-7889)
+
+* kernel: Double free in the inet_csk_clone_lock function in net/ipv4/inet_connection_sock.c (CVE-2017-8890)
+
+* kernel: net: sctp_v6_create_accept_sk function mishandles inheritance (CVE-2017-9075)
+
+* kernel: net: IPv6 DCCP implementation mishandles inheritance (CVE-2017-9076)
+
+* kernel: net: tcp_v6_syn_recv_sock function mishandles inheritance (CVE-2017-9077)
+
+* kernel: memory leak when merging buffers in SCSI IO vectors (CVE-2017-12190)
+
+* kernel: vfs: BUG in truncate_inode_pages_range() and fuse client (CVE-2017-15121)
+
+* kernel: Race condition in drivers/md/dm.c:dm_get_from_kobject() allows local users to cause a denial of service (CVE-2017-18203)
+
+* kernel: a null pointer dereference in net/dccp/output.c:dccp_write_xmit() leads to a system crash (CVE-2018-1130)
+
+* kernel: Missing length check of payload in net/sctp/sm_make_chunk.c:_sctp_make_chunk() function allows denial of service (CVE-2018-5803)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank Ken Johnson (Microsoft Security Response Center) and Jann Horn (Google Project Zero) for reporting CVE-2018-3639; Vitaly Mayatskih for reporting CVE-2017-12190; and Evgenii Shatokhin (Virtuozzo Team) for reporting CVE-2018-1130. The CVE-2017-15121 issue was discovered by Miklos Szeredi (Red Hat).
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 6.10 Release Notes and Red Hat Enterprise Linux 6.10 Technical Notes linked from the References section.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-19" />
+          <updated date="2018-06-19" />
+          <cve cvss2="3.6/AV:L/AC:L/Au:N/C:P/I:P/A:N" cwe="CWE-190" href="https://access.redhat.com/security/cve/CVE-2012-6701" impact="moderate" public="20120521">CVE-2012-6701</cve>
+          <cve cvss2="4.9/AV:L/AC:L/Au:N/C:N/I:N/A:C" cwe="CWE-190" href="https://access.redhat.com/security/cve/CVE-2015-8830" impact="moderate" public="20150321">CVE-2015-8830</cve>
+          <cve cvss2="4.9/AV:L/AC:L/Au:N/C:N/I:N/A:C" cvss3="8.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H" cwe="CWE-476" href="https://access.redhat.com/security/cve/CVE-2016-8650" impact="moderate" public="20161115">CVE-2016-8650</cve>
+          <cve cvss3="7.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-362" href="https://access.redhat.com/security/cve/CVE-2017-2671" impact="moderate" public="20170324">CVE-2017-2671</cve>
+          <cve cvss3="7.0/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-362" href="https://access.redhat.com/security/cve/CVE-2017-6001" impact="moderate" public="20170114">CVE-2017-6001</cve>
+          <cve cvss3="7.0/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-120" href="https://access.redhat.com/security/cve/CVE-2017-7308" public="20170329">CVE-2017-7308</cve>
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N" cwe="CWE-390" href="https://access.redhat.com/security/cve/CVE-2017-7616" impact="moderate" public="20170408">CVE-2017-7616</cve>
+          <cve cvss3="7.8/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-391" href="https://access.redhat.com/security/cve/CVE-2017-7889" impact="moderate" public="20170405">CVE-2017-7889</cve>
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-416" href="https://access.redhat.com/security/cve/CVE-2017-8890" impact="moderate" public="20170509">CVE-2017-8890</cve>
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-416" href="https://access.redhat.com/security/cve/CVE-2017-9075" impact="moderate" public="20170517">CVE-2017-9075</cve>
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-416" href="https://access.redhat.com/security/cve/CVE-2017-9076" impact="moderate" public="20170510">CVE-2017-9076</cve>
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-416" href="https://access.redhat.com/security/cve/CVE-2017-9077" impact="moderate" public="20170510">CVE-2017-9077</cve>
+          <cve cvss3="6.2/CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:H" cwe="CWE-400" href="https://access.redhat.com/security/cve/CVE-2017-12190" impact="moderate" public="20170921">CVE-2017-12190</cve>
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2017-15121" impact="moderate" public="20171205">CVE-2017-15121</cve>
+          <cve cvss3="4.7/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-362 CWE-400" href="https://access.redhat.com/security/cve/CVE-2017-18203" impact="moderate" public="20171101">CVE-2017-18203</cve>
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-476" href="https://access.redhat.com/security/cve/CVE-2018-1130" impact="moderate" public="20180307">CVE-2018-1130</cve>
+          <cve cvss3="5.6/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2018-3639" public="20180521:2100">CVE-2018-3639</cve>
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2018-5803" impact="moderate" public="20180209">CVE-2018-5803</cve>
+          <bugzilla id="869942" href="https://bugzilla.redhat.com/869942">Kernel crashes on reading an ACL containing 190 ACEs over NFSv4</bugzilla>
+          <bugzilla id="1314275" href="https://bugzilla.redhat.com/1314275">CVE-2015-8830 kernel: AIO write triggers integer overflow in some protocols</bugzilla>
+          <bugzilla id="1314288" href="https://bugzilla.redhat.com/1314288">CVE-2012-6701 kernel: AIO interface didn't use rw_verify_area() for checking mandatory locking on files and size of access</bugzilla>
+          <bugzilla id="1395187" href="https://bugzilla.redhat.com/1395187">CVE-2016-8650 kernel: Null pointer dereference via keyctl</bugzilla>
+          <bugzilla id="1422825" href="https://bugzilla.redhat.com/1422825">CVE-2017-6001 kernel: Race condition between multiple sys_perf_event_open() calls</bugzilla>
+          <bugzilla id="1436649" href="https://bugzilla.redhat.com/1436649">CVE-2017-2671 kernel: ping socket / AF_LLC connect() sin_family race</bugzilla>
+          <bugzilla id="1437404" href="https://bugzilla.redhat.com/1437404">CVE-2017-7308 kernel: net/packet: overflow in check for priv area size</bugzilla>
+          <bugzilla id="1441088" href="https://bugzilla.redhat.com/1441088">CVE-2017-7616 kernel: Incorrect error handling in the set_mempolicy and mbind compat syscalls in mm/mempolicy.c</bugzilla>
+          <bugzilla id="1444493" href="https://bugzilla.redhat.com/1444493">CVE-2017-7889 kernel: mm subsystem does not properly enforce the CONFIG_STRICT_DEVMEM protection mechanism</bugzilla>
+          <bugzilla id="1448170" href="https://bugzilla.redhat.com/1448170">RHEL6.9: sunrpc reconnect logic now may trigger a SYN storm when a TCP connection drops and a burst of RPC commands hit the transport</bugzilla>
+          <bugzilla id="1450972" href="https://bugzilla.redhat.com/1450972">CVE-2017-8890 kernel: Double free in the inet_csk_clone_lock function in net/ipv4/inet_connection_sock.c</bugzilla>
+          <bugzilla id="1452688" href="https://bugzilla.redhat.com/1452688">CVE-2017-9076 kernel: net: IPv6 DCCP implementation mishandles inheritance</bugzilla>
+          <bugzilla id="1452691" href="https://bugzilla.redhat.com/1452691">CVE-2017-9075 kernel: net: sctp_v6_create_accept_sk function mishandles inheritance</bugzilla>
+          <bugzilla id="1452744" href="https://bugzilla.redhat.com/1452744">CVE-2017-9077 kernel: net: tcp_v6_syn_recv_sock function mishandles inheritance</bugzilla>
+          <bugzilla id="1495089" href="https://bugzilla.redhat.com/1495089">CVE-2017-12190 kernel: memory leak when merging buffers in SCSI IO vectors</bugzilla>
+          <bugzilla id="1497152" href="https://bugzilla.redhat.com/1497152">systool causes panic on 2.6.32-696.6.3.el6.x86_64 using be2iscsi</bugzilla>
+          <bugzilla id="1520893" href="https://bugzilla.redhat.com/1520893">CVE-2017-15121 kernel: vfs: BUG in truncate_inode_pages_range() and fuse client</bugzilla>
+          <bugzilla id="1550811" href="https://bugzilla.redhat.com/1550811">CVE-2017-18203 kernel: Race condition in drivers/md/dm.c:dm_get_from_kobject() allows local users to cause a denial of service</bugzilla>
+          <bugzilla id="1551051" href="https://bugzilla.redhat.com/1551051">CVE-2018-5803 kernel: Missing length check of payload in net/sctp/sm_make_chunk.c:_sctp_make_chunk() function allows denial of service</bugzilla>
+          <bugzilla id="1560494" href="https://bugzilla.redhat.com/1560494">i686: Using invpcid_flush_all_nonglobals() can cause user-space panic on .i686</bugzilla>
+          <bugzilla id="1566890" href="https://bugzilla.redhat.com/1566890">CVE-2018-3639 hw: cpu: speculative store bypass</bugzilla>
+          <bugzilla id="1576419" href="https://bugzilla.redhat.com/1576419">CVE-2018-1130 kernel: a null pointer dereference in net/dccp/output.c:dccp_write_xmit() leads to a system crash</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854019" />
+            <criterion comment="kernel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-abi-whitelists is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854009" />
+            <criterion comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-bootwrapper is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854029" />
+            <criterion comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007034" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854011" />
+            <criterion comment="kernel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug-devel is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854017" />
+            <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-devel is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854027" />
+            <criterion comment="kernel-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-doc is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854007" />
+            <criterion comment="kernel-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-firmware is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854005" />
+            <criterion comment="kernel-firmware is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180008006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-headers is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854013" />
+            <criterion comment="kernel-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854023" />
+            <criterion comment="kernel-kdump is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump-devel is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854021" />
+            <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="perf is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854025" />
+            <criterion comment="perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-perf is earlier than 0:2.6.32-754.el6" test_ref="oval:com.redhat.rhsa:tst:20181854015" />
+            <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181860" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1860: samba security and bug fix update (Low)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1860-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1860" source="RHSA" />
+        <reference ref_id="CVE-2018-1050" ref_url="https://access.redhat.com/security/cve/CVE-2018-1050" source="CVE" />
+        <description>Samba is an open-source implementation of the Server Message Block (SMB) protocol and the related Common Internet File System (CIFS) protocol, which allow PC-compatible machines to share files, printers, and various information.
+
+Security Fix(es):
+
+* samba: Null pointer indirection in printer server process (CVE-2018-1050)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank the Samba project for reporting this issue.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 6.10 Release Notes and Red Hat Enterprise Linux 6.10 Technical Notes linked from the References section.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Low</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-19" />
+          <updated date="2018-06-19" />
+          <cve cvss3="4.3/CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L" cwe="CWE-119" href="https://access.redhat.com/security/cve/CVE-2018-1050" public="20180313">CVE-2018-1050</cve>
+          <bugzilla id="1413484" href="https://bugzilla.redhat.com/1413484">Unable to connect windows server 2012 servers to samba-3.6.23-36 with out disabling SMB signing</bugzilla>
+          <bugzilla id="1431000" href="https://bugzilla.redhat.com/1431000">Winbind core dumps when attempting to login as a disabled user in AD</bugzilla>
+          <bugzilla id="1467395" href="https://bugzilla.redhat.com/1467395">Winbind does not close sockets and eventually hits clients limit</bugzilla>
+          <bugzilla id="1513877" href="https://bugzilla.redhat.com/1513877">Regression: winbind leaks memory after upgrade</bugzilla>
+          <bugzilla id="1519884" href="https://bugzilla.redhat.com/1519884">Winbind Core Dumps</bugzilla>
+          <bugzilla id="1536053" href="https://bugzilla.redhat.com/1536053">CVE-2017-2619 regression with non-wide symlinks to directories</bugzilla>
+          <bugzilla id="1538771" href="https://bugzilla.redhat.com/1538771">CVE-2018-1050 samba: Null pointer indirection in printer server process</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="libsmbclient is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860015" />
+            <criterion comment="libsmbclient is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsmbclient-devel is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860005" />
+            <criterion comment="libsmbclient-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860023" />
+            <criterion comment="samba is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-client is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860007" />
+            <criterion comment="samba-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-common is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860013" />
+            <criterion comment="samba-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-doc is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860021" />
+            <criterion comment="samba-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-domainjoin-gui is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860009" />
+            <criterion comment="samba-domainjoin-gui is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-glusterfs is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860029" />
+            <criterion comment="samba-glusterfs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-swat is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860011" />
+            <criterion comment="samba-swat is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860027" />
+            <criterion comment="samba-winbind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind-clients is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860025" />
+            <criterion comment="samba-winbind-clients is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind-devel is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860019" />
+            <criterion comment="samba-winbind-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba-winbind-krb5-locator is earlier than 0:3.6.23-51.el6" test_ref="oval:com.redhat.rhsa:tst:20181860017" />
+            <criterion comment="samba-winbind-krb5-locator is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181860018" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181877" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1877: sssd and ding-libs security and bug fix update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1877-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1877" source="RHSA" />
+        <reference ref_id="CVE-2017-12173" ref_url="https://access.redhat.com/security/cve/CVE-2017-12173" source="CVE" />
+        <description>The System Security Services Daemon (SSSD) service provides a set of daemons to manage access to remote directories and authentication mechanisms. It also provides the Name Service Switch (NSS) and the Pluggable Authentication Modules (PAM) interfaces toward the system, and a pluggable back-end system to connect to multiple different account sources.
+
+The ding-libs packages contain a set of libraries used by the System Security Services Daemon (SSSD) as well as other projects, and provide functions to manipulate file system path names (libpath_utils), a hash table to manage storage and access time properties (libdhash), a data type to collect data in a hierarchical structure (libcollection), a dynamically growing, reference-counted array (libref_array), and a library to process configuration files in initialization format (INI) into a library collection data structure (libini_config).
+
+Security Fix(es):
+
+* sssd: unsanitized input when searching in local cache database (CVE-2017-12173)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+This issue was discovered by Sumit Bose (Red Hat).
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 6.10 Release Notes and Red Hat Enterprise Linux 6.10 Technical Notes linked from the References section.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-19" />
+          <updated date="2018-06-19" />
+          <cve cvss3="4.3/CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2017-12173" public="20171003">CVE-2017-12173</cve>
+          <bugzilla id="1401546" href="https://bugzilla.redhat.com/1401546">Please back-port fast failover from sssd 1.14 on RHEL 7 into sssd 1.13 on RHEL 6</bugzilla>
+          <bugzilla id="1438360" href="https://bugzilla.redhat.com/1438360">The originalMemberOf attribute disappears from the cache, causing intermittent HBAC issues</bugzilla>
+          <bugzilla id="1442703" href="https://bugzilla.redhat.com/1442703">Smart Cards: Certificate in the ID View</bugzilla>
+          <bugzilla id="1487040" href="https://bugzilla.redhat.com/1487040">sssd does not evaluate AD UPN suffixes which results in failed user logins</bugzilla>
+          <bugzilla id="1498173" href="https://bugzilla.redhat.com/1498173">CVE-2017-12173 sssd: unsanitized input when searching in local cache database</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="libbasicobjects is earlier than 0:0.1.1-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877007" />
+            <criterion comment="libbasicobjects is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libbasicobjects-devel is earlier than 0:0.1.1-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877021" />
+            <criterion comment="libbasicobjects-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libcollection is earlier than 0:0.6.2-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877005" />
+            <criterion comment="libcollection is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libcollection-devel is earlier than 0:0.6.2-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877025" />
+            <criterion comment="libcollection-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libdhash is earlier than 0:0.4.3-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877015" />
+            <criterion comment="libdhash is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libdhash-devel is earlier than 0:0.4.3-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877023" />
+            <criterion comment="libdhash-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libini_config is earlier than 0:1.1.0-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877013" />
+            <criterion comment="libini_config is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libini_config-devel is earlier than 0:1.1.0-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877017" />
+            <criterion comment="libini_config-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libpath_utils is earlier than 0:0.2.1-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877019" />
+            <criterion comment="libpath_utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libpath_utils-devel is earlier than 0:0.2.1-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877027" />
+            <criterion comment="libpath_utils-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libref_array is earlier than 0:0.1.4-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877011" />
+            <criterion comment="libref_array is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libref_array-devel is earlier than 0:0.1.4-13.el6" test_ref="oval:com.redhat.rhsa:tst:20181877009" />
+            <criterion comment="libref_array-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libipa_hbac is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877037" />
+            <criterion comment="libipa_hbac is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877038" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libipa_hbac-devel is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877069" />
+            <criterion comment="libipa_hbac-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877070" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_idmap is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877055" />
+            <criterion comment="libsss_idmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877056" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_idmap-devel is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877071" />
+            <criterion comment="libsss_idmap-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877072" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_nss_idmap is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877033" />
+            <criterion comment="libsss_nss_idmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877034" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_nss_idmap-devel is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877031" />
+            <criterion comment="libsss_nss_idmap-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877032" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_simpleifp is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877039" />
+            <criterion comment="libsss_simpleifp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877040" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libsss_simpleifp-devel is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877065" />
+            <criterion comment="libsss_simpleifp-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877066" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-libipa_hbac is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877035" />
+            <criterion comment="python-libipa_hbac is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877036" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-libsss_nss_idmap is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877073" />
+            <criterion comment="python-libsss_nss_idmap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877074" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-sss is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877057" />
+            <criterion comment="python-sss is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877058" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-sss-murmur is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877051" />
+            <criterion comment="python-sss-murmur is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877052" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-sssdconfig is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877077" />
+            <criterion comment="python-sssdconfig is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877078" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877043" />
+            <criterion comment="sssd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877044" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-ad is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877041" />
+            <criterion comment="sssd-ad is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877042" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-client is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877049" />
+            <criterion comment="sssd-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877050" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-common is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877045" />
+            <criterion comment="sssd-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877046" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-common-pac is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877029" />
+            <criterion comment="sssd-common-pac is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-dbus is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877047" />
+            <criterion comment="sssd-dbus is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877048" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-ipa is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877063" />
+            <criterion comment="sssd-ipa is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877064" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-krb5 is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877059" />
+            <criterion comment="sssd-krb5 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877060" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-krb5-common is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877061" />
+            <criterion comment="sssd-krb5-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877062" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-ldap is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877075" />
+            <criterion comment="sssd-ldap is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877076" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-proxy is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877053" />
+            <criterion comment="sssd-proxy is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877054" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="sssd-tools is earlier than 0:1.13.3-60.el6" test_ref="oval:com.redhat.rhsa:tst:20181877067" />
+            <criterion comment="sssd-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181877068" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181879" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1879: glibc security and bug fix update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1879-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1879" source="RHSA" />
+        <reference ref_id="CVE-2017-15670" ref_url="https://access.redhat.com/security/cve/CVE-2017-15670" source="CVE" />
+        <reference ref_id="CVE-2017-15804" ref_url="https://access.redhat.com/security/cve/CVE-2017-15804" source="CVE" />
+        <description>The glibc packages provide the standard C libraries (libc), POSIX thread libraries (libpthread), standard math libraries (libm), and the name service cache daemon (nscd) used by multiple programs on the system. Without these libraries, the Linux system cannot function correctly.
+
+Security Fix(es):
+
+* glibc: Buffer overflow in glob with GLOB_TILDE (CVE-2017-15670)
+
+* glibc: Buffer overflow during unescaping of user names with the ~ operator (CVE-2017-15804)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 6.10 Release Notes and Red Hat Enterprise Linux 6.10 Technical Notes linked from the References section.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-19" />
+          <updated date="2018-06-19" />
+          <cve cvss3="7/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-122" href="https://access.redhat.com/security/cve/CVE-2017-15670" public="20171019">CVE-2017-15670</cve>
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-122" href="https://access.redhat.com/security/cve/CVE-2017-15804" public="20171021">CVE-2017-15804</cve>
+          <bugzilla id="1437147" href="https://bugzilla.redhat.com/1437147">Fix for thread cancellation of IdM functions incorrect in rhel-6.9.</bugzilla>
+          <bugzilla id="1504804" href="https://bugzilla.redhat.com/1504804">CVE-2017-15670 glibc: Buffer overflow in glob with GLOB_TILDE</bugzilla>
+          <bugzilla id="1505298" href="https://bugzilla.redhat.com/1505298">CVE-2017-15804 glibc: Buffer overflow during unescaping of user names with the ~ operator</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="glibc is earlier than 0:2.12-1.212.el6" test_ref="oval:com.redhat.rhsa:tst:20181879015" />
+            <criterion comment="glibc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180805016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="glibc-common is earlier than 0:2.12-1.212.el6" test_ref="oval:com.redhat.rhsa:tst:20181879013" />
+            <criterion comment="glibc-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180805012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="glibc-devel is earlier than 0:2.12-1.212.el6" test_ref="oval:com.redhat.rhsa:tst:20181879007" />
+            <criterion comment="glibc-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180805008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="glibc-headers is earlier than 0:2.12-1.212.el6" test_ref="oval:com.redhat.rhsa:tst:20181879005" />
+            <criterion comment="glibc-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180805014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="glibc-static is earlier than 0:2.12-1.212.el6" test_ref="oval:com.redhat.rhsa:tst:20181879017" />
+            <criterion comment="glibc-static is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180805006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="glibc-utils is earlier than 0:2.12-1.212.el6" test_ref="oval:com.redhat.rhsa:tst:20181879009" />
+            <criterion comment="glibc-utils is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180805010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="nscd is earlier than 0:2.12-1.212.el6" test_ref="oval:com.redhat.rhsa:tst:20181879011" />
+            <criterion comment="nscd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180805018" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181883" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1883: samba4 security and bug fix update (Low)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1883-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1883" source="RHSA" />
+        <reference ref_id="CVE-2018-1050" ref_url="https://access.redhat.com/security/cve/CVE-2018-1050" source="CVE" />
+        <description>Samba is an open-source implementation of the Server Message Block (SMB) or Common Internet File System (CIFS) protocol, which allows PC-compatible machines to share files, printers, and other information.
+
+Security Fix(es):
+
+* samba: Null pointer indirection in printer server process (CVE-2018-1050)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank the Samba project for reporting this issue.
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 6.10 Release Notes and Red Hat Enterprise Linux 6.10 Technical Notes linked from the References section.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Low</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-19" />
+          <updated date="2018-06-19" />
+          <cve cvss3="4.3/CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L" cwe="CWE-119" href="https://access.redhat.com/security/cve/CVE-2018-1050" public="20180313">CVE-2018-1050</cve>
+          <bugzilla id="1492780" href="https://bugzilla.redhat.com/1492780">samba4: Recompile without BIND_NOW due to IFUNC relocation issue on ppc64</bugzilla>
+          <bugzilla id="1538771" href="https://bugzilla.redhat.com/1538771">CVE-2018-1050 samba: Null pointer indirection in printer server process</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="samba4 is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883025" />
+            <criterion comment="samba4 is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-client is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883027" />
+            <criterion comment="samba4-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-common is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883017" />
+            <criterion comment="samba4-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-dc is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883023" />
+            <criterion comment="samba4-dc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-dc-libs is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883015" />
+            <criterion comment="samba4-dc-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-devel is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883009" />
+            <criterion comment="samba4-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-libs is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883005" />
+            <criterion comment="samba4-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-pidl is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883019" />
+            <criterion comment="samba4-pidl is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-python is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883021" />
+            <criterion comment="samba4-python is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-test is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883011" />
+            <criterion comment="samba4-test is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-winbind is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883007" />
+            <criterion comment="samba4-winbind is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-winbind-clients is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883013" />
+            <criterion comment="samba4-winbind-clients is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="samba4-winbind-krb5-locator is earlier than 0:4.2.10-15.el6" test_ref="oval:com.redhat.rhsa:tst:20181883029" />
+            <criterion comment="samba4-winbind-krb5-locator is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181883030" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181927" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1927: pcs security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1927-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1927" source="RHSA" />
+        <reference ref_id="CVE-2018-1086" ref_url="https://access.redhat.com/security/cve/CVE-2018-1086" source="CVE" />
+        <description>The pcs packages provide a command-line configuration system for the Pacemaker and Corosync utilities.
+
+Security Fix(es):
+
+* pcs: Debug parameter removal bypass, allowing information disclosure (CVE-2018-1086)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+This issue was discovered by Cedric Buissart (Red Hat).
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 6.10 Release Notes and Red Hat Enterprise Linux 6.10 Technical Notes linked from the References section.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-19" />
+          <updated date="2018-06-19" />
+          <cve cvss3="4.3/CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N" cwe="CWE-20" href="https://access.redhat.com/security/cve/CVE-2018-1086" public="20180409">CVE-2018-1086</cve>
+          <bugzilla id="1557366" href="https://bugzilla.redhat.com/1557366">CVE-2018-1086 pcs: Debug parameter removal bypass, allowing information disclosure</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criterion comment="pcs is earlier than 0:0.9.155-3.el6" test_ref="oval:com.redhat.rhsa:tst:20181927005" />
+        <criterion comment="pcs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181060008" />
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181929" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1929: libvirt security update (Low)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1929-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1929" source="RHSA" />
+        <reference ref_id="CVE-2018-1064" ref_url="https://access.redhat.com/security/cve/CVE-2018-1064" source="CVE" />
+        <reference ref_id="CVE-2018-5748" ref_url="https://access.redhat.com/security/cve/CVE-2018-5748" source="CVE" />
+        <description>The libvirt library contains a C API for managing and interacting with the virtualization capabilities of Linux and other operating systems. In addition, libvirt provides tools for remote management of virtualized systems.
+
+Security Fix(es):
+
+* libvirt: Resource exhaustion via qemuMonitorIORead() method (CVE-2018-5748)
+
+* libvirt: Incomplete fix for CVE-2018-5748 triggered by QEMU guest agent (CVE-2018-1064)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+The CVE-2018-5748 issue was discovered by Daniel P. Berrange (Red Hat) and Peter Krempa (Red Hat), and the CVE-2018-1064 issue was discovered by Daniel P. Berrange (Red Hat).
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 6.10 Release Notes and Red Hat Enterprise Linux 6.10 Technical Notes linked from the References section.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Low</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-19" />
+          <updated date="2018-06-19" />
+          <cve cvss3="3.3/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L" cwe="CWE-400" href="https://access.redhat.com/security/cve/CVE-2018-1064" public="20180314">CVE-2018-1064</cve>
+          <cve cvss2="1.5/AV:L/AC:M/Au:S/C:N/I:N/A:P" cvss3="3.3/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L" cwe="CWE-400" href="https://access.redhat.com/security/cve/CVE-2018-5748" public="20180116">CVE-2018-5748</cve>
+          <bugzilla id="1528396" href="https://bugzilla.redhat.com/1528396">CVE-2018-5748 libvirt: Resource exhaustion via qemuMonitorIORead() method</bugzilla>
+          <bugzilla id="1550672" href="https://bugzilla.redhat.com/1550672">CVE-2018-1064 libvirt: Incomplete fix for CVE-2018-5748 triggered by QEMU guest agent</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="libvirt is earlier than 0:0.10.2-64.el6" test_ref="oval:com.redhat.rhsa:tst:20181929005" />
+            <criterion comment="libvirt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-client is earlier than 0:0.10.2-64.el6" test_ref="oval:com.redhat.rhsa:tst:20181929011" />
+            <criterion comment="libvirt-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029044" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-devel is earlier than 0:0.10.2-64.el6" test_ref="oval:com.redhat.rhsa:tst:20181929007" />
+            <criterion comment="libvirt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029048" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-lock-sanlock is earlier than 0:0.10.2-64.el6" test_ref="oval:com.redhat.rhsa:tst:20181929013" />
+            <criterion comment="libvirt-lock-sanlock is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-python is earlier than 0:0.10.2-64.el6" test_ref="oval:com.redhat.rhsa:tst:20181929009" />
+            <criterion comment="libvirt-python is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180030012" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181932" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1932: zsh security update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1932-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1932" source="RHSA" />
+        <reference ref_id="CVE-2014-10072" ref_url="https://access.redhat.com/security/cve/CVE-2014-10072" source="CVE" />
+        <reference ref_id="CVE-2017-18206" ref_url="https://access.redhat.com/security/cve/CVE-2017-18206" source="CVE" />
+        <reference ref_id="CVE-2018-1083" ref_url="https://access.redhat.com/security/cve/CVE-2018-1083" source="CVE" />
+        <reference ref_id="CVE-2018-1100" ref_url="https://access.redhat.com/security/cve/CVE-2018-1100" source="CVE" />
+        <description>The zsh shell is a command interpreter usable as an interactive login shell and as a shell script command processor. Zsh resembles the ksh shell (the Korn shell), but includes many enhancements. Zsh supports command-line editing, built-in spelling correction, programmable command completion, shell functions (with autoloading), a history mechanism, and more.
+
+Security Fix(es):
+
+* zsh: Stack-based buffer overflow in gen_matches_files() at compctl.c (CVE-2018-1083)
+
+* zsh: buffer overflow when scanning very long directory paths for symbolic links (CVE-2014-10072)
+
+* zsh: buffer overrun in symlinks (CVE-2017-18206)
+
+* zsh: buffer overflow in utils.c:checkmailpath() can lead to local arbitrary code execution (CVE-2018-1100)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+The CVE-2018-1083 and CVE-2018-1100 issues were discovered by Richard Maciel Costa (Red Hat).
+
+Additional Changes:
+
+For detailed information on changes in this release, see the Red Hat Enterprise Linux 6.10 Release Notes and Red Hat Enterprise Linux 6.10 Technical Notes linked from the References section.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-19" />
+          <updated date="2018-06-19" />
+          <cve cvss3="5/CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:L/I:L/A:L" cwe="CWE-120" href="https://access.redhat.com/security/cve/CVE-2014-10072" impact="low" public="20140120">CVE-2014-10072</cve>
+          <cve cvss3="7.5/CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:H" cwe="CWE-120 CWE-121" href="https://access.redhat.com/security/cve/CVE-2017-18206" impact="low" public="20170509">CVE-2017-18206</cve>
+          <cve cvss3="7.5/CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:H" cwe="CWE-120 CWE-121" href="https://access.redhat.com/security/cve/CVE-2018-1083" public="20180326">CVE-2018-1083</cve>
+          <cve cvss3="7.5/CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:H" cwe="CWE-120 CWE-121" href="https://access.redhat.com/security/cve/CVE-2018-1100" impact="low" public="20180407">CVE-2018-1100</cve>
+          <bugzilla id="1549836" href="https://bugzilla.redhat.com/1549836">CVE-2014-10072 zsh: buffer overflow when scanning very long directory paths for symbolic links</bugzilla>
+          <bugzilla id="1549861" href="https://bugzilla.redhat.com/1549861">CVE-2017-18206 zsh: buffer overrun in symlinks</bugzilla>
+          <bugzilla id="1557382" href="https://bugzilla.redhat.com/1557382">CVE-2018-1083 zsh: Stack-based buffer overflow in gen_matches_files() at compctl.c</bugzilla>
+          <bugzilla id="1563395" href="https://bugzilla.redhat.com/1563395">CVE-2018-1100 zsh: buffer overflow in utils.c:checkmailpath() can lead to local arbitrary code execution</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="zsh is earlier than 0:4.3.11-8.el6" test_ref="oval:com.redhat.rhsa:tst:20181932005" />
+            <criterion comment="zsh is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181932006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="zsh-html is earlier than 0:4.3.11-8.el6" test_ref="oval:com.redhat.rhsa:tst:20181932007" />
+            <criterion comment="zsh-html is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181932008" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20180007001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -19365,6 +20203,630 @@ Red Hat would like to thank Julian Stecklina (Amazon.de), Thomas Prescher (cyber
       <object object_ref="oval:com.redhat.rhsa:obj:20180007016" />
       <state state_ref="oval:com.redhat.rhsa:ste:20181852006" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854005" check="at least one" comment="kernel-firmware is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180008005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854007" check="at least one" comment="kernel-doc is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854009" check="at least one" comment="kernel-abi-whitelists is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854011" check="at least one" comment="kernel-debug is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854013" check="at least one" comment="kernel-headers is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854015" check="at least one" comment="python-perf is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854017" check="at least one" comment="kernel-debug-devel is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854019" check="at least one" comment="kernel is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854021" check="at least one" comment="kernel-kdump-devel is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854023" check="at least one" comment="kernel-kdump is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854025" check="at least one" comment="perf is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854027" check="at least one" comment="kernel-devel is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181854029" check="at least one" comment="kernel-bootwrapper is earlier than 0:2.6.32-754.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007019" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181854006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860005" check="at least one" comment="libsmbclient-devel is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860006" check="at least one" comment="libsmbclient-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860007" check="at least one" comment="samba-client is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860008" check="at least one" comment="samba-client is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860009" check="at least one" comment="samba-domainjoin-gui is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860010" check="at least one" comment="samba-domainjoin-gui is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860011" check="at least one" comment="samba-swat is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860012" check="at least one" comment="samba-swat is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860013" check="at least one" comment="samba-common is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860014" check="at least one" comment="samba-common is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860015" check="at least one" comment="libsmbclient is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860016" check="at least one" comment="libsmbclient is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860017" check="at least one" comment="samba-winbind-krb5-locator is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860018" check="at least one" comment="samba-winbind-krb5-locator is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860019" check="at least one" comment="samba-winbind-devel is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860020" check="at least one" comment="samba-winbind-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860021" check="at least one" comment="samba-doc is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860022" check="at least one" comment="samba-doc is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860023" check="at least one" comment="samba is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860024" check="at least one" comment="samba is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860025" check="at least one" comment="samba-winbind-clients is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860026" check="at least one" comment="samba-winbind-clients is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860027" check="at least one" comment="samba-winbind is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860028" check="at least one" comment="samba-winbind is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860029" check="at least one" comment="samba-glusterfs is earlier than 0:3.6.23-51.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181860005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181860030" check="at least one" comment="samba-glusterfs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181860017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877005" check="at least one" comment="libcollection is earlier than 0:0.6.2-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877006" check="at least one" comment="libcollection is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877007" check="at least one" comment="libbasicobjects is earlier than 0:0.1.1-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877008" check="at least one" comment="libbasicobjects is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877009" check="at least one" comment="libref_array-devel is earlier than 0:0.1.4-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877010" check="at least one" comment="libref_array-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877011" check="at least one" comment="libref_array is earlier than 0:0.1.4-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877012" check="at least one" comment="libref_array is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877013" check="at least one" comment="libini_config is earlier than 0:1.1.0-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877014" check="at least one" comment="libini_config is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877015" check="at least one" comment="libdhash is earlier than 0:0.4.3-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877007" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877016" check="at least one" comment="libdhash is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877017" check="at least one" comment="libini_config-devel is earlier than 0:1.1.0-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877018" check="at least one" comment="libini_config-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877019" check="at least one" comment="libpath_utils is earlier than 0:0.2.1-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877008" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877020" check="at least one" comment="libpath_utils is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877021" check="at least one" comment="libbasicobjects-devel is earlier than 0:0.1.1-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877022" check="at least one" comment="libbasicobjects-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877023" check="at least one" comment="libdhash-devel is earlier than 0:0.4.3-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877007" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877024" check="at least one" comment="libdhash-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877025" check="at least one" comment="libcollection-devel is earlier than 0:0.6.2-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877026" check="at least one" comment="libcollection-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877027" check="at least one" comment="libpath_utils-devel is earlier than 0:0.2.1-13.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877008" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877028" check="at least one" comment="libpath_utils-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877029" check="at least one" comment="sssd-common-pac is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877030" check="at least one" comment="sssd-common-pac is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877031" check="at least one" comment="libsss_nss_idmap-devel is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877018" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877010" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877032" check="at least one" comment="libsss_nss_idmap-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877018" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877033" check="at least one" comment="libsss_nss_idmap is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877019" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877010" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877034" check="at least one" comment="libsss_nss_idmap is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877019" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877035" check="at least one" comment="python-libipa_hbac is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877020" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877036" check="at least one" comment="python-libipa_hbac is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877020" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877037" check="at least one" comment="libipa_hbac is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877021" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877010" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877038" check="at least one" comment="libipa_hbac is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877021" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877039" check="at least one" comment="libsss_simpleifp is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877022" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877010" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877040" check="at least one" comment="libsss_simpleifp is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877022" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877041" check="at least one" comment="sssd-ad is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877023" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877042" check="at least one" comment="sssd-ad is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877023" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877043" check="at least one" comment="sssd is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877024" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877044" check="at least one" comment="sssd is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877024" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877045" check="at least one" comment="sssd-common is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877025" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877046" check="at least one" comment="sssd-common is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877025" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877047" check="at least one" comment="sssd-dbus is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877026" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877048" check="at least one" comment="sssd-dbus is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877026" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877049" check="at least one" comment="sssd-client is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877027" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877010" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877050" check="at least one" comment="sssd-client is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877027" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877051" check="at least one" comment="python-sss-murmur is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877028" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877052" check="at least one" comment="python-sss-murmur is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877028" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877053" check="at least one" comment="sssd-proxy is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877029" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877054" check="at least one" comment="sssd-proxy is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877029" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877055" check="at least one" comment="libsss_idmap is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877030" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877010" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877056" check="at least one" comment="libsss_idmap is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877030" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877057" check="at least one" comment="python-sss is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877031" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877058" check="at least one" comment="python-sss is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877031" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877059" check="at least one" comment="sssd-krb5 is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877032" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877060" check="at least one" comment="sssd-krb5 is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877032" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877061" check="at least one" comment="sssd-krb5-common is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877033" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877062" check="at least one" comment="sssd-krb5-common is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877033" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877063" check="at least one" comment="sssd-ipa is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877034" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877064" check="at least one" comment="sssd-ipa is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877034" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877065" check="at least one" comment="libsss_simpleifp-devel is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877035" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877010" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877066" check="at least one" comment="libsss_simpleifp-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877035" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877067" check="at least one" comment="sssd-tools is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877036" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877068" check="at least one" comment="sssd-tools is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877036" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877069" check="at least one" comment="libipa_hbac-devel is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877037" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877010" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877070" check="at least one" comment="libipa_hbac-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877037" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877071" check="at least one" comment="libsss_idmap-devel is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877038" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877010" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877072" check="at least one" comment="libsss_idmap-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877038" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877073" check="at least one" comment="python-libsss_nss_idmap is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877039" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877074" check="at least one" comment="python-libsss_nss_idmap is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877039" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877075" check="at least one" comment="sssd-ldap is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877040" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877009" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877076" check="at least one" comment="sssd-ldap is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877040" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877077" check="at least one" comment="python-sssdconfig is earlier than 0:1.13.3-60.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877041" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181877011" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181877078" check="at least one" comment="python-sssdconfig is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181877041" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181879005" check="at least one" comment="glibc-headers is earlier than 0:2.12-1.212.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180805009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181879003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181879007" check="at least one" comment="glibc-devel is earlier than 0:2.12-1.212.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180805006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181879004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181879009" check="at least one" comment="glibc-utils is earlier than 0:2.12-1.212.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180805007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181879003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181879011" check="at least one" comment="nscd is earlier than 0:2.12-1.212.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180805011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181879003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181879013" check="at least one" comment="glibc-common is earlier than 0:2.12-1.212.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180805008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181879003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181879015" check="at least one" comment="glibc is earlier than 0:2.12-1.212.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180805010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181879004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181879017" check="at least one" comment="glibc-static is earlier than 0:2.12-1.212.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180805005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181879004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883005" check="at least one" comment="samba4-libs is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883006" check="at least one" comment="samba4-libs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883007" check="at least one" comment="samba4-winbind is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883008" check="at least one" comment="samba4-winbind is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883009" check="at least one" comment="samba4-devel is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883010" check="at least one" comment="samba4-devel is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883011" check="at least one" comment="samba4-test is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883012" check="at least one" comment="samba4-test is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883013" check="at least one" comment="samba4-winbind-clients is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883014" check="at least one" comment="samba4-winbind-clients is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883015" check="at least one" comment="samba4-dc-libs is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883016" check="at least one" comment="samba4-dc-libs is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883017" check="at least one" comment="samba4-common is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883018" check="at least one" comment="samba4-common is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883019" check="at least one" comment="samba4-pidl is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883020" check="at least one" comment="samba4-pidl is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883021" check="at least one" comment="samba4-python is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883022" check="at least one" comment="samba4-python is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883023" check="at least one" comment="samba4-dc is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883024" check="at least one" comment="samba4-dc is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883025" check="at least one" comment="samba4 is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883026" check="at least one" comment="samba4 is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883027" check="at least one" comment="samba4-client is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883028" check="at least one" comment="samba4-client is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883029" check="at least one" comment="samba4-winbind-krb5-locator is earlier than 0:4.2.10-15.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181883003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181883030" check="at least one" comment="samba4-winbind-krb5-locator is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181883017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181927005" check="at least one" comment="pcs is earlier than 0:0.9.155-3.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181060006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181927003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181929005" check="at least one" comment="libvirt is earlier than 0:0.10.2-64.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181929003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181929007" check="at least one" comment="libvirt-devel is earlier than 0:0.10.2-64.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029026" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181929004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181929009" check="at least one" comment="libvirt-python is earlier than 0:0.10.2-64.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180030008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181929003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181929011" check="at least one" comment="libvirt-client is earlier than 0:0.10.2-64.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029024" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181929004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181929013" check="at least one" comment="libvirt-lock-sanlock is earlier than 0:0.10.2-64.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181929005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181932005" check="at least one" comment="zsh is earlier than 0:4.3.11-8.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181932005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181932003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181932006" check="at least one" comment="zsh is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181932005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181932007" check="at least one" comment="zsh-html is earlier than 0:4.3.11-8.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181932006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181932003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181932008" check="at least one" comment="zsh-html is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181932006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20180007001" version="602">
@@ -20798,6 +22260,201 @@ Red Hat would like to thank Julian Stecklina (Amazon.de), Thomas Prescher (cyber
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20181836006" version="602">
       <name>plexus-archiver-javadoc</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860005" version="601">
+      <name>libsmbclient-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860006" version="601">
+      <name>samba-client</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860007" version="601">
+      <name>samba-domainjoin-gui</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860008" version="601">
+      <name>samba-swat</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860009" version="601">
+      <name>samba-common</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860010" version="601">
+      <name>libsmbclient</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860011" version="601">
+      <name>samba-winbind-krb5-locator</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860012" version="601">
+      <name>samba-winbind-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860013" version="601">
+      <name>samba-doc</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860014" version="601">
+      <name>samba</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860015" version="601">
+      <name>samba-winbind-clients</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860016" version="601">
+      <name>samba-winbind</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181860017" version="601">
+      <name>samba-glusterfs</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877005" version="601">
+      <name>libcollection</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877006" version="601">
+      <name>libbasicobjects</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877007" version="601">
+      <name>libref_array-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877008" version="601">
+      <name>libref_array</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877009" version="601">
+      <name>libini_config</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877010" version="601">
+      <name>libdhash</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877011" version="601">
+      <name>libini_config-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877012" version="601">
+      <name>libpath_utils</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877013" version="601">
+      <name>libbasicobjects-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877014" version="601">
+      <name>libdhash-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877015" version="601">
+      <name>libcollection-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877016" version="601">
+      <name>libpath_utils-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877017" version="601">
+      <name>sssd-common-pac</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877018" version="601">
+      <name>libsss_nss_idmap-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877019" version="601">
+      <name>libsss_nss_idmap</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877020" version="601">
+      <name>python-libipa_hbac</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877021" version="601">
+      <name>libipa_hbac</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877022" version="601">
+      <name>libsss_simpleifp</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877023" version="601">
+      <name>sssd-ad</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877024" version="601">
+      <name>sssd</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877025" version="601">
+      <name>sssd-common</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877026" version="601">
+      <name>sssd-dbus</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877027" version="601">
+      <name>sssd-client</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877028" version="601">
+      <name>python-sss-murmur</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877029" version="601">
+      <name>sssd-proxy</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877030" version="601">
+      <name>libsss_idmap</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877031" version="601">
+      <name>python-sss</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877032" version="601">
+      <name>sssd-krb5</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877033" version="601">
+      <name>sssd-krb5-common</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877034" version="601">
+      <name>sssd-ipa</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877035" version="601">
+      <name>libsss_simpleifp-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877036" version="601">
+      <name>sssd-tools</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877037" version="601">
+      <name>libipa_hbac-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877038" version="601">
+      <name>libsss_idmap-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877039" version="601">
+      <name>python-libsss_nss_idmap</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877040" version="601">
+      <name>sssd-ldap</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181877041" version="601">
+      <name>python-sssdconfig</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883005" version="601">
+      <name>samba4-libs</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883006" version="601">
+      <name>samba4-winbind</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883007" version="601">
+      <name>samba4-devel</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883008" version="601">
+      <name>samba4-test</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883009" version="601">
+      <name>samba4-winbind-clients</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883010" version="601">
+      <name>samba4-dc-libs</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883011" version="601">
+      <name>samba4-common</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883012" version="601">
+      <name>samba4-pidl</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883013" version="601">
+      <name>samba4-python</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883014" version="601">
+      <name>samba4-dc</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883015" version="601">
+      <name>samba4</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883016" version="601">
+      <name>samba4-client</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181883017" version="601">
+      <name>samba4-winbind-krb5-locator</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181932005" version="601">
+      <name>zsh</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181932006" version="601">
+      <name>zsh-html</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20180007001" version="602">
@@ -22019,6 +23676,100 @@ Red Hat would like to thank Julian Stecklina (Amazon.de), Thomas Prescher (cyber
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20181852007" version="602">
       <arch datatype="string" operation="pattern match">ppc64|ppc64le</arch>
       <evr datatype="evr_string" operation="less than">0:3.10.0-862.3.3.el7</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181854003" version="601">
+      <evr datatype="evr_string" operation="less than">0:2.6.32-754.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181854004" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:2.6.32-754.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181854005" version="601">
+      <arch datatype="string" operation="equals">s390x</arch>
+      <evr datatype="evr_string" operation="less than">0:2.6.32-754.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181854006" version="601">
+      <arch datatype="string" operation="equals">ppc64</arch>
+      <evr datatype="evr_string" operation="less than">0:2.6.32-754.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181860003" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:3.6.23-51.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181860004" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:3.6.23-51.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181860005" version="601">
+      <arch datatype="string" operation="equals">x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:3.6.23-51.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181877003" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:0.6.2-13.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181877004" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:0.1.1-13.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181877005" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:0.1.4-13.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181877006" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:1.1.0-13.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181877007" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:0.4.3-13.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181877008" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:0.2.1-13.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181877009" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:1.13.3-60.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181877010" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:1.13.3-60.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181877011" version="601">
+      <evr datatype="evr_string" operation="less than">0:1.13.3-60.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181879003" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:2.12-1.212.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181879004" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:2.12-1.212.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181883003" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:4.2.10-15.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181927003" version="601">
+      <arch datatype="string" operation="pattern match">i686|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:0.9.155-3.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181929003" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:0.10.2-64.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181929004" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:0.10.2-64.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181929005" version="601">
+      <arch datatype="string" operation="equals">x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:0.10.2-64.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181932003" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:4.3.11-8.el6</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
