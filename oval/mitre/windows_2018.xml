@@ -33500,7 +33500,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:5110" class="vulnerability" version="3">
+    <definition id="oval:org.cisecurity:def:5110" class="vulnerability" version="4">
       <metadata>
         <title>.NET and .NET Core Denial Of Service Vulnerability - CVE-2018-0765</title>
         <affected family="windows">
@@ -33529,54 +33529,35 @@
               <contributor organization="DTCC">Jose Israel Padilla</contributor>
             </submitted>
             <status_change date="2018-06-08T13:18:01.158-05:00">DRAFT</status_change>
+            <modified comment="corrected ext def for .net 4.7.1, corrected tests for all .net 4.0" date="2018-06-21T00:00:00+08:00">
+              <contributor organization="DTCC">Jeff Albert</contributor>
+            </modified>
           </dates>
           <status>DRAFT</status>
           <min_schema_version>5.10</min_schema_version>
         </oval_repository>
       </metadata>
       <criteria operator="OR">
-        <criteria comment=".Net Framework 2.0 SP2 and vulnerable file version" operator="AND">
-          <extend_definition comment="Microsoft .NET Framework 2.0 Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6158" />
-          <criteria comment="2K8 and vulnerable files versions" operator="AND">
-            <criteria comment="2k8" operator="OR">
-              <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
-              <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
-              <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
-            </criteria>
-            <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" test_ref="oval:org.cisecurity:tst:7354" />
+        <criteria comment=".Net Framework 2.0 SP2/3.0 SP2 + WinOS + vul file ver" operator="AND">
+          <criteria comment=".Net 2.0/3.0" operator="OR">
+            <extend_definition comment="Microsoft .NET Framework 2.0 Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:6158" />
+            <extend_definition comment="Microsoft .NET Framework 3.0 Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:15312" />
           </criteria>
+          <criteria comment="2k8" operator="OR">
+            <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+            <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+            <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
+          </criteria>
+          <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" test_ref="oval:org.cisecurity:tst:7354" />
         </criteria>
-        <criteria comment=".Net Framework 3.0 SP2 and vulnerable file version" operator="AND">
-          <extend_definition comment="Microsoft .NET Framework 3.0 Service Pack 2 is installed" definition_ref="oval:org.mitre.oval:def:15312" />
-          <criteria comment="2K8 and vulnerable files versions" operator="AND">
-            <criteria comment="2k8" operator="OR">
-              <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
-              <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
-              <extend_definition comment="Microsoft Windows Server 2008 (ia-64) is installed" definition_ref="oval:org.mitre.oval:def:5667" />
-            </criteria>
-            <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" test_ref="oval:org.cisecurity:tst:7354" />
-          </criteria>
-        </criteria>
-        <criteria comment=".Net Framework 3.5 and vulnerable file version" operator="AND">
-          <criteria comment=".NET Framework 3.5/.1" operator="OR">
-            <extend_definition comment="Microsoft .NET Framework 3.5 Original Release is installed" definition_ref="oval:org.mitre.oval:def:6689" />
-            <extend_definition comment="Microsoft .NET Framework 3.5 SP1 is installed" definition_ref="oval:org.mitre.oval:def:12542" />
-          </criteria>
-          <criteria operator="OR">
-            <criteria comment="Win7/2008 R2 and vulnerable files versions" operator="AND">
-              <criteria comment="Win7/R2" operator="OR">
-                <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
-                <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
-                <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
-                <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
-              </criteria>
-              <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" test_ref="oval:org.cisecurity:tst:7354" />
-            </criteria>
+        <criteria comment=".Net Framework 3.5 + WinOS + vul file ver" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 3.5 Original Release is installed" definition_ref="oval:org.mitre.oval:def:6689" />
+          <criteria comment="WinOS + vul file" operator="OR">
             <criteria comment="2012 and vulnerable file versions" operator="AND">
               <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
               <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" test_ref="oval:org.cisecurity:tst:7354" />
             </criteria>
-            <criteria comment="Win8.1/2012R2 + file version" operator="AND">
+            <criteria comment="Win8.1/2012R2 + vul file ver" operator="AND">
               <criteria comment="Win8.1/2012R2" operator="OR">
                 <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
                 <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
@@ -33584,111 +33565,14 @@
               </criteria>
               <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" test_ref="oval:org.cisecurity:tst:7354" />
             </criteria>
-            <criteria comment="Win10 and vulnerable file version" operator="AND">
+            <criteria comment="Win10 + vul file ver" operator="AND">
               <criteria comment="Win10" operator="OR">
                 <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
                 <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
               </criteria>
               <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" test_ref="oval:org.cisecurity:tst:7354" />
             </criteria>
-            <criteria comment="Win10 and vulnerable file version" operator="AND">
-              <criteria comment="Win10 1607" operator="OR">
-                <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
-                <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
-                <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
-              </criteria>
-              <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" test_ref="oval:org.cisecurity:tst:7354" />
-            </criteria>
-            <criteria comment="Win10 and vulnerable file version" operator="AND">
-              <criteria comment="Win10 1703" operator="OR">
-                <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
-                <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
-              </criteria>
-              <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8804" test_ref="oval:org.cisecurity:tst:7355" />
-            </criteria>
-            <criteria comment="1709 + file version" operator="AND">
-              <criteria comment="1709" operator="OR">
-                <extend_definition comment="Microsoft Windows 10 Version 1709 (x86) is installed" definition_ref="oval:org.cisecurity:def:3479" />
-                <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
-              </criteria>
-              <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8830" test_ref="oval:org.cisecurity:tst:7360" />
-            </criteria>
-            <criteria comment="Microsoft Windows 10 Version 1803 is installed + file version" operator="AND">
-              <criteria comment="Microsoft Windows 10 Version 1803 is installed" operator="OR">
-                <extend_definition comment="Microsoft Windows 10 Version 1803 (x86) is installed" definition_ref="oval:org.cisecurity:def:5016" />
-                <extend_definition comment="Microsoft Windows 10 Version 1803 (x64) is installed" definition_ref="oval:org.cisecurity:def:5014" />
-              </criteria>
-              <criterion comment="Check if the version of mscorlib.dll is less than 4.7.3101.0" test_ref="oval:org.cisecurity:tst:7359" />
-            </criteria>
-          </criteria>
-        </criteria>
-        <criteria comment=".Net Framework 4.5.2 and vulnerable file version" operator="AND">
-          <extend_definition comment="Microsoft .NET Framework 4.5.2 is installed" definition_ref="oval:org.mitre.oval:def:26546" />
-          <criteria operator="OR">
-            <criteria comment="Win7/2008 R2 and vulnerable files versions" operator="AND">
-              <criteria comment="Win7/R2" operator="OR">
-                <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
-                <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
-                <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
-                <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
-                <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
-              </criteria>
-              <criterion comment="Check if the version of mscorlib.dll is less than 4.0.30319.36440" test_ref="oval:org.cisecurity:tst:7358" />
-            </criteria>
-            <criteria comment="2012 and vulnerable file versions" operator="AND">
-              <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
-              <criterion comment="Check if the version of mscorlib.dll is less than 4.0.30319.36440" test_ref="oval:org.cisecurity:tst:7358" />
-            </criteria>
-            <criteria comment="Win 8.1/2012 R2 and vulnerable file version" operator="AND">
-              <criteria comment="Win8.1/2012 R2" operator="OR">
-                <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
-                <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
-                <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
-              </criteria>
-              <criterion comment="Check if the version of mscorlib.dll is less than 4.0.30319.36440" test_ref="oval:org.cisecurity:tst:7358" />
-            </criteria>
-          </criteria>
-        </criteria>
-        <criteria comment="Microsoft .NET Framework 4.6/.1/.2/4.7/.1/.2 is installed + Windows OS + file version" operator="AND">
-          <criteria operator="OR">
-            <extend_definition comment="Microsoft .NET Framework 4.6 is installed" definition_ref="oval:org.cisecurity:def:4" />
-            <extend_definition comment="Microsoft .NET Framework 4.6.1 is installed" definition_ref="oval:org.cisecurity:def:478" />
-            <extend_definition comment="Microsoft .NET Framework 4.6.2 is installed" definition_ref="oval:org.cisecurity:def:1654" />
-            <extend_definition comment="Microsoft .NET Framework 4.7 is installed" definition_ref="oval:org.cisecurity:def:2203" />
-            <extend_definition comment="Microsoft .NET Framework 4.7.1 is installed" definition_ref="oval:org.cisecurity:def:3927" />
-            <extend_definition comment="Microsoft .NET Framework 4.7.2 is installed" definition_ref="oval:org.cisecurity:def:5111" />
-          </criteria>
-          <criteria operator="OR">
-            <criteria comment="Win7/2008 R2 and vulnerable files versions" operator="AND">
-              <criteria comment="Win7/R2" operator="OR">
-                <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
-                <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
-                <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
-                <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
-                <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
-              </criteria>
-              <criterion comment="Check if the version of mscorlib.dll is less than 4.7.2650.0" test_ref="oval:org.cisecurity:tst:7353" />
-            </criteria>
-            <criteria comment="2012 and vulnerable file versions" operator="AND">
-              <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
-              <criterion comment="Check if the version of mscorlib.dll is less than 4.7.2650.0" test_ref="oval:org.cisecurity:tst:7353" />
-            </criteria>
-            <criteria comment="Win 8.1/2012 R2 and vulnerable file version" operator="AND">
-              <criteria comment="Win8.1/2012 R2" operator="OR">
-                <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
-                <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
-                <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
-              </criteria>
-              <criterion comment="Check if the version of mscorlib.dll is less than 4.7.2650.0" test_ref="oval:org.cisecurity:tst:7353" />
-            </criteria>
-            <criteria comment="Win10 and vulnerable file version" operator="AND">
-              <criteria comment="Win10" operator="OR">
-                <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
-                <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
-              </criteria>
-              <criterion comment="Check if the version of mscorlib.dll is less than 4.6.1661.0" test_ref="oval:org.cisecurity:tst:7357" />
-            </criteria>
-            <criteria comment="1607/2016 + vulnerable file version" operator="AND">
+            <criteria comment="1607/2016 + vul file ver" operator="AND">
               <criteria comment="1607/2016" operator="OR">
                 <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
                 <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
@@ -33696,21 +33580,21 @@
               </criteria>
               <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" test_ref="oval:org.cisecurity:tst:7354" />
             </criteria>
-            <criteria comment="Win10 and vulnerable file version" operator="AND">
-              <criteria comment="Win10 1703" operator="OR">
+            <criteria comment="1703 + vul file ver" operator="AND">
+              <criteria comment="1703" operator="OR">
                 <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
                 <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
               </criteria>
               <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8804" test_ref="oval:org.cisecurity:tst:7355" />
             </criteria>
-            <criteria comment="1709 and vulnerable files versions" operator="AND">
+            <criteria comment="1709 + vul file ver" operator="AND">
               <criteria comment="1709" operator="OR">
                 <extend_definition comment="Microsoft Windows 10 Version 1709 (x86) is installed" definition_ref="oval:org.cisecurity:def:3479" />
                 <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
               </criteria>
               <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8830" test_ref="oval:org.cisecurity:tst:7360" />
             </criteria>
-            <criteria comment="1803 and vulnerable files versions" operator="AND">
+            <criteria comment="1803 + vul file ver" operator="AND">
               <criteria comment="1803" operator="OR">
                 <extend_definition comment="Microsoft Windows 10 Version 1803 (x86) is installed" definition_ref="oval:org.cisecurity:def:5016" />
                 <extend_definition comment="Microsoft Windows 10 Version 1803 (x64) is installed" definition_ref="oval:org.cisecurity:def:5014" />
@@ -33718,6 +33602,135 @@
               <criterion comment="Check if the version of mscorlib.dll is less than 4.7.3101.0" test_ref="oval:org.cisecurity:tst:7359" />
             </criteria>
           </criteria>
+        </criteria>
+        <criteria comment=".Net Framework 3.5.1 + WinOS + vul file ver" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 3.5 SP1 is installed" definition_ref="oval:org.mitre.oval:def:12542" />
+          <criteria comment="Win7/R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+            <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
+          </criteria>
+          <criterion comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" test_ref="oval:org.cisecurity:tst:7354" />
+        </criteria>
+        <criteria comment=".Net Framework 4.5.2 + WinOS + vul file ver" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.5.2 is installed" definition_ref="oval:org.mitre.oval:def:26546" />
+          <criteria comment="WinOS + vul file" operator="OR">
+            <criteria comment="2008/Win7/2008 R2 + vul file ver" operator="AND">
+              <criteria comment="2008/Win7/2008 R2" operator="OR">
+                <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+                <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+                <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+                <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
+                <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
+              </criteria>
+              <criterion comment="Check if the version of mscorlib.dll is less than 4.0.30319.36440" test_ref="oval:org.cisecurity:tst:7358" />
+            </criteria>
+            <criteria comment="2012 + vul file ver" operator="AND">
+              <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+              <criterion comment="Check if the version of mscorlib.dll is less than 4.0.30319.36440" test_ref="oval:org.cisecurity:tst:7358" />
+            </criteria>
+            <criteria comment="Win 8.1/2012 R2 + vul file ver" operator="AND">
+              <criteria comment="Win8.1/2012 R2" operator="OR">
+                <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+                <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+                <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+              </criteria>
+              <criterion comment="Check if the version of mscorlib.dll is less than 4.0.30319.36440" test_ref="oval:org.cisecurity:tst:7358" />
+            </criteria>
+          </criteria>
+        </criteria>
+        <criteria comment=".Net Framework 4.6 + 2008 + vul file ver" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.6 is installed" definition_ref="oval:org.cisecurity:def:4" />
+          <criteria comment="2008" operator="OR">
+            <extend_definition comment="Microsoft Windows Server 2008 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:4870" />
+            <extend_definition comment="Microsoft Windows Server 2008 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:5356" />
+          </criteria>
+          <criterion comment="Check if the version of Sqmapi.dll is less than 6.2.9200.16384" test_ref="oval:org.cisecurity:tst:7391" />
+        </criteria>
+        <criteria comment=".Net Framework 4.6/4.6.1/4.6.2/4.7/4.7.1 + Win7/2008 R2 + vul file ver" operator="AND">
+          <criteria comment=".Net Framework 4.6/4.6.1/4.6.2/4.7/4.7.1" operator="OR">
+            <extend_definition comment="Microsoft .NET Framework 4.6 is installed" definition_ref="oval:org.cisecurity:def:4" />
+            <extend_definition comment="Microsoft .NET Framework 4.6.1 is installed" definition_ref="oval:org.cisecurity:def:478" />
+            <extend_definition comment="Microsoft .NET Framework 4.6.2 is installed" definition_ref="oval:org.cisecurity:def:1654" />
+            <extend_definition comment="Microsoft .NET Framework 4.7 is installed" definition_ref="oval:org.cisecurity:def:2203" />
+            <extend_definition comment="Microsoft .NET Framework 4.7.1 is installed" definition_ref="oval:org.cisecurity:def:3929" />
+          </criteria>
+          <criteria comment="Win7/2008 R2" operator="OR">
+            <extend_definition comment="Microsoft Windows 7 (32-bit) is installed" definition_ref="oval:org.mitre.oval:def:6165" />
+            <extend_definition comment="Microsoft Windows 7 x64 Edition is installed" definition_ref="oval:org.mitre.oval:def:5950" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 is installed" definition_ref="oval:org.mitre.oval:def:12754" />
+            <extend_definition comment="Microsoft Windows Server 2008 R2 Itanium-Based Edition is installed" definition_ref="oval:org.mitre.oval:def:5954" />
+          </criteria>
+          <criterion comment="Check if the version of Sqmapi.dll is less than 6.2.9200.16384" test_ref="oval:org.cisecurity:tst:7391" />
+        </criteria>
+        <criteria comment=".Net Framework 4.6/4.6.1/4.6.2/4.7/4.7.1 + Win OS + vul file ver" operator="AND">
+          <criteria comment=".Net Framework 4.6/4.6.1/4.6.2/4.7/4.7.1" operator="OR">
+            <extend_definition comment="Microsoft .NET Framework 4.6 is installed" definition_ref="oval:org.cisecurity:def:4" />
+            <extend_definition comment="Microsoft .NET Framework 4.6.1 is installed" definition_ref="oval:org.cisecurity:def:478" />
+            <extend_definition comment="Microsoft .NET Framework 4.6.2 is installed" definition_ref="oval:org.cisecurity:def:1654" />
+            <extend_definition comment="Microsoft .NET Framework 4.7 is installed" definition_ref="oval:org.cisecurity:def:2203" />
+            <extend_definition comment="Microsoft .NET Framework 4.7.1 is installed" definition_ref="oval:org.cisecurity:def:3929" />
+          </criteria>
+          <criteria comment="2012/2012 R2/Win8.1" operator="OR">
+            <extend_definition comment="Microsoft Windows Server 2012 (64-bit) is installed" definition_ref="oval:org.mitre.oval:def:15585" />
+            <extend_definition comment="Microsoft Windows 8.1 (x86) is installed" definition_ref="oval:org.mitre.oval:def:20924" />
+            <extend_definition comment="Microsoft Windows 8.1 (x64) is installed" definition_ref="oval:org.mitre.oval:def:20956" />
+            <extend_definition comment="Microsoft Windows Server 2012 R2 is installed" definition_ref="oval:org.mitre.oval:def:18858" />
+          </criteria>
+          <criterion comment="Check if the version of mscorlib.dll is less than 4.7.2650.0" test_ref="oval:org.cisecurity:tst:7353" />
+        </criteria>
+        <criteria comment=".Net Framework 4.6/4.6.1/4.6.2 + Win10 + vul file ver" operator="AND">
+          <criteria comment=".Net Framework 4.6/4.6.1/4.6.2" operator="OR">
+            <extend_definition comment="Microsoft .NET Framework 4.6 is installed" definition_ref="oval:org.cisecurity:def:4" />
+            <extend_definition comment="Microsoft .NET Framework 4.6.1 is installed" definition_ref="oval:org.cisecurity:def:478" />
+            <extend_definition comment="Microsoft .NET Framework 4.6.2 is installed" definition_ref="oval:org.cisecurity:def:1654" />
+          </criteria>
+          <criteria comment="Win10" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:380" />
+            <extend_definition comment="Microsoft Windows 10 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:377" />
+          </criteria>
+          <criterion comment="Check if the version of mscorlib.dll is less than 4.6.1661.0" test_ref="oval:org.cisecurity:tst:7357" />
+        </criteria>
+        <criteria comment=".Net Framework 4.6.2/4.7/4.7.1 + 1607/2016 + vul file ver" operator="AND">
+          <criteria comment=".Net Framework 4.6.2/4.7/4.7.1" operator="OR">
+            <extend_definition comment="Microsoft .NET Framework 4.6.2 is installed" definition_ref="oval:org.cisecurity:def:1654" />
+            <extend_definition comment="Microsoft .NET Framework 4.7 is installed" definition_ref="oval:org.cisecurity:def:2203" />
+            <extend_definition comment="Microsoft .NET Framework 4.7.1 is installed" definition_ref="oval:org.cisecurity:def:3929" />
+          </criteria>
+          <criteria comment="1607/2016" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (32-bit) is installed" definition_ref="oval:org.cisecurity:def:1377" />
+            <extend_definition comment="Microsoft Windows 10 Version 1607 (64-bit) is installed" definition_ref="oval:org.cisecurity:def:1379" />
+            <extend_definition comment="Microsoft Windows Server 2016 is installed" definition_ref="oval:org.cisecurity:def:1269" />
+          </criteria>
+          <criterion comment="Check if the version of mscorlib.dll is less than 4.7.2650.0" test_ref="oval:org.cisecurity:tst:7353" />
+        </criteria>
+        <criteria comment=".Net Framework 4.7/4.7.1 + 1703 + vul file ver" operator="AND">
+          <criteria comment=".Net Framework 4.7/4.7.1" operator="OR">
+            <extend_definition comment="Microsoft .NET Framework 4.7 is installed" definition_ref="oval:org.cisecurity:def:2203" />
+            <extend_definition comment="Microsoft .NET Framework 4.7.1 is installed" definition_ref="oval:org.cisecurity:def:3929" />
+          </criteria>
+          <criteria comment="1703" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x86) is installed" definition_ref="oval:org.cisecurity:def:2084" />
+            <extend_definition comment="Microsoft Windows 10 Version 1703 (x64) is installed" definition_ref="oval:org.cisecurity:def:2083" />
+          </criteria>
+          <criterion comment="Check if the version of mscorlib.dll is less than 4.7.2650.0" test_ref="oval:org.cisecurity:tst:7353" />
+        </criteria>
+        <criteria comment=".Net Framework 4.7.1 + 1709 + vul file ver" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.7.1 is installed" definition_ref="oval:org.cisecurity:def:3929" />
+          <criteria comment="1709" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1709 (x86) is installed" definition_ref="oval:org.cisecurity:def:3479" />
+            <extend_definition comment="Microsoft Windows 10 Version 1709 (x64) is installed" definition_ref="oval:org.cisecurity:def:3481" />
+          </criteria>
+          <criterion comment="Check if the version of mscorlib.dll is less than 4.7.2650.0" test_ref="oval:org.cisecurity:tst:7353" />
+        </criteria>
+        <criteria comment=".Net Framework 4.7.2 + 1803 + vul file ver" operator="AND">
+          <extend_definition comment="Microsoft .NET Framework 4.7.2 is installed" definition_ref="oval:org.cisecurity:def:5111" />
+          <criteria comment="1803" operator="OR">
+            <extend_definition comment="Microsoft Windows 10 Version 1803 (x86) is installed" definition_ref="oval:org.cisecurity:def:5016" />
+            <extend_definition comment="Microsoft Windows 10 Version 1803 (x64) is installed" definition_ref="oval:org.cisecurity:def:5014" />
+          </criteria>
+          <criterion comment="Check if the version of mscorlib.dll is less than 4.7.3101.0" test_ref="oval:org.cisecurity:tst:7359" />
         </criteria>
       </criteria>
     </definition>
@@ -33748,7 +33761,7 @@
         </criteria>
       </criteria>
     </definition>
-    <definition id="oval:org.cisecurity:def:5112" class="vulnerability" version="3">
+    <definition id="oval:org.cisecurity:def:5112" class="vulnerability" version="4">
       <metadata>
         <title>.NET and .NET Core Denial Of Service Vulnerability - CVE-2018-1039</title>
         <affected family="windows">
@@ -34840,6 +34853,328 @@
       <criteria comment="Vulnerable version of Git" operator="AND">
         <extend_definition comment="Git is installed" definition_ref="oval:org.cisecurity:def:5113" />
         <criterion comment="Git version is less than 2.14.2" test_ref="oval:org.cisecurity:tst:7388" />
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:5142" class="vulnerability" version="1">
+      <metadata>
+        <title>A Type Confusion	Vulnerability in Adobe Flash Player 29.0.0.140 and earlier versions - CVE-2018-4944</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2018-4944" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4944" source="CVE" />
+        <reference ref_id="APSB18-16" ref_url="https://helpx.adobe.com/security/products/flash-player/apsb18-16.html" source="APSB18-16" />
+        <description>Adobe Flash Player versions 29.0.0.140 and earlier have an exploitable type confusion vulnerability. Successful exploitation could lead to arbitrary code execution in the context of the current user.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-06-18T06:10:11+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable Adobe Flash Player + Vulnerable Version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than or equal 29.0.0.140" test_ref="oval:org.cisecurity:tst:7396" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than or equal 29.0.0.140" test_ref="oval:org.cisecurity:tst:7395" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than or equal 29.0.0.140" test_ref="oval:org.cisecurity:tst:7394" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:5143" class="vulnerability" version="1">
+      <metadata>
+        <title>A Use-After-Free	in Adobe Flash Player 29.0.0.113 and earlier versions - CVE-2018-4932</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2018-4932" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4932" source="CVE" />
+        <reference ref_id="APSB18-08" ref_url="https://helpx.adobe.com/security/products/flash-player/apsb18-08.html" source="APSB18-08" />
+        <description>Adobe Flash Player versions 29.0.0.113 and earlier have an exploitable Use-After-Free vulnerability. Successful exploitation could lead to arbitrary code execution in the context of the current user.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-06-18T06:10:11+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable Adobe Flash Player + Vulnerable Version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7392" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7393" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7397" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:5144" class="vulnerability" version="1">
+      <metadata>
+        <title>Heap Overflow vulnerability in Adobe Flash Player 29.0.0.113 and earlier versions - CVE-2018-4936</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2018-4936" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4936" source="CVE" />
+        <reference ref_id="APSB18-08" ref_url="https://helpx.adobe.com/security/products/flash-player/apsb18-08.html" source="APSB18-08" />
+        <description>Adobe Flash Player versions 29.0.0.113 and earlier have an exploitable Heap Overflow vulnerability. Successful exploitation could lead to information disclosure.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-06-20T10:31:28+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable Adobe Flash Player + Vulnerable Version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7392" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7393" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7397" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:5145" class="vulnerability" version="1">
+      <metadata>
+        <title>Out-of-bounds read in Adobe Flash Player 29.0.0.113 and earlier versions - CVE-2018-4933</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2018-4933" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4933" source="CVE" />
+        <reference ref_id="APSB18-08" ref_url="https://helpx.adobe.com/security/products/flash-player/apsb18-08.html" source="APSB18-08" />
+        <description>Adobe Flash Player versions 29.0.0.113 and earlier have an exploitable out-of-bounds read vulnerability. Successful exploitation could lead to information disclosure.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-06-18T06:10:11+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable Adobe Flash Player + Vulnerable Version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7392" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7393" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7397" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:5146" class="vulnerability" version="1">
+      <metadata>
+        <title>Out-of-bounds read in Adobe Flash Player 29.0.0.113 and earlier versions - CVE-2018-4934</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2018-4934" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4934" source="CVE" />
+        <reference ref_id="APSB18-08" ref_url="https://helpx.adobe.com/security/products/flash-player/apsb18-08.html" source="APSB18-08" />
+        <description>Adobe Flash Player versions 29.0.0.113 and earlier have an exploitable out-of-bounds read vulnerability. Successful exploitation could lead to information disclosure.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-06-20T10:31:28+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable Adobe Flash Player + Vulnerable Version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7392" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7393" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7397" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:5147" class="vulnerability" version="1">
+      <metadata>
+        <title>Out-of-bounds write vulnerability in Adobe Flash Player 29.0.0.113 and earlier versions - CVE-2018-4937</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2018-4937" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4937" source="CVE" />
+        <reference ref_id="APSB18-08" ref_url="https://helpx.adobe.com/security/products/flash-player/apsb18-08.html" source="APSB18-08" />
+        <description>Adobe Flash Player versions 29.0.0.113 and earlier have an exploitable out-of-bounds write vulnerability. Successful exploitation could lead to arbitrary code execution in the context of the current user.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-06-20T10:31:28+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable Adobe Flash Player + Vulnerable Version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7392" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7393" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7397" />
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:org.cisecurity:def:5148" class="vulnerability" version="1">
+      <metadata>
+        <title>Out-of-bounds write vulnerability in Adobe Flash Player 29.0.0.113 and earlier versions - CVE-2018-4935</title>
+        <affected family="windows">
+          <platform>Microsoft Windows 7</platform>
+          <platform>Microsoft Windows 8</platform>
+          <platform>Microsoft Windows 8.1</platform>
+          <platform>Microsoft Windows 10</platform>
+          <platform>Microsoft Windows Server 2003</platform>
+          <platform>Microsoft Windows Server 2008</platform>
+          <platform>Microsoft Windows Server 2008 R2</platform>
+          <platform>Microsoft Windows Server 2012</platform>
+          <platform>Microsoft Windows Server 2012 R2</platform>
+          <platform>Microsoft Windows Server 2016</platform>
+          <product>ActiveX Control</product>
+          <product>Adobe Flash Player</product>
+          <product>Pepper Flash</product>
+        </affected>
+        <reference ref_id="CVE-2018-4935" ref_url="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-4935" source="CVE" />
+        <reference ref_id="APSB18-08" ref_url="https://helpx.adobe.com/security/products/flash-player/apsb18-08.html" source="APSB18-08" />
+        <description>Adobe Flash Player versions 29.0.0.113 and earlier have an exploitable out-of-bounds write vulnerability. Successful exploitation could lead to arbitrary code execution in the context of the current user.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2018-06-20T10:31:28+00:00">
+              <contributor organization="DTCC">Jose Israel Padilla</contributor>
+            </submitted>
+          </dates>
+          <status>INITIAL SUBMISSION</status>
+          <min_schema_version>5.10</min_schema_version>
+        </oval_repository>
+      </metadata>
+      <criteria comment="Vulnerable Adobe Flash Player + Vulnerable Version" operator="OR">
+        <criteria comment="Adobe Flash Player is installed + version" operator="AND">
+          <extend_definition comment="Adobe Flash Player is installed" definition_ref="oval:org.mitre.oval:def:6700" />
+          <criterion comment="Check if Adobe Flash Player version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7392" />
+        </criteria>
+        <criteria comment="Pepper Flash for Google Chrome version" operator="AND">
+          <extend_definition comment="Google Chrome is installed" definition_ref="oval:org.mitre.oval:def:11914" />
+          <criterion comment="Check if Pepper Flash for Google Chrome version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7393" />
+        </criteria>
+        <criteria comment="ActiveX Control is installed + Flash*.ocx version" operator="AND">
+          <extend_definition comment="ActiveX Control is installed" definition_ref="oval:org.mitre.oval:def:26707" />
+          <criterion comment="Check if Flash*.ocx version is less than or equal 29.0.0.113" test_ref="oval:org.cisecurity:tst:7397" />
+        </criteria>
       </criteria>
     </definition>
     <definition id="oval:org.mitre.oval:def:627" class="inventory" version="14">
@@ -43113,8 +43448,8 @@
       <object object_ref="oval:org.mitre.oval:obj:564" />
       <state state_ref="oval:org.cisecurity:ste:5481" />
     </file_test>
-    <file_test id="oval:org.cisecurity:tst:7353" check="all" check_existence="at_least_one_exists" comment="Check if the version of mscorlib.dll is less than 4.7.2650.0" version="2">
-      <object object_ref="oval:org.mitre.oval:obj:2009" />
+    <file_test id="oval:org.cisecurity:tst:7353" check="all" check_existence="at_least_one_exists" comment="Check if the version of mscorlib.dll is less than 4.7.2650.0" version="3">
+      <object object_ref="oval:org.mitre.oval:obj:15823" />
       <state state_ref="oval:org.cisecurity:ste:5483" />
     </file_test>
     <file_test id="oval:org.cisecurity:tst:7354" check="all" check_existence="at_least_one_exists" comment="Check if the version of mscorlib.dll is less than 2.0.50727.8784" version="2">
@@ -43129,16 +43464,16 @@
       <object object_ref="oval:org.cisecurity:obj:509" />
       <state state_ref="oval:org.cisecurity:ste:5487" />
     </registry_test>
-    <file_test id="oval:org.cisecurity:tst:7357" check="all" check_existence="at_least_one_exists" comment="Check if the version of mscorlib.dll is less than 4.6.1661.0" version="2">
-      <object object_ref="oval:org.mitre.oval:obj:2009" />
+    <file_test id="oval:org.cisecurity:tst:7357" check="all" check_existence="at_least_one_exists" comment="Check if the version of mscorlib.dll is less than 4.6.1661.0" version="3">
+      <object object_ref="oval:org.mitre.oval:obj:15823" />
       <state state_ref="oval:org.cisecurity:ste:5485" />
     </file_test>
-    <file_test id="oval:org.cisecurity:tst:7358" check="all" check_existence="at_least_one_exists" comment="Check if the version of mscorlib.dll is less than 4.0.30319.36440" version="2">
-      <object object_ref="oval:org.mitre.oval:obj:2009" />
+    <file_test id="oval:org.cisecurity:tst:7358" check="all" check_existence="at_least_one_exists" comment="Check if the version of mscorlib.dll is less than 4.0.30319.36440" version="4">
+      <object object_ref="oval:org.mitre.oval:obj:15823" />
       <state state_ref="oval:org.cisecurity:ste:5484" />
     </file_test>
-    <file_test id="oval:org.cisecurity:tst:7359" check="all" check_existence="at_least_one_exists" comment="Check if the version of mscorlib.dll is less than 4.7.3101.0" version="2">
-      <object object_ref="oval:org.mitre.oval:obj:2009" />
+    <file_test id="oval:org.cisecurity:tst:7359" check="all" check_existence="at_least_one_exists" comment="Check if the version of mscorlib.dll is less than 4.7.3101.0" version="4">
+      <object object_ref="oval:org.mitre.oval:obj:15823" />
       <state state_ref="oval:org.cisecurity:ste:5482" />
     </file_test>
     <file_test id="oval:org.cisecurity:tst:7360" check="all" check_existence="at_least_one_exists" comment="Check if the version of mscorlib.dll is less than 2.0.50727.8830" version="2">
@@ -43255,6 +43590,34 @@
       <object object_ref="oval:org.cisecurity:obj:1228" />
       <state state_ref="oval:org.cisecurity:ste:5516" />
     </registry_test>
+    <file_test id="oval:org.cisecurity:tst:7391" check="all" check_existence="at_least_one_exists" comment="Check if the version of Sqmapi.dll is less than 6.2.9200.16384" version="1">
+      <object object_ref="oval:org.cisecurity:obj:1236" />
+      <state state_ref="oval:org.cisecurity:ste:2612" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:7392" check="at least one" check_existence="at_least_one_exists" comment="Check if Adobe Flash Player version is less than or equal 29.0.0.113" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:7290" />
+      <state state_ref="oval:org.cisecurity:ste:5522" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:7393" check="at least one" check_existence="at_least_one_exists" comment="Check if Pepper Flash for Google Chrome version is less than or equal 29.0.0.113" version="1">
+      <object object_ref="oval:org.cisecurity:obj:176" />
+      <state state_ref="oval:org.cisecurity:ste:5519" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:7394" check="all" check_existence="at_least_one_exists" comment="Check if Flash*.ocx version is less than or equal 29.0.0.140" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:41861" />
+      <state state_ref="oval:org.cisecurity:ste:5520" />
+    </file_test>
+    <file_test id="oval:org.cisecurity:tst:7395" check="at least one" check_existence="at_least_one_exists" comment="Check if Pepper Flash for Google Chrome version is less than or equal 29.0.0.140" version="1">
+      <object object_ref="oval:org.cisecurity:obj:176" />
+      <state state_ref="oval:org.cisecurity:ste:5520" />
+    </file_test>
+    <registry_test id="oval:org.cisecurity:tst:7396" check="at least one" check_existence="at_least_one_exists" comment="Check if Adobe Flash Player version is less than or equal 29.0.0.140" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:7290" />
+      <state state_ref="oval:org.cisecurity:ste:5521" />
+    </registry_test>
+    <file_test id="oval:org.cisecurity:tst:7397" check="all" check_existence="at_least_one_exists" comment="Check if Flash*.ocx version is less than or equal 29.0.0.113" version="1">
+      <object object_ref="oval:org.mitre.oval:obj:41861" />
+      <state state_ref="oval:org.cisecurity:ste:5519" />
+    </file_test>
     <file_test id="oval:org.mitre.oval:tst:38" check="at least one" check_existence="at_least_one_exists" comment="Word Viewer is installed." version="4">
       <object object_ref="oval:org.mitre.oval:obj:1517" />
     </file_test>
@@ -44551,6 +44914,11 @@
       <path var_check="at least one" var_ref="oval:org.cisecurity:var:750" />
       <filename>Graph.Exe</filename>
     </file_object>
+    <file_object id="oval:org.cisecurity:obj:1236" comment="Object holds the Sqmapi.dll for .Net 4.0 to 4.7" version="1">
+      <behaviors recurse_direction="down" />
+      <path var_check="at least one" var_ref="oval:org.mitre.oval:var:961" />
+      <filename>Sqmapi.dll</filename>
+    </file_object>
     <family_object id="oval:org.mitre.oval:obj:99" comment="This is the default family object. Only one family object should exist." version="1" />
     <registry_object id="oval:org.mitre.oval:obj:219" comment="This registry key identifies the system root." version="5">
       <hive>HKEY_LOCAL_MACHINE</hive>
@@ -44844,6 +45212,10 @@
       <key>SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5</key>
       <name>SP</name>
     </registry_object>
+    <file_object id="oval:org.mitre.oval:obj:15823" comment="Object holds the mscorlib.dll for .Net 4.0 to 4.7" version="19">
+      <path var_check="all" var_ref="oval:org.mitre.oval:var:961" />
+      <filename>Mscorlib.dll</filename>
+    </file_object>
     <registry_object id="oval:org.mitre.oval:obj:15888" comment="The registry key holding the version of Google Chrome" version="36">
       <set>
         <object_reference>oval:org.mitre.oval:obj:15257</object_reference>
@@ -45982,6 +46354,9 @@
     </registry_state>
     <file_state id="oval:org.cisecurity:ste:2411" comment="State matches version less than 14.0.7181.5000" version="1">
       <version datatype="version" operation="less than">14.0.7181.5000</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:2612" comment="State holds if the version is less than 6.2.9200.16384" version="2">
+      <version datatype="version" operation="less than">6.2.9200.16384</version>
     </file_state>
     <registry_state id="oval:org.cisecurity:ste:2761" comment="State matches value equals to 460805" version="2">
       <value>460805</value>
@@ -47861,6 +48236,18 @@
     <registry_state id="oval:org.cisecurity:ste:5518" comment="State matches if the version is less tha 2.14.2" version="1">
       <value datatype="version" operation="less than">2.14.2</value>
     </registry_state>
+    <file_state id="oval:org.cisecurity:ste:5519" comment="State holds if the version is less than or equal 29.0.0.113" version="1">
+      <version datatype="version" operation="less than or equal">29.0.0.113</version>
+    </file_state>
+    <file_state id="oval:org.cisecurity:ste:5520" comment="State holds if the version is less than or equal 29.0.0.140" version="1">
+      <version datatype="version" operation="less than or equal">29.0.0.140</version>
+    </file_state>
+    <registry_state id="oval:org.cisecurity:ste:5521" comment="State holds if the version is less than or equal 29.0.0.140" version="1">
+      <value datatype="version" operation="less than or equal">29.0.0.140</value>
+    </registry_state>
+    <registry_state id="oval:org.cisecurity:ste:5522" comment="State holds if the version is less than or equal 29.0.0.113" version="1">
+      <value datatype="version" operation="less than or equal">29.0.0.113</value>
+    </registry_state>
     <family_state id="oval:org.mitre.oval:ste:99" comment="Microsoft Windows family" version="4">
       <family operation="case insensitive equals">windows</family>
     </family_state>
@@ -48376,6 +48763,12 @@
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:955" comment="Office 2013 installation directory" datatype="string" version="4">
       <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:23980" />
+    </local_variable>
+    <local_variable id="oval:org.mitre.oval:var:961" comment=".NET 4.0 Framework directory" datatype="string" version="18">
+      <concat>
+        <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:219" />
+        <literal_component>\Microsoft.NET\Framework\v4.0.30319</literal_component>
+      </concat>
     </local_variable>
     <local_variable id="oval:org.mitre.oval:var:984" comment="Variable holds the path to OpenSSL install directory (x86)" datatype="string" version="3">
       <object_component item_field="value" object_ref="oval:org.mitre.oval:obj:38779" />
