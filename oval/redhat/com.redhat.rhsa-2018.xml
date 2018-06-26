@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1530030359</content_version>
+    <content_version>1530032506</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20180007" class="patch" version="602">
@@ -13331,6 +13331,115 @@ For more details about the security issue(s), including the impact, a CVSS score
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181965" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1965: kernel security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1965-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1965" source="RHSA" />
+        <reference ref_id="CVE-2017-11600" ref_url="https://access.redhat.com/security/cve/CVE-2017-11600" source="CVE" />
+        <reference ref_id="CVE-2018-3639" ref_url="https://access.redhat.com/security/cve/CVE-2018-3639" source="CVE" />
+        <description>The kernel packages contain the Linux kernel, the core of any Linux operating system.
+
+Security Fix(es):
+
+* An industry-wide issue was found in the way many modern microprocessor designs have implemented speculative execution of Load &amp; Store instructions (a commonly used performance optimization). It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory read from address to which a recent memory write has occurred may see an older value and subsequently cause an update into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to read privileged memory by conducting targeted cache side-channel attacks. (CVE-2018-3639, PowerPC, x86 AMD)
+
+* kernel: Out-of-bounds access via an XFRM_MSG_MIGRATE xfrm Netlink message (CVE-2017-11600)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank Ken Johnson (Microsoft Security Response Center) and Jann Horn (Google Project Zero) for reporting CVE-2018-3639.
+
+Bug Fix(es):
+
+These updated kernel packages include also numerous bug fixes. Space precludes documenting all of the bug fixes in this advisory. See the descriptions in the related Knowledge Article: https://access.redhat.com/articles/3485871</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-26" />
+          <updated date="2018-06-26" />
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-11600" impact="moderate" public="20170711">CVE-2017-11600</cve>
+          <cve cvss3="5.6/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2018-3639" public="20180521:2100">CVE-2018-3639</cve>
+          <bugzilla id="1474928" href="https://bugzilla.redhat.com/1474928">CVE-2017-11600 kernel: Out-of-bounds access via an XFRM_MSG_MIGRATE xfrm Netlink message</bugzilla>
+          <bugzilla id="1566890" href="https://bugzilla.redhat.com/1566890">CVE-2018-3639 hw: cpu: speculative store bypass</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180007001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180007002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180007003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180007004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965011" />
+            <criterion comment="kernel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-abi-whitelists is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965005" />
+            <criterion comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-bootwrapper is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965033" />
+            <criterion comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007034" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965009" />
+            <criterion comment="kernel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug-devel is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965021" />
+            <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-devel is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965017" />
+            <criterion comment="kernel-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-doc is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965007" />
+            <criterion comment="kernel-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-headers is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965025" />
+            <criterion comment="kernel-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965015" />
+            <criterion comment="kernel-kdump is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump-devel is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965023" />
+            <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-tools is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965031" />
+            <criterion comment="kernel-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-tools-libs is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965029" />
+            <criterion comment="kernel-tools-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-tools-libs-devel is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965027" />
+            <criterion comment="kernel-tools-libs-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007032" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="perf is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965019" />
+            <criterion comment="perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-perf is earlier than 0:3.10.0-862.6.3.el7" test_ref="oval:com.redhat.rhsa:tst:20181965013" />
+            <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
     <definition id="oval:com.redhat.rhsa:def:20181967" class="patch" version="601">
       <metadata>
         <title>RHSA-2018:1967: kernel-alt security and bug fix update (Important)</title>
@@ -13432,6 +13541,431 @@ These updated kernel-alt packages include numerous bug fixes. Space precludes do
           <criteria operator="AND">
             <criterion comment="python-perf is earlier than 0:4.14.0-49.8.1.el7a" test_ref="oval:com.redhat.rhsa:tst:20181967019" />
             <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181979" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1979: pki-core security, bug fix, and enhancement update (Moderate)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1979-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1979" source="RHSA" />
+        <reference ref_id="CVE-2018-1080" ref_url="https://access.redhat.com/security/cve/CVE-2018-1080" source="CVE" />
+        <description>The Public Key Infrastructure (PKI) Core contains fundamental packages required by Red Hat Certificate System.
+
+Security Fix(es):
+
+* pki-core: Mishandled ACL configuration in AAclAuthz.java reverses rules that allow and deny access (CVE-2018-1080)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+This issue was discovered by Fraser Tweedale (Red Hat).
+
+Bug Fix(es):
+
+* Previously, when ECC keys were enrolled, Certificate Management over CMS (CMC) authentication failed with a "TokenException: Unable to insert certificate into temporary database" error. As a consequence, the enrollment failed. This update fixes the problem. As a result, the mentioned bug no longer occurs. (BZ#1550581)
+
+* Previously, Certificate System used the same enrollment profiles for issuing RSA and ECC certificates. As a consequence, the key usage extension in issued certificates did not meet the Common Criteria standard. This update adds ECC-specific enrollment profiles where the key usage extension for TLS server and client certificates are different as described in RFC 6960. Additionally, the update changes existing profiles to issue only RSA certificates. As a result, the key usage extension in ECC certificates now meets the Common Criteria standard. (BZ#1554726)
+
+* The Certificate System server rejects saving invalid access control lists (ACL). As a consequence, when saving an ACL with an empty expression, the server rejected the update and the pkiconsole utility displayed an StringIndexOutOfBoundsException error. With this update, the utility rejects empty ACL expressions. As a result, invalid ACLs cannot be saved and the error is no longer displayed. (BZ#1557883)
+
+* Previously, due to a bug in the Certificate System installation procedure, installing a Key Recovery Authority (KRA) with ECC keys failed. To fix the problem, the installation process has been updated to handle both RSA and ECC subsystems automatically. As a result, installing subsystems with ECC keys no longer fail. (BZ#1581134)
+
+* Previously, during verification, Certificate System encoded the ECC public key incorrectly in CMC Certificate Request Message Format (CRMF) requests. As a consequence, requesting an ECC certificate with Certificate Management over CMS (CMC) in CRMF failed. The problem has been fixed, and as a result, CMC CRMF requests using ECC keys work as expected. (BZ#1585945)
+
+Enhancement(s):
+
+* The pkispawn man page has been updated and now describes the --skip-configuration and --skip-installation parameters. (BZ#1551067)
+
+* With this update, Certificate System adds the Subject Alternative Name (SAN) extension by default to server certificates and sets it to the Common Name (CN) of the certificate. (BZ#1581135)
+
+* With this enhancement, users can create Certificate Request Message Format (CRMF) requests without the key archival option when using the CRMFPopClient utility. This feature increases flexibility because a Key Recovery Authority (KRA) certificate is no longer required. Previously, if the user did not pass the "-b transport_certificate_file" option to CRMFPopClient, the utility automatically used the KRA transport certificate stored in the transport.txt file. With this update, if "-b transport_certificate_file" is not specified, Certificate System creates a request without using key archival. (BZ#1588945)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Moderate</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-26" />
+          <updated date="2018-06-26" />
+          <cve cvss3="7.5/CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H" cwe="CWE-284" href="https://access.redhat.com/security/cve/CVE-2018-1080" public="20180315">CVE-2018-1080</cve>
+          <bugzilla id="1550581" href="https://bugzilla.redhat.com/1550581">CMCAuth throws  org.mozilla.jss.crypto.TokenException: Unable to insert certificate into temporary database [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1551067" href="https://bugzilla.redhat.com/1551067">[MAN] Add --skip-configuration and --skip-installation into pkispawn man page. [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1552241" href="https://bugzilla.redhat.com/1552241">Make sslget aware of TLSv1_2 ciphers [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1554726" href="https://bugzilla.redhat.com/1554726">Need ECC-specific Enrollment Profiles for standard conformance [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1554727" href="https://bugzilla.redhat.com/1554727">Permit additional FIPS ciphers to be enabled by default for RSA . . . [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1556657" href="https://bugzilla.redhat.com/1556657">CVE-2018-1080 pki-core: Mishandled ACL configuration in AAclAuthz.java reverses rules that allow and deny access</bugzilla>
+          <bugzilla id="1557880" href="https://bugzilla.redhat.com/1557880">[MAN] Missing Man pages for tools CMCRequest, CMCResponse, CMCSharedToken [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1557883" href="https://bugzilla.redhat.com/1557883">Console: Adding ACL from pki-console gives StringIndexOutOfBoundsException (RHEL) [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1558919" href="https://bugzilla.redhat.com/1558919">Not able to generate certificate request with ECC using pki client-cert-request [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1571582" href="https://bugzilla.redhat.com/1571582">[MAN] Missing Man pages for tools CMCRequest, CMCResponse, CMCSharedToken (typos) [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1572548" href="https://bugzilla.redhat.com/1572548">IPA install with external-CA is failing when FIPS mode enabled. [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1581134" href="https://bugzilla.redhat.com/1581134">ECC installation for non CA subsystems needs improvement [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1581135" href="https://bugzilla.redhat.com/1581135">SAN in internal SSL server certificate in pkispawn configuration step [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1585945" href="https://bugzilla.redhat.com/1585945">CMC CRMF requests result in InvalidKeyFormatException when signing algorithm is ECC [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1587826" href="https://bugzilla.redhat.com/1587826">ExternalCA: Installation failed during csr generation with ecc [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1588944" href="https://bugzilla.redhat.com/1588944">Cert validation for installation with external CA cert [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1588945" href="https://bugzilla.redhat.com/1588945">CRMFPopClient tool - should allow option to do no key archival [rhel-7.5.z]</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180007001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180007002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180007003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180007004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="pki-base is earlier than 0:10.5.1-13.1.el7_5" test_ref="oval:com.redhat.rhsa:tst:20181979017" />
+            <criterion comment="pki-base is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181979018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="pki-base-java is earlier than 0:10.5.1-13.1.el7_5" test_ref="oval:com.redhat.rhsa:tst:20181979009" />
+            <criterion comment="pki-base-java is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181979010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="pki-ca is earlier than 0:10.5.1-13.1.el7_5" test_ref="oval:com.redhat.rhsa:tst:20181979011" />
+            <criterion comment="pki-ca is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181979012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="pki-javadoc is earlier than 0:10.5.1-13.1.el7_5" test_ref="oval:com.redhat.rhsa:tst:20181979015" />
+            <criterion comment="pki-javadoc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181979016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="pki-kra is earlier than 0:10.5.1-13.1.el7_5" test_ref="oval:com.redhat.rhsa:tst:20181979019" />
+            <criterion comment="pki-kra is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181979020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="pki-server is earlier than 0:10.5.1-13.1.el7_5" test_ref="oval:com.redhat.rhsa:tst:20181979013" />
+            <criterion comment="pki-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181979014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="pki-symkey is earlier than 0:10.5.1-13.1.el7_5" test_ref="oval:com.redhat.rhsa:tst:20181979005" />
+            <criterion comment="pki-symkey is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181979006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="pki-tools is earlier than 0:10.5.1-13.1.el7_5" test_ref="oval:com.redhat.rhsa:tst:20181979007" />
+            <criterion comment="pki-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20181979008" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20181997" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:1997: libvirt security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:1997-00" ref_url="https://access.redhat.com/errata/RHSA-2018:1997" source="RHSA" />
+        <reference ref_id="CVE-2018-3639" ref_url="https://access.redhat.com/security/cve/CVE-2018-3639" source="CVE" />
+        <description>The libvirt library contains a C API for managing and interacting with the virtualization capabilities of Linux and other operating systems. In addition, libvirt provides tools for remote management of virtualized systems.
+
+Security Fix(es):
+
+* An industry-wide issue was found in the way many modern microprocessor designs have implemented speculative execution of Load &amp; Store instructions (a commonly used performance optimization). It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory read from address to which a recent memory write has occurred may see an older value and subsequently cause an update into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to read privileged memory by conducting targeted cache side-channel attacks. (CVE-2018-3639)
+
+Note: This is the libvirt side of the CVE-2018-3639 mitigation that includes support for guests running on hosts with AMD processors.
+
+Red Hat would like to thank Ken Johnson (Microsoft Security Response Center) and Jann Horn (Google Project Zero) for reporting this issue.
+
+Bug Fix(es):
+
+* Previously, the virtlogd service logged redundant AVC denial errors when a guest virtual machine was started. With this update, the virtlogd service no longer attempts to send shutdown inhibition calls to systemd, which prevents the described errors from occurring. (BZ#1573268)
+
+* Prior to this update, guest virtual machine actions that use a python library in some cases failed and "Hash operation not allowed during iteration" error messages were logged. Several redundant thread access checks have been removed, and the problem no longer occurs. (BZ#1581364)
+
+* The "virsh capabilities" command previously displayed an inaccurate number of 4 KiB memory pages on systems with very large amounts of memory. This update optimizes the memory diagnostic mechanism to ensure memory page numbers are displayed correctly on such systems. (BZ#1582418)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-26" />
+          <updated date="2018-06-26" />
+          <cve cvss3="5.6/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2018-3639" public="20180521:2100">CVE-2018-3639</cve>
+          <bugzilla id="1566890" href="https://bugzilla.redhat.com/1566890">CVE-2018-3639 hw: cpu: speculative store bypass</bugzilla>
+          <bugzilla id="1573268" href="https://bugzilla.redhat.com/1573268">Got lots OVS daemon ERRs while starting a OVS-dpdk guest [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1581364" href="https://bugzilla.redhat.com/1581364">Hash operation not allowed during iteration [rhel-7.5.z]</bugzilla>
+          <bugzilla id="1582418" href="https://bugzilla.redhat.com/1582418">virsh capabilities reports invalid values for 4K pages [rhel-7.5.z]</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180007001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180007002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180007003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180007004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="libvirt is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997013" />
+            <criterion comment="libvirt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-admin is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997029" />
+            <criterion comment="libvirt-admin is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029062" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-client is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997023" />
+            <criterion comment="libvirt-client is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029044" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997041" />
+            <criterion comment="libvirt-daemon is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029060" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-config-network is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997033" />
+            <criterion comment="libvirt-daemon-config-network is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-config-nwfilter is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997053" />
+            <criterion comment="libvirt-daemon-config-nwfilter is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-interface is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997009" />
+            <criterion comment="libvirt-daemon-driver-interface is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-lxc is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997049" />
+            <criterion comment="libvirt-daemon-driver-lxc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029028" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-network is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997051" />
+            <criterion comment="libvirt-daemon-driver-network is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029030" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-nodedev is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997025" />
+            <criterion comment="libvirt-daemon-driver-nodedev is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-nwfilter is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997063" />
+            <criterion comment="libvirt-daemon-driver-nwfilter is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029052" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-qemu is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997057" />
+            <criterion comment="libvirt-daemon-driver-qemu is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-secret is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997005" />
+            <criterion comment="libvirt-daemon-driver-secret is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029032" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-storage is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997019" />
+            <criterion comment="libvirt-daemon-driver-storage is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029064" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-storage-core is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997011" />
+            <criterion comment="libvirt-daemon-driver-storage-core is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029050" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-storage-disk is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997055" />
+            <criterion comment="libvirt-daemon-driver-storage-disk is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029056" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-storage-gluster is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997035" />
+            <criterion comment="libvirt-daemon-driver-storage-gluster is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-storage-iscsi is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997017" />
+            <criterion comment="libvirt-daemon-driver-storage-iscsi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-storage-logical is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997047" />
+            <criterion comment="libvirt-daemon-driver-storage-logical is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029036" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-storage-mpath is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997061" />
+            <criterion comment="libvirt-daemon-driver-storage-mpath is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029058" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-storage-rbd is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997031" />
+            <criterion comment="libvirt-daemon-driver-storage-rbd is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029046" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-driver-storage-scsi is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997039" />
+            <criterion comment="libvirt-daemon-driver-storage-scsi is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029042" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-kvm is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997043" />
+            <criterion comment="libvirt-daemon-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-daemon-lxc is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997021" />
+            <criterion comment="libvirt-daemon-lxc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-devel is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997037" />
+            <criterion comment="libvirt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029048" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-docs is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997007" />
+            <criterion comment="libvirt-docs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029038" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-libs is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997045" />
+            <criterion comment="libvirt-libs is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029054" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-lock-sanlock is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997015" />
+            <criterion comment="libvirt-lock-sanlock is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-login-shell is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997027" />
+            <criterion comment="libvirt-login-shell is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029034" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="libvirt-nss is earlier than 0:3.9.0-14.el7_5.6" test_ref="oval:com.redhat.rhsa:tst:20181997059" />
+            <criterion comment="libvirt-nss is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180029040" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20182001" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:2001: qemu-kvm security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:2001-00" ref_url="https://access.redhat.com/errata/RHSA-2018:2001" source="RHSA" />
+        <reference ref_id="CVE-2018-3639" ref_url="https://access.redhat.com/security/cve/CVE-2018-3639" source="CVE" />
+        <description>Kernel-based Virtual Machine (KVM) is a full virtualization solution for Linux on a variety of architectures. The qemu-kvm packages provide the user-space component for running virtual machines that use KVM.
+
+Security Fix(es):
+
+* An industry-wide issue was found in the way many modern microprocessor designs have implemented speculative execution of Load &amp; Store instructions (a commonly used performance optimization). It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory read from address to which a recent memory write has occurred may see an older value and subsequently cause an update into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to read privileged memory by conducting targeted cache side-channel attacks. (CVE-2018-3639)
+
+Note: This is the qemu-kvm side of the CVE-2018-3639 mitigation that includes support for guests running on hosts with AMD processors.
+
+Red Hat would like to thank Ken Johnson (Microsoft Security Response Center) and Jann Horn (Google Project Zero) for reporting this issue.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-26" />
+          <updated date="2018-06-26" />
+          <cve cvss3="5.6/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2018-3639" public="20180521:2100">CVE-2018-3639</cve>
+          <bugzilla id="1566890" href="https://bugzilla.redhat.com/1566890">CVE-2018-3639 hw: cpu: speculative store bypass</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180007001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180007002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180007003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180007004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="qemu-img is earlier than 10:1.5.3-156.el7_5.3" test_ref="oval:com.redhat.rhsa:tst:20182001011" />
+            <criterion comment="qemu-img is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180023006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm is earlier than 10:1.5.3-156.el7_5.3" test_ref="oval:com.redhat.rhsa:tst:20182001005" />
+            <criterion comment="qemu-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180023010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm-common is earlier than 10:1.5.3-156.el7_5.3" test_ref="oval:com.redhat.rhsa:tst:20182001009" />
+            <criterion comment="qemu-kvm-common is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180023012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm-tools is earlier than 10:1.5.3-156.el7_5.3" test_ref="oval:com.redhat.rhsa:tst:20182001007" />
+            <criterion comment="qemu-kvm-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180023008" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20182003" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:2003: kernel-rt security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 7</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:2003-00" ref_url="https://access.redhat.com/errata/RHSA-2018:2003" source="RHSA" />
+        <reference ref_id="CVE-2017-11600" ref_url="https://access.redhat.com/security/cve/CVE-2017-11600" source="CVE" />
+        <reference ref_id="CVE-2018-3639" ref_url="https://access.redhat.com/security/cve/CVE-2018-3639" source="CVE" />
+        <description>The kernel-rt packages provide the Real Time Linux Kernel, which enables fine-tuning for systems with extremely high determinism requirements.
+
+Security Fix(es):
+
+* An industry-wide issue was found in the way many modern microprocessor designs have implemented speculative execution of Load &amp; Store instructions (a commonly used performance optimization). It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory read from address to which a recent memory write has occurred may see an older value and subsequently cause an update into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to read privileged memory by conducting targeted cache side-channel attacks. (CVE-2018-3639, x86 AMD)
+
+* kernel: Out-of-bounds access via an XFRM_MSG_MIGRATE xfrm Netlink message (CVE-2017-11600)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank Ken Johnson (Microsoft Security Response Center) and Jann Horn (Google Project Zero) for reporting CVE-2018-3639.
+
+Bug Fix(es):
+
+* The kernel-rt packages have been upgraded to the 3.10.0-862.6.1 source tree, which provides a number of bug fixes over the previous version. (BZ#1576058)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-06-26" />
+          <updated date="2018-06-26" />
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-11600" impact="moderate" public="20170711">CVE-2017-11600</cve>
+          <cve cvss3="5.6/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2018-3639" public="20180521:2100">CVE-2018-3639</cve>
+          <bugzilla id="1474928" href="https://bugzilla.redhat.com/1474928">CVE-2017-11600 kernel: Out-of-bounds access via an XFRM_MSG_MIGRATE xfrm Netlink message</bugzilla>
+          <bugzilla id="1566890" href="https://bugzilla.redhat.com/1566890">CVE-2018-3639 hw: cpu: speculative store bypass</bugzilla>
+          <bugzilla id="1576058" href="https://bugzilla.redhat.com/1576058">kernel-rt: update to the RHEL7.5.z batch#2 source tree</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/a:redhat:rhel_extras_rt:7</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 7 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180007001" />
+          <criterion comment="Red Hat Enterprise Linux 7 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180007002" />
+          <criterion comment="Red Hat Enterprise Linux 7 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180007003" />
+          <criterion comment="Red Hat Enterprise Linux 7 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180007004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel-rt is earlier than 0:3.10.0-862.6.3.rt56.811.el7" test_ref="oval:com.redhat.rhsa:tst:20182003017" />
+            <criterion comment="kernel-rt is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180016018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug is earlier than 0:3.10.0-862.6.3.rt56.811.el7" test_ref="oval:com.redhat.rhsa:tst:20182003007" />
+            <criterion comment="kernel-rt-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180016020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug-devel is earlier than 0:3.10.0-862.6.3.rt56.811.el7" test_ref="oval:com.redhat.rhsa:tst:20182003015" />
+            <criterion comment="kernel-rt-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180016012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-862.6.3.rt56.811.el7" test_ref="oval:com.redhat.rhsa:tst:20182003021" />
+            <criterion comment="kernel-rt-debug-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180016024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-devel is earlier than 0:3.10.0-862.6.3.rt56.811.el7" test_ref="oval:com.redhat.rhsa:tst:20182003013" />
+            <criterion comment="kernel-rt-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180016008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-doc is earlier than 0:3.10.0-862.6.3.rt56.811.el7" test_ref="oval:com.redhat.rhsa:tst:20182003005" />
+            <criterion comment="kernel-rt-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180016006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-kvm is earlier than 0:3.10.0-862.6.3.rt56.811.el7" test_ref="oval:com.redhat.rhsa:tst:20182003019" />
+            <criterion comment="kernel-rt-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180016014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace is earlier than 0:3.10.0-862.6.3.rt56.811.el7" test_ref="oval:com.redhat.rhsa:tst:20182003023" />
+            <criterion comment="kernel-rt-trace is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180016022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace-devel is earlier than 0:3.10.0-862.6.3.rt56.811.el7" test_ref="oval:com.redhat.rhsa:tst:20182003011" />
+            <criterion comment="kernel-rt-trace-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180016016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-862.6.3.rt56.811.el7" test_ref="oval:com.redhat.rhsa:tst:20182003009" />
+            <criterion comment="kernel-rt-trace-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180016010" />
           </criteria>
         </criteria>
       </criteria>
@@ -21449,6 +21983,66 @@ Bug Fix(es):
       <object object_ref="oval:com.redhat.rhsa:obj:20181957020" />
       <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965005" check="at least one" comment="kernel-abi-whitelists is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965007" check="at least one" comment="kernel-doc is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965009" check="at least one" comment="kernel-debug is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965011" check="at least one" comment="kernel is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965013" check="at least one" comment="python-perf is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965015" check="at least one" comment="kernel-kdump is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965017" check="at least one" comment="kernel-devel is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965019" check="at least one" comment="perf is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965021" check="at least one" comment="kernel-debug-devel is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965023" check="at least one" comment="kernel-kdump-devel is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965025" check="at least one" comment="kernel-headers is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965027" check="at least one" comment="kernel-tools-libs-devel is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007018" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965029" check="at least one" comment="kernel-tools-libs is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965031" check="at least one" comment="kernel-tools is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181965033" check="at least one" comment="kernel-bootwrapper is earlier than 0:3.10.0-862.6.3.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007019" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181965007" />
+    </rpminfo_test>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20181967005" check="at least one" comment="kernel-abi-whitelists is earlier than 0:4.14.0-49.8.1.el7a" version="601">
       <object object_ref="oval:com.redhat.rhsa:obj:20180007005" />
       <state state_ref="oval:com.redhat.rhsa:ste:20181967003" />
@@ -21508,6 +22102,246 @@ Bug Fix(es):
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20181967033" check="at least one" comment="kernel-bootwrapper is earlier than 0:4.14.0-49.8.1.el7a" version="601">
       <object object_ref="oval:com.redhat.rhsa:obj:20180007019" />
       <state state_ref="oval:com.redhat.rhsa:ste:20181967007" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979005" check="at least one" comment="pki-symkey is earlier than 0:10.5.1-13.1.el7_5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181979003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979006" check="at least one" comment="pki-symkey is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979007" check="at least one" comment="pki-tools is earlier than 0:10.5.1-13.1.el7_5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181979003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979008" check="at least one" comment="pki-tools is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979009" check="at least one" comment="pki-base-java is earlier than 0:10.5.1-13.1.el7_5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181979004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979010" check="at least one" comment="pki-base-java is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979011" check="at least one" comment="pki-ca is earlier than 0:10.5.1-13.1.el7_5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181979004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979012" check="at least one" comment="pki-ca is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979013" check="at least one" comment="pki-server is earlier than 0:10.5.1-13.1.el7_5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181979004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979014" check="at least one" comment="pki-server is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979015" check="at least one" comment="pki-javadoc is earlier than 0:10.5.1-13.1.el7_5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181979004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979016" check="at least one" comment="pki-javadoc is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979017" check="at least one" comment="pki-base is earlier than 0:10.5.1-13.1.el7_5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181979004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979018" check="at least one" comment="pki-base is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979019" check="at least one" comment="pki-kra is earlier than 0:10.5.1-13.1.el7_5" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181979004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181979020" check="at least one" comment="pki-kra is signed with Red Hat redhatrelease2 key" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20181979012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997005" check="at least one" comment="libvirt-daemon-driver-secret is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029018" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997007" check="at least one" comment="libvirt-docs is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029021" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997009" check="at least one" comment="libvirt-daemon-driver-interface is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997011" check="at least one" comment="libvirt-daemon-driver-storage-core is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029027" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997013" check="at least one" comment="libvirt is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997015" check="at least one" comment="libvirt-lock-sanlock is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997017" check="at least one" comment="libvirt-daemon-driver-storage-iscsi is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997019" check="at least one" comment="libvirt-daemon-driver-storage is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029034" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997021" check="at least one" comment="libvirt-daemon-lxc is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997023" check="at least one" comment="libvirt-client is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029024" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997025" check="at least one" comment="libvirt-daemon-driver-nodedev is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997027" check="at least one" comment="libvirt-login-shell is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029019" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997029" check="at least one" comment="libvirt-admin is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029033" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997031" check="at least one" comment="libvirt-daemon-driver-storage-rbd is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029025" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997033" check="at least one" comment="libvirt-daemon-config-network is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997035" check="at least one" comment="libvirt-daemon-driver-storage-gluster is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997037" check="at least one" comment="libvirt-devel is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029026" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997039" check="at least one" comment="libvirt-daemon-driver-storage-scsi is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029023" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997041" check="at least one" comment="libvirt-daemon is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029032" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997043" check="at least one" comment="libvirt-daemon-kvm is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997006" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997045" check="at least one" comment="libvirt-libs is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029029" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997047" check="at least one" comment="libvirt-daemon-driver-storage-logical is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029020" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997049" check="at least one" comment="libvirt-daemon-driver-lxc is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029016" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997051" check="at least one" comment="libvirt-daemon-driver-network is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029017" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997053" check="at least one" comment="libvirt-daemon-config-nwfilter is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997055" check="at least one" comment="libvirt-daemon-driver-storage-disk is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029030" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997057" check="at least one" comment="libvirt-daemon-driver-qemu is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997059" check="at least one" comment="libvirt-nss is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029022" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997061" check="at least one" comment="libvirt-daemon-driver-storage-mpath is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029031" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20181997063" check="at least one" comment="libvirt-daemon-driver-nwfilter is earlier than 0:3.9.0-14.el7_5.6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180029028" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20181997003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182001005" check="at least one" comment="qemu-kvm is earlier than 10:1.5.3-156.el7_5.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180023007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182001007" check="at least one" comment="qemu-kvm-tools is earlier than 10:1.5.3-156.el7_5.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180023006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182001009" check="at least one" comment="qemu-kvm-common is earlier than 10:1.5.3-156.el7_5.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180023008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182001011" check="at least one" comment="qemu-img is earlier than 10:1.5.3-156.el7_5.3" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180023005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182001003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182003005" check="at least one" comment="kernel-rt-doc is earlier than 0:3.10.0-862.6.3.rt56.811.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180016005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182003003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182003007" check="at least one" comment="kernel-rt-debug is earlier than 0:3.10.0-862.6.3.rt56.811.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180016012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182003004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182003009" check="at least one" comment="kernel-rt-trace-kvm is earlier than 0:3.10.0-862.6.3.rt56.811.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180016007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182003004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182003011" check="at least one" comment="kernel-rt-trace-devel is earlier than 0:3.10.0-862.6.3.rt56.811.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180016010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182003004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182003013" check="at least one" comment="kernel-rt-devel is earlier than 0:3.10.0-862.6.3.rt56.811.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180016006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182003004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182003015" check="at least one" comment="kernel-rt-debug-devel is earlier than 0:3.10.0-862.6.3.rt56.811.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180016008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182003004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182003017" check="at least one" comment="kernel-rt is earlier than 0:3.10.0-862.6.3.rt56.811.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180016011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182003004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182003019" check="at least one" comment="kernel-rt-kvm is earlier than 0:3.10.0-862.6.3.rt56.811.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180016009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182003004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182003021" check="at least one" comment="kernel-rt-debug-kvm is earlier than 0:3.10.0-862.6.3.rt56.811.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180016014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182003004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182003023" check="at least one" comment="kernel-rt-trace is earlier than 0:3.10.0-862.6.3.rt56.811.el7" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180016013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182003004" />
     </rpminfo_test>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20182006005" check="at least one" comment="libvirt-daemon-lxc is earlier than 0:3.2.0-14.el7_4.11" version="601">
       <object object_ref="oval:com.redhat.rhsa:obj:20180029010" />
@@ -23305,6 +24139,30 @@ Bug Fix(es):
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20181957020" version="602">
       <name>git-gui</name>
     </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181979005" version="601">
+      <name>pki-symkey</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181979006" version="601">
+      <name>pki-tools</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181979007" version="601">
+      <name>pki-base-java</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181979008" version="601">
+      <name>pki-ca</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181979009" version="601">
+      <name>pki-server</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181979010" version="601">
+      <name>pki-javadoc</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181979011" version="601">
+      <name>pki-base</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:com.redhat.rhsa:obj:20181979012" version="601">
+      <name>pki-kra</name>
+    </rpminfo_object>
   </objects>
   <states>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20180007001" version="602">
@@ -24635,6 +25493,25 @@ Bug Fix(es):
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20181957004" version="602">
       <evr datatype="evr_string" operation="less than">0:1.8.3.1-14.el7_5</evr>
     </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181965003" version="601">
+      <evr datatype="evr_string" operation="less than">0:3.10.0-862.6.3.el7</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181965004" version="601">
+      <arch datatype="string" operation="pattern match">ppc64|ppc64le|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:3.10.0-862.6.3.el7</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181965005" version="601">
+      <arch datatype="string" operation="equals">s390x</arch>
+      <evr datatype="evr_string" operation="less than">0:3.10.0-862.6.3.el7</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181965006" version="601">
+      <arch datatype="string" operation="pattern match">ppc64|ppc64le|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:3.10.0-862.6.3.el7</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181965007" version="601">
+      <arch datatype="string" operation="pattern match">ppc64|ppc64le</arch>
+      <evr datatype="evr_string" operation="less than">0:3.10.0-862.6.3.el7</evr>
+    </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20181967003" version="601">
       <evr datatype="evr_string" operation="less than">0:4.14.0-49.8.1.el7a</evr>
     </rpminfo_state>
@@ -24653,6 +25530,40 @@ Bug Fix(es):
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20181967007" version="601">
       <arch datatype="string" operation="equals">ppc64le</arch>
       <evr datatype="evr_string" operation="less than">0:4.14.0-49.8.1.el7a</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181979003" version="601">
+      <arch datatype="string" operation="pattern match">aarch64|ppc64|ppc64le|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:10.5.1-13.1.el7_5</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181979004" version="601">
+      <evr datatype="evr_string" operation="less than">0:10.5.1-13.1.el7_5</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181997003" version="601">
+      <arch datatype="string" operation="pattern match">aarch64|ppc64|ppc64le|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:3.9.0-14.el7_5.6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181997004" version="601">
+      <arch datatype="string" operation="pattern match">aarch64|i686|ppc|ppc64|ppc64le|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:3.9.0-14.el7_5.6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181997005" version="601">
+      <arch datatype="string" operation="equals">x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:3.9.0-14.el7_5.6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20181997006" version="601">
+      <arch datatype="string" operation="pattern match">aarch64|ppc64le|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:3.9.0-14.el7_5.6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182001003" version="601">
+      <arch datatype="string" operation="equals">x86_64</arch>
+      <evr datatype="evr_string" operation="less than">10:1.5.3-156.el7_5.3</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182003003" version="601">
+      <evr datatype="evr_string" operation="less than">0:3.10.0-862.6.3.rt56.811.el7</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182003004" version="601">
+      <arch datatype="string" operation="equals">x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:3.10.0-862.6.3.rt56.811.el7</evr>
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20182006003" version="601">
       <arch datatype="string" operation="pattern match">ppc64|ppc64le|s390x|x86_64</arch>
