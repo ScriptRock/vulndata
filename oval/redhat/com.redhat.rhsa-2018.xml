@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1530763738</content_version>
+    <content_version>1531245354</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20180007" class="patch" version="602">
@@ -14427,6 +14427,190 @@ Red Hat would like to thank OpenVPN for reporting this issue. Upstream acknowled
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20182162" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:2162: qemu-kvm security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:2162-00" ref_url="https://access.redhat.com/errata/RHSA-2018:2162" source="RHSA" />
+        <reference ref_id="CVE-2017-13672" ref_url="https://access.redhat.com/security/cve/CVE-2017-13672" source="CVE" />
+        <reference ref_id="CVE-2018-3639" ref_url="https://access.redhat.com/security/cve/CVE-2018-3639" source="CVE" />
+        <reference ref_id="CVE-2018-5683" ref_url="https://access.redhat.com/security/cve/CVE-2018-5683" source="CVE" />
+        <reference ref_id="CVE-2018-7858" ref_url="https://access.redhat.com/security/cve/CVE-2018-7858" source="CVE" />
+        <description>Kernel-based Virtual Machine (KVM) is a full virtualization solution for Linux on a variety of architectures. The qemu-kvm packages provide the user-space component for running virtual machines that use KVM.
+
+Security Fix(es):
+
+* An industry-wide issue was found in the way many modern microprocessor designs have implemented speculative execution of Load &amp; Store instructions (a commonly used performance optimization). It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory read from address to which a recent memory write has occurred may see an older value and subsequently cause an update into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to read privileged memory by conducting targeted cache side-channel attacks. (CVE-2018-3639)
+
+Note: This is the qemu-kvm side of the CVE-2018-3639 mitigation.
+
+* QEMU: cirrus: OOB access when updating VGA display (CVE-2018-7858)
+
+* QEMU: vga: OOB read access during display update (CVE-2017-13672)
+
+* Qemu: Out-of-bounds read in vga_draw_text routine (CVE-2018-5683)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank Ken Johnson (Microsoft Security Response Center) and Jann Horn (Google Project Zero) for reporting CVE-2018-3639; Ross Lagerwall (Citrix.com) for reporting CVE-2018-7858; David Buchanan for reporting CVE-2017-13672; and Jiang Xin and Lin ZheCheng for reporting CVE-2018-5683.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-07-10" />
+          <updated date="2018-07-10" />
+          <cve cvss2="2.3/AV:A/AC:M/Au:S/C:N/I:N/A:P" cvss3="3.0/CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:C/C:N/I:N/A:L" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2017-13672" impact="low" public="20170824">CVE-2017-13672</cve>
+          <cve cvss3="5.6/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2018-3639" public="20180521:2100">CVE-2018-3639</cve>
+          <cve cvss2="2.3/AV:A/AC:M/Au:S/C:N/I:N/A:P" cvss3="3.0/CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:C/C:N/I:N/A:L" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2018-5683" impact="low" public="20171225">CVE-2018-5683</cve>
+          <cve cvss2="4.9/AV:A/AC:M/Au:S/C:P/I:P/A:P" cvss3="5.5/CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:L" cwe="CWE-125" href="https://access.redhat.com/security/cve/CVE-2018-7858" impact="moderate" public="20180308">CVE-2018-7858</cve>
+          <bugzilla id="1486560" href="https://bugzilla.redhat.com/1486560">CVE-2017-13672 QEMU: vga: OOB read access during display update</bugzilla>
+          <bugzilla id="1530356" href="https://bugzilla.redhat.com/1530356">CVE-2018-5683 Qemu: Out-of-bounds read in vga_draw_text routine</bugzilla>
+          <bugzilla id="1553402" href="https://bugzilla.redhat.com/1553402">CVE-2018-7858 QEMU: cirrus: OOB access when updating VGA display</bugzilla>
+          <bugzilla id="1566890" href="https://bugzilla.redhat.com/1566890">CVE-2018-3639 hw: cpu: speculative store bypass</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="qemu-guest-agent is earlier than 2:0.12.1.2-2.506.el6_10.1" test_ref="oval:com.redhat.rhsa:tst:20182162005" />
+            <criterion comment="qemu-guest-agent is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180024006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-img is earlier than 2:0.12.1.2-2.506.el6_10.1" test_ref="oval:com.redhat.rhsa:tst:20182162011" />
+            <criterion comment="qemu-img is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180023006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm is earlier than 2:0.12.1.2-2.506.el6_10.1" test_ref="oval:com.redhat.rhsa:tst:20182162009" />
+            <criterion comment="qemu-kvm is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180023010" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.506.el6_10.1" test_ref="oval:com.redhat.rhsa:tst:20182162007" />
+            <criterion comment="qemu-kvm-tools is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180023008" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
+    <definition id="oval:com.redhat.rhsa:def:20182164" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:2164: kernel security and bug fix update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:2164-00" ref_url="https://access.redhat.com/errata/RHSA-2018:2164" source="RHSA" />
+        <reference ref_id="CVE-2018-3639" ref_url="https://access.redhat.com/security/cve/CVE-2018-3639" source="CVE" />
+        <reference ref_id="CVE-2018-3665" ref_url="https://access.redhat.com/security/cve/CVE-2018-3665" source="CVE" />
+        <reference ref_id="CVE-2018-10675" ref_url="https://access.redhat.com/security/cve/CVE-2018-10675" source="CVE" />
+        <reference ref_id="CVE-2018-10872" ref_url="https://access.redhat.com/security/cve/CVE-2018-10872" source="CVE" />
+        <description>The kernel packages contain the Linux kernel, the core of any Linux operating system.
+
+Security Fix(es):
+
+* An industry-wide issue was found in the way many modern microprocessor designs have implemented speculative execution of Load &amp; Store instructions (a commonly used performance optimization). It relies on the presence of a precisely-defined instruction sequence in the privileged code as well as the fact that memory read from address to which a recent memory write has occurred may see an older value and subsequently cause an update into the microprocessor's data cache even for speculatively executed instructions that never actually commit (retire). As a result, an unprivileged attacker could use this flaw to read privileged memory by conducting targeted cache side-channel attacks. (CVE-2018-3639, x86 AMD)
+
+* kernel: Use-after-free vulnerability in mm/mempolicy.c:do_get_mempolicy function allows local denial of service or other unspecified impact (CVE-2018-10675)
+
+* Kernel: FPU state information leakage via lazy FPU restore (CVE-2018-3665)
+
+* kernel: error in exception handling leads to DoS (CVE-2018-8897 regression) (CVE-2018-10872)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.
+
+Red Hat would like to thank Ken Johnson (Microsoft Security Response Center) and Jann Horn (Google Project Zero) for reporting CVE-2018-3639 and Julian Stecklina (Amazon.de), Thomas Prescher (cyberus-technology.de), and Zdenek Sojka (sysgo.com) for reporting CVE-2018-3665.
+
+Bug Fix(es):
+
+* Previously, microcode updates on 32 and 64-bit AMD and Intel architectures were not synchronized. As a consequence, it was not possible to apply the microcode updates. This fix adds the synchronization to the microcode updates so that processors of the stated architectures receive updates at the same time. As a result, microcode updates are now synchronized. (BZ#1574592)</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-07-10" />
+          <updated date="2018-07-10" />
+          <cve cvss3="5.6/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2018-3639" public="20180521:2100">CVE-2018-3639</cve>
+          <cve cvss3="5.6/CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N" cwe="CWE-200" href="https://access.redhat.com/security/cve/CVE-2018-3665" impact="moderate" public="20180613:2100">CVE-2018-3665</cve>
+          <cve cvss3="5.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" cwe="CWE-416" href="https://access.redhat.com/security/cve/CVE-2018-10675" public="20170819">CVE-2018-10675</cve>
+          <cve cvss3="6.5/CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:N/I:N/A:H" cwe="CWE-250" href="https://access.redhat.com/security/cve/CVE-2018-10872" impact="moderate" public="20180710:1000">CVE-2018-10872</cve>
+          <bugzilla id="1566890" href="https://bugzilla.redhat.com/1566890">CVE-2018-3639 hw: cpu: speculative store bypass</bugzilla>
+          <bugzilla id="1575065" href="https://bugzilla.redhat.com/1575065">CVE-2018-10675 kernel: Use-after-free vulnerability in mm/mempolicy.c:do_get_mempolicy function allows local denial-of-service or other unspecified impact</bugzilla>
+          <bugzilla id="1585011" href="https://bugzilla.redhat.com/1585011">CVE-2018-3665 Kernel: FPU state information leakage via lazy FPU restore</bugzilla>
+          <bugzilla id="1596094" href="https://bugzilla.redhat.com/1596094">CVE-2018-10872 kernel: error in exception handling leads to DoS (CVE-2018-8897 regression)</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="kernel is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164025" />
+            <criterion comment="kernel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007020" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-abi-whitelists is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164005" />
+            <criterion comment="kernel-abi-whitelists is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-bootwrapper is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164029" />
+            <criterion comment="kernel-bootwrapper is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007034" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164017" />
+            <criterion comment="kernel-debug is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007012" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-debug-devel is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164015" />
+            <criterion comment="kernel-debug-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007026" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-devel is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164019" />
+            <criterion comment="kernel-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007024" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-doc is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164007" />
+            <criterion comment="kernel-doc is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-firmware is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164009" />
+            <criterion comment="kernel-firmware is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180008006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-headers is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164011" />
+            <criterion comment="kernel-headers is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007018" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164027" />
+            <criterion comment="kernel-kdump is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007022" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="kernel-kdump-devel is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164013" />
+            <criterion comment="kernel-kdump-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007014" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="perf is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164021" />
+            <criterion comment="perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007016" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="python-perf is earlier than 0:2.6.32-754.2.1.el6" test_ref="oval:com.redhat.rhsa:tst:20182164023" />
+            <criterion comment="python-perf is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20180007010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20180007001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -22821,6 +23005,74 @@ Red Hat would like to thank OpenVPN for reporting this issue. Upstream acknowled
       <object object_ref="oval:com.redhat.rhsa:obj:20182123011" />
       <state state_ref="oval:com.redhat.rhsa:ste:20180007001" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182162005" check="at least one" comment="qemu-guest-agent is earlier than 2:0.12.1.2-2.506.el6_10.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180024005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182162003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182162007" check="at least one" comment="qemu-kvm-tools is earlier than 2:0.12.1.2-2.506.el6_10.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180023006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182162004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182162009" check="at least one" comment="qemu-kvm is earlier than 2:0.12.1.2-2.506.el6_10.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180023007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182162004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182162011" check="at least one" comment="qemu-img is earlier than 2:0.12.1.2-2.506.el6_10.1" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180023005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182162004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164005" check="at least one" comment="kernel-abi-whitelists is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164007" check="at least one" comment="kernel-doc is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164009" check="at least one" comment="kernel-firmware is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180008005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164011" check="at least one" comment="kernel-headers is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007011" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164013" check="at least one" comment="kernel-kdump-devel is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007009" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164015" check="at least one" comment="kernel-debug-devel is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007015" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164017" check="at least one" comment="kernel-debug is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007008" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164019" check="at least one" comment="kernel-devel is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007014" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164021" check="at least one" comment="perf is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007010" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164023" check="at least one" comment="python-perf is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164025" check="at least one" comment="kernel is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007012" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164004" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164027" check="at least one" comment="kernel-kdump is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007013" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164005" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182164029" check="at least one" comment="kernel-bootwrapper is earlier than 0:2.6.32-754.2.1.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20180007019" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182164006" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20180007001" version="602">
@@ -25983,6 +26235,29 @@ Red Hat would like to thank OpenVPN for reporting this issue. Upstream acknowled
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20182123004" version="602">
       <arch datatype="string" operation="pattern match">aarch64|i686|ppc|ppc64|ppc64le|s390|s390x|x86_64</arch>
       <evr datatype="evr_string" operation="less than">0:2.7.5-69.el7_5</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182162003" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">2:0.12.1.2-2.506.el6_10.1</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182162004" version="601">
+      <arch datatype="string" operation="equals">x86_64</arch>
+      <evr datatype="evr_string" operation="less than">2:0.12.1.2-2.506.el6_10.1</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182164003" version="601">
+      <evr datatype="evr_string" operation="less than">0:2.6.32-754.2.1.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182164004" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">0:2.6.32-754.2.1.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182164005" version="601">
+      <arch datatype="string" operation="equals">s390x</arch>
+      <evr datatype="evr_string" operation="less than">0:2.6.32-754.2.1.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182164006" version="601">
+      <arch datatype="string" operation="equals">ppc64</arch>
+      <evr datatype="evr_string" operation="less than">0:2.6.32-754.2.1.el6</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
