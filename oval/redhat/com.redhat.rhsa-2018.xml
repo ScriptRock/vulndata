@@ -4,7 +4,7 @@
     <product_name>Red Hat OVAL Patch Definition Merger</product_name>
     <product_version>3</product_version>
     <schema_version>5.10</schema_version>
-    <content_version>1532964183</content_version>
+    <content_version>1533060650</content_version>
   </generator>
   <definitions>
     <definition id="oval:com.redhat.rhsa:def:20180007" class="patch" version="602">
@@ -15885,6 +15885,56 @@ For more details about the security issue(s), including the impact, a CVSS score
         </criteria>
       </criteria>
     </definition>
+    <definition id="oval:com.redhat.rhsa:def:20182308" class="patch" version="601">
+      <metadata>
+        <title>RHSA-2018:2308: openslp security update (Important)</title>
+        <affected family="unix">
+          <platform>Red Hat Enterprise Linux 6</platform>
+        </affected>
+        <reference ref_id="RHSA-2018:2308-00" ref_url="https://access.redhat.com/errata/RHSA-2018:2308" source="RHSA" />
+        <reference ref_id="CVE-2017-17833" ref_url="https://access.redhat.com/security/cve/CVE-2017-17833" source="CVE" />
+        <description>OpenSLP is an open source implementation of the Service Location Protocol (SLP) which is an Internet Engineering Task Force (IETF) standards track protocol and provides a framework to allow networking applications to discover the existence, location, and configuration of networked services in enterprise networks.
+
+Security Fix(es):
+
+* openslp: Heap memory corruption in slpd/slpd_process.c allows denial of service or potentially code execution (CVE-2017-17833)
+
+For more details about the security issue(s), including the impact, a CVSS score, and other related information, refer to the CVE page(s) listed in the References section.</description>
+        <advisory from="secalert@redhat.com">
+          <severity>Important</severity>
+          <rights>Copyright 2018 Red Hat, Inc.</rights>
+          <issued date="2018-07-31" />
+          <updated date="2018-07-31" />
+          <cve cvss3="7.5/CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H" cwe="CWE-416" href="https://access.redhat.com/security/cve/CVE-2017-17833" public="20180419">CVE-2017-17833</cve>
+          <bugzilla id="1572166" href="https://bugzilla.redhat.com/1572166">CVE-2017-17833 openslp: Heap memory corruption in slpd/slpd_process.c allows denial of service or potentially code execution</bugzilla>
+          <affected_cpe_list>
+            <cpe>cpe:/o:redhat:enterprise_linux:6</cpe>
+          </affected_cpe_list>
+        </advisory>
+      </metadata>
+      <criteria operator="AND">
+        <criteria operator="OR">
+          <criterion comment="Red Hat Enterprise Linux 6 Client is installed" test_ref="oval:com.redhat.rhsa:tst:20180008001" />
+          <criterion comment="Red Hat Enterprise Linux 6 Server is installed" test_ref="oval:com.redhat.rhsa:tst:20180008002" />
+          <criterion comment="Red Hat Enterprise Linux 6 Workstation is installed" test_ref="oval:com.redhat.rhsa:tst:20180008003" />
+          <criterion comment="Red Hat Enterprise Linux 6 ComputeNode is installed" test_ref="oval:com.redhat.rhsa:tst:20180008004" />
+        </criteria>
+        <criteria operator="OR">
+          <criteria operator="AND">
+            <criterion comment="openslp is earlier than 1:2.0.0-3.el6" test_ref="oval:com.redhat.rhsa:tst:20182308005" />
+            <criterion comment="openslp is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20182240006" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="openslp-devel is earlier than 1:2.0.0-3.el6" test_ref="oval:com.redhat.rhsa:tst:20182308007" />
+            <criterion comment="openslp-devel is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20182240008" />
+          </criteria>
+          <criteria operator="AND">
+            <criterion comment="openslp-server is earlier than 1:2.0.0-3.el6" test_ref="oval:com.redhat.rhsa:tst:20182308009" />
+            <criterion comment="openslp-server is signed with Red Hat redhatrelease2 key" test_ref="oval:com.redhat.rhsa:tst:20182240010" />
+          </criteria>
+        </criteria>
+      </criteria>
+    </definition>
   </definitions>
   <tests>
     <rpminfo_test id="oval:com.redhat.rhsa:tst:20180007001" check="at least one" comment="Red Hat Enterprise Linux 7 Client is installed" version="602">
@@ -24995,6 +25045,18 @@ For more details about the security issue(s), including the impact, a CVSS score
       <object object_ref="oval:com.redhat.rhsa:obj:20180349009" />
       <state state_ref="oval:com.redhat.rhsa:ste:20182286004" />
     </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182308005" check="at least one" comment="openslp is earlier than 1:2.0.0-3.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20182240005" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182308003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182308007" check="at least one" comment="openslp-devel is earlier than 1:2.0.0-3.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20182240006" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182308003" />
+    </rpminfo_test>
+    <rpminfo_test id="oval:com.redhat.rhsa:tst:20182308009" check="at least one" comment="openslp-server is earlier than 1:2.0.0-3.el6" version="601">
+      <object object_ref="oval:com.redhat.rhsa:obj:20182240007" />
+      <state state_ref="oval:com.redhat.rhsa:ste:20182308004" />
+    </rpminfo_test>
   </tests>
   <objects>
     <rpminfo_object id="oval:com.redhat.rhsa:obj:20180007001" version="602">
@@ -28360,6 +28422,14 @@ For more details about the security issue(s), including the impact, a CVSS score
     </rpminfo_state>
     <rpminfo_state id="oval:com.redhat.rhsa:ste:20182286004" version="601">
       <evr datatype="evr_string" operation="less than">1:1.7.0.191-2.6.15.4.el7_5</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182308003" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc|ppc64|s390|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">1:2.0.0-3.el6</evr>
+    </rpminfo_state>
+    <rpminfo_state id="oval:com.redhat.rhsa:ste:20182308004" version="601">
+      <arch datatype="string" operation="pattern match">i686|ppc64|s390x|x86_64</arch>
+      <evr datatype="evr_string" operation="less than">1:2.0.0-3.el6</evr>
     </rpminfo_state>
   </states>
 </oval_definitions>
